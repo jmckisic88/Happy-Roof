@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roofing Jobs Tampa Bay | Apply to Work at Happy Roof</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}body{background:#0D0D0D;color:#F5F5F5;font-family:'Inter',sans-serif;margin:0}html{scroll-behavior:smooth}
+    .nav-wrap{background:rgba(13,13,13,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav-link{color:#666;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#F5F5F5}
+    .gp{background:linear-gradient(135deg,#A855F7 0%,#7C3AED 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .gt{background:linear-gradient(135deg,#34D399 0%,#06B6D4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+
+    /* Buttons */
+    .btn-p{background:#7C3AED;color:#fff;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.7rem 1.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 20px -4px rgba(124,58,237,.5);display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
+    .btn-p:hover{background:#9333EA;transform:translateY(-2px)}
+    .btn-t{background:#0FBFBF;color:#0D0D0D;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.04em;padding:.7rem 1.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 20px -4px rgba(15,191,191,.45);display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
+    .btn-t:hover{background:#2DD4D4;transform:translateY(-2px)}
+
+    /* Form elements */
+    .form-label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#888;margin-bottom:.4rem}
+    .form-input{width:100%;background:#141414;border:1px solid #252525;border-radius:10px;padding:.75rem 1rem;color:#F5F5F5;font-family:'Inter',sans-serif;font-size:.925rem;outline:none;transition:border-color .18s,box-shadow .18s}
+    .form-input:focus{border-color:rgba(124,58,237,.5);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+    .form-input::placeholder{color:#444}
+    select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+    select.form-input option{background:#141414;color:#F5F5F5}
+    textarea.form-input{resize:vertical;min-height:110px;line-height:1.6}
+
+    /* Type toggle */
+    .type-btn{flex:1;padding:.875rem 1.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.04em;border-radius:10px;transition:all .2s;cursor:pointer;border:2px solid #252525;background:#141414;color:#555}
+    .type-btn.active-w2{background:#7C3AED;color:#fff;border-color:#7C3AED;box-shadow:0 4px 20px -4px rgba(124,58,237,.5)}
+    .type-btn.active-1099{background:#0FBFBF;color:#0D0D0D;border-color:#0FBFBF;box-shadow:0 4px 20px -4px rgba(15,191,191,.45)}
+    .type-btn:not(.active-w2):not(.active-1099):hover{color:#F5F5F5;border-color:#444}
+
+    /* File upload */
+    .file-zone{border:2px dashed #252525;border-radius:12px;padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+    .file-zone:hover{border-color:rgba(124,58,237,.4);background:rgba(124,58,237,.04)}
+    .file-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
+    /* Business card strip */
+    .bc-strip{background:#0D0D0D;border-top:1px solid #222;border-bottom:1px solid #222;position:relative;overflow:hidden;padding:2.5rem 0}
+    .bc-info{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem 2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.08em;color:#333}
+    .bc-info span{color:#F5F5F5}
+    .bc-info .sep{color:#272727}
+
+    /* Brand texture */
+    .brand-texture{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;white-space:nowrap}
+    .bt-inner{display:flex;flex-direction:column;transform:rotate(-8deg) scale(1.35);transform-origin:center;padding:4rem 0;margin:-6rem -8%}
+    .bt-row{display:flex;gap:1.5rem;line-height:1.6;font-size:1.6rem}
+    .bt-row:nth-child(odd){margin-left:-3rem}
+
+    /* White section */
+    .white-section{background:#F5F5F5;color:#0D0D0D}
+    .white-section .sl{color:#666}
+
+    footer{background:#0A0A0A;border-top:1px solid #181818}
+    .foot-link{color:#444;font-size:.875rem;transition:color .18s;text-decoration:none;display:block;padding:.18rem 0}
+    .foot-link:hover{color:#F5F5F5}
+    #mobile-menu{display:none}#mobile-menu.open{display:flex}
+
+    /* Success message */
+    .success-msg{display:none;background:#0FBFBF;color:#0D0D0D;border-radius:12px;padding:1.5rem;text-align:center;font-weight:600}
+    .success-msg.visible{display:block}
+  </style>
+  <!-- SEO -->
+  <meta name="description" content="Join Tampa Bay's growing roofing team. Happy Roof is hiring roofing installers, project managers, sales reps & more. Competitive pay, great culture. Apply online today." />
+  <meta name="keywords" content="roofing jobs Tampa Bay, roofer job Tampa FL, roofing company hiring Tampa, roofing installer job Hillsborough County, roofing career Florida, Happy Roof careers" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://happyroof.com/apply.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://happyroof.com/apply.html" />
+  <meta property="og:title" content="Roofing Jobs in Tampa Bay | Happy Roof is Hiring" />
+  <meta property="og:description" content="Tampa Bay roofing careers at Happy Roof. We're hiring installers, project managers, and sales reps. Competitive pay, great culture. Apply today." />
+  <meta property="og:image" content="https://happyroof.com/Brand%20Assets/Happy%20Roof%20Logo.jpeg" />
+  <meta property="og:site_name" content="Happy Roof Tampa Bay" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roofing Jobs in Tampa Bay | Happy Roof is Hiring" />
+  <meta name="twitter:description" content="Tampa Bay roofing careers at Happy Roof. We're hiring installers, project managers, and sales reps. Competitive pay, great culture. Apply today." />
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "https://happyroof.com/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "https://happyroof.com/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tampa",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 27.9506, "longitude": -82.4572 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl"
+    ],
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "50",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<!-- ══ WE GIVE BACK BANNER ══ -->
+<div id="give-back-bar" style="background:#0A0A0A;border-bottom:1px solid #1C1C1C;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.75rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
+  <a href="foundation.html" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#E8415A;font-size:.72rem;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Every Shingle Heart
+  </a>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <span style="color:#3A3A3A;font-size:.68rem;font-weight:600;font-family:'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase">We Give Back</span>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <a href="index.html#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#7C3AED;font-size:.72rem;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#7C3AED" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Hero Discount
+  </a>
+</div>
+<nav class="nav-wrap fixed left-0 right-0 z-50" style="top:36px">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="index.html"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-14 w-auto" /></a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="finance.html" class="nav-link">Financing</a>
+      <a href="referrals.html" class="nav-link">Referrals</a>
+      <a href="resources.html" class="nav-link">Resources</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="tel:8135957663" class="hidden sm:block font-condensed font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#0FBFBF;font-size:1rem">(813) 595-7663</a>
+      <a href="contact.html" class="btn-p" style="font-size:.88rem;padding:.6rem 1.2rem">Free Estimate</a>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 bg-white block"></span><span class="w-5 h-0.5 bg-white block"></span><span class="w-5 h-0.5 bg-white block"></span></button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden flex-col bg-black border-t border-gray-800 px-5 pb-5 gap-1">
+    <a href="index.html" class="nav-link py-3 border-b border-gray-800 block">Home</a>
+    <a href="services.html" class="nav-link py-3 border-b border-gray-800 block">Services</a>
+    <a href="products.html" class="nav-link py-3 border-b border-gray-800 block">Products</a>
+    <a href="referrals.html" class="nav-link py-3 border-b border-gray-800 block">Referrals</a>
+    <a href="resources.html" class="nav-link py-3 border-b border-gray-800 block">Resources</a>
+    <a href="about.html" class="nav-link py-3 border-b border-gray-800 block">About</a>
+    <a href="contact.html" class="nav-link py-3 block">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="white-section pt-28 pb-12" style="border-bottom:1px solid #E5E5E5">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="sl mb-3" style="color:#7C3AED">For Our Team</p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.6rem,6vw,4rem);line-height:1;letter-spacing:-.02em;color:#0D0D0D;margin-bottom:1rem">
+      Join the<br><span style="background:linear-gradient(135deg,#A855F7 0%,#7C3AED 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Happy Roof</span> Team
+    </h1>
+    <p style="font-size:1.1rem;color:#555;line-height:1.7;max-width:540px">We're always looking for skilled, motivated people who take pride in their work. Fill out the application below and we'll be in touch.</p>
+    <div class="flex flex-wrap gap-4 mt-6">
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#555">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#7C3AED" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Competitive pay
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#555">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#7C3AED" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Tampa Bay based
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#555">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#7C3AED" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        W2 &amp; 1099 opportunities
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#555">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#7C3AED" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Growth opportunities
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section style="background:#0D0D0D;padding:5rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+
+    <div id="success-msg" class="success-msg mb-8">
+      <div style="font-size:2rem;margin-bottom:.5rem">
+        <svg style="width:1.5em;height:1.5em;display:inline-block;vertical-align:-.2em" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7.5" r="1" fill="currentColor"/><circle cx="13" cy="7.5" r="1" fill="currentColor"/><path d="M6.5 12c1 3 6 3 7 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:.02em">Application Received!</p>
+      <p style="font-size:.925rem;margin-top:.35rem">Thanks for applying to Happy Roof. We'll review your application and reach out within 3–5 business days.</p>
+    </div>
+
+    <form id="apply-form" action="https://formsubmit.co/info@happyroof.com" method="POST" enctype="multipart/form-data" onsubmit="submitApplication(event)">
+  <input type="hidden" name="_subject" value="New Job Application — Happy Roof" />
+  <input type="hidden" name="_next" value="https://happyroof.com/apply.html?applied=1" />
+  <input type="hidden" name="_captcha" value="false" />
+
+      <!-- Personal Info -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #1E1E1E">Personal Information</h2>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="form-label">First Name <span style="color:#A855F7">*</span></label>
+            <input type="text" name="first_name" class="form-input" placeholder="Jane" required />
+          </div>
+          <div>
+            <label class="form-label">Last Name <span style="color:#A855F7">*</span></label>
+            <input type="text" name="last_name" class="form-input" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="form-label">Email Address <span style="color:#A855F7">*</span></label>
+            <input type="email" name="email" class="form-input" placeholder="jane@example.com" required />
+          </div>
+          <div>
+            <label class="form-label">Phone Number <span style="color:#A855F7">*</span></label>
+            <input type="tel" name="phone" class="form-input" placeholder="(813) 555-0000" required />
+          </div>
+        </div>
+      </div>
+
+      <!-- Position & Type -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #1E1E1E">Position</h2>
+        <div class="mb-5">
+          <label class="form-label">Position Applying For <span style="color:#A855F7">*</span></label>
+          <select name="position" class="form-input" required>
+            <option value="" disabled selected>Select a position…</option>
+            <option value="roofing-installer">Roofing Installer</option>
+            <option value="project-manager">Project Manager</option>
+            <option value="sales-rep">Sales Representative</option>
+            <option value="estimator">Estimator</option>
+            <option value="administrative">Administrative / Office</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Employment Type <span style="color:#A855F7">*</span></label>
+          <div class="flex gap-3 mt-1">
+            <button type="button" id="type-w2" class="type-btn active-w2" onclick="setType('w2')">W2 Employee</button>
+            <button type="button" id="type-1099" class="type-btn" onclick="setType('1099')">1099 Contractor</button>
+          </div>
+          <input type="hidden" name="employment_type" id="employment_type_val" value="w2" />
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #1E1E1E">Experience &amp; Skills</h2>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="form-label">Experience Level <span style="color:#A855F7">*</span></label>
+            <select name="experience_level" class="form-input" required>
+              <option value="" disabled selected>Select level…</option>
+              <option value="entry">Entry Level (0–1 years)</option>
+              <option value="junior">Junior (1–3 years)</option>
+              <option value="mid">Mid-Level (3–5 years)</option>
+              <option value="senior">Senior (5–10 years)</option>
+              <option value="expert">Expert (10+ years)</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Years in Roofing Industry</label>
+            <input type="number" name="years_roofing" class="form-input" placeholder="e.g. 4" min="0" max="50" />
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Skills &amp; Certifications</label>
+          <textarea name="skills" class="form-input" placeholder="e.g. Shingle installation, flat roof systems, OSHA 10, manufacturer certifications, sales CRM tools…"></textarea>
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #1E1E1E">Availability</h2>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="form-label">Earliest Start Date</label>
+            <input type="date" name="start_date" class="form-input" style="color-scheme:dark" />
+          </div>
+          <div>
+            <label class="form-label">Availability</label>
+            <select name="availability" class="form-input">
+              <option value="" disabled selected>Select…</option>
+              <option value="full-time">Full-Time</option>
+              <option value="part-time">Part-Time</option>
+              <option value="seasonal">Seasonal</option>
+              <option value="on-call">On-Call / As-Needed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Happy Roof -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:.4rem">Why Happy Roof?</h2>
+        <p style="color:#555;font-size:.875rem;margin-bottom:1.25rem">Tell us a little about yourself and why you want to join our team.</p>
+        <textarea name="why_happy_roof" class="form-input" style="min-height:140px" placeholder="What draws you to Happy Roof? What do you bring to the team?"></textarea>
+      </div>
+
+      <!-- References -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:.4rem">References</h2>
+        <p style="color:#555;font-size:.875rem;margin-bottom:1.5rem">Please provide at least one professional reference (name, relationship, phone/email).</p>
+        <div class="flex flex-col gap-3">
+          <div>
+            <label class="form-label">Reference 1</label>
+            <input type="text" name="ref1" class="form-input" placeholder="Name · Relationship · Phone or Email" />
+          </div>
+          <div>
+            <label class="form-label">Reference 2 <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input type="text" name="ref2" class="form-input" placeholder="Name · Relationship · Phone or Email" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Resume Upload -->
+      <div style="background:#141414;border:1px solid #222;border-radius:16px;padding:2rem;margin-bottom:2rem">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:.4rem">Resume</h2>
+        <p style="color:#555;font-size:.875rem;margin-bottom:1.25rem">Upload your resume or CV (PDF, DOC, or DOCX — max 10 MB).</p>
+        <div class="file-zone" id="file-zone">
+          <input type="file" name="resume" id="resume-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)" />
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="margin:0 auto .75rem;color:#555"><path d="M12 15V3m0 0L8 7m4-4l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15v3a2 2 0 002 2h14a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#666" id="file-label">Click to upload or drag &amp; drop</p>
+          <p style="font-size:.8rem;color:#444;margin-top:.3rem">PDF, DOC, DOCX — up to 10 MB</p>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div style="display:flex;justify-content:flex-end">
+        <button type="submit" class="btn-p" style="font-size:1.05rem;padding:.85rem 2.25rem">
+          Submit Application
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- PERKS STRIP -->
+<section class="white-section" style="padding:4.5rem 0;border-top:1px solid #E5E5E5">
+  <div class="max-w-5xl mx-auto px-5">
+    <p class="sl text-center mb-8" style="color:#666">Why Work Here</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div style="background:#FFFFFF;border:1px solid #E5E5E5;border-radius:14px;padding:1.5rem;box-shadow:0 4px 20px -8px rgba(0,0,0,.08)">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#A855F7,#7C3AED);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="white"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#0D0D0D;margin-bottom:.4rem">Top-Quality Work</h3>
+        <p style="font-size:.85rem;color:#555;line-height:1.6">We back our work with industry-leading warranties and use only the best materials.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E5E5E5;border-radius:14px;padding:1.5rem;box-shadow:0 4px 20px -8px rgba(0,0,0,.08)">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#34D399,#06B6D4);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#0D0D0D;margin-bottom:.4rem">Consistent Work</h3>
+        <p style="font-size:.85rem;color:#555;line-height:1.6">Tampa Bay's roofing market keeps our calendar full year-round. No slow season surprises.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E5E5E5;border-radius:14px;padding:1.5rem;box-shadow:0 4px 20px -8px rgba(0,0,0,.08)">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#A855F7,#7C3AED);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#0D0D0D;margin-bottom:.4rem">Great Team Culture</h3>
+        <p style="font-size:.85rem;color:#555;line-height:1.6">We treat our team like family — transparent communication, fair pay, and real respect.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E5E5E5;border-radius:14px;padding:1.5rem;box-shadow:0 4px 20px -8px rgba(0,0,0,.08)">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#34D399,#06B6D4);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#0D0D0D;margin-bottom:.4rem">Room to Grow</h3>
+        <p style="font-size:.85rem;color:#555;line-height:1.6">We promote from within. Whether you start in the field or the office, there's a path forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS CARD STRIP -->
+<div style="background:#0D0D0D;padding:3rem 0;position:relative;overflow:hidden;border-top:1px solid #1A1A1A">
+  <div class="brand-texture" aria-hidden="true" style="opacity:.04;color:#F5F5F5">
+    <div class="bt-inner">
+      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
+      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
+      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
+    </div>
+  </div>
+  <div class="relative z-10 max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" style="height:44px;width:auto" />
+    <div class="bc-info">
+      <span>TAMPA BAY</span><span class="sep">·</span>
+      <span>CCC1337380</span><span class="sep">·</span>
+      <a href="https://happyroof.com" style="color:#0FBFBF;text-decoration:none">HAPPYROOF.COM</a><span class="sep">·</span>
+      <a href="tel:8135957663" style="color:#0FBFBF;text-decoration:none">(813) 595-7663</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="max-w-7xl mx-auto px-5 py-10">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div class="lg:col-span-2"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-10 mb-3" /><p style="color:#333;font-size:.75rem;letter-spacing:.07em">STATE LICENSE #CCC1337380 · TAMPA BAY, FL</p>
+        <p style="color:#444;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:1.25rem;margin-bottom:.6rem">Follow Us</p>
+        <div class="flex gap-2">
+          <a href="https://www.facebook.com/share/1E27RD4hjZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#1E1E1E;border:1px solid #2A2A2A;transition:background .18s,border-color .18s" aria-label="Facebook" onmouseover="this.style.background='#1877F2';this.style.borderColor='#1877F2'" onmouseout="this.style.background='#1E1E1E';this.style.borderColor='#2A2A2A'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/happyroofflorida?igsh=MXg1bGJ2cGJkZzN6Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#1E1E1E;border:1px solid #2A2A2A;transition:background .18s,border-color .18s" aria-label="Instagram" onmouseover="this.style.background='#E1306C';this.style.borderColor='#E1306C'" onmouseout="this.style.background='#1E1E1E';this.style.borderColor='#2A2A2A'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#888"/></svg></a>
+          <a href="https://www.tiktok.com/@happyrooffl?_r=1&_t=ZT-94pWGkbbLUE" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#1E1E1E;border:1px solid #2A2A2A;transition:background .18s,border-color .18s" aria-label="TikTok" onmouseover="this.style.background='#010101';this.style.borderColor='#69C9D0'" onmouseout="this.style.background='#1E1E1E';this.style.borderColor='#2A2A2A'"><svg width="14" height="14" viewBox="0 0 24 24" fill="#888"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F5F5F5;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Company</h4>
+        <a href="index.html" class="foot-link">Home</a>
+        <a href="services.html" class="foot-link">Services</a>
+        <a href="products.html" class="foot-link">Products</a>
+        <a href="about.html" class="foot-link">About</a><a href="foundation.html" class="foot-link" style="color:#E8415A">Every Shingle Heart ♥</a>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F5F5F5;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">For Our Team</h4>
+        <a href="employees.html" class="foot-link" style="color:#A855F7">Employee Onboarding</a>
+        <a href="apply.html" class="foot-link" style="color:#F5F5F5">Apply Now</a>
+        <a href="contact.html" class="foot-link">Contact Office</a>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid #181818">
+      <p style="color:#333;font-size:.75rem">© 2025 Happy Roof. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" style="color:#444;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F5F5F5'" onmouseout="this.style.color='#444'">Privacy Policy</a>
+        <span style="color:#2A2A2A">·</span>
+        <a href="terms.html" style="color:#444;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F5F5F5'" onmouseout="this.style.color='#444'">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setType(type) {
+  document.getElementById('employment_type_val').value = type;
+  document.getElementById('type-w2').className = 'type-btn' + (type === 'w2' ? ' active-w2' : '');
+  document.getElementById('type-1099').className = 'type-btn' + (type === '1099' ? ' active-1099' : '');
+}
+
+function handleFile(input) {
+  const label = document.getElementById('file-label');
+  if (input.files && input.files[0]) {
+    label.textContent = input.files[0].name;
+    document.getElementById('file-zone').style.borderColor = 'rgba(124,58,237,.5)';
+    document.getElementById('file-zone').style.background = 'rgba(124,58,237,.06)';
+  }
+}
+
+function submitApplication(e) {
+  // run validation; if invalid prevent submission
+  const form = document.getElementById('apply-form');
+  const required = form.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(el => {
+    el.style.borderColor = '';
+    if (!el.value.trim()) { el.style.borderColor = '#EF4444'; valid = false; }
+  });
+  if (!valid) {
+    e.preventDefault();
+    const first = form.querySelector('[required][style*="EF4444"]');
+    if (first) first.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  // valid — allow native form POST to FormSubmit.co (handles file upload)
+}
+// Show success message if redirected back with ?applied=1
+if (new URLSearchParams(location.search).get('applied') === '1') {
+  const form = document.getElementById('apply-form');
+  const msg = document.getElementById('success-msg');
+  if (form) form.style.display = 'none';
+  if (msg) { msg.classList.add('visible'); setTimeout(() => msg.scrollIntoView({behavior:'smooth',block:'center'}), 100); }
+}
+</script>
+<script src="chat.js"></script>
+</body>
+</html>

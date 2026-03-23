@@ -1,0 +1,40 @@
+# Claude Code config
+.claude/
+CLAUDE.md
+
+# Dev artifacts
+temporary screenshots/
+node_modules/
+
+# Reference/design images (not used by the site)
+Banner overlap.png
+Header changes.png
+Referrals.png
+
+# PDFs not referenced by the site
+Crown Roof Tiles | High Quality Roofing Solutions.pdf
+Financing — Happy Roof Tampa Bay.pdf
+Referral Program — Happy Roof Tampa Bay.pdf
+Roofing, Insulation, Composite Materials, and Doors | Owens Corning.pdf
+
+# Brand Assets not used by the site
+Brand Assets/extracted/
+Brand Assets/Beck Roofing*.pdf
+Brand Assets/INTROOFG*.pdf
+Brand Assets/TSG_Years*.pdf
+Brand Assets/Finance banner.png
+Brand Assets/Happy Roof Business Card Design.jpeg
+Brand Assets/Happy Roof Logo.jpeg
+Brand Assets/Happy Roof Logo_Alt.jpeg
+Brand Assets/Happy Roof Logo_Multi.jpeg
+Brand Assets/Happy Roof Wall Design.jpeg
+Brand Assets/Referral Tiers.png
+Brand Assets/Photos/Screenshot*
+Brand Assets/Photos/360D4E91*
+Brand Assets/Photos/7E2AE62B*
+Brand Assets/Photos/7F6549F1*
+Brand Assets/Photos/F9502223*
+
+# OS files
+.DS_Store
+Thumbs.db
