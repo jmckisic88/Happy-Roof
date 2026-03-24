@@ -36,8 +36,15 @@
   </script>
   <style>
     *{box-sizing:border-box}
+    img{background:transparent}
     body{background:#FFFDF8;color:#2C1810;font-family:'Nunito',sans-serif;margin:0}
     html{scroll-behavior:smooth}
+
+    /* ── Hero slideshow ── */
+    .hero-slideshow{position:absolute;inset:0;z-index:0}
+    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease-in-out}
+    .hero-slide.active{opacity:1}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,253,248,.78) 0%,rgba(255,248,240,.72) 40%,rgba(255,248,240,.6) 100%);z-index:1}
 
     /* ── Brand texture ── */
     .brand-texture{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;font-family:'Fraunces',serif;font-weight:800;color:#2C1810;white-space:nowrap}
@@ -80,7 +87,7 @@
     .sl{font-family:'Fraunces',serif;font-weight:700;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase}
 
     /* ── Trust badge ── */
-    .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem 1rem;background:rgba(212,146,12,.08);border:1px solid rgba(212,146,12,.2);border-radius:100px;font-size:.82rem;font-weight:600;color:#D4920C}
+    .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem 1rem;background:#fff;border:1.5px solid #D4920C;border-radius:100px;font-size:.82rem;font-weight:600;color:#D4920C;box-shadow:0 2px 8px -2px rgba(44,24,16,.1)}
 
     /* ── Stats bar ── */
     .stats-bar{background:#FFF8F0;border-top:1px solid #E5D5C0;border-bottom:1px solid #E5D5C0}
@@ -115,7 +122,24 @@
     .finput::placeholder{color:#8B7355}
     .finput:focus{border-color:#D4920C}
     .flabel{display:block;color:#6B5744;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-      @media(max-width:767px){#give-back-bar{padding:.25rem .75rem;gap:.5rem;flex-wrap:nowrap}#give-back-bar>span:not([href]){display:none !important}#give-back-bar a{font-size:.58rem !important}nav.nav-wrap{top:26px !important}#mobile-menu .nav-link{color:#6B5744 !important}#mobile-menu .nav-link:hover{color:#2C1810 !important}}
+      @media(max-width:767px){
+        #give-back-bar{padding:.2rem .5rem;gap:.4rem;flex-wrap:nowrap}
+        #give-back-bar>span:not([href]){display:none !important}
+        #give-back-bar a{font-size:.55rem !important}
+        nav.nav-wrap{top:22px !important}
+        nav.nav-wrap .h-16{height:3rem !important}
+        nav.nav-wrap img.h-14{height:2.25rem !important}
+        nav.nav-wrap .btn-p{font-size:.7rem !important;padding:.45rem .8rem !important}
+        #mobile-menu .nav-link{color:#6B5744 !important;font-size:1rem}
+        #mobile-menu .nav-link:hover{color:#2C1810 !important}
+        .hero-bg{padding-top:5.5rem !important;padding-bottom:1.5rem !important}
+        .hero-bg h1{font-size:2.2rem !important}
+        .hero-bg .btn-t{width:100%;justify-content:center;font-size:1rem !important;padding:.85rem 1.5rem !important}
+        .hero-bg .badge{font-size:.7rem;padding:.3rem .6rem}
+        .stats-bar .flex-1{min-width:45% !important;padding:.75rem .5rem !important}
+        .stats-bar .font-display{font-size:1.8rem !important}
+        .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
+      }
   </style>
   <!-- SEO -->
   <meta name="description" content="Happy Roof is Tampa Bay's trusted roofing contractor. Licensed & insured for roof replacement, repair, storm damage, inspections, and new construction. Free estimates." />
@@ -307,19 +331,16 @@
 
 <!-- ══════════════════════ HERO ══════════════════════ -->
 <section class="hero-bg relative overflow-hidden pt-28 pb-20">
-  <div class="brand-texture" aria-hidden="true" style="opacity:.055">
-    <div class="bt-inner">
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-      <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
-    </div>
+  <!-- Cycling roof photo background -->
+  <div class="hero-slideshow" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('Brand Assets/Photos/standing-seam-metal-roof-tampa.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/metal-roof-installation-clearwater.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/7F6549F1-38CA-40D1-8419-DE93876AC25B_1_105_c.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/roof-replacement-project-tampa-bay.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/360D4E91-7908-4A34-9BF2-234718DB11C7_1_105_c.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('Brand Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+    <div class="hero-overlay"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-center">
@@ -987,6 +1008,18 @@ function submitHeroForm(e) {
     btn.style.display = 'none';
   });
 }
+
+// ── Hero slideshow ──
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  let current = 0;
+  setInterval(function(){
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+})();
 </script>
 <script type="application/ld+json">
 {

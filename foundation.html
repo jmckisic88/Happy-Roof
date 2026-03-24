@@ -43,7 +43,18 @@
     #mobile-menu{display:none}#mobile-menu.open{display:flex}
     @keyframes pulse-glow{0%,100%{box-shadow:0 0 40px -10px rgba(232,65,90,.3)}50%{box-shadow:0 0 60px -5px rgba(232,65,90,.5)}}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    @media(max-width:767px){#give-back-bar{padding:.25rem .75rem;gap:.5rem;flex-wrap:nowrap}#give-back-bar>span:not([href]){display:none !important}#give-back-bar a{font-size:.58rem !important}nav.nav-wrap{top:26px !important}#mobile-menu .nav-link{color:#6B5744 !important}#mobile-menu .nav-link:hover{color:#2C1810 !important}}
+    @media(max-width:767px){
+        #give-back-bar{padding:.2rem .5rem;gap:.4rem;flex-wrap:nowrap}
+        #give-back-bar>span:not([href]){display:none !important}
+        #give-back-bar a{font-size:.55rem !important}
+        nav.nav-wrap{top:22px !important}
+        nav.nav-wrap .h-16{height:3rem !important}
+        nav.nav-wrap img.h-14{height:2.25rem !important}
+        nav.nav-wrap .btn-p{font-size:.7rem !important;padding:.45rem .8rem !important}
+        #mobile-menu .nav-link{color:#6B5744 !important;font-size:1rem}
+        #mobile-menu .nav-link:hover{color:#2C1810 !important}
+        .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
+      }
   </style>
 </head>
 <body>
