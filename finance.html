@@ -58,16 +58,19 @@
     body { overflow-x: auto !important; }
     .enhancify-wrap{background:#fff;border-radius:20px;box-shadow:0 32px 80px -16px rgba(0,0,0,.4),0 8px 24px -8px rgba(0,0,0,.3);min-height:600px}
       @media(max-width:767px){
-        #give-back-bar{padding:.2rem .5rem;gap:.4rem;flex-wrap:nowrap}
+        #give-back-bar{padding:.15rem .5rem;gap:.3rem;flex-wrap:nowrap;min-height:0;line-height:1.2}
         #give-back-bar>span:not([href]){display:none !important}
         #give-back-bar a{font-size:.55rem !important}
-        nav.nav-wrap{top:22px !important}
+        nav.nav-wrap{top:24px !important}
         nav.nav-wrap .h-16{height:3rem !important}
         nav.nav-wrap img.h-14{height:2.25rem !important}
         nav.nav-wrap .btn-p{font-size:.7rem !important;padding:.45rem .8rem !important}
         #mobile-menu .nav-link{color:#6B5744 !important;font-size:1rem}
         #mobile-menu .nav-link:hover{color:#2C1810 !important}
         .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
+        section .flex-wrap .btn-t,section .flex-wrap .btn-o,section .flex-wrap .btn-p{width:100%;justify-content:center;text-align:center}
+        .flex-wrap.gap-3{flex-direction:column}
+        .flex-wrap.gap-3 .btn-t,.flex-wrap.gap-3 .btn-o,.flex-wrap.gap-3 .btn-p,.flex-wrap.gap-3 .btn-fin{width:100%;justify-content:center;text-align:center}
       }
   </style>
   <!-- SEO -->
@@ -205,21 +208,21 @@
       <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 block" style="background:#2C1810"></span><span class="w-5 h-0.5 block" style="background:#2C1810"></span><span class="w-5 h-0.5 block" style="background:#2C1810"></span></button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden flex-col bg-black border-t border-gray-800 px-5 pb-5 gap-1">
-    <a href="index.html" class="nav-link py-3 border-b border-gray-800 block">Home</a>
-    <a href="services.html" class="nav-link py-3 border-b border-gray-800 block">Services</a>
-    <a href="products.html" class="nav-link py-3 border-b border-gray-800 block">Products</a>
-    <a href="finance.html" class="nav-link py-3 border-b border-gray-800 block" style="color:#2C1810">Financing</a>
-    <a href="referrals.html" class="nav-link py-3 border-b border-gray-800 block">Referrals</a>
-    <a href="resources.html" class="nav-link py-3 border-b border-gray-800 block">Resources</a>
-    <a href="about.html" class="nav-link py-3 border-b border-gray-800 block">About</a>
+  <div id="mobile-menu" class="md:hidden flex-col bg-black border-t border-brand-border px-5 pb-5 gap-1">
+    <a href="index.html" class="nav-link py-3 border-b border-brand-border block">Home</a>
+    <a href="services.html" class="nav-link py-3 border-b border-brand-border block">Services</a>
+    <a href="products.html" class="nav-link py-3 border-b border-brand-border block">Products</a>
+    <a href="finance.html" class="nav-link py-3 border-b border-brand-border block" style="color:#2C1810">Financing</a>
+    <a href="referrals.html" class="nav-link py-3 border-b border-brand-border block">Referrals</a>
+    <a href="resources.html" class="nav-link py-3 border-b border-brand-border block">Resources</a>
+    <a href="about.html" class="nav-link py-3 border-b border-brand-border block">About</a>
     <a href="contact.html" class="nav-link py-3 block">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="white-section pt-32 pb-16 relative overflow-hidden" style="border-bottom:1px solid #E5E5E5">
-  <div class="brand-texture" aria-hidden="true" style="opacity:.055;color:#2C1810">
+  <div class="brand-texture" aria-hidden="true" style="opacity:.03;color:#2C1810">
     <div class="bt-inner">
       <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
       <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
@@ -342,7 +345,7 @@
 </section>
 
 <!-- PARTNER CALLOUT -->
-<div style="background:#FFF8F0;border-top:1px solid #1A1A1A;border-bottom:1px solid #1A1A1A;padding:2.5rem 0">
+<div style="background:#FFF8F0;border-top:1px solid #E5D5C0;border-bottom:1px solid #1A1A1A;padding:2.5rem 0">
   <div class="max-w-5xl mx-auto px-5">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-5 flex-wrap justify-center sm:justify-start">
@@ -402,7 +405,7 @@
 </section>
 
 <!-- FAQ -->
-<section style="background:#FFF8F0;padding:5rem 0;border-top:1px solid #1A1A1A">
+<section style="background:#FFF8F0;padding:5rem 0;border-top:1px solid #E5D5C0">
   <div class="max-w-3xl mx-auto px-5">
     <p class="sl gt text-center mb-3">Common Questions</p>
     <h2 class="font-display font-black text-center mb-10" style="font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.03em">FINANCING FAQ</h2>
@@ -476,7 +479,7 @@
 </section>
 
 <!-- BUSINESS CARD STRIP -->
-<div style="background:#FFFDF8;padding:2.5rem 0;position:relative;overflow:hidden;border-top:1px solid #1A1A1A">
+<div style="background:#FFFDF8;padding:2.5rem 0;position:relative;overflow:hidden;border-top:1px solid #E5D5C0">
   <div class="brand-texture" aria-hidden="true" style="opacity:.04;color:#2C1810">
     <div class="bt-inner">
       <div class="bt-row">HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp; HAPPY ROOF &nbsp;</div>
