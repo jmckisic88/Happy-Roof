@@ -219,8 +219,8 @@
 
       const bubble = document.createElement('div');
       bubble.style.cssText = m.from === 'user'
-        ? 'background:#D4920C;color:#fff;border-radius:14px 14px 4px 14px;padding:.625rem .875rem;max-width:82%;font-size:.88rem;line-height:1.55'
-        : 'background:#3C2415;color:#E0E0E0;border-radius:14px 14px 14px 4px;padding:.625rem .875rem;max-width:88%;font-size:.88rem;line-height:1.55;border:1px solid #252525';
+        ? 'background:#F5B800;color:#fff;border-radius:14px 14px 4px 14px;padding:.625rem .875rem;max-width:82%;font-size:.88rem;line-height:1.55'
+        : 'background:#2A2A2A;color:#E0E0E0;border-radius:14px 14px 14px 4px;padding:.625rem .875rem;max-width:88%;font-size:.88rem;line-height:1.55;border:1px solid #252525';
       bubble.innerHTML = formatMessage(m.text);
       wrap.appendChild(bubble);
 
@@ -238,8 +238,8 @@
         m.quick.forEach(q => {
           const btn = document.createElement('button');
           btn.textContent = q;
-          btn.style.cssText = 'background:transparent;border:1px solid #2E2E2E;border-radius:100px;color:#E8A817;font-size:.75rem;padding:.3rem .75rem;cursor:pointer;transition:background .15s,border-color .15s;font-family:inherit';
-          btn.onmouseenter = () => { btn.style.background='rgba(212,146,12,.1)'; btn.style.borderColor='rgba(212,146,12,.4)'; };
+          btn.style.cssText = 'background:transparent;border:1px solid #2E2E2E;border-radius:100px;color:#FFD43B;font-size:.75rem;padding:.3rem .75rem;cursor:pointer;transition:background .15s,border-color .15s;font-family:inherit';
+          btn.onmouseenter = () => { btn.style.background='rgba(245,184,0,.1)'; btn.style.borderColor='rgba(245,184,0,.4)'; };
           btn.onmouseleave = () => { btn.style.background='transparent'; btn.style.borderColor='#2E2E2E'; };
           btn.onclick = () => handleQuick(q);
           qr.appendChild(btn);
@@ -523,7 +523,7 @@
       'display:none;flex-direction:column',
       'width:360px;max-width:calc(100vw - 2rem)',
       'height:520px;max-height:calc(100vh - 120px)',
-      'background:#2C1810;border:1px solid #222;border-radius:20px',
+      'background:#1A1A1A;border:1px solid #222;border-radius:20px',
       'box-shadow:0 32px 80px -12px rgba(0,0,0,.55),0 8px 24px -8px rgba(0,0,0,.4)',
       'overflow:hidden'
     ].join(';');
@@ -532,14 +532,14 @@
     const header = document.createElement('div');
     header.style.cssText = 'background:#111;border-bottom:1px solid #1E1E1E;padding:.875rem 1rem;display:flex;align-items:center;gap:.75rem;flex-shrink:0';
     header.innerHTML = `
-      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E8A817,#D4920C);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FFD43B,#F5B800);display:flex;align-items:center;justify-content:center;flex-shrink:0">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.5" stroke="white" stroke-width="1.5"/><circle cx="7" cy="7.5" r="1" fill="white"/><circle cx="13" cy="7.5" r="1" fill="white"/><path d="M6.5 12c1 3 6 3 7 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <div style="flex:1;min-width:0">
-        <p style="font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;color:#FFF8F0;letter-spacing:.01em;line-height:1.1">Happy Roof Assistant</p>
-        <p style="font-size:.72rem;color:#047857;margin-top:.05rem">● Online · Typically replies instantly</p>
+        <p style="font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;color:#F7F7F7;letter-spacing:.01em;line-height:1.1">Happy Roof Assistant</p>
+        <p style="font-size:.72rem;color:#C75B39;margin-top:.05rem">● Online · Typically replies instantly</p>
       </div>
-      <button onclick="document.getElementById('hr-chat-window').style.display='none';document.getElementById('hr-chat-fab').innerHTML='<svg width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'><path d=\\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linejoin=\\'round\\'/></svg>'" style="background:transparent;border:none;cursor:pointer;color:#555;padding:.25rem;border-radius:6px;display:flex;align-items:center;transition:color .15s" onmouseenter="this.style.color='#FFF8F0'" onmouseleave="this.style.color='#555'">
+      <button onclick="document.getElementById('hr-chat-window').style.display='none';document.getElementById('hr-chat-fab').innerHTML='<svg width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'><path d=\\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linejoin=\\'round\\'/></svg>'" style="background:transparent;border:none;cursor:pointer;color:#555;padding:.25rem;border-radius:6px;display:flex;align-items:center;transition:color .15s" onmouseenter="this.style.color='#F7F7F7'" onmouseleave="this.style.color='#555'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>`;
     win.appendChild(header);
@@ -555,22 +555,22 @@
 
     // Input area
     const inputWrap = document.createElement('div');
-    inputWrap.style.cssText = 'padding:.75rem;border-top:1px solid #3C2415;display:flex;gap:.5rem;flex-shrink:0;background:#2C1810';
+    inputWrap.style.cssText = 'padding:.75rem;border-top:1px solid #2A2A2A;display:flex;gap:.5rem;flex-shrink:0;background:#1A1A1A';
 
     const inp = document.createElement('input');
     inp.id = 'hr-chat-input';
     inp.type = 'text';
     inp.placeholder = 'Ask about roofing…';
-    inp.style.cssText = 'flex:1;background:#3C2415;border:1px solid #252525;border-radius:10px;padding:.6rem .875rem;color:#FFF8F0;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .18s;min-width:0';
-    inp.onfocus = () => inp.style.borderColor = 'rgba(212,146,12,.5)';
+    inp.style.cssText = 'flex:1;background:#2A2A2A;border:1px solid #252525;border-radius:10px;padding:.6rem .875rem;color:#F7F7F7;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .18s;min-width:0';
+    inp.onfocus = () => inp.style.borderColor = 'rgba(245,184,0,.5)';
     inp.onblur = () => inp.style.borderColor = '#252525';
     inp.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } };
 
     const sendBtn = document.createElement('button');
-    sendBtn.style.cssText = 'background:#D4920C;border:none;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .18s,transform .15s';
+    sendBtn.style.cssText = 'background:#F5B800;border:none;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .18s,transform .15s';
     sendBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
     sendBtn.onmouseenter = () => { sendBtn.style.background='#9333EA'; sendBtn.style.transform='scale(1.06)'; };
-    sendBtn.onmouseleave = () => { sendBtn.style.background='#D4920C'; sendBtn.style.transform='scale(1)'; };
+    sendBtn.onmouseleave = () => { sendBtn.style.background='#F5B800'; sendBtn.style.transform='scale(1)'; };
     sendBtn.onclick = sendMsg;
 
     inputWrap.appendChild(inp);
@@ -584,20 +584,20 @@
     fab.onclick = toggleChat;
     fab.style.cssText = [
       'width:56px;height:56px;border-radius:50%;border:none;cursor:pointer',
-      'background:linear-gradient(135deg,#E8A817,#D4920C)',
+      'background:linear-gradient(135deg,#FFD43B,#F5B800)',
       'color:white;display:flex;align-items:center;justify-content:center',
-      'box-shadow:0 8px 28px -4px rgba(212,146,12,.6),0 4px 12px -4px rgba(0,0,0,.4)',
+      'box-shadow:0 8px 28px -4px rgba(245,184,0,.6),0 4px 12px -4px rgba(0,0,0,.4)',
       'transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s',
       'position:relative'
     ].join(';');
     fab.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>`;
-    fab.onmouseenter = () => { fab.style.transform='scale(1.08)'; fab.style.boxShadow='0 12px 36px -4px rgba(212,146,12,.7),0 4px 12px -4px rgba(0,0,0,.4)'; };
-    fab.onmouseleave = () => { fab.style.transform='scale(1)'; fab.style.boxShadow='0 8px 28px -4px rgba(212,146,12,.6),0 4px 12px -4px rgba(0,0,0,.4)'; };
+    fab.onmouseenter = () => { fab.style.transform='scale(1.08)'; fab.style.boxShadow='0 12px 36px -4px rgba(245,184,0,.7),0 4px 12px -4px rgba(0,0,0,.4)'; };
+    fab.onmouseleave = () => { fab.style.transform='scale(1)'; fab.style.boxShadow='0 8px 28px -4px rgba(245,184,0,.6),0 4px 12px -4px rgba(0,0,0,.4)'; };
 
     // Notification badge
     const badge = document.createElement('span');
     badge.id = 'hr-chat-badge';
-    badge.style.cssText = 'position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#047857;border-radius:50%;border:2px solid #2C1810;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#2C1810';
+    badge.style.cssText = 'position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#C75B39;border-radius:50%;border:2px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#1A1A1A';
     badge.textContent = '1';
     fab.appendChild(badge);
     wrap.appendChild(fab);
@@ -652,7 +652,7 @@
     if (!document.querySelector('meta[name="theme-color"]')) {
       const m = document.createElement('meta');
       m.name = 'theme-color';
-      m.content = '#2C1810';
+      m.content = '#1A1A1A';
       document.head.appendChild(m);
     }
     document.head.appendChild(s);
@@ -664,17 +664,17 @@
     bar.id = 'hr-mobile-bar';
     bar.style.cssText = [
       'display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998',
-      'background:#2C1810;border-top:1px solid #222',
+      'background:#1A1A1A;border-top:1px solid #222',
       'padding:.6rem 1rem .9rem',
       'grid-template-columns:1fr 1fr;gap:.6rem',
       'box-shadow:0 -8px 32px -8px rgba(0,0,0,.4)'
     ].join(';');
     bar.innerHTML = `
-      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#3C2415;border:1px solid #222;border-radius:10px;color:#047857;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
+      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#2A2A2A;border:1px solid #222;border-radius:10px;color:#C75B39;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call Us
       </a>
-      <a href="contact.html" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#D4920C;border-radius:10px;color:#fff;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none;box-shadow:0 4px 16px -4px rgba(212,146,12,.55)">
+      <a href="contact.html" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#F5B800;border-radius:10px;color:#fff;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none;box-shadow:0 4px 16px -4px rgba(245,184,0,.55)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         Free Estimate
       </a>`;

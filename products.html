@@ -14,29 +14,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *{box-sizing:border-box}body{background:#FFFDF8;color:#2C1810;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
-    .nav-wrap{background:rgba(255,253,248,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,146,12,.12)}
-    .nav-link{color:#6B5744;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
-    .nav-link:hover,.nav-link.active{color:#2C1810}
-    .gp{background:linear-gradient(135deg,#E8A817 0%,#D4920C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .gt{background:linear-gradient(135deg,#059669 0%,#047857 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    *{box-sizing:border-box}body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
+    .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-link{color:#555555;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .gp{background:linear-gradient(135deg,#FFD43B 0%,#F5B800 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .gt{background:linear-gradient(135deg,#D4654A 0%,#C75B39 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
-    .btn-p{background:#D4920C;color:#fff;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(212,146,12,.48);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
-    .btn-p:hover{background:#E8A817;transform:translateY(-2px)}
-    .btn-t{background:#D4920C;color:#fff;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 24px -4px rgba(4,120,87,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
-    .btn-t:hover{background:#E8A817;transform:translateY(-2px)}
-    .btn-o{background:transparent;color:#2C1810;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.8rem 1.6rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
-    .btn-o:hover{border-color:rgba(255,255,255,.45);background:rgba(212,146,12,.06);transform:translateY(-2px)}
-    ..card{background:#FFFDF8;border:1px dashed #E5D5C0;border-radius:14px;transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
-    .pcard:hover{border-color:rgba(212,146,12,.3);transform:translateY(-4px)}
+    .btn-p{background:#F5B800;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(245,184,0,.48);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-p:hover{background:#FFD43B;transform:translateY(-2px)}
+    .btn-t{background:#F5B800;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 24px -4px rgba(199,91,57,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-t:hover{background:#FFD43B;transform:translateY(-2px)}
+    .btn-o{background:transparent;color:#1A1A1A;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.8rem 1.6rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-o:hover{border-color:rgba(255,255,255,.45);background:rgba(245,184,0,.06);transform:translateY(-2px)}
+    ..card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:14px;transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+    .pcard:hover{border-color:rgba(245,184,0,.3);transform:translateY(-4px)}
     .tag{display:inline-block;padding:.25rem .7rem;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.04em}
-    .cta-grad h2,.cta-grad p{color:#FFF8F0}.cta-grad .btn-o{color:#2C1810;border:none;background:#FFF8F0;box-shadow:0 4px 16px -4px rgba(0,0,0,.2)}
-    .cta-grad{background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(212,146,12,.15) 0%,rgba(44,24,16,.95) 40%,#2C1810 100%);border-top:1px solid #3C2415;border-bottom:1px solid #3C2415}
-    footer{background:#2C1810;border-top:1px solid #3C2415}
-    .foot-link{color:#8B7355;font-size:.875rem;transition:color .18s;text-decoration:none;display:block;padding:.2rem 0}
-    .foot-link:hover{color:#FFF8F0}
+    .cta-grad h2,.cta-grad p{color:#FFFFFF}.cta-grad .btn-o{color:#1A1A1A;border:none;background:#FFFFFF;box-shadow:0 4px 16px -4px rgba(0,0,0,.2)}
+    .cta-grad{background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(245,184,0,.1) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%);border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
+    footer{background:#1A1A1A;border-top:1px solid #2A2A2A}
+    .foot-link{color:#888888;font-size:.875rem;transition:color .18s;text-decoration:none;display:block;padding:.2rem 0}
+    .foot-link:hover{color:#FFFFFF}
     .anchor-tab{padding:.6rem 1.2rem;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,color .2s;text-decoration:none;color:#555}
-    .anchor-tab:hover,.anchor-tab.active{background:rgba(212,146,12,.15);color:#E8A817}
+    .anchor-tab:hover,.anchor-tab.active{background:rgba(245,184,0,.15);color:#FFD43B}
     #mobile-menu{display:none}#mobile-menu.open{display:flex}
       @media(max-width:767px){
         #give-back-bar{padding:.1rem .5rem;gap:.3rem;flex-wrap:nowrap;min-height:0;line-height:1.1}
@@ -46,8 +46,8 @@
         nav.nav-wrap .h-16{height:3.25rem !important}
         nav.nav-wrap img.h-14{height:2.5rem !important}
         nav.nav-wrap .btn-p{font-size:.65rem !important;padding:.4rem .7rem !important;white-space:nowrap;line-height:1.2}
-        #mobile-menu .nav-link{color:#6B5744 !important;font-size:1rem}
-        #mobile-menu .nav-link:hover{color:#2C1810 !important}
+        #mobile-menu .nav-link{color:#555555 !important;font-size:1rem}
+        #mobile-menu .nav-link:hover{color:#1A1A1A !important}
         .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
         section .flex-wrap .btn-t,section .flex-wrap .btn-o,section .flex-wrap .btn-p{width:100%;justify-content:center;text-align:center}
         .flex-wrap.gap-3{flex-direction:column}
@@ -163,7 +163,7 @@
 <!-- End Google Tag Manager (noscript) -->
 <!-- NAV -->
 <!-- ══ WE GIVE BACK BANNER ══ -->
-<div id="give-back-bar" style="background:#FFFDF8;border-bottom:1px solid #E5D5C0;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.75rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
+<div id="give-back-bar" style="background:#FFFFFF;border-bottom:1px solid #E0E0E0;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.75rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
   <a href="foundation.html" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#E8415A;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     Coming June 2026
@@ -171,8 +171,8 @@
   <span style="color:#252525;font-size:1rem;line-height:1">·</span>
   <span style="color:#3A3A3A;font-size:.68rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase">Something Big Is Coming</span>
   <span style="color:#252525;font-size:1rem;line-height:1">·</span>
-  <a href="index.html#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#D4920C;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="#D4920C" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+  <a href="index.html#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#F5B800;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#F5B800" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     Hero Discount
   </a>
 </div>
@@ -181,21 +181,21 @@
     <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
     <div class="hidden md:flex items-center gap-6">
       <a href="index.html" class="nav-link">Home</a><a href="services.html" class="nav-link">Services</a>
-      <a href="products.html" class="nav-link" style="color:#2C1810">Products</a>
+      <a href="products.html" class="nav-link" style="color:#1A1A1A">Products</a>
       <a href="finance.html" class="nav-link">Financing</a>
       <a href="referrals.html" class="nav-link">Referrals</a>
       <a href="resources.html" class="nav-link">Resources</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="tel:8135957663" class="call-tracking-number hidden sm:block font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#047857;font-size:1rem">(813) 595-7663</a>
+      <a href="tel:8135957663" class="call-tracking-number hidden sm:block font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#C75B39;font-size:1rem">(813) 595-7663</a>
       <a href="contact.html" class="btn-p" style="font-size:.9rem;padding:.65rem 1.3rem">Free Estimate</a>
-      <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 block" style="background:#2C1810"></span><span class="w-5 h-0.5 block" style="background:#2C1810"></span><span class="w-5 h-0.5 block" style="background:#2C1810"></span></button>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span></button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden flex-col border-t border-brand-border px-5 pb-5 gap-1" style="background:#FFFDF8">
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-brand-border px-5 pb-5 gap-1" style="background:#FFFFFF">
     <a href="index.html" class="nav-link py-3 border-b border-brand-border block">Home</a>
     <a href="services.html" class="nav-link py-3 border-b border-brand-border block">Services</a>
-    <a href="products.html" class="nav-link py-3 border-b border-brand-border block" style="color:#2C1810">Products</a>
+    <a href="products.html" class="nav-link py-3 border-b border-brand-border block" style="color:#1A1A1A">Products</a>
     <a href="finance.html" class="nav-link py-3 border-b border-brand-border block">Financing</a>
     <a href="referrals.html" class="nav-link py-3 border-b border-brand-border block">Referrals</a>
     <a href="resources.html" class="nav-link py-3 border-b border-brand-border block">Resources</a>
@@ -208,10 +208,10 @@
 <section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
   <div class="max-w-7xl mx-auto px-5 text-center">
     <p class="sl gt mb-4">Materials We Install</p>
-    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#2C1810">
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
       PREMIUM PRODUCTS.<br/><span class="gp">PROVEN PERFORMANCE.</span>
     </h1>
-    <p class="max-w-2xl mx-auto mb-8" style="color:#6B5744;font-size:1.05rem;line-height:1.75">
+    <p class="max-w-2xl mx-auto mb-8" style="color:#555555;font-size:1.05rem;line-height:1.75">
       We partner with the roofing industry's most trusted manufacturers — giving you access to the best products on the market, installed by our certified crews, with dual warranty coverage.
     </p>
     <!-- Section anchors -->
@@ -225,20 +225,20 @@
 </section>
 
 <!-- ══ GAF ══ -->
-<section id="gaf" class="py-20" style="background:#FFFDF8">
+<section id="gaf" class="py-20" style="background:#FFFFFF">
   <div class="max-w-7xl mx-auto px-5">
     <!-- Brand header -->
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E5D5C0">
-      <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(212,146,12,.12);border:1px solid rgba(212,146,12,.2)">
-        <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#E8A817;font-size:1.6rem">GAF</span>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E0E0E0">
+      <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,.06);border:1px solid rgba(245,184,0,.2)">
+        <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#FFD43B;font-size:1.6rem">GAF</span>
       </div>
       <div>
         <div class="flex flex-wrap gap-2 mb-2">
-          <span class="tag" style="background:rgba(212,146,12,.12);color:#E8A817">North America's #1 Roofing Manufacturer</span>
-          <span class="tag" style="background:rgba(4,120,87,.08);color:#047857">Certified Installer</span>
+          <span class="tag" style="background:rgba(0,0,0,.06);color:#FFD43B">North America's #1 Roofing Manufacturer</span>
+          <span class="tag" style="background:rgba(199,91,57,.08);color:#C75B39">Certified Installer</span>
         </div>
         <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.95;letter-spacing:-.01em">GAF RESIDENTIAL SHINGLES</h2>
-        <p style="color:#6B5744;font-size:.9rem;margin-top:.5rem">Lifetime limited warranties · StainGuard Plus™ Algae Protection · WindProven™ wind resistance</p>
+        <p style="color:#555555;font-size:.9rem;margin-top:.5rem">Lifetime limited warranties · StainGuard Plus™ Algae Protection · WindProven™ wind resistance</p>
       </div>
       <div class="sm:ml-auto flex-shrink-0">
         <a href="resources.html#gaf-brochure" class="btn-o" style="font-size:.88rem;padding:.65rem 1.3rem">Download Brochure</a>
@@ -253,11 +253,11 @@
           <img src="Brand Assets/Photos/gaf-hdz.jpg" alt="Timberline HDZ shingle color options" class="w-full h-full object-cover" style="object-position:center top" />
         </div>
         <div>
-          <span class="tag" style="background:rgba(212,146,12,.1);color:#E8A817;font-size:.68rem;margin-bottom:.5rem;display:inline-block">BEST SELLER</span>
+          <span class="tag" style="background:rgba(245,184,0,.1);color:#FFD43B;font-size:.68rem;margin-bottom:.5rem;display:inline-block">BEST SELLER</span>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Timberline HDZ®</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">GAF's #1 selling shingle. Features LayerLock® technology and the industry's widest nail zone for superior wind resistance. Available in 20+ colors.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">GAF's #1 selling shingle. Features LayerLock® technology and the industry's widest nail zone for superior wind resistance. Available in 20+ colors.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• Lifetime Limited Warranty</li>
           <li>• 25-yr StainGuard Plus™ Algae Protection</li>
           <li>• WindProven™ 15-yr wind warranty (130 mph)</li>
@@ -272,9 +272,9 @@
         </div>
         <div>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Timberline UHDZ®</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">Ultra-High Definition shingle for a highly dimensional wood-shake look. The step up from HDZ for homeowners wanting more visual depth.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">Ultra-High Definition shingle for a highly dimensional wood-shake look. The step up from HDZ for homeowners wanting more visual depth.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• Lifetime Limited Warranty</li>
           <li>• Extra-thick shadow bands for 3D look</li>
           <li>• LayerLock® nail zone technology</li>
@@ -290,9 +290,9 @@
         <div>
           <span class="tag" style="background:rgba(245,158,11,.1);color:#F59E0B;font-size:.68rem;margin-bottom:.5rem;display:inline-block">DESIGNER COLLECTION</span>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Grand Sequoia®</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">Artisan-crafted shapes with oversized tabs for sophisticated beauty. Rustic charm meets 21st-century style — a stunning curb appeal upgrade.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">Artisan-crafted shapes with oversized tabs for sophisticated beauty. Rustic charm meets 21st-century style — a stunning curb appeal upgrade.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• Lifetime Limited Warranty</li>
           <li>• Designer Collection (LRS eligible)</li>
           <li>• Available: Charcoal, Weathered Wood, Cedar, Mesa Brown</li>
@@ -308,9 +308,9 @@
         <div>
           <span class="tag" style="background:rgba(245,158,11,.1);color:#F59E0B;font-size:.68rem;margin-bottom:.5rem;display:inline-block">DESIGNER COLLECTION</span>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Camelot® II</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">Contemporary slate-inspired elegance. Complement your exterior color scheme with these artisanal, slate-like shingles at an accessible price point.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">Contemporary slate-inspired elegance. Complement your exterior color scheme with these artisanal, slate-like shingles at an accessible price point.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• Lifetime Limited Warranty</li>
           <li>• Colors: Antique Slate, Royal Slate, Charcoal, Barkwood</li>
           <li>• Dramatic shadow definition</li>
@@ -326,9 +326,9 @@
         <div>
           <span class="tag" style="background:rgba(239,68,68,.1);color:#EF4444;font-size:.68rem;margin-bottom:.5rem;display:inline-block">IMPACT RESISTANT</span>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Timberline® AS II &amp; ArmorShield®</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">SBS-Modified asphalt for genuine impact resistance. Passes UL 2218 Class 4 impact test — may qualify for insurance discounts.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">SBS-Modified asphalt for genuine impact resistance. Passes UL 2218 Class 4 impact test — may qualify for insurance discounts.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• UL 2218 Class 4 Impact Resistance</li>
           <li>• SBS-modified asphalt core</li>
           <li>• Potential insurance premium savings</li>
@@ -342,11 +342,11 @@
           <img src="Brand Assets/Photos/gaf-reflective.jpg" alt="Timberline HDZ RS reflective shingle color options" class="w-full h-full object-cover" style="object-position:center top" />
         </div>
         <div>
-          <span class="tag" style="background:rgba(4,120,87,.08);color:#047857;font-size:.68rem;margin-bottom:.5rem;display:inline-block">ENERGY EFFICIENT</span>
+          <span class="tag" style="background:rgba(199,91,57,.08);color:#C75B39;font-size:.68rem;margin-bottom:.5rem;display:inline-block">ENERGY EFFICIENT</span>
           <h3 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem">Timberline HDZ® RS &amp; Grand Sequoia® RS</h3>
-          <p style="color:#6B5744;font-size:.83rem;line-height:1.6;margin-top:.35rem">Cool-roof reflective shingles that reduce heat absorption — keeping attic temperatures lower and energy bills down in Florida's heat.</p>
+          <p style="color:#555555;font-size:.83rem;line-height:1.6;margin-top:.35rem">Cool-roof reflective shingles that reduce heat absorption — keeping attic temperatures lower and energy bills down in Florida's heat.</p>
         </div>
-        <ul style="color:#6B5744;font-size:.78rem;line-height:1.9;margin-top:.25rem">
+        <ul style="color:#555555;font-size:.78rem;line-height:1.9;margin-top:.25rem">
           <li>• Energy Star® qualified</li>
           <li>• Reduces cooling costs</li>
           <li>• Vivid deep colors maintained</li>
@@ -362,19 +362,19 @@
 </section>
 
 <!-- ══ OWENS CORNING ══ -->
-<section id="owens" class="py-20" style="background:#FFFDF8;border-top:1px solid #3C2415">
+<section id="owens" class="py-20" style="background:#FFFFFF;border-top:1px solid #2A2A2A">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E5D5C0">
-      <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(4,120,87,.1);border:1px solid rgba(4,120,87,.18)">
-        <span class="font-display font-black text-center leading-tight" style="font-family:'Barlow Condensed',sans-serif;color:#047857;font-size:.9rem;line-height:1.1">OWENS<br/>CORNING</span>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E0E0E0">
+      <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(199,91,57,.1);border:1px solid rgba(199,91,57,.18)">
+        <span class="font-display font-black text-center leading-tight" style="font-family:'Barlow Condensed',sans-serif;color:#C75B39;font-size:.9rem;line-height:1.1">OWENS<br/>CORNING</span>
       </div>
       <div>
         <div class="flex flex-wrap gap-2 mb-2">
-          <span class="tag" style="background:rgba(4,120,87,.08);color:#047857">Total Protection Roofing System®</span>
-          <span class="tag" style="background:rgba(212,146,12,.1);color:#E8A817">Platinum Preferred Contractor</span>
+          <span class="tag" style="background:rgba(199,91,57,.08);color:#C75B39">Total Protection Roofing System®</span>
+          <span class="tag" style="background:rgba(245,184,0,.1);color:#FFD43B">Platinum Preferred Contractor</span>
         </div>
         <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.95;letter-spacing:-.01em">OWENS CORNING ROOFING SYSTEM</h2>
-        <p style="color:#6B5744;font-size:.9rem;margin-top:.5rem">Seal · Defend · Breathe® — an integrated system from deck to ridge</p>
+        <p style="color:#555555;font-size:.9rem;margin-top:.5rem">Seal · Defend · Breathe® — an integrated system from deck to ridge</p>
       </div>
       <div class="sm:ml-auto flex-shrink-0">
         <a href="resources.html#oc-brochure" class="btn-o" style="font-size:.88rem;padding:.65rem 1.3rem">Download Brochure</a>
@@ -383,38 +383,38 @@
 
     <!-- The 3-phase system explanation -->
     <div class="grid lg:grid-cols-3 gap-5 mb-10">
-      <div class="p-7 rounded-2xl" style="background:#FFF8F0;border:1px solid rgba(4,120,87,.18)">
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(4,120,87,.1)">
-          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#047857;font-size:1.4rem">01</span>
+      <div class="p-7 rounded-2xl" style="background:#F7F7F7;border:1px solid rgba(199,91,57,.18)">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(199,91,57,.1)">
+          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#C75B39;font-size:1.4rem">01</span>
         </div>
         <h3 class="font-display font-bold text-brand-black mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem">SEAL.</h3>
-        <p style="color:#6B5744;font-size:.88rem;line-height:1.7">Self-adhered ice and water barriers seal around penetrations and protect vulnerable areas. Prevents water infiltration at valleys, eaves, chimneys, and skylights.</p>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:2;margin-top:.75rem">
+        <p style="color:#555555;font-size:.88rem;line-height:1.7">Self-adhered ice and water barriers seal around penetrations and protect vulnerable areas. Prevents water infiltration at valleys, eaves, chimneys, and skylights.</p>
+        <ul style="color:#555555;font-size:.8rem;line-height:2;margin-top:.75rem">
           <li>• Self-Adhered Ice &amp; Water Barrier</li>
           <li>• Starter Shingle Strip Products</li>
           <li>• Applied at every vulnerable point</li>
         </ul>
       </div>
-      <div class="p-7 rounded-2xl" style="background:#FFF8F0;border:1px solid rgba(212,146,12,.15)">
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(212,146,12,.1)">
-          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#E8A817;font-size:1.4rem">02</span>
+      <div class="p-7 rounded-2xl" style="background:#F7F7F7;border:1px solid rgba(245,184,0,.15)">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(245,184,0,.1)">
+          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#FFD43B;font-size:1.4rem">02</span>
         </div>
         <h3 class="font-display font-bold text-brand-black mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem">DEFEND.</h3>
-        <p style="color:#6B5744;font-size:.88rem;line-height:1.7">Synthetic underlayments guard against wind-driven rain under the shingles. Duration® shingles with SureNail® Technology provide the visible defense layer.</p>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:2;margin-top:.75rem">
+        <p style="color:#555555;font-size:.88rem;line-height:1.7">Synthetic underlayments guard against wind-driven rain under the shingles. Duration® shingles with SureNail® Technology provide the visible defense layer.</p>
+        <ul style="color:#555555;font-size:.8rem;line-height:2;margin-top:.75rem">
           <li>• Synthetic Underlayment Products</li>
           <li>• Duration® Series Shingles</li>
           <li>• SureNail® Technology for wind resistance</li>
           <li>• Hip &amp; Ridge Cap Shingles</li>
         </ul>
       </div>
-      <div class="p-7 rounded-2xl" style="background:#FFF8F0;border:1px solid rgba(4,120,87,.18)">
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(4,120,87,.1)">
-          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#047857;font-size:1.4rem">03</span>
+      <div class="p-7 rounded-2xl" style="background:#F7F7F7;border:1px solid rgba(199,91,57,.18)">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:rgba(199,91,57,.1)">
+          <span class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;color:#C75B39;font-size:1.4rem">03</span>
         </div>
         <h3 class="font-display font-bold text-brand-black mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem">BREATHE.</h3>
-        <p style="color:#6B5744;font-size:.88rem;line-height:1.7">Balanced ventilation keeps attic temperatures in check, reducing moisture build-up and extending roof lifespan. Critical for Florida's heat and humidity.</p>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:2;margin-top:.75rem">
+        <p style="color:#555555;font-size:.88rem;line-height:1.7">Balanced ventilation keeps attic temperatures in check, reducing moisture build-up and extending roof lifespan. Critical for Florida's heat and humidity.</p>
+        <ul style="color:#555555;font-size:.8rem;line-height:2;margin-top:.75rem">
           <li>• VentSure® Intake Ventilation</li>
           <li>• VentSure® Ridge/Off-Ridge Exhaust</li>
           <li>• ProPink® Loosefill Insulation</li>
@@ -431,7 +431,7 @@
         </div>
         <div>
           <h4 class="font-display font-bold text-brand-black mb-1" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">Duration® Series Shingles</h4>
-          <p style="color:#6B5744;font-size:.82rem;line-height:1.6">The flagship Owens Corning shingle. SureNail® Technology triple-layer reinforcement, TruDefinition® color contrast, and excellent wind performance.</p>
+          <p style="color:#555555;font-size:.82rem;line-height:1.6">The flagship Owens Corning shingle. SureNail® Technology triple-layer reinforcement, TruDefinition® color contrast, and excellent wind performance.</p>
         </div>
       </div>
       <div class="pcard p-6 flex gap-4">
@@ -440,7 +440,7 @@
         </div>
         <div>
           <h4 class="font-display font-bold text-brand-black mb-1" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">Oakridge® Shingles</h4>
-          <p style="color:#6B5744;font-size:.82rem;line-height:1.6">A popular mid-tier architectural shingle with great aesthetics, dimensional appearance, and strong performance at an accessible price point.</p>
+          <p style="color:#555555;font-size:.82rem;line-height:1.6">A popular mid-tier architectural shingle with great aesthetics, dimensional appearance, and strong performance at an accessible price point.</p>
         </div>
       </div>
     </div>
@@ -453,19 +453,19 @@
 </section>
 
 <!-- ══ VEREA CLAY ══ -->
-<section id="verea" class="py-20" style="background:#FFFDF8;border-top:1px solid #3C2415">
+<section id="verea" class="py-20" style="background:#FFFFFF;border-top:1px solid #2A2A2A">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E5D5C0">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E0E0E0">
       <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)">
         <span class="font-display font-black text-center leading-tight" style="font-family:'Barlow Condensed',sans-serif;color:#F59E0B;font-size:.9rem;line-height:1.1">VEREA<br/>CLAY</span>
       </div>
       <div>
         <div class="flex flex-wrap gap-2 mb-2">
           <span class="tag" style="background:rgba(245,158,11,.1);color:#F59E0B">Premium Clay &amp; Concrete Tile</span>
-          <span class="tag" style="background:rgba(4,120,87,.08);color:#047857">Florida Certified</span>
+          <span class="tag" style="background:rgba(199,91,57,.08);color:#C75B39">Florida Certified</span>
         </div>
         <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.95;letter-spacing:-.01em">VEREA CLAY ROOF TILES</h2>
-        <p style="color:#6B5744;font-size:.9rem;margin-top:.5rem">Mediterranean aesthetics · Exceptional durability · Perfect for Florida's climate</p>
+        <p style="color:#555555;font-size:.9rem;margin-top:.5rem">Mediterranean aesthetics · Exceptional durability · Perfect for Florida's climate</p>
       </div>
       <div class="sm:ml-auto flex-shrink-0">
         <a href="resources.html#verea-brochure" class="btn-o" style="font-size:.88rem;padding:.65rem 1.3rem">Download Brochure</a>
@@ -477,21 +477,21 @@
         <p style="color:#777;line-height:1.75;margin-bottom:1.5rem">Verea Clay Tile brings timeless Old World character to Florida homes. Made from high-quality natural clay, their tiles are durable, fade-resistant, and naturally insulating — a beautiful investment that lasts 50+ years with proper installation.</p>
         <p style="color:#777;line-height:1.75;margin-bottom:2rem">Whether you're going for a classic Mediterranean, Spanish Colonial, or modern aesthetic, Verea's design range covers everything. Happy Roof is a certified Verea installer in the Tampa Bay region.</p>
         <div class="grid grid-cols-2 gap-4">
-          <div class="p-4 rounded-xl" style="background:#FFF8F0;border:1px solid #E5D5C0">
+          <div class="p-4 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
             <p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem">50+ Years</p>
-            <p style="color:#6B5744;font-size:.8rem">Typical lifespan</p>
+            <p style="color:#555555;font-size:.8rem">Typical lifespan</p>
           </div>
-          <div class="p-4 rounded-xl" style="background:#FFF8F0;border:1px solid #E5D5C0">
+          <div class="p-4 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
             <p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem">Fire Rated</p>
-            <p style="color:#6B5744;font-size:.8rem">Class A fire resistance</p>
+            <p style="color:#555555;font-size:.8rem">Class A fire resistance</p>
           </div>
-          <div class="p-4 rounded-xl" style="background:#FFF8F0;border:1px solid #E5D5C0">
+          <div class="p-4 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
             <p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem">FL Approved</p>
-            <p style="color:#6B5744;font-size:.8rem">Hurricane zone rated</p>
+            <p style="color:#555555;font-size:.8rem">Hurricane zone rated</p>
           </div>
-          <div class="p-4 rounded-xl" style="background:#FFF8F0;border:1px solid rgba(245,158,11,.2)">
+          <div class="p-4 rounded-xl" style="background:#F7F7F7;border:1px solid rgba(245,158,11,.2)">
             <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#F59E0B">Energy Efficient</p>
-            <p style="color:#6B5744;font-size:.8rem">Natural thermal barrier</p>
+            <p style="color:#555555;font-size:.8rem">Natural thermal barrier</p>
           </div>
         </div>
       </div>
@@ -510,19 +510,19 @@
 </section>
 
 <!-- ══ METAL ══ -->
-<section id="metal" class="py-20" style="background:#FFFDF8;border-top:1px solid #3C2415">
+<section id="metal" class="py-20" style="background:#FFFFFF;border-top:1px solid #2A2A2A">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E5D5C0">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12 pb-8" style="border-bottom:1px solid #E0E0E0">
       <div class="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2)">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 9h20M2 15h20M8 3v18M16 3v18"/></svg>
       </div>
       <div>
         <div class="flex flex-wrap gap-2 mb-2">
           <span class="tag" style="background:rgba(100,116,139,.1);color:#94A3B8">Standing Seam &amp; Corrugated</span>
-          <span class="tag" style="background:rgba(4,120,87,.08);color:#047857">FL HVHZ Approved</span>
+          <span class="tag" style="background:rgba(199,91,57,.08);color:#C75B39">FL HVHZ Approved</span>
         </div>
         <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.95;letter-spacing:-.01em">METAL ROOFING SYSTEMS</h2>
-        <p style="color:#6B5744;font-size:.9rem;margin-top:.5rem">30+ colors · 26 &amp; 24 gauge steel · Aluminum options · FL33818 Approved</p>
+        <p style="color:#555555;font-size:.9rem;margin-top:.5rem">30+ colors · 26 &amp; 24 gauge steel · Aluminum options · FL33818 Approved</p>
       </div>
       <div class="sm:ml-auto flex-shrink-0">
         <a href="resources.html#metal-brochure" class="btn-o" style="font-size:.88rem;padding:.65rem 1.3rem">Download Brochure</a>
@@ -534,7 +534,7 @@
       <div class="pcard p-5 flex flex-col gap-3">
         <div class="rounded-lg overflow-hidden" style="aspect-ratio:16/9"><img src="Brand Assets/Photos/metal-gulfrib.jpg" alt="GulfRib metal roofing panel profile" class="w-full h-full object-cover" /></div>
         <h4 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">GulfRib™</h4>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:1.8">
+        <ul style="color:#555555;font-size:.8rem;line-height:1.8">
           <li>• 24" Net Coverage</li>
           <li>• 26 &amp; 24 Gauge Steel, Aluminum</li>
           <li>• FL33818.1 (HVHZ) &amp; FL33818.2 Approved</li>
@@ -545,7 +545,7 @@
       <div class="pcard p-5 flex flex-col gap-3">
         <div class="rounded-lg overflow-hidden" style="aspect-ratio:16/9"><img src="Brand Assets/Photos/metal-gulflok.jpg" alt="GulfLok standing seam metal roofing panel profile" class="w-full h-full object-cover" /></div>
         <h4 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">GulfLok™ Standing Seam</h4>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:1.8">
+        <ul style="color:#555555;font-size:.8rem;line-height:1.8">
           <li>• 14", 16" &amp; 18" Net Coverage</li>
           <li>• 24 Gauge Steel / Aluminum</li>
           <li>• Concealed fastener system</li>
@@ -556,7 +556,7 @@
       <div class="pcard p-5 flex flex-col gap-3">
         <div class="rounded-lg overflow-hidden" style="aspect-ratio:16/9"><img src="Brand Assets/Photos/metal-gulfseam.jpg" alt="GulfSeam metal roofing panel profile" class="w-full h-full object-cover" /></div>
         <h4 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">GulfSeam™</h4>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:1.8">
+        <ul style="color:#555555;font-size:.8rem;line-height:1.8">
           <li>• 36" Net Coverage</li>
           <li>• 26 &amp; 24 Gauge Steel</li>
           <li>• FL33818.1 HVHZ / FL34538.1 Open Framing</li>
@@ -567,7 +567,7 @@
       <div class="pcard p-5 flex flex-col gap-3">
         <div class="rounded-lg overflow-hidden" style="aspect-ratio:16/9"><img src="Brand Assets/Photos/metal-megaloc.jpg" alt="MegaLoc metal roofing panel profile" class="w-full h-full object-cover" /></div>
         <h4 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">MegaLoc™</h4>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:1.8">
+        <ul style="color:#555555;font-size:.8rem;line-height:1.8">
           <li>• 12" &amp; 16" Net Coverage</li>
           <li>• 26 &amp; 24 Gauge Steel / Aluminum</li>
           <li>• Standing seam for the people</li>
@@ -578,7 +578,7 @@
       <div class="pcard p-5 flex flex-col gap-3">
         <div class="rounded-lg overflow-hidden" style="aspect-ratio:16/9"><img src="Brand Assets/Photos/metal-gulfsnap.jpg" alt="GulfSnap metal roofing panel profile" class="w-full h-full object-cover" /></div>
         <h4 class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem">GulfSnap™</h4>
-        <ul style="color:#6B5744;font-size:.8rem;line-height:1.8">
+        <ul style="color:#555555;font-size:.8rem;line-height:1.8">
           <li>• 16" Net Coverage</li>
           <li>• 24 Gauge Steel</li>
           <li>• Snap-lock hidden fastener</li>
@@ -586,9 +586,9 @@
         </ul>
       </div>
       <!-- Metal benefits -->
-      <div class="p-5 rounded-xl flex flex-col gap-3" style="background:rgba(4,120,87,.05);border:1px solid rgba(4,120,87,.15)">
-        <h4 class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#047857">Why Metal Roofing?</h4>
-        <ul style="color:#6B5744;font-size:.83rem;line-height:2">
+      <div class="p-5 rounded-xl flex flex-col gap-3" style="background:rgba(199,91,57,.05);border:1px solid rgba(199,91,57,.15)">
+        <h4 class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#C75B39">Why Metal Roofing?</h4>
+        <ul style="color:#555555;font-size:.83rem;line-height:2">
           <li>✓ &nbsp;50–70+ year lifespan</li>
           <li>✓ &nbsp;Withstands 140+ mph winds</li>
           <li>✓ &nbsp;Energy-efficient reflective surfaces</li>
@@ -609,7 +609,7 @@
 <section class="cta-grad relative overflow-hidden py-20">
   <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
     <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
-      NOT SURE WHAT TO CHOOSE<span style="color:#047857">?</span>
+      NOT SURE WHAT TO CHOOSE<span style="color:#C75B39">?</span>
     </h2>
     <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Our team helps you pick the right material for your home, budget, and local climate conditions. Schedule a free consultation — no pressure, just good advice.</p>
     <div class="flex flex-wrap gap-3 justify-center">
@@ -623,42 +623,42 @@
 <footer>
   <div class="max-w-7xl mx-auto px-5 py-12">
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-      <div class="lg:col-span-2"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-9 mb-4" /><p style="color:#8B7355;font-size:.75rem;letter-spacing:.07em">STATE LICENSE #CCC1337380 · TAMPA BAY, FL</p>
-        <p style="color:#8B7355;font-size:.72rem;letter-spacing:.05em;margin-top:.25rem">141 Stevens Ave #12, Oldsmar, FL 34677</p>
-        <p style="color:#8B7355;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:1.25rem;margin-bottom:.6rem">Follow Us</p>
+      <div class="lg:col-span-2"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-9 mb-4" /><p style="color:#888888;font-size:.75rem;letter-spacing:.07em">STATE LICENSE #CCC1337380 · TAMPA BAY, FL</p>
+        <p style="color:#888888;font-size:.72rem;letter-spacing:.05em;margin-top:.25rem">141 Stevens Ave #12, Oldsmar, FL 34677</p>
+        <p style="color:#888888;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:1.25rem;margin-bottom:.6rem">Follow Us</p>
         <div class="flex gap-2">
-          <a href="https://www.facebook.com/share/1E27RD4hjZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#3C2415;border:1px solid #4D3020;transition:background .18s,border-color .18s" aria-label="Facebook" onmouseover="this.style.background='#1877F2';this.style.borderColor='#1877F2'" onmouseout="this.style.background='#3C2415';this.style.borderColor='#E5D5C0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="https://www.instagram.com/happyroofflorida?igsh=MXg1bGJ2cGJkZzN6Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#3C2415;border:1px solid #4D3020;transition:background .18s,border-color .18s" aria-label="Instagram" onmouseover="this.style.background='#E1306C';this.style.borderColor='#E1306C'" onmouseout="this.style.background='#3C2415';this.style.borderColor='#E5D5C0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#888"/></svg></a>
-          <a href="https://www.tiktok.com/@happyrooffl?_r=1&_t=ZT-94pWGkbbLUE" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#3C2415;border:1px solid #4D3020;transition:background .18s,border-color .18s" aria-label="TikTok" onmouseover="this.style.background='#010101';this.style.borderColor='#69C9D0'" onmouseout="this.style.background='#3C2415';this.style.borderColor='#E5D5C0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="#888"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/></svg></a>
+          <a href="https://www.facebook.com/share/1E27RD4hjZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Facebook" onmouseover="this.style.background='#1877F2';this.style.borderColor='#1877F2'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/happyroofflorida?igsh=MXg1bGJ2cGJkZzN6Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Instagram" onmouseover="this.style.background='#E1306C';this.style.borderColor='#E1306C'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#888"/></svg></a>
+          <a href="https://www.tiktok.com/@happyrooffl?_r=1&_t=ZT-94pWGkbbLUE" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="TikTok" onmouseover="this.style.background='#010101';this.style.borderColor='#69C9D0'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="#888"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/></svg></a>
         </div>
       </div>
       <div>
-        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#FFF8F0;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Products</h4>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Products</h4>
         <a href="#gaf" class="foot-link">GAF Shingles</a><a href="#owens" class="foot-link">Owens Corning</a><a href="#verea" class="foot-link">Verea Clay Tile</a><a href="#metal" class="foot-link">Metal Roofing</a>
       </div>
       <div>
-        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#FFF8F0;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Contact</h4>
-        <a href="tel:8135957663" class="call-tracking-number foot-link" style="color:#047857">(813) 595-7663</a><a href="contact.html" class="foot-link">Get Free Estimate</a><a href="resources.html" class="foot-link">Download Brochures</a><a href="foundation.html" class="foot-link" style="color:#E8415A">Coming Soon ♥</a>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Contact</h4>
+        <a href="tel:8135957663" class="call-tracking-number foot-link" style="color:#5AAFE0">(813) 595-7663</a><a href="contact.html" class="foot-link">Get Free Estimate</a><a href="resources.html" class="foot-link">Download Brochures</a><a href="foundation.html" class="foot-link" style="color:#E8415A">Coming Soon ♥</a>
       </div>
     </div>
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid #3C2415">
-      <p style="color:#8B7355;font-size:.75rem">© <script>document.write(new Date().getFullYear())</script> Happy Roof. All rights reserved.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid #2A2A2A">
+      <p style="color:#888888;font-size:.75rem">© <script>document.write(new Date().getFullYear())</script> Happy Roof. All rights reserved.</p>
       <div class="flex items-center gap-4">
-        <a href="privacy.html" style="color:#8B7355;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#FFF8F0'" onmouseout="this.style.color='#8B7355'">Privacy Policy</a>
-        <span style="color:#E5D5C0">·</span>
-        <a href="terms.html" style="color:#8B7355;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#FFF8F0'" onmouseout="this.style.color='#8B7355'">Terms &amp; Conditions</a>
+        <a href="privacy.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Privacy Policy</a>
+        <span style="color:#E0E0E0">·</span>
+        <a href="terms.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Terms &amp; Conditions</a>
       </div>
     </div>
   </div>
 </footer>
 
 <!-- STICKY MOBILE CTA BAR -->
-<div id="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#2C1810;padding:8px 10px;border-top:1px solid #3C2415;z-index:9999">
+<div id="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1A1A1A;padding:8px 10px;border-top:1px solid #2A2A2A;z-index:9999">
   <div style="display:flex;gap:6px">
-    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#047857;color:#fff;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#5AAFE0;color:#1A1A1A;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
 Call Now
     </a>
-    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#D4920C;color:#fff;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#F5B800;color:#fff;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
 Free Estimate
     </a>
   </div>
