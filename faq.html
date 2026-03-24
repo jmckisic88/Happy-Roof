@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently Asked Questions | Happy Roof Tampa Bay</title>
+  <!-- Google Tag Manager — Replace GTM-XXXXXXX with your real container ID -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
+    .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-link{color:#555555;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .gp{background:linear-gradient(135deg,#F0C040 0%,#E6A817 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .gt{background:linear-gradient(135deg,#6BB5D9 0%,#3B9FD9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
+    .btn-p{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(230,168,23,.48);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-p:hover{background:#F0C040;transform:translateY(-2px)}
+    .btn-p:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+    .btn-p:active{transform:translateY(0)}
+    .btn-t{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 24px -4px rgba(199,91,57,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-t:hover{background:#F0C040;transform:translateY(-2px)}
+    .btn-t:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+    .btn-t:active{transform:translateY(0)}
+    .btn-o{background:transparent;color:#1A1A1A;border:1.5px solid rgba(44,24,16,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:.85rem 1.8rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-o:hover{border-color:rgba(44,24,16,.4);background:rgba(230,168,23,.06);transform:translateY(-2px)}
+    .btn-o:active{transform:translateY(0)}
+    .btn-o:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+    footer{background:#1A1A1A;border-top:1px solid #2A2A2A}
+    .foot-link{color:#888888;font-size:.875rem;transition:color .18s;text-decoration:none;display:block;padding:.2rem 0}
+    .foot-link:hover{color:#FFFFFF}
+    #mobile-menu{display:none}#mobile-menu.open{display:flex}
+    .cta-grad h2,.cta-grad p{color:#FFFFFF}.cta-grad .btn-o{color:#1A1A1A;border:none;background:#FFFFFF;box-shadow:0 4px 16px -4px rgba(0,0,0,.2)}
+    .cta-grad{background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(230,168,23,.1) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%);border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
+    /* FAQ */
+    .faq-item{border:1px solid #E0E0E0;border-radius:12px;overflow:hidden;margin-bottom:.6rem}
+    .faq-q{padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#F7F7F7}
+    .faq-q:hover{background:#F0F0F0}
+    .faq-a{padding:0 1.2rem;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:#FFFFFF}
+    .faq-item.open .faq-a{max-height:500px;padding:.75rem 1.2rem 1.1rem}
+    .faq-item.open .faq-arr{transform:rotate(180deg)}
+    .faq-arr{transition:transform .25s;flex-shrink:0}
+    .cat-tab{padding:.55rem 1.2rem;border-radius:100px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .18s,color .18s;border:1px solid #E0E0E0;background:#FFFFFF;color:#555555}
+    .cat-tab:hover{background:#F7F7F7}
+    .cat-tab.active{background:#E6A817;color:#1A1A1A;border-color:#E6A817}
+    /* Hero photo bg */
+    .hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+    .hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.55) 100%);z-index:1}
+    @media(max-width:767px){
+      #give-back-bar{padding:.1rem .5rem;gap:.3rem;flex-wrap:nowrap;min-height:0;line-height:1.1}
+      #give-back-bar>span:not([href]){display:none !important}
+      #give-back-bar a{font-size:.55rem !important}
+      nav.nav-wrap{top:28px !important}
+      nav.nav-wrap .h-16{height:3.25rem !important}
+      nav.nav-wrap img.h-14{height:2.5rem !important}
+      nav.nav-wrap .btn-p{font-size:.65rem !important;padding:.4rem .7rem !important;white-space:nowrap;line-height:1.2}
+      #mobile-menu .nav-link{color:#555555 !important;font-size:1rem}
+      #mobile-menu .nav-link:hover{color:#1A1A1A !important}
+      .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
+      section .flex-wrap .btn-t,section .flex-wrap .btn-o,section .flex-wrap .btn-p{width:100%;justify-content:center;text-align:center}
+      .flex-wrap.gap-3{flex-direction:column}
+      .flex-wrap.gap-3 .btn-t,.flex-wrap.gap-3 .btn-o,.flex-wrap.gap-3 .btn-p{width:100%;justify-content:center;text-align:center}
+    }
+  </style>
+  <!-- SEO -->
+  <meta name="description" content="Find answers to common roofing questions — warranties, financing, materials, insurance claims, and the roof replacement process. Happy Roof serves Tampa Bay, FL." />
+  <meta name="keywords" content="roofing FAQ Tampa Bay, roof replacement questions, roofing warranty questions, storm damage roofing FAQ, Happy Roof FAQ" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://happyroof.com/faq.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://happyroof.com/faq.html" />
+  <meta property="og:title" content="Roofing FAQ | Happy Roof Tampa Bay" />
+  <meta property="og:description" content="Answers to common roofing questions — warranties, financing, materials, insurance claims, and more. Serving Tampa Bay, FL." />
+  <meta property="og:image" content="/Brand%20Assets/Happy%20Roof%20Logo.jpeg" />
+  <meta property="og:site_name" content="Happy Roof Tampa Bay" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roofing FAQ | Happy Roof Tampa Bay" />
+  <meta name="twitter:description" content="Answers to common roofing questions — warranties, financing, materials, insurance claims, and more. Serving Tampa Bay, FL." />
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
+    ],
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  }
+  </script>
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What areas does Happy Roof serve?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof serves all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Lutz, Land O' Lakes, Odessa, Temple Terrace, Oldsmar, Palm Harbor, Tarpon Springs, Safety Harbor, Dunedin, Largo, Seminole, New Port Richey, Trinity, and surrounding communities." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Happy Roof licensed and insured?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are a GAF Certified Installer and Owens Corning Preferred Contractor." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get a free estimate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Call us at (813) 595-7663 or fill out the contact form on our website. We'll schedule a free on-site inspection and provide an itemized, no-obligation estimate — typically within 24–48 hours." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long has Happy Roof been in business?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof is a locally owned and operated roofing company serving Tampa Bay. We hold FL License #CCC1337380 and are certified by both GAF and Owens Corning." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer emergency roofing services?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer emergency tarping and temporary repairs for active leaks and storm damage. Call (813) 595-7663 for urgent assistance." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the roof replacement process look like?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our process includes a free inspection, detailed estimate, material selection, permit pulling, full tear-off, installation, final inspection, and cleanup. Most residential roofs are completed in 1–3 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof replacement take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most residential roof replacements take 1–3 days depending on size, material, and weather. Metal and tile roofs may take 3–5 days. Happy Roof handles all permits and inspections." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to be home during the roof replacement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. As long as we have access to the property and any gates, you do not need to be home. We'll keep you updated throughout the process via phone or text." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof pull permits?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof pulls all required building permits for every roof replacement and handles scheduling the final inspection with the local building department. This is included in every project at no extra charge." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will you remove and dispose of my old roof?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every roof replacement includes full tear-off, disposal of old materials, and thorough cleanup of your property. We use magnetic nail sweepers to ensure no debris is left behind." }
+      },
+      {
+        "@type": "Question",
+        "name": "What roofing materials does Happy Roof install?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We install GAF Timberline HDZ and UHDZ shingles, Owens Corning Duration and Oakridge shingles, standing seam and corrugated metal roofing, clay and concrete tile, and flat roof systems including TPO, EPDM, and modified bitumen." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best roofing material for Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Architectural shingles (like GAF Timberline HDZ) are the most popular and cost-effective choice. Metal roofing offers superior wind resistance and longevity. Tile is ideal for Mediterranean-style homes. The best choice depends on your budget, aesthetic preference, and HOA requirements." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between 3-tab and architectural shingles?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Architectural (dimensional) shingles are thicker, more durable, and offer better wind resistance (up to 130 mph) compared to 3-tab shingles. They also have a more dimensional appearance and longer manufacturer warranties. Happy Roof recommends architectural shingles for Florida homes." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you install metal roofs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We install standing seam and corrugated metal roofing in a variety of colors and profiles. Metal roofs offer excellent wind resistance, energy efficiency, and can last 40–70 years with proper maintenance." }
+      },
+      {
+        "@type": "Question",
+        "name": "What warranty does Happy Roof offer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof provides a 15-year workmanship warranty on all shingle, metal, and tile roof installations, and a 10-year workmanship warranty on flat roof systems. This is provided in writing on every project, in addition to manufacturer material warranties." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do manufacturer warranties cover?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Manufacturer warranties cover defects in the roofing material itself. As a GAF Certified Installer and Owens Corning Preferred Contractor, we can offer enhanced manufacturer warranties including GAF's Lifetime Shingle Warranty and Owens Corning's Lifetime Limited Warranty." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is NOT covered by the workmanship warranty?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our workmanship warranty does not cover damage caused by storms, hurricanes, falling trees, improper modifications by others, lack of maintenance, or normal wear and tear. It covers defects in our installation work." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I file a warranty claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Call us at (813) 595-7663 or email info@happyroof.com. We'll schedule an inspection to assess the issue. If it's covered under our workmanship warranty, we'll repair it at no cost to you." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof offer financing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer flexible financing options for roof replacements and repairs, including low monthly payments and promotional 0% APR periods. Visit our financing page or call (813) 595-7663 for details." }
+      },
+      {
+        "@type": "Question",
+        "name": "What credit score do I need to qualify for financing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our financing partners offer options for a range of credit profiles. The best way to find out what you qualify for is to apply — the soft credit check will not affect your score. Contact us for more information." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I finance a roof repair, or only a full replacement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Financing is available for both roof replacements and larger repair projects. Minimum amounts may apply depending on the financing partner. Call (813) 595-7663 to discuss your options." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof help with insurance claims?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We assist Tampa Bay homeowners with the full insurance claim process for storm damage — from the initial roof inspection and damage documentation to working directly with your adjuster. The initial storm damage inspection is free." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know if my roof has storm damage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Signs of storm damage include missing or lifted shingles, dents in metal components, cracked tiles, granule loss, leaks after a storm, and dented gutters or downspouts. If you suspect damage, call (813) 595-7663 for a free storm damage inspection." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I file an insurance claim or pay out of pocket?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the extent of damage and your deductible. If storm damage is significant, filing a claim is usually the right move. We'll inspect your roof for free and give you an honest assessment before you decide. We never pressure homeowners to file unnecessary claims." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof do emergency tarping after a storm?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We provide emergency tarping to prevent further interior damage while your claim is processed or your replacement is scheduled. Call (813) 595-7663 for urgent storm damage assistance." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ══ WE GIVE BACK BANNER ══ -->
+<div id="give-back-bar" style="background:#FFFFFF;border-bottom:1px solid #E0E0E0;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.75rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
+  <a href="foundation.html" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#E8415A;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Coming June 2026
+  </a>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <span style="color:#3A3A3A;font-size:.68rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase">Something Big Is Coming</span>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <a href="index.html#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#C75B39;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E6A817" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Hero Discount
+  </a>
+</div>
+
+<!-- NAV -->
+<nav class="nav-wrap fixed left-0 right-0 z-50" style="top:36px">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="index.html" class="nav-link">Home</a><a href="services.html" class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a><a href="finance.html" class="nav-link">Financing</a><a href="referrals.html" class="nav-link">Referrals</a>
+      <a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="tel:8135957663" class="call-tracking-number hidden sm:block font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#C75B39;font-size:1rem">(813) 595-7663</a>
+      <a href="contact.html" class="btn-p" style="font-size:.88rem;padding:.6rem 1.2rem">Free Estimate</a>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span></button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-brand-border px-5 pb-5 gap-1" style="background:#FFFFFF">
+    <a href="index.html" class="nav-link py-3 border-b border-brand-border block">Home</a>
+    <a href="services.html" class="nav-link py-3 border-b border-brand-border block">Services</a>
+    <a href="portfolio.html" class="nav-link py-3 border-b border-brand-border block">Portfolio</a>
+    <a href="finance.html" class="nav-link py-3 border-b border-brand-border block">Financing</a>
+    <a href="referrals.html" class="nav-link py-3 border-b border-brand-border block">Referrals</a>
+    <a href="about.html" class="nav-link py-3 border-b border-brand-border block">About</a>
+    <a href="contact.html" class="nav-link py-3 block">Contact</a>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="relative overflow-hidden pt-28 pb-20" style="background:#FFFFFF">
+  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-5 text-center">
+    <p class="sl mb-4" style="color:#888888">Knowledge Base</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,7vw,5.5rem);line-height:.88;letter-spacing:-.01em;color:#1A1A1A">
+      FREQUENTLY ASKED<br/><span style="color:#E6A817">QUESTIONS<span style="color:#C75B39">.</span></span>
+    </h1>
+    <p style="color:#555555;font-size:1.1rem;line-height:1.75;max-width:560px;margin:0 auto 2.5rem">
+      Everything you need to know about roofing in Tampa Bay — from materials and warranties to financing and insurance claims.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="contact.html" class="btn-p" style="font-size:1.1rem;padding:.9rem 2rem">Get a Free Estimate</a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1rem;padding:.85rem 1.8rem">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CATEGORY FILTER + FAQ ACCORDIONS ══════ -->
+<section style="background:#F7F7F7;padding:4rem 0 5rem">
+  <div class="max-w-3xl mx-auto px-5">
+    <!-- Category tabs -->
+    <div class="flex flex-wrap gap-2 justify-center mb-10">
+      <button class="cat-tab active" onclick="filterFaq('all',this)">All</button>
+      <button class="cat-tab" onclick="filterFaq('general',this)">General</button>
+      <button class="cat-tab" onclick="filterFaq('process',this)">Process</button>
+      <button class="cat-tab" onclick="filterFaq('materials',this)">Materials</button>
+      <button class="cat-tab" onclick="filterFaq('warranties',this)">Warranties</button>
+      <button class="cat-tab" onclick="filterFaq('financing',this)">Financing</button>
+      <button class="cat-tab" onclick="filterFaq('insurance',this)">Insurance &amp; Storm</button>
+    </div>
+
+    <!-- GENERAL -->
+    <div class="mb-8" data-cat="general">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">General</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What areas does Happy Roof serve?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Happy Roof serves all of Hillsborough, Pinellas, and Pasco counties — including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Lutz, Land O' Lakes, Odessa, Temple Terrace, Oldsmar, Palm Harbor, Tarpon Springs, Safety Harbor, Dunedin, Largo, Seminole, New Port Richey, Trinity, and surrounding communities.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Is Happy Roof licensed and insured?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are a GAF Certified Installer and Owens Corning Preferred Contractor. Certificate of insurance is available on request.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I get a free estimate?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> or fill out the contact form on our website. We'll schedule a free on-site inspection and provide an itemized, no-obligation estimate — typically within 24–48 hours.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How long has Happy Roof been in business?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Happy Roof is a locally owned and operated roofing company proudly serving Tampa Bay. We hold Florida Roofing Contractor License #CCC1337380 and are certified by both GAF and Owens Corning — two of the largest roofing manufacturers in the country.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Do you offer emergency roofing services?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We offer emergency tarping and temporary repairs for active leaks and storm damage throughout Tampa Bay. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for urgent assistance.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How much does a roof replacement cost in Tampa Bay?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">A typical residential roof replacement in Tampa Bay ranges from $8,000 to $25,000+ depending on roof size, material (asphalt shingles, metal, tile), slope complexity, and whether structural repairs are needed. Happy Roof provides free, itemized estimates with no hidden fees.</p></div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="mb-8" data-cat="process">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">Process</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What does the roof replacement process look like?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Our process includes: free inspection, detailed written estimate, material selection, permit pulling, full tear-off of the old roof, installation of new underlayment and roofing material, final building department inspection, and thorough cleanup. Most residential roofs are completed in 1–3 days.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How long does a roof replacement take?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Most residential shingle roof replacements take 1–3 days depending on size and complexity. Metal roofs typically take 3–5 days. Tile roofs can take 5–7 days. Weather delays are possible during Florida's rainy season, but we plan accordingly and keep you informed.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Do I need to be home during the roof replacement?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">No. As long as we have access to the property and any gates, you do not need to be home. We'll keep you updated throughout the process via phone or text and send photos when the job is complete.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof pull permits?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Happy Roof pulls all required building permits for every roof replacement and handles scheduling the final inspection with the local building department. This is included in every project at no extra charge. A permitted roof protects your home's resale value and insurance coverage.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Will you remove and dispose of my old roof?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Every roof replacement includes full tear-off, disposal of old materials, and thorough cleanup of your property. We use magnetic nail sweepers to ensure no nails or debris are left behind in your yard or driveway.</p></div>
+      </div>
+    </div>
+
+    <!-- MATERIALS -->
+    <div class="mb-8" data-cat="materials">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">Materials</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What roofing materials does Happy Roof install?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">We install GAF Timberline HDZ and UHDZ shingles, Owens Corning Duration and Oakridge shingles, standing seam and corrugated metal roofing, clay and concrete tile, and flat roof systems including TPO, EPDM, and modified bitumen. All materials come with manufacturer warranties.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the best roofing material for Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Architectural shingles (like GAF Timberline HDZ) are the most popular and cost-effective choice for Florida homes. Metal roofing offers superior wind resistance and longevity. Tile is ideal for Mediterranean and Spanish-style homes. The best choice depends on your budget, aesthetic preference, and HOA requirements. We'll help you choose during your free estimate.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the difference between 3-tab and architectural shingles?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Architectural (dimensional) shingles are thicker, more durable, and offer better wind resistance (up to 130 mph) compared to basic 3-tab shingles. They also have a more dimensional, textured appearance and come with longer manufacturer warranties. Happy Roof recommends architectural shingles for all Florida homes due to our severe weather conditions.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Do you install metal roofs?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We install standing seam and corrugated metal roofing in a wide variety of colors and profiles. Metal roofs offer excellent wind resistance (up to 160+ mph), energy efficiency, and can last 40–70 years with proper maintenance. They're a great long-term investment for Florida homeowners.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can you match my existing tile if I need a repair?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">In most cases, yes. We work with multiple tile suppliers and can source matching or closely matching tiles for repairs. For discontinued profiles, we'll find the closest available match and discuss options with you before proceeding.</p></div>
+      </div>
+    </div>
+
+    <!-- WARRANTIES -->
+    <div class="mb-8" data-cat="warranties">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">Warranties</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What warranty does Happy Roof offer on workmanship?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Happy Roof provides a <strong>15-year workmanship warranty</strong> on all shingle, metal, and tile roof installations, and a <strong>10-year workmanship warranty</strong> on flat roof systems. This is provided in writing on every single project — no exceptions. Most contractors in the Tampa Bay area offer only 1–5 years.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What do manufacturer warranties cover?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Manufacturer warranties cover defects in the roofing material itself — such as premature cracking, curling, or granule loss not caused by weather events. As a GAF Certified Installer and Owens Corning Preferred Contractor, we can offer enhanced manufacturer warranties including GAF's Lifetime Shingle Warranty and Owens Corning's Lifetime Limited Warranty.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is NOT covered by the workmanship warranty?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Our workmanship warranty does not cover damage caused by hurricanes, storms, falling trees, hail, improper modifications made by others after installation, lack of maintenance, or normal wear and tear. It specifically covers defects in our installation workmanship — if something we installed fails under normal conditions, we fix it at no cost.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I file a warranty claim?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> or email info@happyroof.com. We'll schedule an inspection to assess the issue. If it's covered under our workmanship warranty, we'll repair it at no cost to you. We aim to respond to all warranty claims within 48 hours.</p></div>
+      </div>
+    </div>
+
+    <!-- FINANCING -->
+    <div class="mb-8" data-cat="financing">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">Financing</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof offer financing for roof replacement?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We offer flexible financing options for roof replacements and repairs, including low monthly payments and promotional 0% APR periods. Visit our <a href="finance.html" style="color:#3B9FD9;text-decoration:underline">financing page</a> or call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for details.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What credit score do I need to qualify for financing?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Our financing partners offer options for a range of credit profiles. The best way to find out what you qualify for is to apply — the initial soft credit check will not affect your score. Contact us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for more information about available plans.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can I finance a roof repair, or only a full replacement?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Financing is available for both roof replacements and larger repair projects. Minimum project amounts may apply depending on the financing partner. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> to discuss your specific situation and available options.</p></div>
+      </div>
+    </div>
+
+    <!-- INSURANCE & STORM DAMAGE -->
+    <div class="mb-8" data-cat="insurance">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#C75B39;margin-bottom:1rem">Insurance &amp; Storm Damage</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof help with insurance claims?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We assist Tampa Bay homeowners with the full insurance claim process for storm damage — from the initial roof inspection and damage documentation to working directly with your insurance adjuster. Our initial storm damage inspection is always free.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I know if my roof has storm damage?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Signs of storm damage include missing or lifted shingles, dents in metal flashing or vents, cracked tiles, excessive granule loss in gutters, water stains on interior ceilings, and dented gutters or downspouts. If you suspect damage after a storm, call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for a free inspection.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Should I file an insurance claim or pay out of pocket?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">It depends on the extent of damage and your deductible. If storm damage is widespread or affects a significant portion of your roof, filing a claim is usually the right move. We'll inspect your roof for free and give you an honest assessment before you make any decisions. We never pressure homeowners to file unnecessary claims.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof do emergency tarping after a storm?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We provide emergency tarping to prevent further water intrusion and interior damage while your insurance claim is processed or your replacement is scheduled. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for urgent storm damage assistance.</p></div>
+      </div>
+    </div>
+
+    <!-- Still have questions -->
+    <div class="text-center mt-12 p-8" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:.04em;text-transform:uppercase;color:#1A1A1A;margin-bottom:.5rem">STILL HAVE QUESTIONS?</h3>
+      <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.5rem">We're happy to help. Call us or request a free estimate — no obligation.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="tel:8135957663" class="btn-p call-tracking-number" style="font-size:1rem;padding:.8rem 1.8rem">Call (813) 595-7663</a>
+        <a href="contact.html" class="btn-o" style="font-size:1rem;padding:.8rem 1.8rem">Get a Free Estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY TO GET STARTED<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we'll respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="contact.html" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="max-w-7xl mx-auto px-5 py-12">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div class="lg:col-span-2"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-9 mb-4" /><p style="color:#888888;font-size:.75rem;letter-spacing:.07em">STATE LICENSE #CCC1337380 · TAMPA BAY, FL</p>
+        <p style="color:#888888;font-size:.72rem;letter-spacing:.05em;margin-top:.25rem">141 Stevens Ave #12, Oldsmar, FL 34677</p>
+        <p style="color:#888888;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:1.25rem;margin-bottom:.6rem">Follow Us</p>
+        <div class="flex gap-2">
+          <a href="https://www.facebook.com/share/1E27RD4hjZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Facebook" onmouseover="this.style.background='#1877F2';this.style.borderColor='#1877F2'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/happyroofflorida?igsh=MXg1bGJ2cGJkZzN6Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Instagram" onmouseover="this.style.background='#E1306C';this.style.borderColor='#E1306C'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#888"/></svg></a>
+          <a href="https://www.tiktok.com/@happyrooffl?_r=1&_t=ZT-94pWGkbbLUE" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="TikTok" onmouseover="this.style.background='#010101';this.style.borderColor='#69C9D0'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="#888"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Services</h4>
+        <a href="services.html" class="foot-link">Residential</a><a href="services.html" class="foot-link">Commercial</a><a href="services.html" class="foot-link">Repairs</a><a href="services.html" class="foot-link">Inspections</a><a href="services.html" class="foot-link">Storm Damage</a>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Contact</h4>
+        <a href="tel:8135957663" class="call-tracking-number foot-link" style="color:#3B9FD9">(813) 595-7663</a><a href="contact.html" class="foot-link">Get Free Estimate</a><a href="about.html" class="foot-link">About Us</a>
+        <a href="foundation.html" class="foot-link" style="color:#E8415A">Coming Soon ♥</a>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid #2A2A2A">
+      <p style="color:#888888;font-size:.75rem">&copy; <script>document.write(new Date().getFullYear())</script> Happy Roof. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Privacy Policy</a>
+        <span style="color:#E0E0E0">&middot;</span>
+        <a href="terms.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA BAR -->
+<div id="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1A1A1A;padding:8px 10px;border-top:1px solid #2A2A2A;z-index:9999">
+  <div style="display:flex;gap:6px">
+    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#3B9FD9;color:#1A1A1A;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+Call Now
+    </a>
+    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#E6A817;color:#fff;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+Free Estimate
+    </a>
+  </div>
+</div>
+<style>@media(max-width:767px){#mobile-cta-bar{display:flex !important}body{padding-bottom:80px}}</style>
+
+<script src="chat.js"></script>
+<script>
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+function filterFaq(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-cat]').forEach(section => {
+    if (cat === 'all' || section.dataset.cat === cat) {
+      section.style.display = '';
+    } else {
+      section.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
