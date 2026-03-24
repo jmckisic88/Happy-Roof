@@ -35,6 +35,10 @@ Brand Assets/Photos/7E2AE62B*
 Brand Assets/Photos/7F6549F1*
 Brand Assets/Photos/F9502223*
 
+# Backup files
+foundation_every-shingle-heart_backup.html
+
 # OS files
 .DS_Store
 Thumbs.db
+.vercel
