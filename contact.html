@@ -69,6 +69,10 @@
         .flex-wrap.gap-3{flex-direction:column}
         .flex-wrap.gap-3 .btn-t,.flex-wrap.gap-3 .btn-o,.flex-wrap.gap-3 .btn-p,.flex-wrap.gap-3 .btn-fin{width:100%;justify-content:center;text-align:center}
       }
+
+    /* ── Hero photo bg ── */
+    .hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+    .hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,253,248,.72) 0%,rgba(255,248,240,.65) 40%,rgba(255,248,240,.55) 100%);z-index:1}
   </style>
   <!-- SEO -->
   <meta name="description" content="Get a free roofing estimate in Tampa Bay. Call (813) 595-7663 or submit our online form. We respond within 24 hours!" />
@@ -193,7 +197,7 @@
   </a>
 </div>
 <nav class="nav-wrap fixed left-0 right-0 z-50" style="top:36px">
-  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
     <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
     <div class="hidden md:flex items-center gap-6">
       <a href="index.html" class="nav-link">Home</a><a href="services.html" class="nav-link">Services</a>
@@ -221,6 +225,9 @@
 
 <!-- HERO -->
 <section class="pt-32 pb-16 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <!-- Hero background photo -->
+  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
   <div class="max-w-7xl mx-auto px-5 text-center">
     <p class="sl gp mb-4">Get in Touch</p>
     <h1 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#2C1810">

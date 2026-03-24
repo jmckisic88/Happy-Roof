@@ -58,6 +58,10 @@
         .flex-wrap.gap-3{flex-direction:column}
         .flex-wrap.gap-3 .btn-t,.flex-wrap.gap-3 .btn-o,.flex-wrap.gap-3 .btn-p,.flex-wrap.gap-3 .btn-fin{width:100%;justify-content:center;text-align:center}
       }
+
+    /* ── Hero photo bg ── */
+    .hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+    .hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,253,248,.72) 0%,rgba(255,248,240,.65) 40%,rgba(255,248,240,.55) 100%);z-index:1}
   </style>
 </head>
 <body>
@@ -80,7 +84,7 @@
   </a>
 </div>
 <nav class="nav-wrap fixed left-0 right-0 z-50" style="top:36px">
-  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
     <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
     <div class="hidden md:flex items-center gap-5">
       <a href="index.html" class="nav-link">Home</a><a href="services.html" class="nav-link">Services</a><a href="finance.html" class="nav-link">Financing</a><a href="referrals.html" class="nav-link">Referrals</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a>
@@ -105,6 +109,9 @@
 
 <!-- HERO — COMING SOON -->
 <section style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(232,65,90,.06) 0%,transparent 70%),#FFFDF8">
+  <!-- Hero background photo -->
+  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
   <!-- Subtle animated background -->
   <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
     <div style="position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,65,90,.04) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);animation:pulse-glow 4s ease-in-out infinite"></div>
