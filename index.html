@@ -24,7 +24,7 @@
               black: '#1A1A1A', dark: '#2A2A2A', card: '#F7F7F7',
               card2: '#F5F5F5', border: '#E0E0E0',
               yellow: '#E6A817', yellowLight: '#F0C040', yellowDim: 'rgba(230,168,23,0.12)',
-              terra: '#C75B39', terraLight: '#D4654A', terraDim: 'rgba(199,91,57,0.1)', blue: '#3B9FD9', blueLight: '#6BB5D9',
+              blue: '#3B9FD9', blueLight: '#6BB5D9', blueDim: 'rgba(59,159,217,0.1)', blue: '#3B9FD9', blueLight: '#6BB5D9',
               white: '#FFFFFF', muted: '#555555', muted2: '#888888',
             }
           },
@@ -106,7 +106,7 @@
 
     /* ── Step card ── */
     .step{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
-    .step:hover{transform:translateY(-4px);box-shadow:0 16px 48px -8px rgba(199,91,57,.12)}
+    .step:hover{transform:translateY(-4px);box-shadow:0 16px 48px -8px rgba(59,159,217,.12)}
 
     /* ── Footer ── */
     footer{background:#1A1A1A;border-top:1px solid #2A2A2A}
@@ -287,7 +287,7 @@
   <span style="color:#E0E0E0;font-size:1rem;line-height:1">·</span>
   <span style="color:#555555;font-size:.68rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase">Something Big Is Coming</span>
   <span style="color:#E0E0E0;font-size:1rem;line-height:1">·</span>
-  <a href="#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#C75B39;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  <a href="#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#3B9FD9;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="#E6A817" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     Hero Discount
   </a>
@@ -351,14 +351,14 @@
       <h1 class="font-display font-extrabold leading-none tracking-tight mb-5" style="font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:.93;color:#1A1A1A;text-transform:uppercase;letter-spacing:-.01em">
         YOUR ROOF PROTECTS<br/>
         EVERYTHING.<br/>
-        <span class="gp">WE PROTECT<br/>YOUR ROOF.</span>
+        <span class="gt">WE PROTECT<br/>YOUR ROOF.</span>
       </h1>
       <p class="mb-8 max-w-lg" style="color:#555555;font-size:1.05rem;line-height:1.75">
         Get a straight answer, a fair price, and a crew that shows up on time. Every job backed by our 15-year workmanship warranty.
       </p>
       <div class="flex flex-wrap items-center gap-4 mb-10">
         <a href="contact.html" class="btn-t">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        <span style="color:#888888;font-size:.95rem">or call <a href="tel:8135957663" class="call-tracking-number" style="color:#C75B39;font-weight:700;text-decoration:none">(813) 595-7663</a></span>
+        <span style="color:#888888;font-size:.95rem">or call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;font-weight:700;text-decoration:none">(813) 595-7663</a></span>
       </div>
       <p style="color:#888888;font-size:.75rem;letter-spacing:.07em">LICENSED &amp; INSURED &nbsp;·&nbsp; FL #CCC1337380</p>
     </div>
@@ -371,11 +371,11 @@
         <form id="hero-form" onsubmit="submitHeroForm(event)" novalidate>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
             <div>
-              <label class="flabel">Name <span style="color:#C75B39">*</span></label>
+              <label class="flabel">Name <span style="color:#3B9FD9">*</span></label>
               <input type="text" name="name" class="finput" placeholder="Jane Smith" required />
             </div>
             <div>
-              <label class="flabel">Phone <span style="color:#C75B39">*</span></label>
+              <label class="flabel">Phone <span style="color:#3B9FD9">*</span></label>
               <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" required />
             </div>
           </div>
@@ -384,7 +384,7 @@
             <input type="email" name="email" class="finput" placeholder="jane@example.com" />
           </div>
           <div class="mb-3">
-            <label class="flabel">Service Needed <span style="color:#C75B39">*</span></label>
+            <label class="flabel">Service Needed <span style="color:#3B9FD9">*</span></label>
             <select name="service" class="finput" style="appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22%3E%3Cpath d=%22M1 1l5 5 5-5%22 stroke=%22%23555%22 stroke-width=%221.5%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer" required>
               <option value="" disabled selected>Select a service…</option>
               <option>Roof Replacement</option>
@@ -560,12 +560,12 @@
       </div>
       <!-- Owens Corning -->
       <div class="partner-card p-6 flex flex-col gap-3">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:rgba(199,91,57,.1);border:1px solid rgba(199,91,57,.18)">
-          <span class="font-display font-black" style="color:#C75B39;font-size:.7rem;text-align:center;line-height:1.1">OWENS<br/>CORNING</span>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:rgba(59,159,217,.1);border:1px solid rgba(59,159,217,.18)">
+          <span class="font-display font-black" style="color:#3B9FD9;font-size:.7rem;text-align:center;line-height:1.1">OWENS<br/>CORNING</span>
         </div>
         <h4 class="font-display font-bold text-brand-black" style="font-size:1.15rem">Owens Corning</h4>
         <p style="color:#555555;font-size:.85rem;line-height:1.6">Total Protection Roofing System. Seal, Defend, Breathe — an integrated system that protects your home from the inside out.</p>
-        <a href="products.html#owens" style="color:#C75B39;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
+        <a href="products.html#owens" style="color:#3B9FD9;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
       </div>
       <!-- Verea Clay -->
       <div class="partner-card p-6 flex flex-col gap-3">
@@ -654,7 +654,7 @@
   <div class="max-w-7xl mx-auto px-5">
     <div class="flex items-center justify-between mb-8">
       <div>
-        <p style="color:#C75B39;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Our Work</p>
+        <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Our Work</p>
         <h3 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.025em;line-height:1">RECENT PROJECTS</h3>
       </div>
       <a href="services.html" style="color:#555555;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .18s" onmouseenter="this.style.color='#E6A817'" onmouseleave="this.style.color='#888888'">VIEW ALL SERVICES →</a>
@@ -705,7 +705,7 @@
         <p style="color:#555555;font-size:.88rem;line-height:1.65">We come to you — no commitment. Our certified inspector assesses every inch of your roof and identifies all issues.</p>
       </div>
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(59,159,217,.25);box-shadow:0 4px 24px -8px rgba(59,159,217,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(199,91,57,.1);color:#C75B39;border:1px solid rgba(199,91,57,.3);font-family:'Barlow Condensed',sans-serif">02</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(59,159,217,.1);color:#3B9FD9;border:1px solid rgba(59,159,217,.3);font-family:'Barlow Condensed',sans-serif">02</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">Clear Quote</h3>
         <p style="color:#555555;font-size:.88rem;line-height:1.65">Detailed written estimate — every line item explained. We'll walk you through material options and help you choose what's right.</p>
       </div>
@@ -715,7 +715,7 @@
         <p style="color:#555555;font-size:.88rem;line-height:1.65">Our licensed, insured crew shows up on schedule. We complete the job efficiently, protecting your property throughout.</p>
       </div>
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(59,159,217,.25);box-shadow:0 4px 24px -8px rgba(59,159,217,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(199,91,57,.1);color:#C75B39;border:1px solid rgba(199,91,57,.3);font-family:'Barlow Condensed',sans-serif">04</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(59,159,217,.1);color:#3B9FD9;border:1px solid rgba(59,159,217,.3);font-family:'Barlow Condensed',sans-serif">04</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">Final Walkthrough</h3>
         <p style="color:#555555;font-size:.88rem;line-height:1.65">We inspect the completed job with you, clean up fully, and hand over your warranty documentation and permit records.</p>
       </div>
@@ -757,7 +757,7 @@
         </div>
         <p style="color:#555555;font-size:.92rem;line-height:1.72">"Josh and his team at Happy Roof replaced our roof at our home and we couldn't be happier. From start to finish, Josh was fantastic — responsive, straightforward, and clearly knew his stuff. The crew was clean and professional, left the property in great shape, and the pricing was very fair. The project manager, Martin, kept me updated throughout the entire process. Highly recommend if you're looking for a roofer you can actually trust."</p>
         <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(199,91,57,.12);color:#C75B39">E</div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(59,159,217,.12);color:#3B9FD9">E</div>
           <div><p class="text-brand-black font-medium text-sm">Evan B.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
         </div>
       </div>

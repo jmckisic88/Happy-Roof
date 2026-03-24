@@ -537,7 +537,7 @@
       </div>
       <div style="flex:1;min-width:0">
         <p style="font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;color:#F7F7F7;letter-spacing:.01em;line-height:1.1">Happy Roof Assistant</p>
-        <p style="font-size:.72rem;color:#C75B39;margin-top:.05rem">● Online · Typically replies instantly</p>
+        <p style="font-size:.72rem;color:#3B9FD9;margin-top:.05rem">● Online · Typically replies instantly</p>
       </div>
       <button onclick="document.getElementById('hr-chat-window').style.display='none';document.getElementById('hr-chat-fab').innerHTML='<svg width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'><path d=\\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linejoin=\\'round\\'/></svg>'" style="background:transparent;border:none;cursor:pointer;color:#555;padding:.25rem;border-radius:6px;display:flex;align-items:center;transition:color .15s" onmouseenter="this.style.color='#F7F7F7'" onmouseleave="this.style.color='#555'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -569,7 +569,7 @@
     const sendBtn = document.createElement('button');
     sendBtn.style.cssText = 'background:#E6A817;border:none;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .18s,transform .15s';
     sendBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
-    sendBtn.onmouseenter = () => { sendBtn.style.background='#9333EA'; sendBtn.style.transform='scale(1.06)'; };
+    sendBtn.onmouseenter = () => { sendBtn.style.background='#2D8CC4'; sendBtn.style.transform='scale(1.06)'; };
     sendBtn.onmouseleave = () => { sendBtn.style.background='#E6A817'; sendBtn.style.transform='scale(1)'; };
     sendBtn.onclick = sendMsg;
 
@@ -597,7 +597,7 @@
     // Notification badge
     const badge = document.createElement('span');
     badge.id = 'hr-chat-badge';
-    badge.style.cssText = 'position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#C75B39;border-radius:50%;border:2px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#1A1A1A';
+    badge.style.cssText = 'position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#3B9FD9;border-radius:50%;border:2px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#1A1A1A';
     badge.textContent = '1';
     fab.appendChild(badge);
     wrap.appendChild(fab);
@@ -670,7 +670,7 @@
       'box-shadow:0 -8px 32px -8px rgba(0,0,0,.4)'
     ].join(';');
     bar.innerHTML = `
-      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#2A2A2A;border:1px solid #222;border-radius:10px;color:#C75B39;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
+      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#2A2A2A;border:1px solid #222;border-radius:10px;color:#3B9FD9;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call Us
       </a>

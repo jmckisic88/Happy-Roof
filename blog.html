@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roofing Blog | Tampa Bay Roofing Tips & Guides | Happy Roof</title>
+  <!-- Google Tag Manager — Replace GTM-XXXXXXX with your real container ID -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
+    .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-link{color:#555555;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .gp{background:linear-gradient(135deg,#F0C040 0%,#E6A817 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .gt{background:linear-gradient(135deg,#6BB5D9 0%,#3B9FD9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
+    .btn-p{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.04em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(230,168,23,.48);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-p:hover{background:#F0C040;transform:translateY(-2px)}
+    .btn-t{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 24px -4px rgba(59,159,217,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-t:hover{background:#F0C040;transform:translateY(-2px)}
+    .btn-o{background:transparent;color:#1A1A1A;border:1.5px solid rgba(44,24,16,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:.85rem 1.8rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-o:hover{border-color:rgba(44,24,16,.4);background:rgba(230,168,23,.06);transform:translateY(-2px)}
+    .btn-o:active{transform:translateY(0)}
+    .btn-o:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+    .scard{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:20px;overflow:hidden;transition:border-color .25s}
+    .scard:hover{border-color:rgba(230,168,23,.3)}
+    footer{background:#1A1A1A;border-top:1px solid #2A2A2A}
+    .foot-link{color:#888888;font-size:.875rem;transition:color .18s;text-decoration:none;display:block;padding:.2rem 0}
+    .foot-link:hover{color:#FFFFFF}
+    #mobile-menu{display:none}#mobile-menu.open{display:flex}
+    .cta-grad h2,.cta-grad p{color:#FFFFFF}.cta-grad .btn-o{color:#1A1A1A;border:none;background:#FFFFFF;box-shadow:0 4px 16px -4px rgba(0,0,0,.2)}
+    .cta-grad{background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(230,168,23,.1) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%);border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
+    .hero-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+    .hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.65) 40%,rgba(255,255,255,.55) 100%);z-index:1}
+    .blog-card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:20px;overflow:hidden;transition:border-color .25s,transform .2s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
+    .blog-card:hover{border-color:rgba(230,168,23,.3);transform:translateY(-3px)}
+    .blog-tag{display:inline-block;padding:.25rem .75rem;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+    @media(max-width:767px){
+      #give-back-bar{padding:.1rem .5rem;gap:.3rem;flex-wrap:nowrap;min-height:0;line-height:1.1}
+      #give-back-bar>span:not([href]){display:none !important}
+      #give-back-bar a{font-size:.55rem !important}
+      nav.nav-wrap{top:28px !important}
+      nav.nav-wrap .h-16{height:3.25rem !important}
+      nav.nav-wrap img.h-14{height:2.5rem !important}
+      nav.nav-wrap .btn-p{font-size:.65rem !important;padding:.4rem .7rem !important;white-space:nowrap;line-height:1.2}
+      #mobile-menu .nav-link{color:#555555 !important;font-size:1rem}
+      #mobile-menu .nav-link:hover{color:#1A1A1A !important}
+      .cta-grad .btn-t,.cta-grad .btn-o{width:100%;justify-content:center;text-align:center}
+    }
+  </style>
+  <!-- SEO -->
+  <meta name="description" content="Roofing tips, guides, and expert advice for Tampa Bay homeowners. Learn about materials, costs, insurance claims, and how to choose the right roofing contractor. By Happy Roof." />
+  <meta name="keywords" content="roofing blog Tampa Bay, roof replacement tips, roofing materials guide, roof insurance claim Florida, Happy Roof blog" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://happyroof.com/blog.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://happyroof.com/blog.html" />
+  <meta property="og:title" content="Roofing Blog | Tampa Bay Tips & Guides | Happy Roof" />
+  <meta property="og:description" content="Roofing knowledge with zero fluff. Tips, guides, and expert advice for Tampa Bay homeowners." />
+  <meta property="og:image" content="/Brand%20Assets/Happy%20Roof%20Logo.jpeg" />
+  <meta property="og:site_name" content="Happy Roof Tampa Bay" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roofing Blog | Happy Roof Tampa Bay" />
+  <meta name="twitter:description" content="Roofing knowledge with zero fluff. Tips, guides, and expert advice for Tampa Bay homeowners." />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ══ WE GIVE BACK BANNER ══ -->
+<div id="give-back-bar" style="background:#FFFFFF;border-bottom:1px solid #E0E0E0;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.75rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
+  <a href="foundation.html" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#E8415A;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Coming June 2026
+  </a>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <span style="color:#3A3A3A;font-size:.68rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase">Something Big Is Coming</span>
+  <span style="color:#252525;font-size:1rem;line-height:1">·</span>
+  <a href="index.html#hero-discount" style="display:flex;align-items:center;gap:.45rem;text-decoration:none;color:#3B9FD9;font-size:.72rem;font-weight:700;font-family:'Nunito',sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E6A817" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Hero Discount
+  </a>
+</div>
+
+<!-- NAV -->
+<nav class="nav-wrap fixed left-0 right-0 z-50" style="top:36px">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a><a href="finance.html" class="nav-link">Financing</a>
+      <a href="referrals.html" class="nav-link">Referrals</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="tel:8135957663" class="call-tracking-number hidden sm:block font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#3B9FD9;font-size:1rem">(813) 595-7663</a>
+      <a href="contact.html" class="btn-p" style="font-size:.9rem;padding:.65rem 1.3rem">Free Estimate</a>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden flex flex-col gap-1.5 p-2"><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span><span class="w-5 h-0.5 block" style="background:#1A1A1A"></span></button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-brand-border px-5 pb-5 gap-1" style="background:#FFFFFF">
+    <a href="index.html" class="nav-link py-3 border-b border-brand-border block">Home</a>
+    <a href="services.html" class="nav-link py-3 border-b border-brand-border block">Services</a>
+    <a href="portfolio.html" class="nav-link py-3 border-b border-brand-border block">Portfolio</a>
+    <a href="finance.html" class="nav-link py-3 border-b border-brand-border block">Financing</a>
+    <a href="referrals.html" class="nav-link py-3 border-b border-brand-border block">Referrals</a>
+    <a href="about.html" class="nav-link py-3 border-b border-brand-border block">About</a>
+    <a href="contact.html" class="nav-link py-3 block">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Happy Roof Blog</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      ROOFING KNOWLEDGE.<br/><span class="gt">ZERO FLUFF.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Straight-talk roofing guides, material comparisons, cost breakdowns, and expert tips written specifically for Tampa Bay homeowners. No jargon, no sales pitches — just the information you need to make smart decisions about your roof.
+    </p>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Materials</span>
+      <span style="color:#E6A817">·</span>
+      <span>Insurance</span>
+      <span style="color:#E6A817">·</span>
+      <span>Education</span>
+      <span style="color:#E6A817">·</span>
+      <span>Pricing</span>
+      <span style="color:#E6A817">·</span>
+      <span>Seasonal</span>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG GRID -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Post 1 -->
+      <a href="blog/tile-vs-shingle-vs-metal.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">March 31, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Tile vs. Shingle vs. Metal: Which Roof Is Right for Your Florida Home?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A side-by-side comparison of the three most popular roofing materials in Tampa Bay — covering durability, cost, energy efficiency, and which performs best in Florida's climate.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="blog/how-to-file-roof-insurance-claim.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 7, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How to File a Roof Insurance Claim in Florida (Step-by-Step)</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A complete walkthrough of the Florida roof insurance claim process — from documenting damage and contacting your carrier to working with an adjuster and getting your roof repaired or replaced.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="blog/signs-you-need-roof-replacement.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 14, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">5 Signs You Need a Roof Replacement (Not Just a Repair)</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Not sure whether your roof needs a patch job or a full replacement? Here are five warning signs that indicate it's time for a new roof — and when a repair will still do the job.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 4 -->
+      <a href="blog/roof-replacement-cost-tampa-bay.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Pricing</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 21, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">What Does a Roof Replacement Actually Cost in Tampa Bay?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A transparent breakdown of roof replacement costs in Tampa Bay — including material prices, labor, permits, and the hidden factors that affect your final number.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 5 -->
+      <a href="blog/metal-roofing-florida-myths-vs-facts.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 28, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Metal Roofing in Florida: Myths vs. Facts</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Does metal roofing attract lightning? Is it louder in the rain? We debunk the most common myths about metal roofs and explain why they're one of the best choices for Florida homes.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 6 -->
+      <a href="blog/hurricane-season-roof-prep-checklist.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Seasonal</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 5, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Hurricane Season Roof Prep: A Tampa Bay Homeowner's Checklist</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Hurricane season in Florida runs June through November. Here's a step-by-step checklist to make sure your roof is ready — including inspections, maintenance, and when to call a pro.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 7 -->
+      <a href="blog/professional-roof-inspection.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 12, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">What's Included in a Professional Roof Inspection?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Wondering what a roofer actually checks during an inspection? Here's exactly what a professional roof inspection covers — and why it matters for your home's safety and your insurance.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 8 -->
+      <a href="blog/gaf-vs-owens-corning.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 19, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">GAF vs. Owens Corning: Which Shingle Brand Is Better?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">An honest comparison of GAF and Owens Corning shingles — covering durability, warranties, wind ratings, pricing, and which brand performs better in Florida's harsh climate.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 9 -->
+      <a href="blog/roof-financing-zero-interest.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Financing</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 26, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How Roof Financing Works: 0% Interest Options Explained</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A clear explanation of how roofing financing works — including 0% interest options, what qualifies, how to apply, and what to watch out for in the fine print.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 10 -->
+      <a href="blog/flat-roof-vs-pitched-roof.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">June 2, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Flat Roof vs. Pitched Roof: Pros, Cons &amp; Costs for Florida</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Considering a flat roof or a traditional pitched design? We break down the advantages, drawbacks, costs, and maintenance requirements of each — specifically for Florida's climate.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 11 -->
+      <a href="blog/how-to-choose-roofing-contractor.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">June 9, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How to Choose a Roofing Contractor You Can Actually Trust</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A practical guide to vetting roofing contractors — including what licenses to verify, red flags to watch for, questions to ask, and how to spot storm-chaser scams in Florida.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 12 -->
+      <a href="blog/roof-warranty-explained.html" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">June 16, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Your Roof Warranty Explained: What's Covered and What's Not</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Manufacturer warranty vs. workmanship warranty — what's the difference? We explain what your roof warranty actually covers, common exclusions, and how to protect your investment.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      NEED A ROOF EXPERT<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Get a free estimate from a licensed Tampa Bay roofing contractor — no pressure, no obligation.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="contact.html" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="max-w-7xl mx-auto px-5 py-12">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div class="lg:col-span-2"><img src="Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="h-9 mb-4" /><p style="color:#888888;font-size:.75rem;letter-spacing:.07em">STATE LICENSE #CCC1337380 · TAMPA BAY, FL</p>
+        <p style="color:#888888;font-size:.72rem;letter-spacing:.05em;margin-top:.25rem">141 Stevens Ave #12, Oldsmar, FL 34677</p>
+        <p style="color:#888888;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-top:1.25rem;margin-bottom:.6rem">Follow Us</p>
+        <div class="flex gap-2">
+          <a href="https://www.facebook.com/share/1E27RD4hjZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Facebook" onmouseover="this.style.background='#1877F2';this.style.borderColor='#1877F2'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/happyroofflorida?igsh=MXg1bGJ2cGJkZzN6Zw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="Instagram" onmouseover="this.style.background='#E1306C';this.style.borderColor='#E1306C'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#888"/></svg></a>
+          <a href="https://www.tiktok.com/@happyrooffl?_r=1&_t=ZT-94pWGkbbLUE" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#2A2A2A;border:1px solid #333333;transition:background .18s,border-color .18s" aria-label="TikTok" onmouseover="this.style.background='#010101';this.style.borderColor='#69C9D0'" onmouseout="this.style.background='#2A2A2A';this.style.borderColor='#E0E0E0'"><svg width="14" height="14" viewBox="0 0 24 24" fill="#888"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Services</h4>
+        <a href="residential-roofing.html" class="foot-link">Residential</a><a href="commercial-roofing.html" class="foot-link">Commercial</a><a href="roof-repair.html" class="foot-link">Repairs</a><a href="services.html#inspections" class="foot-link">Inspections</a><a href="services.html#storm" class="foot-link">Storm Damage</a>
+      </div>
+      <div>
+        <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#F7F7F7;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem">Contact</h4>
+        <a href="tel:8135957663" class="call-tracking-number foot-link" style="color:#3B9FD9">(813) 595-7663</a><a href="contact.html" class="foot-link">Get Free Estimate</a><a href="about.html" class="foot-link">About Us</a>
+        <a href="foundation.html" class="foot-link" style="color:#E8415A">Coming Soon &#9829;</a>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top:1px solid #2A2A2A">
+      <p style="color:#888888;font-size:.75rem">&copy; <script>document.write(new Date().getFullYear())</script> Happy Roof. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Privacy Policy</a>
+        <span style="color:#E0E0E0">&middot;</span>
+        <a href="terms.html" style="color:#888888;font-size:.75rem;text-decoration:none;transition:color .18s" onmouseover="this.style.color='#F7F7F7'" onmouseout="this.style.color='#888888'">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA BAR -->
+<div id="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1A1A1A;padding:8px 10px;border-top:1px solid #2A2A2A;z-index:9999">
+  <div style="display:flex;gap:6px">
+    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#3B9FD9;color:#1A1A1A;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+Call Now
+    </a>
+    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#E6A817;color:#fff;border-radius:10px;min-height:52px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em">
+Free Estimate
+    </a>
+  </div>
+</div>
+<style>@media(max-width:767px){#mobile-cta-bar{display:flex !important}body{padding-bottom:80px}}</style>
+
+<script src="chat.js"></script>
+</body>
+</html>
