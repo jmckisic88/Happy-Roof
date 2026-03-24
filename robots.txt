@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /employees.html
+Disallow: /apply.html
 
 Sitemap: https://happyroof.com/sitemap.xml
