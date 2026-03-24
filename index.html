@@ -14,7 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +28,7 @@
               white: '#FFFDF8', muted: '#6B5744', muted2: '#8B7355',
             }
           },
-          fontFamily: { display: ['Fraunces','serif'], body: ['Nunito','sans-serif'] },
+          fontFamily: { display: ['Barlow Condensed','sans-serif'], body: ['Nunito','sans-serif'] },
           letterSpacing: { tightest: '-0.04em', tight: '-0.02em' }
         }
       }
@@ -42,12 +42,13 @@
 
     /* ── Hero slideshow ── */
     .hero-slideshow{position:absolute;inset:0;z-index:0}
-    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease-in-out}
-    .hero-slide.active{opacity:1}
+    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;z-index:0}
+    .hero-slide.active{opacity:1;z-index:1}
+    .hero-slide.prev{opacity:1;z-index:0}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,253,248,.72) 0%,rgba(255,248,240,.65) 40%,rgba(255,248,240,.55) 100%);z-index:1}
 
     /* ── Brand texture ── */
-    .brand-texture{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;font-family:'Fraunces',serif;font-weight:800;color:#2C1810;white-space:nowrap}
+    .brand-texture{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#2C1810;white-space:nowrap}
     .bt-inner{display:flex;flex-direction:column;transform:rotate(-8deg) scale(1.35);transform-origin:center;padding:4rem 0;margin:-6rem -8%}
     .bt-row{display:flex;gap:2rem;line-height:1.5;font-size:clamp(1.4rem,2.5vw,2rem)}
     .bt-row:nth-child(odd){margin-left:-3rem}
@@ -64,15 +65,15 @@
     .nav-link:focus-visible{outline:2px solid #D4920C;outline-offset:3px;border-radius:3px}
 
     /* ── Buttons ── */
-    .btn-p{background:#D4920C;color:#fff;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;letter-spacing:.02em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(212,146,12,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-p{background:#D4920C;color:#fff;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.02em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(212,146,12,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
     .btn-p:hover{background:#E8A817;transform:translateY(-2px);box-shadow:0 8px 28px -4px rgba(212,146,12,.52)}
     .btn-p:active{transform:translateY(0)}
     .btn-p:focus-visible{outline:2px solid #E8A817;outline-offset:3px}
-    .btn-t{background:#D4920C;color:#fff;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;letter-spacing:.02em;padding:.9rem 2.2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 24px -4px rgba(212,146,12,.38);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-t{background:#D4920C;color:#fff;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.02em;padding:.9rem 2.2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 24px -4px rgba(212,146,12,.38);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
     .btn-t:hover{background:#E8A817;transform:translateY(-2px);box-shadow:0 8px 32px -4px rgba(212,146,12,.48)}
     .btn-t:active{transform:translateY(0)}
     .btn-t:focus-visible{outline:2px solid #D4920C;outline-offset:3px}
-    .btn-o{background:transparent;color:#2C1810;border:1.5px solid rgba(44,24,16,.2);border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:.85rem 1.8rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-o{background:transparent;color:#2C1810;border:1.5px solid rgba(44,24,16,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:.85rem 1.8rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
     .btn-o:hover{border-color:rgba(44,24,16,.4);background:rgba(212,146,12,.06);transform:translateY(-2px)}
     .btn-o:active{transform:translateY(0)}
     .btn-o:focus-visible{outline:2px solid #D4920C;outline-offset:3px}
@@ -84,7 +85,7 @@
     .ci{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(212,146,12,.08);flex-shrink:0;transition:background .2s,box-shadow .2s}
 
     /* ── Section label ── */
-    .sl{font-family:'Fraunces',serif;font-weight:700;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase}
+    .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase}
 
     /* ── Trust badge ── */
     .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem 1rem;background:#fff;border:1.5px solid #D4920C;border-radius:100px;font-size:.82rem;font-weight:600;color:#D4920C;box-shadow:0 2px 8px -2px rgba(44,24,16,.1)}
@@ -355,10 +356,10 @@
         <span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Expert Team</span>
       </div>
       <!-- Headline -->
-      <h1 class="font-display font-extrabold leading-none tracking-tight mb-5" style="font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:.95;color:#2C1810">
-        Your Roof Protects<br/>
-        Everything.<br/>
-        <span class="gp" style="font-style:italic">We Protect<br/>Your Roof.</span><span style="color:#D4920C;font-size:.45em;vertical-align:super">&#9788;</span>
+      <h1 class="font-display font-extrabold leading-none tracking-tight mb-5" style="font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:.93;color:#2C1810;text-transform:uppercase;letter-spacing:-.03em">
+        YOUR ROOF PROTECTS<br/>
+        EVERYTHING.<br/>
+        <span class="gp">WE PROTECT<br/>YOUR ROOF.</span>
       </h1>
       <p class="mb-8 max-w-lg" style="color:#6B5744;font-size:1.05rem;line-height:1.75">
         Get a straight answer, a fair price, and a crew that shows up on time. Every job backed by our 15-year workmanship warranty.
@@ -373,7 +374,7 @@
     <!-- Right: estimate form -->
     <div>
       <div style="background:#FFF8F0;border:1px solid #E5D5C0;border-radius:20px;padding:1.75rem 1.75rem 1.5rem;box-shadow:0 24px 64px -12px rgba(44,24,16,.08),0 8px 24px -8px rgba(44,24,16,.05)">
-        <p class="font-display font-bold" style="font-family:'Fraunces',serif;font-size:1.4rem;color:#2C1810;letter-spacing:.01em;margin-bottom:.2rem">Get a Free Estimate</p>
+        <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;color:#2C1810;letter-spacing:.01em;margin-bottom:.2rem">Get a Free Estimate</p>
         <p style="font-size:.82rem;color:#6B5744;margin-bottom:1.25rem">We typically respond within 1 business day.</p>
         <form id="hero-form" onsubmit="submitHeroForm(event)" novalidate>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
@@ -413,7 +414,7 @@
             <label for="sms-consent-hero" style="font-size:.72rem;color:#6B5744;line-height:1.55;cursor:pointer">I agree to receive text messages from Happy Roof regarding my request. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="privacy.html" style="color:#D4920C;text-decoration:underline" target="_blank">Privacy Policy</a> &amp; <a href="terms.html" style="color:#D4920C;text-decoration:underline" target="_blank">Terms</a>.</label>
           </div>
           <div id="hero-success" style="display:none;background:rgba(4,120,87,.08);border:1px solid rgba(4,120,87,.25);border-radius:10px;padding:.875rem 1rem;margin-bottom:1rem;text-align:center">
-            <p style="color:#047857;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
+            <p style="color:#047857;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
           </div>
           <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.05rem;padding:.9rem">
             Request Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -460,7 +461,7 @@
 <!-- ══════════════════════ INFO STRIP ══════════════════════ -->
 <div style="background:#FFF8F0;border-top:2px solid #D4920C;border-bottom:1px solid #E5D5C0;padding:.85rem 0">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#2C1810;text-transform:uppercase;font-family:'Fraunces',serif">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#2C1810;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
       <span>Tampa Bay, FL</span>
       <span style="color:#D4920C">·</span>
       <span>CCC1337380</span>
@@ -489,7 +490,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Residential Roofing</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">Full replacements and new installations for Florida homes. Storm-rated systems built to handle anything the Gulf throws at them.</p>
         </div>
-        <a href="services.html#residential" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#residential" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
       <!-- Commercial -->
       <div class="card p-6 flex flex-col gap-4">
@@ -498,7 +499,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Commercial Roofing</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">Flat, low-slope, and metal systems for commercial properties. On-time delivery, minimal disruption to your business operations.</p>
         </div>
-        <a href="services.html#commercial" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#commercial" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
       <!-- Repairs -->
       <div class="card p-6 flex flex-col gap-4">
@@ -507,7 +508,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Roof Repairs</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">Leak detection, shingle replacement, flashing repairs, and storm damage fixes. Fast response times with lasting results.</p>
         </div>
-        <a href="services.html#repairs" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#repairs" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
       <!-- Inspections -->
       <div class="card p-6 flex flex-col gap-4">
@@ -516,7 +517,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Roof Inspections</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">Detailed written reports for buyers, sellers, and insurance claims. Know exactly what you have before you buy, sell, or file.</p>
         </div>
-        <a href="services.html#inspections" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#inspections" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
       <!-- Storm / Insurance -->
       <div class="card p-6 flex flex-col gap-4">
@@ -525,7 +526,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Storm Damage &amp; Insurance</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">We work directly with your insurance company. From documentation through completion, we handle the entire claims process.</p>
         </div>
-        <a href="services.html#storm" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#storm" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
       <!-- New Construction -->
       <div class="card p-6 flex flex-col gap-4">
@@ -534,7 +535,7 @@
           <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">New Construction</h3>
           <p style="color:#6B5744;font-size:.9rem;line-height:1.65">Builder partnerships and new-build roofing for custom homes, developments, and commercial projects throughout Tampa Bay.</p>
         </div>
-        <a href="services.html#construction" style="color:#D4920C;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+        <a href="services.html#construction" style="color:#D4920C;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
       </div>
     </div>
     <div class="mt-10 text-center">
@@ -563,7 +564,7 @@
         </div>
         <h4 class="font-display font-bold text-brand-black" style="font-size:1.15rem">GAF Shingles</h4>
         <p style="color:#6B5744;font-size:.85rem;line-height:1.6">North America's #1 roofing manufacturer. Timberline HDZ, Designer Collection, and SBS-Modified systems with Lifetime limited warranties.</p>
-        <a href="products.html#gaf" style="color:#D4920C;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Fraunces',serif">VIEW PRODUCTS →</a>
+        <a href="products.html#gaf" style="color:#D4920C;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
       </div>
       <!-- Owens Corning -->
       <div class="partner-card p-6 flex flex-col gap-3">
@@ -572,7 +573,7 @@
         </div>
         <h4 class="font-display font-bold text-brand-black" style="font-size:1.15rem">Owens Corning</h4>
         <p style="color:#6B5744;font-size:.85rem;line-height:1.6">Total Protection Roofing System. Seal, Defend, Breathe — an integrated system that protects your home from the inside out.</p>
-        <a href="products.html#owens" style="color:#047857;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Fraunces',serif">VIEW PRODUCTS →</a>
+        <a href="products.html#owens" style="color:#047857;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
       </div>
       <!-- Verea Clay -->
       <div class="partner-card p-6 flex flex-col gap-3">
@@ -581,7 +582,7 @@
         </div>
         <h4 class="font-display font-bold text-brand-black" style="font-size:1.15rem">Verea Clay Tile</h4>
         <p style="color:#6B5744;font-size:.85rem;line-height:1.6">Premium clay and concrete roof tiles. Timeless Mediterranean aesthetics with exceptional durability — perfect for Florida's climate.</p>
-        <a href="products.html#verea" style="color:#F59E0B;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Fraunces',serif">VIEW PRODUCTS →</a>
+        <a href="products.html#verea" style="color:#F59E0B;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
       </div>
       <!-- Metal -->
       <div class="partner-card p-6 flex flex-col gap-3">
@@ -590,7 +591,7 @@
         </div>
         <h4 class="font-display font-bold text-brand-black" style="font-size:1.15rem">Metal Roofing</h4>
         <p style="color:#6B5744;font-size:.85rem;line-height:1.6">Standing seam and corrugated metal panels. GulfRib, GulfLok, GulfSeam systems in 30+ colors — FL-approved for HVHZ conditions.</p>
-        <a href="products.html#metal" style="color:#94A3B8;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Fraunces',serif">VIEW PRODUCTS →</a>
+        <a href="products.html#metal" style="color:#94A3B8;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.04em;font-family:'Barlow Condensed',sans-serif">VIEW PRODUCTS →</a>
       </div>
     </div>
     <div class="text-center mt-8">
@@ -661,17 +662,17 @@
   <div class="max-w-7xl mx-auto px-5">
     <div class="flex items-center justify-between mb-8">
       <div>
-        <p style="color:#047857;font-family:'Fraunces',serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Our Work</p>
-        <h3 class="font-display font-black" style="font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.025em;line-height:1">RECENT PROJECTS</h3>
+        <p style="color:#047857;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Our Work</p>
+        <h3 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.025em;line-height:1">RECENT PROJECTS</h3>
       </div>
-      <a href="services.html" style="color:#6B5744;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .18s" onmouseenter="this.style.color='#D4920C'" onmouseleave="this.style.color='#8B7355'">VIEW ALL SERVICES →</a>
+      <a href="services.html" style="color:#6B5744;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .18s" onmouseenter="this.style.color='#D4920C'" onmouseleave="this.style.color='#8B7355'">VIEW ALL SERVICES →</a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div class="relative rounded-2xl overflow-hidden group" style="aspect-ratio:4/3">
         <img src="Brand Assets/Photos/metal-roof-installation-clearwater.jpg" alt="Standing seam metal roof project in Tampa Bay by Happy Roof" class="w-full h-full object-cover" style="transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
         <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
-          <p style="font-family:'Fraunces',serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Metal Roofing</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Metal Roofing</p>
           <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Standing Seam · Tampa Bay</p>
         </div>
       </div>
@@ -679,7 +680,7 @@
         <img src="Brand Assets/Photos/commercial-tpo-roof-tampa.jpg" alt="Commercial TPO roof installation in Tampa by Happy Roof" class="w-full h-full object-cover" style="transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
         <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
-          <p style="font-family:'Fraunces',serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Shingle Roofing</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Shingle Roofing</p>
           <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Architectural Shingles · Tampa Bay</p>
         </div>
       </div>
@@ -687,7 +688,7 @@
         <img src="Brand Assets/Photos/roof-replacement-project-tampa-bay.jpg" alt="Roof replacement project in Tampa Bay by Happy Roof" class="w-full h-full object-cover" style="object-position:center top;transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
         <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
-          <p style="font-family:'Fraunces',serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Flat / TPO Roofing</p>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Flat / TPO Roofing</p>
           <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Commercial TPO · Tampa Bay</p>
         </div>
       </div>
@@ -716,22 +717,22 @@
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFDF8;border:1px dashed #E5D5C0;box-shadow:0 4px 24px -8px rgba(0,0,0,.1);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(212,146,12,.1);color:#D4920C;border:1px solid rgba(212,146,12,.2);font-family:'Fraunces',serif">01</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(212,146,12,.1);color:#D4920C;border:1px solid rgba(212,146,12,.2);font-family:'Barlow Condensed',sans-serif">01</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#2C1810">Free Inspection</h3>
         <p style="color:#6B5744;font-size:.88rem;line-height:1.65">We come to you — no commitment. Our certified inspector assesses every inch of your roof and identifies all issues.</p>
       </div>
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(4,120,87,.25);box-shadow:0 4px 24px -8px rgba(4,120,87,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(4,120,87,.1);color:#047857;border:1px solid rgba(4,120,87,.3);font-family:'Fraunces',serif">02</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(4,120,87,.1);color:#047857;border:1px solid rgba(4,120,87,.3);font-family:'Barlow Condensed',sans-serif">02</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#2C1810">Clear Quote</h3>
         <p style="color:#6B5744;font-size:.88rem;line-height:1.65">Detailed written estimate — every line item explained. We'll walk you through material options and help you choose what's right.</p>
       </div>
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFDF8;border:1px dashed #E5D5C0;box-shadow:0 4px 24px -8px rgba(0,0,0,.1);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(212,146,12,.1);color:#D4920C;border:1px solid rgba(212,146,12,.2);font-family:'Fraunces',serif">03</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(212,146,12,.1);color:#D4920C;border:1px solid rgba(212,146,12,.2);font-family:'Barlow Condensed',sans-serif">03</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#2C1810">We Get to Work</h3>
         <p style="color:#6B5744;font-size:.88rem;line-height:1.65">Our licensed, insured crew shows up on schedule. We complete the job efficiently, protecting your property throughout.</p>
       </div>
       <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(4,120,87,.25);box-shadow:0 4px 24px -8px rgba(4,120,87,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(4,120,87,.1);color:#047857;border:1px solid rgba(4,120,87,.3);font-family:'Fraunces',serif">04</div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(4,120,87,.1);color:#047857;border:1px solid rgba(4,120,87,.3);font-family:'Barlow Condensed',sans-serif">04</div>
         <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#2C1810">Final Walkthrough</h3>
         <p style="color:#6B5744;font-size:.88rem;line-height:1.65">We inspect the completed job with you, clean up fully, and hand over your warranty documentation and permit records.</p>
       </div>
@@ -805,11 +806,11 @@
         </div>
         <div>
           <div style="color:#F59E0B;font-size:1.1rem;letter-spacing:.06em;line-height:1;margin-bottom:.3rem">★★★★★</div>
-          <p class="font-display font-black" style="font-family:'Fraunces',serif;font-size:1.4rem;line-height:1;color:#2C1810;letter-spacing:-.02em">Happy with your roof?</p>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;line-height:1;color:#2C1810;letter-spacing:-.02em">Happy with your roof?</p>
           <p style="color:#6B5744;font-size:.88rem;margin-top:.25rem">Leave us a Google review — it takes 60 seconds and means the world to our crew.</p>
         </div>
       </div>
-      <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" class="flex-shrink-0 font-display font-bold" style="font-family:'Fraunces',serif;background:#2C1810;color:#FFF8F0;border-radius:8px;padding:.85rem 2rem;font-size:1.05rem;letter-spacing:.05em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);white-space:nowrap" onmouseover="this.style.background='#D4920C';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2C1810';this.style.transform='translateY(0)'">
+      <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" class="flex-shrink-0 font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;background:#2C1810;color:#FFF8F0;border-radius:8px;padding:.85rem 2rem;font-size:1.05rem;letter-spacing:.05em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);white-space:nowrap" onmouseover="this.style.background='#D4920C';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2C1810';this.style.transform='translateY(0)'">
         LEAVE A REVIEW
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
@@ -849,16 +850,16 @@
   <div class="max-w-3xl mx-auto px-5 text-center" style="position:relative">
     <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,65,90,.08);border:1px solid rgba(232,65,90,.22);border-radius:100px;padding:.35rem .9rem;margin-bottom:1.5rem">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8415A"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <span style="font-family:'Fraunces',serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#E8415A">Coming June 2026</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#E8415A">Coming June 2026</span>
     </div>
-    <h2 style="font-family:'Fraunces',serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.02em;color:#2C1810;margin:0 0 1rem">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.02em;color:#2C1810;margin:0 0 1rem">
       WE'RE BUILDING SOMETHING<br>
       <span style="background:linear-gradient(135deg,#F87171,#E8415A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">BIGGER THAN ROOFING.</span>
     </h2>
     <p style="color:#6B5744;font-size:1rem;line-height:1.75;max-width:480px;margin:0 auto 2rem">
       This summer, Happy Roof is launching a community program to provide free roof replacements for Tampa Bay families in need. The name drops in June.
     </p>
-    <a href="foundation.html" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#F87171,#E8415A);color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:10px;text-decoration:none;transition:opacity .18s,transform .18s" onmouseover="this.style.opacity='.88';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+    <a href="foundation.html" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#F87171,#E8415A);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:10px;text-decoration:none;transition:opacity .18s,transform .18s" onmouseover="this.style.opacity='.88';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       Learn More
     </a>
@@ -868,7 +869,7 @@
 <!-- ══════════════════════ SERVICE AREA (SEO) ══════════════════════ -->
 <section style="background:#FFFDF8;border-top:1px solid #E5D5C0;padding:3rem 0">
   <div class="max-w-7xl mx-auto px-5 text-center">
-    <p style="font-family:'Fraunces',serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#8B7355;margin-bottom:.75rem">Proudly Serving Tampa Bay</p>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#8B7355;margin-bottom:.75rem">Proudly Serving Tampa Bay</p>
     <p style="color:#6B5744;font-size:.82rem;line-height:2;max-width:700px;margin:0 auto">
       <a href="contact.html" style="color:#8B7355;text-decoration:none" onmouseover="this.style.color='#D4920C'" onmouseout="this.style.color='#8B7355'">Tampa</a> &nbsp;·&nbsp;
       <a href="contact.html" style="color:#8B7355;text-decoration:none" onmouseover="this.style.color='#D4920C'" onmouseout="this.style.color='#8B7355'">St. Petersburg</a> &nbsp;·&nbsp;
@@ -960,11 +961,11 @@
 <!-- ══════════════════════ STICKY MOBILE CTA ══════════════════════ -->
 <div id="mobile-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#2C1810;padding:10px 12px;border-top:1px solid #3C2415;z-index:9999">
   <div style="display:flex;gap:8px">
-    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#047857;color:#fff;border-radius:10px;min-height:48px;font-family:'Fraunces',serif;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em;transition:background .18s">
+    <a href="tel:8135957663" class="call-tracking-number" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#047857;color:#fff;border-radius:10px;min-height:48px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em;transition:background .18s">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       Call Now
     </a>
-    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#D4920C;color:#fff;border-radius:10px;min-height:48px;font-family:'Fraunces',serif;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em;transition:background .18s">
+    <a href="contact.html" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#D4920C;color:#fff;border-radius:10px;min-height:48px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;letter-spacing:.01em;transition:background .18s">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       Free Estimate
     </a>
@@ -1018,9 +1019,14 @@ function submitHeroForm(e) {
   if (slides.length < 2) return;
   let current = 0;
   setInterval(function(){
-    slides[current].classList.remove('active');
+    var prev = current;
     current = (current + 1) % slides.length;
+    // Keep old slide visible underneath, fade new one in on top
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('prev');
     slides[current].classList.add('active');
+    // After transition completes, remove prev class
+    setTimeout(function(){ slides[prev].classList.remove('prev'); }, 2000);
   }, 5000);
 })();
 </script>
