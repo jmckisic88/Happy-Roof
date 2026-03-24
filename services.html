@@ -29,7 +29,7 @@
     #mobile-menu{display:none}#mobile-menu.open{display:flex}
     .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .9rem;background:rgba(15,191,191,.07);border:1px solid rgba(15,191,191,.18);border-radius:100px;font-size:.8rem;font-weight:500;color:#0FBFBF}
     .cta-grad{background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(124,58,237,.2) 0%,rgba(15,191,191,.06) 55%,transparent 100%),#111;border-top:1px solid #1E1E1E;border-bottom:1px solid #1E1E1E}
-      @media(max-width:767px){#give-back-bar{padding:.25rem .75rem;gap:.5rem;flex-wrap:nowrap}#give-back-bar>span:not([href]){display:none !important}#give-back-bar a{font-size:.58rem !important}nav.nav-wrap{top:26px !important}}
+      @media(max-width:767px){#give-back-bar{padding:.25rem .75rem;gap:.5rem;flex-wrap:nowrap}#give-back-bar>span:not([href]){display:none !important}#give-back-bar a{font-size:.58rem !important}nav.nav-wrap{top:26px !important}#mobile-menu .nav-link{color:#ccc !important}#mobile-menu .nav-link:hover{color:#fff !important}}
   </style>
   <!-- SEO -->
   <meta name="description" content="Full-service roofing contractor in Tampa Bay. Residential & commercial roof replacement, leak repair, storm damage, inspections & new construction. Licensed, insured, local." />
@@ -61,11 +61,11 @@
     "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Tampa",
-      "addressRegion": "FL",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
       "addressCountry": "US"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": 27.9506, "longitude": -82.4572 },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
     "priceRange": "$$",
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
@@ -84,6 +84,23 @@
       { "@type": "City", "name": "Temple Terrace" },
       { "@type": "City", "name": "New Tampa" },
       { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
       { "@type": "AdministrativeArea", "name": "Hillsborough County" },
       { "@type": "AdministrativeArea", "name": "Pinellas County" },
       { "@type": "AdministrativeArea", "name": "Pasco County" }
@@ -91,8 +108,21 @@
     "sameAs": [
       "https://www.facebook.com/share/1E27RD4hjZ/",
       "https://www.instagram.com/happyroofflorida",
-      "https://www.tiktok.com/@happyrooffl"
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Roofing Services",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "Roof Replacement", "description": "Complete residential and commercial roof replacement with asphalt shingles, metal, tile, or flat roof systems" },
+        { "@type": "OfferCatalog", "name": "Roof Repair", "description": "Leak repair, shingle replacement, flashing repair, and emergency tarping" },
+        { "@type": "OfferCatalog", "name": "Storm Damage Repair", "description": "Hurricane and storm damage roof repair with full insurance claim assistance" },
+        { "@type": "OfferCatalog", "name": "Roof Inspection", "description": "Professional roof inspections for real estate, insurance, and maintenance" },
+        { "@type": "OfferCatalog", "name": "Commercial Roofing", "description": "TPO, EPDM, modified bitumen, and metal roofing for commercial properties" },
+        { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
+      ]
+    },
     "hasCredential": "Florida Roofing Contractor License #CCC1337380",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -102,6 +132,101 @@
       "worstRating": "1"
     }
   }
+  </script>
+  <!-- FAQPage Schema — AIO/GEO optimized -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a roof replacement cost in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A typical residential roof replacement in Tampa Bay ranges from $8,000 to $25,000+ depending on roof size, material (asphalt shingles, metal, tile), slope complexity, and whether structural repairs are needed. Happy Roof provides free, itemized estimates with no hidden fees. Call (813) 595-7663 for a quote." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof replacement take in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most residential roof replacements in Tampa Bay take 1 to 3 days depending on size, material, and weather. Metal and tile roofs may take 3 to 5 days. Happy Roof pulls all permits and schedules inspections so homeowners don't have to coordinate anything." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof help with insurance claims for storm damage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof assists Tampa Bay homeowners with the full insurance claim process for storm damage — from the initial roof inspection and damage documentation to working directly with your adjuster. We do not charge for the initial storm damage inspection." }
+      },
+      {
+        "@type": "Question",
+        "name": "What roofing materials does Happy Roof install?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof installs GAF Timberline HDZ and UHDZ shingles, Owens Corning Duration and Oakridge shingles, standing seam and corrugated metal roofing, Verea clay and concrete tiles, and flat roof systems including TPO, EPDM, and modified bitumen. All materials come with manufacturer warranties." }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas does Happy Roof serve in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof serves all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Riverview, Wesley Chapel, Lutz, Land O' Lakes, Odessa, Temple Terrace, Oldsmar, Palm Harbor, Tarpon Springs, Safety Harbor, Dunedin, Largo, Seminole, New Port Richey, Trinity, and surrounding communities." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Happy Roof licensed and insured?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are a GAF Certified Installer and Owens Corning Preferred Contractor. Certificate of insurance is available on request." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof offer financing for roof replacement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof offers flexible financing options for roof replacements and repairs in Tampa Bay. Plans include low monthly payments and promotional 0% APR periods. Visit happyroof.com/finance.html or call (813) 595-7663 for details." }
+      },
+      {
+        "@type": "Question",
+        "name": "What warranty does Happy Roof offer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof provides a 15-year workmanship warranty on all shingle, metal, and tile roof installations, and a 10-year workmanship warranty on flat roof installations — in writing, every time. This is in addition to manufacturer material warranties from GAF, Owens Corning, and other brands." }
+      }
+    ]
+  }
+  </script>
+  <!-- Service Schema — AIO/GEO -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Roof Replacement",
+      "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+      "areaServed": { "@type": "State", "name": "Florida" },
+      "description": "Complete residential and commercial roof replacement in Tampa Bay. Full tear-off, permit pulling, and installation of asphalt shingles, metal, tile, or flat roof systems. 15-year workmanship warranty included.",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD" } }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Roof Repair",
+      "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+      "areaServed": { "@type": "State", "name": "Florida" },
+      "description": "Expert roof leak repair, shingle and tile replacement, flashing repair, and emergency tarping for Tampa Bay homes and businesses. 48-hour emergency response available."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Storm Damage Roof Repair",
+      "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+      "areaServed": { "@type": "State", "name": "Florida" },
+      "description": "Hurricane and storm damage roof repair in Tampa Bay. Free storm damage inspections, full insurance claim assistance, emergency tarping, and permanent repair or replacement."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Roof Inspection",
+      "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+      "areaServed": { "@type": "State", "name": "Florida" },
+      "description": "Professional roof inspections in Tampa Bay for real estate transactions, insurance renewals, and preventive maintenance. Written reports with photos provided."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Commercial Roofing",
+      "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+      "areaServed": { "@type": "State", "name": "Florida" },
+      "description": "Commercial roofing services in Tampa Bay including TPO, EPDM, modified bitumen, built-up roofing, and standing seam metal. Phased scheduling to minimize business disruption."
+    }
+  ]
   </script>
 </head>
 <body>
