@@ -191,13 +191,20 @@
       .join('\n');
   }
 
-  // ── Email via mailto (no backend needed) ───────────────────
+  // ── Submit via FormSubmit (same as other site forms) ───────
   function sendSummaryEmail(name, phone, email) {
-    const subject = encodeURIComponent(`Happy Roof Chat Summary — ${name || 'Visitor'}`);
-    const body = encodeURIComponent(
-      `New lead from website chat.\n\nName: ${name || 'Not provided'}\nPhone: ${phone || 'Not provided'}\nEmail: ${email || 'Not provided'}\n\n— Conversation —\n\n${buildSummary()}`
-    );
-    window.open(`mailto:info@happyroof.com?subject=${subject}&body=${body}`);
+    const data = {
+      _subject: `Chat Summary — ${name || 'Visitor'}`,
+      Name: name || 'Not provided',
+      Phone: phone || 'Not provided',
+      Email: email || 'Not provided',
+      Conversation: buildSummary()
+    };
+    fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => {});
   }
 
   // ── Render ──────────────────────────────────────────────────
@@ -282,7 +289,7 @@
       awaitingContactInfo = false;
       if (pendingAction === 'email') {
         setTimeout(() => {
-          addMessage('bot', `Got it! Opening your email client to send our conversation summary to **info@happyroof.com**.\n\nOur team will review it and reach out to **${tempContact.name}** at **${tempContact.phone}** shortly.`);
+          addMessage('bot', `✅ Done! Your conversation summary has been sent to our team.\n\nWe'll review it and reach out to **${tempContact.name}** at **${tempContact.phone}** shortly — typically within 1 business day.`);
           sendSummaryEmail(tempContact.name, tempContact.phone, tempContact.email);
         }, 400);
       } else if (pendingAction === 'sms') {
