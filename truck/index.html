@@ -26,7 +26,7 @@
     html{scroll-behavior:smooth}
     .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav-link{color:#555555;font-size:.875rem;font-weight:600;transition:color .18s ease;padding:.25rem 0}
-    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A;font-weight:700}
     .nav-link:focus-visible{outline:2px solid #E6A817;outline-offset:3px;border-radius:3px}
     .btn-p{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.02em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(230,168,23,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
     .btn-p:hover{background:#D4960F;transform:translateY(-2px);box-shadow:0 8px 28px -4px rgba(230,168,23,.52)}
@@ -193,6 +193,18 @@ function submitTruckForm(e) {
     btn.style.display = 'none';
   });
 }
+</script>
+<script>
+(function(){
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') path = 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function(a){
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var linkPage = href.split('/').pop();
+    if (linkPage === path) a.classList.add('active');
+  });
+})();
 </script>
 </body>
 </html>

@@ -56,7 +56,7 @@
     /* ── Nav ── */
     .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav-link{color:#555555;font-size:.875rem;font-weight:600;transition:color .18s ease;padding:.25rem 0}
-    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A;font-weight:700}
     .nav-link:focus-visible{outline:2px solid #E6A817;outline-offset:3px;border-radius:3px}
 
     /* ── Buttons ── */
@@ -1106,6 +1106,18 @@ function submitHeroForm(e) {
     }
   ]
 }
+</script>
+<script>
+(function(){
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') path = 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function(a){
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var linkPage = href.split('/').pop();
+    if (linkPage === path) a.classList.add('active');
+  });
+})();
 </script>
 </body>
 </html>

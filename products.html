@@ -17,7 +17,7 @@
     *{box-sizing:border-box}body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
     .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav-link{color:#555555;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
-    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A;font-weight:700}
     .gp{color:#E6A817}
     .gt{color:#3B9FD9}
     .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
@@ -660,5 +660,17 @@ Free Estimate
 <style>@media(max-width:767px){#mobile-cta-bar{display:flex !important}body{padding-bottom:80px}}</style>
 
 <script src="chat.js"></script>
+<script>
+(function(){
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') path = 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function(a){
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var linkPage = href.split('/').pop();
+    if (linkPage === path) a.classList.add('active');
+  });
+})();
+</script>
 </body>
 </html>

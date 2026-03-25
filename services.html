@@ -17,7 +17,7 @@
     *{box-sizing:border-box}body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}html{scroll-behavior:smooth}
     .nav-wrap{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav-link{color:#555555;font-size:.875rem;font-weight:500;transition:color .18s;text-decoration:none}
-    .nav-link:hover,.nav-link.active{color:#1A1A1A}
+    .nav-link:hover,.nav-link.active{color:#1A1A1A;font-weight:700}
     .gp{color:#E6A817}
     .gt{color:#3B9FD9}
     .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
@@ -283,7 +283,6 @@
     <a href="index.html"><img src="Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" /></a>
     <div class="hidden md:flex items-center gap-6">
       <a href="index.html" class="nav-link">Home</a><a href="services.html" class="nav-link">Services</a><a href="finance.html" class="nav-link">Financing</a><a href="referrals.html" class="nav-link">Referrals</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a>
-      <a href="services.html" class="nav-link active" style="color:#1A1A1A">Services</a>
       
       
     </div>
@@ -587,6 +586,18 @@ Free Estimate
     { "@type": "Question", "name": "How do I know if I need a roof replacement or just a repair?", "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof offers free roof inspections in Tampa Bay to determine whether a repair or full replacement is the right call. Signs you may need replacement include age (15–25+ years), widespread granule loss, multiple leak areas, or major storm damage." } }
   ]
 }
+</script>
+<script>
+(function(){
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') path = 'index.html';
+  document.querySelectorAll('.nav-link').forEach(function(a){
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var linkPage = href.split('/').pop();
+    if (linkPage === path) a.classList.add('active');
+  });
+})();
 </script>
 </body>
 </html>
