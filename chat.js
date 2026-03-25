@@ -26,7 +26,7 @@
     },
     {
       intents: ['service','offer','do you','what do','what can','residential','commercial','repair','replace','replacement','reroof','re-roof'],
-      response: `Happy Roof covers everything roofing-related:\n\n🏠 **Residential** — Shingle, tile, metal, flat roof replacements & repairs\n🏢 **Commercial** — Flat, TPO, mod-bit, and low-slope systems\n🔍 **Inspections** — Free roof inspections & storm damage assessments\n⚡ **Emergency** — 48-hr response for active leaks\n🌧️ **Storm Damage** — Insurance claim support\n🏗️ **Gutters** — Installation and repair\n\nAll work done by our licensed crew — no subcontractors. What type of project do you have?`,
+      response: `Happy Roof covers everything roofing-related:\n\n🏠 **Residential** — Shingle, tile, metal, flat roof replacements & repairs\n🏢 **Commercial** — Flat, TPO, mod-bit, and low-slope systems\n🔍 **Inspections** — Free roof inspections & storm damage assessments\n⚡ **Emergency** — 48-hr response for active leaks\n🌧️ **Storm Damage** — Insurance claim support\n🏗️ **Gutters** — Installation and repair\n\nAll work managed by our licensed team with quality oversight on every project. What type of project do you have?`,
       quick: ['Roof replacement','Roof repair','Emergency leak','Storm damage']
     },
     {
@@ -164,6 +164,8 @@
   let contactStep = 0;
   let tempContact = {};
   let pendingEstimate = null; // null | { step: 'type'|'subtype'|'size', type: '', subtype: '' }
+  let qualifyStep = 0; // 0=not started, 1=asked need, 2=asked type, 3=asked zip, 4=done
+  let qualifyData = {}; // { need, roofType, zip }
 
   // ── Helpers ─────────────────────────────────────────────────
   function matchIntent(text) {
@@ -254,6 +256,61 @@
   function addMessage(from, text, raw, quick) {
     messages.push({ from, text, raw: raw || text, time: timestamp(), quick: quick || [] });
     render();
+  }
+
+  // ── Lead qualification intro flow ──────────────────────────
+  function handleQualifyStep(text) {
+    const t = text.toLowerCase().trim();
+
+    if (qualifyStep === 1) {
+      // They told us what they need
+      qualifyData.need = text;
+      qualifyStep = 2;
+      setTimeout(() => {
+        addMessage('bot',
+          `Got it — **${text.toLowerCase()}**. What type of roof do you have (or want)?`,
+          null,
+          ['Shingle', 'Metal', 'Tile', 'Flat / TPO', 'Not sure']
+        );
+      }, 350);
+      return;
+    }
+
+    if (qualifyStep === 2) {
+      qualifyData.roofType = text;
+      qualifyStep = 3;
+      setTimeout(() => {
+        addMessage('bot',
+          `And what's your **zip code**? (So I can confirm we serve your area)`,
+          null, []
+        );
+      }, 350);
+      return;
+    }
+
+    if (qualifyStep === 3) {
+      qualifyData.zip = text;
+      qualifyStep = 4; // done — switch to normal chat
+      const inArea = /^3[34]\d{3}$/.test(text.replace(/\s/g, ''));
+      if (inArea) {
+        setTimeout(() => {
+          addMessage('bot',
+            `Great news — we serve your area! 🎉\n\nBased on what you told me:\n📋 **Need:** ${qualifyData.need}\n🏠 **Roof type:** ${qualifyData.roofType}\n📍 **Zip:** ${qualifyData.zip}\n\nI can help you from here — ask me anything about pricing, materials, warranties, or our process. Or if you're ready:`,
+            null,
+            ['Get a free estimate', 'Get a rough ballpark estimate', 'How much does a roof cost?', 'Talk to the team']
+          );
+        }, 400);
+      } else {
+        setTimeout(() => {
+          addMessage('bot',
+            `Thanks! I'm not 100% sure if **${text}** is in our service area, but let's find out.\n\n📞 Give us a quick call at **(813) 595-7663** and we'll confirm right away. Or keep chatting — I'm happy to answer any roofing questions in the meantime!`,
+            null,
+            ['Get a free estimate', 'Call (813) 595-7663', 'Ask a question']
+          );
+        }, 400);
+      }
+      return;
+    }
   }
 
   // ── Contact collection flow ─────────────────────────────────
@@ -422,6 +479,12 @@
     if (!text.trim()) return;
     addMessage('user', text, text);
 
+    // Lead qualification flow
+    if (qualifyStep > 0 && qualifyStep < 4) {
+      handleQualifyStep(text);
+      return;
+    }
+
     // Contact collection flow
     if (awaitingContactInfo) {
       handleContactStep(text);
@@ -437,6 +500,17 @@
     const lower = text.toLowerCase();
 
     // Quick reply routing
+    if (lower.includes('just have questions') || lower.includes('ask a question')) {
+      qualifyStep = 4; // skip qualification
+      setTimeout(() => {
+        addMessage('bot',
+          `No problem! Ask me anything about roofing — pricing, materials, warranties, our process, or whatever's on your mind. 🏠`,
+          null,
+          ['How much does a roof cost?', 'What services do you offer?', 'What brands do you use?', 'Emergency repair']
+        );
+      }, 350);
+      return;
+    }
     if (lower.includes('go to referral')) {
       setTimeout(() => {
         addMessage('bot', 'Heading to the Referral Program page!');
@@ -467,7 +541,7 @@
       startContactFlow('sms');
       return;
     }
-    if (lower.includes('contact me') || lower.includes('yes, contact') || lower.includes('reach out') || lower.includes('schedule a free estimate') || lower.includes('yes, schedule')) {
+    if (lower.includes('talk to the team') || lower.includes('contact me') || lower.includes('yes, contact') || lower.includes('reach out') || lower.includes('schedule a free estimate') || lower.includes('yes, schedule')) {
       startContactFlow('email');
       return;
     }
@@ -536,7 +610,7 @@
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.5" stroke="white" stroke-width="1.5"/><circle cx="7" cy="7.5" r="1" fill="white"/><circle cx="13" cy="7.5" r="1" fill="white"/><path d="M6.5 12c1 3 6 3 7 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <div style="flex:1;min-width:0">
-        <p style="font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;color:#F7F7F7;letter-spacing:.01em;line-height:1.1">Happy Roof Assistant</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#F7F7F7;letter-spacing:.01em;line-height:1.1">Happy Roof Assistant</p>
         <p style="font-size:.72rem;color:#3B9FD9;margin-top:.05rem">● Online · Typically replies instantly</p>
       </div>
       <button onclick="document.getElementById('hr-chat-window').style.display='none';document.getElementById('hr-chat-fab').innerHTML='<svg width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'><path d=\\'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\\' stroke=\\'currentColor\\' stroke-width=\\'2\\' stroke-linejoin=\\'round\\'/></svg>'" style="background:transparent;border:none;cursor:pointer;color:#555;padding:.25rem;border-radius:6px;display:flex;align-items:center;transition:color .15s" onmouseenter="this.style.color='#F7F7F7'" onmouseleave="this.style.color='#555'">
@@ -604,10 +678,14 @@
 
     document.body.appendChild(wrap);
 
-    // Initial greeting after short delay
+    // Initial greeting — start qualification flow
     setTimeout(() => {
-      const greeting = KB[0];
-      addMessage('bot', greeting.response, greeting.response, greeting.quick);
+      qualifyStep = 1;
+      addMessage('bot',
+        `Hey there! 👋 I'm the Happy Roof assistant.\n\nTo point you in the right direction — what brings you here today?`,
+        null,
+        ['I need a new roof', 'Roof repair', 'Storm damage', 'Free inspection', 'Just have questions']
+      );
     }, 800);
   }
 
@@ -670,11 +748,11 @@
       'box-shadow:0 -8px 32px -8px rgba(0,0,0,.4)'
     ].join(';');
     bar.innerHTML = `
-      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#2A2A2A;border:1px solid #222;border-radius:10px;color:#3B9FD9;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
+      <a href="tel:8135957663" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#2A2A2A;border:1px solid #222;border-radius:10px;color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call Us
       </a>
-      <a href="contact.html" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#E6A817;border-radius:10px;color:#fff;font-family:'Fraunces',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none;box-shadow:0 4px 16px -4px rgba(230,168,23,.55)">
+      <a href="contact.html" style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem;background:#E6A817;border-radius:10px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.03em;text-decoration:none;box-shadow:0 4px 16px -4px rgba(230,168,23,.55)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         Free Estimate
       </a>`;
