@@ -9,7 +9,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MQ9BXG94');</script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Commercial Roofing Tampa Bay | TPO, Metal & Flat Roofs | Happy Roof</title>
+  <title>Commercial Roofing Tampa Bay — TPO, Flat Roof | Happy Roof</title>
   <!-- Google Tag Manager — Replace GTM-XXXXXXX with your real container ID -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -153,6 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "description": "Complete commercial roofing services in Tampa Bay including TPO, EPDM, modified bitumen, and metal roofing systems. Phased scheduling for minimal business disruption. 10-year flat roof workmanship warranty."
   }
   </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/index.html"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services.html"},{"@type":"ListItem","position":3,"name":"Commercial Roofing","item":"https://happyroof.com/commercial-roofing.html"}]}</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -202,7 +203,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- PAGE HERO -->
 <section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
-  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+  <div class="hero-photo-bg" style="background-image:url('Brand Assets/Photos/commercial-tpo-roof-tampa.jpg')">
+    <nav aria-label="breadcrumb" style="padding:.5rem 0;font-family:'Nunito',sans-serif"><a href="index.html" style="color:#3B9FD9;text-decoration:none;font-size:.8rem">Home</a> <span style="color:#999;font-size:.75rem">›</span> <a href="services.html" style="color:#3B9FD9;text-decoration:none;font-size:.8rem">Services</a> <span style="color:#999;font-size:.75rem">›</span> <span style="color:#555;font-size:.8rem">Commercial Roofing</span></nav></div>
   <div class="hero-photo-overlay"></div>
   <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
     <p class="sl gp mb-4">Commercial Roofing</p>
@@ -534,6 +536,47 @@ Free Estimate
     if (linkPage === path) a.classList.add('active');
   });
 })();
+</script>
+
+<!-- GTM DataLayer Events for Conversion Tracking (P17-19) -->
+<script>
+// Track form submissions
+document.addEventListener('submit', function(e) {
+  var form = e.target;
+  if (form.tagName === 'FORM') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'form_submission',
+      'form_id': form.id || 'contact_form',
+      'page_url': window.location.href
+    });
+  }
+});
+
+// Track phone call clicks
+document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'phone_call_click',
+      'phone_number': this.href.replace('tel:', ''),
+      'page_url': window.location.href
+    });
+  });
+});
+
+// Track CTA button clicks
+document.querySelectorAll('.btn-p, .btn-t').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'cta_click',
+      'cta_text': this.textContent.trim(),
+      'cta_url': this.href || '',
+      'page_url': window.location.href
+    });
+  });
+});
 </script>
 </body>
 </html>
