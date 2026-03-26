@@ -452,20 +452,32 @@
       }
 
       // Roof area ≈ home footprint × 1.3 (typical pitch factor)
-      // 1 square = 100 sq ft of roof
       const roofSquares = (num * 1.3) / 100;
       const key = pendingEstimate.subtype || 'metal';
       const product = PRICING[key];
-      const upperRaw = product.rate * roofSquares;
-      const lowerRaw = upperRaw * 0.75;
-      const upper = Math.round(upperRaw / 100) * 100;
-      const lower = Math.round(lowerRaw / 100) * 100;
+      const base = product.rate * roofSquares;
+
+      // Material-specific range multipliers (matches calculator)
+      const rangeMult = {
+        'shingle-standard': { low: 0.50, high: 1.0 },
+        'shingle-impact':   { low: 0.50, high: 1.0 },
+        'shingle-luxury':   { low: 0.50, high: 1.0 },
+        'metal':            { low: 0.55, high: 1.4 },
+        'tile-standard':    { low: 0.67, high: 1.35 },
+        'tile-premium':     { low: 0.67, high: 1.35 },
+        'tile-clay':        { low: 0.67, high: 1.35 },
+        'flat-tpo':         { low: 0.50, high: 0.90 },
+        'flat-modbit':      { low: 0.50, high: 0.90 },
+      };
+      const mult = rangeMult[key] || { low: 0.50, high: 1.0 };
+      const lower = Math.round((base * mult.low) / 100) * 100;
+      const upper = Math.round((base * mult.high) / 100) * 100;
       const fmt = n => '$' + n.toLocaleString();
 
       pendingEstimate = null;
       setTimeout(() => {
         addMessage('bot',
-          `Here's your rough ballpark estimate:\n\n🏠 **${product.label}**\n📐 ~${num.toLocaleString()} sq ft home → ~${Math.round(roofSquares)} roofing squares\n\n💰 **Estimated range: ${fmt(lower)} – ${fmt(upper)}**\n\n⚠️ *This is a rough range only.* Actual pricing depends on your roof pitch, number of layers, deck condition, flashing work, and other factors — all things we assess during a free in-person or virtual estimate.\n\nWant us to come out and give you an accurate number?`,
+          `Here's your rough ballpark estimate:\n\n🏠 **${product.label}**\n📐 ~${num.toLocaleString()} sq ft home\n\n💰 **Estimated range: ${fmt(lower)} – ${fmt(upper)}**\n\n⚠️ *This is a rough range only.* Actual pricing depends on your roof pitch, number of layers, deck condition, flashing work, and other factors — all things we assess during a free in-person or virtual estimate.\n\nWant us to come out and give you an accurate number?`,
           null,
           ['Yes, schedule a free estimate','Call (813) 595-7663','Run another estimate']
         );
