@@ -36,7 +36,7 @@
     },
     {
       intents: ['brand','material','owens','corning','verea','tile','shingle','metal','tpo','flat','membrane','gulf'],
-      response: `We work with the industry's best manufacturers. Our preferred vendors:\n\n🔶 **Owens Corning** — TruDefinition Duration, Oakridge, Berkshire (Preferred Contractor)\n🧱 **Verea** — Premium clay tile\n⚙️ **Gulf Metal** — Standing seam, corrugated, exposed fastener\n🏗️ **Flat Systems** — TPO, mod-bit, torch-down\n\nWe also install products from other leading brands — just ask! Want help choosing the right material for your project?`,
+      response: `We work with the industry's best manufacturers. Our preferred vendors:\n\n🔶 **Owens Corning** — All shingles: Duration HDZ, UHDZ, Oakridge, Berkshire (Preferred Contractor)\n🧱 **Verea Clay** — All tile: barrel, S-tile, flat profiles (vereaclaytile.com)\n⚙️ **Gulfcoast Supply** — All metal: standing seam, corrugated, exposed fastener (gulfcoastsupply.com)\n🏗️ **Flat Systems** — TPO, mod-bit, torch-down\n\nWe also install GAF, Titan, Atlas, TriCounty Metals, Crown Roof Tiles, and others by request. Want help choosing the right material?`,
       quick: ['What lasts longest?','Which is most affordable?','Get a quote']
     },
     {
