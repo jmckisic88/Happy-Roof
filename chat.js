@@ -31,7 +31,7 @@
     },
     {
       intents: ['warranty','guarantee','how long','15 year','10 year','workmanship'],
-      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying Owens Corning, Verea, and Gulf Metal products\n\nThese are *in addition* to manufacturer warranties, giving you dual coverage. Any other questions?`,
+      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying GAF, Owens Corning, Verea, and Gulfcoast Supply products\n\nThese are *in addition* to manufacturer warranties, giving you dual coverage. Any other questions?`,
       quick: ['What brands do you use?','Get a free estimate','Contact the team']
     },
     {
