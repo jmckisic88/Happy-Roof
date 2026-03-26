@@ -70,22 +70,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="calc-card" onclick="selectMaterial(this,'shingle',758)" data-mat="shingle">
           <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">SHINGLES</p>
           <p style="font-size:.8rem;color:#555">Architectural, 25-30 yr</p>
-          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">From $758/sq</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Most Popular</p>
         </div>
         <div class="calc-card" onclick="selectMaterial(this,'metal',1215)" data-mat="metal">
           <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">METAL</p>
           <p style="font-size:.8rem;color:#555">Standing seam, 40-70 yr</p>
-          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">From $1,215/sq</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Premium Durability</p>
         </div>
         <div class="calc-card" onclick="selectMaterial(this,'tile',1425)" data-mat="tile">
           <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">TILE</p>
           <p style="font-size:.8rem;color:#555">Concrete/clay, 30-100 yr</p>
-          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">From $1,425/sq</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Longest Lifespan</p>
         </div>
         <div class="calc-card" onclick="selectMaterial(this,'flat',1146)" data-mat="flat">
           <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">FLAT/TPO</p>
           <p style="font-size:.8rem;color:#555">TPO/mod-bit, 15-25 yr</p>
-          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">From $1,146/sq</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Commercial &amp; Flat</p>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="result" class="result-card">
       <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.5rem">YOUR ESTIMATED RANGE</p>
       <p id="result-range" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1;margin:0">$14,780 – $19,700</p>
-      <p id="result-details" style="font-size:.85rem;color:#999;margin-top:.75rem;line-height:1.6">Architectural Shingles · ~2,000 sq ft home · ~26 roofing squares</p>
+      <p id="result-details" style="font-size:.85rem;color:#999;margin-top:.75rem;line-height:1.6">Architectural Shingles · ~2,000 sq ft home</p>
       <p style="font-size:.75rem;color:#666;margin-top:1rem;font-style:italic">⚠️ This is a rough estimate only. Actual cost depends on roof pitch, layers, deck condition, and other factors.</p>
       <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
         <a href="/contact" class="btn-p" style="font-size:1.05rem">Get an Exact Quote — Free</a>
@@ -159,7 +159,7 @@ function updateCalc() {
   const high = Math.round((selectedRate * squares) / 100) * 100;
   const low = Math.round((high * 0.75) / 100) * 100;
   document.getElementById('result-range').textContent = '$' + low.toLocaleString() + ' – $' + high.toLocaleString();
-  document.getElementById('result-details').textContent = selectedLabel + ' · ~' + sqft.toLocaleString() + ' sq ft home · ~' + Math.round(squares) + ' roofing squares';
+  document.getElementById('result-details').textContent = selectedLabel + ' · ~' + sqft.toLocaleString() + ' sq ft home';
 }
 
 // Auto-select shingles
