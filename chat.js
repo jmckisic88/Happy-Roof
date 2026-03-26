@@ -31,12 +31,12 @@
     },
     {
       intents: ['warranty','guarantee','how long','15 year','10 year','workmanship'],
-      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying GAF & Owens Corning products\n\nThese are *in addition* to manufacturer warranties, giving you dual coverage. Any other questions?`,
+      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying Owens Corning, Verea, and Gulf Metal products\n\nThese are *in addition* to manufacturer warranties, giving you dual coverage. Any other questions?`,
       quick: ['What brands do you use?','Get a free estimate','Contact the team']
     },
     {
-      intents: ['brand','material','gaf','owens','corning','verea','tile','shingle','metal','tpo','flat','membrane'],
-      response: `We install products from the industry's best manufacturers:\n\n🔷 **GAF** — Timberline HDZ, UHDZ, Designer shingles (Certified Installer)\n🔶 **Owens Corning** — TruDefinition Duration, Oakridge, Berkshire (Preferred Contractor)\n🧱 **Verea** — Premium clay tile\n⚙️ **Metal Roofing** — Standing seam, corrugated, exposed fastener\n🏗️ **Flat Systems** — TPO, mod-bit, torch-down\n\nWant help choosing the right material for your project?`,
+      intents: ['brand','material','owens','corning','verea','tile','shingle','metal','tpo','flat','membrane','gulf'],
+      response: `We work with the industry's best manufacturers. Our preferred vendors:\n\n🔶 **Owens Corning** — TruDefinition Duration, Oakridge, Berkshire (Preferred Contractor)\n🧱 **Verea** — Premium clay tile\n⚙️ **Gulf Metal** — Standing seam, corrugated, exposed fastener\n🏗️ **Flat Systems** — TPO, mod-bit, torch-down\n\nWe also install products from other leading brands — just ask! Want help choosing the right material for your project?`,
       quick: ['What lasts longest?','Which is most affordable?','Get a quote']
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       intents: ['license','licensed','insured','bonded','certified','credential','ccc'],
-      response: `Yes — Happy Roof is fully licensed, bonded, and insured:\n\n📋 **State License:** #CCC1337380\n🛡️ **Fully insured** — general liability + workers' comp\n✅ **GAF Certified** installer\n✅ **Owens Corning Preferred** contractor\n\nYou can verify our license at myfloridalicense.com. Peace of mind, always.`,
+      response: `Yes — Happy Roof is fully licensed, bonded, and insured:\n\n📋 **State License:** #CCC1337380\n🛡️ **Fully insured** — general liability + workers' comp\n✅ **Owens Corning Preferred** contractor\n\nYou can verify our license at myfloridalicense.com. Peace of mind, always.`,
       quick: ['Get an estimate','Learn about warranties','Contact us']
     },
     {
@@ -136,7 +136,7 @@
     },
     {
       intents: ['contractor','choose contractor','hire roofer','pick roofer','red flag','storm chaser','door to door','scam','bad roofer','deductible waiver','waive deductible'],
-      response: `Choosing the right contractor matters as much as the materials. Here's what to look for — and watch out for:\n\n✅ **Green flags:**\n• Licensed and insured — verify at **myfloridalicense.com**\n• Local, established business with verifiable address\n• Written, itemized contract before work starts\n• Pulls permits (required by FL law for most work)\n• Does not demand full payment upfront\n• Manufacturer-certified (GAF, Owens Corning)\n\n🚩 **Red flags:**\n• Out-of-town "storm chasers" showing up right after a hurricane\n• High-pressure tactics to sign immediately\n• Cash-only with no written contract\n• Promises to waive your deductible — *this is insurance fraud*\n• No verifiable local reviews or physical address\n\nHappy Roof is licensed (#CCC1337380), local to Oldsmar, FL, and pulls every required permit. We're here year-round — not just after the next storm.`,
+      response: `Choosing the right contractor matters as much as the materials. Here's what to look for — and watch out for:\n\n✅ **Green flags:**\n• Licensed and insured — verify at **myfloridalicense.com**\n• Local, established business with verifiable address\n• Written, itemized contract before work starts\n• Pulls permits (required by FL law for most work)\n• Does not demand full payment upfront\n• Manufacturer-certified (Owens Corning, etc.)\n\n🚩 **Red flags:**\n• Out-of-town "storm chasers" showing up right after a hurricane\n• High-pressure tactics to sign immediately\n• Cash-only with no written contract\n• Promises to waive your deductible — *this is insurance fraud*\n• No verifiable local reviews or physical address\n\nHappy Roof is licensed (#CCC1337380), local to Oldsmar, FL, and pulls every required permit. We're here year-round — not just after the next storm.`,
       quick: ['Verify our license','Schedule free estimate','Contact the team']
     },
   ];
