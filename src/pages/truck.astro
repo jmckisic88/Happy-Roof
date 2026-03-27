@@ -33,9 +33,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       YOUR ROOF.
     </h1>
 
-    <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto">
+    <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-bottom:1.25rem;max-width:400px;margin-left:auto;margin-right:auto">
       Claim your exclusive discount on any roof replacement or major repair. Just tell us who you are — we'll handle the rest.
     </p>
+
+    <!-- Financing nudge -->
+    <div style="margin-bottom:2rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:10px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="flex-shrink:0"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <p style="font-size:.82rem;color:#555;margin:0"><strong style="color:#1A1A1A">$0 down financing available</strong> · <a href="/finance" style="color:#3B9FD9;text-decoration:underline">Learn more</a></p>
+    </div>
 
     <!-- Form -->
     <form id="truck-form" onsubmit="submitTruckForm(event)" novalidate style="text-align:left;margin-bottom:2rem">
@@ -67,12 +73,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Fine print -->
     <div style="color:#888888;font-size:.75rem;line-height:1.6;max-width:380px;margin:0 auto">
       <p>Schedule your free estimate within 30 days to lock in your $250 discount. Valid on roof replacements and major repairs ($5,000+). One per household. Cannot be combined with other discounts. <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms apply</a>.</p>
-    </div>
-
-    <!-- Financing nudge -->
-    <div style="margin-top:1.25rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.65rem">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="flex-shrink:0"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      <p style="font-family:'Nunito',sans-serif;font-size:.78rem;color:#555;margin:0"><strong style="color:#1A1A1A">$0 Down Financing Available</strong> · <a href="/finance" style="color:#3B9FD9;text-decoration:underline">Learn more</a></p>
     </div>
 
     <!-- Trust signals -->
