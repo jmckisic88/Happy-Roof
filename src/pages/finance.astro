@@ -278,17 +278,28 @@ const schema = `{
     </h2>
     <p style="color:#555555;font-size:.95rem;margin-top:.75rem">No obligation. Soft credit check only. Offered through our partner Enhancify.</p>
   </div>
-  <!-- Widget is full-width, no constraining container -->
+  <!-- Widget loaded in iframe to prevent it from modifying parent page DOM -->
   <div style="max-width:1400px;margin:0 auto;padding:0 1rem">
     <div class="enhancify-wrap">
-      <script is:inline src="https://www.enhancify.com/fullpagewidget/"></script>
-      <div id='fullpagewidget'
-        data-color1='#68BA62'
-        data-color2='#1C418C'
-        data-coBrandedColor='#FFFFFF'
-        data-page='9932615'
-        data-hideLink='0'>
-      </div>
+      <iframe id="enhancify-frame" style="width:100%;border:none;min-height:700px;border-radius:16px" scrolling="no"></iframe>
+      <script is:inline>
+      (function(){
+        var frame = document.getElementById('enhancify-frame');
+        var doc = frame.contentDocument || frame.contentWindow.document;
+        doc.open();
+        doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;font-family:sans-serif;background:#fff}</style></head><body><script src="https://www.enhancify.com/fullpagewidget/"><\/script><div id="fullpagewidget" data-color1="#68BA62" data-color2="#1C418C" data-coBrandedColor="#FFFFFF" data-page="9932615" data-hideLink="0"></div></body></html>');
+        doc.close();
+        // Auto-resize iframe to fit content
+        function resizeFrame(){
+          try{
+            var h = frame.contentDocument.body.scrollHeight;
+            if(h > 100) frame.style.height = h + 'px';
+          }catch(e){}
+        }
+        setInterval(resizeFrame, 1000);
+        frame.addEventListener('load', function(){ setTimeout(resizeFrame, 500); });
+      })();
+      </script>
     </div>
   </div>
   <p style="text-align:center;font-size:.75rem;color:#888888;margin-top:1.25rem;line-height:1.6;padding:0 1rem">
