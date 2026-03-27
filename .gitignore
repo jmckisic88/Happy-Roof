@@ -42,3 +42,9 @@ foundation_every-shingle-heart_backup.html
 .DS_Store
 Thumbs.db
 .vercel
+
+# ServiceTitan credentials (NEVER commit)
+st-config.json
+.env
+.env.local
+api/st-config.json

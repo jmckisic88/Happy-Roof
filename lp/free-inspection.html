@@ -142,7 +142,44 @@ function submitForm(e){
   var form=e.target;
   var data=new FormData(form);
   var obj={};data.forEach(function(v,k){obj[k]=v});
-  fetch('https://formsubmit.co/ajax/info@happyroof.com',{
+  /* ServiceTitan + FormSubmit fallback */
+  
+  // Submit lead to ServiceTitan API (fallback: FormSubmit email)
+  async function submitLead(data) {
+    const stPayload = {
+      name: data.name || '',
+      phone: data.phone || '',
+      email: data.email || '',
+      service: data.service || '',
+      notes: data.notes || ''
+    };
+  
+    try {
+      const stRes = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(stPayload)
+      });
+      if (stRes.ok) {
+        const result = await stRes.json();
+        if (result.success) return { ok: true, source: 'servicetitan' };
+      }
+    } catch (e) { /* ServiceTitan unavailable, fall through to FormSubmit */ }
+  
+    // Fallback: FormSubmit
+    try {
+      const fsRes = await fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (fsRes.ok) return { ok: true, source: 'formsubmit' };
+    } catch (e) { /* both failed */ }
+  
+    return { ok: false };
+  }
+  
+  submitLead({ name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service||'PPC Lead', notes: data.address||'' }).then(r=>{
     method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(obj)
   }).then(function(r){return r.json()}).then(function(){

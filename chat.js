@@ -202,7 +202,7 @@
       Email: email || 'Not provided',
       Conversation: buildSummary()
     };
-    fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+    fetch('/api/submit-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
