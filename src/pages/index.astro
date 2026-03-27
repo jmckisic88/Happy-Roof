@@ -347,9 +347,21 @@ const schema = `[{
             <textarea name="notes" class="finput" style="resize:none;min-height:72px" placeholder="Address, best time to call, or anything else…"></textarea>
           </div>
           <!-- SMS Consent -->
-          <div class="mb-4" style="display:flex;align-items:flex-start;gap:.65rem">
-            <input type="checkbox" id="sms-consent-hero" name="sms_consent" checked style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-            <label for="sms-consent-hero" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">I agree to receive text messages from Happy Roof. You may receive account alerts, updates, and promotional messages. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline" target="_blank">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline" target="_blank">Terms</a>.</label>
+          <div class="mb-4">
+            <p style="font-size:.8rem;font-weight:700;color:#1A1A1A;margin-bottom:.5rem">Do you agree to receive text messages from Happy Roof?</p>
+            <div style="display:flex;gap:1.5rem;margin-bottom:.75rem">
+              <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+                <input type="radio" name="sms_consent" value="Yes" required style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> Yes
+              </label>
+              <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+                <input type="radio" name="sms_consent" value="No" style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> No
+              </label>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem">
+              <input type="checkbox" id="privacy-consent-hero" name="privacy_consent" required style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="privacy-consent-hero" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">I acknowledge and agree to receive SMS messages from Happy Roof. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.</label>
+            </div>
+            <p style="font-size:.68rem;color:#888;line-height:1.5;margin:0">See our <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline" target="_blank">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline" target="_blank">Terms &amp; Conditions</a> for more details.</p>
           </div>
           <div id="hero-success" style="display:none;background:rgba(59,159,217,.08);border:1px solid rgba(59,159,217,.25);border-radius:10px;padding:.875rem 1rem;margin-bottom:1rem;text-align:center">
             <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
@@ -917,7 +929,7 @@ function submitHeroForm(e) {
     email: (form.querySelector('[name=email]')||{}).value||'',
     service: (form.querySelector('[name=service]')||{}).value||'',
     notes: (form.querySelector('[name=notes]')||{}).value||'',
-    sms_consent: form.querySelector('[name=sms_consent]') && form.querySelector('[name=sms_consent]').checked ? 'Yes' : 'No',
+    sms_consent: (form.querySelector('[name=sms_consent]:checked')||{}).value||'No',
     source: 'happy-roof-website'
   };
   // Try ServiceTitan first, fallback to FormSubmit

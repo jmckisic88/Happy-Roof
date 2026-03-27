@@ -237,8 +237,20 @@ const schema = `{
             </div>
             <!-- SMS Consent -->
             <div class="fgroup" style="display:flex;align-items:flex-start;gap:.65rem">
-              <input type="checkbox" id="sms-consent" name="sms_consent" checked style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-              <label for="sms-consent" style="font-size:.75rem;color:#555555;line-height:1.55;cursor:pointer">I agree to receive text messages from Happy Roof. You may receive account alerts, updates, and promotional messages. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline">Terms</a>.</label>
+              <p style="font-size:.8rem;font-weight:700;color:#1A1A1A;margin-bottom:.5rem">Do you agree to receive text messages from Happy Roof?</p>
+              <div style="display:flex;gap:1.5rem;margin-bottom:.75rem">
+                <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+                  <input type="radio" name="sms_consent" value="Yes" required style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> Yes
+                </label>
+                <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+                  <input type="radio" name="sms_consent" value="No" style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> No
+                </label>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem">
+                <input type="checkbox" id="privacy-consent" name="privacy_consent" required style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+                <label for="privacy-consent" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">I acknowledge and agree to receive SMS messages from Happy Roof. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.</label>
+              </div>
+              <p style="font-size:.68rem;color:#888;line-height:1.5;margin:0">See our <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline">Terms &amp; Conditions</a> for more details.</p>
             </div>
             <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
               Send My Request
