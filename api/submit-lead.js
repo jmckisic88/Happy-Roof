@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, phone, email, service, notes, source, page, priority } = req.body;
+  const { name, phone, email, service, notes, address, source, page, priority } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
@@ -84,6 +84,7 @@ module.exports = async (req, res) => {
           summary: summary,
           bookingProviderId: BOOKING_PROVIDER_ID,
           priority: leadPriority,
+          ...(address ? { address: { street: address } } : {}),
         }),
       }
     );

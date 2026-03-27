@@ -212,10 +212,10 @@ const schema = `{
               <label class="flabel">Preferred Material (optional)</label>
               <select class="finput" style="cursor:pointer">
                 <option value="" style="background:#FFFFFF">No preference / Help me choose</option>
-                <option style="background:#FFFFFF">Owens Corning Asphalt Shingles</option>
-                <option style="background:#FFFFFF">Owens Corning Shingles</option>
+                <option style="background:#FFFFFF">Asphalt Shingles (Owens Corning, GAF)</option>
                 <option style="background:#FFFFFF">Clay / Concrete Tile (Verea)</option>
-                <option style="background:#FFFFFF">Metal Roofing</option>
+                <option style="background:#FFFFFF">Metal Roofing (Gulfcoast Supply)</option>
+                <option style="background:#FFFFFF">Flat Roof (TPO / Modified Bitumen)</option>
               </select>
             </div>
             <div class="fgroup">
@@ -403,7 +403,7 @@ function handleSubmit(e) {
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
   // Try ServiceTitan first, fallback to FormSubmit
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service_needed||'', notes: data.address_notes||'', source: 'Website - Contact', page: window.location.pathname };
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service_needed||'', notes: data.address_notes||'', address: data.address_notes||'', source: 'Website - Contact', page: window.location.pathname };
   fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
     .then(r => r.ok ? r.json() : Promise.reject())
     .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }))
