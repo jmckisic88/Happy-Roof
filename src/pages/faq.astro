@@ -211,7 +211,13 @@ const schema = `[{
     .cat-tab{padding:.55rem 1.2rem;border-radius:100px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .18s,color .18s;border:1px solid #E0E0E0;background:#FFFFFF;color:#555555}
     .cat-tab:hover{background:#F7F7F7}
     .cat-tab.active{background:#E6A817;color:#1A1A1A;border-color:#E6A817}
-    /* Hero photo bg */
+    .faq-item{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s}
+    .faq-item:hover{border-color:rgba(230,168,23,.3)}
+    .faq-q{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem}
+    .faq-item.open .faq-a{max-height:600px;padding:0 1.25rem 1.1rem}
+    .faq-arr{transition:transform .25s ease;flex-shrink:0}
+    .faq-item.open .faq-arr{transform:rotate(180deg)}
 </style>
 
 <section class="relative overflow-hidden" style="padding:8rem 0 5rem;background:#FFFFFF">
