@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{"@context":"https://schema.org","@type":["LocalBusiness","RoofingContractor"],"name":"Happy Roof LLC","url":"https://happyroof.com","telephone":"+1-813-595-7663","email":"info@happyroof.com","description":"Hurricane season roof preparation in Tampa Bay. Pre-storm inspections and emergency repair services. FL License #CCC1337380.","image":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg","logo":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg","address":{"@type":"PostalAddress","streetAddress":"141 Stevens Ave #12","addressLocality":"Oldsmar","addressRegion":"FL","postalCode":"34677","addressCountry":"US"},"hasCredential":"Florida Roofing Contractor License #CCC1337380"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"When does hurricane season start in Florida?","acceptedAnswer":{"@type":"Answer","text":"Atlantic hurricane season officially runs from June 1 through November 30. However, storms can form outside this window. We recommend scheduling your pre-hurricane roof inspection in April or May to ensure any repairs are completed before the season begins."}},
+    {"@type":"Question","name":"What should I do to prepare my roof for a hurricane?","acceptedAnswer":{"@type":"Answer","text":"Schedule a professional roof inspection to identify and fix vulnerabilities. Ensure loose shingles are secured, flashing is sealed, gutters are clear, and any damaged areas are repaired. Trim overhanging tree branches, secure or remove rooftop items, and know your insurance policy details. Happy Roof offers free pre-hurricane season inspections."}},
+    {"@type":"Question","name":"What should I do if my roof is damaged during a hurricane?","acceptedAnswer":{"@type":"Answer","text":"Stay safe and do not go on the roof. Document visible damage from the ground with photos. Call Happy Roof at (813) 595-7663 for emergency tarping to prevent further water damage. Contact your insurance company to report the damage. We help with documentation and claims support."}},
+    {"@type":"Question","name":"Does Happy Roof offer emergency services during hurricanes?","acceptedAnswer":{"@type":"Answer","text":"Yes. We provide emergency tarping and temporary protection as quickly as conditions safely allow after a storm. We prioritize by severity and respond as fast as possible. Save our number — (813) 595-7663 — before hurricane season so you have it when you need it."}},
+    {"@type":"Question","name":"How can I tell if my roof has hurricane damage?","acceptedAnswer":{"@type":"Answer","text":"Look for missing or displaced shingles/tiles, debris on the roof, damaged gutters or downspouts, water stains on ceilings or walls, daylight visible through the attic, or shingle granules in gutters. Some damage is not visible from the ground, so a professional inspection after any significant storm is strongly recommended."}},
+    {"@type":"Question","name":"Will my insurance cover hurricane damage to my roof?","acceptedAnswer":{"@type":"Answer","text":"Most Florida homeowner's insurance policies cover wind damage from hurricanes. You may have a separate hurricane or wind deductible (typically 2-5% of your home's insured value). Happy Roof documents all damage to support your claim and can meet with your insurance adjuster. File your claim promptly — most policies have strict reporting deadlines."}}
+  ]}]`;
+---
+
+<BaseLayout
+  title="Hurricane Season Roof Prep — Tampa Bay | Happy Roof"
+  description="Prepare your roof for hurricane season in Tampa Bay. Free pre-storm inspections, emergency contact info, and what to do before and after a hurricane. Happy Roof FL #CCC1337380."
+  canonical="https://happyroof.com/hurricane-season"
+  ogDescription="Get your roof ready for hurricane season. Free inspections, emergency contacts, expert advice. FL #CCC1337380."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/7F6549F1-38CA-40D1-8419-DE93876AC25B_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Hurricane Season Prep</p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A;margin-bottom:1.25rem">
+      IS YOUR ROOF READY<br/>FOR <span class="gt">HURRICANE SEASON</span>?
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Hurricane season runs June 1 through November 30. The time to check your roof is <strong>before</strong> the first storm watch — not after. Happy Roof offers free pre-hurricane inspections to help Tampa Bay homeowners identify vulnerabilities and make repairs while there's still time.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Schedule Pre-Storm Inspection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE THE HURRICANE -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Before the Storm</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHAT TO DO BEFORE HURRICANE SEASON</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Preparation is the single most effective way to protect your home during a hurricane. Tampa Bay has been fortunate compared to other parts of Florida in recent decades, but that can create a false sense of security. When a major storm does make landfall — as we've seen with Hurricane Milton and others — the homeowners who fare best are the ones who prepared ahead of time.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Your roof is your home's most vulnerable surface during a hurricane. Wind speeds of 100+ MPH create enormous uplift pressure, and even Category 1 storms can strip shingles, crack tiles, tear off flashing, and drive rain into every gap and weakness in your roofing system. The damage from water intrusion during and after the storm often exceeds the wind damage itself.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          A professional pre-hurricane inspection identifies weak points while there's still time to fix them. Loose shingles can be re-secured. Worn flashing can be replaced. Dried sealant can be reapplied. Gutters can be cleared. These relatively inexpensive repairs can mean the difference between riding out a storm safely and facing tens of thousands of dollars in damage.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Get a Professional Inspection</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Schedule a free inspection with Happy Roof in April or May. We'll identify any weaknesses and give you time to make repairs before June 1.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Trim Trees &amp; Remove Debris</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Cut back branches within 10 feet of your roof. Remove dead limbs and potential projectiles from your yard. These become missiles in high winds.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Clear Your Gutters</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Clogged gutters during a hurricane cause water to back up under your roof. Clean them thoroughly and verify all downspouts drain away from your foundation.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Review Your Insurance Policy</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Know your hurricane deductible, coverage limits, and claim filing deadlines before you need them. Take photos of your roof's current condition as a pre-storm baseline.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Save Our Emergency Number</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Save <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;font-weight:600;text-decoration:none">(813) 595-7663</a> in your phone now. After a storm, you'll want a licensed local contractor you can reach immediately.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTER THE HURRICANE -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">After the Storm</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">WHAT TO DO AFTER A HURRICANE HITS</h2>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="flex gap-5 items-start">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Stay Safe — Don't Go on Your Roof</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">After a hurricane, your roof surface is wet, covered in debris, and potentially structurally compromised. Never attempt to inspect or repair your own roof after a storm. Let licensed professionals with proper safety equipment handle it.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Document Damage from the Ground</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">Take photos and video of any visible damage — missing shingles, debris, damaged gutters, water intrusion inside. This documentation is important for your insurance claim. Photograph the whole house from multiple angles.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Call Happy Roof for Emergency Tarping</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;font-weight:600;text-decoration:none">(813) 595-7663</a>. We deploy emergency tarps to prevent further water intrusion. Every hour your roof is exposed, the interior damage grows worse and more expensive to repair.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">File Your Insurance Claim Promptly</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">Contact your insurance company as soon as possible. Florida policies typically have strict deadlines for reporting storm damage. Happy Roof provides detailed damage documentation and can attend the adjuster inspection to ensure all damage is captured.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">5</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Beware of Storm Chasers</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">After every hurricane, unlicensed contractors flood the area with low-ball offers and pressure tactics. Always verify Florida licensing (ours is CCC1337380), ask for proof of insurance, check reviews, and never sign anything under pressure. A legitimate contractor will give you time to make an informed decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY CONTACT -->
+<section class="py-16" style="background:#1A1A1A;border-top:2px solid #E6A817;border-bottom:2px solid #E6A817">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="sl" style="color:#E6A817;margin-bottom:.75rem">Emergency Contact</p>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:.92;color:#FFFFFF;margin-bottom:1rem">SAVE THIS NUMBER<span style="color:#E6A817">.</span></h2>
+    <p style="color:rgba(255,255,255,.7);font-size:1rem;line-height:1.75;margin-bottom:1.5rem">If your roof is damaged during a storm, you'll want a licensed local contractor you can reach immediately — not a call center or out-of-state company.</p>
+    <a href="tel:8135957663" class="call-tracking-number" style="display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,6vw,4rem);color:#E6A817;text-decoration:none;margin-bottom:1rem">(813) 595-7663</a>
+    <p style="color:rgba(255,255,255,.5);font-size:.85rem">Happy Roof LLC · FL License #CCC1337380 · Tampa Bay</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">FAQ</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">When does hurricane season start in Florida?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Atlantic hurricane season officially runs from June 1 through November 30. However, storms can form outside this window. We recommend scheduling your pre-hurricane roof inspection in April or May to ensure any needed repairs are completed before the season begins.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">What should I do to prepare my roof for a hurricane?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Schedule a professional roof inspection to identify and fix vulnerabilities. Ensure loose shingles are secured, flashing is sealed, gutters are clear, and any damaged areas are repaired. Trim overhanging tree branches, secure or remove rooftop items, and know your insurance policy details. Happy Roof offers free pre-hurricane season inspections for Tampa Bay homeowners.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">What should I do if my roof is damaged during a hurricane?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Stay safe and do not go on the roof. Document visible damage from the ground with photos. Call Happy Roof at (813) 595-7663 for emergency tarping to prevent further water damage. Contact your insurance company to report the damage as soon as possible. We provide documentation and can assist with the claims process.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Does Happy Roof offer emergency services during hurricanes?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We provide emergency tarping and temporary protection as quickly as conditions safely allow after a storm passes. We prioritize by severity and respond as fast as possible. Save our number — (813) 595-7663 — in your phone before hurricane season so you have it when you need it.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">How can I tell if my roof has hurricane damage?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Look for missing or displaced shingles or tiles, debris on the roof, damaged gutters or downspouts, water stains on ceilings or walls, daylight visible through the attic, or shingle granules accumulating in gutters. Some damage is not visible from the ground, so a professional inspection after any significant storm is strongly recommended.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Will my insurance cover hurricane damage to my roof?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Most Florida homeowner's insurance policies cover wind damage from hurricanes. You may have a separate hurricane or wind deductible (typically 2-5% of your home's insured value) rather than a flat dollar amount. Happy Roof documents all damage to support your claim and can meet with your insurance adjuster to ensure everything is captured. File your claim promptly — most policies have strict reporting deadlines.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#FFFFFF">DON'T WAIT FOR THE STORM<span style="color:#F0C040">.</span></h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Schedule your free pre-hurricane inspection now — before June 1.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Schedule Free Inspection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

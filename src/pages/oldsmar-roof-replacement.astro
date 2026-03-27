@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Oldsmar roof replacement contractor headquartered at 141 Stevens Ave. Shingle, metal, and tile roofing. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Oldsmar",
+      "containedInPlace": { "@type": "State", "name": "Florida" }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a roof replacement cost in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oldsmar roof replacements typically range from $8,000 to $24,000 depending on roof size, material choice, pitch, and structural condition. Waterfront properties may require corrosion-resistant materials at slightly higher cost. Call us at (813) 595-7663 for a free in-person estimate." }
+      },
+      {
+        "@type": "Question",
+        "name": "What roofing material works best in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For most Oldsmar homes, Owens Corning Duration HDZ architectural shingles offer the best balance of durability, wind resistance, and value. Waterfront properties near Old Tampa Bay benefit from standing seam metal's corrosion resistance. Tile is ideal for homes with the structural support and aesthetic preference for it." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof replacement take in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Shingle roofs: 1-3 days. Metal roofs: 3-5 days. Tile: 5-7 days. As your local Oldsmar contractor, we can often schedule Oldsmar jobs quickly since we are just around the corner." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Happy Roof actually based in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our office is at 141 Stevens Ave #12, Oldsmar, FL 34677. We are a genuinely local business, not a company with a virtual address. When you work with Happy Roof, you are working with your Oldsmar neighbors." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Oldsmar Roof Replacement — Local Contractor | Happy Roof"
+  description="Oldsmar roof replacement by your local contractor — Happy Roof, headquartered at 141 Stevens Ave, Oldsmar. Shingle, metal & tile. FL License #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/oldsmar-roof-replacement"
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Oldsmar Roof Replacement</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      OLDSMAR ROOF REPLACEMENT<br/><span class="gt">LOCAL CONTRACTOR</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Happy Roof is headquartered right here in Oldsmar at 141 Stevens Ave. We provide complete roof replacement with shingle, metal, and tile options for homeowners throughout Oldsmar — from the waterfront homes on the Upper Tampa Bay Trail to the established neighborhoods near Oldsmar Park.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Oldsmar, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Replace Your Roof in Oldsmar</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY OLDSMAR HOMEOWNERS CHOOSE HAPPY ROOF</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Oldsmar is a tight-knit community of roughly 15,000 residents nestled along the northern shore of Old Tampa Bay, straddling the border of Pinellas and Hillsborough counties. Happy Roof is proud to call Oldsmar home — our office is located at 141 Stevens Avenue, and many of our team members live in the surrounding area. When you hire us for a roof replacement in Oldsmar, you are hiring your neighbors.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">The city's housing stock ranges from the original homes near downtown Oldsmar and Race Track Road built in the 1960s and 1970s, to newer developments like Westwood Lakes and Tampa Bay Golf and Country Club that went up in the 1990s and 2000s. Roofs on the older homes are often on their second or third generation and showing significant wear — curling shingles, granule loss, and underlayment that has dried out after decades of Florida sun. Even the "newer" neighborhoods now have roofs approaching the 25-year mark where replacement becomes more practical than continued repairs.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Oldsmar's proximity to Old Tampa Bay means roofs in the waterfront areas off the Upper Tampa Bay Trail and near Mobbly Bay Preserve face elevated salt air exposure. Selecting the right material — and installing it correctly — is critical for long-term performance. Happy Roof holds Florida License #CCC1337380, handles all permitting, and backs every installation with a 15-year workmanship warranty. See our <a href="/oldsmar-roofing" style="color:#3B9FD9;text-decoration:none;font-weight:600">Oldsmar roofing page</a> for all services.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Architectural Shingles</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Owens Corning Duration HDZ rated for 130+ MPH winds. The most popular, cost-effective option for Oldsmar's inland and semi-coastal neighborhoods.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Standing Seam Metal</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Ideal for waterfront Oldsmar properties near Old Tampa Bay. Corrosion-resistant, heat-reflective, and built to last 40-60 years.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Concrete & Clay Tile</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Durable and attractive for Oldsmar homes with Mediterranean or Florida-style architecture. 50+ year lifespan with proper installation.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">15-Year Workmanship Warranty</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every Oldsmar roof replacement backed by our written 15-year workmanship warranty plus the manufacturer's material warranty.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED / COMMON REPAIRS / WHAT WE CHECK -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">What's Included</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">EVERY OLDSMAR ROOF REPLACEMENT INCLUDES</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Full Tear-Off & Decking Inspection</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Complete removal of existing roofing material, inspection and repair of decking, and preparation of a clean substrate for your new roof.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Premium Underlayment & Flashing</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Peel-and-stick synthetic underlayment and new flashing at all penetrations, valleys, and drip edges — critical protection for Oldsmar's heavy rainstorms.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Permits, Inspections & Cleanup</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">We pull permits with Pinellas County (or Hillsborough for properties on the county line), coordinate inspections, and leave your property spotless.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR 4-STEP REPLACEMENT PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Free Roof Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We inspect your Oldsmar roof thoroughly and provide a detailed written estimate with material options and transparent pricing.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Material Selection & Permits</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Choose your material with our guidance. We handle all permits and schedule your installation date.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Professional Installation</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Full tear-off, decking repair, new underlayment and flashing, and your new roofing system installed to manufacturer specifications.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Final Inspection & Warranty</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">County inspection for code compliance, then delivery of your 15-year workmanship warranty and manufacturer warranty documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Oldsmar Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">OLDSMAR NEIGHBORHOODS & COMMUNITIES WE SERVE</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof is headquartered in Oldsmar and serves every neighborhood in the city and surrounding areas.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Downtown Oldsmar</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westwood Lakes</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tampa Bay Golf & CC</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Race Track Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Oldsmar Heights</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bay Crest</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Mobbly Bay</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Upper Tampa Bay</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Forest Lakes</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Pine Ridge</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Shore Drive</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Baywatch</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">State St Corridor</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Veterans Memorial</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">East Lake Woodlands</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OLDSMAR ROOF REPLACEMENT FAQ</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How much does a roof replacement cost in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Oldsmar roof replacements typically range from $8,000 to $24,000 depending on roof size, material choice, pitch, and structural condition. Waterfront properties may require corrosion-resistant materials at slightly higher cost. Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> for a free in-person estimate.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What roofing material works best in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">For most Oldsmar homes, Owens Corning Duration HDZ architectural shingles offer the best balance of durability, wind resistance, and value. Waterfront properties near Old Tampa Bay benefit from standing seam metal's corrosion resistance. Tile is ideal for homes with the structural support and aesthetic preference for it.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does a roof replacement take in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Shingle roofs: 1-3 days. Metal roofs: 3-5 days. Tile: 5-7 days. As your local Oldsmar contractor, we can often schedule Oldsmar jobs quickly since we are just around the corner.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Is Happy Roof actually based in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. Our office is at 141 Stevens Ave #12, Oldsmar, FL 34677. We are a genuinely local business, not a company with a virtual address. When you work with Happy Roof, you are working with your Oldsmar neighbors.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY FOR A NEW ROOF<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

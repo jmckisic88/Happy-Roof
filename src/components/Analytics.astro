@@ -1,0 +1,40 @@
+<!-- GTM DataLayer Events for Conversion Tracking -->
+<script>
+// Track form submissions
+document.addEventListener('submit', function(e) {
+  var form = e.target;
+  if (form.tagName === 'FORM') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'form_submission',
+      'form_id': form.id || 'contact_form',
+      'page_url': window.location.href
+    });
+  }
+});
+
+// Track phone call clicks
+document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'phone_call_click',
+      'phone_number': this.href.replace('tel:', ''),
+      'page_url': window.location.href
+    });
+  });
+});
+
+// Track CTA button clicks
+document.querySelectorAll('.btn-p, .btn-t').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'cta_click',
+      'cta_text': this.textContent.trim(),
+      'cta_url': this.href || '',
+      'page_url': window.location.href
+    });
+  });
+});
+</script>

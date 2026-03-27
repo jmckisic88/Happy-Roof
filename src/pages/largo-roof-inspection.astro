@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Free roof inspections in Largo FL. Comprehensive assessment of all roof types. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Largo",
+      "containedInPlace": { "@type": "State", "name": "Florida" }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the roof inspection really free in Largo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free with no obligation to purchase any services. We believe that providing honest, thorough inspections at no cost is the best way to earn the trust of Largo homeowners." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof inspection take in Largo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most Largo inspections take 45-60 minutes. Larger homes or tile roofs may require slightly more time. We are thorough and methodical — we check every component rather than doing a quick walk-over." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if problems are found during my Largo roof inspection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We show you the photos, explain the issues in plain language, and provide a written estimate if repairs or replacement are warranted. You are free to get other opinions, take your time, or proceed — there is no pressure." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should Largo homeowners get their roof inspected?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Annually for roofs over 10 years old, and after any significant storm. Before and after hurricane season (June-November) inspections are wise for Largo homes. Also recommended before buying or selling a home, or if you notice any warning signs like water stains or granules in your gutters." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Free Roof Inspection Largo | Happy Roof"
+  description="Free roof inspection in Largo FL by Happy Roof. Comprehensive 25-point assessment of all roof types. No obligation. FL License #CCC1337380. Schedule: (813) 595-7663."
+  canonical="https://happyroof.com/largo-roof-inspection"
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Largo Roof Inspection</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      FREE ROOF INSPECTION<br/><span class="gt">LARGO, FL</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Schedule a free, no-obligation roof inspection in Largo with Happy Roof. Our licensed inspectors provide a thorough assessment of your entire roofing system with detailed photo documentation — so you have clear, honest information about your roof's condition.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Largo, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Get a Free Inspection</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY LARGO HOMEOWNERS SCHEDULE FREE ROOF INSPECTIONS</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Largo has one of the oldest and most varied housing stocks in Pinellas County. Thousands of homes near Largo Central Park, along West Bay Drive, and throughout the neighborhoods south of Ulmerton Road were built in the 1960s and 1970s. These homes have weathered decades of Florida's punishing sun, summer deluges, and periodic hurricanes. Many are on their second or third roof, and the current roofing system may be well past its designed lifespan without the homeowner realizing it.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">A professional roof inspection reveals what you cannot see from the ground. Granule loss that signals shingle aging, pipe boots that have cracked and are letting water seep in, flashing that has corroded at chimney and wall transitions, and underlayment that has lost its waterproofing integrity. In Largo, where many homes sit on flat lots with low-slope roof sections that are particularly vulnerable to pooling water, these hidden issues can lead to significant damage if left unaddressed.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Happy Roof's inspection is genuinely free. We inspect your Largo roof, photograph our findings, and present an honest report. No sales pitch, no obligation, no follow-up pressure. If your roof is healthy, we confirm it. If there are concerns, we explain them clearly and provide options. Visit our <a href="/largo-roofing" style="color:#3B9FD9;text-decoration:none;font-weight:600">Largo roofing page</a> for all our services.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Complete 25-Point Inspection</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Surface material, flashing, ridge caps, valleys, drip edge, gutters, soffit, fascia, ventilation, attic conditions — everything that affects your roof's performance.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Detailed Photo Evidence</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every finding documented with clear photographs. You see your roof's actual condition, not just a verbal summary.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Written Report With Options</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Clear written report of all findings. If work is needed, a transparent estimate with material choices and pricing is included.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Genuinely No Obligation</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Free means free. No catch, no required purchase, no aggressive follow-up. We earn Largo homeowners' business through honesty.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED / COMMON REPAIRS / WHAT WE CHECK -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">What We Check</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">WHAT OUR LARGO ROOF INSPECTION COVERS</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Surface & Material Evaluation</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Thorough assessment of every shingle, tile, or metal panel for cracks, curling, granule loss, rust, and aging that indicates remaining useful life.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Penetrations & Waterproofing</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">All flashing, pipe boots, skylight seals, and chimney transitions inspected for deterioration. These are the most common leak sources on Largo's aging roofs.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Ventilation & Attic Conditions</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Ridge vents, soffit intake, and attic moisture assessed. Many Largo homes built in the 1960s-70s have inadequate ventilation by modern standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR INSPECTION PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Book Your Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Call (813) 595-7663 or schedule online. We find a convenient time — inspections typically take 45-60 minutes.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Thorough On-Site Assessment</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Our licensed inspector examines your entire roofing system from surface to attic, documenting everything with detailed photographs.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Walk-Through of Findings</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We review everything in plain language — what is solid, what needs attention, and what to monitor going forward.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Receive Your Written Report</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">A detailed report with photos for your records. Useful for insurance reviews, home sales, and maintenance planning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Largo Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">LARGO NEIGHBORHOODS WE SERVE</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof provides free roof inspections throughout Largo and Pinellas County.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Largo Central Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Indian Rocks Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Ridgecrest</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Belcher Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Rosery Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Largo Mall Area</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bardmoor</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Imperial Point</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Countryside North</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Ulmerton Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Pinellas Trail</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Largo High Area</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">West Bay Drive</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Clearwater-Largo Rd</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Keene's Pointe</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">LARGO ROOF INSPECTION FAQ</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Is the roof inspection really free in Largo?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — 100% free with no obligation to purchase any services. We believe that providing honest, thorough inspections at no cost is the best way to earn the trust of Largo homeowners.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does a roof inspection take in Largo?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Most Largo inspections take 45-60 minutes. Larger homes or tile roofs may require slightly more time. We are thorough and methodical — we check every component rather than doing a quick walk-over.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What if problems are found during my Largo roof inspection?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">We show you the photos, explain the issues in plain language, and provide a written estimate if repairs or replacement are warranted. You are free to get other opinions, take your time, or proceed — there is no pressure.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How often should Largo homeowners get their roof inspected?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Annually for roofs over 10 years old, and after any significant storm. Before and after hurricane season (June-November) inspections are wise for Largo homes. Also recommended before buying or selling a home, or if you notice any warning signs like water stains or granules in your gutters.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      SCHEDULE YOUR FREE INSPECTION<span style="color:#F0C040">.</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

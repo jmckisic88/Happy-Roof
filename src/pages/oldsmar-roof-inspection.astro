@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Free roof inspections in Oldsmar FL by your local contractor. Comprehensive assessment of all roof types. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Oldsmar",
+      "containedInPlace": { "@type": "State", "name": "Florida" }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the roof inspection really free in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — completely free with no obligation. Happy Roof is based in Oldsmar, and we believe earning our neighbors' trust starts with honest, no-cost inspections. You are never required to purchase any services." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof inspection take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most Oldsmar roof inspections take 45-60 minutes. Tile roofs or larger homes may take slightly longer. We prioritize thoroughness over speed." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if you find problems during my Oldsmar roof inspection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We document everything with photos and walk you through the findings. If repairs or replacement are needed, we provide a written estimate with clear options. There is no pressure — the decision is yours." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I schedule a roof inspection in Oldsmar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Before hurricane season (June), after any storm, if your roof is over 10 years old, or before buying or selling a home. Many Oldsmar homeowners schedule annual inspections — and since we are right here in town, scheduling is easy." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Free Roof Inspection Oldsmar | Happy Roof"
+  description="Free roof inspection in Oldsmar FL by Happy Roof — your local contractor at 141 Stevens Ave. Comprehensive assessment, no obligation. FL License #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/oldsmar-roof-inspection"
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Oldsmar Roof Inspection</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      FREE ROOF INSPECTION<br/><span class="gt">OLDSMAR, FL</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Schedule a free roof inspection in Oldsmar with your local contractor — Happy Roof, headquartered right here at 141 Stevens Ave. Our licensed inspectors check every component of your roof and deliver a photo-documented report with zero obligation.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Oldsmar, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Get a Free Inspection</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY OLDSMAR HOMEOWNERS SCHEDULE ROOF INSPECTIONS</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Oldsmar is a small city with a big exposure to Florida's roofing hazards. Situated along Old Tampa Bay between Hillsborough and Pinellas counties, the city experiences the full force of summer thunderstorms, tropical weather systems, and year-round UV that slowly degrades roofing materials. Many Oldsmar homeowners go years without checking their roof's condition — until a water stain appears on the ceiling or their insurance company requests a condition report.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">The homes in Oldsmar's older neighborhoods near downtown and along Race Track Road were built in the 1960s and 1970s, and many are on their second or third roof. Even the subdivisions developed in the 1990s — Westwood Lakes, Tampa Bay Golf and Country Club, and the communities near Forest Lakes — now have roofs that are 25 to 30 years old. A professional inspection catches the early signs of failure that you cannot see from the ground: crumbling pipe boots, rusting flashing, delaminating underlayment, and granule loss that signals your shingles are nearing the end of their effective life.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">As Oldsmar's hometown roofing company, Happy Roof provides free inspections with no strings attached. We inspect, document, and give you an honest assessment. If everything looks good, we tell you. If there are issues, we explain your options and let you decide. Visit our <a href="/oldsmar-roofing" style="color:#3B9FD9;text-decoration:none;font-weight:600">Oldsmar roofing page</a> for all our local services.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Thorough 25-Point Inspection</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">We examine surface material, flashing, ridge caps, valleys, drip edge, gutters, soffit, fascia, ventilation, and attic space — every component that affects your roof's performance.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Photo-Documented Findings</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every issue and every healthy area is photographed so you can see your roof's actual condition. No vague language — just clear evidence.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Written Report & Options</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">You receive a detailed written report. If work is needed, we include a transparent estimate. If your roof is sound, we confirm that in writing.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Zero Obligation, Zero Pressure</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">We are your Oldsmar neighbors. Our reputation matters to us. The inspection is free, and you are never pressured to purchase services.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED / COMMON REPAIRS / WHAT WE CHECK -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">What We Check</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">WHAT WE INSPECT ON YOUR OLDSMAR ROOF</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Surface Material Condition</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Assessment of shingles, tiles, or metal for cracking, curling, granule loss, rust, and wear that indicates how much life remains in your current roof.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Penetration & Waterproofing Integrity</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">All flashing, pipe boots, skylight seals, and chimney transitions checked for deterioration — these are the most common leak sources on Oldsmar homes.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Attic Ventilation & Moisture</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Evaluation of ridge vents, soffit intake, and attic conditions. Oldsmar's heat makes proper ventilation critical for preventing premature material breakdown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR INSPECTION PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Schedule Your Visit</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Call us at (813) 595-7663 or book online. As your Oldsmar neighbor, we can often accommodate same-week scheduling.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Comprehensive On-Site Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Our inspector examines your entire roofing system top to bottom, taking detailed photos along the way. Typically 45-60 minutes.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Review Findings With You</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We explain everything in plain language. What is good, what needs watching, and what needs attention — all supported by photos.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Deliver Your Written Report</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">A complete report with photos for your files, suitable for insurance reviews, home sales, or maintenance planning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Oldsmar Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">OLDSMAR NEIGHBORHOODS WE SERVE</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof is based in Oldsmar and provides free roof inspections throughout the city and nearby communities.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Downtown Oldsmar</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westwood Lakes</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tampa Bay Golf & CC</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Race Track Road</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Oldsmar Heights</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bay Crest</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Mobbly Bay</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Upper Tampa Bay</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Forest Lakes</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Pine Ridge</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Shore Drive</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Baywatch</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">State St Corridor</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Veterans Memorial</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">East Lake Woodlands</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OLDSMAR ROOF INSPECTION FAQ</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Is the roof inspection really free in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — completely free with no obligation. Happy Roof is based in Oldsmar, and we believe earning our neighbors' trust starts with honest, no-cost inspections. You are never required to purchase any services.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does a roof inspection take?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Most Oldsmar roof inspections take 45-60 minutes. Tile roofs or larger homes may take slightly longer. We prioritize thoroughness over speed.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What if you find problems during my Oldsmar roof inspection?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">We document everything with photos and walk you through the findings. If repairs or replacement are needed, we provide a written estimate with clear options. There is no pressure — the decision is yours.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        When should I schedule a roof inspection in Oldsmar?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Before hurricane season (June), after any storm, if your roof is over 10 years old, or before buying or selling a home. Many Oldsmar homeowners schedule annual inspections — and since we are right here in town, scheduling is easy.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      SCHEDULE YOUR FREE INSPECTION<span style="color:#F0C040">.</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

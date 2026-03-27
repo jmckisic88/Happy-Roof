@@ -1,0 +1,731 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="Careers at Happy Roof — Join Our Team in Tampa Bay"
+  description=""
+  canonical="https://happyroof.com/recruit"
+>
+
+<style is:inline>
+/* Buttons */
+    /* Section label */
+    /* Cards */
+    /* Icon container */
+    .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;transition:background .2s,box-shadow .2s;box-shadow:0 0 0 1px rgba(230,168,23,.08)}
+    /* Timeline */
+    .tl-dot{width:18px;height:18px;border-radius:50%;border:3px solid #E6A817;background:#FFFFFF;flex-shrink:0;position:relative;z-index:2;transition:background .2s}
+    .tl-dot.active{background:#E6A817}
+    .tl-line{position:absolute;top:9px;left:0;right:0;height:3px;background:linear-gradient(90deg,#1A1A1A 0%,#E6A817 50%,#F0C040 100%);z-index:1}
+    /* CTA section */
+    /* Step card */
+    .step-card{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+    .step-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px -8px rgba(230,168,23,.12)}
+    /* Footer */
+    /* Animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease-out both}
+    .fade-up-d1{animation-delay:.1s}
+    .fade-up-d2{animation-delay:.2s}
+    .fade-up-d3{animation-delay:.3s}
+    .fade-up-d4{animation-delay:.4s}
+    /* Responsive */
+    @media(min-width:768px) and (max-width:1023px){
+      .comp-grid{grid-template-columns:1fr 1fr !important}
+      .day-grid{grid-template-columns:1fr 1fr !important}
+      .growth-grid{grid-template-columns:1fr 1fr !important}
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers at Happy Roof — Join Our Team in Tampa Bay</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#1A1A1A', dark: '#2A2A2A', card: '#F7F7F7',
+              border: '#E0E0E0',
+              yellow: '#E6A817', yellowLight: '#F0C040', yellowDim: 'rgba(230,168,23,0.12)',
+              blue: '#3B9FD9',
+              white: '#FFFFFF', muted: '#555555', muted2: '#888888',
+            }
+          },
+          fontFamily: { display: ['Barlow Condensed','sans-serif'], body: ['Nunito','sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    *{box-sizing:border-box}
+    body{background:#FFFFFF;color:#1A1A1A;font-family:'Nunito',sans-serif;margin:0}
+    html{scroll-behavior:smooth}
+    img{background:transparent}
+
+    /* Buttons */
+    .btn-p{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.02em;padding:.75rem 1.6rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 20px -4px rgba(230,168,23,.42);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-p:hover{background:#F0C040;transform:translateY(-2px);box-shadow:0 8px 28px -4px rgba(230,168,23,.52)}
+    .btn-p:active{transform:translateY(0)}
+    .btn-p:focus-visible{outline:2px solid #F0C040;outline-offset:3px}
+
+    .btn-t{background:#E6A817;color:#1A1A1A;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.02em;padding:.9rem 2.2rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;box-shadow:0 4px 24px -4px rgba(230,168,23,.38);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-t:hover{background:#F0C040;transform:translateY(-2px);box-shadow:0 8px 32px -4px rgba(230,168,23,.48)}
+    .btn-t:active{transform:translateY(0)}
+    .btn-t:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+
+    .btn-o{background:transparent;color:#1A1A1A;border:1.5px solid rgba(26,26,26,.2);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:.85rem 1.8rem;transition:border-color .18s,background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);display:inline-flex;align-items:center;gap:.45rem;text-decoration:none}
+    .btn-o:hover{border-color:rgba(26,26,26,.4);background:rgba(230,168,23,.06);transform:translateY(-2px)}
+    .btn-o:active{transform:translateY(0)}
+    .btn-o:focus-visible{outline:2px solid #E6A817;outline-offset:3px}
+
+    /* Section label */
+    .sl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817}
+
+    /* Cards */
+    .card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .2s,box-shadow .3s}
+    .card:hover{transform:translateY(-6px);border-color:rgba(230,168,23,.4);box-shadow:0 20px 56px -12px rgba(230,168,23,.15),0 4px 16px -4px rgba(0,0,0,.06)}
+
+    /* Icon container */
+    .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;transition:background .2s,box-shadow .2s;box-shadow:0 0 0 1px rgba(230,168,23,.08)}
+    .card:hover .ic{background:rgba(230,168,23,.18);box-shadow:0 0 0 1px rgba(230,168,23,.3)}
+
+    /* Timeline */
+    .tl-dot{width:18px;height:18px;border-radius:50%;border:3px solid #E6A817;background:#FFFFFF;flex-shrink:0;position:relative;z-index:2;transition:background .2s}
+    .tl-dot.active{background:#E6A817}
+    .tl-line{position:absolute;top:9px;left:0;right:0;height:3px;background:linear-gradient(90deg,#1A1A1A 0%,#E6A817 50%,#F0C040 100%);z-index:1}
+
+    /* CTA section */
+    .cta-grad{background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(230,168,23,.1) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%)}
+    .cta-grad h2,.cta-grad p{color:#FFFFFF}
+
+    /* Step card */
+    .step-card{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+    .step-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px -8px rgba(230,168,23,.12)}
+
+    /* Footer */
+    footer{background:#1A1A1A;border-top:1px solid #2A2A2A}
+
+    /* Animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease-out both}
+    .fade-up-d1{animation-delay:.1s}
+    .fade-up-d2{animation-delay:.2s}
+    .fade-up-d3{animation-delay:.3s}
+    .fade-up-d4{animation-delay:.4s}
+
+    /* Responsive */
+    @media(max-width:767px){
+      .hero-grid{grid-template-columns:1fr !important}
+      .hero-img-wrap{height:280px !important;margin-top:1.5rem}
+      .about-grid{grid-template-columns:1fr !important}
+      .about-img{height:300px !important;order:-1}
+      .timeline-row{flex-direction:column;gap:2rem;align-items:flex-start}
+      .tl-line{display:none}
+      .comp-grid{grid-template-columns:1fr !important}
+      .day-grid{grid-template-columns:1fr !important}
+      .career-steps{grid-template-columns:1fr !important}
+      .growth-grid{grid-template-columns:1fr !important}
+    }
+    @media(min-width:768px) and (max-width:1023px){
+      .comp-grid{grid-template-columns:1fr 1fr !important}
+      .day-grid{grid-template-columns:1fr 1fr !important}
+      .growth-grid{grid-template-columns:1fr 1fr !important}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative overflow-hidden" style="background:#FFFFFF;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+    <div class="hero-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+      <div class="fade-up">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="Brand%20Assets/Happy%20Roof%20Logo.png" alt="Happy Roof" style="height:48px" />
+        </div>
+        <p class="sl mb-3">NOW HIRING IN TAMPA BAY</p>
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.02em;color:#1A1A1A">
+          Making Roofing Simple.<br/>Building Strong Careers.
+        </h1>
+        <p style="color:#555555;font-size:1.1rem;line-height:1.7;margin-top:1.25rem;max-width:520px">
+          Happy Roof is a family-owned roofing company based in Oldsmar, Florida. We're growing fast and looking for driven people ready to earn, learn, and lead.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#apply" class="btn-t">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            Text "ALL IN" to Apply
+          </a>
+          <a href="#about" class="btn-o">Learn More</a>
+        </div>
+        <p style="color:#888888;font-size:.8rem;margin-top:.75rem">Presented by Recruitomatic in partnership with Happy Roof</p>
+      </div>
+      <div class="hero-img-wrap fade-up fade-up-d2" style="height:420px;border-radius:20px;overflow:hidden;position:relative">
+        <img src="Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg" alt="Happy Roof project in Tampa Bay" style="width:100%;height:100%;object-fit:cover" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,26,.35) 0%,transparent 50%);border-radius:20px"></div>
+        <div style="position:absolute;inset:0;background:rgba(230,168,23,.08);mix-blend-mode:multiply;border-radius:20px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS BAR ═══════════════ -->
+<section style="background:linear-gradient(180deg,#F7F7F7 0%,#FFFFFF 100%);border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#E6A817">$1.5K–$2K</div>
+        <div style="color:#555555;font-size:.85rem;font-weight:600">Weekly Earnings (Reps)</div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#E6A817">$2,500+</div>
+        <div style="color:#555555;font-size:.85rem;font-weight:600">Weekly (Managers)</div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#E6A817">No Cap</div>
+        <div style="color:#555555;font-size:.85rem;font-weight:600">On Earnings</div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#E6A817">Tampa Bay</div>
+        <div style="color:#555555;font-size:.85rem;font-weight:600">Top Roofing Market</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT US ═══════════════ -->
+<section id="about" class="py-20 md:py-28" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+      <div>
+        <p class="sl mb-3">ABOUT US</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+          Built on One Mission — Make Roofing Simple
+        </h2>
+        <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-top:1.25rem">
+          Happy Roof was built on one mission — make roofing simple, fast, and stress-free for homeowners. We specialize in free inspections, same-day quotes, and high-quality installations.
+        </p>
+        <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-top:1rem">
+          We've built a strong reputation across the Tampa Bay area with exclusive programs like the $500 Heroes Discount — and this June, we're launching a foundation dedicated to providing free roof repairs and replacements for community members in need — name reveal coming soon. Growth, culture, and performance are at the core of everything we do.
+        </p>
+        <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-top:1rem">
+          This is a company that values both its customers and its team.
+        </p>
+      </div>
+      <div class="about-img" style="height:400px;border-radius:20px;overflow:hidden;position:relative">
+        <img src="Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg" alt="Roofing work in Tampa Bay" style="width:100%;height:100%;object-fit:cover" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,26,.3) 0%,transparent 50%);border-radius:20px"></div>
+        <div style="position:absolute;inset:0;background:rgba(230,168,23,.06);mix-blend-mode:multiply;border-radius:20px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY WORK HERE ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">WHY HAPPY ROOF</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        Why Work Here
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Growth -->
+      <div class="card p-7">
+        <div class="ic mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">GROWTH</h3>
+        <p style="color:#555555;font-size:.92rem;line-height:1.65">Clear path from rep to manager. Leadership opportunities based on performance.</p>
+      </div>
+      <!-- Earnings -->
+      <div class="card p-7">
+        <div class="ic mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">EARNINGS</h3>
+        <p style="color:#555555;font-size:.92rem;line-height:1.65">High commission structure. Strong weekly earning potential with no cap.</p>
+      </div>
+      <!-- Support -->
+      <div class="card p-7">
+        <div class="ic mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">SUPPORT</h3>
+        <p style="color:#555555;font-size:.92rem;line-height:1.65">Daily training and in-field coaching. Structured accountability programs included.</p>
+      </div>
+      <!-- Culture -->
+      <div class="card p-7">
+        <div class="ic mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">CULTURE</h3>
+        <p style="color:#555555;font-size:.92rem;line-height:1.65">Team-focused environment. Fitness, mindset, and personal growth built in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ INDUSTRY TIMELINE ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="sl mb-3">THE INDUSTRY</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        Industry Timeline
+      </h2>
+    </div>
+    <div class="relative">
+      <!-- Desktop timeline -->
+      <div class="hidden md:block">
+        <div class="relative" style="padding:0 2rem">
+          <div class="tl-line" style="top:9px;left:2rem;right:2rem"></div>
+          <div class="flex justify-between relative" style="z-index:2">
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot active"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A">2010</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Market Expansion</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Increased homeownership drives demand for roofing.</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot active"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A">2015</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Storm Boom</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Insurance claims create massive opportunity in roofing sales.</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot active"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A">2018</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Tech in Roofing</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Faster estimates and inspections improve closing speed.</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot active"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A">2020</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Home Improvement</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Homeowners invest heavily in upgrades and repairs.</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot active"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A">2022</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Florida Growth</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Tampa Bay becomes a top roofing market in the U.S.</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center" style="width:16%">
+              <div class="tl-dot" style="background:#E6A817;border-color:#E6A817;width:22px;height:22px;margin-top:-2px"></div>
+              <div class="mt-4 text-center">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#E6A817">Today</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#E6A817;margin-top:.35rem">Happy Roof Growth</div>
+                <p style="color:#555555;font-size:.8rem;line-height:1.5;margin-top:.35rem">Rapid expansion with strong focus on sales team growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile timeline -->
+      <div class="md:hidden space-y-6">
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot active"></div>
+            <div style="width:3px;height:40px;background:#E0E0E0;margin-top:4px"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">2010 — Market Expansion</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Increased homeownership drives demand for roofing services.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot active"></div>
+            <div style="width:3px;height:40px;background:#E0E0E0;margin-top:4px"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">2015 — Storm Restoration Boom</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Insurance claims create massive opportunity in roofing sales.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot active"></div>
+            <div style="width:3px;height:40px;background:#E0E0E0;margin-top:4px"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">2018 — Tech in Roofing</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Faster estimates and inspections improve closing speed.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot active"></div>
+            <div style="width:3px;height:40px;background:#E0E0E0;margin-top:4px"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">2020 — Home Improvement Surge</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Homeowners invest heavily in upgrades and repairs.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot active"></div>
+            <div style="width:3px;height:40px;background:#E0E0E0;margin-top:4px"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">2022 — Florida Market Growth</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Tampa Bay becomes a top roofing market in the U.S.</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start">
+          <div class="flex flex-col items-center">
+            <div class="tl-dot" style="background:#E6A817;border-color:#E6A817"></div>
+          </div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#E6A817">Today — Happy Roof Growth Phase</div>
+            <p style="color:#555555;font-size:.88rem;line-height:1.5">Rapid expansion with strong focus on sales team growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ INDUSTRY INFO ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">THE OPPORTUNITY</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        Industry Info
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card p-8">
+        <div class="ic mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">DEMAND</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Roofs always need repair or replacement. Storm damage and aging homes drive constant need.</p>
+      </div>
+      <div class="card p-8">
+        <div class="ic mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">GROWTH</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">The roofing market continues to expand nationwide. Florida is one of the hottest markets in the country.</p>
+      </div>
+      <div class="card p-8">
+        <div class="ic mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">WHY NOW</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">More homeowners are upgrading than ever. High-ticket sales create strong income potential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ DAY IN LIFE ═══════════════ -->
+<section class="py-20 md:py-28 relative overflow-hidden" style="background:#1A1A1A">
+  <div style="position:absolute;inset:0;opacity:.15">
+    <img src="Brand%20Assets/Photos/7F6549F1-38CA-40D1-8419-DE93876AC25B_1_105_c.jpeg" alt="" style="width:100%;height:100%;object-fit:cover" />
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,.92) 0%,rgba(26,26,26,.85) 100%)"></div>
+  <div class="max-w-7xl mx-auto px-6 relative" style="z-index:2">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">WHAT TO EXPECT</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#FFFFFF">
+        A Day in the Life
+      </h2>
+    </div>
+    <div class="day-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem">
+      <div class="step-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)">
+        <div style="background:#E6A817;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.6rem">
+          <svg width="20" height="20" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">MORNING</span>
+        </div>
+        <div style="padding:1.25rem">
+          <p style="color:rgba(255,255,255,.8);font-size:.92rem;line-height:1.65">Start with training after 10am. Team meetings, mindset, and skill development.</p>
+        </div>
+      </div>
+      <div class="step-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)">
+        <div style="background:#E6A817;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.6rem">
+          <svg width="20" height="20" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">FIELD</span>
+        </div>
+        <div style="padding:1.25rem">
+          <p style="color:rgba(255,255,255,.8);font-size:.92rem;line-height:1.65">Door-to-door outreach and appointment setting. Work with homeowners and build pipeline.</p>
+        </div>
+      </div>
+      <div class="step-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)">
+        <div style="background:#E6A817;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.6rem">
+          <svg width="20" height="20" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">SELLING</span>
+        </div>
+        <div style="padding:1.25rem">
+          <p style="color:rgba(255,255,255,.8);font-size:.92rem;line-height:1.65">Run appointments and close deals. Hybrid role: setter and closer combined.</p>
+        </div>
+      </div>
+      <div class="step-card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)">
+        <div style="background:#E6A817;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.6rem">
+          <svg width="20" height="20" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">WRAP UP</span>
+        </div>
+        <div style="padding:1.25rem">
+          <p style="color:rgba(255,255,255,.8);font-size:.92rem;line-height:1.65">Track performance and follow up. Stay accountable with team and leadership.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CAREER GROWTH ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">YOUR PATH</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        Career Growth
+      </h2>
+    </div>
+    <div class="career-steps" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:900px;margin:0 auto">
+      <!-- Step 1 -->
+      <div class="card p-8 pt-10 text-center relative">
+        <div style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:#E6A817;color:#1A1A1A;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;padding:.3rem 1rem;border-radius:100px;letter-spacing:.08em">STEP 1</div>
+        <div class="ic mx-auto mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">SALES REP</h3>
+        <p style="color:#888888;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">Setter / Closer</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Generate leads and close deals. Build consistent production and income.</p>
+      </div>
+      <!-- Arrow (desktop only) -->
+      <!-- Step 2 -->
+      <div class="card p-8 pt-10 text-center relative" style="border-color:rgba(230,168,23,.3)">
+        <div style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:#E6A817;color:#1A1A1A;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;padding:.3rem 1rem;border-radius:100px;letter-spacing:.08em">STEP 2</div>
+        <div class="ic mx-auto mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">TEAM LEAD</h3>
+        <p style="color:#888888;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">Sales Manager</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Lead and develop a team. Earn higher commissions and overrides.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="card p-8 pt-10 text-center relative" style="border-color:rgba(230,168,23,.5);box-shadow:0 8px 32px -8px rgba(230,168,23,.12)">
+        <div style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:#E6A817;color:#1A1A1A;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;padding:.3rem 1rem;border-radius:100px;letter-spacing:.08em">STEP 3</div>
+        <div class="ic mx-auto mb-4">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">LEADERSHIP</h3>
+        <p style="color:#888888;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">Expansion Roles</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Help scale new markets. Play a key role in company expansion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PERSONAL GROWTH ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">BEYOND THE JOB</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        Personal Growth
+      </h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.7;max-width:560px;margin:1rem auto 0">We invest in the whole person — not just the salesperson. Here's what's built into the culture.</p>
+    </div>
+    <div class="growth-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1000px;margin:0 auto">
+      <!-- Fitness -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M6 8H5a4 4 0 000 8h1"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">TEAM FITNESS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Group workouts and team fitness programs to keep you sharp, energized, and accountable.</p>
+      </div>
+      <!-- Nutrition -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M12 2v2"/><path d="M9 22h6"/><path d="M12 6v5"/><line x1="9" y1="9" x2="15" y2="9"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">NUTRITION PLANS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Guidance on fueling your body right so you can perform at your best every day in the field.</p>
+      </div>
+      <!-- Book Club -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">MONTHLY READS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Monthly book readings focused on mindset, leadership, and personal development.</p>
+      </div>
+      <!-- Team Outings -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">TEAM OUTINGS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Regular team events and outings to build bonds, celebrate wins, and recharge together.</p>
+      </div>
+      <!-- Mentorship -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">MENTORSHIP</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">One-on-one mentorship programs pairing you with experienced leaders who invest in your success.</p>
+      </div>
+      <!-- Personal Goals -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.5rem">PERSONAL GOALS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Each year, you'll set personal and career goals through an annual goal-setting program — and we'll help you chase them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ COMPENSATION ═══════════════ -->
+<section class="py-20 md:py-28" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="sl mb-3">COMPENSATION</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;color:#1A1A1A">
+        What You Can Earn
+      </h2>
+    </div>
+    <div class="comp-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1000px;margin:0 auto">
+      <!-- Sales Reps -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">SALES REPS</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#E6A817;margin-bottom:.25rem">$1,500–$2,000</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">per week</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">$55K–$75K annually based on consistent performance.</p>
+      </div>
+      <!-- Sales Manager -->
+      <div class="card p-8 text-center" style="border-color:rgba(230,168,23,.4);box-shadow:0 8px 32px -8px rgba(230,168,23,.1)">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">SALES MANAGER</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#E6A817;margin-bottom:.25rem">$2,500+</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">per week</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Personal production combined with team overrides and leadership bonuses.</p>
+      </div>
+      <!-- Structure -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">STRUCTURE</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#E6A817;margin-bottom:.25rem">100%</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">commission · 1099</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Your income is directly tied to your performance with no cap on earnings.</p>
+      </div>
+      <!-- Overrides -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">OVERRIDES</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#E6A817;margin-bottom:.25rem">0.5%</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">commission override</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Earn a 0.5% commission override on every recruit referral you bring to Happy Roof.*</p>
+      </div>
+      <!-- Rewards -->
+      <div class="card p-8 text-center" style="border-color:rgba(230,168,23,.4);box-shadow:0 8px 32px -8px rgba(230,168,23,.1)">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 15l-2 5l4-2l4 2l-2-5"/><path d="M9 12a6 6 0 1112-4c0 4-6 8-6 8s-6-4-6-8z"/><path d="M12 8h.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">REWARDS</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#E6A817;margin-bottom:.25rem">Bonuses & SPIFFs</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">performance-based</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Cash bonuses, SPIFFs, and prizes awarded for hitting milestones and top performance.</p>
+      </div>
+      <!-- Winner's Circle -->
+      <div class="card p-8 text-center">
+        <div class="ic mx-auto mb-5">
+          <svg width="28" height="28" fill="none" stroke="#E6A817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:#1A1A1A;margin-bottom:.75rem">WINNER'S CIRCLE</h3>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#E6A817;margin-bottom:.25rem">All-Inclusive Trip</div>
+        <p style="color:#888888;font-size:.85rem;margin-bottom:.75rem">annual reward</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.6">Top annual performers earn an all-inclusive trip — a once-in-a-year experience with the team.</p>
+      </div>
+    </div>
+    <p style="color:#888888;font-size:.78rem;text-align:center;margin-top:1.5rem">*Override applies for at least the first year of your referral's employment.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section id="apply" class="py-20 md:py-28 cta-grad relative overflow-hidden">
+  <div style="position:absolute;inset:0;opacity:.08">
+    <img src="Brand%20Assets/Photos/metal-roof-installation-clearwater.jpg" alt="" style="width:100%;height:100%;object-fit:cover" />
+  </div>
+  <div class="max-w-3xl mx-auto px-6 text-center relative" style="z-index:2">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.2rem);line-height:1.1;color:#FFFFFF">
+      Ready to Build Something Bigger?
+    </h2>
+    <p style="color:rgba(255,255,255,.7);font-size:1.1rem;line-height:1.7;margin-top:1.25rem;max-width:500px;margin-left:auto;margin-right:auto">
+      Take the first step toward a high-earning career in roofing sales. No experience required — just drive.
+    </p>
+    <div class="mt-10">
+      <a href="sms:9387775084?body=ALL%20IN" class="btn-t" style="font-size:1.25rem;padding:1rem 2.5rem">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Text "ALL IN" to 938-777-5084
+      </a>
+    </div>
+    <p style="color:rgba(255,255,255,.4);font-size:.82rem;margin-top:1.5rem">Presented by Recruitomatic in partnership with Happy Roof</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach((s, i) => {
+      if (i > 0) {
+        s.style.opacity = '0';
+        s.style.transform = 'translateY(24px)';
+        s.style.transition = 'opacity .6s ease-out, transform .6s ease-out';
+        observer.observe(s);
+      }
+    });
+  });
+</script>
+
+</BaseLayout>

@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Clearwater roof repair contractor. Emergency leak repair, storm damage, and general roofing repairs. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Clearwater",
+      "containedInPlace": { "@type": "State", "name": "Florida" }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can you respond to a roof emergency in Clearwater?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We provide same-day emergency tarping for active leaks throughout Clearwater and Pinellas County. Permanent repairs are typically scheduled within a few days depending on scope and weather." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I repair vs. replace my Clearwater roof?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If damage is localized and your roof is under 15 years old, repair is usually the smart choice. If your roof is 20+ years old with widespread damage or multiple prior repairs, replacement may be more cost-effective. We give you an honest recommendation either way." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does insurance cover roof repairs in Clearwater?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wind and storm damage are typically covered by Florida homeowners insurance. We provide detailed photo documentation and can coordinate with your insurance adjuster to help support your claim." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a typical roof repair cost in Clearwater?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Minor repairs (a few shingles, flashing reseal) cost $300-$1,500. More extensive repairs (multiple areas, tile work, decking) range from $1,500-$5,000+. We always provide a free assessment and written estimate first." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Clearwater Roof Repair — Emergency Service | Happy Roof"
+  description="Clearwater roof repair — emergency service by Happy Roof. Leak repair, storm damage, shingle & tile repair. FL License #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/clearwater-roof-repair"
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Clearwater Roof Repair</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      CLEARWATER ROOF REPAIR<br/><span class="gt">EMERGENCY SERVICE</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Happy Roof provides fast, reliable roof repair in Clearwater. Whether it is storm damage on Clearwater Beach, a leak in Countryside, or worn-out flashing in Skycrest, we respond quickly with honest assessments and quality workmanship.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Clearwater, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Choose Happy Roof for Repairs</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY CLEARWATER HOMEOWNERS TRUST US FOR ROOF REPAIRS</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Clearwater's barrier island geography puts it directly in the path of Gulf storms. When tropical systems make landfall or pass nearby, Clearwater Beach, Island Estates, and Sand Key take the full force of storm surge and wind. Even the mainland neighborhoods — Countryside, Skycrest, and the communities along Drew Street — experience damaging gusts and torrential rain that can expose weaknesses in aging roofs.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">The most frequent repairs we see in Clearwater include wind-damaged shingles on the 1970s and 1980s ranch homes near Countryside Mall, cracked barrel tiles on the Mediterranean-style homes of Harbor Oaks and Belleair Bluffs, and corroded flashing on beachside properties where salt air attacks metal components year-round. Pipe boot failures are another common issue, especially on homes 15+ years old, where the rubber seal around plumbing vents dries out and cracks in Clearwater's intense sun.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Happy Roof provides fast, honest repairs throughout Clearwater. If a repair will solve the problem, we recommend a repair — not a replacement. For active leaks, we offer emergency tarping to protect your home while a permanent fix is scheduled. See all our Clearwater services at our <a href="/clearwater-roofing" style="color:#3B9FD9;text-decoration:none;font-weight:600">Clearwater roofing page</a> or visit our <a href="/roof-repair" style="color:#3B9FD9;text-decoration:none;font-weight:600">roof repair page</a>.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Emergency Leak Response</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Same-day emergency tarping for active leaks in Clearwater. We stop the water intrusion immediately, then schedule a permanent repair.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Storm & Wind Damage</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Clearwater's Gulf-facing location makes it vulnerable to tropical storms. We repair all wind and storm damage and help with insurance documentation.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Coastal Corrosion Repair</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Salt air from the Gulf corrodes metal flashing, fasteners, and vents on Clearwater Beach and Island Estates homes. We replace failing components with marine-grade materials.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Repair-vs-Replace Honesty</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">If a targeted repair will protect your Clearwater home for years to come, that is what we recommend. We do not push replacements when repairs make sense.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED / COMMON REPAIRS / WHAT WE CHECK -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Common Repairs</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">COMMON ROOF REPAIRS IN CLEARWATER</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Wind-Damaged Shingles</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Clearwater's Gulf breezes and storm winds lift, crack, and tear off shingles regularly. We match existing shingle style and color for a seamless repair.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Cracked & Broken Tile</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Barrel and flat tiles on Clearwater homes crack from debris impact and thermal stress. We source matching tiles and properly reseat them to prevent leaks.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Pipe Boot & Flashing Failure</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Rubber pipe boots dry out fast in Clearwater's sun. Flashing around chimneys and skylights deteriorates. We replace failing seals and flashing to stop leaks at their source.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR REPAIR PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Damage Assessment</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Thorough inspection with photos to identify all damage. Honest explanation of what needs repair and what can wait.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Transparent Quote</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Itemized written estimate with no hidden fees. We tell you what it costs before any work begins.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Expert Repair</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Quality materials matched to your existing roof, installed by experienced crews who protect your property throughout.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Follow-Up & Warranty</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We follow up to confirm the repair is performing well. All work backed by our workmanship warranty.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Clearwater Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">CLEARWATER NEIGHBORHOODS WE SERVE</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof provides roof repair throughout Clearwater and Pinellas County.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Clearwater Beach</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Island Estates</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Countryside</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Sand Key</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Skycrest</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Del Oro Groves</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Belleair Bluffs</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Harbor Oaks</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Morningside</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Drew Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Clearwater East</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Gulf Junction</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">North Greenwood</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Stevenson Creek</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Old Clearwater Bay</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">CLEARWATER ROOF REPAIR FAQ</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How quickly can you respond to a roof emergency in Clearwater?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">We provide same-day emergency tarping for active leaks throughout Clearwater and Pinellas County. Permanent repairs are typically scheduled within a few days depending on scope and weather.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        When should I repair vs. replace my Clearwater roof?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">If damage is localized and your roof is under 15 years old, repair is usually the smart choice. If your roof is 20+ years old with widespread damage or multiple prior repairs, replacement may be more cost-effective. We give you an honest recommendation either way.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Does insurance cover roof repairs in Clearwater?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Wind and storm damage are typically covered by Florida homeowners insurance. We provide detailed photo documentation and can coordinate with your insurance adjuster to help support your claim.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What does a typical roof repair cost in Clearwater?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Minor repairs (a few shingles, flashing reseal) cost $300-$1,500. More extensive repairs (multiple areas, tile work, decking) range from $1,500-$5,000+. We always provide a free assessment and written estimate first.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      NEED A ROOF REPAIR<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

@@ -1,0 +1,343 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Free professional roof inspections in Tampa Bay. Licensed, insured roofing contractor. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677","addressCountry": "US"
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the roof inspection really free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof provides completely free, no-obligation roof inspections for homeowners and commercial property owners across Tampa Bay. There is no cost and no pressure — we simply provide an honest assessment of your roof's condition and let you decide what to do next." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a roof inspection take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A typical roof inspection takes 30 to 60 minutes depending on the size and complexity of your roof. Our inspector will examine the roof from above and below, check for damage, and provide a detailed report — usually within 24 hours." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a roof inspection include?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our inspection covers shingles or roofing material condition, flashing and sealant integrity, gutter and drainage systems, soffit and fascia, attic ventilation, signs of leaks or moisture damage, and structural integrity. You receive a detailed written report with photos." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should I get my roof inspected in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We recommend at least once a year and after any major storm. Florida's heat, UV exposure, and hurricanes accelerate roof wear. Annual inspections catch small problems before they become expensive repairs." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to be home for the roof inspection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It's helpful but not required. If you can be present, our inspector can walk you through findings in real time. If not, we'll conduct the inspection and send you a full report with photos and recommendations afterward." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a roof inspection help with my insurance claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. If we find storm damage or other covered issues during your inspection, we can document everything with photos and detailed notes to support your insurance claim. We work with all major insurance providers in Florida and can help guide you through the claims process." }
+      }
+    ]
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Roof Inspection",
+    "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+    "areaServed": { "@type": "State", "name": "Florida" },
+    "description": "Free professional roof inspections in Tampa Bay. Comprehensive assessment of shingles, flashing, ventilation, structure, and drainage. Licensed contractor FL #CCC1337380."
+  }]`;
+---
+
+<BaseLayout
+  title="Free Roof Inspection in Tampa Bay | Happy Roof"
+  description="Schedule a free roof inspection in Tampa Bay with Happy Roof. Our licensed inspectors check for storm damage, leaks, wear, and code compliance. FL #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/roof-inspection"
+  ogDescription="Free professional roof inspections in Tampa Bay. Storm damage, leaks, wear — we check it all. FL #CCC1337380."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- PAGE HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/roof-replacement-project-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Free Roof Inspections</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      FREE ROOF INSPECTION<br/><span class="gt">IN TAMPA BAY.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Don't wait for a leak to find out your roof needs attention. Happy Roof offers free, no-obligation professional roof inspections across Tampa Bay — so you know exactly where your roof stands before small issues turn into costly repairs.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Schedule Free Inspection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY A ROOF INSPECTION MATTERS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why It Matters</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY EVERY TAMPA BAY HOMEOWNER NEEDS A ROOF INSPECTION</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Your roof is your home's first line of defense against Florida's punishing weather — from scorching summer heat and UV radiation to tropical storms and hurricanes. Over time, even the best roofing materials degrade. Shingles crack, flashing loosens, sealants dry out, and small leaks develop long before you notice water stains on your ceiling.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          A professional roof inspection catches these problems early, when they're inexpensive to fix. Without regular inspections, minor issues compound into major structural damage — rotted decking, mold growth, compromised insulation, and eventually a full roof replacement that could have been delayed by years with proper maintenance.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          In Florida, roof condition directly affects your homeowner's insurance. Many insurance companies now require a roof inspection before issuing or renewing a policy. A documented inspection from a licensed contractor like Happy Roof can help you maintain coverage, secure better rates, and provide evidence for claims if storm damage occurs.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Catch Problems Early</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Small cracks, loose flashing, and worn sealant can be repaired for a fraction of what a full replacement costs. Early detection saves thousands.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Protect Your Insurance</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Florida insurers increasingly require current roof inspections. A documented assessment helps maintain coverage and supports claims.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Extend Your Roof's Lifespan</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Regular inspections paired with timely repairs can add 5-10 years to your roof's life, delaying the cost of a full replacement.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Storm Preparedness</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Knowing your roof's condition before hurricane season gives you time to make repairs and strengthens your home's protection.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE INSPECT -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">Inspection Checklist</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">WHAT WE CHECK DURING YOUR FREE INSPECTION</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="scard p-6">
+        <div class="step-num mb-4">01</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Roofing Material Condition</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">We examine every visible shingle, tile, or metal panel for cracking, curling, blistering, granule loss, rust, or displacement. Even minor surface damage can allow moisture penetration that leads to costly interior damage over time.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">02</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Flashing &amp; Sealant Integrity</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Flashing around vents, chimneys, skylights, and wall junctions is one of the most common leak sources. We check every piece for rust, separation, improper installation, and dried-out sealant that needs reapplication.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">03</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Gutters &amp; Drainage</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Clogged or damaged gutters cause water to pool along the roof edge, leading to fascia rot and foundation problems. We inspect gutter condition, attachment, slope, and downspout placement to ensure proper water flow.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">04</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Soffit &amp; Fascia</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Soffit and fascia protect the roof's structural edges and provide critical ventilation pathways. We look for rot, peeling paint, pest damage, and gaps that could allow moisture or animals into your attic space.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">05</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Attic &amp; Ventilation</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Proper attic ventilation prevents heat buildup that accelerates shingle deterioration and increases energy costs. We check ridge vents, soffit vents, and insulation for proper airflow and signs of moisture or mold.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">06</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Structural Integrity</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">We assess the roof deck, rafters, and trusses for sagging, water damage, or compromised fasteners. Structural issues can be subtle but dangerous — especially during high winds or heavy rain events common in Florida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR INSPECTION PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR FREE ROOF INSPECTION PROCESS</h2>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="flex gap-5 items-start">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Schedule Your Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> or fill out our online form. We'll confirm an appointment time that works for your schedule — most inspections can be booked within a few business days.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">On-Site Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">A licensed Happy Roof inspector arrives at your property and performs a thorough examination of your entire roofing system — exterior surfaces, flashing, gutters, soffit, fascia, and attic space. We photograph all findings for your records.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Detailed Report</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">Within 24 hours, you receive a comprehensive written report with photos documenting your roof's condition, any areas of concern, and our professional recommendations. This report is yours to keep — whether or not you choose Happy Roof for any follow-up work.</p>
+        </div>
+      </div>
+      <div class="flex gap-5 items-start">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Honest Recommendations</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">If repairs or replacement are needed, we provide a clear, itemized estimate with no hidden fees. If your roof is in good shape, we'll tell you that too. Our goal is to give you the information you need to make the best decision for your home and budget.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN TO GET AN INSPECTION -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gp mb-3">When to Inspect</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHEN SHOULD YOU GET A ROOF INSPECTION?</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Not sure if it's time for an inspection? Here are the most common situations where a professional assessment can save you money and stress. In Tampa Bay's climate, being proactive about your roof is always smarter than waiting for a problem to reveal itself.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">After a Major Storm</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Hurricanes, tropical storms, and severe thunderstorms with hail or high winds can cause damage that isn't visible from the ground. Always get an inspection after a significant weather event.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Before Hurricane Season (June 1)</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">A pre-season inspection identifies vulnerabilities and gives you time to make repairs before storms hit. This is the single best time to schedule an inspection in Florida.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Roof Is Over 10 Years Old</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Most roofing materials begin showing age-related wear after a decade — especially in Florida's harsh climate. Annual inspections become increasingly important as your roof ages.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Buying or Selling a Home</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">A professional roof inspection provides buyers with confidence and sellers with documentation. It's a smart move for both sides of a real estate transaction.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Insurance Renewal or New Policy</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Many Florida insurers now require a current roof inspection (sometimes called a "wind mitigation" or "4-point" inspection) before writing or renewing a homeowner's policy.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">FAQ</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Is the roof inspection really free?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. Happy Roof provides completely free, no-obligation roof inspections for homeowners and commercial property owners across Tampa Bay. There is no cost and no pressure — we simply provide an honest assessment of your roof's condition and let you decide what to do next. We believe that informed homeowners make better decisions, and a free inspection is the best way to start that conversation.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          How long does a roof inspection take?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">A typical roof inspection takes 30 to 60 minutes depending on the size and complexity of your roof. Our inspector will examine the roof from above and below, check for damage, and provide a detailed report — usually within 24 hours. Larger commercial properties or complex multi-story homes may take slightly longer.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          What does a roof inspection include?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Our inspection covers shingles or roofing material condition, flashing and sealant integrity, gutter and drainage systems, soffit and fascia, attic ventilation, signs of leaks or moisture damage, and structural integrity. You receive a detailed written report with photos documenting every area we examine.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          How often should I get my roof inspected in Florida?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We recommend at least once a year and after any major storm. Florida's heat, UV exposure, and hurricanes accelerate roof wear significantly compared to milder climates. Annual inspections catch small problems before they become expensive repairs. If your roof is over 15 years old, consider inspections twice a year — once before hurricane season and once after.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Do I need to be home for the roof inspection?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">It's helpful but not required. If you can be present, our inspector can walk you through findings in real time and answer any questions. If not, we'll conduct the inspection and send you a full report with photos and recommendations afterward. Either way, you'll have a complete picture of your roof's condition.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Can a roof inspection help with my insurance claim?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Absolutely. If we find storm damage or other covered issues during your inspection, we can document everything with photos and detailed notes to support your insurance claim. We work with all major insurance providers in Florida and can help guide you through the claims process. Having professional documentation from a licensed contractor significantly strengthens your claim.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      SCHEDULE YOUR FREE INSPECTION<span style="color:#F0C040">.</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Know your roof's condition before the next storm. Call us or request an inspection online — we'll respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Schedule Free Inspection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

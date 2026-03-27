@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="Roofing Blog — Tips, Guides & News | Happy Roof"
+  description="Roofing tips, guides, and expert advice for Tampa Bay homeowners. Learn about materials, costs, insurance claims, and how to choose the right roofing contractor. By Happy Roof."
+  canonical="https://happyroof.com/blog"
+  ogTitle="Roofing Blog | Tampa Bay Tips & Guides | Happy Roof"
+  ogDescription="Roofing knowledge with zero fluff. Tips, guides, and expert advice for Tampa Bay homeowners."
+>
+
+<style is:inline>
+.blog-card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:20px;overflow:hidden;transition:border-color .25s,transform .2s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
+    .blog-card:hover{border-color:rgba(230,168,23,.3);transform:translateY(-3px)}
+</style>
+
+<!-- PAGE HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Happy Roof Blog</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      ROOFING KNOWLEDGE.<br/><span class="gt">ZERO FLUFF.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Straight-talk roofing guides, material comparisons, cost breakdowns, and expert tips written specifically for Tampa Bay homeowners. No jargon, no sales pitches — just the information you need to make smart decisions about your roof.
+    </p>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Materials</span>
+      <span style="color:#E6A817">·</span>
+      <span>Insurance</span>
+      <span style="color:#E6A817">·</span>
+      <span>Education</span>
+      <span style="color:#E6A817">·</span>
+      <span>Pricing</span>
+      <span style="color:#E6A817">·</span>
+      <span>Seasonal</span>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG GRID -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Post 1 -->
+      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">March 31, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Tile vs. Shingle vs. Metal: Which Roof Is Right for Your Florida Home?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A side-by-side comparison of the three most popular roofing materials in Tampa Bay — covering durability, cost, energy efficiency, and which performs best in Florida's climate.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 7, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How to File a Roof Insurance Claim in Florida (Step-by-Step)</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A complete walkthrough of the Florida roof insurance claim process — from documenting damage and contacting your carrier to working with an adjuster and getting your roof repaired or replaced.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 14, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">5 Signs You Need a Roof Replacement (Not Just a Repair)</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Not sure whether your roof needs a patch job or a full replacement? Here are five warning signs that indicate it's time for a new roof — and when a repair will still do the job.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Post 8 -->
+      <a href="/blog/gaf-vs-owens-corning" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 19, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">GAF vs. Owens Corning: Which Shingle Brand Is Better?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">An honest comparison of GAF and Owens Corning shingles — covering durability, warranties, wind ratings, pricing, and which brand performs better in Florida's harsh climate.</p>
+        </div>
+        <div style="padding:0 2rem 2rem;margin-top:auto">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#E6A817;letter-spacing:.02em">Read More &rarr;</span>
+        </div>
+      </a>
+
+      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Hiring</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 2, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">5 Questions to Ask Before Hiring a Roofer in Tampa Bay</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Protect yourself from scams and bad work. Here are the 5 questions every homeowner should ask before signing a roofing contract.</p>
+        </div>
+      </a>
+
+      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Emergency</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 9, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Emergency Roof Leak? Here's What to Do Right Now</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Step-by-step guide for handling an active roof leak — what to do immediately, when to call a pro, and how to minimize damage.</p>
+        </div>
+      </a>
+
+      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 16, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Why Impact-Resistant Shingles Are Worth It in Florida</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">How impact-resistant shingles can save you money on insurance premiums while protecting your home from Florida's storms.</p>
+        </div>
+      </a>
+
+      <a href="/blog/metal-roof-benefits-florida" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 23, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">7 Benefits of Metal Roofing in Florida's Climate</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Why metal roofs are growing in popularity across Tampa Bay — from energy savings to 70-year lifespans.</p>
+        </div>
+      </a>
+
+      <a href="/blog/roof-maintenance-checklist" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Maintenance</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 30, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Seasonal Roof Maintenance Checklist for Tampa Bay</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A season-by-season guide to keeping your roof in top shape and avoiding costly repairs.</p>
+        </div>
+      </a>
+
+      <a href="/blog/roof-replacement-timeline" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Process</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 7, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How Long Does a Roof Replacement Take?</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Complete timeline from estimate to final inspection — what to expect at every stage of your roof replacement.</p>
+        </div>
+      </a>
+
+      <a href="/blog/florida-roofing-codes-2025" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Codes</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 14, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Florida Roofing Building Codes: What Homeowners Need to Know</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Understanding Florida's unique roofing code requirements — wind ratings, permits, and what your contractor should know.</p>
+        </div>
+      </a>
+
+      <a href="/blog/commercial-roofing-types" class="blog-card" style="text-decoration:none;color:inherit">
+        <div style="padding:2rem 2rem 0">
+          <div style="margin-bottom:1rem">
+            <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Commercial</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 21, 2026</span>
+          </div>
+          <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Commercial Roofing Systems Explained: TPO, EPDM, Metal &amp; More</h2>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A guide to commercial roofing options for Tampa Bay business owners — pros, cons, and costs of each system.</p>
+        </div>
+      </a>
+
+      </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      NEED A ROOF EXPERT<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Get a free estimate from a licensed Tampa Bay roofing contractor — no pressure, no obligation.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

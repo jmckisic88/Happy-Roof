@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Roofing Services",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "Roof Replacement", "description": "Complete residential and commercial roof replacement with asphalt shingles, metal, tile, or flat roof systems" },
+        { "@type": "OfferCatalog", "name": "Roof Repair", "description": "Leak repair, shingle replacement, flashing repair, and emergency tarping" },
+        { "@type": "OfferCatalog", "name": "Storm Damage Repair", "description": "Hurricane and storm damage roof repair with full insurance claim assistance" },
+        { "@type": "OfferCatalog", "name": "Roof Inspection", "description": "Professional roof inspections for real estate, insurance, and maintenance" },
+        { "@type": "OfferCatalog", "name": "Commercial Roofing", "description": "TPO, EPDM, modified bitumen, and metal roofing for commercial properties" },
+        { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
+      ]
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "2",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }`;
+---
+
+<BaseLayout
+  title="About Happy Roof — Local Tampa Bay Roofing Company"
+  description="Locally owned roofing company in Tampa Bay with 30+ years of combined experience. Owens Corning Preferred Contractor. Serving Hillsborough, Pinellas &amp; Pasco counties."
+  canonical="https://happyroof.com/about"
+  ogTitle="About Happy Roof | Tampa Bay's Local Roofing Experts"
+  ogDescription="Locally owned, founded in Tampa Bay in 2025 by a team with 30+ years of combined roofing experience. Honest work, fair pricing, premium materials."
+  activePage="about"
+  schema={schema}
+>
+
+<style is:inline>
+..card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;padding:1.5rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+    /* ── Hero photo bg ── */
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <!-- Hero background photo -->
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+      <p class="sl gp mb-4">Our Story</p>
+      <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+        BUILT ON HONESTY.<br/><span class="gt">ROOTED IN TAMPA BAY.</span>
+      </h1>
+      <p style="color:#555555;font-size:1.05rem;line-height:1.78;margin-bottom:1.25rem">
+        Happy Roof started with a simple observation: most homeowners dread dealing with roofers. Confusing quotes, missed appointments, and work that didn't hold up — it didn't have to be that way.
+      </p>
+      <p style="color:#555555;font-size:1.05rem;line-height:1.78;margin-bottom:2rem">
+        So we built a company the way we wished roofing companies were run. Clear pricing. Reliable crews. Work we'd be proud to put our name on. With over 30 years of combined roofing experience, we know what it takes to get it right.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="btn-t">Work With Us</a>
+        <a href="/services" class="btn-o" style="color:#1A1A1A;border-color:rgba(0,0,0,.2)">View Services</a>
+      </div>
+  </div>
+</section>
+
+<!-- Trust Signals -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.5rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem 3rem">
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">OWENS CORNING PREFERRED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FL LICENSE #CCC1337380</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FULLY INSURED & BONDED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">15-YEAR WARRANTY</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STATS -->
+<div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-stretch justify-center divide-x" style="divide-color:#E0E0E0">
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[120px]">
+        <p class="font-display font-black gp" style="font-family:'Barlow Condensed',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:-.01em">2025</p>
+        <p style="color:#888888;font-size:.8rem;margin-top:.25rem">Founded</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[120px]">
+        <p class="font-display font-black gt" style="font-family:'Barlow Condensed',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:-.01em">30+</p>
+        <p style="color:#888888;font-size:.8rem;margin-top:.25rem">Yrs Team Experience</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[120px]">
+        <p class="font-display font-black gp" style="font-family:'Barlow Condensed',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:-.01em">5.0★</p>
+        <p style="color:#888888;font-size:.8rem;margin-top:.25rem">Google Rating</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[120px]">
+        <p class="font-display font-black gt" style="font-family:'Barlow Condensed',sans-serif;font-size:2.3rem;line-height:1;letter-spacing:-.01em">3</p>
+        <p style="color:#888888;font-size:.8rem;margin-top:.25rem">Counties Served</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="py-24" style="background:#F5F5F5;border-top:1px solid #E5E5E5">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="mb-12 text-center">
+      <p class="sl gt mb-3">What We Stand For</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3.2rem);line-height:.93;letter-spacing:-.01em;color:#1A1A1A">
+        OUR VALUES.
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(230,168,23,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Honesty First</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">We tell you what your roof actually needs — not what makes us the most money. If it only needs a repair, we say repair. No upselling, ever.</p>
+      </div>
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(59,159,217,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">We Show Up</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">When we schedule a visit, we are there. If something changes, you hear from us — not a no-show. Reliability isn't extra, it's the baseline.</p>
+      </div>
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(230,168,23,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Quality Materials</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">We only install products we'd put on our own homes. Every material we use comes with a manufacturer warranty — because quality starts with what you build with.</p>
+      </div>
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(59,159,217,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Local Team, Local Knowledge</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">Our crews live and work here. We know Tampa Bay's building codes, permit requirements, HOA rules, and what Florida weather actually does to a roof.</p>
+      </div>
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(230,168,23,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">We Clean Up After Ourselves</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">Every nail, every scrap. We use magnet rollers and fully clear your yard before we leave. You shouldn't have to worry about what we leave behind.</p>
+      </div>
+      <div class="val-card">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(59,159,217,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">We Stand Behind Our Work</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">Happy Roof guarantees its Shingle, Metal, and Tile Workmanship for 15 years &amp; its Flat Roof Installation for 10 years — in writing, every time. If something goes wrong because of how it was installed, we make it right. Period.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="py-20" style="background:#FFFFFF;border-top:1px solid #2A2A2A">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gp mb-3">Licensing &amp; Certifications</p>
+        <h2 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.93;letter-spacing:-.01em">
+          LICENSED, INSURED,<br/><span class="gt">AND CERTIFIED.</span>
+        </h2>
+        <p style="color:#555555;line-height:1.75;margin-bottom:2rem">
+          Every project we take on is performed by licensed professionals with the certifications to back it up. Don't let just anyone put a roof over your head.
+        </p>
+        <div class="flex flex-col gap-3">
+          <div class="cert-badge">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,.06)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div><p class="font-medium text-brand-black text-sm">FL State Roofing License</p><p style="color:#888888;font-size:.75rem">#CCC1337380 — Verified Active</p></div>
+          </div>
+          <div class="cert-badge">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,.06)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><p class="font-medium text-brand-black text-sm">Owens Corning Preferred Contractor</p><p style="color:#888888;font-size:.75rem">Authorized to install Owens Corning Lifetime Roofing Systems</p></div>
+          </div>
+          <div class="cert-badge">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,.06)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div><p class="font-medium text-brand-black text-sm">Fully Insured</p><p style="color:#888888;font-size:.75rem">General liability + workers' compensation — COI available on request</p></div>
+          </div>
+          <div class="cert-badge">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(59,159,217,.1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div><p class="font-medium text-brand-black text-sm">5-Star Google Rated</p><p style="color:#888888;font-size:.75rem">Verified reviews from Tampa Bay homeowners</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service area -->
+      <div>
+        <p class="sl gt mb-3">Where We Work</p>
+        <h2 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,3.5vw,3rem);line-height:.93;letter-spacing:-.01em">
+          SERVING ALL OF<br/><span class="gp">TAMPA BAY.</span>
+        </h2>
+        <p style="color:#555555;line-height:1.75;margin-bottom:1.5rem">We serve homeowners and businesses across Hillsborough, Pinellas, and Pasco counties. Our crews are local — we know every neighborhood.</p>
+        <!-- Embedded Google Map — Tampa Bay service area -->
+        <div class="rounded-2xl overflow-hidden mb-5" style="aspect-ratio:4/3;background:#F7F7F7;border:1px solid #E0E0E0">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d225014.15675568986!2d-82.55!3d28.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1711200000000"
+            width="100%" height="100%" style="border:0;display:block;filter:invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.1)"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Happy Roof Tampa Bay Service Area — Hillsborough, Pinellas &amp; Pasco Counties"></iframe>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">Tampa</p></div>
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">St. Pete</p></div>
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">Clearwater</p></div>
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">Brandon</p></div>
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">Dunedin</p></div>
+          <div class="rounded-xl p-3 text-center" style="background:#F7F7F7;border:1px solid #E0E0E0"><p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:.95rem">Wesley Chapel</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LEAVE A REVIEW -->
+<div style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5;padding:2.5rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#fff;border:1.5px solid #E5E5E5;box-shadow:0 4px 16px -4px rgba(0,0,0,.1)">
+          <svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            <path fill="none" d="M0 0h48v48H0z"/>
+          </svg>
+        </div>
+        <div>
+          <div style="color:#F59E0B;font-size:1.1rem;letter-spacing:.06em;line-height:1;margin-bottom:.3rem">★★★★★</div>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;line-height:1;color:#1A1A1A;letter-spacing:-.02em">Happy with your roof?</p>
+          <p style="color:#555555;font-size:.88rem;margin-top:.25rem">Leave us a Google review — it takes 60 seconds and means the world to our crew.</p>
+        </div>
+      </div>
+      <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" class="flex-shrink-0 font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;background:#FFFFFF;color:#1A1A1A;border-radius:8px;padding:.85rem 2rem;font-size:1.05rem;letter-spacing:.05em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);white-space:nowrap" onmouseover="this.style.background='#E6A817';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0D0D0D';this.style.transform='translateY(0)'">
+        LEAVE A REVIEW
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      LET'S BUILD SOMETHING<br/><span class="gt">YOU CAN COUNT ON.</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">No pressure, no games. Just a free inspection and honest advice from Tampa Bay's most trusted roofing team.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

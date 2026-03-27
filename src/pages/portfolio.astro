@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor. View our completed roofing projects.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677","addressCountry": "US"
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  }`;
+---
+
+<BaseLayout
+  title="Completed Projects — Roof Gallery | Happy Roof"
+  description="Browse completed roofing projects by Happy Roof in Tampa Bay. Architectural shingles, standing seam metal, TPO flat roofs, and more. See our craftsmanship."
+  canonical="https://happyroof.com/portfolio"
+  ogTitle="Our Work | Roofing Project Gallery | Happy Roof Tampa Bay"
+  ogDescription="Browse completed roofing projects across Tampa Bay. Shingles, metal, tile, TPO, and more."
+  schema={schema}
+>
+
+<style is:inline>
+.project-card{border-radius:16px;overflow:hidden;position:relative;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s}
+    .project-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px -8px rgba(0,0,0,.15)}
+    .project-card img{width:100%;height:280px;object-fit:cover;display:block;transition:transform .4s}
+    .project-card:hover img{transform:scale(1.03)}
+    .project-card .overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(26,26,26,.85) 0%,rgba(26,26,26,.4) 50%,transparent 100%);padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:50%}
+    }
+</style>
+
+<!-- PAGE HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Project Gallery</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      OUR WORK SPEAKS<br/><span class="gt">FOR ITSELF.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Every roof we install is a reflection of our commitment to quality, precision, and customer satisfaction. Browse our completed projects across Tampa Bay.
+    </p>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT GALLERY -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Completed Projects</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ROOFS WE'VE BUILT ACROSS TAMPA BAY</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Project 1 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg" alt="Architectural shingle roof installation in Tampa Bay by Happy Roof" loading="lazy" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Architectural Shingles</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">Architectural Shingle Roof</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa Bay, FL</p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg" alt="Standing seam metal roof installation in Tampa by Happy Roof" loading="lazy" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Metal Roofing</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">Standing Seam Metal Roof</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa, FL</p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/tpo-roof-chimney-flashing-tampa.jpg" alt="Commercial TPO roof with chimney flashing in Tampa by Happy Roof" loading="lazy" style="object-position:left center" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Commercial TPO</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">TPO Roof with Chimney Flashing</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa, FL</p>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/roof-replacement-project-tampa-bay.jpg" alt="TPO flat roof installation in Tampa Bay by Happy Roof" loading="lazy" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Flat Roof / TPO</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">TPO Flat Roof</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa Bay, FL</p>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg" alt="Shingle roof replacement in Tampa Bay by Happy Roof" loading="lazy" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Shingle Replacement</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">Shingle Roof Replacement</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa Bay, FL</p>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="project-card" style="border:1px solid #E0E0E0">
+        <img src="/Brand%20Assets/Photos/modified-bitumen-roof-tampa.jpg" alt="Modified bitumen roof in Tampa Bay by Happy Roof" loading="lazy" />
+        <div class="overlay">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.25rem">Modified Bitumen</span>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#FFFFFF;margin:0;line-height:1.1">Modified Bitumen Roof</h3>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.25rem">Tampa Bay, FL</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY TO GET STARTED<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Your roof could be next. Call us or request a free estimate online — we'll respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

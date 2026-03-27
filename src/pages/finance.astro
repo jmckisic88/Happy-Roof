@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Roofing Services",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "Roof Replacement", "description": "Complete residential and commercial roof replacement with asphalt shingles, metal, tile, or flat roof systems" },
+        { "@type": "OfferCatalog", "name": "Roof Repair", "description": "Leak repair, shingle replacement, flashing repair, and emergency tarping" },
+        { "@type": "OfferCatalog", "name": "Storm Damage Repair", "description": "Hurricane and storm damage roof repair with full insurance claim assistance" },
+        { "@type": "OfferCatalog", "name": "Roof Inspection", "description": "Professional roof inspections for real estate, insurance, and maintenance" },
+        { "@type": "OfferCatalog", "name": "Commercial Roofing", "description": "TPO, EPDM, modified bitumen, and metal roofing for commercial properties" },
+        { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
+      ]
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "2",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }`;
+---
+
+<BaseLayout
+  title="Roof Financing Options Tampa Bay | $0 Down | Happy Roof"
+  description="Finance your new roof in Tampa Bay with flexible options including 0% interest. Check your rate in 60 seconds — no obligation!"
+  canonical="https://happyroof.com/finance"
+  ogTitle="Roof Financing Tampa Bay | 0% Interest | Happy Roof"
+  ogDescription="Finance your Tampa Bay roof replacement with 0% interest options. Check your rate in 60 seconds through our Enhancify partnership. No obligation."
+  activePage="finance"
+  schema={schema}
+>
+
+<style is:inline>
+/* ── Finance nav: override chat.js injection which sets display:inline-flex + min-height on .nav-link ── */
+    #fin-nav-links{display:none}
+    @media(min-width:768px){#fin-nav-links{display:flex;align-items:center;gap:1.25rem}}
+    #fin-nav-links .nav-link{color:#AAAAAA !important;display:inline !important;min-height:unset !important;font-size:.875rem !important}
+    #fin-nav-links .nav-link:hover,#fin-nav-links .nav-link.active{color:#1A1A1A !important}
+    .gfin{background:linear-gradient(135deg,#68BA62 0%,#1C418C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .white-section{background:#F5F5F5;color:#1A1A1A}
+    .feat.card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+    .feat-card:hover{border-color:rgba(104,186,98,.25);transform:translateY(-4px)}
+    /* Override chat.js overflow-x:hidden so Enhancify widget isn't clipped */
+    .enhancify-wrap{background:#fff;border-radius:20px;box-shadow:0 32px 80px -16px rgba(0,0,0,.4),0 8px 24px -8px rgba(0,0,0,.3);min-height:600px}
+    /* ── Hero photo bg ── */
+</style>
+
+<!-- HERO -->
+<section class="white-section pt-32 pb-16 relative overflow-hidden" style="border-bottom:1px solid #E5E5E5">
+  <!-- Hero background photo -->
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-5 text-center">
+    <!-- Co-brand lockup -->
+    <div class="flex items-center justify-center gap-5 mb-8 flex-wrap">
+      <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" style="height:52px;width:auto" />
+      <div style="width:1px;height:40px;background:#D0D0D0"></div>
+      <!-- Enhancify wordmark -->
+      <div style="display:flex;flex-direction:column;align-items:flex-start">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-.02em;background:linear-gradient(135deg,#68BA62,#1C418C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">ENHANCIFY</span>
+        <span style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-top:.1rem">Financing Partner</span>
+      </div>
+    </div>
+    <p class="sl mb-3" style="color:#888">Roofing Financing</p>
+    <h1 class="font-display font-black mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.2rem);line-height:.9;letter-spacing:-.01em;color:#1A1A1A">
+      DON'T LET BUDGET<br/>STAND BETWEEN YOU<br/><span class="gfin">AND A SAFE ROOF.</span>
+    </h1>
+    <p style="font-size:1.1rem;color:#555555;line-height:1.75;max-width:580px;margin:0 auto 2rem">
+      Happy Roof has partnered with Enhancify to offer fast, flexible financing — so you can protect your home today and pay over time. Checking your rate takes 60 seconds and won't affect your credit score.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#apply" class="btn-fin">Check My Rate — It's Free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="/contact" class="btn-p" style="background:transparent;border:1.5px solid rgba(0,0,0,.2);color:#1A1A1A;box-shadow:none">Get a Free Estimate First</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Signals -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.5rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem 3rem">
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">OWENS CORNING PREFERRED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FL LICENSE #CCC1337380</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FULLY INSURED & BONDED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">15-YEAR WARRANTY</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY FINANCE -->
+<section style="background:#FFFFFF;padding:5rem 0">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">The Smart Way to Roof</p>
+      <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4vw,3.4rem);line-height:.95;letter-spacing:-.01em">
+        WHY HOMEOWNERS CHOOSE TO FINANCE
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(104,186,98,.2),rgba(104,186,98,.08));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#68BA62" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Don't Delay Repairs</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">A small leak left untreated becomes a major structural problem. Financing lets you address damage now — before it multiplies in cost.</p>
+      </div>
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(28,65,140,.25),rgba(28,65,140,.1));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B8CE0" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Preserve Your Cash</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">A new roof is one of the biggest home investments you'll make. Spreading payments over time lets you keep your savings intact for other needs.</p>
+      </div>
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(230,168,23,.2),rgba(230,168,23,.08));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Upgrade, Don't Compromise</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Financing lets you choose the best material — premium shingles, metal, or tile — instead of settling for the cheapest option that won't last.</p>
+      </div>
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(59,159,217,.15),rgba(59,159,217,.06));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Fast Approval</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Enhancify's application takes 60 seconds. Most decisions come back in minutes — so there's no waiting around when your roof can't wait.</p>
+      </div>
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(104,186,98,.2),rgba(104,186,98,.08));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#68BA62" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Soft Credit Pull</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Checking your rate doesn't affect your credit score. You can explore your options risk-free before committing to anything.</p>
+      </div>
+      <div class="feat-card">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(28,65,140,.25),rgba(28,65,140,.1));display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B8CE0" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Flexible Terms</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Choose a monthly payment that works for your budget. Enhancify works with multiple lenders to find you competitive rates and terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="white-section" style="padding:5rem 0;border-top:1px solid #E5E5E5">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl mb-3" style="color:#888">Simple Process</p>
+      <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A">HOW IT WORKS</h2>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#68BA62,#1C418C);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 8px 24px -4px rgba(28,65,140,.35)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff">1</span>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Check Your Rate</h3>
+        <p style="font-size:.88rem;color:#555555;line-height:1.65">Fill out the form below. It takes about 60 seconds and uses a soft credit pull — no impact to your score.</p>
+      </div>
+      <div class="text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#68BA62,#1C418C);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 8px 24px -4px rgba(28,65,140,.35)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff">2</span>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Choose Your Offer</h3>
+        <p style="font-size:.88rem;color:#555555;line-height:1.65">Review loan options from multiple lenders and pick the monthly payment and term that fits your budget.</p>
+      </div>
+      <div class="text-center">
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#68BA62,#1C418C);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 8px 24px -4px rgba(28,65,140,.35)">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff">3</span>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">Get Your Roof Done</h3>
+        <p style="font-size:.88rem;color:#555555;line-height:1.65">Once approved, Happy Roof schedules your project. Funds go directly to us — you just make your monthly payments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER CALLOUT -->
+<div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #1A1A1A;padding:2.5rem 0">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-5 flex-wrap justify-center sm:justify-start">
+        <img src="/Brand%20Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" style="height:40px;width:auto" />
+        <div style="width:1px;height:32px;background:#E0E0E0"></div>
+        <div>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;letter-spacing:-.02em;background:linear-gradient(135deg,#68BA62,#1C418C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ENHANCIFY</span>
+          <p style="color:#888888;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.1rem">Official Financing Partner</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4 text-center sm:text-left">
+        <div>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:1;background:linear-gradient(135deg,#68BA62,#4A9E44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">60s</p>
+          <p style="color:#555555;font-size:.75rem;margin-top:.2rem">To apply</p>
+        </div>
+        <div style="width:1px;background:#222;align-self:stretch"></div>
+        <div>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:1;background:linear-gradient(135deg,#68BA62,#1C418C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">0</p>
+          <p style="color:#555555;font-size:.75rem;margin-top:.2rem">Credit score impact</p>
+        </div>
+        <div style="width:1px;background:#222;align-self:stretch"></div>
+        <div>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:1;background:linear-gradient(135deg,#5B8CE0,#1C418C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Many</p>
+          <p style="color:#555555;font-size:.75rem;margin-top:.2rem">Lender options</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENHANCIFY WIDGET -->
+<section id="apply" style="background:#FFFFFF;padding:5rem 0 3rem">
+  <!-- Heading stays in constrained container -->
+  <div class="max-w-2xl mx-auto px-5 text-center mb-10">
+    <p class="sl mb-3" style="color:#555">Powered by Enhancify</p>
+    <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95;letter-spacing:-.01em">
+      CHECK YOUR RATE<br/><span class="gfin">IN 60 SECONDS.</span>
+    </h2>
+    <p style="color:#555555;font-size:.95rem;margin-top:.75rem">No obligation. Soft credit check only. Offered through our partner Enhancify.</p>
+  </div>
+  <!-- Widget is full-width, no constraining container -->
+  <div style="max-width:1400px;margin:0 auto;padding:0 1rem">
+    <div class="enhancify-wrap">
+      <script src="https://www.enhancify.com/fullpagewidget/"></script>
+      <div id='fullpagewidget'
+        data-color1='#68BA62'
+        data-color2='#1C418C'
+        data-coBrandedColor='#FFFFFF'
+        data-page='9932615'
+        data-hideLink='0'>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.75rem;color:#888888;margin-top:1.25rem;line-height:1.6;padding:0 1rem">
+    Financing is provided by Enhancify and its lending partners. Happy Roof is not a lender. All credit decisions are made by the lender. Subject to credit approval. Rates and terms vary by applicant.
+  </p>
+</section>
+
+<!-- FAQ -->
+<section style="background:#F7F7F7;padding:5rem 0;border-top:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5">
+    <p class="sl gt text-center mb-3">Common Questions</p>
+    <h2 class="font-display font-black text-center mb-10" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.01em">FINANCING FAQ</h2>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">Will checking my rate hurt my credit score?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">No. The initial rate check uses a soft credit inquiry, which does not affect your credit score. Only if you accept an offer and formally apply will a hard pull occur — and only from the lender you choose.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">How much can I finance?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">Loan amounts vary based on your creditworthiness and the lender. Enhancify works with a network of lenders that can fund roofing projects of various sizes — from minor repairs to full commercial replacements. Check your rate to see what you qualify for.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">How soon after approval can my project start?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">Once your loan is approved and finalized, Happy Roof can schedule your project immediately. In many cases, we're able to get started within days of your loan funding. We'll coordinate the timing with you.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">Can I finance storm or insurance damage repairs?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">Yes. Financing can be used for any roofing project — including storm damage repairs — even if insurance is paying a portion. Financing can cover deductibles, non-covered items, or upgrades beyond what insurance allows.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">Do I need perfect credit to qualify?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">Not at all. Enhancify works with a diverse network of lenders, including options for a range of credit profiles. The best way to find out what you qualify for is to check your rate — it's free and takes 60 seconds.</p></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#1A1A1A">Is Happy Roof the lender?</span>
+        <svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p style="color:#777;font-size:.9rem;line-height:1.7">No. Happy Roof is a roofing contractor, not a lender. We've partnered with Enhancify, a licensed financing platform, to connect our customers with third-party lenders. All credit decisions are made by the lender, not by us.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(230,168,23,.1) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%);border-top:1px solid #2A2A2A;padding:5rem 0">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <img src="/Brand%20Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" style="height:44px;width:auto;margin:0 auto 1.5rem" />
+    <h2 class="font-display font-black mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);line-height:.93;letter-spacing:-.01em;color:#F7F7F7">
+      READY TO GET STARTED?
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem;max-width:440px;margin-left:auto;margin-right:auto">
+      Check your rate above, or get a free roofing estimate first. Either way, we're here to help you move forward.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#apply" class="btn-fin">Check My Rate Now</a>
+      <a href="/contact" class="btn-t">Get Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS CARD STRIP -->
+<div style="background:#FFFFFF;padding:2.5rem 0;position:relative;overflow:hidden;border-top:1px solid #E0E0E0">
+  <div class="relative z-10 max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <img src="/Brand%20Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" style="height:40px;width:auto" />
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem 2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;color:#333">
+      <span style="color:#1A1A1A">TAMPA BAY</span><span style="color:#E0E0E0">·</span>
+      <span style="color:#1A1A1A">CCC1337380</span><span style="color:#E0E0E0">·</span>
+      <a href="https://happyroof.com" style="color:#3B9FD9;text-decoration:none">HAPPYROOF.COM</a><span style="color:#E0E0E0">·</span>
+      <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none">(813) 595-7663</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<script is:inline>
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+</script>
+
+</BaseLayout>

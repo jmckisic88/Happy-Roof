@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{"@context":"https://schema.org","@type":["LocalBusiness","RoofingContractor"],"name":"Happy Roof LLC","url":"https://happyroof.com","telephone":"+1-813-595-7663","email":"info@happyroof.com","description":"Spring roof checkup services in Tampa Bay. Seasonal inspection and maintenance. FL License #CCC1337380.","image":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg","logo":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg","address":{"@type":"PostalAddress","streetAddress":"141 Stevens Ave #12","addressLocality":"Oldsmar","addressRegion":"FL","postalCode":"34677","addressCountry":"US"},"hasCredential":"Florida Roofing Contractor License #CCC1337380"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Why is spring a good time for a roof checkup?","acceptedAnswer":{"@type":"Answer","text":"Spring in Tampa Bay offers a critical window between winter's cooler, drier months and the summer rainy season. It's the ideal time to assess any damage from winter cold snaps, repair UV-degraded sealants, clear debris, and ensure your roof is prepared for the heavy afternoon thunderstorms that begin in May and the hurricane season that starts June 1."}},
+    {"@type":"Question","name":"What does a spring roof checkup include?","acceptedAnswer":{"@type":"Answer","text":"A spring checkup includes a full inspection of all roofing materials, flashing, sealants, gutters, soffit, fascia, and attic ventilation. We also clear debris, clean gutters, reseal any failed caulking, and repair minor damage. You receive a detailed report with photos documenting your roof's condition."}},
+    {"@type":"Question","name":"Can winter weather in Tampa Bay damage my roof?","acceptedAnswer":{"@type":"Answer","text":"Yes, even in Florida. Temperature fluctuations cause materials to expand and contract, loosening fasteners and cracking sealants. Cold snaps can make shingles brittle and more susceptible to cracking. Extended dry periods allow UV damage to accumulate without the protective moisture that rain provides. A spring checkup catches these issues."}},
+    {"@type":"Question","name":"How much does a spring roof checkup cost?","acceptedAnswer":{"@type":"Answer","text":"Happy Roof offers free roof inspections as part of our spring checkup service. If maintenance work is needed beyond the inspection (gutter cleaning, sealant repair, minor fixes), we provide transparent pricing with no surprises. Many homeowners find that a small investment in spring maintenance saves thousands in avoided repairs later."}},
+    {"@type":"Question","name":"How do I schedule a spring roof checkup?","acceptedAnswer":{"@type":"Answer","text":"Call Happy Roof at (813) 595-7663 or fill out our online contact form. We'll schedule a convenient time for our inspector to visit your property. Spring is our busiest inspection season, so we recommend booking early — March and April appointments fill up quickly."}}
+  ]}]`;
+---
+
+<BaseLayout
+  title="Spring Roof Checkup — Tampa Bay | Happy Roof"
+  description="Spring roof checkup in Tampa Bay. Assess winter damage, prepare for rainy season, and extend your roof's life. Free inspections from Happy Roof. FL #CCC1337380."
+  canonical="https://happyroof.com/spring-roof-checkup"
+  ogDescription="Spring is the best time to check your roof. Free inspections, maintenance tips, and seasonal care. FL #CCC1337380."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/360D4E91-7908-4A34-9BF2-234718DB11C7_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Seasonal Inspection</p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A;margin-bottom:1.25rem">
+      SPRING ROOF CHECKUP<br/><span class="gt">TAMPA BAY.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Spring is the perfect time to assess your roof after winter and prepare for Florida's rainy season and hurricane season ahead. Happy Roof offers free spring inspections to catch problems early and keep your roof in peak condition.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Schedule Spring Checkup <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SPRING -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Spring</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY SPRING IS THE BEST TIME TO CHECK YOUR ROOF</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Many Tampa Bay homeowners don't realize that even Florida's mild winters take a toll on roofing systems. Temperature swings between cool nights and warm days cause expansion and contraction that loosens fasteners, cracks sealants, and shifts roofing materials over time. Months of intense UV exposure during the dry season degrades shingle granules and dries out flashing caulk.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Spring sits at the critical junction between winter's accumulated wear and the approaching summer storm season. Starting in May, Tampa Bay's daily thunderstorms bring heavy rain, lightning, and gusty winds. By June 1, hurricane season officially begins. Any roof weakness that went undetected through winter becomes a serious liability once the heavy weather starts.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          A spring roof checkup gives you the time and mild weather conditions to identify issues and complete repairs before conditions become more challenging. It's the most cost-effective, least stressful time of year to address your roof — and it gives you peace of mind heading into the months when your roof will be tested the hardest.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Assess Winter Wear</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Temperature cycling, UV exposure, and dry conditions cause subtle but real damage. A spring inspection reveals what winter left behind.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Prepare for Rainy Season</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Tampa Bay's summer thunderstorms start in May. Making sure your gutters, flashing, and drainage are working properly before the rains begin prevents water damage.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Beat Hurricane Season</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">A roof checkup in March or April gives you 2-3 months to make repairs before June 1. Once a named storm is in the forecast, roofing contractors are overwhelmed with emergency calls.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Best Weather for Repairs</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Spring offers the mildest, most predictable weather in Tampa Bay. Dry conditions and moderate temperatures are ideal for sealant application, shingle repair, and any maintenance work.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPRING MAINTENANCE TIPS -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">Spring Tips</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">SPRING ROOF MAINTENANCE CHECKLIST</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="scard p-6">
+        <div class="step-num mb-4">01</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Clear Winter Debris</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Remove accumulated leaves, pine needles, branches, and organic material from your roof surface and valleys. Debris traps moisture against roofing materials and accelerates deterioration, mold growth, and decay. Pay special attention to valleys and areas around penetrations.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">02</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Clean Gutters &amp; Downspouts</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">After months of dry-season leaf fall, gutters are often packed with debris. Clean them thoroughly, flush downspouts, and verify water flows properly away from your foundation. Clogged gutters during summer thunderstorms cause serious water damage along your roofline.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">03</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Inspect Sealants &amp; Caulking</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Winter's UV exposure and temperature changes dry out and crack sealants around vents, pipes, skylights, and flashing joints. These are the most common sources of roof leaks. Resealing now prevents leaks once the rain starts in earnest.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">04</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Check for Lifted or Damaged Shingles</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Wind and temperature cycling can lift, crack, or displace shingles over winter. Even a single lifted shingle creates an entry point for water. A spring visual inspection (from the ground or by a professional) catches these issues before they cause interior damage.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">05</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Trim Overhanging Branches</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Spring growth brings branches closer to your roof. Cut back anything within 6-10 feet. Overhanging branches drop debris, scratch roofing materials in the wind, trap moisture, and become dangerous projectiles during summer storms and hurricanes.</p>
+      </div>
+      <div class="scard p-6">
+        <div class="step-num mb-4">06</div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Check Attic Ventilation</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">As temperatures rise toward summer, proper attic ventilation becomes critical. Check that ridge vents, soffit vents, and any powered ventilators are clear and functioning. Trapped heat accelerates shingle aging from below and increases your cooling costs significantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE CHECK -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Our Spring Checkup</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">WHAT HAPPY ROOF CHECKS DURING YOUR SPRING INSPECTION</h2>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Complete surface assessment</strong> — every shingle, tile, or panel checked for cracking, curling, granule loss, rust, or displacement</p></div>
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Flashing integrity</strong> — all flashing around vents, chimneys, skylights, and wall junctions inspected for separation, rust, or sealant failure</p></div>
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Gutter and drainage evaluation</strong> — condition, attachment, slope, and flow tested to ensure proper performance during heavy rain</p></div>
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Soffit and fascia check</strong> — looking for rot, peeling, pest damage, and gaps that could allow moisture or animals into your attic</p></div>
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Attic ventilation assessment</strong> — verifying proper airflow through ridge vents, soffit vents, and checking for moisture or mold</p></div>
+      <div class="flex gap-5 items-start"><div class="check-dot" style="width:24px;height:24px;margin-top:.2rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p style="color:#555555;font-size:1rem;line-height:1.75"><strong style="color:#1A1A1A">Detailed photo report</strong> — documenting every area inspected, findings, and professional recommendations delivered within 24 hours</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gp mb-3">FAQ</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Why is spring a good time for a roof checkup?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Spring in Tampa Bay offers a critical window between winter's cooler, drier months and the summer rainy season. It's the ideal time to assess any damage from winter's temperature fluctuations, repair UV-degraded sealants, clear debris, and ensure your roof is prepared for the heavy afternoon thunderstorms that begin in May and the hurricane season that starts June 1.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">What does a spring roof checkup include?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">A spring checkup includes a full inspection of all roofing materials, flashing, sealants, gutters, soffit, fascia, and attic ventilation. We also clear debris, clean gutters, reseal any failed caulking, and repair minor damage. You receive a detailed report with photos documenting your roof's condition.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Can winter weather in Tampa Bay damage my roof?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes, even in Florida. Temperature fluctuations cause roofing materials to expand and contract, which loosens fasteners and cracks sealants over time. Cold snaps can make shingles brittle and more susceptible to wind damage. Extended dry periods during winter allow UV damage to accumulate. A spring checkup catches these often-invisible issues before they cause problems.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">How much does a spring roof checkup cost?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Happy Roof offers free roof inspections as part of our spring checkup service. If maintenance work is needed beyond the inspection — such as gutter cleaning, sealant repair, or minor fixes — we provide transparent pricing with no surprises. Most homeowners find that a small investment in spring maintenance saves thousands in avoided repairs down the road.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">How do I schedule a spring roof checkup?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Call Happy Roof at (813) 595-7663 or fill out our online contact form. We'll schedule a convenient time for our inspector to visit your property. Spring is our busiest inspection season in Tampa Bay, so we recommend booking early — March and April appointments fill up quickly as homeowners prepare for the storm season ahead.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#FFFFFF">SPRING INTO ACTION<span style="color:#F0C040">.</span></h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Schedule your free spring roof checkup today. Don't wait until the first thunderstorm reveals a problem.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Schedule Spring Checkup <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

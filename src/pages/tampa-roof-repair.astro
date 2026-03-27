@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa roof repair contractor providing emergency leak repair, storm damage repair, and general roofing repairs. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Tampa",
+      "containedInPlace": { "@type": "State", "name": "Florida" }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can Happy Roof respond to an emergency leak in Tampa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We offer same-day emergency tarping for active leaks in Tampa. Once the immediate threat is contained, we schedule a full inspection and permanent repair as quickly as possible — often within a few days depending on the scope of work and weather conditions." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I repair my roof vs. replace it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If your Tampa roof is less than 15 years old and the damage is limited to a specific area — missing shingles, a localized leak, or damaged flashing — a repair is usually the right call. If your roof is 20+ years old, has widespread damage, or has had multiple repairs, a full replacement is often more cost-effective long term. We give honest recommendations either way." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does insurance cover roof repairs in Tampa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Many roof repairs caused by storms, hail, or wind are covered by homeowners insurance in Florida. Happy Roof documents all damage thoroughly with photos and measurements, and we can coordinate directly with your insurance adjuster to help streamline the claims process." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a roof repair cost in Tampa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Minor repairs like replacing a few shingles or resealing flashing typically cost $300 to $1,500. More extensive repairs involving multiple areas of damage, decking replacement, or tile work can range from $1,500 to $5,000+. We provide free inspections and transparent estimates before any work begins." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Tampa Roof Repair — Fast Emergency Service | Happy Roof"
+  description="Tampa roof repair by Happy Roof — fast emergency response for leaks, storm damage, missing shingles & more. Same-day service available. FL License #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/tampa-roof-repair"
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Tampa Roof Repair</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      TAMPA ROOF REPAIR<br/><span class="gt">FAST EMERGENCY SERVICE</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      When your Tampa roof is leaking or damaged, Happy Roof responds fast. We provide same-day emergency tarping and expert repairs for shingle, metal, and tile roofs across every Tampa neighborhood — from Ybor City to Westchase. Licensed, insured, and backed by our workmanship warranty.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Choose Happy Roof for Repairs</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY TAMPA HOMEOWNERS TRUST US FOR ROOF REPAIRS</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Tampa is no stranger to severe weather. The city sits along the Gulf Coast where warm waters fuel powerful afternoon thunderstorms from May through October, and hurricane season brings the threat of sustained winds over 100 MPH. When a storm tears off shingles along Bayshore Boulevard, cracks tile in Palma Ceia, or drives rain under flashing in Seminole Heights, you need a roofer who can respond quickly and diagnose the problem accurately.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Happy Roof provides fast, honest roof repair services throughout Tampa and Hillsborough County. We carry full insurance and hold Florida License #CCC1337380. Our approach is straightforward: we inspect the damage, explain exactly what needs to be fixed, and provide a transparent quote. If a targeted repair will solve the problem, that is what we recommend — we do not push unnecessary replacements. For Tampa homeowners dealing with active leaks, we offer emergency tarping to prevent further interior damage while a permanent repair is scheduled.</p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">Whether your home is a 1940s bungalow in Tampa Heights, a ranch in Town n Country, or a newer build in FishHawk, our repair crews have the experience to handle it. Learn more about all our Tampa services on our <a href="/tampa-roofing" style="color:#3B9FD9;text-decoration:none;font-weight:600">Tampa roofing page</a>, or visit our <a href="/roof-repair" style="color:#3B9FD9;text-decoration:none;font-weight:600">roof repair page</a> for general information.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Emergency Leak Response</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Active roof leaks need immediate attention. We provide same-day emergency tarping and fast permanent repairs to stop water from damaging your Tampa home's interior, insulation, and structure.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Storm Damage Repair</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Tampa's tropical storms and hurricanes can tear off shingles, crack tiles, and damage flashing. We document all storm damage for insurance purposes and coordinate with your adjuster.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Flashing & Penetration Repairs</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Leaks around chimneys, skylights, vents, and pipe boots are among the most common roof repairs in Tampa. We replace deteriorated flashing and reseal penetrations to code.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Shingle, Metal & Tile Repair</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">From replacing a handful of wind-damaged shingles to reattaching metal panels or replacing cracked barrel tiles, we repair all major roofing materials used on Tampa homes.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED / COMMON REPAIRS / WHAT WE CHECK -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Common Repairs</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">COMMON ROOF REPAIRS IN TAMPA</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Missing or Lifted Shingles</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Tampa's afternoon thunderstorms and tropical winds frequently lift or tear off shingles, especially on older roofs. We match your existing shingles and replace damaged sections to restore protection.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Cracked or Broken Tile</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Tile roofs common in South Tampa and Beach Park neighborhoods can crack from debris impact or thermal expansion. We source matching replacement tiles and reseat them properly.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Gutter & Soffit Damage</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Heavy Tampa rainstorms can overwhelm gutters and damage soffits. We repair or replace damaged sections to ensure proper water drainage and prevent fascia rot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR REPAIR PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Damage Assessment</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We inspect your roof thoroughly to identify all damage — not just the obvious issues. You receive an honest assessment with photos and a clear explanation of what needs repair.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Transparent Quote</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We provide a written estimate with itemized costs. No hidden fees, no pressure to upgrade to a full replacement unless the damage truly warrants it.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Professional Repair</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Our crew completes the repair using quality materials matched to your existing roof. We protect your property and clean up thoroughly when finished.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Follow-Up Inspection</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We follow up to ensure the repair is holding and you are satisfied with the work. All repairs are backed by our workmanship warranty.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Tampa Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">TAMPA NEIGHBORHOODS WE SERVE</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof provides roof repair services throughout Tampa and all of Hillsborough County.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">South Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Seminole Heights</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Palma Ceia</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westshore</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Hyde Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Davis Islands</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Carrollwood</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">New Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Town 'n' Country</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Ybor City</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Citrus Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Beach Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bayshore</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westchase</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Riverview</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">TAMPA ROOF REPAIR FAQ</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How quickly can Happy Roof respond to an emergency leak in Tampa?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">We offer same-day emergency tarping for active leaks in Tampa. Once the immediate threat is contained, we schedule a full inspection and permanent repair as quickly as possible — often within a few days depending on the scope of work and weather conditions.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        When should I repair my roof vs. replace it?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">If your Tampa roof is less than 15 years old and the damage is limited to a specific area — missing shingles, a localized leak, or damaged flashing — a repair is usually the right call. If your roof is 20+ years old, has widespread damage, or has had multiple repairs, a full replacement is often more cost-effective long term. We give honest recommendations either way.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Does insurance cover roof repairs in Tampa?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Many roof repairs caused by storms, hail, or wind are covered by homeowners insurance in Florida. Happy Roof documents all damage thoroughly with photos and measurements, and we can coordinate directly with your insurance adjuster to help streamline the claims process.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How much does a roof repair cost in Tampa?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Minor repairs like replacing a few shingles or resealing flashing typically cost $300 to $1,500. More extensive repairs involving multiple areas of damage, decking replacement, or tile work can range from $1,500 to $5,000+. We provide free inspections and transparent estimates before any work begins.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      NEED A ROOF REPAIR<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

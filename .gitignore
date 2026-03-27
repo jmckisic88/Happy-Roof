@@ -5,6 +5,8 @@ CLAUDE.md
 # Dev artifacts
 temporary screenshots/
 node_modules/
+dist/
+.astro/
 
 # Reference/design images (not used by the site)
 Banner overlap.png

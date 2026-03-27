@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Roofing Services",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "Roof Replacement", "description": "Complete residential and commercial roof replacement with asphalt shingles, metal, tile, or flat roof systems" },
+        { "@type": "OfferCatalog", "name": "Roof Repair", "description": "Leak repair, shingle replacement, flashing repair, and emergency tarping" },
+        { "@type": "OfferCatalog", "name": "Storm Damage Repair", "description": "Hurricane and storm damage roof repair with full insurance claim assistance" },
+        { "@type": "OfferCatalog", "name": "Roof Inspection", "description": "Professional roof inspections for real estate, insurance, and maintenance" },
+        { "@type": "OfferCatalog", "name": "Commercial Roofing", "description": "TPO, EPDM, modified bitumen, and metal roofing for commercial properties" },
+        { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
+      ]
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "2",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }`;
+---
+
+<BaseLayout
+  title="Privacy Policy | Happy Roof"
+  description="Happy Roof LLC Privacy Policy. Learn how we collect, use, and protect your information, including SMS messaging consent and opt-out rights."
+  canonical="https://happyroof.com/privacy"
+  ogTitle="Privacy Policy | Happy Roof LLC"
+  ogDescription="Read Happy Roof's Privacy Policy including SMS consent, data practices, and your rights."
+  schema={schema}
+>
+
+<style is:inline>
+/* Legal content styles */
+    .legal-body{background:#F5F5F5;color:#1a1a1a}
+    .legal-body h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.01em;color:#1A1A1A;margin:2rem 0 .6rem;padding-top:1.5rem;border-top:1px solid #E0E0E0}
+    .legal-body h2:first-of-type{border-top:none;padding-top:0;margin-top:0}
+    .legal-body h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.01em;color:#888888;margin:1.25rem 0 .4rem;text-transform:uppercase}
+    .legal-body p{color:#888888;font-size:.9rem;line-height:1.75;margin-bottom:.9rem}
+    .legal-body ul{color:#888888;font-size:.9rem;line-height:1.75;margin:0 0 .9rem 1.25rem;list-style:disc}
+    .legal-body ul li{margin-bottom:.3rem}
+    .legal-body a{color:#E6A817;text-decoration:underline}
+    .legal-body a:hover{color:#2D8CC4}
+    .sms-box{background:#fff;border:1.5px solid rgba(230,168,23,.25);border-radius:12px;padding:1.25rem 1.5rem;margin:1rem 0}
+    .sms-box p{margin-bottom:.5rem}
+    .sms-box p:last-child{margin-bottom:0}
+</style>
+
+<!-- HERO -->
+<section style="background:#FFFFFF;padding:7rem 0 3rem;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:#E6A817;margin-bottom:.75rem">Legal</p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.4rem,5vw,3.8rem);line-height:.95;letter-spacing:-.02em;color:#1A1A1A;margin-bottom:.75rem">Privacy Policy</h1>
+    <p style="color:#555555;font-size:.88rem">Last updated: March 22, 2026 &nbsp;·&nbsp; Happy Roof LLC, Tampa Bay, FL</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="legal-body">
+  <div class="max-w-3xl mx-auto px-5 py-12">
+
+    <p>This Privacy Policy describes how <strong>Happy Roof LLC</strong> ("Happy Roof," "we," "us," or "our"), a roofing contractor based in Tampa Bay, Florida, collects, uses, and shares your information when you visit our website, contact us, or request our services. By using our website or submitting a form, you agree to the practices described in this policy.</p>
+
+    <p><strong>You can contact us at <a href="mailto:info@happyroof.com">info@happyroof.com</a> or <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a> for any questions or concerns regarding your data or this policy.</strong></p>
+
+    <h2>1. Information We Collect</h2>
+    <p>We collect information you voluntarily provide to us, including:</p>
+    <ul>
+      <li><strong>Contact information:</strong> name, phone number, email address, and property address</li>
+      <li><strong>Service details:</strong> type of roofing service requested, preferred materials, and project notes</li>
+      <li><strong>Communication records:</strong> messages you send us via forms, email, or text</li>
+      <li><strong>Referral information:</strong> if you were referred by another customer</li>
+    </ul>
+    <p>We may also automatically collect limited technical data such as browser type and general location when you visit our website, solely for analytics purposes.</p>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Respond to estimate requests and schedule appointments</li>
+      <li>Communicate with you about your roofing project</li>
+      <li>Send transactional or informational text messages and calls (if you opt in)</li>
+      <li>Improve our services and website</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+    <p>We do not sell, rent, or share your personal information with third parties for their own marketing purposes.</p>
+
+    <h2>3. Happy Roof Messaging Terms and Conditions</h2>
+
+    <h3>How to Agree or Decline Text Messages</h3>
+    <p>You can opt in to receive text messages from Happy Roof in the following ways:</p>
+    <ul>
+      <li><strong>Website form:</strong> Check the SMS consent checkbox when submitting a form on our <a href="https://www.happyroof.com/contact">Contact page</a> or <a href="https://www.happyroof.com/">homepage</a>. If you do not wish to receive texts, simply uncheck the box before submitting — your form will still be processed.</li>
+      <li><strong>Text keyword:</strong> Text <strong>START</strong> or <strong>ROOF</strong> to <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a> to opt in to messages.</li>
+    </ul>
+    <p>You may opt out at any time by replying <strong>STOP</strong> or <strong>CANCEL</strong> to any message you receive from us.</p>
+
+    <h3>SMS Keywords &amp; Auto-Responses</h3>
+    <div class="sms-box">
+      <p><strong>START or ROOF</strong> (Opt-In):</p>
+      <p style="font-style:italic;color:#555">"Thank you for opting in to receive messages from HAPPY ROOF. You may receive account alerts, updates, and promotional messages. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help. Reply STOP or CANCEL to cancel."</p>
+    </div>
+    <div class="sms-box">
+      <p><strong>STOP or CANCEL</strong> (Opt-Out):</p>
+      <p style="font-style:italic;color:#555">"You have successfully opted out of receiving messages from HAPPY ROOF. You will receive no further messages."</p>
+    </div>
+    <div class="sms-box">
+      <p><strong>HELP</strong> (Support):</p>
+      <p style="font-style:italic;color:#555">"Thank you for reaching out to HAPPY ROOF. What can we help you with today? Please call us at 813-595-7663 or email us at info@happyroof.com for support. Reply STOP or CANCEL to opt-out."</p>
+    </div>
+
+    <h3>Messaging Terms</h3>
+    <div class="sms-box">
+      <p>1. The messaging program consists of general conversational messaging to answer questions and provide support to customers.</p>
+      <p>2. You can cancel the SMS service at any time. Just text <strong>STOP</strong> or <strong>CANCEL</strong> to the phone number from which you received messages. After you send the message, we will send you a confirmation that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, text <strong>START</strong> or <strong>ROOF</strong> to (813) 595-7663 and we will start sending SMS messages to you again.</p>
+      <p>3. If you are experiencing issues with the messaging program you can reply with the keyword <strong>HELP</strong> for more assistance, or you can get help directly at <a href="mailto:info@happyroof.com">info@happyroof.com</a>.</p>
+      <p>4. Carriers are not liable for delayed or undelivered messages.</p>
+      <p>5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.</p>
+      <p>6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.</p>
+      <p>7. You may contact us at <a href="mailto:info@happyroof.com">info@happyroof.com</a> or call <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a> for any questions regarding this policy or our messaging program.</p>
+    </div>
+
+    <h2>4. Phone &amp; Email Communications</h2>
+    <p>By providing your phone number or email address, you also consent to be contacted by Happy Roof via phone call or email regarding your service request. You may opt out of email marketing by clicking "unsubscribe" in any email we send, or by contacting us directly. Phone calls for transactional purposes (scheduling, follow-up) are not subject to the same opt-out, but we will honor any do-not-call requests.</p>
+
+    <h2>5. Data Sharing</h2>
+    <ul>
+      <li>Customer data is not shared with 3rd parties for promotional or marketing purposes.</li>
+      <li>Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.</li>
+    </ul>
+    <p>We may share your information only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service providers:</strong> Third-party tools we use to operate our business (e.g., scheduling software, financing partner Enhancify) under confidentiality agreements</li>
+      <li><strong>Legal compliance:</strong> When required by law, court order, or governmental authority</li>
+      <li><strong>Business transfers:</strong> In connection with a merger or acquisition, your information may be transferred as a business asset</li>
+    </ul>
+    <p>We never sell your personal data to data brokers, marketers, or other third parties.</p>
+
+    <h2>6. Data Retention</h2>
+    <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy, provide ongoing services, and comply with legal obligations — typically no longer than 5 years after your last interaction with us. You may request deletion of your data at any time (see Section 8).</p>
+
+    <h2>7. Data Security</h2>
+    <p>We take reasonable measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+    <h2>8. Your Rights &amp; Choices</h2>
+    <p>Depending on your location, you may have the right to:</p>
+    <ul>
+      <li>Access the personal information we hold about you</li>
+      <li>Correct inaccurate information</li>
+      <li>Request deletion of your personal information</li>
+      <li>Opt out of SMS, phone, or email marketing communications</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:info@happyroof.com">info@happyroof.com</a> or <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a>. We will respond within 30 days.</p>
+
+    <h2>9. Children's Privacy</h2>
+    <p>Our website and services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such information, please contact us immediately.</p>
+
+    <h2>10. Third-Party Links</h2>
+    <p>Our website may contain links to third-party websites (e.g., Google Reviews, Enhancify financing). We are not responsible for the privacy practices of those sites and encourage you to review their policies.</p>
+
+    <h2>11. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of our website or services after any changes constitutes your acceptance of the updated policy.</p>
+
+    <h2>12. Contact Us</h2>
+    <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact:</p>
+    <div style="background:#fff;border:1px solid #E0E0E0;border-radius:12px;padding:1.25rem 1.5rem;margin-top:.5rem">
+      <p style="margin-bottom:.3rem"><strong>Happy Roof LLC</strong></p>
+      <p style="margin-bottom:.3rem">Tampa Bay, FL</p>
+      <p style="margin-bottom:.3rem">Email: <a href="mailto:info@happyroof.com">info@happyroof.com</a></p>
+      <p style="margin-bottom:0">Phone: <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

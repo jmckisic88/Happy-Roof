@@ -1,0 +1,952 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 28.0340, "longitude": -82.6651 },
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "14:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Tampa" },
+      { "@type": "City", "name": "St. Petersburg" },
+      { "@type": "City", "name": "Clearwater" },
+      { "@type": "City", "name": "Brandon" },
+      { "@type": "City", "name": "Wesley Chapel" },
+      { "@type": "City", "name": "Riverview" },
+      { "@type": "City", "name": "Lutz" },
+      { "@type": "City", "name": "Land O Lakes" },
+      { "@type": "City", "name": "Odessa" },
+      { "@type": "City", "name": "Temple Terrace" },
+      { "@type": "City", "name": "New Tampa" },
+      { "@type": "City", "name": "Carrollwood" },
+      { "@type": "City", "name": "Oldsmar" },
+      { "@type": "City", "name": "Palm Harbor" },
+      { "@type": "City", "name": "Tarpon Springs" },
+      { "@type": "City", "name": "Safety Harbor" },
+      { "@type": "City", "name": "Dunedin" },
+      { "@type": "City", "name": "Largo" },
+      { "@type": "City", "name": "Seminole" },
+      { "@type": "City", "name": "New Port Richey" },
+      { "@type": "City", "name": "Trinity" },
+      { "@type": "City", "name": "Valrico" },
+      { "@type": "City", "name": "Plant City" },
+      { "@type": "City", "name": "Seffner" },
+      { "@type": "City", "name": "Town n Country" },
+      { "@type": "City", "name": "Citrus Park" },
+      { "@type": "City", "name": "Fish Hawk" },
+      { "@type": "City", "name": "Apollo Beach" },
+      { "@type": "City", "name": "Sun City Center" },
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/share/1E27RD4hjZ/",
+      "https://www.instagram.com/happyroofflorida",
+      "https://www.tiktok.com/@happyrooffl",
+      "https://share.google/eM5h7LtohVsqVd0Nd"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Roofing Services",
+      "itemListElement": [
+        { "@type": "OfferCatalog", "name": "Roof Replacement", "description": "Complete residential and commercial roof replacement with asphalt shingles, metal, tile, or flat roof systems" },
+        { "@type": "OfferCatalog", "name": "Roof Repair", "description": "Leak repair, shingle replacement, flashing repair, and emergency tarping" },
+        { "@type": "OfferCatalog", "name": "Storm Damage Repair", "description": "Hurricane and storm damage roof repair with full insurance claim assistance" },
+        { "@type": "OfferCatalog", "name": "Roof Inspection", "description": "Professional roof inspections for real estate, insurance, and maintenance" },
+        { "@type": "OfferCatalog", "name": "Commercial Roofing", "description": "TPO, EPDM, modified bitumen, and metal roofing for commercial properties" },
+        { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
+      ]
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "2",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is Happy Roof?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof LLC is a locally owned roofing contractor based in Oldsmar, Florida, serving Tampa Bay's Hillsborough, Pinellas, and Pasco counties. Founded in 2025 by a team with 30+ years of combined roofing experience, Happy Roof specializes in residential and commercial roof replacement, repair, storm damage restoration, and inspections. Florida License #CCC1337380." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best roofing company in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof is a top-rated roofing company in Tampa Bay with a 5-star Google rating. They are an Owens Corning Preferred Contractor, offer a 15-year workmanship warranty, and provide free estimates with no hidden fees. Licensed (FL #CCC1337380), insured, and locally owned." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get a free roof estimate in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Call Happy Roof at (813) 595-7663 or visit happyroof.com/contact.html to schedule a free, no-obligation roof inspection and estimate. They typically respond within 1 business day and serve all of Hillsborough, Pinellas, and Pasco counties." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof offer a warranty on roofing work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof provides a 15-year workmanship warranty on shingle, metal, and tile roof installations, and a 10-year workmanship warranty on flat roof systems — in writing, every time. This is in addition to manufacturer material warranties from Owens Corning." }
+      }
+    ]
+  },{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "name": "Happy Roof",
+  "url": "https://happyroof.com",
+  "logo": "https://happyroof.com/Brand%20Assets/Happy%20Roof%20Logo.png",
+  "image": "https://happyroof.com/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg",
+  "telephone": "+1-813-595-7663",
+  "email": "info@happyroof.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "141 Stevens Ave",
+    "addressLocality": "Oldsmar",
+    "addressRegion": "FL",
+    "postalCode": "34677",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.0342,
+    "longitude": -82.6651
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Tampa"},
+    {"@type": "City", "name": "St. Petersburg"},
+    {"@type": "City", "name": "Clearwater"},
+    {"@type": "City", "name": "Oldsmar"},
+    {"@type": "City", "name": "Palm Harbor"},
+    {"@type": "City", "name": "Dunedin"},
+    {"@type": "City", "name": "Tarpon Springs"},
+    {"@type": "City", "name": "Safety Harbor"},
+    {"@type": "City", "name": "Largo"},
+    {"@type": "City", "name": "Pinellas Park"}
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$",
+  "paymentAccepted": ["Cash","Check","Credit Card","ACH"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "2",
+    "bestRating": "5"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Roofing Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Residential Roof Replacement"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Roofing"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roof Repair"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free Roof Inspection"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Storm Damage Repair"}}
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/happyroofllc",
+    "https://www.instagram.com/happyroofllc"
+  ]
+},{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a roof replacement cost in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Roof replacement costs in Tampa Bay typically range from $8,000 to $25,000+ depending on roof size, material (asphalt shingles, tile, metal), and complexity. Happy Roof offers free estimates — call (813) 595-7663 or submit our online form." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a roof replacement take in Florida?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most residential roof replacements in Tampa Bay are completed in 1–3 days. Larger homes or tile roofs may take longer. Happy Roof works efficiently to minimize disruption." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Happy Roof licensed and insured in Florida?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC is a fully licensed Florida roofing contractor (License #CCC1337380), bonded, and insured. We serve all of Hillsborough, Pinellas, and Pasco Counties." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle storm damage and insurance claims in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof specializes in storm damage assessment and works directly with insurance companies to help Tampa Bay homeowners navigate the claims process and get their roofs repaired or replaced." }
+    },
+    {
+      "@type": "Question",
+      "name": "What roofing materials do you offer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof installs Owens Corning asphalt shingles, Owens Corning shingles, Verea clay tile, concrete tile, and metal roofing. We help you choose the best option for Florida's climate and your budget." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer roof financing in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Through our partnership with Enhancify, Happy Roof offers flexible financing options including 0% interest plans for qualified customers. Check your rate in 60 seconds at happyroof.com/finance.html." }
+    }
+  ]
+},{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a roof replacement cost in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Roof replacement costs in Tampa Bay typically range from $8,000 to $25,000+ depending on roof size, material (asphalt shingles, tile, metal), and complexity. Happy Roof offers free estimates — call (813) 595-7663 or submit our online form." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a roof replacement take in Florida?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most residential roof replacements in Tampa Bay are completed in 1–3 days. Larger homes or tile roofs may take longer. Happy Roof works efficiently to minimize disruption." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Happy Roof licensed and insured in Florida?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC is a fully licensed Florida roofing contractor (License #CCC1337380), bonded, and insured. We serve all of Hillsborough, Pinellas, and Pasco Counties." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle storm damage and insurance claims in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof specializes in storm damage assessment and works directly with insurance companies to help Tampa Bay homeowners navigate the claims process and get their roofs repaired or replaced." }
+    },
+    {
+      "@type": "Question",
+      "name": "What roofing materials do you offer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof installs Owens Corning asphalt shingles, Owens Corning shingles, Verea clay tile, concrete tile, and metal roofing. We help you choose the best option for Florida's climate and your budget." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer roof financing in Tampa Bay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Through our partnership with Enhancify, Happy Roof offers flexible financing options including 0% interest plans for qualified customers. Check your rate in 60 seconds at happyroof.com/finance.html." }
+    }
+  ]
+}]`;
+---
+
+<BaseLayout
+  title="Happy Roof — Tampa Bay Roofing Contractor | Licensed & Insured"
+  description="Happy Roof is Tampa Bay's trusted roofing contractor. Licensed & insured for roof replacement, repair, storm damage, inspections, and new construction. Free estimates."
+  canonical="https://happyroof.com/"
+  ogTitle="Happy Roof — Tampa Bay's Trusted Roofing Contractor"
+  ogDescription="Expert roof replacement, repair, storm damage & inspections in Tampa Bay. Licensed & insured. Free estimates — call (813) 595-7663."
+  activePage="home"
+  schema={schema}
+>
+
+<style is:inline>
+/* ── Hero slideshow ── */
+    /* ── Gradients ── */
+    /* ── Nav ── */
+    /* ── Buttons ── */
+    /* ── Cards ── */
+    /* ── Section label ── */
+    /* ── Trust badge ── */
+    /* ── Stats bar ── */
+    /* ── Brand partner card ── */
+    /* ── CTA gradient ── */
+    /* ── Mobile nav toggle ── */
+    /* ── Testimonial ── */
+    /* ── Step card ── */
+    /* ── Footer ── */
+    /* ── Form ── */
+        .hero-bg .btn-t{width:100%;justify-content:center;font-size:1rem !important;padding:.85rem 1.5rem !important}
+        .hero-bg .badge{font-size:.7rem;padding:.3rem .6rem}
+      }
+</style>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero-bg relative overflow-hidden pt-28 pb-20">
+  <!-- Cycling roof photo background -->
+  <div class="hero-slideshow" aria-hidden="true" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')">
+    <div class="hero-slide active" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('/Brand%20Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <!-- Badges -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Licensed &amp; Insured</span>
+        <span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tampa Bay Local</span>
+        <span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Expert Team</span>
+      </div>
+      <!-- Headline -->
+      <h1 class="font-display font-extrabold leading-none tracking-tight mb-5" style="font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:.93;color:#1A1A1A;text-transform:uppercase;letter-spacing:-.01em">
+        YOUR ROOF PROTECTS<br/>
+        EVERYTHING.<br/>
+        <span class="gt">WE PROTECT<br/>YOUR ROOF.</span>
+      </h1>
+      <p class="mb-8 max-w-lg" style="color:#555555;font-size:1.05rem;line-height:1.75">
+        Get a straight answer, a fair price, and a crew that shows up on time. Every job backed by our 15-year workmanship warranty.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 mb-10">
+        <a href="/contact" class="btn-t">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <span style="color:#888888;font-size:.95rem">or call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;font-weight:700;text-decoration:none">(813) 595-7663</a></span>
+      </div>
+      <p style="color:#888888;font-size:.75rem;letter-spacing:.07em">LICENSED &amp; INSURED &nbsp;·&nbsp; FL #CCC1337380</p>
+    </div>
+
+    <!-- Right: estimate form -->
+    <div>
+      <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:20px;padding:1.75rem 1.75rem 1.5rem;box-shadow:0 24px 64px -12px rgba(44,24,16,.08),0 8px 24px -8px rgba(44,24,16,.05)">
+        <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;color:#1A1A1A;letter-spacing:.01em;margin-bottom:.2rem">Get a Free Estimate</p>
+        <p style="font-size:.82rem;color:#555555;margin-bottom:1.25rem">We typically respond within 1 business day.</p>
+        <form id="hero-form" onsubmit="submitHeroForm(event)" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+            <div>
+              <label class="flabel">Name <span style="color:#3B9FD9">*</span></label>
+              <input type="text" name="name" class="finput" placeholder="Jane Smith" required />
+            </div>
+            <div>
+              <label class="flabel">Phone <span style="color:#3B9FD9">*</span></label>
+              <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="flabel">Email</label>
+            <input type="email" name="email" class="finput" placeholder="jane@example.com" />
+          </div>
+          <div class="mb-3">
+            <label class="flabel">Service Needed <span style="color:#3B9FD9">*</span></label>
+            <select name="service" class="finput" style="appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22%3E%3Cpath d=%22M1 1l5 5 5-5%22 stroke=%22%23555%22 stroke-width=%221.5%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Roof Replacement</option>
+              <option>Roof Repair</option>
+              <option>Free Inspection</option>
+              <option>Storm / Insurance Damage</option>
+              <option>Commercial Roofing</option>
+              <option>Gutter Services</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="flabel">Property Address or Notes</label>
+            <textarea name="notes" class="finput" style="resize:none;min-height:72px" placeholder="Address, best time to call, or anything else…"></textarea>
+          </div>
+          <!-- SMS Consent -->
+          <div class="mb-4" style="display:flex;align-items:flex-start;gap:.65rem">
+            <input type="checkbox" id="sms-consent-hero" name="sms_consent" checked style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+            <label for="sms-consent-hero" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">I agree to receive text messages from Happy Roof. You may receive account alerts, updates, and promotional messages. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline" target="_blank">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline" target="_blank">Terms</a>.</label>
+          </div>
+          <div id="hero-success" style="display:none;background:rgba(59,159,217,.08);border:1px solid rgba(59,159,217,.25);border-radius:10px;padding:.875rem 1rem;margin-bottom:1rem;text-align:center">
+            <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
+          </div>
+          <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.05rem;padding:.9rem">
+            Request Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <p style="text-align:center;font-size:.7rem;color:#888888;margin-top:.75rem;letter-spacing:.04em">NO OBLIGATION &nbsp;·&nbsp; LICENSED &amp; INSURED &nbsp;·&nbsp; #CCC1337380</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="relative z-10 flex justify-center pb-10">
+    <div class="flex flex-col items-center gap-2" style="opacity:.3;color:#1A1A1A">
+      <p style="font-size:.68rem;letter-spacing:.15em;font-weight:500;text-transform:uppercase">Scroll</p>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Signals -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.5rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem 3rem">
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">OWENS CORNING PREFERRED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FL LICENSE #CCC1337380</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FULLY INSURED & BONDED</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">15-YEAR WARRANTY</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ STATS ══════════════════════ -->
+<div class="stats-bar">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-stretch justify-center divide-x" style="divide-color:#E0E0E0">
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[130px]">
+        <p class="font-display font-black gp" style="font-size:2.4rem;line-height:1;letter-spacing:-.01em">30+</p>
+        <p style="color:#555555;font-size:.82rem;margin-top:.25rem">Years & Counting</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[130px]">
+        <p class="font-display font-black gt" style="font-size:2.4rem;line-height:1;letter-spacing:-.01em">15yr</p>
+        <p style="color:#555555;font-size:.82rem;margin-top:.25rem">Workmanship Warranty</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[130px]">
+        <p class="font-display font-black gp" style="font-size:2.4rem;line-height:1;letter-spacing:-.01em">5.0★</p>
+        <p style="color:#555555;font-size:.82rem;margin-top:.25rem">Google Rating</p>
+      </div>
+      <div class="flex flex-col items-center justify-center py-6 px-8 flex-1 min-w-[130px]">
+        <p class="font-display font-black gt" style="font-size:2.4rem;line-height:1;letter-spacing:-.01em">48hr</p>
+        <p style="color:#555555;font-size:.82rem;margin-top:.25rem">Emergency Response</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ INFO STRIP ══════════════════════ -->
+<div style="background:#F7F7F7;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ SERVICES ══════════════════════ -->
+<section id="services" class="py-24" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="mb-12">
+      <p class="sl gp mb-3">What We Do</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.93">
+        COMPLETE ROOFING SERVICES<br/><span class="gt">DONE RIGHT.</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Residential -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Residential Roofing</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">Full replacements and new installations for Florida homes. Storm-rated systems built to handle anything the Gulf throws at them.</p>
+        </div>
+        <a href="/services#residential" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+      <!-- Commercial -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M6 2h12l4 4v16H2V6z"/><path d="M9 22V12h6v10"/><path d="M9 2v4M15 2v4"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Commercial Roofing</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">Flat, low-slope, and metal systems for commercial properties. On-time delivery, minimal disruption to your business operations.</p>
+        </div>
+        <a href="/services#commercial" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+      <!-- Repairs -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Roof Repairs</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">Leak detection, shingle replacement, flashing repairs, and storm damage fixes. Fast response times with lasting results.</p>
+        </div>
+        <a href="/services#repairs" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+      <!-- Inspections -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Roof Inspections</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">Detailed written reports for buyers, sellers, and insurance claims. Know exactly what you have before you buy, sell, or file.</p>
+        </div>
+        <a href="/services#inspections" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+      <!-- Storm / Insurance -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">Storm Damage &amp; Insurance</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">We work directly with your insurance company. From documentation through completion, we handle the entire claims process.</p>
+        </div>
+        <a href="/services#storm" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+      <!-- New Construction -->
+      <div class="card p-6 flex flex-col gap-4">
+        <div class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div>
+          <h3 class="font-display font-bold text-brand-black mb-2" style="font-size:1.35rem;line-height:1.1">New Construction</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.65">Builder partnerships and new-build roofing for custom homes, developments, and commercial projects throughout Tampa Bay.</p>
+        </div>
+        <a href="/services#construction" style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-decoration:none" class="mt-auto hover:text-brand-purpleLight transition-colors">LEARN MORE →</a>
+      </div>
+    </div>
+    <div class="mt-10 text-center">
+      <a href="/services" class="btn-p">View All Services <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PREFERRED VENDORS ══════════════════════ -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:4rem 0">
+  <div class="max-w-5xl mx-auto px-5">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.5rem">OUR PREFERRED VENDORS</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.75rem,3vw,2.5rem);line-height:.95;color:#1A1A1A">MATERIALS WE TRUST.</h2>
+      <p style="color:#555;font-size:.95rem;line-height:1.7;margin-top:.75rem;max-width:550px;margin-left:auto;margin-right:auto">We partner with the best manufacturers in the industry. These are our go-to brands — backed by warranties, proven in Florida's climate.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:2.5rem">
+      <a href="https://www.owenscorning.com" target="_blank" rel="noopener" style="background:#fff;border:1px solid #E0E0E0;border-radius:12px;padding:2rem 1.5rem;text-align:center;text-decoration:none;transition:border-color .18s,box-shadow .18s;display:flex;flex-direction:column;align-items:center;gap:1rem" onmouseover="this.style.borderColor='#E6A817';this.style.boxShadow='0 4px 20px -4px rgba(230,168,23,.15)'" onmouseout="this.style.borderColor='#E0E0E0';this.style.boxShadow='none'">
+        <div style="width:64px;height:64px;border-radius:12px;background:#FFB6C1;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin:0">OWENS CORNING</h3>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;color:#E6A817;text-transform:uppercase;margin:0">Preferred Contractor — All Shingles</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.6;margin:0">Duration HDZ, UHDZ, Oakridge, Berkshire, and more. Industry-leading wind and algae resistance for Florida homes.</p>
+        <span style="color:#3B9FD9;font-size:.8rem;font-weight:600">owenscorning.com →</span>
+      </a>
+      <a href="https://www.vereaclaytile.com" target="_blank" rel="noopener" style="background:#fff;border:1px solid #E0E0E0;border-radius:12px;padding:2rem 1.5rem;text-align:center;text-decoration:none;transition:border-color .18s,box-shadow .18s;display:flex;flex-direction:column;align-items:center;gap:1rem" onmouseover="this.style.borderColor='#E6A817';this.style.boxShadow='0 4px 20px -4px rgba(230,168,23,.15)'" onmouseout="this.style.borderColor='#E0E0E0';this.style.boxShadow='none'">
+        <div style="width:64px;height:64px;border-radius:12px;background:#F4D6A0;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin:0">VEREA CLAY</h3>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;color:#E6A817;text-transform:uppercase;margin:0">Tile Partner — All Tile</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.6;margin:0">Premium clay and concrete tile — barrel, S-tile, and flat profiles. Classic Florida aesthetics with 50–100 year lifespans.</p>
+        <span style="color:#3B9FD9;font-size:.8rem;font-weight:600">vereaclaytile.com →</span>
+      </a>
+      <a href="https://www.gulfcoastsupply.com" target="_blank" rel="noopener" style="background:#fff;border:1px solid #E0E0E0;border-radius:12px;padding:2rem 1.5rem;text-align:center;text-decoration:none;transition:border-color .18s,box-shadow .18s;display:flex;flex-direction:column;align-items:center;gap:1rem" onmouseover="this.style.borderColor='#E6A817';this.style.boxShadow='0 4px 20px -4px rgba(230,168,23,.15)'" onmouseout="this.style.borderColor='#E0E0E0';this.style.boxShadow='none'">
+        <div style="width:64px;height:64px;border-radius:12px;background:#B8D4E3;display:flex;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5"><path d="M2 20h20M4 20V8l8-5 8 5v12"/><path d="M10 20v-6h4v6"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin:0">GULFCOAST SUPPLY</h3>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;color:#E6A817;text-transform:uppercase;margin:0">Metal Partner — All Metal</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.6;margin:0">Standing seam, corrugated, and exposed fastener metal systems. Florida-made, hurricane-rated, 40–70 year lifespans.</p>
+        <span style="color:#3B9FD9;font-size:.8rem;font-weight:600">gulfcoastsupply.com →</span>
+      </a>
+    </div>
+    <div style="text-align:center;background:#fff;border:1px solid #E0E0E0;border-radius:12px;padding:1.5rem 2rem">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;margin:0 0 .5rem">WE ALSO INSTALL THESE BRANDS BY REQUEST</p>
+      <p style="color:#555;font-size:.85rem;line-height:1.8;margin:0">
+        <strong>Shingle:</strong> <a href="https://www.gaf.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">GAF</a> · <a href="https://www.titanroofing.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">Titan</a> · <a href="https://www.atlasroofing.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">Atlas</a> &nbsp;&nbsp;
+        <strong>Metal:</strong> <a href="https://www.tricountymetals.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">TriCounty Metals</a> · <a href="https://www.abormetals.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">ABO Metals</a> · <a href="https://www.mbci.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">MBCI</a> &nbsp;&nbsp;
+        <strong>Tile:</strong> <a href="https://www.crownrooftiles.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">Crown Roof Tiles</a> · <a href="https://www.eagleroofing.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">Eagle Roofing</a> · <a href="https://www.boralroof.com" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none">Boral</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ WHY US ══════════════════════ -->
+<section class="py-24" style="background:#EBF5FB">
+  <div class="max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-16 items-center">
+    <!-- Image collage -->
+    <div class="relative">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden" style="aspect-ratio:3/4">
+          <img src="/Brand%20Assets/Photos/standing-seam-metal-roof-tampa.jpg" alt="Standing seam metal roof installation in Tampa Bay by Happy Roof" class="w-full h-full object-cover" style="object-position:center top" />
+        </div>
+        <div class="flex flex-col gap-4 pt-10">
+          <div class="rounded-2xl overflow-hidden" style="flex:1;aspect-ratio:4/3">
+            <img src="/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg" alt="Architectural shingle roof replacement in Tampa Bay by Happy Roof" class="w-full h-full object-cover" />
+          </div>
+          <div class="rounded-2xl overflow-hidden" style="flex:1;aspect-ratio:4/3">
+            <img src="/Brand%20Assets/Photos/metal-roof-installation-clearwater.jpg" alt="Metal roof installation in Clearwater FL by Happy Roof" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-4 right-4 rounded-xl p-4 text-center" style="background:#FFFFFF;border:1px solid #E0E0E0;box-shadow:0 12px 32px -8px rgba(44,24,16,.1)">
+        <p class="font-display font-black gp" style="font-size:2.2rem;line-height:1">5.0★</p>
+        <p style="color:#555555;font-size:.75rem;margin-top:.2rem">Google Rating</p>
+      </div>
+    </div>
+    <!-- Copy -->
+    <div>
+      <p class="sl gt mb-3">Why Happy Roof</p>
+      <h2 class="font-display font-black tracking-tightest mb-5" style="font-size:clamp(2.2rem,4vw,3.4rem);line-height:.93">
+        WE MAKE ROOFING<br/><span class="gp">STRESS-FREE.</span>
+      </h2>
+      <p style="color:#555555;line-height:1.75;margin-bottom:1.75rem">
+        Happy Roof was built on a simple promise: no surprises, no shortcuts, no excuses. We show up when we say we will, use materials you can trust, and stand behind our work with real warranties.
+      </p>
+      <div class="flex flex-col gap-5">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,0,0,.06)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><p class="font-medium text-brand-black text-sm">Upfront, honest pricing — no hidden fees</p><p style="color:#555555;font-size:.85rem;margin-top:.2rem">Know exactly what you're paying before work begins.</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,0,0,.06)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><p class="font-medium text-brand-black text-sm">Certified installer — Owens Corning</p><p style="color:#555555;font-size:.85rem;margin-top:.2rem">Your materials come with manufacturer-backed warranties.</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,0,0,.06)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><p class="font-medium text-brand-black text-sm">Full insurance claim support</p><p style="color:#555555;font-size:.85rem;margin-top:.2rem">We document, file, and advocate so you get what you deserve.</p></div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(0,0,0,.06)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><p class="font-medium text-brand-black text-sm">15-year workmanship warranty (Shingle, Metal & Tile)</p><p style="color:#555555;font-size:.85rem;margin-top:.2rem">10 years on flat roof installation. Every job is backed in writing.</p></div>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a href="/about" class="btn-p">Meet the Team <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ RECENT PROJECTS ══════════════════════ -->
+<section class="py-16" style="background:#F7F7F7;border-top:1px solid #E0E0E0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Our Work</p>
+        <h3 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.025em;line-height:1">RECENT PROJECTS</h3>
+      </div>
+      <a href="/services" style="color:#555555;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .18s" onmouseenter="this.style.color='#E6A817'" onmouseleave="this.style.color='#888888'">VIEW ALL SERVICES →</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="relative rounded-2xl overflow-hidden group" style="aspect-ratio:4/3">
+        <img src="/Brand%20Assets/Photos/metal-roof-installation-clearwater.jpg" alt="Standing seam metal roof project in Tampa Bay by Happy Roof" class="w-full h-full object-cover" style="transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Metal Roofing</p>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Standing Seam · Tampa Bay</p>
+        </div>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden group" style="aspect-ratio:4/3">
+        <img src="/Brand%20Assets/Photos/commercial-tpo-roof-tampa.jpg" alt="Commercial TPO roof installation in Tampa by Happy Roof" class="w-full h-full object-cover" style="transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Shingle Roofing</p>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Architectural Shingles · Tampa Bay</p>
+        </div>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden group" style="aspect-ratio:4/3">
+        <img src="/Brand%20Assets/Photos/roof-replacement-project-tampa-bay.jpg" alt="Roof replacement project in Tampa Bay by Happy Roof" class="w-full h-full object-cover" style="object-position:center top;transition:transform .5s cubic-bezier(.22,1,.36,1)" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'" />
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);pointer-events:none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em">Flat / TPO Roofing</p>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.1rem">Commercial TPO · Tampa Bay</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PROCESS ══════════════════════ -->
+<section class="py-24 relative overflow-hidden" style="background:#FFFFFF;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0">
+  <!-- light brand texture -->
+  <div class="relative z-10 max-w-7xl mx-auto px-5">
+    <div class="mb-12 text-center">
+      <p class="sl gp mb-3">How It Works</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.93;color:#1A1A1A">
+        FROM CALL TO COMPLETION<br/><span class="gt">IN FOUR STEPS.</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px dashed #E0E0E0;box-shadow:0 4px 24px -8px rgba(0,0,0,.1);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(230,168,23,.1);color:#E6A817;border:1px solid rgba(230,168,23,.2);font-family:'Barlow Condensed',sans-serif">01</div>
+        <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">Free Inspection</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">We come to you — no commitment. Our certified inspector assesses every inch of your roof and identifies all issues.</p>
+      </div>
+      <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(59,159,217,.25);box-shadow:0 4px 24px -8px rgba(59,159,217,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(59,159,217,.1);color:#3B9FD9;border:1px solid rgba(59,159,217,.3);font-family:'Barlow Condensed',sans-serif">02</div>
+        <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">Clear Quote</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Detailed written estimate — every line item explained. We'll walk you through material options and help you choose what's right.</p>
+      </div>
+      <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px dashed #E0E0E0;box-shadow:0 4px 24px -8px rgba(0,0,0,.1);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(230,168,23,.1);color:#E6A817;border:1px solid rgba(230,168,23,.2);font-family:'Barlow Condensed',sans-serif">03</div>
+        <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">We Get to Work</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">Our licensed, insured crew shows up on schedule. We complete the job efficiently, protecting your property throughout.</p>
+      </div>
+      <div class="p-6 flex flex-col gap-3 rounded-2xl" style="background:#FFFFFF;border:1px solid rgba(59,159,217,.25);box-shadow:0 4px 24px -8px rgba(59,159,217,.15);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl flex-shrink-0" style="background:rgba(59,159,217,.1);color:#3B9FD9;border:1px solid rgba(59,159,217,.3);font-family:'Barlow Condensed',sans-serif">04</div>
+        <h3 class="font-display font-bold" style="font-size:1.3rem;line-height:1.1;color:#1A1A1A">Final Walkthrough</h3>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65">We inspect the completed job with you, clean up fully, and hand over your warranty documentation and permit records.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
+<section id="reviews" class="py-24" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="mb-12">
+      <p class="sl gt mb-3">Happy Customers</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:.93">
+        DON'T TAKE<br/><span class="gp">OUR WORD FOR IT.</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="tcard p-6 flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
+          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
+            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            Posted on Google
+          </a>
+        </div>
+        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Happy Roof did an amazing job. They were on time, polite and courteous across the board. They ensured my property remained undamaged during the roof replacement. If I had any concerns or questions, they were answered promptly and completed all the work and even more than I had requested. It is refreshing to find a company that is concerned about quality work, integrity and the added bonus of being very reasonably priced."</p>
+        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(230,168,23,.18);color:#E6A817">K</div>
+          <div><p class="text-brand-black font-medium text-sm">Kathleen P.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
+        </div>
+      </div>
+      <div class="tcard p-6 flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
+          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
+            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            Posted on Google
+          </a>
+        </div>
+        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Josh and his team at Happy Roof replaced our roof at our home and we couldn't be happier. From start to finish, Josh was fantastic — responsive, straightforward, and clearly knew his stuff. The crew was clean and professional, left the property in great shape, and the pricing was very fair. The project manager, Martin, kept me updated throughout the entire process. Highly recommend if you're looking for a roofer you can actually trust."</p>
+        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(59,159,217,.12);color:#3B9FD9">E</div>
+          <div><p class="text-brand-black font-medium text-sm">Evan B.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ HEROES DISCOUNT ══════════════════════ -->
+<section id="hero-discount" style="background:#1A1A1A;position:relative;overflow:hidden;padding:5rem 0">
+  <!-- American flag background -->
+  <div style="position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(180deg,#B22234 0px,#B22234 30px,#FFFFFF 30px,#FFFFFF 54px);background-size:100% 378px"></div>
+  <div style="position:absolute;top:0;left:0;width:40%;height:55%;background:#3C3B6E;opacity:.15"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-display font-black mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);line-height:.93;letter-spacing:-.01em;color:#FFFFFF;text-transform:uppercase">
+          $500 HEROES DISCOUNT
+        </h2>
+        <p style="color:rgba(255,255,255,.8);font-size:1.05rem;line-height:1.75;margin-bottom:1.5rem">
+          At Happy Roof, we're proud to support the heroes who keep Tampa Bay safe, healthy, and strong. As our way of saying thank you, we offer a <strong style="color:#E6A817">$500 discount</strong> on any roof replacement or major repair for those who serve our community every day.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem">
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,.85);font-size:.95rem">Available for veterans and active-duty military</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,.85);font-size:.95rem">Honoring first responders, doctors, nurses, and teachers</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color:rgba(255,255,255,.85);font-size:.95rem">$500 off roof replacements or major repairs in Tampa Bay</span>
+          </div>
+        </div>
+        <a href="contact.html?discount=heroes" class="btn-t" style="font-size:1.1rem;padding:1rem 2.2rem">
+          CLAIM YOUR $500 DISCOUNT
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <!-- Flag heart -->
+      <div class="flex justify-center">
+        <div style="width:220px;height:220px;position:relative">
+          <svg viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;filter:drop-shadow(0 12px 32px rgba(0,0,0,.3))">
+            <defs>
+              <clipPath id="heart-clip">
+                <path d="M110 185 C110 185 20 130 20 75 C20 45 44 25 70 25 C88 25 102 35 110 50 C118 35 132 25 150 25 C176 25 200 45 200 75 C200 130 110 185 110 185Z"/>
+              </clipPath>
+            </defs>
+            <!-- Flag inside heart -->
+            <g clip-path="url(#heart-clip)">
+              <!-- Red and white stripes -->
+              <rect x="20" y="25" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="37.3" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="49.6" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="61.9" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="74.2" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="86.5" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="98.8" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="111.1" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="123.4" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="135.7" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="148" width="180" height="12.3" fill="#B22234"/>
+              <rect x="20" y="160.3" width="180" height="12.3" fill="#FFFFFF"/>
+              <rect x="20" y="172.6" width="180" height="12.3" fill="#B22234"/>
+              <!-- Blue canton -->
+              <rect x="20" y="25" width="80" height="86" fill="#3C3B6E"/>
+              <!-- Stars (simplified) -->
+              <g fill="#FFFFFF" font-size="7" font-family="sans-serif">
+                <text x="30" y="40">★</text><text x="44" y="40">★</text><text x="58" y="40">★</text><text x="72" y="40">★</text><text x="86" y="40">★</text>
+                <text x="37" y="52">★</text><text x="51" y="52">★</text><text x="65" y="52">★</text><text x="79" y="52">★</text>
+                <text x="30" y="64">★</text><text x="44" y="64">★</text><text x="58" y="64">★</text><text x="72" y="64">★</text><text x="86" y="64">★</text>
+                <text x="37" y="76">★</text><text x="51" y="76">★</text><text x="65" y="76">★</text><text x="79" y="76">★</text>
+                <text x="30" y="88">★</text><text x="44" y="88">★</text><text x="58" y="88">★</text><text x="72" y="88">★</text><text x="86" y="88">★</text>
+                <text x="37" y="100">★</text><text x="51" y="100">★</text><text x="65" y="100">★</text><text x="79" y="100">★</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ LEAVE A REVIEW ══════════════════════ -->
+<div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:2.5rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-5">
+        <!-- Google G -->
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#fff;border:1.5px solid #E5E5E5;box-shadow:0 4px 16px -4px rgba(0,0,0,.1)">
+          <svg width="28" height="28" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            <path fill="none" d="M0 0h48v48H0z"/>
+          </svg>
+        </div>
+        <div>
+          <div style="color:#F59E0B;font-size:1.1rem;letter-spacing:.06em;line-height:1;margin-bottom:.3rem">★★★★★</div>
+          <p class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;line-height:1;color:#1A1A1A;letter-spacing:-.02em">Happy with your roof?</p>
+          <p style="color:#555555;font-size:.88rem;margin-top:.25rem">Leave us a Google review — it takes 60 seconds and means the world to our crew.</p>
+        </div>
+      </div>
+      <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" class="flex-shrink-0 font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;background:#1A1A1A;color:#F7F7F7;border-radius:8px;padding:.85rem 2rem;font-size:1.05rem;letter-spacing:.05em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1);white-space:nowrap" onmouseover="this.style.background='#E6A817';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#1A1A1A';this.style.transform='translateY(0)'">
+        LEAVE A REVIEW
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ CTA ══════════════════════ -->
+<section class="cta-grad relative overflow-hidden py-24">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <p class="sl mb-4" style="color:#F0C040">Ready to Start?</p>
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-size:clamp(2.8rem,6vw,4.8rem);line-height:.95;color:#F7F7F7">
+      Free Estimate.<br/>Real Warranty.<br/>Honest Crew.
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1.05rem;line-height:1.75;margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto">
+      Three things that shouldn't be hard to find in a roofing company. Call us or fill out the form — we'll take it from here.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ COMMUNITY PROGRAM TEASER ══════════════════════ -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;padding:4.5rem 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(232,65,90,.04) 0%,transparent 70%);pointer-events:none"></div>
+  <div class="max-w-3xl mx-auto px-5 text-center" style="position:relative">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(232,65,90,.08);border:1px solid rgba(232,65,90,.22);border-radius:100px;padding:.35rem .9rem;margin-bottom:1.5rem">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8415A"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#E8415A">Coming June 2026</span>
+    </div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.02em;color:#1A1A1A;margin:0 0 1rem">
+      WE'RE BUILDING SOMETHING<br>
+      <span style="background:linear-gradient(135deg,#F87171,#E8415A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">BIGGER THAN ROOFING.</span>
+    </h2>
+    <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:480px;margin:0 auto 2rem">
+      This summer, Happy Roof is launching a community program to provide free roof replacements for Tampa Bay families in need. The name drops in June.
+    </p>
+    <a href="/foundation" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#F87171,#E8415A);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:10px;text-decoration:none;transition:opacity .18s,transform .18s" onmouseover="this.style.opacity='.88';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Learn More
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════ SERVICE AREA (SEO) ══════════════════════ -->
+<section style="background:#FFFFFF;border-top:1px solid #E0E0E0;padding:3rem 0">
+  <div class="max-w-7xl mx-auto px-5 text-center">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#888888;margin-bottom:.75rem">Proudly Serving Tampa Bay</p>
+    <p style="color:#555555;font-size:.82rem;line-height:2;max-width:700px;margin:0 auto">
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Tampa</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">St. Petersburg</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Clearwater</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Brandon</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Wesley Chapel</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Riverview</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Lutz</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Land O Lakes</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Odessa</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Carrollwood</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">New Tampa</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Temple Terrace</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">South Tampa</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Sun City Center</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Apollo Beach</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Oldsmar</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Palm Harbor</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Tarpon Springs</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Safety Harbor</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Dunedin</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Largo</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Seminole</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">New Port Richey</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Trinity</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Valrico</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Plant City</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Fish Hawk</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Seffner</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Citrus Park</a> &nbsp;·&nbsp;
+      <a href="/contact" style="color:#888888;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#888888'">Town n Country</a>
+    </p>
+    <p style="color:#888888;font-size:.75rem;margin-top:.75rem">Hillsborough County · Pinellas County · Pasco County · FL License #CCC1337380</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+
+<script is:inline>
+// ── Form submission config ──
+function submitHeroForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const req = form.querySelectorAll('[required]');
+  let valid = true;
+  req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#EF4444'; valid=false; } });
+  if (!valid) return;
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const formData = {
+    _subject: 'New Estimate Request — Happy Roof Website',
+    _source: 'homepage',
+    _page: window.location.pathname,
+    name: (form.querySelector('[name=name]')||{}).value||'',
+    phone: (form.querySelector('[name=phone]')||{}).value||'',
+    email: (form.querySelector('[name=email]')||{}).value||'',
+    service: (form.querySelector('[name=service]')||{}).value||'',
+    notes: (form.querySelector('[name=notes]')||{}).value||'',
+    sms_consent: form.querySelector('[name=sms_consent]') && form.querySelector('[name=sms_consent]').checked ? 'Yes' : 'No',
+    source: 'happy-roof-website'
+  };
+  // Try ServiceTitan first, fallback to FormSubmit
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: formData.service, notes: formData.notes, source: 'Website - Homepage', page: window.location.pathname };
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }))
+    .finally(() => {
+      document.getElementById('hero-success').style.display = 'block';
+      form.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
+      btn.style.display = 'none';
+    });
+}
+
+// ── Hero slideshow ──
+// Container always has a background image so there's never a blank frame
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  const container = document.querySelector('.hero-slideshow');
+  if (slides.length < 2) return;
+  let current = 0;
+  setInterval(function(){
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+    // Update container bg to current so it's always the fallback
+    container.style.backgroundImage = slides[current].style.backgroundImage;
+  }, 5000);
+})();
+</script>
+
+</BaseLayout>
