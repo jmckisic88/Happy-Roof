@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "St. Petersburg roofing contractor specializing in shingle, metal, and tile roof replacement. Owens Corning Preferred Contractor. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {"@type": "PostalAddress","streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar","addressRegion": "FL","postalCode": "34677","addressCountry": "US"},
+    "areaServed": {"@type": "City","name": "St. Petersburg","containedInPlace": {"@type": "State","name": "Florida"}},
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question","name": "How much does a roof replacement cost in St. Petersburg?","acceptedAnswer": {"@type": "Answer","text": "A typical roof replacement in St. Petersburg ranges from $8,000 to $25,000+ depending on roof size, pitch, material choice, and structural condition. Coastal homes near the Gulf or along Bayboro Harbor may require additional wind-mitigation features. Happy Roof provides free, no-obligation estimates — call (813) 595-7663."}},
+      {"@type": "Question","name": "What roofing material is best for St. Petersburg homes?","acceptedAnswer": {"@type": "Answer","text": "St. Petersburg's Gulf Coast location means roofs face salt air, intense UV, high humidity, and hurricane-force winds. Architectural shingles rated for 130+ MPH winds are the most popular option. Metal roofing reflects heat and stands up to salt air corrosion when properly coated. Tile roofs are common in neighborhoods like Snell Isle and Old Northeast where Mediterranean and Spanish Revival architecture is prevalent."}},
+      {"@type": "Question","name": "Does Happy Roof pull permits in Pinellas County?","acceptedAnswer": {"@type": "Answer","text": "Yes. Happy Roof handles all permit applications and inspections with the City of St. Petersburg and Pinellas County building departments. You never have to visit a government office or schedule an inspector — we manage the entire process from application to final sign-off."}},
+      {"@type": "Question","name": "How long does a roof replacement take in St. Pete?","acceptedAnswer": {"@type": "Answer","text": "Most shingle roof replacements in St. Petersburg take 1 to 3 days. Metal roofs take 3 to 5 days, and tile roofs 5 to 7 days. We schedule around weather and keep you informed throughout the project. All cleanup and debris removal is included."}},
+      {"@type": "Question","name": "Is Happy Roof insured for roofing work in St. Petersburg?","acceptedAnswer": {"@type": "Answer","text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are authorized to perform roofing work throughout Pinellas County, including St. Petersburg, and can provide certificates of insurance on request."}}
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="St. Petersburg Roofing Contractor — Licensed & Insured | Happy Roof"
+  description="St. Petersburg roofing contractor — Happy Roof provides roof replacement, repair, and installation across St. Pete FL. Owens Corning Preferred Contractor. FL License #CCC1337380. Free estimates: (813) 595-7663."
+  canonical="https://happyroof.com/st-petersburg-roofing"
+  ogDescription="Trusted St. Petersburg roofing contractor. Shingle, metal, and tile roof replacement. Owens Corning Preferred. 15-year warranty."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">St. Petersburg Roofing</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      ST. PETERSBURG ROOFING CONTRACTOR<br/><span class="gt">LICENSED & INSURED</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      St. Petersburg homeowners count on Happy Roof for dependable roof replacement, repair, and new installation. Our Owens Corning Preferred Contractor teams install roofing systems built to handle the Sunshine City's coastal exposure, intense summer storms, and salt-air conditions — all protected by our 15-year workmanship warranty.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>St. Petersburg, FL</span><span style="color:#E6A817">·</span><span>CCC1337380</span><span style="color:#E6A817">·</span><span>HappyRoof.com</span><span style="color:#E6A817">·</span><span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY HAPPY ROOF IN ST. PETERSBURG -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Happy Roof in St. Petersburg</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY ST. PETE HOMEOWNERS CHOOSE HAPPY ROOF</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          St. Petersburg is a city of character — from the historic craftsman bungalows in Old Northeast and the Mediterranean estates on Snell Isle to the mid-century modern homes scattered throughout Kenwood and the growing condo market downtown near the waterfront. Each of these properties faces a unique set of roofing challenges shaped by St. Pete's proximity to Tampa Bay and the Gulf of Mexico. Salt air accelerates corrosion on improperly coated metal fasteners, UV exposure degrades underlayment faster than in inland cities, and wind-driven rain can exploit even small gaps in flashing.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Happy Roof understands these conditions because we work in them every day. We hold Florida Roofing Contractor License #CCC1337380, carry full general liability and workers' compensation coverage, and pull all required permits through the City of St. Petersburg and Pinellas County. Whether your home overlooks Coffeepot Bayou, sits along the tree-lined streets of Jungle Terrace, or backs up to Boyd Hill Nature Preserve, we deliver the same high standard of workmanship — and guarantee it with a 15-year written warranty.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6"><div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">15-Year Workmanship Warranty</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every St. Pete roof we install is backed by a 15-year written workmanship warranty. No exceptions, no fine print.</p></div></div></div>
+        <div class="scard p-6"><div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Pinellas County Permits Handled</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">We pull all required permits and coordinate every inspection with the City of St. Petersburg and Pinellas County building departments.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Our Services</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ROOFING SERVICES WE OFFER IN ST. PETERSBURG</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Roof Replacement</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">Complete tear-off and replacement with premium materials — Owens Corning Duration HDZ shingles, Gulf Coast Supply standing seam metal, or concrete and clay tile. We inspect decking, replace damaged wood, install new underlayment and flashing, and ensure your new roof meets current Pinellas County wind code requirements.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Roof Repair</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">From storm-blown shingles and cracked barrel tiles to deteriorating flashing around vents and chimneys, we repair roofing issues throughout St. Pete. We provide honest assessments — if a targeted repair solves the problem, that is what we recommend. No unnecessary upselling.</p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Storm Damage & Insurance</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">St. Petersburg's peninsula geography puts it directly in the path of tropical systems. After storms, we provide thorough damage assessments, document findings for your insurance claim, and coordinate with your adjuster. We work with all major Florida insurance carriers and know the claims process inside and out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR 4-STEP PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5"><div class="step-num">1</div><div><h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Free Inspection & Estimate</h3><p style="color:#555555;font-size:.95rem;line-height:1.7">We inspect your roof thoroughly — decking, underlayment, flashing, ventilation, and overall condition. You receive a detailed written estimate with material options, timelines, and transparent pricing. No pressure, no hidden fees.</p></div></div>
+      <div class="scard p-8 flex gap-5"><div class="step-num">2</div><div><h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Material Selection & Permits</h3><p style="color:#555555;font-size:.95rem;line-height:1.7">Choose your material and color with our guidance. We pull permits with the City of St. Petersburg or Pinellas County, order materials directly from the manufacturer, and schedule your preferred start date.</p></div></div>
+      <div class="scard p-8 flex gap-5"><div class="step-num">3</div><div><h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Professional Installation</h3><p style="color:#555555;font-size:.95rem;line-height:1.7">Our crew handles the full tear-off, decking inspection and repair, new underlayment and flashing, and installs your roofing system to manufacturer specifications. We protect your landscaping and property throughout the process.</p></div></div>
+      <div class="scard p-8 flex gap-5"><div class="step-num">4</div><div><h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Final Inspection & Warranty</h3><p style="color:#555555;font-size:.95rem;line-height:1.7">We schedule the county inspection to verify code compliance. Once passed, you receive your warranty documentation — our 15-year workmanship warranty plus the manufacturer material warranty. We follow up at 30 days and 1 year.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">St. Petersburg Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">NEIGHBORHOODS WE SERVE IN ST. PETERSBURG</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof serves every corner of St. Petersburg and the surrounding Pinellas County communities. From the waterfront to the suburbs, we are your local roofing partner.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Old Northeast</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Snell Isle</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Kenwood</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Shore Acres</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Jungle Terrace</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Pasadena</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Gulfport</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tierra Verde</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tyrone</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Lakewood Estates</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Disston Heights</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Euclid/St. Paul</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Crescent Lake</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Downtown St. Pete</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Coquina Key</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Riviera Bay</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Lealman</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Gateway</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Pinellas Point</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bahama Shores</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ST. PETERSBURG ROOFING FAQ</h2>
+    </div>
+    <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">How much does a roof replacement cost in St. Petersburg?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">A typical roof replacement in St. Petersburg ranges from $8,000 to $25,000+ depending on roof size, pitch, material (shingles, metal, or tile), and structural condition. Coastal homes near the Gulf or along Bayboro Harbor may require additional wind-mitigation features. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> for a free, no-obligation estimate.</div></div></div>
+    <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">What roofing material is best for St. Petersburg homes?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">St. Pete's Gulf Coast location exposes roofs to salt air, intense UV, humidity, and hurricane-force winds. Architectural shingles with 130+ MPH ratings are the most popular. Metal roofing reflects heat and resists salt-air corrosion when properly coated. Tile is common in Snell Isle and Old Northeast where Mediterranean architecture prevails. We install all three and help you choose the best fit.</div></div></div>
+    <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Does Happy Roof pull permits in Pinellas County?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We handle all permit applications and inspections with the City of St. Petersburg and Pinellas County building departments. You never have to visit a government office or coordinate with an inspector — we manage the process from start to finish, ensuring everything meets current Florida Building Code standards.</div></div></div>
+    <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">How long does a roof replacement take in St. Pete?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Most shingle roof replacements in St. Petersburg take 1 to 3 days. Metal roofs typically take 3 to 5 days, and tile roofs 5 to 7 days depending on complexity. We schedule around weather forecasts and keep you informed at every step. All cleanup and debris removal is included in every project.</div></div></div>
+    <div class="faq-item"><button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">Is Happy Roof insured for work in St. Petersburg?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are authorized to work throughout Pinellas County including St. Petersburg, and certificates of insurance are available upon request.</div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">READY TO GET STARTED<span style="color:#F0C040">?</span></h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

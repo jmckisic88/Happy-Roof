@@ -1,0 +1,96 @@
+---
+import GiveBackBanner from '../components/GiveBackBanner.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import MobileCTA from '../components/MobileCTA.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import Analytics from '../components/Analytics.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  activePage?: string;
+  schema?: string;
+  extraHead?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://www.happyroof.com/Brand%20Assets/Happy%20Roof%20Logo_Alt.png',
+  activePage = '',
+  schema,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MQ9BXG94');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- SEO -->
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={ogTitle || title} />
+  <meta property="og:description" content={ogDescription || description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Happy Roof Tampa Bay" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:title" content={ogTitle || title} />
+  <meta name="twitter:description" content={ogDescription || description} />
+
+  {schema && <script type="application/ld+json" set:html={schema} />}
+
+  <slot name="head" />
+
+  <link rel="alternate" hreflang="en" href={canonical} />
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="Tampa Bay, Florida" />
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ9BXG94" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <GiveBackBanner />
+  <Nav activePage={activePage} />
+
+  <slot />
+
+  <Footer />
+  <MobileCTA />
+
+  <script is:inline src="/chat.js"></script>
+
+  <ExitPopup />
+  <Analytics />
+</body>
+</html>

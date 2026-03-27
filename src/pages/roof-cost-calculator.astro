@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="Roof Cost Calculator — Estimate Your Roof Replacement | Happy Roof"
+  description="Free roof cost calculator for Tampa Bay homeowners. Get an instant estimate for shingle, metal, tile, or flat roof replacement."
+  canonical="https://happyroof.com/roof-cost-calculator"
+>
+
+<style is:inline>
+.calc-card{background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:1.5rem;cursor:pointer;transition:border-color .18s,box-shadow .18s}
+  .calc-card:hover,.calc-card.selected{border-color:#E6A817;box-shadow:0 4px 16px -4px rgba(230,168,23,.2)}
+  .calc-card.selected{background:#FFFDF5}
+  .range-slider{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:#E0E0E0;outline:none}
+  .range-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#E6A817;cursor:pointer;box-shadow:0 2px 8px rgba(230,168,23,.4)}
+  .result-card{background:linear-gradient(135deg,#1A1A1A 0%,#2A2A2A 100%);border-radius:16px;padding:2.5rem;color:#fff;text-align:center}
+</style>
+
+<!-- CALCULATOR -->
+<section class="pt-24 pb-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.5rem">FREE TOOL</p>
+      <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A">ROOF COST CALCULATOR</h1>
+      <p style="color:#555;font-size:1rem;line-height:1.7;margin-top:.75rem;max-width:520px;margin-left:auto;margin-right:auto">Get an instant ballpark estimate for your Tampa Bay roof replacement. Actual pricing requires an in-person inspection.</p>
+    </div>
+
+    <!-- Step 1: Material -->
+    <div id="step1" style="margin-bottom:2rem">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;margin-bottom:1rem">1. CHOOSE YOUR ROOF MATERIAL</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem">
+        <div class="calc-card" onclick="selectMaterial(this,'shingle',758)" data-mat="shingle">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">SHINGLES</p>
+          <p style="font-size:.8rem;color:#555">Architectural, 25-30 yr</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Most Popular</p>
+        </div>
+        <div class="calc-card" onclick="selectMaterial(this,'metal',1215)" data-mat="metal">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">METAL</p>
+          <p style="font-size:.8rem;color:#555">Standing seam, 40-70 yr</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Premium Durability</p>
+        </div>
+        <div class="calc-card" onclick="selectMaterial(this,'tile',1425)" data-mat="tile">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">TILE</p>
+          <p style="font-size:.8rem;color:#555">Concrete/clay, 30-100 yr</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Longest Lifespan</p>
+        </div>
+        <div class="calc-card" onclick="selectMaterial(this,'flat',1146)" data-mat="flat">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem">FLAT/TPO</p>
+          <p style="font-size:.8rem;color:#555">TPO/mod-bit, 15-25 yr</p>
+          <p style="font-size:.75rem;color:#E6A817;font-weight:700;margin-top:.25rem">Commercial &amp; Flat</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Home Size -->
+    <div id="step2" style="margin-bottom:2rem">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;margin-bottom:1rem">2. HOME SIZE (SQUARE FEET)</h2>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <input type="range" id="size-slider" class="range-slider" min="800" max="5000" value="2000" step="100" oninput="updateCalc()">
+        <span id="size-display" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;min-width:80px;text-align:right">2,000</span>
+        <span style="font-size:.85rem;color:#555">sq ft</span>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result" class="result-card">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#E6A817;margin-bottom:.5rem">YOUR ESTIMATED RANGE</p>
+      <p id="result-range" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1;margin:0">$14,780 – $19,700</p>
+      <p id="result-details" style="font-size:.85rem;color:#999;margin-top:.75rem;line-height:1.6">Architectural Shingles · ~2,000 sq ft home</p>
+      <p style="font-size:.75rem;color:#666;margin-top:1rem;font-style:italic">⚠️ This is a rough estimate only. Actual cost depends on roof pitch, layers, deck condition, and other factors.</p>
+      <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
+        <a href="/contact" class="btn-p" style="font-size:1.05rem">Get an Exact Quote — Free</a>
+        <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;padding:.75rem 1.5rem">Call (813) 595-7663</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:.8rem;color:#888;margin-top:1.5rem">Owens Corning Preferred Contractor · FL License #CCC1337380 · Serving Tampa Bay since 2023</p>
+  </div>
+</section>
+
+<!-- Footer -->
+
+<script is:inline>
+let selectedRate = 758;
+let selectedType = 'shingle';
+let selectedLabel = 'Architectural Shingles';
+
+// Material-specific range multipliers
+const rangeMult = {
+  shingle: { low: 0.50, high: 1.0 },
+  metal:   { low: 0.55, high: 1.4 },
+  tile:    { low: 0.67, high: 1.35 },
+  flat:    { low: 0.50, high: 0.90 }
+};
+
+function selectMaterial(el, type, rate) {
+  document.querySelectorAll('.calc-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedRate = rate;
+  selectedType = type;
+  const labels = {shingle:'Architectural Shingles',metal:'Standing Seam Metal',tile:'Concrete Tile',flat:'TPO Flat Roof'};
+  selectedLabel = labels[type];
+  updateCalc();
+}
+
+function updateCalc() {
+  const sqft = parseInt(document.getElementById('size-slider').value);
+  document.getElementById('size-display').textContent = sqft.toLocaleString();
+  const squares = (sqft * 1.3) / 100;
+  const base = selectedRate * squares;
+  const mult = rangeMult[selectedType];
+  const low = Math.round((base * mult.low) / 100) * 100;
+  const high = Math.round((base * mult.high) / 100) * 100;
+  document.getElementById('result-range').textContent = '$' + low.toLocaleString() + ' – $' + high.toLocaleString();
+  document.getElementById('result-details').textContent = selectedLabel + ' · ~' + sqft.toLocaleString() + ' sq ft home';
+}
+
+// Auto-select shingles
+document.querySelector('[data-mat="shingle"]').classList.add('selected');
+updateCalc();
+</script>
+
+</BaseLayout>

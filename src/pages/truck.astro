@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="$250 Off Your Roof — Happy Roof Tampa Bay"
+  description="You spotted our truck — here's $250 off your roof replacement or major repair. Exclusive offer from Happy Roof, Tampa Bay's trusted roofing contractor."
+  canonical="https://happyroof.com/truck"
+  ogTitle="$250 Off Your Roof — Happy Roof"
+  ogDescription="Exclusive truck offer. $250 off any roof replacement or major repair in Tampa Bay."
+>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem 4rem;background:#FFFFFF">
+  <div style="max-width:480px;width:100%;margin:0 auto;text-align:center">
+
+    <!-- Truck badge -->
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:.4rem 1rem;margin-bottom:2rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <span style="font-size:.78rem;font-weight:600;color:#555555;letter-spacing:.06em;text-transform:uppercase">Exclusive Truck Offer</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,8vw,4rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A;text-transform:uppercase;margin-bottom:1rem">
+      YOU SPOTTED OUR TRUCK.<br/>
+      HERE'S <span style="color:#E6A817">$250 OFF</span><br/>
+      YOUR ROOF.
+    </h1>
+
+    <p style="color:#555555;font-size:1.05rem;line-height:1.7;margin-bottom:2.5rem;max-width:400px;margin-left:auto;margin-right:auto">
+      Claim your exclusive discount on any roof replacement or major repair. Just tell us who you are — we'll handle the rest.
+    </p>
+
+    <!-- Form -->
+    <form id="truck-form" onsubmit="submitTruckForm(event)" novalidate style="text-align:left;margin-bottom:2rem">
+      <div style="margin-bottom:1rem">
+        <label class="flabel">Your Name <span style="color:#3B9FD9">*</span></label>
+        <input type="text" name="name" class="finput" placeholder="Jane Smith" required />
+      </div>
+      <div style="margin-bottom:1rem">
+        <label class="flabel">Email Address <span style="color:#3B9FD9">*</span></label>
+        <input type="email" name="email" class="finput" placeholder="jane@example.com" required />
+      </div>
+      <div style="margin-bottom:1.5rem">
+        <label class="flabel">Phone Number <span style="color:#888888">(optional)</span></label>
+        <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" />
+      </div>
+
+      <!-- Success message -->
+      <div id="truck-success" style="display:none;background:rgba(59,159,217,.06);border:1px solid rgba(59,159,217,.2);border-radius:10px;padding:1rem;margin-bottom:1rem;text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">You're in! $250 discount reserved.</p>
+        <p style="color:#555555;font-size:.88rem">We'll reach out within 1 business day to schedule your free estimate. Book within 30 days to lock it in.</p>
+      </div>
+
+      <button type="submit" class="btn-p" style="width:100%;justify-content:center;font-size:1.15rem;padding:1rem;font-weight:800">
+        CLAIM MY $250 DISCOUNT
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </form>
+
+    <!-- Fine print -->
+    <div style="color:#888888;font-size:.75rem;line-height:1.6;max-width:380px;margin:0 auto">
+      <p>Schedule your free estimate within 30 days to lock in your $250 discount. Valid on roof replacements and major repairs ($5,000+). One per household. Cannot be combined with other discounts. <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms apply</a>.</p>
+    </div>
+
+    <!-- Trust signals -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid #E0E0E0">
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">5.0★</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">Google Rating</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">15yr</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">Warranty</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">FL Lic.</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">#CCC1337380</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Minimal footer -->
+
+<script is:inline>
+function submitTruckForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const req = form.querySelectorAll('[required]');
+  let valid = true;
+  req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#E6A817'; valid=false; } });
+  if (!valid) return;
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  // Same endpoint as main site — swap to Zapier/ServiceTitan when ready
+  fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({
+      _subject: '$250 Truck Offer — New Lead',
+      _source: 'truck-qr-landing',
+      name: (form.querySelector('[name=name]')||{}).value||'',
+      email: (form.querySelector('[name=email]')||{}).value||'',
+      phone: (form.querySelector('[name=phone]')||{}).value||'',
+      offer: '$250 Truck Discount',
+      source: 'truck-qr-code'
+    })
+  }).finally(() => {
+    document.getElementById('truck-success').style.display = 'block';
+    form.querySelectorAll('input').forEach(el => el.disabled = true);
+    btn.style.display = 'none';
+  });
+}
+</script>
+
+</BaseLayout>

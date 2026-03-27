@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay residential roofing contractor specializing in shingle, metal, and tile roof replacement and installation. Owens Corning Preferred Contractor. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677","addressCountry": "US"
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a residential roof replacement cost in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A typical residential roof replacement in Tampa Bay ranges from $8,000 to $25,000+ depending on roof size, pitch, material choice (asphalt shingles, metal, or tile), and whether structural repairs are needed. Happy Roof provides free, detailed estimates with no hidden fees. Call (813) 595-7663 for a personalized quote." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best roofing material for Florida homes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The best roofing material depends on your budget, aesthetic preference, and long-term goals. Architectural shingles (like Owens Corning Duration HDZ or GAF Timberline HDZ) offer the best value with 130+ MPH wind ratings. Standing seam metal roofs last 40-60 years and reflect heat, reducing energy bills. Concrete and clay tile provide a classic Florida look with 50+ year lifespans. Happy Roof installs all three and can help you choose." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a residential roof replacement take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most residential shingle roof replacements in Tampa Bay take 1 to 3 days. Metal roofs typically take 3 to 5 days, and tile roofs may take 5 to 7 days depending on complexity. Happy Roof handles all permits, inspections, and cleanup so you don't have to coordinate anything." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof offer a warranty on residential roofing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof provides a 15-year workmanship warranty on all residential shingle, metal, and tile roof installations — in writing, every time. This is in addition to manufacturer material warranties from Owens Corning (up to lifetime). We stand behind every roof we install." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Happy Roof licensed and insured for residential work in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are an Owens Corning Preferred Contractor. Certificates of insurance are available on request." }
+      }
+    ]
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Residential Roofing",
+    "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+    "areaServed": { "@type": "State", "name": "Florida" },
+    "description": "Complete residential roofing services in Tampa Bay including shingle, metal, and tile roof replacement and installation. Owens Corning Preferred Contractor. 15-year workmanship warranty."
+  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Residential Roofing","item":"https://happyroof.com/residential-roofing"}]}]`;
+---
+
+<BaseLayout
+  title="Residential Roofing Tampa Bay — Shingle, Metal, Tile | Happy Roof"
+  description="Residential roofing in Tampa Bay by Happy Roof. Architectural shingles, metal roofs, tile roofs. Owens Corning Preferred Contractor. 15-year warranty. FL #CCC1337380. Free estimates."
+  canonical="https://happyroof.com/residential-roofing"
+  ogTitle="Residential Roofing Tampa Bay | Happy Roof"
+  ogDescription="Expert residential roofing in Tampa Bay. Shingles, metal, tile. Owens Corning Preferred Contractor. 15-year warranty."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+</div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Residential Roofing</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      RESIDENTIAL ROOFING<br/><span class="gt">BUILT FOR FLORIDA.</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Your home deserves a roof that can handle Florida's intense heat, driving rain, and hurricane-force winds. Happy Roof installs high-performance roofing systems designed specifically for Tampa Bay's demanding climate — backed by a 15-year workmanship warranty.
+    </p>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Happy Roof</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY TAMPA BAY HOMEOWNERS CHOOSE HAPPY ROOF</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Choosing a roofing contractor is one of the biggest decisions a homeowner makes. At Happy Roof, we understand the weight of that decision — and we earn your trust with transparency, craftsmanship, and follow-through. We are an Owens Corning Preferred Contractor, meaning we meet the highest standards set by one of the largest roofing manufacturers in North America. Every project is led by a licensed foreman with years of Florida roofing experience, and all crews are fully vetted, licensed, and insured.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          We hold Florida Roofing Contractor License #CCC1337380, carry full general liability and workers' compensation insurance, and pull all required permits for every job. When the work is done, we provide a 15-year workmanship warranty in writing — because a handshake isn't enough when it comes to protecting your home.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Owens Corning Preferred Contractor</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Verified licensing, insurance, and factory-trained installation standards. Enables enhanced manufacturer warranty options for homeowners.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">15-Year Workmanship Warranty</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every residential roof we install comes with a 15-year workmanship warranty — in writing, every time. No exceptions.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Vetted, Licensed Crews</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every crew member is fully licensed and insured. We oversee every project from start to finish.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Roofing Materials</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">MATERIALS WE INSTALL</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Shingle -->
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Asphalt Shingles</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1rem">
+          The most popular choice for Tampa Bay homes. We install Owens Corning Duration HDZ and UHDZ, Owens Corning Duration and Oakridge, and other premium architectural shingles rated for 130+ MPH winds. Shingle roofs offer excellent value, a wide range of color options, and proven performance in Florida's climate. Typical lifespan is 25 to 30 years with proper installation and ventilation.
+        </p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#3B9FD9;letter-spacing:.1em;text-transform:uppercase">25–30 Year Lifespan</p>
+      </div>
+
+      <!-- Metal -->
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Metal Roofing</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1rem">
+          Standing seam and exposed-fastener metal roofs are becoming the preferred choice for Florida homeowners who want maximum durability and energy efficiency. Metal reflects solar heat, reducing cooling costs by up to 25%. We install Gulf Coast Supply panels — GulfLok, GulfSeam, GulfSnap, GulfRib, and MegaLoc — all engineered for Florida's wind and rain. Metal roofs last 40 to 60 years and often qualify for insurance discounts.
+        </p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#3B9FD9;letter-spacing:.1em;text-transform:uppercase">40–60 Year Lifespan</p>
+      </div>
+
+      <!-- Tile -->
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Tile Roofing</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1rem">
+          Concrete and clay tile roofs deliver a classic Florida aesthetic with exceptional longevity. We install barrel tile, S-tile, and flat tile profiles from Verea and other top manufacturers. Tile is naturally fire-resistant, energy-efficient, and can withstand sustained high winds when properly installed. Tile roofs can last 50 years or more and add significant curb appeal and resale value to your home.
+        </p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#3B9FD9;letter-spacing:.1em;text-transform:uppercase">50+ Year Lifespan</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR 4-STEP PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Free Inspection & Estimate</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We start with a thorough roof inspection — checking decking, underlayment, flashing, ventilation, and overall condition. You receive a detailed, written estimate with material options, timelines, and pricing. No pressure, no hidden fees, no obligation.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Material Selection & Permits</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Once you approve the scope, we help you select the ideal material and color for your home. We then pull all required permits with your local building department and order materials directly from the manufacturer. You pick the start date that works for you.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Professional Installation</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Our crew performs the full tear-off, inspects and repairs the decking as needed, installs new underlayment and flashing, and lays your new roofing system to manufacturer specifications. We protect your landscaping, driveway, and property throughout the process.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Final Inspection & Warranty</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">After installation, we schedule the county inspection to verify code compliance. Once passed, we deliver your warranty documentation — including our 15-year workmanship warranty and the manufacturer material warranty. We follow up at 30 days and 1 year to make sure you're satisfied.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Coverage Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">SERVING ALL OF TAMPA BAY</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof provides residential roofing services across Hillsborough, Pinellas, and Pasco counties. If your home is in Tampa Bay, we've got you covered.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">St. Petersburg</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Clearwater</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Brandon</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Wesley Chapel</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Riverview</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Lutz</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Land O' Lakes</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Odessa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Temple Terrace</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">New Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Carrollwood</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Oldsmar</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Palm Harbor</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Tarpon Springs</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Safety Harbor</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Dunedin</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Largo</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Seminole</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">New Port Richey</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Trinity</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Valrico</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Plant City</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Seffner</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Town 'n' Country</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Citrus Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Fish Hawk</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Apollo Beach</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Sun City Center</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Ruskin</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">RESIDENTIAL ROOFING FAQ</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How much does a residential roof replacement cost in Tampa Bay?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">A typical residential roof replacement in Tampa Bay ranges from $8,000 to $25,000+ depending on roof size, pitch complexity, material choice (asphalt shingles, metal, or tile), and whether structural repairs are needed. Factors like second-story access, chimney and skylight flashing, and code-required upgrades can also affect pricing. Happy Roof provides free, detailed estimates with no hidden fees — call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> for a personalized quote.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What is the best roofing material for Florida homes?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">The best material depends on your budget, aesthetic preference, and long-term goals. Architectural shingles (Owens Corning Duration HDZ or GAF Timberline HDZ) offer the best value with 130+ MPH wind ratings and 25–30 year lifespans. Standing seam metal lasts 40–60 years and reflects solar heat, reducing energy bills by up to 25%. Concrete and clay tile deliver a classic Florida look with 50+ year lifespans. Happy Roof installs all three and can help you choose the right fit for your home.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does a residential roof replacement take?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Most residential shingle roof replacements in Tampa Bay take 1 to 3 days. Metal roofs typically take 3 to 5 days, and tile roofs may take 5 to 7 days depending on complexity and weather. Happy Roof handles all permits, county inspections, and job-site cleanup so you don't have to coordinate anything. We keep you updated throughout the process.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Does Happy Roof offer a warranty on residential roofing?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. Happy Roof provides a 15-year workmanship warranty on all residential shingle, metal, and tile roof installations — in writing, every time. This is on top of manufacturer material warranties from Owens Corning and GAF (up to lifetime limited). As an Owens Corning Preferred Contractor, we can offer enhanced warranty options that most roofers cannot.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Is Happy Roof licensed and insured?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. We are an Owens Corning Preferred Contractor. Certificates of insurance are available on request. Never hire a roofer who can't provide proof of licensing and insurance — it puts your home and finances at risk.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY TO GET STARTED<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we'll respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>

@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa roofing contractor specializing in shingle, metal, and tile roof replacement and installation. Owens Corning Preferred Contractor. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12",
+      "addressLocality": "Oldsmar",
+      "addressRegion": "FL",
+      "postalCode": "34677",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Tampa",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Florida"
+      }
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a roof replacement cost in Tampa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Roof replacement costs in Tampa typically range from $8,000 to $25,000+ depending on your roof's size, pitch, material (shingles, metal, or tile), and any structural repairs. Homes in areas like South Tampa and Davis Islands may have additional considerations due to older construction. Happy Roof provides free, transparent estimates — call (813) 595-7663." }
+      },
+      {
+        "@type": "Question",
+        "name": "What roofing materials work best for Tampa's climate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tampa's hot, humid climate with frequent afternoon storms and hurricane risk means your roofing material must handle intense UV, heavy rain, and high winds. Architectural shingles (Owens Corning Duration HDZ) rated for 130+ MPH winds are the most popular choice. Standing seam metal reflects heat and lasts 40-60 years. Tile roofs are ideal for Mediterranean-style homes common in Tampa neighborhoods like Palma Ceia and Beach Park." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof handle permits for Tampa roofing projects?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof handles all permit applications with the City of Tampa and Hillsborough County building departments. We manage the entire permitting and inspection process so you don't have to visit any government offices or coordinate inspectors yourself." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a Tampa roof replacement take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most Tampa shingle roof replacements take 1 to 3 days. Metal roofs typically take 3 to 5 days, and tile roofs 5 to 7 days. Tampa's afternoon thunderstorms during summer can occasionally cause brief delays, but we plan accordingly and keep you updated throughout the project." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Happy Roof licensed to work in the City of Tampa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380, which authorizes us to perform roofing work throughout the state of Florida, including the City of Tampa and all of Hillsborough County. We carry full general liability and workers' compensation insurance." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Tampa Roofing Contractor — Licensed & Insured | Happy Roof"
+  description="Tampa roofing contractor — Happy Roof provides roof replacement, repair, and installation across Tampa FL. Owens Corning Preferred Contractor. FL License #CCC1337380. Free estimates: (813) 595-7663."
+  canonical="https://happyroof.com/tampa-roofing"
+  ogDescription="Trusted Tampa roofing contractor. Shingle, metal, and tile roof replacement. Owens Corning Preferred. 15-year warranty. Free estimates."
+  schema={schema}
+>
+
+<style is:inline>
+.check-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);flex-shrink:0;margin-top:.15rem}
+    .step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Tampa Roofing</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      TAMPA ROOFING CONTRACTOR<br/><span class="gt">LICENSED & INSURED</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      Tampa homeowners trust Happy Roof for reliable roof replacement, repair, and installation. As an Owens Corning Preferred Contractor, we deliver high-performance roofing systems engineered to withstand Florida's punishing heat, tropical downpours, and hurricane-season winds — all backed by our 15-year workmanship warranty.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa, FL</span>
+      <span style="color:#E6A817">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E6A817">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY HAPPY ROOF IN TAMPA -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Happy Roof in Tampa</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY TAMPA HOMEOWNERS CHOOSE HAPPY ROOF</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Tampa is the heart of the Bay Area — a sprawling city where historic bungalows in Seminole Heights sit blocks from modern construction in Westshore, and where waterfront estates along Bayshore Boulevard face entirely different roofing challenges than ranch homes in New Tampa. With over 400,000 residents spread across dozens of distinct neighborhoods, Tampa demands a roofing contractor who understands the local building codes, Hillsborough County permitting process, and the unique weather patterns that make Florida roofing different from anywhere else in the country.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          Happy Roof has built a reputation across Tampa for transparent pricing, clean job sites, and roofs that pass inspection the first time. We hold Florida Roofing Contractor License #CCC1337380, carry full general liability and workers' compensation insurance, and pull all required permits for every project. Whether your home is in South Tampa near MacDill Air Force Base, in the Carrollwood suburbs, or along the Hillsborough River in Temple Terrace, we deliver the same standard of quality — and stand behind it with a 15-year workmanship warranty in writing.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">15-Year Workmanship Warranty</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Every Tampa roof we install comes with a written 15-year workmanship warranty — no exceptions, no fine print.</p></div></div>
+        </div>
+        <div class="scard p-6">
+          <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Hillsborough County Permits Handled</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">We pull all required permits with the City of Tampa and Hillsborough County and coordinate every inspection from start to finish.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES IN TAMPA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Our Services</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ROOFING SERVICES WE OFFER IN TAMPA</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Roof Replacement</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">
+          Full tear-off and replacement using Owens Corning Duration HDZ shingles, standing seam metal panels from Gulf Coast Supply, or concrete and clay tile. We handle everything from decking inspection and underlayment to flashing, ventilation, and final county inspection. Most Tampa shingle roofs are completed in 1 to 3 days.
+        </p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Roof Repair</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">
+          From missing shingles and cracked tile to damaged flashing around chimneys and skylights, we diagnose and repair roofing issues across Tampa. Our team responds quickly after storms and provides honest assessments — if a repair is all you need, that is what we recommend. No upselling.
+        </p>
+      </div>
+      <div class="scard p-8">
+        <div style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);margin-bottom:1rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.75rem">Storm Damage & Insurance</h3>
+        <p style="color:#555555;font-size:.95rem;line-height:1.7">
+          Tampa sits in one of the most hurricane-prone corridors in the United States. When storms hit, we provide thorough damage assessments, help document the damage for your insurance claim, and coordinate directly with your adjuster. We work with all major insurance carriers in Florida.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROCESS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR 4-STEP PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Free Inspection & Estimate</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We inspect your roof from top to bottom — checking decking, underlayment, flashing, ventilation, and overall condition. You receive a detailed written estimate with material options, timelines, and transparent pricing. No pressure, no hidden fees.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Material Selection & Permits</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Choose your material and color with our guidance. We pull all permits with the City of Tampa or Hillsborough County, order materials from the manufacturer, and schedule installation on a date that works for you.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Professional Installation</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Our crew performs the full tear-off, inspects and repairs decking, installs new underlayment and flashing, and lays your new roofing system to manufacturer specifications. We protect your landscaping, driveway, and property throughout.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Final Inspection & Warranty</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We schedule the county inspection to verify code compliance. Once passed, you receive your warranty documentation — including our 15-year workmanship warranty and manufacturer material warranty. We follow up at 30 days and 1 year.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Tampa Service Area</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">NEIGHBORHOODS WE SERVE IN TAMPA</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">Happy Roof provides roofing services throughout the greater Tampa area and surrounding communities in Hillsborough County. From downtown to the suburbs, we have you covered.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">South Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Seminole Heights</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Palma Ceia</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westshore</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Hyde Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Davis Islands</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Carrollwood</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">New Tampa</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Town 'n' Country</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Channelside</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Ybor City</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Citrus Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Beach Park</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Bayshore</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Harbour Island</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Temple Terrace</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Brandon</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Lutz</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Westchase</span>
+      <span class="scard px-4 py-3 text-center" style="font-size:.9rem;font-weight:600">Riverview</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">TAMPA ROOFING FAQ</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How much does a roof replacement cost in Tampa?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Roof replacement costs in Tampa typically range from $8,000 to $25,000+ depending on your roof's size, pitch, material choice (shingles, metal, or tile), and whether structural repairs are needed. Homes in older Tampa neighborhoods like Seminole Heights or South Tampa may have additional considerations due to historical construction methods. Happy Roof provides free, detailed estimates with no hidden fees — call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> for a personalized quote.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What roofing materials work best for Tampa's climate?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Tampa's hot, humid climate with frequent afternoon storms and hurricane risk means your roof must handle intense UV exposure, heavy rain, and high winds. Architectural shingles (Owens Corning Duration HDZ) rated for 130+ MPH winds are the most popular choice. Standing seam metal reflects solar heat and lasts 40–60 years. Tile roofs are ideal for Mediterranean-style homes found throughout Palma Ceia, Beach Park, and Davis Islands. Happy Roof installs all three and can help you choose.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Does Happy Roof handle permits for Tampa roofing projects?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. Happy Roof handles all permit applications with the City of Tampa and Hillsborough County building departments. We manage the entire permitting and inspection process — you never have to visit a government office or coordinate with an inspector yourself. All work is performed to current Florida Building Code standards.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How long does a Tampa roof replacement take?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Most Tampa shingle roof replacements are completed in 1 to 3 days. Metal roofs typically take 3 to 5 days, and tile roofs may require 5 to 7 days depending on complexity. Tampa's summer afternoon thunderstorms can occasionally cause brief delays, but we plan around weather and keep you updated at every stage of the project.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Is Happy Roof licensed to work in the City of Tampa?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380, which authorizes roofing work throughout the entire state of Florida — including the City of Tampa and all of Hillsborough County. We carry full general liability and workers' compensation insurance, and certificates are available upon request.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY TO GET STARTED<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us or request a free estimate online — we respond within 24 hours.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — No Obligation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>
