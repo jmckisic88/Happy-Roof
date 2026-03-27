@@ -24,10 +24,11 @@ html { scroll-behavior: smooth }
 .gt { color: #3B9FD9 }
 
 /* ── Nav ── */
-.nav-wrap { background: rgba(255,255,255,.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,.06) }
+.nav-wrap { background: rgba(255,255,255,.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,.06); display: block !important; visibility: visible !important }
 .nav-link { color: #555555; font-size: .875rem; font-weight: 600; transition: color .18s ease; padding: .25rem 0; text-decoration: none }
 .nav-link:hover, .nav-link.active { color: #1A1A1A; font-weight: 700 }
 .nav-link:focus-visible { outline: 2px solid #E6A817; outline-offset: 3px; border-radius: 3px }
+#give-back-bar { display: flex !important; visibility: visible !important }
 
 /* ── Buttons ── */
 .btn-p { background: #E6A817; color: #1A1A1A; border-radius: 8px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .02em; padding: .75rem 1.6rem; transition: background .18s, transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .18s; box-shadow: 0 4px 20px -4px rgba(230,168,23,.42); display: inline-flex; align-items: center; gap: .45rem; text-decoration: none }
