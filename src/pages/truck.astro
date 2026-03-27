@@ -11,8 +11,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   ogDescription="Exclusive truck offer. $250 off any roof replacement or major repair in Tampa Bay."
 >
 
+<style is:inline>
+  #give-back-bar { display: none !important; }
+  .nav-wrap { top: 0 !important; }
+</style>
+
 <!-- ══════════════════════ HERO ══════════════════════ -->
-<section style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem 4rem;background:#FFFFFF">
+<section style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7rem 1.5rem 4rem;background:#FFFFFF">
   <div style="max-width:480px;width:100%;margin:0 auto;text-align:center">
 
     <!-- Truck badge -->
@@ -64,8 +69,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p>Schedule your free estimate within 30 days to lock in your $250 discount. Valid on roof replacements and major repairs ($5,000+). One per household. Cannot be combined with other discounts. <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms apply</a>.</p>
     </div>
 
+    <!-- Financing nudge -->
+    <div style="margin-top:1.25rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.65rem">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="flex-shrink:0"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <p style="font-family:'Nunito',sans-serif;font-size:.78rem;color:#555;margin:0"><strong style="color:#1A1A1A">$0 Down Financing Available</strong> · <a href="/finance" style="color:#3B9FD9;text-decoration:underline">Learn more</a></p>
+    </div>
+
     <!-- Trust signals -->
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid #E0E0E0">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #E0E0E0">
       <div style="text-align:center">
         <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">5.0★</p>
         <p style="color:#888888;font-size:.72rem;margin-top:.15rem">Google Rating</p>
@@ -77,15 +88,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div style="text-align:center">
         <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">FL Lic.</p>
         <p style="color:#888888;font-size:.72rem;margin-top:.15rem">#CCC1337380</p>
-      </div>
-    </div>
-
-    <!-- Financing nudge -->
-    <div style="margin-top:1.5rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="flex-shrink:0"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      <div>
-        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#1A1A1A;margin:0">$0 Down Financing Available</p>
-        <p style="color:#888;font-size:.75rem;margin:.15rem 0 0;line-height:1.4">Affordable monthly payments. <a href="/finance" style="color:#3B9FD9;text-decoration:underline">Learn more</a></p>
       </div>
     </div>
   </div>
