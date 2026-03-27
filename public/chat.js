@@ -720,12 +720,13 @@
       /* Smooth scroll on mobile */
       html { -webkit-overflow-scrolling:touch; }
 
-      /* Ensure tap targets are large enough */
-      .nav-link { min-height:44px; display:inline-flex; align-items:center; }
-      #mobile-menu a { min-height:48px; display:flex; align-items:center; }
-
-      /* Improve form usability on mobile — prevent zoom on focus (iOS) */
-      input, select, textarea { font-size:16px !important; }
+      /* Ensure tap targets are large enough (mobile only) */
+      @media (max-width:767px) {
+        .nav-link { min-height:44px; display:inline-flex; align-items:center; }
+        #mobile-menu a { min-height:48px; display:flex; align-items:center; }
+        /* Improve form usability on mobile — prevent zoom on focus (iOS) */
+        input, select, textarea { font-size:16px !important; }
+      }
 
       /* Chat window full-width on small screens */
       @media (max-width:420px) {
