@@ -181,24 +181,24 @@ function submitTruckForm(e) {
   if (!valid) return;
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Submitting…';
-  // Same endpoint as main site — swap to Zapier/ServiceTitan when ready
-  fetch('https://formsubmit.co/ajax/info@happyroof.com', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify({
-      _subject: '$250 Truck Offer — New Lead',
-      _source: 'truck-qr-landing',
-      name: (form.querySelector('[name=name]')||{}).value||'',
-      email: (form.querySelector('[name=email]')||{}).value||'',
-      phone: (form.querySelector('[name=phone]')||{}).value||'',
-      offer: '$250 Truck Discount',
-      source: 'truck-qr-code'
-    })
-  }).finally(() => {
-    document.getElementById('truck-success').style.display = 'block';
-    form.querySelectorAll('input').forEach(el => el.disabled = true);
-    btn.style.display = 'none';
-  });
+  const formData = {
+    _subject: '$250 Truck Offer — New Lead',
+    _source: 'truck-qr-landing',
+    name: (form.querySelector('[name=name]')||{}).value||'',
+    email: (form.querySelector('[name=email]')||{}).value||'',
+    phone: (form.querySelector('[name=phone]')||{}).value||'',
+    offer: '$250 Truck Discount',
+    source: 'truck-qr-code'
+  };
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: '$250 Truck Offer', notes: '' };
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }))
+    .finally(() => {
+      document.getElementById('truck-success').style.display = 'block';
+      form.querySelectorAll('input').forEach(el => el.disabled = true);
+      btn.style.display = 'none';
+    });
 }
 </script>
 <script>

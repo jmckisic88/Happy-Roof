@@ -743,14 +743,15 @@ function handleSubmit(e) {
   labels.forEach((lbl, i) => { if (allInputs[i] && !allInputs[i].name) data[lbl.textContent.replace('*','').trim()] = allInputs[i].value; });
   const btn = form.querySelector('button[type=submit]');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-  fetch('https://formsubmit.co/ajax/info@happyroof.com', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify(data)
-  }).finally(() => {
-    document.getElementById('success-msg').classList.remove('hidden');
-    form.style.display = 'none';
-  });
+  // Try ServiceTitan first, fallback to FormSubmit
+  const stPayload = { name: data.referral_name||'', phone: data.referral_phone||'', email: data.referral_email||'', service: 'Referral', notes: data.referral_notes||'' };
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }))
+    .finally(() => {
+      document.getElementById('success-msg').classList.remove('hidden');
+      form.style.display = 'none';
+    });
 }
 </script>
 
