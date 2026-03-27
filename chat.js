@@ -202,7 +202,7 @@
       Email: email || 'Not provided',
       Conversation: buildSummary()
     };
-    const stPayload = { name: name||'', phone: phone||'', email: email||'', service: 'Chat Lead', notes: buildSummary() };
+    const stPayload = { name: name||'', phone: phone||'', email: email||'', service: 'Chat Lead', notes: buildSummary(), source: 'Website - Chatbot', page: window.location.pathname };
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
       .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }))
       .catch(() => {});

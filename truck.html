@@ -190,7 +190,7 @@ function submitTruckForm(e) {
     offer: '$250 Truck Discount',
     source: 'truck-qr-code'
   };
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: '$250 Truck Offer', notes: '' };
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: '$250 Truck Offer', notes: '', source: 'QR Code - Truck', page: '/truck' };
   fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
     .then(r => r.ok ? r.json() : Promise.reject())
     .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }))

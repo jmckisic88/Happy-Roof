@@ -1121,7 +1121,7 @@ function submitHeroForm(e) {
     source: 'happy-roof-website'
   };
   // Try ServiceTitan first, fallback to FormSubmit
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: formData.service, notes: formData.notes };
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: formData.service, notes: formData.notes, source: 'Website - Homepage', page: window.location.pathname };
   fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
     .then(r => r.ok ? r.json() : Promise.reject())
     .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }))

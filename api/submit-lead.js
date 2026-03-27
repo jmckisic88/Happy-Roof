@@ -16,11 +16,14 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, phone, email, service, notes } = req.body;
+  const { name, phone, email, service, notes, source, page, priority } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
   }
+
+  // Booking Provider ID (registered in ServiceTitan)
+  const BOOKING_PROVIDER_ID = 46132;
 
   const TENANT_ID = process.env.ST_TENANT_ID;
   const CLIENT_ID = process.env.ST_CLIENT_ID;
@@ -53,11 +56,16 @@ module.exports = async (req, res) => {
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
 
-    // Step 2: Combine service + notes into summary
+    // Step 2: Build summary with source tracking
     const summaryParts = [];
-    if (service) summaryParts.push(`Service Needed: ${service}`);
+    if (source) summaryParts.push(`[Source: ${source}]`);
+    if (page) summaryParts.push(`[Page: ${page}]`);
+    if (service) summaryParts.push(`Service: ${service}`);
     if (notes) summaryParts.push(`Notes: ${notes}`);
     const summary = summaryParts.join(' | ') || 'Website lead — no details provided';
+
+    // Map priority: emergency/PPC leads get flagged
+    const leadPriority = priority === 'high' ? 'Urgent' : undefined;
 
     // Step 3: Submit lead to ServiceTitan
     const leadRes = await fetch(
@@ -74,8 +82,8 @@ module.exports = async (req, res) => {
           phoneNumber: phone,
           email: email || '',
           summary: summary,
-          campaignId: null,
-          businessUnitId: null,
+          bookingProviderId: BOOKING_PROVIDER_ID,
+          priority: leadPriority,
         }),
       }
     );

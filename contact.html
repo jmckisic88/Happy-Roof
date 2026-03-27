@@ -554,7 +554,7 @@ function handleSubmit(e) {
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
   // Try ServiceTitan first, fallback to FormSubmit
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service_needed||'', notes: data.address_notes||'' };
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service_needed||'', notes: data.address_notes||'', source: 'Website - Contact', page: window.location.pathname };
   fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
     .then(r => r.ok ? r.json() : Promise.reject())
     .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }))
