@@ -122,4 +122,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- STICKY MOBILE CTA -->
 
+<script is:inline>
+function submitForm(e){
+  e.preventDefault();
+  var form=e.target;
+  var data=new FormData(form);
+  var obj={};data.forEach(function(v,k){obj[k]=v});
+  // ServiceTitan + FormSubmit fallback
+  var stPayload = { name: obj.name||'', phone: obj.phone||'', email: obj.email||'', service: 'PPC Lead - Roof Replacement', notes: obj.address||'', source: 'PPC - Roof Replacement', page: '/lp/roof-replacement' };
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(obj) }); })
+    .finally(function(){
+      form.style.display='none';
+      document.getElementById('form-success').style.display='block';
+    });
+  return false;
+}
+</script>
+
 </LandingLayout>

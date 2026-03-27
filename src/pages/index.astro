@@ -899,10 +899,6 @@ const schema = `[{
 
 <script is:inline>
 // ── Form submission config ──
-// To switch to Zapier/ServiceTitan: replace FORM_ENDPOINT with your webhook URL
-// ServiceTitan Booking Provider Tag ID: 46132 | Tenant ID: 4635247253
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@happyroof.com';
-
 function submitHeroForm(e) {
   e.preventDefault();
   const form = e.target;
@@ -912,26 +908,28 @@ function submitHeroForm(e) {
   if (!valid) return;
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
-  fetch(FORM_ENDPOINT, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify({
-      _subject: 'New Estimate Request — Happy Roof Website',
-      _source: 'homepage',
-      _page: window.location.pathname,
-      name: (form.querySelector('[name=name]')||{}).value||'',
-      phone: (form.querySelector('[name=phone]')||{}).value||'',
-      email: (form.querySelector('[name=email]')||{}).value||'',
-      service: (form.querySelector('[name=service]')||{}).value||'',
-      notes: (form.querySelector('[name=notes]')||{}).value||'',
-      sms_consent: form.querySelector('[name=sms_consent]') && form.querySelector('[name=sms_consent]').checked ? 'Yes' : 'No',
-      source: 'happy-roof-website'
-    })
-  }).finally(() => {
-    document.getElementById('hero-success').style.display = 'block';
-    form.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
-    btn.style.display = 'none';
-  });
+  const formData = {
+    _subject: 'New Estimate Request — Happy Roof Website',
+    _source: 'homepage',
+    _page: window.location.pathname,
+    name: (form.querySelector('[name=name]')||{}).value||'',
+    phone: (form.querySelector('[name=phone]')||{}).value||'',
+    email: (form.querySelector('[name=email]')||{}).value||'',
+    service: (form.querySelector('[name=service]')||{}).value||'',
+    notes: (form.querySelector('[name=notes]')||{}).value||'',
+    sms_consent: form.querySelector('[name=sms_consent]') && form.querySelector('[name=sms_consent]').checked ? 'Yes' : 'No',
+    source: 'happy-roof-website'
+  };
+  // Try ServiceTitan first, fallback to FormSubmit
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: formData.service, notes: formData.notes, source: 'Website - Homepage', page: window.location.pathname };
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .catch(() => fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }))
+    .finally(() => {
+      document.getElementById('hero-success').style.display = 'block';
+      form.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
+      btn.style.display = 'none';
+    });
 }
 
 // ── Hero slideshow ──
