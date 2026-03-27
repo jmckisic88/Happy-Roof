@@ -97,18 +97,11 @@ const schema = `{
 >
 
 <style is:inline>
-/* ── Finance nav: override chat.js injection which sets display:inline-flex + min-height on .nav-link ── */
-    #fin-nav-links{display:none}
-    @media(min-width:768px){#fin-nav-links{display:flex;align-items:center;gap:1.25rem}}
-    #fin-nav-links .nav-link{color:#AAAAAA !important;display:inline !important;min-height:unset !important;font-size:.875rem !important}
-    #fin-nav-links .nav-link:hover,#fin-nav-links .nav-link.active{color:#1A1A1A !important}
     .gfin{background:linear-gradient(135deg,#68BA62 0%,#1C418C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .white-section{background:#F5F5F5;color:#1A1A1A}
-    .feat.card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+    .feat-card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;padding:1.5rem;transition:border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
     .feat-card:hover{border-color:rgba(104,186,98,.25);transform:translateY(-4px)}
-    /* Override chat.js overflow-x:hidden so Enhancify widget isn't clipped */
     .enhancify-wrap{background:#fff;border-radius:20px;box-shadow:0 32px 80px -16px rgba(0,0,0,.4),0 8px 24px -8px rgba(0,0,0,.3);min-height:600px}
-    /* ── Hero photo bg ── */
 </style>
 
 <!-- HERO -->
