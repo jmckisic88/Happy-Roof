@@ -1,0 +1,87 @@
+---
+// Standalone page — not linked from nav or footer
+// Access at happyroof.com/calendar
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Content Calendar — Happy Roof</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#FFFDF8;color:#2C1810;min-height:100vh}
+h1,h2,h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:-0.03em}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+@media(max-width:768px){
+  .cal-grid{grid-template-columns:repeat(2,1fr)}
+  .cal-header{display:none!important}
+  .day-cell{min-height:auto!important}
+  .rest-cell{display:none}
+}
+@media(max-width:480px){
+  .cal-grid{grid-template-columns:1fr}
+}
+.day-cell{min-height:110px;border-radius:12px;padding:10px;cursor:pointer;border:2px solid transparent;transition:transform .2s ease,box-shadow .2s ease}
+.day-cell:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.day-cell:active{transform:scale(.98)}
+.rest-cell{min-height:110px;border-radius:12px;padding:10px;background:#F5F0E8;opacity:.5}
+.detail-panel{background:#fff;border-radius:16px;padding:24px;border:2px solid #E5D5C0;box-shadow:0 12px 40px rgba(44,24,16,.08)}
+.pill{display:inline-block;padding:4px 14px;border-radius:99px;font-size:13px;font-weight:700;color:#fff}
+.section-box{background:#FFFDF8;border-radius:12px;padding:16px;border:1px solid #E5D5C0}
+.caption-box{background:#2C1810;color:#FFFDF8;border-radius:12px;padding:20px;font-size:14px;line-height:1.7;white-space:pre-wrap;position:relative}
+.caption-box::before{content:'READY-TO-POST CAPTION';position:absolute;top:-10px;left:16px;background:#E6A817;color:#2C1810;font-size:11px;font-weight:800;padding:2px 10px;border-radius:6px;letter-spacing:.05em}
+.script-box{background:#1a1a2e;color:#e0e0e0;border-radius:12px;padding:20px;font-size:14px;line-height:1.7;white-space:pre-wrap;position:relative}
+.script-box::before{content:'VIDEO SCRIPT';position:absolute;top:-10px;left:16px;background:#7c3aed;color:#fff;font-size:11px;font-weight:800;padding:2px 10px;border-radius:6px;letter-spacing:.05em}
+.copy-btn{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s}
+.copy-btn:hover{background:rgba(255,255,255,.25)}
+.copy-btn:active{background:rgba(255,255,255,.35)}
+.pillar-legend{display:flex;flex-wrap:wrap;gap:8px}
+.week-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8B7355;font-size:13px;padding:8px 0 4px;grid-column:1/-1}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header style="background:#2C1810;padding:20px 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:12px">
+<img src="/Brand%20Assets/Happy%20Roof%20Logo.png" alt="Happy Roof" style="height:40px;border-radius:8px"/>
+<div>
+<div style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-.02em">Content Calendar</div>
+<div style="color:#8B7355;font-size:12px">April 2026 — Internal Use Only</div>
+</div>
+</div>
+<div class="pillar-legend" style="display:none" id="header-legend"></div>
+</div>
+</header>
+
+<!-- Main -->
+<main style="max-width:1100px;margin:0 auto;padding:24px 20px">
+
+<!-- Pillar Legend -->
+<div style="margin-bottom:24px">
+<div class="pillar-legend" id="legend"></div>
+</div>
+
+<!-- Calendar Grid -->
+<div class="cal-grid" id="calendar"></div>
+
+<!-- Detail Panel -->
+<div id="detail" style="display:none;margin-top:24px"></div>
+
+<!-- Weekly Rhythm -->
+<div style="margin-top:32px;padding:20px;background:#fff;border-radius:16px;border:1px solid #E5D5C0">
+<h3 style="font-size:18px;margin-bottom:12px;color:#2C1810">Weekly Rhythm</h3>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center" id="rhythm"></div>
+</div>
+</main>
+
+<script is:inline src="/calendar-data.js"></script>
+<script is:inline src="/calendar-app.js"></script>
+</body>
+</html>
