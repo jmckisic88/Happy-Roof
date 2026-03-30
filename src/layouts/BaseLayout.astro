@@ -112,6 +112,58 @@ const {
 
   <script is:inline src="/chat.js"></script>
 
+  <!-- Promo code validation -->
+  <script is:inline>
+  (function(){
+    var promoCodes = null;
+    var inputs = document.querySelectorAll('.promo-input');
+    if (!inputs.length) return;
+
+    fetch('/promo-codes.json').then(function(r){ return r.json(); }).then(function(data){ promoCodes = data; });
+
+    inputs.forEach(function(input){
+      var wrap = input.closest('.mb-4, .fgroup');
+      var status = wrap.querySelector('.promo-status');
+      var msg = wrap.querySelector('.promo-msg');
+      var debounce;
+
+      input.addEventListener('input', function(){
+        clearTimeout(debounce);
+        var code = input.value.trim().toUpperCase();
+
+        if (!code) {
+          status.style.display = 'none';
+          msg.style.display = 'none';
+          input.style.borderColor = '';
+          return;
+        }
+
+        debounce = setTimeout(function(){
+          if (!promoCodes) return;
+          var promo = promoCodes[code];
+          if (promo && promo.active) {
+            status.textContent = '\u2713';
+            status.style.color = '#16a34a';
+            status.style.display = 'block';
+            msg.textContent = promo.description;
+            msg.style.color = '#16a34a';
+            msg.style.display = 'block';
+            input.style.borderColor = '#16a34a';
+          } else {
+            status.textContent = '\u2717';
+            status.style.color = '#dc2626';
+            status.style.display = 'block';
+            msg.textContent = 'Invalid promo code';
+            msg.style.color = '#dc2626';
+            msg.style.display = 'block';
+            input.style.borderColor = '#dc2626';
+          }
+        }, 300);
+      });
+    });
+  })();
+  </script>
+
   <ExitPopup />
   <Analytics />
 </body>

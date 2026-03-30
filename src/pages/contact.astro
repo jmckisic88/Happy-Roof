@@ -167,76 +167,34 @@ const schema = `{
       <!-- Form (3/5) -->
       <div class="lg:col-span-3">
         <div class="rounded-2xl p-8" style="background:#F7F7F7;border:1px solid #E0E0E0;box-shadow:0 24px 60px -12px rgba(0,0,0,.4)">
-          <h2 class="font-display font-black tracking-tightest mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:.95;letter-spacing:-.01em">REQUEST FREE ESTIMATE</h2>
-          <p style="color:#888888;font-size:.85rem;margin-bottom:1.75rem">We'll respond within 24 hours — usually same day.</p>
+          <h2 class="font-display font-black tracking-tightest mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:.95;letter-spacing:-.01em">GET A FREE ESTIMATE</h2>
+          <p style="color:#888888;font-size:.85rem;margin-bottom:1.75rem">We typically respond within 1 business day.</p>
 
-          <p style="font-size:.85rem;color:#555;margin-bottom:1rem;text-align:center"><svg style="display:inline;vertical-align:-2px;margin-right:4px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Trusted by Tampa Bay homeowners · 5.0★ on Google · FL #CCC1337380</p>
 <form onsubmit="handleSubmit(event)">
             <div class="grid sm:grid-cols-2 gap-4 mb-0">
               <div class="fgroup">
-                <label class="flabel">First Name *</label>
-                <input type="text" class="finput" placeholder="John" required />
+                <label class="flabel">Name <span style="color:#3B9FD9">*</span></label>
+                <input type="text" name="name" class="finput" placeholder="Jane Smith" required />
               </div>
               <div class="fgroup">
-                <label class="flabel">Last Name *</label>
-                <input type="text" class="finput" placeholder="Smith" required />
+                <label class="flabel">Phone <span style="color:#3B9FD9">*</span></label>
+                <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" required />
               </div>
             </div>
             <div class="fgroup">
-              <label class="flabel">Phone Number *</label>
-              <input type="tel" class="finput" placeholder="(813) 000-0000" required />
+              <label class="flabel">Email</label>
+              <input type="email" name="email" class="finput" placeholder="jane@example.com" />
             </div>
             <div class="fgroup">
-              <label class="flabel">Email Address</label>
-              <input type="email" class="finput" placeholder="john@email.com" />
-            </div>
-            <div class="fgroup">
-              <label class="flabel">Property Address</label>
-              <input type="text" class="finput" placeholder="123 Main St, Tampa, FL 33601" />
-            </div>
-            <div class="fgroup">
-              <label class="flabel">Service Needed *</label>
-              <select class="finput" required style="cursor:pointer">
-                <option value="" style="background:#FFFFFF">Select a service...</option>
-                <option style="background:#FFFFFF">Residential Roof Replacement</option>
-                <option style="background:#FFFFFF">Commercial Roofing</option>
-                <option style="background:#FFFFFF">Roof Repair</option>
-                <option style="background:#FFFFFF">Roof Inspection / Report</option>
-                <option style="background:#FFFFFF">Storm Damage / Insurance Claim</option>
-                <option style="background:#FFFFFF">New Construction</option>
-                <option style="background:#FFFFFF">Gutter Service</option>
-                <option style="background:#FFFFFF">Not Sure — Need Advice</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label class="flabel">Preferred Material (optional)</label>
-              <select class="finput" style="cursor:pointer">
-                <option value="" style="background:#FFFFFF">No preference / Help me choose</option>
-                <option style="background:#FFFFFF">Asphalt Shingles</option>
-                <option style="background:#FFFFFF">Clay / Concrete Tile</option>
-                <option style="background:#FFFFFF">Metal Roofing</option>
-                <option style="background:#FFFFFF">Flat Roof</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label class="flabel">How Did You Hear About Us?</label>
-              <select class="finput" style="cursor:pointer">
-                <option value="" style="background:#FFFFFF">Select...</option>
-                <option style="background:#FFFFFF">Google Search</option>
-                <option style="background:#FFFFFF">Google Reviews</option>
-                <option style="background:#FFFFFF">Neighbor / Friend Referral</option>
-                <option style="background:#FFFFFF">Facebook / Instagram</option>
-                <option style="background:#FFFFFF">Yard Sign</option>
-                <option style="background:#FFFFFF">Insurance Company</option>
-                <option style="background:#FFFFFF">Other</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label class="flabel">Tell Us About Your Project</label>
-              <textarea class="finput" rows="4" placeholder="Describe your roofing situation — when it happened, what you're seeing, any concerns..." style="resize:vertical"></textarea>
+              <label class="flabel">Promo Code</label>
+              <div style="position:relative">
+                <input type="text" name="promo_code" class="finput promo-input" placeholder="e.g. POSTCARD26" style="text-transform:uppercase;padding-right:2.5rem" />
+                <span class="promo-status" style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1rem;line-height:1;display:none"></span>
+              </div>
+              <p class="promo-msg" style="font-size:.75rem;margin-top:.35rem;line-height:1.4;display:none"></p>
             </div>
             <!-- SMS Consent -->
-            <div class="fgroup" style="display:flex;align-items:flex-start;gap:.65rem">
+            <div class="fgroup">
               <p style="font-size:.8rem;font-weight:700;color:#1A1A1A;margin-bottom:.5rem">Do you agree to receive text messages from Happy Roof?</p>
               <div style="display:flex;gap:1.5rem;margin-bottom:.75rem">
                 <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
@@ -253,7 +211,7 @@ const schema = `{
               <p style="font-size:.68rem;color:#888;line-height:1.5;margin:0">See our <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline">Terms &amp; Conditions</a> for more details.</p>
             </div>
             <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
-              Send My Request
+              Get My Free Estimate
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
           </form>
@@ -415,7 +373,8 @@ function handleSubmit(e) {
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
   // Send to BOTH ServiceTitan and email (belt + suspenders)
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: data.service_needed||'', notes: data.address_notes||'', address: data.address_notes||'', source: 'Website - Contact', page: window.location.pathname };
+  var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })
