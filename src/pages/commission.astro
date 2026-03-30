@@ -1,0 +1,778 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+---
+<LandingLayout
+  title="Commission Calculator | Happy Roof"
+  description="Internal commission calculator for Happy Roof sales reps and managers."
+  canonical="https://happyroof.com/commission"
+  noindex={true}
+>
+
+<!-- ═══ Password Gate ═══ -->
+<div id="lock-screen" class="fixed inset-0 z-50 bg-[#1A1A1A] flex items-center justify-center">
+  <div class="text-center px-6 w-full max-w-sm">
+    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#2A2A2A] flex items-center justify-center">
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#E6A817" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h1 class="font-['Barlow_Condensed'] text-2xl font-800 text-white mb-2">Commission Calculator</h1>
+    <p class="text-sm text-[#888] mb-6">Enter your access code to continue.</p>
+    <form id="pw-form" class="space-y-3" autocomplete="off">
+      <input
+        id="pw-input"
+        type="password"
+        placeholder="Access Code"
+        autofocus
+        class="w-full bg-[#2A2A2A] border border-[#333] rounded-lg px-4 py-3 text-white text-center text-lg font-['Barlow_Condensed'] font-700 tracking-widest placeholder:text-[#555] focus:outline-none focus:border-[#E6A817] focus:ring-2 focus:ring-[rgba(230,168,23,.25)] transition-all duration-200"
+      />
+      <button type="submit" class="w-full bg-[#E6A817] text-[#1A1A1A] font-['Barlow_Condensed'] font-700 text-lg rounded-lg py-3 transition-all duration-200 hover:bg-[#F0C040] active:translate-y-0 focus-visible:outline-2 focus-visible:outline-[#F0C040] focus-visible:outline-offset-3" style="box-shadow: 0 4px 20px -4px rgba(230,168,23,.42);">
+        Unlock
+      </button>
+      <p id="pw-error" class="text-sm text-red-400 hidden">Incorrect code. Try again.</p>
+    </form>
+  </div>
+</div>
+
+<section id="app-content" class="pt-12 pb-12 bg-white hidden" style="padding-top: 3rem !important;">
+  <div class="max-w-5xl mx-auto px-5">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <span class="sl text-[#E6A817] block mb-2">Internal Tool</span>
+      <h1 class="font-['Barlow_Condensed'] text-4xl md:text-5xl font-800 tracking-tight text-[#1A1A1A] mb-3">Commission Calculator</h1>
+      <p class="text-[#555] text-lg max-w-2xl mx-auto">Model quarterly scenarios in real time. Fiscal year starts <strong>Nov 1</strong>.</p>
+    </div>
+
+    <!-- Role Toggle -->
+    <div class="flex justify-center gap-3 mb-8">
+      <button id="btn-rep" class="role-btn active font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Sales Rep</button>
+      <button id="btn-mgr" class="role-btn font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Manager</button>
+    </div>
+
+    <!-- Quarter Selector -->
+    <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
+      <div>
+        <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Fiscal Year</label>
+        <select id="fiscal-year" class="calc-input w-32"></select>
+      </div>
+      <div>
+        <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Quarter</label>
+        <select id="fiscal-quarter" class="calc-input w-44">
+          <option value="Q1">Q1 (Nov – Jan)</option>
+          <option value="Q2">Q2 (Feb – Apr)</option>
+          <option value="Q3">Q3 (May – Jul)</option>
+          <option value="Q4">Q4 (Aug – Oct)</option>
+        </select>
+      </div>
+      <div id="prev-qtr-wrap">
+        <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Prev Qtr Jobs (Carryover)</label>
+        <select id="prev-qtr-jobs" class="calc-input w-36">
+          <option value="0">0–5 (start at 0)</option>
+          <option value="1">6–10 (start at 1)</option>
+          <option value="2">11–15 (start at 2)</option>
+          <option value="3">16–20 (start at 3)</option>
+          <option value="4">21–25 (start at 4)</option>
+          <option value="5">25+ (start at 5)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  JOB TABLE                                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A]">Personal Sales</h2>
+        <button id="add-job" class="btn-p text-sm !py-2 !px-4">+ Add Job</button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm" id="job-table">
+          <thead>
+            <tr class="text-left text-[#888] text-xs uppercase tracking-wider font-600 border-b border-[#E0E0E0]">
+              <th class="pb-3 pr-2 w-8">#</th>
+              <th class="pb-3 pr-2">Selling Price</th>
+              <th class="pb-3 pr-2">Gross Margin %</th>
+              <th class="pb-3 pr-2 text-right">Total Comm</th>
+              <th class="pb-3 pr-2 text-right">Upfront (70%)</th>
+              <th class="pb-3 pr-2 text-right">Backend (30%)</th>
+              <th class="pb-3 pr-2 text-right">GP Bonus %</th>
+              <th class="pb-3 text-right">GP Bonus $</th>
+              <th class="pb-3 w-8"></th>
+            </tr>
+          </thead>
+          <tbody id="job-body"></tbody>
+          <tfoot>
+            <tr class="font-700 text-[#1A1A1A] border-t-2 border-[#E6A817]">
+              <td class="pt-4" id="total-jobs">0</td>
+              <td class="pt-4" id="total-sales">$0</td>
+              <td class="pt-4"></td>
+              <td class="pt-4 text-right" id="total-comm">$0</td>
+              <td class="pt-4 text-right" id="total-upfront">$0</td>
+              <td class="pt-4 text-right" id="total-backend">$0</td>
+              <td class="pt-4 text-right"></td>
+              <td class="pt-4 text-right" id="total-gp-bonus">$0</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  UPGRADES + DEPOSIT (Rep only)              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="upgrades-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
+      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Upgrades &amp; Bonuses</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Warranties Sold</label>
+          <input type="number" id="warranties" min="0" value="0" class="calc-input w-full" />
+          <p class="text-xs text-[#888] mt-1">$100 each</p>
+        </div>
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Attic Breeze Vents Sold</label>
+          <input type="number" id="attic-breeze" min="0" value="0" class="calc-input w-full" />
+          <p class="text-xs text-[#888] mt-1">$150 each</p>
+        </div>
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Jobs w/ $5k–$10k Deposit</label>
+          <input type="number" id="deposits-mid" min="0" value="0" class="calc-input w-full" />
+          <p class="text-xs text-[#888] mt-1">$25 bonus each</p>
+        </div>
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Jobs w/ $10k+ Deposit</label>
+          <input type="number" id="deposits-high" min="0" value="0" class="calc-input w-full" />
+          <p class="text-xs text-[#888] mt-1">$50 bonus each</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  TEAM SALES OVERRIDE (Manager only)         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="team-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8 hidden">
+      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Team Sales Override</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Total Team (Downline) Sales $</label>
+          <input type="number" id="team-sales" min="0" value="0" class="calc-input w-full" placeholder="$0" />
+        </div>
+        <div class="flex flex-col justify-end">
+          <p class="text-sm text-[#555]">Override %: <strong id="team-override-pct">0.5%</strong></p>
+          <p class="text-sm text-[#555]">Override Earned: <strong id="team-override-amt" class="text-[#E6A817]">$0</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  RECRUITING OVERRIDE (Rep only)             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div id="recruiting-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
+      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Recruiting Override</h2>
+      <p class="text-sm text-[#555] mb-4">0.5% override on each direct recruit's total quarterly sales.</p>
+      <div id="recruit-rows" class="space-y-3"></div>
+      <button id="add-recruit" class="mt-4 text-sm font-600 text-[#3B9FD9] hover:text-[#1A1A1A] transition-colors duration-200">+ Add Recruit</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  SUMMARY DASHBOARD                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="bg-[#1A1A1A] rounded-2xl p-6 md:p-8 text-white">
+      <h2 class="font-['Barlow_Condensed'] text-2xl font-700 mb-6">Quarterly Summary</h2>
+
+      <!-- Backend Multiplier Row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-[#2A2A2A] rounded-xl p-4">
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Jobs This Qtr</p>
+          <p class="text-2xl font-['Barlow_Condensed'] font-800" id="sum-jobs">0</p>
+        </div>
+        <div class="bg-[#2A2A2A] rounded-xl p-4">
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Backend Multiplier</p>
+          <p class="text-2xl font-['Barlow_Condensed'] font-800 text-[#E6A817]" id="sum-multiplier">1x</p>
+        </div>
+        <div class="bg-[#2A2A2A] rounded-xl p-4">
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Effective Jobs (w/ Carryover)</p>
+          <p class="text-2xl font-['Barlow_Condensed'] font-800" id="sum-effective-jobs">0</p>
+        </div>
+        <div class="bg-[#2A2A2A] rounded-xl p-4">
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Avg Commission %</p>
+          <p class="text-2xl font-['Barlow_Condensed'] font-800" id="sum-avg-pct">0%</p>
+        </div>
+      </div>
+
+      <!-- Breakdown -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="space-y-3">
+          <div class="flex justify-between text-sm"><span class="text-[#888]">Upfront Commission</span><span id="sum-upfront" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#888]">Backend (base)</span><span id="sum-backend-base" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#888]">GP Bonus Total</span><span id="sum-gp-bonus" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#888]">Backend + GP Bonus</span><span id="sum-backend-plus-gp" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#888]">× Backend Multiplier</span><span id="sum-backend-mult" class="font-600 text-[#E6A817]">$0</span></div>
+          <div class="flex justify-between text-sm border-t border-[#333] pt-2" id="upgrade-line"><span class="text-[#888]">Upgrades + Deposit Bonus</span><span id="sum-upgrades" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm" id="recruit-line"><span class="text-[#888]">Recruiting Override</span><span id="sum-recruit" class="font-600">$0</span></div>
+          <div class="flex justify-between text-sm" id="team-line" style="display:none"><span class="text-[#888]">Team Sales Override</span><span id="sum-team" class="font-600">$0</span></div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center bg-[#2A2A2A] rounded-xl p-6">
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-2">Total Quarterly Earnings</p>
+          <p class="text-5xl font-['Barlow_Condensed'] font-900 text-[#E6A817]" id="sum-total">$0</p>
+          <div class="flex gap-6 mt-4 text-sm text-[#888]">
+            <div class="text-center"><p class="font-600 text-white" id="sum-monthly">$0</p><p>/ month</p></div>
+            <div class="text-center"><p class="font-600 text-white" id="sum-weekly">$0</p><p>/ week</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reference Tables Toggle -->
+    <details class="mt-8 mb-12">
+      <summary class="font-['Barlow_Condensed'] font-700 text-lg cursor-pointer text-[#555] hover:text-[#1A1A1A] transition-colors duration-200">View Commission Tables &amp; Reference</summary>
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Rep Commission Grid -->
+        <div id="ref-rep" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep — Base Commission</h3>
+          <table class="w-full text-xs">
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
+            <tbody>
+              <tr><td>&lt; $20k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
+              <tr><td>$20k–$30k</td><td class="text-right">$1,500</td><td class="text-right">$1,070</td><td class="text-right">$430</td></tr>
+              <tr><td>$30k–$45k</td><td class="text-right">$2,250</td><td class="text-right">$1,575</td><td class="text-right">$675</td></tr>
+              <tr><td>$45k–$60k</td><td class="text-right">$3,000</td><td class="text-right">$2,100</td><td class="text-right">$900</td></tr>
+              <tr><td>$60k–$75k</td><td class="text-right">$3,750</td><td class="text-right">$2,625</td><td class="text-right">$1,125</td></tr>
+              <tr><td>$75k–$90k</td><td class="text-right">$4,500</td><td class="text-right">$3,150</td><td class="text-right">$1,350</td></tr>
+              <tr><td>$90k+</td><td class="text-right">$5,000</td><td class="text-right">$3,500</td><td class="text-right">$1,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Manager Commission Grid -->
+        <div id="ref-mgr" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager — Base Commission</h3>
+          <table class="w-full text-xs">
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
+            <tbody>
+              <tr><td>&lt; $10k</td><td class="text-right">$500</td><td class="text-right">$350</td><td class="text-right">$150</td></tr>
+              <tr><td>$10k–$15k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
+              <tr><td>$15k–$20k</td><td class="text-right">$1,500</td><td class="text-right">$1,050</td><td class="text-right">$450</td></tr>
+              <tr><td>$20k–$25k</td><td class="text-right">$2,000</td><td class="text-right">$1,400</td><td class="text-right">$600</td></tr>
+              <tr><td>$25k–$30k</td><td class="text-right">$2,500</td><td class="text-right">$1,750</td><td class="text-right">$750</td></tr>
+              <tr><td>$30k–$40k</td><td class="text-right">$3,500</td><td class="text-right">$2,450</td><td class="text-right">$1,050</td></tr>
+              <tr><td>$40k–$50k</td><td class="text-right">$4,500</td><td class="text-right">$3,150</td><td class="text-right">$1,350</td></tr>
+              <tr><td>$50k–$60k</td><td class="text-right">$5,500</td><td class="text-right">$3,850</td><td class="text-right">$1,650</td></tr>
+              <tr><td>$60k–$70k</td><td class="text-right">$6,500</td><td class="text-right">$4,550</td><td class="text-right">$1,950</td></tr>
+              <tr><td>$70k–$80k</td><td class="text-right">$7,500</td><td class="text-right">$5,250</td><td class="text-right">$1,575</td></tr>
+              <tr><td>$80k–$90k</td><td class="text-right">$8,500</td><td class="text-right">$5,950</td><td class="text-right">$2,550</td></tr>
+              <tr><td>$90k–$100k</td><td class="text-right">$9,500</td><td class="text-right">$6,650</td><td class="text-right">$2,850</td></tr>
+              <tr><td>$100k+</td><td class="text-right">$10,500</td><td class="text-right">$7,350</td><td class="text-right">$3,150</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Backend Multiplier (Rep) -->
+        <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep — Backend Multiplier</h3>
+          <table class="w-full text-xs">
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th></tr></thead>
+            <tbody>
+              <tr><td>0–5</td><td class="text-right">1x</td></tr>
+              <tr><td>6–10</td><td class="text-right">1.25x</td></tr>
+              <tr><td>11–15</td><td class="text-right">1.5x</td></tr>
+              <tr><td>16–20</td><td class="text-right">1.75x</td></tr>
+              <tr><td>21–25</td><td class="text-right">2x</td></tr>
+              <tr><td>25+</td><td class="text-right">2.25x</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Backend Multiplier (Manager) -->
+        <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager — Backend Multiplier + Team Override</h3>
+          <table class="w-full text-xs">
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th><th class="pb-2 text-right">Team Override %</th></tr></thead>
+            <tbody>
+              <tr><td>0–6</td><td class="text-right">1x</td><td class="text-right">0.5%</td></tr>
+              <tr><td>7–11</td><td class="text-right">1.25x</td><td class="text-right">0.75%</td></tr>
+              <tr><td>12–14</td><td class="text-right">1.5x</td><td class="text-right">1.25%</td></tr>
+              <tr><td>15–17</td><td class="text-right">1.75x</td><td class="text-right">1.5%</td></tr>
+              <tr><td>18–20</td><td class="text-right">2x</td><td class="text-right">1.75%</td></tr>
+              <tr><td>21+</td><td class="text-right">2.25x</td><td class="text-right">2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- GP Bonus -->
+        <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Gross Profit Bonus</h3>
+          <table class="w-full text-xs">
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">GP %</th><th class="pb-2 text-right">Bonus</th></tr></thead>
+            <tbody>
+              <tr class="text-red-500"><td>&lt; 15%</td><td class="text-right">-2% of selling price</td></tr>
+              <tr class="text-red-500"><td>15–20%</td><td class="text-right">-1% of selling price</td></tr>
+              <tr><td>20–25%</td><td class="text-right">0%</td></tr>
+              <tr class="text-green-600"><td>25–30%</td><td class="text-right">+0.5% of selling price</td></tr>
+              <tr class="text-green-600"><td>30–35%</td><td class="text-right">+1% of selling price</td></tr>
+              <tr class="text-green-600"><td>35–40%</td><td class="text-right">+1.5% of selling price</td></tr>
+              <tr class="text-green-600"><td>40%+</td><td class="text-right">+2% of selling price</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Fiscal Calendar -->
+        <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Fiscal Calendar</h3>
+          <table class="w-full text-xs">
+            <tbody>
+              <tr><td class="font-600">Q1</td><td>Nov 1 – Jan 31</td></tr>
+              <tr><td class="font-600">Q2</td><td>Feb 1 – Apr 30</td></tr>
+              <tr><td class="font-600">Q3</td><td>May 1 – Jul 31</td></tr>
+              <tr><td class="font-600">Q4</td><td>Aug 1 – Oct 31</td></tr>
+            </tbody>
+          </table>
+          <p class="text-xs text-[#888] mt-3">Fiscal year begins November 1.</p>
+        </div>
+
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<style>
+  .calc-input {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: .5rem .75rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .calc-input:focus {
+    outline: none;
+    border-color: #E6A817;
+    box-shadow: 0 0 0 3px rgba(230,168,23,.15);
+  }
+  .role-btn {
+    background: #F7F7F7;
+    color: #555;
+    border: 1px solid #E0E0E0;
+  }
+  .role-btn:hover {
+    background: rgba(230,168,23,.06);
+    border-color: rgba(230,168,23,.3);
+  }
+  .role-btn:focus-visible {
+    outline: 2px solid #E6A817;
+    outline-offset: 3px;
+  }
+  .role-btn.active {
+    background: #E6A817;
+    color: #1A1A1A;
+    border-color: #E6A817;
+    box-shadow: 0 4px 16px -4px rgba(230,168,23,.4);
+  }
+  .job-row td { padding: .5rem .25rem; vertical-align: middle; }
+  .job-row input { width: 100%; }
+  .del-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: .25rem;
+    border-radius: 6px;
+    transition: color .15s, background .15s;
+  }
+  .del-btn:hover { color: #e53e3e; background: rgba(229,62,62,.08); }
+  .del-btn:focus-visible { outline: 2px solid #e53e3e; outline-offset: 2px; }
+  .gp-neg { color: #e53e3e; }
+  .gp-pos { color: #38a169; }
+
+  details summary::marker { color: #E6A817; }
+  details[open] summary { margin-bottom: .5rem; }
+
+  #job-table tbody tr { border-bottom: 1px solid #E0E0E0; }
+  #job-table tfoot td { font-size: .875rem; }
+</style>
+
+<script is:inline>
+(function() {
+  /* ── Password Gate ── */
+  const PASS = 'HAPPY';
+  const lockScreen = document.getElementById('lock-screen');
+  const appContent = document.getElementById('app-content');
+  const pwForm = document.getElementById('pw-form');
+  const pwInput = document.getElementById('pw-input');
+  const pwError = document.getElementById('pw-error');
+
+  // Check if already authenticated this session
+  if (sessionStorage.getItem('hr-comm-auth') === '1') {
+    lockScreen.style.display = 'none';
+    appContent.classList.remove('hidden');
+  }
+
+  pwForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (pwInput.value.trim() === PASS) {
+      sessionStorage.setItem('hr-comm-auth', '1');
+      lockScreen.style.opacity = '1';
+      lockScreen.style.transition = 'opacity .3s ease';
+      lockScreen.style.opacity = '0';
+      setTimeout(function() {
+        lockScreen.style.display = 'none';
+        appContent.classList.remove('hidden');
+      }, 300);
+    } else {
+      pwError.classList.remove('hidden');
+      pwInput.value = '';
+      pwInput.focus();
+      pwInput.style.borderColor = '#e53e3e';
+      setTimeout(function() { pwInput.style.borderColor = ''; }, 1500);
+    }
+  });
+
+  /* ── Data stores ── */
+  let role = 'rep'; // 'rep' | 'mgr'
+  let jobs = [];
+  let recruitSales = [];
+
+  /* ── Commission tiers ── */
+  const REP_TIERS = [
+    { max: 20000,  total: 1000,  upfront: 700,   backend: 300  },
+    { max: 30000,  total: 1500,  upfront: 1070,  backend: 430  },
+    { max: 45000,  total: 2250,  upfront: 1575,  backend: 675  },
+    { max: 60000,  total: 3000,  upfront: 2100,  backend: 900  },
+    { max: 75000,  total: 3750,  upfront: 2625,  backend: 1125 },
+    { max: 90000,  total: 4500,  upfront: 3150,  backend: 1350 },
+    { max: Infinity, total: 5000, upfront: 3500, backend: 1500 },
+  ];
+
+  const MGR_TIERS = [
+    { max: 10000,  total: 500,   upfront: 350,   backend: 150  },
+    { max: 15000,  total: 1000,  upfront: 700,   backend: 300  },
+    { max: 20000,  total: 1500,  upfront: 1050,  backend: 450  },
+    { max: 25000,  total: 2000,  upfront: 1400,  backend: 600  },
+    { max: 30000,  total: 2500,  upfront: 1750,  backend: 750  },
+    { max: 40000,  total: 3500,  upfront: 2450,  backend: 1050 },
+    { max: 50000,  total: 4500,  upfront: 3150,  backend: 1350 },
+    { max: 60000,  total: 5500,  upfront: 3850,  backend: 1650 },
+    { max: 70000,  total: 6500,  upfront: 4550,  backend: 1950 },
+    { max: 80000,  total: 7500,  upfront: 5250,  backend: 1575 },
+    { max: 90000,  total: 8500,  upfront: 5950,  backend: 2550 },
+    { max: 100000, total: 9500,  upfront: 6650,  backend: 2850 },
+    { max: Infinity, total: 10500, upfront: 7350, backend: 3150 },
+  ];
+
+  const REP_BACKEND_MULT = [
+    { max: 5,  mult: 1    },
+    { max: 10, mult: 1.25 },
+    { max: 15, mult: 1.5  },
+    { max: 20, mult: 1.75 },
+    { max: 25, mult: 2    },
+    { max: Infinity, mult: 2.25 },
+  ];
+
+  const MGR_BACKEND_MULT = [
+    { max: 6,  mult: 1,    teamPct: 0.005  },
+    { max: 11, mult: 1.25, teamPct: 0.0075 },
+    { max: 14, mult: 1.5,  teamPct: 0.0125 },
+    { max: 17, mult: 1.75, teamPct: 0.015  },
+    { max: 20, mult: 2,    teamPct: 0.0175 },
+    { max: Infinity, mult: 2.25, teamPct: 0.02 },
+  ];
+
+  const GP_BONUS = [
+    { max: 15, pct: -0.02 },
+    { max: 20, pct: -0.01 },
+    { max: 25, pct: 0     },
+    { max: 30, pct: 0.005 },
+    { max: 35, pct: 0.01  },
+    { max: 40, pct: 0.015 },
+    { max: Infinity, pct: 0.02 },
+  ];
+
+  /* ── Helpers ── */
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+  const fmt = n => {
+    const neg = n < 0;
+    const s = '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return neg ? '-' + s : s;
+  };
+  const fmtInt = n => '$' + n.toLocaleString('en-US');
+
+  function getTiers() { return role === 'mgr' ? MGR_TIERS : REP_TIERS; }
+  function getMultTable() { return role === 'mgr' ? MGR_BACKEND_MULT : REP_BACKEND_MULT; }
+
+  function lookupComm(price) {
+    const tiers = getTiers();
+    for (const t of tiers) { if (price < t.max) return t; }
+    return tiers[tiers.length - 1];
+  }
+
+  function lookupGPBonus(gpPct) {
+    for (const t of GP_BONUS) { if (gpPct < t.max) return t.pct; }
+    return GP_BONUS[GP_BONUS.length - 1].pct;
+  }
+
+  function lookupMultiplier(jobCount) {
+    const table = getMultTable();
+    for (const t of table) { if (jobCount <= t.max) return t; }
+    return table[table.length - 1];
+  }
+
+  /* ── Fiscal year options ── */
+  function initFiscalYear() {
+    const sel = $('#fiscal-year');
+    const now = new Date();
+    // Fiscal year is named by the year it starts. E.g., FY2025 = Nov 2025 – Oct 2026
+    const currentCalYear = now.getFullYear();
+    const m = now.getMonth(); // 0-indexed
+    // If Nov or Dec, current FY started this calendar year; else it started last year
+    const currentFY = m >= 10 ? currentCalYear : currentCalYear - 1;
+    for (let y = currentFY + 1; y >= currentFY - 2; y--) {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = 'FY' + y + ' (' + y + '–' + (y + 1) + ')';
+      if (y === currentFY) opt.selected = true;
+      sel.appendChild(opt);
+    }
+    // Auto-select current quarter
+    const qtrSel = $('#fiscal-quarter');
+    if (m === 10 || m === 11 || m === 0) qtrSel.value = 'Q1';
+    else if (m >= 1 && m <= 3) qtrSel.value = 'Q2';
+    else if (m >= 4 && m <= 6) qtrSel.value = 'Q3';
+    else qtrSel.value = 'Q4';
+  }
+
+  /* ── Role toggle ── */
+  function setRole(r) {
+    role = r;
+    $('#btn-rep').classList.toggle('active', r === 'rep');
+    $('#btn-mgr').classList.toggle('active', r === 'mgr');
+    // Show/hide sections
+    $('#upgrades-section').classList.toggle('hidden', r === 'mgr');
+    $('#recruiting-section').classList.toggle('hidden', r === 'mgr');
+    $('#team-section').classList.toggle('hidden', r === 'rep');
+    $('#prev-qtr-wrap').classList.toggle('hidden', r === 'mgr');
+    $('#upgrade-line').style.display = r === 'rep' ? '' : 'none';
+    $('#recruit-line').style.display = r === 'rep' ? '' : 'none';
+    $('#team-line').style.display = r === 'mgr' ? '' : 'none';
+    recalc();
+  }
+
+  /* ── Job rows ── */
+  function addJob(price, gp) {
+    jobs.push({ price: price || 0, gp: gp || 25 });
+    renderJobs();
+  }
+
+  function removeJob(i) {
+    jobs.splice(i, 1);
+    renderJobs();
+  }
+
+  function renderJobs() {
+    const tbody = $('#job-body');
+    tbody.innerHTML = '';
+    jobs.forEach((job, i) => {
+      const comm = lookupComm(job.price);
+      const gpBonusPct = lookupGPBonus(job.gp);
+      const gpBonus = gpBonusPct * job.price;
+      const tr = document.createElement('tr');
+      tr.className = 'job-row';
+      tr.innerHTML = `
+        <td class="text-[#888] font-600">${i + 1}</td>
+        <td><input type="number" class="calc-input" data-idx="${i}" data-field="price" value="${job.price}" min="0" step="100" placeholder="$0" /></td>
+        <td><input type="number" class="calc-input" data-idx="${i}" data-field="gp" value="${job.gp}" min="0" max="100" step="1" placeholder="%" /></td>
+        <td class="text-right font-600">${fmtInt(comm.total)}</td>
+        <td class="text-right">${fmtInt(comm.upfront)}</td>
+        <td class="text-right">${fmtInt(comm.backend)}</td>
+        <td class="text-right ${gpBonusPct < 0 ? 'gp-neg' : gpBonusPct > 0 ? 'gp-pos' : ''}">${(gpBonusPct * 100).toFixed(1)}%</td>
+        <td class="text-right font-600 ${gpBonus < 0 ? 'gp-neg' : gpBonus > 0 ? 'gp-pos' : ''}">${fmt(gpBonus)}</td>
+        <td><button class="del-btn" data-idx="${i}" title="Remove job">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Attach listeners
+    tbody.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('input', function() {
+        const idx = +this.dataset.idx;
+        const field = this.dataset.field;
+        jobs[idx][field] = parseFloat(this.value) || 0;
+        recalc();
+        // Update this row's computed cells without full re-render
+        updateRowDisplay(idx);
+      });
+    });
+    tbody.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', function() { removeJob(+this.dataset.idx); });
+    });
+
+    recalc();
+  }
+
+  function updateRowDisplay(idx) {
+    const rows = $$('#job-body .job-row');
+    if (!rows[idx]) return;
+    const job = jobs[idx];
+    const comm = lookupComm(job.price);
+    const gpBonusPct = lookupGPBonus(job.gp);
+    const gpBonus = gpBonusPct * job.price;
+    const cells = rows[idx].querySelectorAll('td');
+    cells[3].textContent = fmtInt(comm.total);
+    cells[4].textContent = fmtInt(comm.upfront);
+    cells[5].textContent = fmtInt(comm.backend);
+    cells[6].textContent = (gpBonusPct * 100).toFixed(1) + '%';
+    cells[6].className = 'text-right ' + (gpBonusPct < 0 ? 'gp-neg' : gpBonusPct > 0 ? 'gp-pos' : '');
+    cells[7].textContent = fmt(gpBonus);
+    cells[7].className = 'text-right font-600 ' + (gpBonus < 0 ? 'gp-neg' : gpBonus > 0 ? 'gp-pos' : '');
+  }
+
+  /* ── Recruit rows ── */
+  function addRecruit() {
+    recruitSales.push(0);
+    renderRecruits();
+  }
+
+  function renderRecruits() {
+    const wrap = $('#recruit-rows');
+    wrap.innerHTML = '';
+    recruitSales.forEach((val, i) => {
+      const div = document.createElement('div');
+      div.className = 'flex items-center gap-3';
+      div.innerHTML = `
+        <span class="text-sm font-600 text-[#888] w-24">Recruit ${i + 1}</span>
+        <input type="number" class="calc-input flex-1" data-ridx="${i}" value="${val}" min="0" step="1000" placeholder="Total Qtr Sales $" />
+        <span class="text-sm font-600 text-[#3B9FD9] w-20 text-right" id="rec-earn-${i}">${fmt(val * 0.005)}</span>
+        <button class="del-btn" data-ridx="${i}">✕</button>
+      `;
+      wrap.appendChild(div);
+    });
+    wrap.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('input', function() {
+        recruitSales[+this.dataset.ridx] = parseFloat(this.value) || 0;
+        const earn = document.getElementById('rec-earn-' + this.dataset.ridx);
+        if (earn) earn.textContent = fmt(recruitSales[+this.dataset.ridx] * 0.005);
+        recalc();
+      });
+    });
+    wrap.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        recruitSales.splice(+this.dataset.ridx, 1);
+        renderRecruits();
+        recalc();
+      });
+    });
+  }
+
+  /* ── Main recalc ── */
+  function recalc() {
+    const numJobs = jobs.length;
+    const carryover = role === 'rep' ? parseInt($('#prev-qtr-jobs').value) || 0 : 0;
+    const effectiveJobs = numJobs + carryover;
+
+    let totalSales = 0, totalComm = 0, totalUpfront = 0, totalBackend = 0, totalGPBonus = 0;
+
+    jobs.forEach(job => {
+      const comm = lookupComm(job.price);
+      const gpBonusPct = lookupGPBonus(job.gp);
+      const gpBonus = gpBonusPct * job.price;
+      totalSales += job.price;
+      totalComm += comm.total;
+      totalUpfront += comm.upfront;
+      totalBackend += comm.backend;
+      totalGPBonus += gpBonus;
+    });
+
+    // Footer totals
+    $('#total-jobs').textContent = numJobs;
+    $('#total-sales').textContent = fmtInt(Math.round(totalSales));
+    $('#total-comm').textContent = fmtInt(Math.round(totalComm));
+    $('#total-upfront').textContent = fmtInt(Math.round(totalUpfront));
+    $('#total-backend').textContent = fmtInt(Math.round(totalBackend));
+    $('#total-gp-bonus').textContent = fmt(totalGPBonus);
+
+    // Multiplier (based on effective jobs for rep, actual jobs for manager)
+    const multEntry = lookupMultiplier(role === 'rep' ? effectiveJobs : numJobs);
+    const mult = multEntry.mult;
+
+    // Backend calculation: (backend + gpBonus) × multiplier
+    const backendPlusGP = totalBackend + totalGPBonus;
+    const backendMultiplied = backendPlusGP * mult;
+
+    // Upgrades + deposit bonus (rep only)
+    let upgradeTotal = 0;
+    let depositBonus = 0;
+    if (role === 'rep') {
+      const warranties = parseInt($('#warranties').value) || 0;
+      const atticBreeze = parseInt($('#attic-breeze').value) || 0;
+      const depMid = parseInt($('#deposits-mid').value) || 0;
+      const depHigh = parseInt($('#deposits-high').value) || 0;
+      upgradeTotal = (warranties * 100) + (atticBreeze * 150);
+      depositBonus = (depMid * 25) + (depHigh * 50);
+    }
+
+    // Recruiting override (rep only)
+    let recruitTotal = 0;
+    if (role === 'rep') {
+      recruitSales.forEach(s => { recruitTotal += s * 0.005; });
+    }
+
+    // Team override (manager only)
+    let teamOverride = 0;
+    if (role === 'mgr') {
+      const teamSales = parseFloat($('#team-sales').value) || 0;
+      const teamPct = multEntry.teamPct || 0.005;
+      teamOverride = teamSales * teamPct;
+      $('#team-override-pct').textContent = (teamPct * 100).toFixed(2) + '%';
+      $('#team-override-amt').textContent = fmt(teamOverride);
+    }
+
+    // Grand total
+    const grandTotal = totalUpfront + backendMultiplied + upgradeTotal + depositBonus + recruitTotal + teamOverride;
+
+    // Summary
+    $('#sum-jobs').textContent = numJobs;
+    $('#sum-effective-jobs').textContent = role === 'rep' ? effectiveJobs : numJobs;
+    $('#sum-multiplier').textContent = mult + 'x';
+    $('#sum-upfront').textContent = fmt(totalUpfront);
+    $('#sum-backend-base').textContent = fmt(totalBackend);
+    $('#sum-gp-bonus').textContent = fmt(totalGPBonus);
+    $('#sum-backend-plus-gp').textContent = fmt(backendPlusGP);
+    $('#sum-backend-mult').textContent = fmt(backendMultiplied);
+    $('#sum-upgrades').textContent = fmt(upgradeTotal + depositBonus);
+    $('#sum-recruit').textContent = fmt(recruitTotal);
+    $('#sum-team').textContent = fmt(teamOverride);
+    $('#sum-total').textContent = fmt(grandTotal);
+    $('#sum-monthly').textContent = fmt(grandTotal / 3);
+    $('#sum-weekly').textContent = fmt(grandTotal / 13);
+
+    // Avg commission %
+    const avgPct = totalSales > 0 ? (grandTotal / totalSales * 100) : 0;
+    $('#sum-avg-pct').textContent = avgPct.toFixed(1) + '%';
+  }
+
+  /* ── Init ── */
+  initFiscalYear();
+
+  $('#btn-rep').addEventListener('click', () => setRole('rep'));
+  $('#btn-mgr').addEventListener('click', () => setRole('mgr'));
+  $('#add-job').addEventListener('click', () => addJob(25000, 27));
+  $('#add-recruit').addEventListener('click', () => { addRecruit(); recalc(); });
+
+  // Recalc on any change
+  ['#prev-qtr-jobs', '#warranties', '#attic-breeze', '#deposits-mid', '#deposits-high', '#team-sales'].forEach(sel => {
+    const el = $(sel);
+    if (el) el.addEventListener('input', recalc);
+  });
+
+  // Start with one sample job
+  addJob(25000, 27);
+})();
+</script>
+</LandingLayout>
