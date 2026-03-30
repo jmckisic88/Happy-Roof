@@ -1,16 +1,23 @@
 <!-- ══ PROMO BANNER ══ -->
+<style>
+  @media (max-width: 767px) {
+    #give-back-bar .banner-extra { display: none !important; }
+    #give-back-bar { padding: .45rem 1rem; gap: 0; justify-content: center; flex-wrap: nowrap; }
+    #give-back-bar a:first-of-type span { font-size: .82rem; }
+  }
+</style>
 <div id="give-back-bar" style="background:#1A1A1A;border-bottom:1px solid #333;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
   <a href="/contact#estimate-form" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E6A817;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2.5" style="flex-shrink:0"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
     <span><strong>10% OFF</strong> Any Roofing Job — Code <strong>POSTCARD26</strong></span>
   </a>
-  <span style="color:#444;font-size:1rem;line-height:1">·</span>
-  <a href="/referrals" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#3B9FD9;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  <span class="banner-extra" style="color:#444;font-size:1rem;line-height:1">·</span>
+  <a class="banner-extra" href="/referrals" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#3B9FD9;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.5" style="flex-shrink:0"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     <span>Earn Up to <strong>$1,000</strong> Per Referral</span>
   </a>
-  <span style="color:#444;font-size:1rem;line-height:1">·</span>
-  <a href="/#hero-discount" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E8415A;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  <span class="banner-extra" style="color:#444;font-size:1rem;line-height:1">·</span>
+  <a class="banner-extra" href="/#hero-discount" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E8415A;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     Hero Discount
   </a>
