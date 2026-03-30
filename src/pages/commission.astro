@@ -528,15 +528,15 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   function initFiscalYear() {
     const sel = $('#fiscal-year');
     const now = new Date();
-    // Fiscal year is named by the year it starts. E.g., FY2025 = Nov 2025 – Oct 2026
+    // FY2025 = Nov 2024 – Oct 2025 (named by the year it ends)
     const currentCalYear = now.getFullYear();
     const m = now.getMonth(); // 0-indexed
-    // If Nov or Dec, current FY started this calendar year; else it started last year
-    const currentFY = m >= 10 ? currentCalYear : currentCalYear - 1;
+    // If Nov or Dec, we're in the FY that ends next calendar year; else ends this year
+    const currentFY = m >= 10 ? currentCalYear + 1 : currentCalYear;
     for (let y = currentFY + 1; y >= currentFY - 2; y--) {
       const opt = document.createElement('option');
       opt.value = y;
-      opt.textContent = 'FY' + y + ' (' + y + '–' + (y + 1) + ')';
+      opt.textContent = 'FY' + y + ' (Nov ' + (y - 1) + ' – Oct ' + y + ')';
       if (y === currentFY) opt.selected = true;
       sel.appendChild(opt);
     }
