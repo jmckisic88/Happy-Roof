@@ -51,10 +51,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <!-- BLOG GRID -->
 <section class="py-20" style="background:#F7F7F7">
   <div class="max-w-5xl mx-auto px-5">
-    <div class="grid md:grid-cols-2 gap-8">
+    <div id="blog-grid" class="grid md:grid-cols-2 gap-8">
 
       <!-- Post 1 -->
-      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" data-publish="2026-03-31" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -69,7 +69,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 2 -->
-      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" data-publish="2026-04-07" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
@@ -84,7 +84,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 3 -->
-      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" data-publish="2026-04-14" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
@@ -99,7 +99,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 8 -->
-      <a href="/blog/gaf-vs-owens-corning" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/gaf-vs-owens-corning" class="blog-card" data-publish="2026-05-19" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -113,7 +113,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" data-publish="2026-06-02" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Hiring</span>
@@ -124,7 +124,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" data-publish="2026-06-09" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Emergency</span>
@@ -135,7 +135,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" data-publish="2026-06-16" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -146,7 +146,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/metal-roof-benefits-florida" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/metal-roof-benefits-florida" class="blog-card" data-publish="2026-06-23" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -157,7 +157,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/roof-maintenance-checklist" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/roof-maintenance-checklist" class="blog-card" data-publish="2026-06-30" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Maintenance</span>
@@ -168,7 +168,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/roof-replacement-timeline" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/roof-replacement-timeline" class="blog-card" data-publish="2026-07-07" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Process</span>
@@ -179,7 +179,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/florida-roofing-codes-2025" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/florida-roofing-codes-2025" class="blog-card" data-publish="2026-07-14" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Codes</span>
@@ -190,7 +190,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/commercial-roofing-types" class="blog-card" style="text-decoration:none;color:inherit">
+      <a href="/blog/commercial-roofing-types" class="blog-card" data-publish="2026-07-21" style="display:none;text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Commercial</span>
@@ -202,8 +202,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       </div>
+
+      <p id="no-posts-msg" class="text-center py-16" style="display:none;color:#888;font-size:1.1rem;line-height:1.7">
+        New articles are on the way — check back soon!
+      </p>
   </div>
 </section>
+
+<script is:inline>
+(function(){
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var cards = document.querySelectorAll('#blog-grid .blog-card[data-publish]');
+  var shown = 0;
+  cards.forEach(function(card){
+    var pub = new Date(card.getAttribute('data-publish') + 'T00:00:00');
+    if(pub <= today){
+      card.style.display = '';
+      shown++;
+    }
+  });
+  if(shown === 0){
+    document.getElementById('no-posts-msg').style.display = '';
+  }
+})();
+</script>
 
 <!-- CTA -->
 <section class="cta-grad relative overflow-hidden py-20">
