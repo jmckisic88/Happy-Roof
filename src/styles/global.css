@@ -6,7 +6,11 @@
 * { box-sizing: border-box }
 img { background: transparent }
 body { background: #FFFFFF; color: #1A1A1A; font-family: 'Nunito', sans-serif; margin: 0 }
-html { scroll-behavior: smooth }
+html { scroll-behavior: smooth; scroll-padding-top: 140px }
+
+/* ── Banner + Nav offset — push page content below fixed headers ── */
+section:first-of-type { padding-top: 8.5rem !important }
+[id] { scroll-margin-top: 140px }
 
 /* ── Hero slideshow ── */
 .hero-slideshow { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center }
@@ -138,16 +142,19 @@ footer { background: #1A1A1A; border-top: 1px solid #2A2A2A }
 
 /* ── Mobile responsive ── */
 @media (max-width: 767px) {
-  #give-back-bar { padding: .1rem .5rem; gap: .3rem; flex-wrap: nowrap; min-height: 0; line-height: 1.1 }
+  #give-back-bar { padding: .5rem .75rem; gap: .5rem; flex-wrap: nowrap; min-height: 0; line-height: 1.2 }
   #give-back-bar > span:not([href]) { display: none !important }
-  #give-back-bar a { font-size: .55rem !important }
-  nav.nav-wrap { top: 28px !important }
+  #give-back-bar a { font-size: .68rem !important; font-family: 'Nunito', sans-serif !important }
+  nav.nav-wrap { top: 38px !important }
   nav.nav-wrap .h-16 { height: 3.25rem !important }
   nav.nav-wrap img.h-14 { height: 2.5rem !important }
   nav.nav-wrap .btn-p { font-size: .65rem !important; padding: .4rem .7rem !important; white-space: nowrap; line-height: 1.2 }
   #mobile-menu .nav-link { color: #555555 !important; font-size: 1rem }
   #mobile-menu .nav-link:hover { color: #1A1A1A !important }
-  .hero-bg { padding-top: 5.5rem !important; padding-bottom: 1.5rem !important }
+  section:first-of-type { padding-top: 6.5rem !important }
+  .hero-bg { padding-top: 6.5rem !important; padding-bottom: 1.5rem !important }
+  html { scroll-padding-top: 110px }
+  [id] { scroll-margin-top: 110px }
   .hero-bg h1 { font-size: 2.2rem !important }
   .hero-bg .btn-t { width: 100%; justify-content: center; font-size: 1rem !important; padding: .85rem 1.5rem !important }
   .hero-bg .badge { font-size: .7rem; padding: .3rem .6rem }
