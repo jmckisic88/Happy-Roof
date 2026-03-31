@@ -90,6 +90,71 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
+    <!--  RANDOMIZE (standalone)                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="flex justify-center mb-6">
+      <button id="btn-randomize" class="flex items-center gap-2.5 font-700 font-['Barlow_Condensed'] text-lg px-7 py-3 rounded-xl bg-white text-[#1A1A1A] border-2 border-[#E0E0E0] hover:border-[#E6A817] hover:shadow-lg active:scale-95 focus-visible:outline-2 focus-visible:outline-[#E6A817] focus-visible:outline-offset-3 transition-all duration-200" style="box-shadow: 0 2px 8px rgba(0,0,0,.06);">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#E6A817" stroke-width="2.5"><path d="M3 3l4 4m0-4l-4 4"/><path d="M21 21l-4-4m4 4l-4-4"/><path d="M3 21c4-8 8-8 18-18"/><path d="M21 3c-4 8-8 8-18 18"/></svg>
+        Randomize Scenario
+      </button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  SCENARIO BUILDER                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl p-5 md:p-7 mb-8 text-white">
+      <div class="mb-5">
+        <h2 class="font-['Barlow_Condensed'] text-xl font-700">Scenario Builder</h2>
+        <p class="text-sm text-[#888] mt-1">Dial in a target and generate a matching scenario.</p>
+      </div>
+
+      <!-- Earnings Slider -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Target Quarterly Earnings</label>
+          <span id="slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">$15,000</span>
+        </div>
+        <input type="range" id="earnings-slider" min="2000" max="80000" step="500" value="15000"
+          class="w-full h-2 rounded-full appearance-none cursor-pointer"
+          style="background: linear-gradient(to right, #E6A817 0%, #E6A817 16.7%, #333 16.7%, #333 100%);" />
+        <div class="flex justify-between text-xs text-[#555] mt-1">
+          <span>$2k</span>
+          <span>$20k</span>
+          <span>$40k</span>
+          <span>$60k</span>
+          <span>$80k</span>
+        </div>
+      </div>
+
+      <!-- GP Slider -->
+      <div class="mt-5">
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Avg Gross Margin %</label>
+          <span id="gp-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">27%</span>
+        </div>
+        <input type="range" id="gp-slider" min="10" max="50" step="1" value="27"
+          class="w-full h-2 rounded-full appearance-none cursor-pointer"
+          style="background: linear-gradient(to right, #e53e3e 0%, #E6A817 25%, #38a169 62.5%, #38a169 100%);" />
+        <div class="flex justify-between text-xs mt-1">
+          <span class="text-[#e53e3e]">10%</span>
+          <span class="text-[#888]">20%</span>
+          <span class="text-[#888]">30%</span>
+          <span class="text-[#38a169]">40%</span>
+          <span class="text-[#38a169]">50%</span>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mt-5">
+        <button id="btn-generate" class="flex-1 text-sm font-700 font-['Barlow_Condensed'] py-2.5 rounded-lg border border-[#E6A817] text-[#E6A817] hover:bg-[#E6A817] hover:text-[#1A1A1A] focus-visible:outline-2 focus-visible:outline-[#F0C040] focus-visible:outline-offset-3 transition-all duration-200">
+          Generate from Sliders
+        </button>
+        <button id="btn-clear-all" class="text-sm font-600 px-5 py-2.5 rounded-lg border border-[#444] text-[#888] hover:border-[#e53e3e] hover:text-[#e53e3e] focus-visible:outline-2 focus-visible:outline-[#e53e3e] focus-visible:outline-offset-3 transition-all duration-200">
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
     <!--  JOB TABLE                                  -->
     <!-- ═══════════════════════════════════════════ -->
     <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
@@ -406,6 +471,32 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
   details summary::marker { color: #E6A817; }
   details[open] summary { margin-bottom: .5rem; }
+
+  /* Range slider */
+  #earnings-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none; }
+  #earnings-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #E6A817; border: 3px solid #1A1A1A;
+    box-shadow: 0 2px 8px rgba(230,168,23,.5);
+    cursor: pointer; transition: transform .15s ease;
+  }
+  #earnings-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  #earnings-slider::-moz-range-thumb, #gp-slider::-moz-range-thumb {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #E6A817; border: 3px solid #1A1A1A;
+    box-shadow: 0 2px 8px rgba(230,168,23,.5);
+    cursor: pointer;
+  }
+  #gp-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none; }
+  #gp-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #E6A817; border: 3px solid #1A1A1A;
+    box-shadow: 0 2px 8px rgba(230,168,23,.5);
+    cursor: pointer; transition: transform .15s ease;
+  }
+  #gp-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
 
   #job-table tbody tr { border-bottom: 1px solid #E0E0E0; }
   #job-table tfoot td { font-size: .875rem; }
@@ -771,6 +862,187 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     $('#sum-avg-pct').textContent = avgPct.toFixed(1) + '%';
   }
 
+  /* ── Scenario Builder ── */
+  function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function randomPrice() {
+    // Realistic roof job prices: weighted toward $15k-$45k range
+    var ranges = [
+      { min: 8000, max: 19999, weight: 15 },
+      { min: 20000, max: 29999, weight: 30 },
+      { min: 30000, max: 44999, weight: 30 },
+      { min: 45000, max: 59999, weight: 15 },
+      { min: 60000, max: 89999, weight: 8 },
+      { min: 90000, max: 120000, weight: 2 },
+    ];
+    var total = ranges.reduce(function(s, r) { return s + r.weight; }, 0);
+    var roll = Math.random() * total;
+    var acc = 0;
+    for (var i = 0; i < ranges.length; i++) {
+      acc += ranges[i].weight;
+      if (roll < acc) {
+        return Math.round(randomBetween(ranges[i].min, ranges[i].max) / 500) * 500;
+      }
+    }
+    return 25000;
+  }
+
+  function randomGP() {
+    // Realistic GP: mostly 20-35%, occasionally outside
+    var base = 18 + Math.random() * 22; // 18-40
+    // Bias toward center (22-32)
+    base = base * 0.7 + 27 * 0.3;
+    return Math.round(base);
+  }
+
+  function randomizeScenario() {
+    var numJobs = randomBetween(3, 18);
+    jobs = [];
+    for (var i = 0; i < numJobs; i++) {
+      jobs.push({ price: randomPrice(), gp: randomGP() });
+    }
+    renderJobs();
+
+    if (role === 'rep') {
+      // Random upgrades
+      $('#warranties').value = randomBetween(0, Math.ceil(numJobs * 0.6));
+      $('#attic-breeze').value = randomBetween(0, Math.ceil(numJobs * 0.3));
+      $('#deposits-mid').value = randomBetween(0, Math.ceil(numJobs * 0.4));
+      $('#deposits-high').value = randomBetween(0, Math.ceil(numJobs * 0.2));
+
+      // Random recruits (0-3)
+      var numRecruits = randomBetween(0, 3);
+      recruitSales = [];
+      for (var r = 0; r < numRecruits; r++) {
+        recruitSales.push(randomBetween(20000, 200000));
+      }
+      renderRecruits();
+
+      // Random carryover
+      $('#prev-qtr-jobs').value = String(randomBetween(0, 5));
+    } else {
+      // Manager: random team sales
+      $('#team-sales').value = randomBetween(100000, 800000);
+    }
+
+    recalc();
+    showToast('Generated random scenario — ' + numJobs + ' jobs');
+  }
+
+  function sliderGP() {
+    // Use the GP slider value with slight variance per job (±3%)
+    var base = parseInt($('#gp-slider').value) || 27;
+    var jitter = randomBetween(-3, 3);
+    return Math.max(5, Math.min(55, base + jitter));
+  }
+
+  function generateFromSlider() {
+    var target = parseInt($('#earnings-slider').value) || 15000;
+    var targetGP = parseInt($('#gp-slider').value) || 27;
+
+    jobs = [];
+
+    // Start adding jobs until we approach the target
+    var attempts = 0;
+    var maxJobs = 30;
+
+    while (attempts < 100) {
+      attempts++;
+
+      // Calculate current earnings with what we have
+      var numJobs = jobs.length;
+      var effectiveJobs = numJobs + (role === 'rep' ? (parseInt($('#prev-qtr-jobs').value) || 0) : 0);
+      var totalUpfront = 0, totalBackend = 0, totalGPBonus = 0;
+
+      jobs.forEach(function(job) {
+        var comm = lookupComm(job.price);
+        var gpBonusPct = lookupGPBonus(job.gp);
+        totalUpfront += comm.upfront;
+        totalBackend += comm.backend;
+        totalGPBonus += gpBonusPct * job.price;
+      });
+
+      var multEntry = lookupMultiplier(role === 'rep' ? effectiveJobs : numJobs);
+      var backendMult = (totalBackend + totalGPBonus) * multEntry.mult;
+      var currentTotal = totalUpfront + backendMult;
+
+      if (currentTotal >= target || numJobs >= maxJobs) break;
+
+      // Add a job — pick price to roughly fill the remaining gap
+      var remaining = target - currentTotal;
+      var price;
+      if (remaining > 4000) {
+        price = randomBetween(30000, 70000);
+      } else if (remaining > 2000) {
+        price = randomBetween(20000, 40000);
+      } else {
+        price = randomBetween(8000, 20000);
+      }
+      price = Math.round(price / 500) * 500;
+      jobs.push({ price: price, gp: sliderGP() });
+    }
+
+    // Add modest upgrades/recruits for rep
+    if (role === 'rep') {
+      var nj = jobs.length;
+      $('#warranties').value = randomBetween(0, Math.ceil(nj * 0.3));
+      $('#attic-breeze').value = randomBetween(0, Math.ceil(nj * 0.2));
+      $('#deposits-mid').value = randomBetween(0, Math.ceil(nj * 0.3));
+      $('#deposits-high').value = randomBetween(0, Math.ceil(nj * 0.15));
+      recruitSales = [];
+      if (nj > 5 && Math.random() > 0.5) {
+        recruitSales.push(randomBetween(30000, 150000));
+      }
+      renderRecruits();
+    } else {
+      $('#team-sales').value = randomBetween(80000, 400000);
+    }
+
+    renderJobs();
+    recalc();
+    showToast('Generated scenario — ~' + fmtInt(target) + ' at ' + targetGP + '% GP');
+  }
+
+  function clearAll() {
+    jobs = [];
+    recruitSales = [];
+    renderJobs();
+    renderRecruits();
+    $('#warranties').value = 0;
+    $('#attic-breeze').value = 0;
+    $('#deposits-mid').value = 0;
+    $('#deposits-high').value = 0;
+    $('#team-sales').value = 0;
+    $('#prev-qtr-jobs').value = '0';
+    recalc();
+  }
+
+  // Slider display updates
+  function updateSliderDisplay() {
+    var val = parseInt($('#earnings-slider').value);
+    $('#slider-value').textContent = '$' + val.toLocaleString('en-US');
+    var slider = $('#earnings-slider');
+    var pct = ((val - 2000) / (80000 - 2000)) * 100;
+    slider.style.background = 'linear-gradient(to right, #E6A817 0%, #E6A817 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+  }
+
+  function updateGPSliderDisplay() {
+    var val = parseInt($('#gp-slider').value);
+    $('#gp-slider-value').textContent = val + '%';
+    // Gradient: red (low GP) → gold (mid) → green (high)
+    var pct = ((val - 10) / (50 - 10)) * 100;
+    var slider = $('#gp-slider');
+    // Color at thumb position
+    var color;
+    if (val < 20) color = '#e53e3e';
+    else if (val < 25) color = '#E6A817';
+    else if (val < 35) color = '#E6A817';
+    else color = '#38a169';
+    slider.style.background = 'linear-gradient(to right, ' + color + ' 0%, ' + color + ' ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+  }
+
   /* ── Excel Template Download ── */
   function downloadTemplate() {
     var wb = XLSX.utils.book_new();
@@ -944,6 +1216,13 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   $('#btn-mgr').addEventListener('click', () => setRole('mgr'));
   $('#add-job').addEventListener('click', () => addJob(25000, 27));
   $('#add-recruit').addEventListener('click', () => { addRecruit(); recalc(); });
+
+  // Scenario builder
+  $('#btn-randomize').addEventListener('click', randomizeScenario);
+  $('#btn-generate').addEventListener('click', generateFromSlider);
+  $('#btn-clear-all').addEventListener('click', clearAll);
+  $('#earnings-slider').addEventListener('input', updateSliderDisplay);
+  $('#gp-slider').addEventListener('input', updateGPSliderDisplay);
 
   // Import / Template buttons
   $('#btn-template').addEventListener('click', downloadTemplate);
