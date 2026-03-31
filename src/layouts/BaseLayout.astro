@@ -174,6 +174,21 @@ const {
   })();
   </script>
 
+  <!-- Reliable anchor scroll accounting for fixed header -->
+  <script is:inline>
+  (function(){
+    if (!window.location.hash) return;
+    function scrollToHash() {
+      var el = document.querySelector(window.location.hash);
+      if (!el) return;
+      var top = el.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    if (document.readyState === 'complete') { setTimeout(scrollToHash, 100); }
+    else { window.addEventListener('load', function(){ setTimeout(scrollToHash, 100); }); }
+  })();
+  </script>
+
   <ExitPopup />
   <Analytics />
 </body>
