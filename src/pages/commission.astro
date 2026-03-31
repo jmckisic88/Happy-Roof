@@ -281,14 +281,25 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       <!-- Breakdown -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div class="space-y-3">
+          <!-- Upfront Commission -->
           <div class="flex justify-between text-sm"><span class="text-[#888]">Upfront Commission</span><span id="sum-upfront" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#888]">Backend (base)</span><span id="sum-backend-base" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#888]">GP Bonus Total</span><span id="sum-gp-bonus" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#888]">Backend + GP Bonus</span><span id="sum-backend-plus-gp" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#888]">× Backend Multiplier</span><span id="sum-backend-mult" class="font-600 text-[#E6A817]">$0</span></div>
-          <div class="flex justify-between text-sm border-t border-[#333] pt-2" id="upgrade-line"><span class="text-[#888]">Upgrades + Deposit Bonus</span><span id="sum-upgrades" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm" id="recruit-line"><span class="text-[#888]">Recruiting Override</span><span id="sum-recruit" class="font-600">$0</span></div>
-          <div class="flex justify-between text-sm" id="team-line" style="display:none"><span class="text-[#888]">Team Sales Override</span><span id="sum-team" class="font-600">$0</span></div>
+
+          <!-- Backend Commission -->
+          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1"><span class="text-[#888]">Backend Commission</span><span id="sum-backend-mult" class="font-600">$0</span></div>
+          <div class="pl-4 space-y-1.5">
+            <div class="flex justify-between text-xs"><span class="text-[#666]">Base Backend</span><span id="sum-backend-base" class="text-[#888]">$0</span></div>
+            <div class="flex justify-between text-xs"><span class="text-[#666]">GP Bonus</span><span id="sum-gp-bonus" class="text-[#888]">$0</span></div>
+            <div class="flex justify-between text-xs"><span class="text-[#666]">Multiplier Bonus</span><span id="sum-mult-bonus" class="text-[#888]">$0</span></div>
+          </div>
+
+          <!-- Upgrades -->
+          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="upgrade-line"><span class="text-[#888]">Upgrades + Deposit Bonus</span><span id="sum-upgrades" class="font-600">$0</span></div>
+
+          <!-- Recruiting -->
+          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="recruit-line"><span class="text-[#888]">Recruiting Override</span><span id="sum-recruit" class="font-600">$0</span></div>
+
+          <!-- Team (manager) -->
+          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="team-line" style="display:none"><span class="text-[#888]">Team Sales Override</span><span id="sum-team" class="font-600">$0</span></div>
         </div>
 
         <div class="flex flex-col items-center justify-center bg-[#2A2A2A] rounded-xl p-6">
@@ -848,8 +859,9 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     $('#sum-upfront').textContent = fmt(totalUpfront);
     $('#sum-backend-base').textContent = fmt(totalBackend);
     $('#sum-gp-bonus').textContent = fmt(totalGPBonus);
-    $('#sum-backend-plus-gp').textContent = fmt(backendPlusGP);
     $('#sum-backend-mult').textContent = fmt(backendMultiplied);
+    var multBonusAmt = backendMultiplied - totalBackend - totalGPBonus;
+    $('#sum-mult-bonus').textContent = fmt(multBonusAmt);
     $('#sum-upgrades').textContent = fmt(upgradeTotal + depositBonus);
     $('#sum-recruit').textContent = fmt(recruitTotal);
     $('#sum-team').textContent = fmt(teamOverride);
