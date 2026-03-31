@@ -119,7 +119,17 @@ const {
     var inputs = document.querySelectorAll('.promo-input');
     if (!inputs.length) return;
 
-    fetch('/promo-codes.json').then(function(r){ return r.json(); }).then(function(data){ promoCodes = data; });
+    fetch('/promo-codes.json').then(function(r){ return r.json(); }).then(function(data){
+      promoCodes = data;
+      // Auto-fill promo code from URL param (e.g. ?promo=HERO26)
+      var urlPromo = new URLSearchParams(window.location.search).get('promo');
+      if (urlPromo) {
+        inputs.forEach(function(input){
+          input.value = urlPromo.toUpperCase();
+          input.dispatchEvent(new Event('input'));
+        });
+      }
+    });
 
     inputs.forEach(function(input){
       var wrap = input.closest('.mb-4, .fgroup');
