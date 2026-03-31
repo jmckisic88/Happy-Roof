@@ -2,5 +2,9 @@
   "POSTCARD26": {
     "description": "10% OFF Any Roofing Job",
     "active": true
+  },
+  "HERO26": {
+    "description": "$500 Heroes Discount — Veterans, First Responders, Teachers & Medical",
+    "active": true
   }
 }
