@@ -958,6 +958,19 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     }
 
     recalc();
+
+    // Sync sliders to match the generated data
+    var avgPrice = 0;
+    var avgGM = 0;
+    jobs.forEach(function(j) { avgPrice += j.price; avgGM += j.gp; });
+    avgPrice = Math.round(avgPrice / jobs.length / 1000) * 1000;
+    avgGM = Math.round(avgGM / jobs.length);
+
+    $('#deals-slider').value = numJobs;
+    $('#price-slider').value = Math.min(200000, Math.max(5000, avgPrice));
+    $('#gp-slider').value = Math.min(50, Math.max(10, avgGM));
+    updateAllSliderDisplays();
+
     showToast('Generated random scenario — ' + numJobs + ' jobs');
   }
 
