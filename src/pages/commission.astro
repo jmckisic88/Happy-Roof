@@ -42,10 +42,23 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       <p class="text-[#555] text-lg max-w-2xl mx-auto">Model quarterly scenarios in real time. Fiscal year starts <strong>Nov 1</strong>.</p>
     </div>
 
-    <!-- Role Toggle -->
-    <div class="flex justify-center gap-3 mb-8">
-      <button id="btn-rep" class="role-btn active font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Sales Rep</button>
-      <button id="btn-mgr" class="role-btn font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Manager</button>
+    <!-- Role Toggle + Import/Export -->
+    <div class="flex flex-col items-center gap-4 mb-8">
+      <div class="flex justify-center gap-3">
+        <button id="btn-rep" class="role-btn active font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Sales Rep</button>
+        <button id="btn-mgr" class="role-btn font-['Barlow_Condensed'] font-700 text-lg px-6 py-2.5 rounded-lg transition-all duration-200">Manager</button>
+      </div>
+      <div class="flex gap-3">
+        <button id="btn-import" class="flex items-center gap-2 text-sm font-600 px-4 py-2 rounded-lg border border-[#E0E0E0] bg-white text-[#555] hover:border-[#E6A817] hover:text-[#1A1A1A] focus-visible:outline-2 focus-visible:outline-[#E6A817] focus-visible:outline-offset-3 transition-all duration-200" style="box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Import Data
+        </button>
+        <button id="btn-template" class="flex items-center gap-2 text-sm font-600 px-4 py-2 rounded-lg border border-[#E0E0E0] bg-white text-[#555] hover:border-[#E6A817] hover:text-[#1A1A1A] focus-visible:outline-2 focus-visible:outline-[#E6A817] focus-visible:outline-offset-3 transition-all duration-200" style="box-shadow: 0 1px 4px rgba(0,0,0,.06);">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Template
+        </button>
+      </div>
+      <input type="file" id="xlsx-file-input" accept=".xlsx,.xls,.csv" class="hidden" />
     </div>
 
     <!-- Quarter Selector -->
@@ -398,6 +411,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   #job-table tfoot td { font-size: .875rem; }
 </style>
 
+<script is:inline src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script is:inline>
 (function() {
   /* ── Password Gate ── */
@@ -757,6 +771,172 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     $('#sum-avg-pct').textContent = avgPct.toFixed(1) + '%';
   }
 
+  /* ── Excel Template Download ── */
+  function downloadTemplate() {
+    var wb = XLSX.utils.book_new();
+
+    // Tab 1: Jobs
+    var jobsData = [
+      ['Date', 'Address', 'Selling Price', 'Gross Margin %'],
+      ['3/15/2026', '123 Main St, Tampa FL', 25000, 27],
+      ['3/18/2026', '456 Oak Ave, Clearwater FL', 35000, 30],
+      ['3/22/2026', '789 Palm Dr, St Pete FL', 42000, 25],
+    ];
+    var wsJobs = XLSX.utils.aoa_to_sheet(jobsData);
+    wsJobs['!cols'] = [{ wch: 12 }, { wch: 32 }, { wch: 14 }, { wch: 16 }];
+    XLSX.utils.book_append_sheet(wb, wsJobs, 'Jobs');
+
+    // Tab 2: Upgrades & Bonuses (Rep only)
+    var upgradesData = [
+      ['Warranties Sold', 'Attic Breeze Vents Sold', 'Jobs w/ $5k–$10k Deposit', 'Jobs w/ $10k+ Deposit'],
+      [0, 0, 0, 0],
+    ];
+    var wsUpgrades = XLSX.utils.aoa_to_sheet(upgradesData);
+    wsUpgrades['!cols'] = [{ wch: 18 }, { wch: 24 }, { wch: 26 }, { wch: 22 }];
+    XLSX.utils.book_append_sheet(wb, wsUpgrades, 'Upgrades & Bonuses');
+
+    // Tab 3: Recruiting Override (Rep only)
+    var recruitData = [
+      ['Recruit Name', 'Total Sales'],
+      ['Jane Doe', 50000],
+      ['Mike Smith', 75000],
+    ];
+    var wsRecruit = XLSX.utils.aoa_to_sheet(recruitData);
+    wsRecruit['!cols'] = [{ wch: 20 }, { wch: 14 }];
+    XLSX.utils.book_append_sheet(wb, wsRecruit, 'Recruiting Override');
+
+    // Tab 4: Team Override (Manager only)
+    var teamData = [
+      ['Rep Name', 'Total Sales'],
+      ['Rep A', 80000],
+      ['Rep B', 120000],
+    ];
+    var wsTeam = XLSX.utils.aoa_to_sheet(teamData);
+    wsTeam['!cols'] = [{ wch: 20 }, { wch: 14 }];
+    XLSX.utils.book_append_sheet(wb, wsTeam, 'Team Override');
+
+    XLSX.writeFile(wb, 'commission-template.xlsx');
+  }
+
+  /* ── Excel Import ── */
+  function importFile(file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var data = new Uint8Array(e.target.result);
+      var wb = XLSX.read(data, { type: 'array' });
+
+      var importedJobs = [];
+      var importedRecruits = [];
+      var importedTeamSales = [];
+      var upgrades = {};
+
+      // Parse Jobs tab
+      var jobsSheet = wb.Sheets['Jobs'] || wb.Sheets[wb.SheetNames[0]];
+      if (jobsSheet) {
+        var jobRows = XLSX.utils.sheet_to_json(jobsSheet, { defval: '' });
+        jobRows.forEach(function(row) {
+          var price = parseFloat(row['Selling Price']) || 0;
+          var gp = parseFloat(row['Gross Margin %']) || 25;
+          if (price > 0) {
+            importedJobs.push({ price: price, gp: gp });
+          }
+        });
+      }
+
+      // Parse Upgrades & Bonuses tab
+      var upgradesSheet = wb.Sheets['Upgrades & Bonuses'];
+      if (upgradesSheet) {
+        var upRows = XLSX.utils.sheet_to_json(upgradesSheet, { defval: 0 });
+        if (upRows.length > 0) {
+          var r = upRows[0];
+          upgrades.warranties = parseInt(r['Warranties Sold']) || 0;
+          upgrades.atticBreeze = parseInt(r['Attic Breeze Vents Sold']) || 0;
+          upgrades.depositsMid = parseInt(r['Jobs w/ $5k–$10k Deposit'] || r['Jobs w/ $5k-$10k Deposit']) || 0;
+          upgrades.depositsHigh = parseInt(r['Jobs w/ $10k+ Deposit']) || 0;
+        }
+      }
+
+      // Parse Recruiting Override tab
+      var recruitSheet = wb.Sheets['Recruiting Override'];
+      if (recruitSheet) {
+        var recRows = XLSX.utils.sheet_to_json(recruitSheet, { defval: '' });
+        recRows.forEach(function(row) {
+          var sales = parseFloat(row['Total Sales']) || 0;
+          if (sales > 0) {
+            importedRecruits.push(sales);
+          }
+        });
+      }
+
+      // Parse Team Override tab
+      var teamSheet = wb.Sheets['Team Override'];
+      if (teamSheet) {
+        var teamRows = XLSX.utils.sheet_to_json(teamSheet, { defval: '' });
+        teamRows.forEach(function(row) {
+          var sales = parseFloat(row['Total Sales']) || 0;
+          if (sales > 0) {
+            importedTeamSales.push(sales);
+          }
+        });
+      }
+
+      // Determine role from which tabs have data
+      var hasTeamData = importedTeamSales.length > 0;
+      var hasRepData = importedRecruits.length > 0 || upgrades.warranties > 0 || upgrades.atticBreeze > 0 || upgrades.depositsMid > 0 || upgrades.depositsHigh > 0;
+
+      if (hasTeamData && !hasRepData) {
+        setRole('mgr');
+      } else {
+        setRole('rep');
+      }
+
+      // Apply upgrades
+      $('#warranties').value = upgrades.warranties || 0;
+      $('#attic-breeze').value = upgrades.atticBreeze || 0;
+      $('#deposits-mid').value = upgrades.depositsMid || 0;
+      $('#deposits-high').value = upgrades.depositsHigh || 0;
+
+      // Apply team sales (sum all reps for manager)
+      if (hasTeamData) {
+        var totalTeam = 0;
+        importedTeamSales.forEach(function(s) { totalTeam += s; });
+        $('#team-sales').value = totalTeam;
+      }
+
+      // Load jobs
+      jobs = importedJobs;
+      renderJobs();
+
+      // Load recruits
+      recruitSales = importedRecruits;
+      renderRecruits();
+
+      recalc();
+
+      // Build toast message
+      var parts = [importedJobs.length + ' job' + (importedJobs.length !== 1 ? 's' : '')];
+      if (importedRecruits.length > 0) parts.push(importedRecruits.length + ' recruit' + (importedRecruits.length !== 1 ? 's' : ''));
+      if (hasTeamData) parts.push(importedTeamSales.length + ' team rep' + (importedTeamSales.length !== 1 ? 's' : ''));
+      showToast('Imported ' + parts.join(', '));
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function showToast(msg) {
+    var existing = document.getElementById('import-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'import-toast';
+    toast.textContent = msg;
+    toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#E6A817;font-family:Barlow Condensed,sans-serif;font-weight:700;padding:.75rem 1.5rem;border-radius:10px;font-size:.95rem;z-index:9999;box-shadow:0 8px 30px -8px rgba(0,0,0,.3);opacity:0;transition:opacity .3s ease;';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.style.opacity = '1'; });
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 3000);
+  }
+
   /* ── Init ── */
   initFiscalYear();
 
@@ -764,6 +944,16 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   $('#btn-mgr').addEventListener('click', () => setRole('mgr'));
   $('#add-job').addEventListener('click', () => addJob(25000, 27));
   $('#add-recruit').addEventListener('click', () => { addRecruit(); recalc(); });
+
+  // Import / Template buttons
+  $('#btn-template').addEventListener('click', downloadTemplate);
+  $('#btn-import').addEventListener('click', function() { $('#xlsx-file-input').click(); });
+  $('#xlsx-file-input').addEventListener('change', function() {
+    if (this.files.length > 0) {
+      importFile(this.files[0]);
+      this.value = '';
+    }
+  });
 
   // Recalc on any change
   ['#prev-qtr-jobs', '#warranties', '#attic-breeze', '#deposits-mid', '#deposits-high', '#team-sales'].forEach(sel => {
