@@ -105,43 +105,70 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     <div class="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl p-5 md:p-7 mb-8 text-white">
       <div class="mb-5">
         <h2 class="font-['Barlow_Condensed'] text-xl font-700">Scenario Builder</h2>
-        <p class="text-sm text-[#888] mt-1">Dial in a target and generate a matching scenario.</p>
+        <p class="text-sm text-[#888] mt-1">Adjust the sliders to model a scenario. Estimated earnings update in real time.</p>
       </div>
 
-      <!-- Earnings Slider -->
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Target Quarterly Earnings</label>
-          <span id="slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">$15,000</span>
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <!-- Number of Deals -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Number of Deals</label>
+            <span id="deals-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">6</span>
+          </div>
+          <input type="range" id="deals-slider" min="1" max="30" step="1" value="6"
+            class="scenario-slider w-full h-2 rounded-full appearance-none cursor-pointer"
+            style="background: linear-gradient(to right, #E6A817 0%, #E6A817 17.2%, #333 17.2%, #333 100%);" />
+          <div class="flex justify-between text-xs text-[#555] mt-1">
+            <span>1</span>
+            <span>10</span>
+            <span>20</span>
+            <span>30</span>
+          </div>
         </div>
-        <input type="range" id="earnings-slider" min="2000" max="80000" step="500" value="15000"
-          class="w-full h-2 rounded-full appearance-none cursor-pointer"
-          style="background: linear-gradient(to right, #E6A817 0%, #E6A817 16.7%, #333 16.7%, #333 100%);" />
-        <div class="flex justify-between text-xs text-[#555] mt-1">
-          <span>$2k</span>
-          <span>$20k</span>
-          <span>$40k</span>
-          <span>$60k</span>
-          <span>$80k</span>
+
+        <!-- Avg Sales Price -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Avg Sales Price</label>
+            <span id="price-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">$30,000</span>
+          </div>
+          <input type="range" id="price-slider" min="5000" max="200000" step="1000" value="30000"
+            class="scenario-slider w-full h-2 rounded-full appearance-none cursor-pointer"
+            style="background: linear-gradient(to right, #E6A817 0%, #E6A817 12.8%, #333 12.8%, #333 100%);" />
+          <div class="flex justify-between text-xs text-[#555] mt-1">
+            <span>$5k</span>
+            <span>$50k</span>
+            <span>$100k</span>
+            <span>$150k</span>
+            <span>$200k</span>
+          </div>
+        </div>
+
+        <!-- Avg Gross Margin % -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Avg Gross Margin %</label>
+            <span id="gp-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">27%</span>
+          </div>
+          <input type="range" id="gp-slider" min="10" max="50" step="1" value="27"
+            class="scenario-slider w-full h-2 rounded-full appearance-none cursor-pointer"
+            style="background: linear-gradient(to right, #e53e3e 0%, #E6A817 25%, #38a169 62.5%, #38a169 100%);" />
+          <div class="flex justify-between text-xs mt-1">
+            <span class="text-[#e53e3e]">10%</span>
+            <span class="text-[#888]">20%</span>
+            <span class="text-[#888]">30%</span>
+            <span class="text-[#38a169]">40%</span>
+            <span class="text-[#38a169]">50%</span>
+          </div>
         </div>
       </div>
 
-      <!-- GP Slider -->
-      <div class="mt-5">
-        <div class="flex items-center justify-between mb-2">
-          <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Avg Gross Margin %</label>
-          <span id="gp-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">27%</span>
-        </div>
-        <input type="range" id="gp-slider" min="10" max="50" step="1" value="27"
-          class="w-full h-2 rounded-full appearance-none cursor-pointer"
-          style="background: linear-gradient(to right, #e53e3e 0%, #E6A817 25%, #38a169 62.5%, #38a169 100%);" />
-        <div class="flex justify-between text-xs mt-1">
-          <span class="text-[#e53e3e]">10%</span>
-          <span class="text-[#888]">20%</span>
-          <span class="text-[#888]">30%</span>
-          <span class="text-[#38a169]">40%</span>
-          <span class="text-[#38a169]">50%</span>
-        </div>
+      <!-- Estimated Earnings (computed) -->
+      <div class="mt-6 bg-[#2A2A2A] rounded-xl p-4 flex items-center justify-between">
+        <span class="text-sm text-[#888] font-600 uppercase tracking-wider">Est. Quarterly Earnings</span>
+        <span id="slider-value" class="font-['Barlow_Condensed'] text-3xl font-900 text-[#E6A817]">$0</span>
       </div>
 
       <div class="flex gap-3 mt-5">
@@ -173,8 +200,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
               <th class="pb-3 pr-2 text-right">Total Comm</th>
               <th class="pb-3 pr-2 text-right">Upfront (70%)</th>
               <th class="pb-3 pr-2 text-right">Backend (30%)</th>
-              <th class="pb-3 pr-2 text-right">GP Bonus %</th>
-              <th class="pb-3 text-right">GP Bonus $</th>
+              <th class="pb-3 pr-2 text-right">GM Bonus %</th>
+              <th class="pb-3 text-right">GM Bonus $</th>
               <th class="pb-3 w-8"></th>
             </tr>
           </thead>
@@ -288,7 +315,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
           <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1"><span class="text-[#888]">Backend Commission</span><span id="sum-backend-mult" class="font-600">$0</span></div>
           <div class="pl-4 space-y-1.5">
             <div class="flex justify-between text-xs"><span class="text-[#666]">Base Backend</span><span id="sum-backend-base" class="text-[#888]">$0</span></div>
-            <div class="flex justify-between text-xs"><span class="text-[#666]">GP Bonus</span><span id="sum-gp-bonus" class="text-[#888]">$0</span></div>
+            <div class="flex justify-between text-xs"><span class="text-[#666]">GM Bonus</span><span id="sum-gp-bonus" class="text-[#888]">$0</span></div>
             <div class="flex justify-between text-xs"><span class="text-[#666]">Multiplier Bonus</span><span id="sum-mult-bonus" class="text-[#888]">$0</span></div>
           </div>
 
@@ -390,11 +417,11 @@ import LandingLayout from '../layouts/LandingLayout.astro';
           </table>
         </div>
 
-        <!-- GP Bonus -->
+        <!-- GM Bonus -->
         <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Gross Profit Bonus</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Gross Margin Bonus</h3>
           <table class="w-full text-xs">
-            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">GP %</th><th class="pb-2 text-right">Bonus</th></tr></thead>
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">GM %</th><th class="pb-2 text-right">Bonus</th></tr></thead>
             <tbody>
               <tr class="text-red-500"><td>&lt; 15%</td><td class="text-right">-2% of selling price</td></tr>
               <tr class="text-red-500"><td>15–20%</td><td class="text-right">-1% of selling price</td></tr>
@@ -483,31 +510,22 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   details summary::marker { color: #E6A817; }
   details[open] summary { margin-bottom: .5rem; }
 
-  /* Range slider */
-  #earnings-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none; }
-  #earnings-slider::-webkit-slider-thumb {
+  /* Range sliders */
+  .scenario-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none; }
+  .scenario-slider::-webkit-slider-thumb {
     -webkit-appearance: none; appearance: none;
     width: 24px; height: 24px; border-radius: 50%;
     background: #E6A817; border: 3px solid #1A1A1A;
     box-shadow: 0 2px 8px rgba(230,168,23,.5);
     cursor: pointer; transition: transform .15s ease;
   }
-  #earnings-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
-  #earnings-slider::-moz-range-thumb, #gp-slider::-moz-range-thumb {
+  .scenario-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .scenario-slider::-moz-range-thumb {
     width: 24px; height: 24px; border-radius: 50%;
     background: #E6A817; border: 3px solid #1A1A1A;
     box-shadow: 0 2px 8px rgba(230,168,23,.5);
     cursor: pointer;
   }
-  #gp-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none; }
-  #gp-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    width: 24px; height: 24px; border-radius: 50%;
-    background: #E6A817; border: 3px solid #1A1A1A;
-    box-shadow: 0 2px 8px rgba(230,168,23,.5);
-    cursor: pointer; transition: transform .15s ease;
-  }
-  #gp-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
 
   #job-table tbody tr { border-bottom: 1px solid #E0E0E0; }
   #job-table tfoot td { font-size: .875rem; }
@@ -944,55 +962,44 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 
   function sliderGP() {
-    // Use the GP slider value with slight variance per job (±3%)
     var base = parseInt($('#gp-slider').value) || 27;
     var jitter = randomBetween(-3, 3);
     return Math.max(5, Math.min(55, base + jitter));
   }
 
+  // Compute estimated earnings from the 3 sliders (without generating jobs)
+  function computeSliderEarnings() {
+    var numDeals = parseInt($('#deals-slider').value) || 6;
+    var avgPrice = parseInt($('#price-slider').value) || 30000;
+    var avgGP = parseInt($('#gp-slider').value) || 27;
+
+    var totalUpfront = 0, totalBackend = 0, totalGPBonus = 0;
+    for (var i = 0; i < numDeals; i++) {
+      var comm = lookupComm(avgPrice);
+      var gpBonusPct = lookupGPBonus(avgGP);
+      totalUpfront += comm.upfront;
+      totalBackend += comm.backend;
+      totalGPBonus += gpBonusPct * avgPrice;
+    }
+
+    var carryover = role === 'rep' ? (parseInt($('#prev-qtr-jobs').value) || 0) : 0;
+    var effectiveJobs = numDeals + carryover;
+    var multEntry = lookupMultiplier(role === 'rep' ? effectiveJobs : numDeals);
+    var backendMultiplied = (totalBackend + totalGPBonus) * multEntry.mult;
+
+    return totalUpfront + backendMultiplied;
+  }
+
   function generateFromSlider() {
-    var target = parseInt($('#earnings-slider').value) || 15000;
+    var numDeals = parseInt($('#deals-slider').value) || 6;
+    var avgPrice = parseInt($('#price-slider').value) || 30000;
     var targetGP = parseInt($('#gp-slider').value) || 27;
 
     jobs = [];
-
-    // Start adding jobs until we approach the target
-    var attempts = 0;
-    var maxJobs = 30;
-
-    while (attempts < 100) {
-      attempts++;
-
-      // Calculate current earnings with what we have
-      var numJobs = jobs.length;
-      var effectiveJobs = numJobs + (role === 'rep' ? (parseInt($('#prev-qtr-jobs').value) || 0) : 0);
-      var totalUpfront = 0, totalBackend = 0, totalGPBonus = 0;
-
-      jobs.forEach(function(job) {
-        var comm = lookupComm(job.price);
-        var gpBonusPct = lookupGPBonus(job.gp);
-        totalUpfront += comm.upfront;
-        totalBackend += comm.backend;
-        totalGPBonus += gpBonusPct * job.price;
-      });
-
-      var multEntry = lookupMultiplier(role === 'rep' ? effectiveJobs : numJobs);
-      var backendMult = (totalBackend + totalGPBonus) * multEntry.mult;
-      var currentTotal = totalUpfront + backendMult;
-
-      if (currentTotal >= target || numJobs >= maxJobs) break;
-
-      // Add a job — pick price to roughly fill the remaining gap
-      var remaining = target - currentTotal;
-      var price;
-      if (remaining > 4000) {
-        price = randomBetween(30000, 70000);
-      } else if (remaining > 2000) {
-        price = randomBetween(20000, 40000);
-      } else {
-        price = randomBetween(8000, 20000);
-      }
-      price = Math.round(price / 500) * 500;
+    for (var i = 0; i < numDeals; i++) {
+      // Vary price ±15% and GM ±3 around the slider values
+      var priceFactor = 0.85 + Math.random() * 0.30;
+      var price = Math.round((avgPrice * priceFactor) / 500) * 500;
       jobs.push({ price: price, gp: sliderGP() });
     }
 
@@ -1014,7 +1021,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
     renderJobs();
     recalc();
-    showToast('Generated scenario — ~' + fmtInt(target) + ' at ' + targetGP + '% GP');
+    showToast('Generated ' + numDeals + ' deals — avg ' + fmtInt(avgPrice) + ' at ' + targetGP + '% GM');
   }
 
   function clearAll() {
@@ -1031,28 +1038,43 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     recalc();
   }
 
-  // Slider display updates
-  function updateSliderDisplay() {
-    var val = parseInt($('#earnings-slider').value);
-    $('#slider-value').textContent = '$' + val.toLocaleString('en-US');
-    var slider = $('#earnings-slider');
-    var pct = ((val - 2000) / (80000 - 2000)) * 100;
+  // Slider display updates — all 3 sliders update the computed earnings
+  function updateSliderFill(slider, min, max) {
+    var val = parseFloat(slider.value);
+    var pct = ((val - min) / (max - min)) * 100;
     slider.style.background = 'linear-gradient(to right, #E6A817 0%, #E6A817 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
   }
 
-  function updateGPSliderDisplay() {
+  function updateGPSliderFill() {
     var val = parseInt($('#gp-slider').value);
-    $('#gp-slider-value').textContent = val + '%';
-    // Gradient: red (low GP) → gold (mid) → green (high)
     var pct = ((val - 10) / (50 - 10)) * 100;
     var slider = $('#gp-slider');
-    // Color at thumb position
     var color;
     if (val < 20) color = '#e53e3e';
-    else if (val < 25) color = '#E6A817';
     else if (val < 35) color = '#E6A817';
     else color = '#38a169';
     slider.style.background = 'linear-gradient(to right, ' + color + ' 0%, ' + color + ' ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+  }
+
+  function updateAllSliderDisplays() {
+    // Deals
+    var deals = parseInt($('#deals-slider').value);
+    $('#deals-slider-value').textContent = deals;
+    updateSliderFill($('#deals-slider'), 1, 30);
+
+    // Price
+    var price = parseInt($('#price-slider').value);
+    $('#price-slider-value').textContent = '$' + price.toLocaleString('en-US');
+    updateSliderFill($('#price-slider'), 5000, 200000);
+
+    // GM
+    var gp = parseInt($('#gp-slider').value);
+    $('#gp-slider-value').textContent = gp + '%';
+    updateGPSliderFill();
+
+    // Computed earnings
+    var est = computeSliderEarnings();
+    $('#slider-value').textContent = '$' + Math.round(est).toLocaleString('en-US');
   }
 
   /* ── Excel Template Download ── */
@@ -1233,8 +1255,11 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   $('#btn-randomize').addEventListener('click', randomizeScenario);
   $('#btn-generate').addEventListener('click', generateFromSlider);
   $('#btn-clear-all').addEventListener('click', clearAll);
-  $('#earnings-slider').addEventListener('input', updateSliderDisplay);
-  $('#gp-slider').addEventListener('input', updateGPSliderDisplay);
+  $('#deals-slider').addEventListener('input', updateAllSliderDisplays);
+  $('#price-slider').addEventListener('input', updateAllSliderDisplays);
+  $('#gp-slider').addEventListener('input', updateAllSliderDisplays);
+  // Initialize the computed earnings display
+  updateAllSliderDisplays();
 
   // Import / Template buttons
   $('#btn-template').addEventListener('click', downloadTemplate);
