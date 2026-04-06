@@ -6,5 +6,9 @@
   "HERO26": {
     "description": "$500 Heroes Discount — Veterans, First Responders, Teachers & Medical",
     "active": true
+  },
+  "CRUISE26": {
+    "description": "Free Royal Caribbean Cruise OR up to $2,500 off your roof replacement",
+    "active": true
   }
 }

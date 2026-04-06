@@ -1,0 +1,459 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title="Free Royal Caribbean Cruise with Your New Roof - Happy Roof Tampa Bay"
+  description="Get a free Royal Caribbean cruise or up to $2,500 off when you replace your roof with Happy Roof. Tampa Bay's trusted roofing contractor. Offer ends May 31, 2026."
+  canonical="https://happyroof.com/cruise"
+  ogTitle="Free Royal Caribbean Cruise - Happy Roof"
+  ogDescription="Replace your roof and set sail! Free Royal Caribbean cruise or up to $2,500 off. Limited time offer from Happy Roof Tampa Bay."
+>
+
+<style is:inline>
+  #give-back-bar { display: none !important; }
+  .nav-wrap { top: 0 !important; }
+  .cruise-hero {
+    background: linear-gradient(135deg, #0a1628 0%, #0d2847 50%, #1a1a1a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cruise-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('/Brand Assets/55DE2B29-782E-42DE-A21E-6CF7C05AC0FC.jpeg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+  }
+  .cruise-container {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .cruise-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: rgba(230,168,23,0.15);
+    border: 1px solid rgba(230,168,23,0.3);
+    border-radius: 100px;
+    padding: .4rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .cruise-badge span {
+    font-size: .78rem;
+    font-weight: 700;
+    color: #E6A817;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .cruise-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 8vw, 3.8rem);
+    line-height: .95;
+    letter-spacing: -.01em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .cruise-headline .gold { color: #E6A817; }
+  .cruise-headline .blue { color: #3B9FD9; }
+  .cruise-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  /* Countdown */
+  .countdown-bar {
+    background: linear-gradient(135deg, #E6A817 0%, #F0C040 100%);
+    border-radius: 10px;
+    padding: .75rem 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .countdown-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #1A1A1A;
+    margin-bottom: .35rem;
+  }
+  .countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .countdown-unit {
+    text-align: center;
+  }
+  .countdown-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #1A1A1A;
+    line-height: 1;
+  }
+  .countdown-txt {
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: rgba(26,26,26,0.7);
+    margin-top: .1rem;
+  }
+  /* Tier table */
+  .tier-section {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .tier-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: #E6A817;
+    text-align: center;
+    margin-bottom: .75rem;
+    letter-spacing: .04em;
+  }
+  .tier-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .tier-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,0.5);
+    padding: .4rem .5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .tier-table td {
+    font-size: .9rem;
+    color: #fff;
+    padding: .55rem .5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .tier-table td:last-child {
+    font-weight: 700;
+    color: #E6A817;
+    text-align: right;
+  }
+  .tier-table tr:last-child td {
+    border-bottom: none;
+  }
+  .tier-note {
+    font-size: .72rem;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    margin-top: .6rem;
+  }
+  /* Form */
+  .cruise-form-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .cruise-form-card .flabel {
+    color: #1A1A1A;
+  }
+  .cruise-form-card .finput {
+    border-color: #E0E0E0;
+    color: #1A1A1A;
+  }
+  .cruise-form-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  /* Repair offer */
+  .repair-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    background: rgba(59,159,217,0.1);
+    border: 1px solid rgba(59,159,217,0.2);
+    border-radius: 100px;
+    padding: .5rem 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .repair-pill span {
+    font-size: .85rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .repair-pill strong { color: #3B9FD9; }
+</style>
+
+<section class="cruise-hero">
+  <div class="cruise-container">
+
+    <!-- Badge -->
+    <div style="text-align:center">
+      <div class="cruise-badge">
+        <span>&#9875; Limited Time Cruise Offer</span>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="cruise-headline">
+      Get a <span class="gold">Free</span><br/>
+      <span class="blue">Royal Caribbean</span><br/>
+      Cruise!
+    </h1>
+
+    <p class="cruise-sub">
+      Replace your roof and choose your reward - a Royal Caribbean cruise voucher or up to $2,500 off your project.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown-bar">
+      <div class="countdown-label">Offer Expires May 31, 2026</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-txt">Days</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hrs">--</div><div class="countdown-txt">Hours</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-min">--</div><div class="countdown-txt">Min</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-sec">--</div><div class="countdown-txt">Sec</div></div>
+      </div>
+    </div>
+
+    <!-- Repair offer pill -->
+    <div class="repair-pill">
+      <span>Also: <strong>15% off</strong> any roof repair</span>
+    </div>
+
+    <!-- Tier table -->
+    <div class="tier-section">
+      <div class="tier-title">Your Reward Tiers</div>
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th>Roof Investment</th>
+            <th style="text-align:right">Cruise Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$10,000 - $14,999</td><td>$1,000</td></tr>
+          <tr><td>$15,000 - $19,999</td><td>$1,500</td></tr>
+          <tr><td>$20,000 - $24,999</td><td>$2,000</td></tr>
+          <tr><td>$25,000+</td><td>$2,500</td></tr>
+        </tbody>
+      </table>
+      <p class="tier-note">Cruise value based on project total. Can be redeemed as a Royal Caribbean cruise voucher or applied as a cash discount. Projects under $10,000 convert to a cash discount.</p>
+    </div>
+
+    <!-- Form -->
+    <div class="cruise-form-card">
+      <div class="cruise-form-title">Claim Your Free Cruise</div>
+
+      <form id="cruise-form" onsubmit="submitCruiseForm(event)" novalidate>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
+          <div>
+            <label class="flabel">Name <span style="color:#3B9FD9">*</span></label>
+            <input type="text" name="name" class="finput" placeholder="Jane Smith" required />
+          </div>
+          <div>
+            <label class="flabel">Phone <span style="color:#3B9FD9">*</span></label>
+            <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" required />
+          </div>
+        </div>
+
+        <div style="margin-bottom:.75rem">
+          <label class="flabel">Email</label>
+          <input type="email" name="email" class="finput" placeholder="jane@example.com" />
+        </div>
+
+        <!-- Promo Code -->
+        <div class="fgroup" style="margin-bottom:.75rem">
+          <label class="flabel">Promo Code</label>
+          <div style="position:relative">
+            <input type="text" name="promo_code" class="finput promo-input" placeholder="e.g. CRUISE26" style="text-transform:uppercase;padding-right:2.5rem" />
+            <span class="promo-status" style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1rem;line-height:1;display:none"></span>
+          </div>
+          <p class="promo-msg" style="font-size:.75rem;margin-top:.35rem;line-height:1.4;display:none"></p>
+        </div>
+
+        <!-- SMS Consent -->
+        <div style="margin-bottom:.75rem">
+          <p style="font-size:.8rem;font-weight:700;color:#1A1A1A;margin-bottom:.5rem">Do you agree to receive text messages from Happy Roof?</p>
+          <div style="display:flex;gap:1.5rem;margin-bottom:.75rem">
+            <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+              <input type="radio" name="sms_consent" value="Yes" required style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> Yes
+            </label>
+            <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
+              <input type="radio" name="sms_consent" value="No" style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> No
+            </label>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem">
+            <input type="checkbox" id="privacy-consent-cruise" name="privacy_consent" required style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+            <label for="privacy-consent-cruise" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">
+              I acknowledge and agree to receive SMS messages from Happy Roof. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.
+            </label>
+          </div>
+          <p style="font-size:.68rem;color:#888;line-height:1.5;margin:0">
+            See our <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a> & <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms & Conditions</a>
+          </p>
+        </div>
+
+        <!-- Success message -->
+        <div id="cruise-success" style="display:none;background:rgba(59,159,217,.06);border:1px solid rgba(59,159,217,.2);border-radius:10px;padding:1rem;margin-bottom:1rem;text-align:center">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">You're in! Your cruise offer is reserved.</p>
+          <p style="color:#555555;font-size:.88rem">We'll reach out within 1 business day to schedule your free estimate. Downpayment must be received by May 31, 2026.</p>
+        </div>
+
+        <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.1rem;padding:1rem">
+          Get My Free Estimate
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Fine print -->
+    <div style="color:rgba(255,255,255,0.45);font-size:.72rem;line-height:1.6;max-width:440px;margin:0 auto;text-align:center">
+      <p>Downpayment must be received by May 31, 2026. Roof replacements only. Cruise voucher is redeemable for Royal Caribbean sailings; dates and itinerary at your discretion. Cash discount alternative based on project tier. Cannot be combined with other offers. Lic# CCC1337380. <a href="/terms" style="color:rgba(59,159,217,0.7);text-decoration:underline">Terms apply</a>.</p>
+    </div>
+
+    <!-- Trust signals -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1)">
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;line-height:1">5.0&#9733;</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:.72rem;margin-top:.15rem">Google Rating</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;line-height:1">15yr</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:.72rem;margin-top:.15rem">Warranty</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;line-height:1">FL Lic.</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:.72rem;margin-top:.15rem">#CCC1337380</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+// Countdown timer
+(function() {
+  var deadline = new Date('2026-05-31T23:59:59-04:00').getTime();
+  function tick() {
+    var now = Date.now();
+    var diff = deadline - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hrs').textContent = '0';
+      document.getElementById('cd-min').textContent = '0';
+      document.getElementById('cd-sec').textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hrs').textContent = h < 10 ? '0' + h : h;
+    document.getElementById('cd-min').textContent = m < 10 ? '0' + m : m;
+    document.getElementById('cd-sec').textContent = s < 10 ? '0' + s : s;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// Auto-fill promo from URL
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var promo = params.get('promo');
+  if (!promo) promo = 'CRUISE26'; // Default for this page
+  var input = document.querySelector('#cruise-form .promo-input');
+  if (input && promo) {
+    input.value = promo.toUpperCase();
+    setTimeout(function() { input.dispatchEvent(new Event('input')); }, 500);
+  }
+})();
+
+// Form submission
+function submitCruiseForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var req = form.querySelectorAll('[required]');
+  var valid = true;
+  req.forEach(function(el) {
+    el.style.borderColor = '';
+    if (el.type === 'radio') {
+      var name = el.name;
+      var checked = form.querySelector('[name="' + name + '"]:checked');
+      if (!checked) { valid = false; }
+    } else if (el.type === 'checkbox') {
+      if (!el.checked) { el.style.borderColor = '#EF4444'; valid = false; }
+    } else if (!el.value.trim()) {
+      el.style.borderColor = '#EF4444'; valid = false;
+    }
+  });
+  if (!valid) return;
+
+  var btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Sending...';
+
+  var formData = {
+    _subject: 'Free Cruise Offer - New Lead',
+    _source: 'cruise-landing',
+    _page: '/cruise',
+    name: (form.querySelector('[name=name]') || {}).value || '',
+    phone: (form.querySelector('[name=phone]') || {}).value || '',
+    email: (form.querySelector('[name=email]') || {}).value || '',
+    promo_code: (form.querySelector('[name=promo_code]') || {}).value || '',
+    sms_consent: (form.querySelector('[name=sms_consent]:checked') || {}).value || 'No',
+    offer: 'Free Cruise / Up to $2,500 Off',
+    source: 'cruise-landing-page'
+  };
+
+  var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() + ' | Cruise Offer' : 'Cruise Offer';
+
+  var stPayload = {
+    name: formData.name,
+    phone: formData.phone,
+    email: formData.email,
+    notes: promoNote,
+    source: 'Website - Cruise Landing',
+    page: '/cruise'
+  };
+
+  Promise.allSettled([
+    fetch('/api/submit-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(stPayload) }),
+    fetch('https://formsubmit.co/ajax/info@happyroof.com', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(formData) })
+  ]).finally(function() {
+    document.getElementById('cruise-success').style.display = 'block';
+    form.querySelectorAll('input,select,textarea').forEach(function(el) { el.disabled = true; });
+    btn.style.display = 'none';
+  });
+}
+</script>
+
+</BaseLayout>
