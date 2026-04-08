@@ -65,12 +65,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-3 justify-center">
-      <a href="/contact" class="btn-p" style="font-size:1rem;padding:.85rem 2rem">
+    <!-- Signup Form -->
+    <form id="foundation-form" style="max-width:400px;margin:0 auto;text-align:left">
+      <div style="margin-bottom:.75rem">
+        <input type="text" name="name" required placeholder="Full Name"
+          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
+      </div>
+      <div style="margin-bottom:.75rem">
+        <input type="tel" name="phone" required placeholder="Phone Number"
+          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
+      </div>
+      <div style="margin-bottom:1.25rem">
+        <input type="email" name="email" required placeholder="Email Address"
+          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
+      </div>
+      <button type="submit" class="btn-p" style="width:100%;font-size:1rem;padding:.85rem 2rem;justify-content:center;display:flex;align-items:center;gap:.5rem">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get Notified
-      </a>
-    </div>
+      </button>
+      <p id="foundation-msg" style="display:none;text-align:center;margin-top:.75rem;font-size:.9rem;font-weight:600"></p>
+      <p style="text-align:center;color:#888888;font-size:.75rem;margin-top:.75rem;line-height:1.5">We'll only use your info to notify you about the foundation launch. No spam.</p>
+    </form>
+
+    <script is:inline>
+    document.getElementById('foundation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var btn = form.querySelector('button[type="submit"]');
+      var msg = document.getElementById('foundation-msg');
+      var data = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim()
+      };
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      msg.style.display = 'none';
+
+      fetch('/api/foundation-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res.success) {
+          msg.textContent = "You're on the list! We'll be in touch.";
+          msg.style.color = '#16a34a';
+          msg.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error(res.error || 'Submission failed');
+        }
+      })
+      .catch(function() {
+        msg.textContent = 'Something went wrong. Please try again.';
+        msg.style.color = '#dc2626';
+        msg.style.display = 'block';
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Get Notified';
+      });
+    });
+    </script>
 
     <p style="color:#888888;font-size:.8rem;margin-top:3rem;line-height:1.6">
       A community initiative by <a href="/" style="color:#555555;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#555555'">Happy Roof LLC</a> · Tampa Bay, FL
