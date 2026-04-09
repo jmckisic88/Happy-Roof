@@ -1,10 +1,11 @@
 ---
 interface Props {
   activePage?: string;
+  hideBanner?: boolean;
 }
-const { activePage = '' } = Astro.props;
+const { activePage = '', hideBanner = false } = Astro.props;
 ---
-<nav class="nav-wrap fixed left-0 right-0 z-50" style="top:40px">
+<nav class="nav-wrap fixed left-0 right-0 z-50" style={hideBanner ? "top:0" : "top:40px"}>
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
     <a href="/" class="flex-shrink-0 focus-visible:outline-none">
       <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="h-14 w-auto" />

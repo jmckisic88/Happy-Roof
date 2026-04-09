@@ -18,6 +18,7 @@ interface Props {
   schema?: string;
   extraHead?: string;
   hideExitPopup?: boolean;
+  hideBanner?: boolean;
 }
 
 const {
@@ -30,6 +31,7 @@ const {
   activePage = '',
   schema,
   hideExitPopup = false,
+  hideBanner = false,
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -104,8 +106,8 @@ const {
   })();
   </script>
 
-  <GiveBackBanner />
-  <Nav activePage={activePage} />
+  {!hideBanner && <GiveBackBanner />}
+  <Nav activePage={activePage} hideBanner={hideBanner} />
 
   <slot />
 
