@@ -186,9 +186,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script is:inline>
 (function() {
-  // Get ref from query param (Vercel rewrite sends /r/slug → /refer?ref=slug)
+  // Get ref from query param OR from /r/slug path
   var params = new URLSearchParams(window.location.search);
   var ref = params.get('ref');
+  if (!ref) {
+    var match = window.location.pathname.match(/^\/r\/([^\/]+)/);
+    if (match) ref = match[1];
+  }
 
   if (!ref) {
     document.getElementById('ref-loading').style.display = 'none';
