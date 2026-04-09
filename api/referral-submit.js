@@ -3,9 +3,9 @@
 // Customer submits their info via a referrer's unique link
 // Sends to ServiceTitan + email with referrer attribution
 
-import { list } from '@vercel/blob';
+import { readBlob } from './_blob-store.js';
 
-const BLOB_KEY = 'referral-registry.json';
+const BLOB_PREFIX = 'referral-registry';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -31,17 +31,13 @@ export default async function handler(req, res) {
   let referrerEmail = '';
   let referrerPayment = '';
   try {
-    const result = await list({ prefix: BLOB_KEY });
-    if (result.blobs.length > 0) {
-      const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-      const registry = await response.json();
-      const referrer = registry[ref];
-      if (referrer && referrer.active) {
-        referrerName = referrer.name;
-        referrerPhone = referrer.phone;
-        referrerEmail = referrer.email;
-        referrerPayment = referrer.paymentMethod;
-      }
+    const registry = await readBlob(BLOB_PREFIX, {});
+    const referrer = registry[ref];
+    if (referrer && referrer.active) {
+      referrerName = referrer.name;
+      referrerPhone = referrer.phone;
+      referrerEmail = referrer.email;
+      referrerPayment = referrer.paymentMethod;
     }
   } catch (e) {
     console.error('Registry lookup error (non-blocking):', e);
@@ -63,7 +59,6 @@ export default async function handler(req, res) {
   if (notes) summaryParts.push(`Notes: ${notes}`);
   const summary = summaryParts.join(' | ');
 
-  // Send to ServiceTitan
   let stResult = { success: false };
   if (TENANT_ID && CLIENT_ID && CLIENT_SECRET && APP_KEY) {
     try {
@@ -108,7 +103,7 @@ export default async function handler(req, res) {
     }
   }
 
-  // Send email notification with full referrer + customer details
+  // Send email notification
   try {
     await fetch('https://formsubmit.co/ajax/info@happyroof.com', {
       method: 'POST',

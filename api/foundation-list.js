@@ -2,14 +2,13 @@
 // GET /api/foundation-list?key=YOUR_ADMIN_KEY
 // Optional: ?format=csv for CSV export
 
-import { list } from '@vercel/blob';
+import { readBlob } from './_blob-store.js';
 
-const BLOB_KEY = 'foundation-signups.json';
+const BLOB_PREFIX = 'foundation-signups';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Simple key-based auth — set FOUNDATION_ADMIN_KEY in Vercel env vars
   const adminKey = process.env.FOUNDATION_ADMIN_KEY;
   const provided = req.query.key;
 
@@ -18,18 +17,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    let signups = [];
-    try {
-      const result = await list({ prefix: BLOB_KEY });
-      if (result.blobs.length > 0) {
-        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-        signups = await response.json();
-      }
-    } catch (e) {
-      // No signups yet
-    }
+    const signups = await readBlob(BLOB_PREFIX, []);
 
-    // CSV export
     if (req.query.format === 'csv') {
       const header = 'Name,Phone,Email,Date';
       const rows = signups.map(

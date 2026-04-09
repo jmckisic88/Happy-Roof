@@ -2,20 +2,9 @@
 // GET /api/referral-lookup?ref=josh-m
 // Returns the referrer's display name if the slug is valid and active
 
-import { list } from '@vercel/blob';
+import { readBlob } from './_blob-store.js';
 
-const BLOB_KEY = 'referral-registry.json';
-
-async function loadRegistry() {
-  try {
-    const result = await list({ prefix: BLOB_KEY });
-    if (result.blobs.length > 0) {
-      const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-      return await response.json();
-    }
-  } catch (e) { /* blob doesn't exist yet */ }
-  return {};
-}
+const BLOB_PREFIX = 'referral-registry';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -32,15 +21,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const registry = await loadRegistry();
-
+    const registry = await readBlob(BLOB_PREFIX, {});
     const referrer = registry[slug];
 
     if (!referrer || !referrer.active) {
       return res.status(404).json({ error: 'Referral link not found' });
     }
 
-    // Only return the display name — no PII exposed
     const firstName = referrer.name.split(/\s+/)[0];
     return res.status(200).json({
       success: true,

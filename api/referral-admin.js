@@ -4,12 +4,11 @@
 // POST /api/referral-admin?key=ADMIN_KEY               → toggle active status
 //   body: { slug: "josh-m", active: false }
 
-import { put, list } from '@vercel/blob';
+import { readBlob, writeBlob } from './_blob-store.js';
 
-const BLOB_KEY = 'referral-registry.json';
+const BLOB_PREFIX = 'referral-registry';
 
 export default async function handler(req, res) {
-  // Simple key-based auth — set REFERRAL_ADMIN_KEY in Vercel env vars
   const adminKey = process.env.REFERRAL_ADMIN_KEY;
   const provided = req.query.key;
 
@@ -18,16 +17,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    let registry = {};
-    try {
-      const result = await list({ prefix: BLOB_KEY });
-      if (result.blobs.length > 0) {
-        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-        registry = await response.json();
-      }
-    } catch (e) {
-      // No registry yet
-    }
+    let registry = await readBlob(BLOB_PREFIX, {});
 
     // POST — toggle a referrer's active status
     if (req.method === 'POST') {
@@ -36,12 +26,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: 'Referrer not found' });
       }
       registry[slug].active = active !== false;
-      await put(BLOB_KEY, JSON.stringify(registry, null, 2), {
-        access: 'public',
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        cacheControlMaxAge: 0,
-      });
+      await writeBlob(BLOB_PREFIX, registry);
       return res.status(200).json({ success: true, slug, active: registry[slug].active });
     }
 
@@ -54,7 +39,6 @@ export default async function handler(req, res) {
       ...r,
     }));
 
-    // CSV export
     if (req.query.format === 'csv') {
       const header = 'Slug,Name,Phone,Email,Payment,Active,Created,Link';
       const rows = entries.map(

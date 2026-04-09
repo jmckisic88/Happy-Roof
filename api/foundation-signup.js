@@ -1,9 +1,9 @@
 // Foundation "Get Notified" Signup Handler
 // Stores signups in Vercel Blob + emails info@happyroof.com via FormSubmit
 
-import { put, list } from '@vercel/blob';
+import { readBlob, writeBlob } from './_blob-store.js';
 
-const BLOB_KEY = 'foundation-signups.json';
+const BLOB_PREFIX = 'foundation-signups';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -27,30 +27,11 @@ export default async function handler(req, res) {
   };
 
   try {
-    // 1. Load existing signups from Vercel Blob
-    let signups = [];
-    try {
-      const result = await list({ prefix: BLOB_KEY });
-      if (result.blobs.length > 0) {
-        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-        signups = await response.json();
-      }
-    } catch (e) {
-      // File doesn't exist yet — start fresh
-    }
-
-    // 2. Append new signup
+    let signups = await readBlob(BLOB_PREFIX, []);
     signups.push(signup);
+    await writeBlob(BLOB_PREFIX, signups);
 
-    // 3. Store updated list back to Vercel Blob
-    await put(BLOB_KEY, JSON.stringify(signups, null, 2), {
-      access: 'public',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      cacheControlMaxAge: 0,
-    });
-
-    // 4. Send email notification via FormSubmit
+    // Send email notification via FormSubmit
     try {
       await fetch('https://formsubmit.co/ajax/info@happyroof.com', {
         method: 'POST',
