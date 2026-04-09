@@ -2,9 +2,20 @@
 // POST /api/referral-register
 // Creates a new referrer with a unique slug and stores in Vercel Blob
 
-import { put, head } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
+
+async function loadRegistry() {
+  try {
+    const result = await list({ prefix: BLOB_KEY });
+    if (result.blobs.length > 0) {
+      const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
+      return await response.json();
+    }
+  } catch (e) { /* blob doesn't exist yet */ }
+  return {};
+}
 
 function generateSlug(name) {
   const parts = name.trim().split(/\s+/);
@@ -37,16 +48,7 @@ export default async function handler(req, res) {
 
   try {
     // Load existing registry
-    let registry = {};
-    try {
-      const existing = await head(BLOB_KEY);
-      if (existing) {
-        const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-        registry = await response.json();
-      }
-    } catch (e) {
-      // Registry doesn't exist yet — start fresh
-    }
+    let registry = await loadRegistry();
 
     // Check if this person already has a link (by phone number)
     const existingEntry = Object.entries(registry).find(

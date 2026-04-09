@@ -1,7 +1,7 @@
 // Foundation "Get Notified" Signup Handler
 // Stores signups in Vercel Blob + emails info@happyroof.com via FormSubmit
 
-import { put, head } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 
 const BLOB_KEY = 'foundation-signups.json';
 
@@ -30,9 +30,9 @@ export default async function handler(req, res) {
     // 1. Load existing signups from Vercel Blob
     let signups = [];
     try {
-      const existing = await head(BLOB_KEY);
-      if (existing) {
-        const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
+      const result = await list({ prefix: BLOB_KEY });
+      if (result.blobs.length > 0) {
+        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
         signups = await response.json();
       }
     } catch (e) {

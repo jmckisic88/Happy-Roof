@@ -2,9 +2,20 @@
 // GET /api/referral-lookup?ref=josh-m
 // Returns the referrer's display name if the slug is valid and active
 
-import { head } from '@vercel/blob';
+import { list } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
+
+async function loadRegistry() {
+  try {
+    const result = await list({ prefix: BLOB_KEY });
+    if (result.blobs.length > 0) {
+      const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
+      return await response.json();
+    }
+  } catch (e) { /* blob doesn't exist yet */ }
+  return {};
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -21,16 +32,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    let registry = {};
-    try {
-      const existing = await head(BLOB_KEY);
-      if (existing) {
-        const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
-        registry = await response.json();
-      }
-    } catch (e) {
-      // No registry yet
-    }
+    const registry = await loadRegistry();
 
     const referrer = registry[slug];
 

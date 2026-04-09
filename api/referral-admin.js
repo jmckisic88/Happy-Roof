@@ -4,7 +4,7 @@
 // POST /api/referral-admin?key=ADMIN_KEY               → toggle active status
 //   body: { slug: "josh-m", active: false }
 
-import { put, head } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
 
@@ -20,9 +20,9 @@ export default async function handler(req, res) {
   try {
     let registry = {};
     try {
-      const existing = await head(BLOB_KEY);
-      if (existing) {
-        const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
+      const result = await list({ prefix: BLOB_KEY });
+      if (result.blobs.length > 0) {
+        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
         registry = await response.json();
       }
     } catch (e) {

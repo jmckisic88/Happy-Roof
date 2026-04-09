@@ -2,7 +2,7 @@
 // GET /api/foundation-list?key=YOUR_ADMIN_KEY
 // Optional: ?format=csv for CSV export
 
-import { head } from '@vercel/blob';
+import { list } from '@vercel/blob';
 
 const BLOB_KEY = 'foundation-signups.json';
 
@@ -20,9 +20,9 @@ export default async function handler(req, res) {
   try {
     let signups = [];
     try {
-      const existing = await head(BLOB_KEY);
-      if (existing) {
-        const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
+      const result = await list({ prefix: BLOB_KEY });
+      if (result.blobs.length > 0) {
+        const response = await fetch(result.blobs[0].downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
         signups = await response.json();
       }
     } catch (e) {
