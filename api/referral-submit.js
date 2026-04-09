@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   try {
     const existing = await head(BLOB_KEY);
     if (existing) {
-      const response = await fetch(existing.url + '?t=' + Date.now(), { cache: 'no-store' });
+      const response = await fetch(existing.downloadUrl + '&t=' + Date.now(), { cache: 'no-store' });
       const registry = await response.json();
       const referrer = registry[ref];
       if (referrer && referrer.active) {
