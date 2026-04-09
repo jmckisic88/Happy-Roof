@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Get Your Free Roof Estimate | Happy Roof"
+  description="Someone you know referred you to Happy Roof — Tampa Bay's trusted roofing experts. Schedule your free inspection today."
+  canonical="https://happyroof.com/refer"
+  ogTitle="You've Been Referred to Happy Roof!"
+  ogDescription="A friend referred you to Tampa Bay's most trusted roofer. Get a free estimate — no obligation, no pressure."
+  activePage=""
+>
+
+<style is:inline>
+  .ref-hero { background: #F5F5F5; position: relative; overflow: hidden }
+  .ref-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(59,159,217,.08); border: 1px solid rgba(59,159,217,.2); border-radius: 100px; padding: .5rem 1.1rem; font-size: .82rem; font-weight: 600; color: #3B9FD9 }
+  .ref-card { background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 20px; box-shadow: 0 24px 60px -12px rgba(0,0,0,.12) }
+  .ref-tier { background: #F7F7F7; border: 1px solid #E0E0E0; border-radius: 14px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: .75rem }
+  .ref-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 2rem }
+  .ref-invalid { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 2rem }
+  .ref-content { display: none }
+  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #3B9FD9; animation: pulse 1.2s ease-in-out infinite }
+  @keyframes pulse { 0%, 100% { opacity: .3; transform: scale(.8) } 50% { opacity: 1; transform: scale(1.2) } }
+</style>
+
+<!-- Loading state -->
+<div id="ref-loading" class="ref-loading" style="padding-top:10rem">
+  <div style="display:flex;gap:6px;margin-bottom:1.5rem">
+    <div class="pulse-dot"></div>
+    <div class="pulse-dot" style="animation-delay:.2s"></div>
+    <div class="pulse-dot" style="animation-delay:.4s"></div>
+  </div>
+  <p style="color:#888;font-size:.9rem">Loading your referral...</p>
+</div>
+
+<!-- Invalid link state -->
+<div id="ref-invalid" class="ref-invalid">
+  <div style="max-width:420px">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5" style="background:rgba(220,38,38,.08)">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+    </div>
+    <h1 class="font-display font-black mb-3" style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;color:#1A1A1A">Link Not Found</h1>
+    <p style="color:#555;font-size:.95rem;line-height:1.7;margin-bottom:2rem">This referral link doesn't seem to be active. If someone gave you this link, ask them to double-check the URL — or you can reach us directly.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-p">Get a Free Estimate</a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">(813) 595-7663</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main content (shown after successful lookup) -->
+<div id="ref-content" class="ref-content">
+
+  <!-- Hero -->
+  <section class="ref-hero pt-28 pb-16">
+    <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+    <div class="hero-photo-overlay"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+      <div class="ref-badge mx-auto mb-6">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Referred by <strong id="ref-name-badge" style="margin-left:2px"></strong>
+      </div>
+      <h1 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.88;letter-spacing:-.01em;color:#1A1A1A">
+        YOUR FRIEND WANTS<br/>YOU TO SAVE ON YOUR<br/><span style="color:#E6A817">NEW ROOF.</span>
+      </h1>
+      <p style="color:#555;font-size:1.05rem;line-height:1.75;max-width:500px;margin:0 auto 2rem">
+        <span id="ref-name-text"></span> thinks you'd love working with us. Fill out the quick form below and we'll set up your <strong>free, no-obligation inspection</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.25rem 0">
+    <div class="max-w-5xl mx-auto px-5">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.5rem 2.5rem">
+        <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">5-STAR RATED</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">LICENSED & INSURED</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">FREE INSPECTION</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">NO OBLIGATION</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form section -->
+  <section class="py-16" style="background:#FFFFFF">
+    <div class="max-w-xl mx-auto px-5">
+      <div class="ref-card p-8">
+        <div class="text-center mb-6">
+          <p class="sl gp mb-2">Schedule Your Free Estimate</p>
+          <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);line-height:.92;letter-spacing:-.01em">TELL US ABOUT YOUR ROOF.</h2>
+        </div>
+
+        <form id="ref-form" onsubmit="handleReferralSubmit(event)">
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="flabel">Your Name *</label>
+              <input type="text" name="name" class="finput" placeholder="John Smith" required />
+            </div>
+            <div>
+              <label class="flabel">Your Phone *</label>
+              <input type="tel" name="phone" class="finput" placeholder="(813) 000-0000" required />
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="flabel">Your Email</label>
+            <input type="email" name="email" class="finput" placeholder="john@email.com" />
+          </div>
+          <div class="mb-4">
+            <label class="flabel">Property Address</label>
+            <input type="text" name="address" class="finput" placeholder="123 Main St, Tampa, FL" />
+          </div>
+          <div class="mb-4">
+            <label class="flabel">What do you need help with?</label>
+            <select name="service" class="finput" style="cursor:pointer">
+              <option value="" style="background:#FFFFFF">Not sure yet</option>
+              <option style="background:#FFFFFF">Roof Replacement</option>
+              <option style="background:#FFFFFF">Roof Repair / Leak</option>
+              <option style="background:#FFFFFF">Storm Damage</option>
+              <option style="background:#FFFFFF">Inspection or Report</option>
+              <option style="background:#FFFFFF">Commercial Roofing</option>
+              <option style="background:#FFFFFF">Just looking for a quote</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label class="flabel">Anything else we should know?</label>
+            <textarea name="notes" class="finput" rows="3" placeholder="Describe the issue, your timeline, etc..." style="resize:vertical"></textarea>
+          </div>
+          <button type="submit" id="ref-submit-btn" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
+            Get My Free Estimate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div id="ref-success" class="hidden mt-5 p-6 rounded-xl text-center" style="background:rgba(59,159,217,.08);border:1px solid rgba(59,159,217,.2)">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(59,159,217,.12)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          </div>
+          <p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem">You're All Set!</p>
+          <p style="color:#555;font-size:.9rem;margin-top:.5rem;line-height:1.7">Our team will reach out within 24 hours to schedule your free inspection. No obligation — just honest advice from a local crew that cares.</p>
+        </div>
+      </div>
+
+      <!-- What to expect -->
+      <div class="mt-10">
+        <h3 class="font-display font-bold text-center mb-6" style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;color:#1A1A1A">WHAT HAPPENS NEXT</h3>
+        <div class="grid gap-4">
+          <div class="ref-tier">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(230,168,23,.12);font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#E6A817;font-size:1rem">1</div>
+            <div>
+              <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:#1A1A1A">We'll Call You</p>
+              <p style="color:#555;font-size:.82rem;line-height:1.6">Expect a friendly call within 24 hours to schedule a time that works for you.</p>
+            </div>
+          </div>
+          <div class="ref-tier">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(59,159,217,.12);font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#3B9FD9;font-size:1rem">2</div>
+            <div>
+              <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:#1A1A1A">Free Roof Inspection</p>
+              <p style="color:#555;font-size:.82rem;line-height:1.6">We come out, inspect your roof, and give you an honest assessment — no charge.</p>
+            </div>
+          </div>
+          <div class="ref-tier">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(230,168,23,.12);font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#E6A817;font-size:1rem">3</div>
+            <div>
+              <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:#1A1A1A">Get Your Estimate</p>
+              <p style="color:#555;font-size:.82rem;line-height:1.6">We'll walk you through our findings and provide a transparent, fair quote. Zero pressure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business card strip -->
+  <div style="background:#F7F7F7;padding:2rem 0;border-top:1px solid #E0E0E0">
+    <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" style="height:36px;width:auto" />
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.75rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.08em">
+        <span style="color:#555">TAMPA BAY</span><span style="color:#E0E0E0">&middot;</span>
+        <span style="color:#555">CCC1337380</span><span style="color:#E0E0E0">&middot;</span>
+        <a href="https://happyroof.com" style="color:#E6A817;text-decoration:none">HAPPYROOF.COM</a><span style="color:#E0E0E0">&middot;</span>
+        <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none">(813) 595-7663</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  // Get ref from query param (Vercel rewrite sends /r/slug → /refer?ref=slug)
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+
+  if (!ref) {
+    document.getElementById('ref-loading').style.display = 'none';
+    document.getElementById('ref-invalid').style.display = 'flex';
+    return;
+  }
+
+  // Look up the referrer
+  fetch('/api/referral-lookup?ref=' + encodeURIComponent(ref))
+    .then(function(r) {
+      if (!r.ok) throw new Error('not found');
+      return r.json();
+    })
+    .then(function(data) {
+      // Populate referrer name
+      document.getElementById('ref-name-badge').textContent = data.name;
+      document.getElementById('ref-name-text').textContent = data.name;
+
+      // Show content
+      document.getElementById('ref-loading').style.display = 'none';
+      document.getElementById('ref-content').style.display = 'block';
+    })
+    .catch(function() {
+      document.getElementById('ref-loading').style.display = 'none';
+      document.getElementById('ref-invalid').style.display = 'flex';
+    });
+
+  // Store ref for form submission
+  window._referralSlug = ref;
+})();
+
+function handleReferralSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('ref-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  var data = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    address: form.address.value,
+    service: form.service.value,
+    notes: form.notes.value,
+    ref: window._referralSlug
+  };
+
+  fetch('/api/referral-submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function() {
+    document.getElementById('ref-success').classList.remove('hidden');
+    form.style.display = 'none';
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Get My Free Estimate';
+    alert('Something went wrong. Please try again or call us at (813) 595-7663.');
+  });
+}
+</script>
+
+</BaseLayout>

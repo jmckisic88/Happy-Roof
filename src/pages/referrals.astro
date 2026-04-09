@@ -132,7 +132,7 @@ const schema = `{
     </p>
     <div class="flex flex-wrap gap-3 justify-center">
       <a href="#refer-form" class="btn-p" style="font-size:1.1rem;padding:.9rem 2rem">Submit a Referral</a>
-      <a href="#tiers" class="btn-o" style="color:#1A1A1A;border-color:rgba(0,0,0,.2);font-size:1rem;padding:.85rem 1.75rem">See Payout Tiers</a>
+      <a href="#get-link" class="btn-o" style="color:#1A1A1A;border-color:rgba(0,0,0,.2);font-size:1rem;padding:.85rem 1.75rem">Get Your Referral Link</a>
     </div>
   </div>
 </section>
@@ -519,6 +519,93 @@ const schema = `{
   </div>
 </section>
 
+<!-- ══════ GET YOUR REFERRAL LINK ══════ -->
+<section id="get-link" class="py-24" style="background:#F5F5F5;border-top:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Share Smarter</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3.5rem);line-height:.9;letter-spacing:-.01em">
+        GET YOUR OWN<br/><span class="gp">REFERRAL LINK.</span>
+      </h2>
+      <p style="color:#555;font-size:.95rem;line-height:1.75;max-width:520px;margin:.75rem auto 0">
+        Skip the form — get a personal link you can text to anyone. When they click it and request an estimate, you're automatically credited.
+      </p>
+    </div>
+
+    <div class="rounded-2xl p-8" style="background:#FFFFFF;border:1px solid #E0E0E0;box-shadow:0 24px 60px -12px rgba(0,0,0,.12)">
+
+      <!-- How it works mini -->
+      <div class="grid sm:grid-cols-3 gap-4 mb-8 pb-8" style="border-bottom:1px solid #E0E0E0">
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2" style="background:rgba(230,168,23,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:#1A1A1A">Get Your Link</p>
+          <p style="color:#888;font-size:.75rem;line-height:1.5;margin-top:.25rem">Sign up once, get a unique URL</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2" style="background:rgba(59,159,217,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:#1A1A1A">Text It Out</p>
+          <p style="color:#888;font-size:.75rem;line-height:1.5;margin-top:.25rem">Share via text, email, or social</p>
+        </div>
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2" style="background:rgba(230,168,23,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+          </div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:#1A1A1A">Get Credited</p>
+          <p style="color:#888;font-size:.75rem;line-height:1.5;margin-top:.25rem">Auto-tracked — no extra forms</p>
+        </div>
+      </div>
+
+      <form id="link-form" onsubmit="handleLinkSignup(event)">
+        <p class="font-display font-bold text-brand-black mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;padding-bottom:.75rem;border-bottom:1px solid #E0E0E0">YOUR INFORMATION</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div><label class="flabel">Your Name *</label><input type="text" name="link_name" class="finput" placeholder="Jane Doe" required /></div>
+          <div><label class="flabel">Your Phone *</label><input type="tel" name="link_phone" class="finput" placeholder="(813) 000-0000" required /></div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div><label class="flabel">Your Email</label><input type="email" name="link_email" class="finput" placeholder="jane@email.com" /></div>
+          <div>
+            <label class="flabel">Payment Preference</label>
+            <select name="link_payment" class="finput" style="cursor:pointer">
+              <option value="" style="background:#FFFFFF">Select...</option>
+              <option style="background:#FFFFFF">Check (mailed)</option>
+              <option style="background:#FFFFFF">Zelle</option>
+              <option style="background:#FFFFFF">Venmo</option>
+              <option style="background:#FFFFFF">No preference</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" id="link-submit-btn" class="btn-t w-full justify-center" style="font-size:1.05rem;padding:.9rem">
+          Generate My Referral Link
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </form>
+
+      <!-- Success state with generated link -->
+      <div id="link-success" class="hidden">
+        <div class="text-center mb-5">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(59,159,217,.12)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          </div>
+          <p class="font-display font-bold text-brand-black" style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem">Your Referral Link is Ready!</p>
+          <p style="color:#555;font-size:.88rem;margin-top:.35rem;line-height:1.7">Share this link with anyone who needs a roof. You'll be automatically credited for every estimate.</p>
+        </div>
+        <div class="flex items-center gap-2 mb-4 p-4 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
+          <input type="text" id="link-url" readonly class="finput" style="background:transparent;border:none;font-weight:600;color:#1A1A1A;font-size:.95rem;padding:.25rem 0" />
+          <button onclick="copyLink()" id="copy-btn" class="btn-p flex-shrink-0" style="font-size:.82rem;padding:.55rem 1rem;white-space:nowrap">
+            Copy Link
+          </button>
+        </div>
+        <p style="color:#888;font-size:.78rem;text-align:center">Tip: Save this link in your phone notes so you always have it handy.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════ FAQ ══════ -->
 <section class="py-20" style="background:#FFFFFF;border-top:1px solid #2A2A2A">
   <div class="max-w-3xl mx-auto px-5">
@@ -598,6 +685,60 @@ function handleSubmit(e) {
   ]).finally(() => {
     document.getElementById('success-msg').classList.remove('hidden');
     form.style.display = 'none';
+  });
+}
+
+function handleLinkSignup(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('link-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+
+  var data = {
+    name: form.link_name.value,
+    phone: form.link_phone.value,
+    email: form.link_email.value,
+    paymentMethod: form.link_payment.value
+  };
+
+  fetch('/api/referral-register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(result) {
+    if (result.success) {
+      var link = 'https://www.happyroof.com/r/' + result.slug;
+      document.getElementById('link-url').value = link;
+      document.getElementById('link-form').style.display = 'none';
+      document.getElementById('link-success').classList.remove('hidden');
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Generate My Referral Link';
+      alert('Something went wrong. Please try again or call us.');
+    }
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Generate My Referral Link';
+    alert('Something went wrong. Please try again or call us.');
+  });
+}
+
+function copyLink() {
+  var input = document.getElementById('link-url');
+  var btn = document.getElementById('copy-btn');
+  navigator.clipboard.writeText(input.value).then(function() {
+    btn.textContent = 'Copied!';
+    btn.style.background = '#3B9FD9';
+    btn.style.color = '#fff';
+    setTimeout(function() {
+      btn.textContent = 'Copy Link';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2500);
   });
 }
 </script>
