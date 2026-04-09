@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     try {
       const existing = await head(BLOB_KEY);
       if (existing) {
-        const response = await fetch(existing.url);
+        const response = await fetch(existing.url + '?t=' + Date.now(), { cache: 'no-store' });
         registry = await response.json();
       }
     } catch (e) {
