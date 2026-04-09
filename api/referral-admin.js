@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
       await put(BLOB_KEY, JSON.stringify(registry, null, 2), {
         access: 'public',
         addRandomSuffix: false,
+      allowOverwrite: true,
       });
       return res.status(200).json({ success: true, slug, active: registry[slug].active });
     }

@@ -79,6 +79,7 @@ module.exports = async (req, res) => {
     await put(BLOB_KEY, JSON.stringify(registry, null, 2), {
       access: 'public',
       addRandomSuffix: false,
+      allowOverwrite: true,
     });
 
     // Email notification

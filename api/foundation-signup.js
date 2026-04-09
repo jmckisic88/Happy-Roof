@@ -46,6 +46,7 @@ module.exports = async (req, res) => {
     await put(BLOB_KEY, JSON.stringify(signups, null, 2), {
       access: 'public',
       addRandomSuffix: false,
+      allowOverwrite: true,
     });
 
     // 4. Send email notification via FormSubmit
