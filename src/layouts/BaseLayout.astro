@@ -17,6 +17,7 @@ interface Props {
   activePage?: string;
   schema?: string;
   extraHead?: string;
+  hideExitPopup?: boolean;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   ogImage = 'https://www.happyroof.com/Brand%20Assets/og-share-image.png',
   activePage = '',
   schema,
+  hideExitPopup = false,
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -189,7 +191,7 @@ const {
   })();
   </script>
 
-  <ExitPopup />
+  {!hideExitPopup && <ExitPopup />}
   <Analytics />
 </body>
 </html>

@@ -532,7 +532,7 @@ const schema = `{
       </p>
     </div>
 
-    <div id="get-link" class="rounded-2xl p-8" style="background:#FFFFFF;border:1px solid #E0E0E0;box-shadow:0 24px 60px -12px rgba(0,0,0,.12)">
+    <div class="rounded-2xl p-8" style="background:#FFFFFF;border:1px solid #E0E0E0;box-shadow:0 24px 60px -12px rgba(0,0,0,.12)">
 
       <!-- How it works mini -->
       <div class="grid sm:grid-cols-3 gap-4 mb-8 pb-8" style="border-bottom:1px solid #E0E0E0">
@@ -560,6 +560,7 @@ const schema = `{
       </div>
 
       <form id="link-form" onsubmit="handleLinkSignup(event)">
+        <span id="get-link" style="display:block;height:0;margin-top:-20px"></span>
         <p class="font-display font-bold text-brand-black mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;padding-bottom:.75rem;border-bottom:1px solid #E0E0E0">YOUR INFORMATION</p>
         <div class="grid sm:grid-cols-2 gap-4 mb-4">
           <div><label class="flabel">Your Name *</label><input type="text" name="link_name" class="finput" placeholder="Jane Doe" required /></div>
