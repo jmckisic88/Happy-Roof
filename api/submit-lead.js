@@ -2,7 +2,7 @@
 // Credentials are stored as Vercel Environment Variables (never in code)
 // POST /api/submit-lead
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -102,4 +102,4 @@ module.exports = async (req, res) => {
     console.error('Unexpected error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}

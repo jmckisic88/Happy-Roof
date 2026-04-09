@@ -2,11 +2,11 @@
 // GET /api/referral-lookup?ref=josh-m
 // Returns the referrer's display name if the slug is valid and active
 
-const { head } = require('@vercel/blob');
+import { head } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -49,4 +49,4 @@ module.exports = async (req, res) => {
     console.error('Referral lookup error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}

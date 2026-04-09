@@ -2,7 +2,7 @@
 // POST /api/referral-register
 // Creates a new referrer with a unique slug and stores in Vercel Blob
 
-const { put, head } = require('@vercel/blob');
+import { put, head } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
 
@@ -21,7 +21,7 @@ function dedupeSlug(base, existing) {
   return `${base}-${i}`;
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -106,4 +106,4 @@ module.exports = async (req, res) => {
     console.error('Referral register error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}

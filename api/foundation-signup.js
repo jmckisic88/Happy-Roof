@@ -1,11 +1,11 @@
 // Foundation "Get Notified" Signup Handler
 // Stores signups in Vercel Blob + emails info@happyroof.com via FormSubmit
 
-const { put, head } = require('@vercel/blob');
+import { put, head } from '@vercel/blob';
 
 const BLOB_KEY = 'foundation-signups.json';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -71,4 +71,4 @@ module.exports = async (req, res) => {
     console.error('Foundation signup error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}

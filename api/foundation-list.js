@@ -2,11 +2,11 @@
 // GET /api/foundation-list?key=YOUR_ADMIN_KEY
 // Optional: ?format=csv for CSV export
 
-const { head } = require('@vercel/blob');
+import { head } from '@vercel/blob';
 
 const BLOB_KEY = 'foundation-signups.json';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   // Simple key-based auth — set FOUNDATION_ADMIN_KEY in Vercel env vars
@@ -46,4 +46,4 @@ module.exports = async (req, res) => {
     console.error('Foundation list error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}

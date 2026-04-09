@@ -4,11 +4,11 @@
 // POST /api/referral-admin?key=ADMIN_KEY               → toggle active status
 //   body: { slug: "josh-m", active: false }
 
-const { put, head } = require('@vercel/blob');
+import { put, head } from '@vercel/blob';
 
 const BLOB_KEY = 'referral-registry.json';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Simple key-based auth — set REFERRAL_ADMIN_KEY in Vercel env vars
   const adminKey = process.env.REFERRAL_ADMIN_KEY;
   const provided = req.query.key;
@@ -71,4 +71,4 @@ module.exports = async (req, res) => {
     console.error('Referral admin error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
+}
