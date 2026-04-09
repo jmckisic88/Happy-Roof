@@ -39,7 +39,8 @@ export default async function handler(req, res) {
       await put(BLOB_KEY, JSON.stringify(registry, null, 2), {
         access: 'public',
         addRandomSuffix: false,
-      allowOverwrite: true,
+        allowOverwrite: true,
+        cacheControlMaxAge: 0,
       });
       return res.status(200).json({ success: true, slug, active: registry[slug].active });
     }

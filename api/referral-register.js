@@ -82,6 +82,7 @@ export default async function handler(req, res) {
       access: 'public',
       addRandomSuffix: false,
       allowOverwrite: true,
+      cacheControlMaxAge: 0,
     });
 
     // Email notification
