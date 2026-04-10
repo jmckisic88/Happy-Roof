@@ -1,6 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+const schema = `{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Happy Roof Blog",
+  "description": "Roofing tips, guides, and expert advice for Tampa Bay homeowners.",
+  "url": "https://happyroof.com/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com"
+  },
+  "dateModified": "2026-04-10"
+}`;
 ---
 
 <BaseLayout
@@ -9,6 +22,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   canonical="https://happyroof.com/blog"
   ogTitle="Roofing Blog | Tampa Bay Tips & Guides | Happy Roof"
   ogDescription="Roofing knowledge with zero fluff. Tips, guides, and expert advice for Tampa Bay homeowners."
+  schema={schema}
 >
 
 <style is:inline>
@@ -54,7 +68,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div id="blog-grid" class="grid md:grid-cols-2 gap-8">
 
       <!-- Post 1 -->
-      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" data-publish="2026-03-31" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" data-publish="2026-03-31" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -69,7 +83,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 2 -->
-      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" data-publish="2026-04-07" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" data-publish="2026-04-07" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
@@ -84,11 +98,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 3 -->
-      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" data-publish="2026-04-14" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" data-publish="2026-04-08" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 14, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 8, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">5 Signs You Need a Roof Replacement (Not Just a Repair)</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Not sure whether your roof needs a patch job or a full replacement? Here are five warning signs that indicate it's time for a new roof — and when a repair will still do the job.</p>
@@ -99,11 +113,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </a>
 
       <!-- Post 8 -->
-      <a href="/blog/gaf-vs-owens-corning" class="blog-card" data-publish="2026-05-19" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/gaf-vs-owens-corning" class="blog-card" data-publish="2026-03-28" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">May 19, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">March 28, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">GAF vs. Owens Corning: Which Shingle Brand Is Better?</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">An honest comparison of GAF and Owens Corning shingles — covering durability, warranties, wind ratings, pricing, and which brand performs better in Florida's harsh climate.</p>
@@ -113,88 +127,88 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </a>
 
-      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" data-publish="2026-06-02" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" data-publish="2026-03-29" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Hiring</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 2, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">March 29, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">5 Questions to Ask Before Hiring a Roofer in Tampa Bay</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Protect yourself from scams and bad work. Here are the 5 questions every homeowner should ask before signing a roofing contract.</p>
         </div>
       </a>
 
-      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" data-publish="2026-06-09" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" data-publish="2026-03-30" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Emergency</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 9, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">March 30, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Emergency Roof Leak? Here's What to Do Right Now</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Step-by-step guide for handling an active roof leak — what to do immediately, when to call a pro, and how to minimize damage.</p>
         </div>
       </a>
 
-      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" data-publish="2026-06-16" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" data-publish="2026-04-01" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 16, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 1, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Why Impact-Resistant Shingles Are Worth It in Florida</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">How impact-resistant shingles can save you money on insurance premiums while protecting your home from Florida's storms.</p>
         </div>
       </a>
 
-      <a href="/blog/metal-roof-benefits-florida" class="blog-card" data-publish="2026-06-23" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/metal-roof-benefits-florida" class="blog-card" data-publish="2026-04-02" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 23, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 2, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">7 Benefits of Metal Roofing in Florida's Climate</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Why metal roofs are growing in popularity across Tampa Bay — from energy savings to 70-year lifespans.</p>
         </div>
       </a>
 
-      <a href="/blog/roof-maintenance-checklist" class="blog-card" data-publish="2026-06-30" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/roof-maintenance-checklist" class="blog-card" data-publish="2026-04-03" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Maintenance</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jun 30, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 3, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Seasonal Roof Maintenance Checklist for Tampa Bay</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A season-by-season guide to keeping your roof in top shape and avoiding costly repairs.</p>
         </div>
       </a>
 
-      <a href="/blog/roof-replacement-timeline" class="blog-card" data-publish="2026-07-07" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/roof-replacement-timeline" class="blog-card" data-publish="2026-04-04" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Process</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 7, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 4, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">How Long Does a Roof Replacement Take?</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Complete timeline from estimate to final inspection — what to expect at every stage of your roof replacement.</p>
         </div>
       </a>
 
-      <a href="/blog/florida-roofing-codes-2025" class="blog-card" data-publish="2026-07-14" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/florida-roofing-codes-2025" class="blog-card" data-publish="2026-04-05" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Codes</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 14, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 5, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Florida Roofing Building Codes: What Homeowners Need to Know</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">Understanding Florida's unique roofing code requirements — wind ratings, permits, and what your contractor should know.</p>
         </div>
       </a>
 
-      <a href="/blog/commercial-roofing-types" class="blog-card" data-publish="2026-07-21" style="display:none;text-decoration:none;color:inherit">
+      <a href="/blog/commercial-roofing-types" class="blog-card" data-publish="2026-04-06" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Commercial</span>
-            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">Jul 21, 2026</span>
+            <span style="color:#888888;font-size:.8rem;margin-left:.75rem">April 6, 2026</span>
           </div>
           <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;line-height:1.15;margin-bottom:.75rem">Commercial Roofing Systems Explained: TPO, EPDM, Metal &amp; More</h2>
           <p style="color:#555555;font-size:.95rem;line-height:1.7;margin-bottom:1.25rem">A guide to commercial roofing options for Tampa Bay business owners — pros, cons, and costs of each system.</p>
@@ -209,24 +223,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   </div>
 </section>
 
-<script is:inline>
-(function(){
-  var today = new Date();
-  today.setHours(0,0,0,0);
-  var cards = document.querySelectorAll('#blog-grid .blog-card[data-publish]');
-  var shown = 0;
-  cards.forEach(function(card){
-    var pub = new Date(card.getAttribute('data-publish') + 'T00:00:00');
-    if(pub <= today){
-      card.style.display = '';
-      shown++;
-    }
-  });
-  if(shown === 0){
-    document.getElementById('no-posts-msg').style.display = '';
-  }
-})();
-</script>
 
 <!-- CTA -->
 <section class="cta-grad relative overflow-hidden py-20">

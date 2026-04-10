@@ -5,7 +5,7 @@ import LandingLayout from '../../layouts/LandingLayout.astro';
 
 <LandingLayout
   title="Tampa Roof Replacement — Free Estimate | Happy Roof"
-  description=""
+  description="Get a free roof replacement estimate in Tampa Bay. Premium materials, expert installation, financing available. Licensed Florida contractor #CCC1337380."
   canonical="https://happyroof.com/lp/roof-replacement"
 >
 
@@ -138,6 +138,56 @@ function submitForm(e){
       document.getElementById('form-success').style.display='block';
     });
   return false;
+}
+</script>
+
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RoofingContractor"],
+      "name": "Happy Roof LLC",
+      "url": "https://happyroof.com",
+      "telephone": "+1-813-595-7663",
+      "email": "info@happyroof.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "141 Stevens Ave #12",
+        "addressLocality": "Oldsmar",
+        "addressRegion": "FL",
+        "postalCode": "34677",
+        "addressCountry": "US"
+      },
+      "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+      "dateModified": "2026-04-10"
+    },
+    {
+      "@type": "Service",
+      "name": "Roof Replacement",
+      "description": "Full roof replacement in Tampa Bay — shingle, metal, and tile. GAF Certified and Owens Corning installer with a 15-year workmanship warranty. Free estimates available.",
+      "provider": {
+        "@type": "RoofingContractor",
+        "name": "Happy Roof LLC"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Tampa Bay",
+        "addressRegion": "FL"
+      },
+      "serviceType": "Roof Replacement",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "servicePhone": "+1-813-595-7663",
+        "serviceUrl": "https://happyroof.com/lp/roof-replacement"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "areaServed": "Tampa Bay, FL"
+      }
+    }
+  ]
 }
 </script>
 

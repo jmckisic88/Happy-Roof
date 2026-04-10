@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const schema = `{
+const schema = `[{
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "RoofingContractor"],
     "name": "Happy Roof LLC",
@@ -75,6 +75,7 @@ const schema = `{
         { "@type": "OfferCatalog", "name": "New Construction Roofing", "description": "Roofing systems for new residential and commercial construction" }
       ]
     },
+    "dateModified": "2026-04-10",
     "hasCredential": "Florida Roofing Contractor License #CCC1337380",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -83,7 +84,42 @@ const schema = `{
       "bestRating": "5",
       "worstRating": "1"
     }
-  }`;
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the $50 estimate payout in addition to the closed payout?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your referral completes an estimate and then signs a contract, you receive both the $50 estimate bonus and the appropriate closed-job payout. The $50 is not deducted from your closing payout." }
+      },
+      {
+        "@type": "Question",
+        "name": "When exactly do I get paid?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The estimate bonus ($50) is paid within 5 business days of the appointment. Closed-job payouts are issued within 10 business days of the job completing and the client making final payment to Happy Roof." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit to how many referrals I can send?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No limit. Send one or send fifty — every qualifying referral earns a payout. The more you refer, the more you earn." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my referral already contacted Happy Roof on their own?",
+        "acceptedAnswer": { "@type": "Answer", "text": "To receive the referral payout, you must submit the referral before your contact reaches out to us. If they've already been in our system for more than 30 days, the referral bonus does not apply. When in doubt, submit the form as soon as you refer someone." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to tell my referral I submitted them?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We recommend giving them a heads-up so they know to expect our call. We'll reference your name when we reach out, which often helps with trust. But it's not required to qualify for the payout." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are referral payouts taxable income?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Referral payments are considered income and should be reported accordingly. If your total referral earnings exceed $600 in a calendar year, Happy Roof will issue a 1099-NEC. We recommend consulting a tax advisor if you have questions." }
+      }
+    ]
+  }]`;
 ---
 
 <BaseLayout

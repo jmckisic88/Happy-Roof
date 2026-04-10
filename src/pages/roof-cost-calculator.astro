@@ -1,12 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RoofingContractor"],
+      "name": "Happy Roof LLC",
+      "url": "https://happyroof.com",
+      "telephone": "+1-813-595-7663",
+      "email": "info@happyroof.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "141 Stevens Ave #12",
+        "addressLocality": "Oldsmar",
+        "addressRegion": "FL",
+        "postalCode": "34677",
+        "addressCountry": "US"
+      },
+      "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+      "dateModified": "2026-04-10"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Roof Cost Calculator",
+      "description": "Free online roof cost calculator for Tampa Bay homeowners. Get an instant ballpark estimate for shingle, metal, tile, or flat roof replacement.",
+      "url": "https://happyroof.com/roof-cost-calculator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "RoofingContractor",
+        "name": "Happy Roof LLC"
+      }
+    }
+  ]
+}`;
 ---
 
 <BaseLayout
   title="Roof Cost Calculator — Estimate Your Roof Replacement | Happy Roof"
   description="Free roof cost calculator for Tampa Bay homeowners. Get an instant estimate for shingle, metal, tile, or flat roof replacement."
   canonical="https://happyroof.com/roof-cost-calculator"
+  schema={schema}
 >
 
 <style is:inline>

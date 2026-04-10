@@ -1,6 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RoofingContractor"],
+      "name": "Happy Roof LLC",
+      "url": "https://happyroof.com",
+      "telephone": "+1-813-595-7663",
+      "email": "info@happyroof.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "141 Stevens Ave #12",
+        "addressLocality": "Oldsmar",
+        "addressRegion": "FL",
+        "postalCode": "34677",
+        "addressCountry": "US"
+      },
+      "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+      "dateModified": "2026-04-10"
+    },
+    {
+      "@type": "NGO",
+      "name": "Happy Roof Foundation",
+      "description": "A community giving initiative by Happy Roof LLC providing free roofs to Tampa Bay families in need. Launching June 2026.",
+      "url": "https://happyroof.com/foundation",
+      "foundingDate": "2026",
+      "parentOrganization": {
+        "@type": "RoofingContractor",
+        "name": "Happy Roof LLC"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Tampa Bay",
+        "addressRegion": "FL"
+      }
+    }
+  ]
+}`;
 ---
 
 <BaseLayout
@@ -9,6 +47,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   canonical="https://happyroof.com/foundation"
   ogTitle="Something Big Is Coming | Happy Roof Tampa Bay"
   ogDescription="Happy Roof is launching a community giving program in June 2026. Stay tuned."
+  schema={schema}
 >
 
 <style is:inline>

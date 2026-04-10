@@ -1,6 +1,47 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RoofingContractor"],
+      "name": "Happy Roof LLC",
+      "url": "https://happyroof.com",
+      "telephone": "+1-813-595-7663",
+      "email": "info@happyroof.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "141 Stevens Ave #12",
+        "addressLocality": "Oldsmar",
+        "addressRegion": "FL",
+        "postalCode": "34677",
+        "addressCountry": "US"
+      },
+      "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+      "dateModified": "2026-04-10"
+    },
+    {
+      "@type": "Offer",
+      "name": "$250 Off Your Roof",
+      "description": "Exclusive truck offer — $250 off any roof replacement or major repair ($5,000+) in Tampa Bay. One per household, must schedule within 30 days.",
+      "url": "https://happyroof.com/truck",
+      "price": "250",
+      "priceCurrency": "USD",
+      "discount": "$250",
+      "validThrough": "2026-12-31",
+      "eligibleRegion": {
+        "@type": "City",
+        "name": "Tampa Bay",
+        "addressRegion": "FL"
+      },
+      "offeredBy": {
+        "@type": "RoofingContractor",
+        "name": "Happy Roof LLC"
+      }
+    }
+  ]
+}`;
 ---
 
 <BaseLayout
@@ -9,6 +50,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   canonical="https://happyroof.com/truck"
   ogTitle="$250 Off Your Roof — Happy Roof"
   ogDescription="Exclusive truck offer. $250 off any roof replacement or major repair in Tampa Bay."
+  schema={schema}
 >
 
 <style is:inline>

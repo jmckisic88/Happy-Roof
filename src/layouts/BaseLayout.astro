@@ -84,28 +84,6 @@ const {
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9L6VHPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- Gate future-dated blog posts -->
-  <script is:inline>
-  (function(){
-    var p = window.location.pathname;
-    if(p.indexOf('/blog/') !== 0 || p === '/blog/' || p === '/blog') return;
-    var el = document.querySelector('script[type="application/ld+json"]');
-    if(!el) return;
-    try {
-      var data = JSON.parse(el.textContent);
-      var arr = Array.isArray(data) ? data : [data];
-      for(var i=0;i<arr.length;i++){
-        if(arr[i].datePublished){
-          var pub = new Date(arr[i].datePublished + 'T00:00:00');
-          var today = new Date(); today.setHours(0,0,0,0);
-          if(pub > today) window.location.replace('/blog');
-          return;
-        }
-      }
-    } catch(e){}
-  })();
-  </script>
-
   {!hideBanner && <GiveBackBanner />}
   <Nav activePage={activePage} hideBanner={hideBanner} />
 

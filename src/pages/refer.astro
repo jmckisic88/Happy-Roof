@@ -1,5 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "RoofingContractor"],
+  "name": "Happy Roof LLC",
+  "url": "https://happyroof.com",
+  "telephone": "+1-813-595-7663",
+  "email": "info@happyroof.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "141 Stevens Ave #12",
+    "addressLocality": "Oldsmar",
+    "addressRegion": "FL",
+    "postalCode": "34677",
+    "addressCountry": "US"
+  },
+  "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+  "dateModified": "2026-04-10"
+}`;
 ---
 
 <BaseLayout
@@ -11,6 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   activePage=""
   hideExitPopup={true}
   hideBanner={true}
+  schema={schema}
 >
 
 <style is:inline>
