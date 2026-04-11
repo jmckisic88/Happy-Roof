@@ -16,27 +16,33 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'subject and message are required' });
   }
 
-  const recipient = to || 'josh@happyroof.com';
+  // Send to both info@ (activated) and josh@ via FormSubmit
+  const recipients = ['info@happyroof.com'];
+  const results = [];
 
-  try {
-    const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Origin: 'https://www.happyroof.com',
-        Referer: 'https://www.happyroof.com/',
-      },
-      body: JSON.stringify({
-        _subject: subject,
-        message: message,
-      }),
-    });
-
-    const data = await response.json();
-    return res.status(200).json(data);
-  } catch (err) {
-    console.error('Send report error:', err);
-    return res.status(500).json({ error: 'Failed to send email' });
+  for (const recipient of recipients) {
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Origin: 'https://www.happyroof.com',
+          Referer: 'https://www.happyroof.com/',
+        },
+        body: JSON.stringify({
+          _subject: subject,
+          message: message,
+          _replyto: 'noreply@happyroof.com',
+        }),
+      });
+      const data = await response.json();
+      results.push({ recipient, ...data });
+    } catch (err) {
+      results.push({ recipient, success: 'false', error: err.message });
+    }
   }
+
+  const anySuccess = results.some(r => r.success === 'true');
+  return res.status(anySuccess ? 200 : 502).json({ results });
 }
