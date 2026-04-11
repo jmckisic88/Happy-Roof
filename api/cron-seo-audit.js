@@ -259,6 +259,13 @@ export default async function handler(req, res) {
     formData.append('_captcha', 'false');
     formData.append('_template', 'table');
 
+    // Truncate message if too long (FormSubmit may reject large payloads)
+    const maxLen = 5000;
+    if (report.length > maxLen) {
+      const truncated = report.substring(0, maxLen);
+      formData.set('message', truncated + '\n\n[Report truncated — full report available via /api/cron-seo-audit]');
+    }
+
     const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
       method: 'POST',
       headers: {
@@ -270,7 +277,9 @@ export default async function handler(req, res) {
       redirect: 'manual',
     });
 
-    const emailSuccess = emailRes.status >= 200 && emailRes.status < 400;
+    const emailBody = await emailRes.text();
+    const isCloudflare = emailBody.includes('Just a moment') || emailBody.includes('challenge');
+    const emailSuccess = (emailRes.status >= 200 && emailRes.status < 400) && !isCloudflare;
 
     return res.status(200).json({
       success: emailSuccess,
@@ -280,6 +289,8 @@ export default async function handler(req, res) {
       passedChecks,
       issueCount: issues.length,
       date: today,
+      emailStatus: emailRes.status,
+      emailBlocked: isCloudflare,
     });
   } catch (err) {
     console.error('SEO audit error:', err);
