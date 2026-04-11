@@ -16,33 +16,39 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'subject and message are required' });
   }
 
-  // Send to both info@ (activated) and josh@ via FormSubmit
-  const recipients = ['info@happyroof.com'];
-  const results = [];
+  // Use FormSubmit's non-AJAX endpoint with form-encoded data
+  // This works from server-side without Origin validation
+  try {
+    const formData = new URLSearchParams();
+    formData.append('_subject', subject);
+    formData.append('message', message);
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
 
-  for (const recipient of recipients) {
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Origin: 'https://www.happyroof.com',
-          Referer: 'https://www.happyroof.com/',
-        },
-        body: JSON.stringify({
-          _subject: subject,
-          message: message,
-          _replyto: 'noreply@happyroof.com',
-        }),
-      });
-      const data = await response.json();
-      results.push({ recipient, ...data });
-    } catch (err) {
-      results.push({ recipient, success: 'false', error: err.message });
+    const response = await fetch('https://formsubmit.co/info@happyroof.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Referer: 'https://www.happyroof.com/',
+      },
+      body: formData.toString(),
+      redirect: 'manual',
+    });
+
+    // FormSubmit redirects on success (302/303)
+    if (response.status >= 300 && response.status < 400) {
+      return res.status(200).json({ success: true });
     }
-  }
 
-  const anySuccess = results.some(r => r.success === 'true');
-  return res.status(anySuccess ? 200 : 502).json({ results });
+    // If we get 200, it also worked (sometimes returns a thank-you page)
+    if (response.status === 200) {
+      return res.status(200).json({ success: true });
+    }
+
+    const text = await response.text();
+    return res.status(502).json({ success: false, status: response.status, body: text.substring(0, 200) });
+  } catch (err) {
+    console.error('Send report error:', err);
+    return res.status(500).json({ error: 'Failed to send email', details: err.message });
+  }
 }
