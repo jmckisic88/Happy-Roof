@@ -259,38 +259,35 @@ export default async function handler(req, res) {
     formData.append('_captcha', 'false');
     formData.append('_template', 'table');
 
-    // Truncate message if too long (FormSubmit may reject large payloads)
+    // Truncate message if too long
     const maxLen = 5000;
     if (report.length > maxLen) {
-      const truncated = report.substring(0, maxLen);
-      formData.set('message', truncated + '\n\n[Report truncated — full report available via /api/cron-seo-audit]');
+      formData.set('message', report.substring(0, maxLen) + '\n\n[Report truncated]');
     }
 
-    const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
+    // Use our own cron-send-email endpoint to send (separate serverless
+    // function call avoids Cloudflare blocking after long page fetches)
+    const emailRes = await fetch('https://www.happyroof.com/api/cron-send-email', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (compatible; HappyRoofBot/1.0; +https://www.happyroof.com)',
-        Referer: 'https://www.happyroof.com/',
-      },
-      body: formData.toString(),
-      redirect: 'manual',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: `Daily SEO Audit — ${today} — Grade: ${grade} (${score}%)`,
+        message: report.length > maxLen
+          ? report.substring(0, maxLen) + '\n\n[Report truncated]'
+          : report,
+      }),
     });
 
-    const emailBody = await emailRes.text();
-    const isCloudflare = emailBody.includes('Just a moment') || emailBody.includes('challenge');
-    const emailSuccess = (emailRes.status >= 200 && emailRes.status < 400) && !isCloudflare;
+    const emailData = await emailRes.json();
 
     return res.status(200).json({
-      success: emailSuccess,
+      success: emailData.success === true,
       grade,
       score,
       totalChecks,
       passedChecks,
       issueCount: issues.length,
       date: today,
-      emailStatus: emailRes.status,
-      emailBlocked: isCloudflare,
     });
   } catch (err) {
     console.error('SEO audit error:', err);
