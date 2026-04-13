@@ -1,8 +1,9 @@
 // Daily Foundation Signups Report — Cron Endpoint
 // GET /api/cron-foundation-report?key=FOUNDATION_ADMIN_KEY
-// Fetches foundation signups and emails the report
+// Fetches foundation signups and emails the report via Resend
 
 import { readBlob } from './_blob-store.js';
+import { sendEmail } from './_send-email.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
@@ -34,25 +35,12 @@ export default async function handler(req, res) {
       message = report;
     }
 
-    const formData = new URLSearchParams();
-    formData.append('_subject', `Daily Foundation Signups Report — ${today}`);
-    formData.append('message', message);
-    formData.append('_captcha', 'false');
-    formData.append('_template', 'table');
-
-    const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (compatible; HappyRoofBot/1.0; +https://www.happyroof.com)',
-        Referer: 'https://www.happyroof.com/',
-      },
-      body: formData.toString(),
-      redirect: 'manual',
+    const result = await sendEmail({
+      subject: `Daily Foundation Signups Report — ${today}`,
+      message,
     });
 
-    const success = emailRes.status >= 200 && emailRes.status < 400;
-    return res.status(success ? 200 : 502).json({ success, signups: signups.length, date: today });
+    return res.status(result.success ? 200 : 502).json({ ...result, signups: signups.length, date: today });
   } catch (err) {
     console.error('Cron foundation report error:', err);
     return res.status(500).json({ error: 'Internal server error' });

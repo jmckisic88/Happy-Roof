@@ -1,8 +1,9 @@
 // Daily Referral Partner Report — Cron Endpoint
 // GET /api/cron-referral-report?key=REFERRAL_ADMIN_KEY
-// Fetches referral registry and emails the report
+// Fetches referral registry and emails the report via Resend
 
 import { readBlob } from './_blob-store.js';
+import { sendEmail } from './_send-email.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
@@ -39,31 +40,12 @@ export default async function handler(req, res) {
       message = report;
     }
 
-    // Send via FormSubmit
-    const formData = new URLSearchParams();
-    formData.append('_subject', `Daily Referral Partner Report — ${today}`);
-    formData.append('message', message);
-    formData.append('_captcha', 'false');
-    formData.append('_template', 'table');
-
-    const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (compatible; HappyRoofBot/1.0; +https://www.happyroof.com)',
-        Referer: 'https://www.happyroof.com/',
-      },
-      body: formData.toString(),
-      redirect: 'manual',
+    const result = await sendEmail({
+      subject: `Daily Referral Partner Report — ${today}`,
+      message,
     });
 
-    let blocked = false;
-    if (emailRes.status === 200) {
-      const body = await emailRes.text();
-      blocked = body.includes('Just a moment') || body.includes('challenge');
-    }
-    const success = emailRes.status >= 200 && emailRes.status < 400 && !blocked;
-    return res.status(success ? 200 : 502).json({ success, blocked, partners: entries.length, date: today });
+    return res.status(result.success ? 200 : 502).json({ ...result, partners: entries.length, date: today });
   } catch (err) {
     console.error('Cron referral report error:', err);
     return res.status(500).json({ error: 'Internal server error' });

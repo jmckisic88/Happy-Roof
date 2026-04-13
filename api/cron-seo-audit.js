@@ -260,22 +260,13 @@ export default async function handler(req, res) {
     report += `This automated audit runs daily at 8am ET.\n`;
     report += `For competitive analysis and algorithm updates, consult with your SEO team.\n`;
 
-    // Save report to Vercel Blob, then trigger a separate function to email it
-    const { writeBlob } = await import('./_blob-store.js');
-    await writeBlob('seo-audit-report', {
+    // Send via Resend
+    const { sendEmail } = await import('./_send-email.js');
+    const emailResult = await sendEmail({
       subject: `Daily SEO Audit — ${today} — Grade: ${grade} (${score}%)`,
       message: report,
-      date: today,
-      grade,
-      score,
     });
-
-    // Trigger the email sender endpoint (separate cold function = clean IP for Cloudflare)
-    const emailRes = await fetch('https://www.happyroof.com/api/cron-seo-email', {
-      method: 'GET',
-    });
-    const emailData = await emailRes.json().catch(() => ({ success: false }));
-    const emailSuccess = emailData.success === true;
+    const emailSuccess = emailResult.success === true;
 
     return res.status(200).json({
       success: emailSuccess,
