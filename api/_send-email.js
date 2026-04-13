@@ -14,7 +14,7 @@ export async function sendEmail({ subject, message }) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Happy Roof Reports <noreply@happyroof.com>',
+      from: 'Happy Roof Reports <onboarding@resend.dev>',
       to: ['info@happyroof.com'],
       subject: subject,
       text: message,
