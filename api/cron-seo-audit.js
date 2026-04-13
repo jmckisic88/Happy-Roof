@@ -260,32 +260,22 @@ export default async function handler(req, res) {
     report += `This automated audit runs daily at 8am ET.\n`;
     report += `For competitive analysis and algorithm updates, consult with your SEO team.\n`;
 
-    // Send email
-    const formData = new URLSearchParams();
-    formData.append('_subject', `Daily SEO Audit — ${today} — Grade: ${grade} (${score}%)`);
-    formData.append('message', report);
-    formData.append('_captcha', 'false');
-    formData.append('_template', 'table');
-
-    // Truncate message if too long for FormSubmit
-    const maxLen = 5000;
-    if (report.length > maxLen) {
-      formData.set('message', report.substring(0, maxLen) + '\n\n[Report truncated]');
-    }
-
-    // Send directly via FormSubmit (same pattern as referral/foundation)
-    const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (compatible; HappyRoofBot/1.0; +https://www.happyroof.com)',
-        Referer: 'https://www.happyroof.com/',
-      },
-      body: formData.toString(),
-      redirect: 'manual',
+    // Save report to Vercel Blob, then trigger a separate function to email it
+    const { writeBlob } = await import('./_blob-store.js');
+    await writeBlob('seo-audit-report', {
+      subject: `Daily SEO Audit — ${today} — Grade: ${grade} (${score}%)`,
+      message: report,
+      date: today,
+      grade,
+      score,
     });
 
-    const emailSuccess = emailRes.status >= 200 && emailRes.status < 400;
+    // Trigger the email sender endpoint (separate cold function = clean IP for Cloudflare)
+    const emailRes = await fetch('https://www.happyroof.com/api/cron-seo-email', {
+      method: 'GET',
+    });
+    const emailData = await emailRes.json().catch(() => ({ success: false }));
+    const emailSuccess = emailData.success === true;
 
     return res.status(200).json({
       success: emailSuccess,
