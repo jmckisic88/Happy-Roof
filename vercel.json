@@ -5,5 +5,10 @@
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/r/:slug", "destination": "/refer?ref=:slug" }
+  ],
+  "crons": [
+    { "path": "/api/cron-referral-report", "schedule": "0 12 * * *" },
+    { "path": "/api/cron-foundation-report", "schedule": "0 12 * * *" },
+    { "path": "/api/cron-seo-audit", "schedule": "0 12 * * *" }
   ]
 }

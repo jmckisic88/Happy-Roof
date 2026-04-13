@@ -6,7 +6,11 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   const adminKey = process.env.REFERRAL_ADMIN_KEY;
-  if (!adminKey || req.query.key !== adminKey) {
+  const cronSecret = process.env.CRON_SECRET;
+  const authHeader = req.headers.authorization;
+  const keyMatch = adminKey && req.query.key === adminKey;
+  const cronMatch = cronSecret && authHeader === `Bearer ${cronSecret}`;
+  if (!keyMatch && !cronMatch) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
