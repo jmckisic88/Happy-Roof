@@ -57,8 +57,13 @@ export default async function handler(req, res) {
       redirect: 'manual',
     });
 
-    const success = emailRes.status >= 200 && emailRes.status < 400;
-    return res.status(success ? 200 : 502).json({ success, partners: entries.length, date: today });
+    let blocked = false;
+    if (emailRes.status === 200) {
+      const body = await emailRes.text();
+      blocked = body.includes('Just a moment') || body.includes('challenge');
+    }
+    const success = emailRes.status >= 200 && emailRes.status < 400 && !blocked;
+    return res.status(success ? 200 : 502).json({ success, blocked, partners: entries.length, date: today });
   } catch (err) {
     console.error('Cron referral report error:', err);
     return res.status(500).json({ error: 'Internal server error' });
