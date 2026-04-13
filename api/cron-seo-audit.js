@@ -49,20 +49,27 @@ export default async function handler(req, res) {
     let totalChecks = 0;
     let passedChecks = 0;
 
-    // Fetch and audit each page
-    for (const page of pages) {
+    // Fetch all pages in parallel for speed
+    const fetches = pages.map(async (page) => {
       try {
         const resp = await fetch(BASE + page.path, {
           headers: { 'User-Agent': 'HappyRoofSEOBot/1.0' },
           redirect: 'follow',
         });
+        if (!resp.ok) return { page, html: null, error: `HTTP ${resp.status}` };
+        return { page, html: await resp.text(), error: null };
+      } catch (e) {
+        return { page, html: null, error: e.message };
+      }
+    });
 
-        if (!resp.ok) {
-          issues.push({ page: page.name, path: page.path, priority: 'CRITICAL', issue: `HTTP ${resp.status} — page not loading` });
-          continue;
-        }
+    const results = await Promise.all(fetches);
 
-        const html = await resp.text();
+    for (const { page, html, error } of results) {
+      if (error || !html) {
+        issues.push({ page: page.name, path: page.path, priority: 'CRITICAL', issue: error || 'Failed to fetch' });
+        continue;
+      }
 
         // Check: Title tag
         totalChecks++;
@@ -146,9 +153,6 @@ export default async function handler(req, res) {
           passedChecks++;
         }
 
-      } catch (fetchErr) {
-        issues.push({ page: page.name, path: page.path, priority: 'CRITICAL', issue: `Failed to fetch: ${fetchErr.message}` });
-      }
     }
 
     // Check: robots.txt
@@ -263,29 +267,28 @@ export default async function handler(req, res) {
     formData.append('_captcha', 'false');
     formData.append('_template', 'table');
 
-    // Truncate message if too long
+    // Truncate message if too long for FormSubmit
     const maxLen = 5000;
     if (report.length > maxLen) {
       formData.set('message', report.substring(0, maxLen) + '\n\n[Report truncated]');
     }
 
-    // Use our own cron-send-email endpoint to send (separate serverless
-    // function call avoids Cloudflare blocking after long page fetches)
-    const emailRes = await fetch('https://www.happyroof.com/api/cron-send-email', {
+    // Send directly via FormSubmit (same pattern as referral/foundation)
+    const emailRes = await fetch('https://formsubmit.co/info@happyroof.com', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        subject: `Daily SEO Audit — ${today} — Grade: ${grade} (${score}%)`,
-        message: report.length > maxLen
-          ? report.substring(0, maxLen) + '\n\n[Report truncated]'
-          : report,
-      }),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Mozilla/5.0 (compatible; HappyRoofBot/1.0; +https://www.happyroof.com)',
+        Referer: 'https://www.happyroof.com/',
+      },
+      body: formData.toString(),
+      redirect: 'manual',
     });
 
-    const emailData = await emailRes.json();
+    const emailSuccess = emailRes.status >= 200 && emailRes.status < 400;
 
     return res.status(200).json({
-      success: emailData.success === true,
+      success: emailSuccess,
       grade,
       score,
       totalChecks,
