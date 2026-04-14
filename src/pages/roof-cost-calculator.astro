@@ -141,9 +141,8 @@ function updateCalc() {
   const sqft = parseInt(document.getElementById('size-slider').value);
   document.getElementById('size-display').textContent = sqft.toLocaleString();
   const squares = (sqft * 1.3) / 100;
-  const costBase = selectedRate * squares;
-  const low = Math.round((costBase / 0.775) / 100) * 100;
-  const high = Math.round((costBase / 0.50) / 100) * 100;
+  const low = Math.round((selectedRate * squares) / 100) * 100;
+  const high = Math.round((low * 1.7) / 100) * 100;
   document.getElementById('result-range').textContent = '$' + low.toLocaleString() + ' – $' + high.toLocaleString();
   document.getElementById('result-details').textContent = selectedLabel + ' · ~' + sqft.toLocaleString() + ' sq ft home';
 }
