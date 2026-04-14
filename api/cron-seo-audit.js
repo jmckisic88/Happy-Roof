@@ -270,6 +270,8 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: emailSuccess,
+      emailId: emailResult.id || null,
+      emailError: emailResult.error || null,
       grade,
       score,
       totalChecks,
