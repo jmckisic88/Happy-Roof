@@ -19,6 +19,7 @@ interface Props {
   extraHead?: string;
   hideExitPopup?: boolean;
   hideBanner?: boolean;
+  hideNavLinks?: boolean;
 }
 
 const {
@@ -32,6 +33,7 @@ const {
   schema,
   hideExitPopup = false,
   hideBanner = false,
+  hideNavLinks = false,
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -85,7 +87,7 @@ const {
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9L6VHPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   {!hideBanner && <GiveBackBanner />}
-  <Nav activePage={activePage} hideBanner={hideBanner} />
+  <Nav activePage={activePage} hideBanner={hideBanner} hideNavLinks={hideNavLinks} />
 
   <slot />
 
