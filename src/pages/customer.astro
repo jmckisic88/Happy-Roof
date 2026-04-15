@@ -1,0 +1,580 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "RoofingContractor"],
+  "name": "Happy Roof LLC",
+  "url": "https://happyroof.com",
+  "telephone": "+1-813-595-7663",
+  "email": "info@happyroof.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "141 Stevens Ave #12",
+    "addressLocality": "Oldsmar",
+    "addressRegion": "FL",
+    "postalCode": "34677",
+    "addressCountry": "US"
+  },
+  "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+  "dateModified": "2026-04-15"
+}`;
+---
+
+<BaseLayout
+  title="Customer Guide — Your Roofing Project | Happy Roof"
+  description="Your complete guide to working with Happy Roof. Learn about our team, process, warranties, materials, financing, and what to expect during your roofing project."
+  canonical="https://happyroof.com/customer"
+  hideBanner={true}
+  schema={schema}
+>
+
+<style is:inline>
+  /* ── Customer binder styles ── */
+  .binder-section { padding: 5rem 0; border-bottom: 1px solid #E0E0E0 }
+  .binder-section:last-of-type { border-bottom: none }
+  .binder-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; color: #E6A817; margin-bottom: .5rem }
+  .binder-h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 4vw, 3rem); line-height: .92; letter-spacing: -.01em; color: #1A1A1A; text-transform: uppercase; margin-bottom: 1.5rem }
+  .binder-card { background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 16px; padding: 1.75rem; transition: border-color .2s }
+  .binder-card:hover { border-color: rgba(230,168,23,.3) }
+  .binder-stat { text-align: center; padding: 1.5rem }
+  .binder-stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; line-height: 1; color: #E6A817 }
+  .binder-stat-label { font-size: .78rem; color: #888; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; margin-top: .4rem }
+  .binder-value { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem }
+  .binder-value-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0 }
+  .binder-check { display: flex; align-items: flex-start; gap: .75rem; padding: .75rem 0; border-bottom: 1px solid #F0F0F0 }
+  .binder-check:last-child { border-bottom: none }
+  .binder-check svg { flex-shrink: 0; margin-top: 2px }
+  .binder-toc a { display: flex; align-items: center; gap: .75rem; padding: .85rem 1.25rem; border-radius: 10px; text-decoration: none; color: #1A1A1A; font-weight: 600; font-size: .92rem; transition: background .15s }
+  .binder-toc a:hover { background: rgba(230,168,23,.06) }
+  .binder-toc-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: .85rem; color: #E6A817; width: 28px; text-align: center }
+  .warranty-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden }
+  .warranty-table th { background: #1A1A1A; color: #F7F7F7; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; padding: .85rem 1.25rem; text-align: left }
+  .warranty-table td { padding: .85rem 1.25rem; font-size: .9rem; border-bottom: 1px solid #E0E0E0 }
+  .warranty-table tr:last-child td { border-bottom: none }
+  .warranty-happy { color: #E6A817; font-family: 'Barlow Condensed', sans-serif; font-weight: 800 }
+  .warranty-avg { color: #888 }
+  .tier-row { display: grid; grid-template-columns: 60px 1fr 1fr auto; align-items: center; padding: .85rem 1.25rem; border-bottom: 1px solid #E0E0E0; font-size: .88rem }
+  .tier-row:last-child { border-bottom: none }
+
+  /* Print styles */
+  @media print {
+    nav, footer, .nav-wrap, #mobile-menu, .no-print, .btn-p, .btn-t, .btn-o { display: none !important }
+    .binder-section { page-break-inside: avoid; padding: 2rem 0 }
+    body { font-size: 11pt }
+    section:first-of-type { padding-top: 1rem !important }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .tier-row { grid-template-columns: 40px 1fr 1fr auto; font-size: .78rem; padding: .65rem .75rem }
+    .binder-stat-num { font-size: 1.8rem }
+  }
+</style>
+
+<!-- ══════ COVER / HERO ══════ -->
+<section class="relative overflow-hidden" style="background:#F5F5F5;padding:6rem 0 4rem">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-5 text-center">
+    <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" style="height:56px;width:auto;margin:0 auto 1.5rem" />
+    <p style="color:#888;font-size:.88rem;letter-spacing:.08em;font-weight:600;margin-bottom:2rem">Tampa Bay's Trusted Roofing Contractor</p>
+    <h1 class="font-display font-black tracking-tightest" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,6vw,4.5rem);line-height:.88;letter-spacing:-.01em;color:#1A1A1A">
+      YOUR ROOF PROTECTS<br/>EVERYTHING.<br/><span style="color:#E6A817">WE PROTECT YOUR ROOF.</span>
+    </h1>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.06em;color:#555">
+      <span>FL License #CCC1337380</span>
+      <span style="color:#E0E0E0">|</span>
+      <span>Owens Corning Installer</span>
+      <span style="color:#E0E0E0">|</span>
+      <span>Fully Insured & Bonded</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-top:2rem">
+      <a href="tel:8135957663" class="btn-p call-tracking-number" style="font-size:1rem;padding:.75rem 1.5rem">(813) 595-7663</a>
+      <a href="/contact" class="btn-o" style="font-size:.95rem;padding:.75rem 1.5rem">Get a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TABLE OF CONTENTS ══════ -->
+<section style="background:#FFFFFF;padding:3rem 0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5">
+    <p class="binder-label" style="text-align:center">In This Guide</p>
+    <div class="binder-toc" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.25rem">
+      <a href="#company"><span class="binder-toc-num">01</span> Company Story</a>
+      <a href="#why"><span class="binder-toc-num">02</span> Why Happy Roof</a>
+      <a href="#warranty"><span class="binder-toc-num">03</span> Our Warranty</a>
+      <a href="#services"><span class="binder-toc-num">04</span> Products & Services</a>
+      <a href="#materials"><span class="binder-toc-num">05</span> Materials We Trust</a>
+      <a href="#process"><span class="binder-toc-num">06</span> How It Works</a>
+      <a href="#checklist"><span class="binder-toc-num">07</span> Homeowner Checklist</a>
+      <a href="#financing"><span class="binder-toc-num">08</span> Financing Options</a>
+      <a href="#reviews"><span class="binder-toc-num">09</span> Customer Reviews</a>
+      <a href="#heroes"><span class="binder-toc-num">10</span> Heroes Discount</a>
+      <a href="#referrals"><span class="binder-toc-num">11</span> Referral Program</a>
+      <a href="#credentials"><span class="binder-toc-num">12</span> Credentials & Insurance</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 1: COMPANY STORY ══════ -->
+<section id="company" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 1</p>
+    <h2 class="binder-h2">A MESSAGE FROM OUR OWNER</h2>
+    <div class="binder-card" style="padding:2.5rem">
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">Hello Future Happy Roof Client,</p>
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">First and foremost, thank you for giving us the opportunity to earn your business. We know that choosing a roofing contractor is not a small decision &mdash; your roof protects everything you care about, and you deserve a company that takes that seriously.</p>
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">Happy Roof was built on a simple observation: most homeowners dread dealing with roofers. Confusing quotes, missed appointments, work that didn't hold up. We knew it didn't have to be that way. So we built the company we wished existed &mdash; one rooted in honesty, reliability, and craftsmanship that we'd be proud to put our name on.</p>
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">When you hire Happy Roof, you're not just getting a new roof. You're getting a team that shows up on time, communicates clearly, cleans up completely, and stands behind every nail with a warranty that means something. We treat your home the way we'd treat our own.</p>
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">There are plenty of contractors out there. What sets us apart isn't just what we do &mdash; it's why we do it. We genuinely care about the homeowners and businesses we serve here in Tampa Bay, and it shows in every job we complete.</p>
+      <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Thank you for taking the time to review this guide. Our team will walk you through everything, but please don't hesitate to reach out to me directly with any questions.</p>
+      <p style="font-weight:700;color:#1A1A1A;font-size:.95rem;margin-bottom:1.5rem">We look forward to serving you,</p>
+      <div>
+        <p style="font-weight:800;color:#1A1A1A;font-size:1rem">Josh McKisic</p>
+        <p style="color:#888;font-size:.85rem">Owner, Happy Roof</p>
+        <p style="color:#888;font-size:.85rem;margin-top:.25rem">(813) 595-7663 &nbsp;|&nbsp; happyroof.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ABOUT / STATS ══════ -->
+<section style="background:#FFFFFF;padding:4rem 0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">About Happy Roof</p>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">Founded in July 2025, Happy Roof is Tampa Bay's trusted local roofing contractor, serving homeowners and businesses across Hillsborough, Pinellas, and Pasco counties. We provide residential roofing, commercial roofing, roof repairs, inspections, storm damage and insurance support, and new construction roofing.</p>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:1rem">We are a certified Owens Corning Preferred Installer and proudly partner with leading manufacturers including Verea Clay and GulfCoast Supply. Every system we install is built to handle Florida's climate &mdash; the heat, the humidity, and the storms.</p>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Our philosophy is simple: give every homeowner an honest assessment, a fair price, and a crew they can count on. No upselling. No surprises. Just quality work backed by real warranties &mdash; and a workmanship guarantee of up to 15 years.</p>
+
+    <!-- Stats bar -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);background:#1A1A1A;border-radius:16px;overflow:hidden">
+      <div class="binder-stat"><p class="binder-stat-num">30+</p><p class="binder-stat-label">Years Team Experience</p></div>
+      <div class="binder-stat"><p class="binder-stat-num">5.0&#9733;</p><p class="binder-stat-label">Google Rating</p></div>
+      <div class="binder-stat"><p class="binder-stat-num" style="font-size:1.6rem">Up to 15yr</p><p class="binder-stat-label">Workmanship Warranty</p></div>
+      <div class="binder-stat"><p class="binder-stat-num">48hr</p><p class="binder-stat-label">Emergency Response</p></div>
+    </div>
+
+    <!-- Service areas -->
+    <p style="color:#888;font-size:.78rem;line-height:1.7;margin-top:1.5rem;text-align:center">
+      <strong style="color:#555">Serving:</strong> Tampa &middot; St. Petersburg &middot; Clearwater &middot; Brandon &middot; Wesley Chapel &middot; Riverview &middot; Lutz &middot; Land O Lakes &middot; Odessa &middot; Carrollwood &middot; New Tampa &middot; Temple Terrace &middot; South Tampa &middot; Sun City Center &middot; Apollo Beach &middot; Oldsmar &middot; Palm Harbor &middot; Tarpon Springs &middot; Safety Harbor &middot; Dunedin &middot; Largo &middot; Seminole &middot; New Port Richey &middot; Trinity &middot; and more.
+    </p>
+  </div>
+</section>
+
+<!-- ══════ MEET THE TEAM ══════ -->
+<section style="background:#F7F7F7;padding:4rem 0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <p class="binder-label">Our Team</p>
+    <h2 class="binder-h2">MEET THE PEOPLE<br/><span style="color:#E6A817">BEHIND YOUR ROOF.</span></h2>
+    <div style="margin-bottom:2.5rem">
+      <img src="/Brand%20Assets/Photos/team-photo.jpeg" alt="The Happy Roof team in front of the company truck" style="width:100%;max-width:600px;border-radius:16px;margin:0 auto;display:block;box-shadow:0 16px 48px -8px rgba(0,0,0,.15)" />
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem">
+      <div>
+        <div style="width:72px;height:72px;border-radius:50%;background:#E6A817;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A">J</span>
+        </div>
+        <p style="font-weight:700;font-size:.95rem;color:#1A1A1A">Josh McKisic</p>
+        <p style="color:#888;font-size:.78rem">Owner</p>
+      </div>
+      <div>
+        <div style="width:72px;height:72px;border-radius:50%;background:#3B9FD9;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#FFFFFF">S</span>
+        </div>
+        <p style="font-weight:700;font-size:.95rem;color:#1A1A1A">Stephen Kaywell</p>
+        <p style="color:#888;font-size:.78rem">Dir. of Sales & Business Development</p>
+      </div>
+      <div>
+        <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#E6A817">M</span>
+        </div>
+        <p style="font-weight:700;font-size:.95rem;color:#1A1A1A">Martin Montoya</p>
+        <p style="color:#888;font-size:.78rem">Operations Manager</p>
+      </div>
+      <div>
+        <div style="width:72px;height:72px;border-radius:50%;background:rgba(230,168,23,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#E6A817">U</span>
+        </div>
+        <p style="font-weight:700;font-size:.95rem;color:#1A1A1A">Ulissa Montoya</p>
+        <p style="color:#888;font-size:.78rem">Office Manager</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 2: WHY HAPPY ROOF ══════ -->
+<section id="why" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 2</p>
+    <h2 class="binder-h2">WHY HAPPY ROOF</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">We make roofing stress-free. Here's what that means in practice:</p>
+    <div style="display:grid;gap:1.5rem">
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(230,168,23,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">Honesty First</p><p style="color:#555;font-size:.9rem;line-height:1.7">We tell you what your roof actually needs &mdash; not what makes us the most money. If it only needs a repair, we say repair. No upselling, ever.</p></div>
+      </div>
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(59,159,217,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">We Show Up</p><p style="color:#555;font-size:.9rem;line-height:1.7">When we schedule a visit, we are there. If something changes, you hear from us &mdash; not a no-show. Reliability isn't extra, it's the baseline.</p></div>
+      </div>
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(230,168,23,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">Quality Materials</p><p style="color:#555;font-size:.9rem;line-height:1.7">We only install products we'd put on our own homes. Every material we use comes with a manufacturer warranty backed by the industry's top brands.</p></div>
+      </div>
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(59,159,217,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">Local Team, Local Knowledge</p><p style="color:#555;font-size:.9rem;line-height:1.7">Our crews live and work in Tampa Bay. We know the building codes, permit requirements, HOA rules, and what Florida weather actually does to a roof.</p></div>
+      </div>
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(230,168,23,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">We Clean Up Completely</p><p style="color:#555;font-size:.9rem;line-height:1.7">Every nail. Every scrap. We use magnet rollers and fully clear your yard before we leave. You shouldn't have to worry about what we leave behind.</p></div>
+      </div>
+      <div class="binder-value">
+        <div class="binder-value-icon" style="background:rgba(59,159,217,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">We Stand Behind Our Work</p><p style="color:#555;font-size:.9rem;line-height:1.7">Happy Roof backs its workmanship in writing with up to 15 years on shingle, metal, and tile installations, and up to 10 years on flat roofs. If something goes wrong due to our installation, we make it right.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 3: WARRANTY ══════ -->
+<section id="warranty" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 3</p>
+    <h2 class="binder-h2">OUR WARRANTY</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Most roofers in Tampa Bay offer 1&ndash;5 years of workmanship coverage. We offer up to 15. In writing, on every job.</p>
+
+    <div class="binder-card" style="padding:0;overflow:hidden;margin-bottom:2rem">
+      <table class="warranty-table">
+        <thead><tr><th>Roof Type</th><th>Happy Roof</th><th>Industry Average</th></tr></thead>
+        <tbody>
+          <tr><td>Asphalt Shingles</td><td class="warranty-happy">Up to 15 Years</td><td class="warranty-avg">1&ndash;5 Years</td></tr>
+          <tr><td>Metal Roofing</td><td class="warranty-happy">Up to 15 Years</td><td class="warranty-avg">1&ndash;5 Years</td></tr>
+          <tr><td>Tile Roofing</td><td class="warranty-happy">Up to 15 Years</td><td class="warranty-avg">1&ndash;5 Years</td></tr>
+          <tr><td>Flat Roof (TPO/EPDM)</td><td class="warranty-happy">Up to 10 Years</td><td class="warranty-avg">1&ndash;2 Years</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:#888;font-size:.82rem;font-style:italic;text-align:center;margin-bottom:2rem">All Happy Roof workmanship warranties are provided in writing at project completion.</p>
+
+    <div style="display:grid;md:grid-cols-2;gap:1.5rem">
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:1rem">What's Covered</h3>
+        <ul style="color:#555;font-size:.88rem;line-height:1.8;list-style:none;padding:0">
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Leaks caused by installation defects or workmanship errors</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Improperly installed flashing, underlayment, or drip edge</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Nail pops or fastener failures from our installation</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Vent boot, pipe collar, or penetration seal failures</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Ridge cap or hip cap installation defects</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#E6A817">&#10003;</span> Valley, step flashing, and counter flashing issues</li>
+        </ul>
+      </div>
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:1rem">What's Not Covered</h3>
+        <ul style="color:#555;font-size:.88rem;line-height:1.8;list-style:none;padding:0">
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#888">&times;</span> Damage caused by hurricanes, storms, or falling debris</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#888">&times;</span> Modifications or repairs made by others after installation</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#888">&times;</span> Damage from lack of maintenance or neglect</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#888">&times;</span> Normal wear and tear over time</li>
+          <li style="padding-left:1.25rem;position:relative"><span style="position:absolute;left:0;color:#888">&times;</span> Material defects (covered separately by manufacturer warranty)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="color:#888;font-size:.82rem;font-style:italic;margin-top:1.5rem">To file a warranty claim, call (813) 595-7663 or email info@happyroof.com. We will schedule an on-site inspection within 48 hours and, if the issue is covered under your workmanship warranty, repair it at no cost to you.</p>
+
+    <!-- Owens Corning Manufacturer Warranty -->
+    <div style="margin-top:3rem">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#1A1A1A;margin-bottom:1rem">OWENS CORNING MANUFACTURER WARRANTY</h3>
+      <p style="color:#555;font-size:.9rem;line-height:1.8;margin-bottom:1rem">In addition to our workmanship warranty, your roof is protected by the Owens Corning manufacturer material warranty &mdash; one of the strongest in the roofing industry.</p>
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#E6A817;margin-bottom:.75rem">Lifetime Limited Warranty</p>
+        <ul style="color:#555;font-size:.88rem;line-height:1.8;list-style:disc;padding-left:1.5rem">
+          <li>Covers Duration HDZ, UHDZ, Oakridge, Berkshire, and other qualifying Owens Corning shingles</li>
+          <li>Protects against manufacturing defects and premature material failure</li>
+          <li>SureNail Technology provides superior wind resistance rated up to 130 mph</li>
+          <li>Preferred and Platinum Protection enhanced warranty programs available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 4: PRODUCTS & SERVICES ══════ -->
+<section id="services" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 4</p>
+    <h2 class="binder-h2">PRODUCTS & SERVICES</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Happy Roof provides complete roofing services for homeowners and businesses across Tampa Bay. Every system we install uses materials we trust &mdash; products engineered for Florida's climate and backed by manufacturer warranties.</p>
+
+    <div style="display:grid;sm:grid-cols-2;gap:1rem;margin-bottom:3rem">
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#E6A817;margin-bottom:.5rem">Residential Roofing</p><p style="color:#555;font-size:.88rem;line-height:1.7">Full replacements and new installations for Florida homes. Storm-rated systems built to handle anything the Gulf throws at them.</p></div>
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#3B9FD9;margin-bottom:.5rem">Commercial Roofing</p><p style="color:#555;font-size:.88rem;line-height:1.7">Flat, low-slope, and metal systems for commercial properties. On-time delivery with minimal disruption to your business operations.</p></div>
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#E6A817;margin-bottom:.5rem">Roof Repairs</p><p style="color:#555;font-size:.88rem;line-height:1.7">Leak detection, shingle replacement, flashing repairs, and storm damage fixes. Fast response times with lasting results.</p></div>
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#3B9FD9;margin-bottom:.5rem">Roof Inspections</p><p style="color:#555;font-size:.88rem;line-height:1.7">Detailed written reports for buyers, sellers, and insurance claims. Know exactly what you have before you buy, sell, or file.</p></div>
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#E6A817;margin-bottom:.5rem">Storm Damage & Insurance Support</p><p style="color:#555;font-size:.88rem;line-height:1.7">We work directly with your insurance company. From documentation through completion, we handle the entire claims process.</p></div>
+      <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#3B9FD9;margin-bottom:.5rem">New Construction</p><p style="color:#555;font-size:.88rem;line-height:1.7">Builder partnerships and new-build roofing for custom homes, developments, and commercial projects throughout Tampa Bay.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 5: MATERIALS ══════ -->
+<section id="materials" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 5</p>
+    <h2 class="binder-h2">MATERIALS WE TRUST</h2>
+
+    <!-- Owens Corning Shingles -->
+    <div style="margin-bottom:2.5rem">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:1rem">Owens Corning &mdash; Our Preferred Shingle</h3>
+      <p style="color:#555;font-size:.9rem;line-height:1.8;margin-bottom:1.5rem">As a certified Owens Corning Preferred Installer, Happy Roof installs the full Owens Corning roofing system &mdash; from underlayment to ridge cap. When all components come from the same manufacturer, your warranty coverage is stronger and your system performs as designed.</p>
+      <div style="display:grid;sm:grid-cols-3;gap:1rem">
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#E6A817;margin-bottom:.5rem">Duration HDZ & UHDZ</p><p style="color:#555;font-size:.85rem;line-height:1.7">The most popular Owens Corning shingle. SureNail Technology delivers industry-leading wind resistance rated up to 130 mph.</p></div>
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#E6A817;margin-bottom:.5rem">Oakridge</p><p style="color:#555;font-size:.85rem;line-height:1.7">A mid-range architectural shingle offering excellent performance and curb appeal at a competitive price.</p></div>
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#E6A817;margin-bottom:.5rem">Berkshire Collection</p><p style="color:#555;font-size:.85rem;line-height:1.7">A premium triple-layer laminate shingle that mimics the look of natural slate. The highest-end Owens Corning option.</p></div>
+      </div>
+    </div>
+
+    <!-- Other Materials -->
+    <div>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:1rem">Other Materials We Trust</h3>
+      <div style="display:grid;sm:grid-cols-3;gap:1rem">
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#3B9FD9;margin-bottom:.5rem">Metal &mdash; GulfCoast Supply</p><p style="color:#555;font-size:.85rem;line-height:1.7">Standing seam, corrugated, and exposed fastener metal systems. Florida-made and hurricane-rated with lifespans of 40&ndash;70 years.</p></div>
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#3B9FD9;margin-bottom:.5rem">Tile &mdash; Verea Clay</p><p style="color:#555;font-size:.85rem;line-height:1.7">Premium clay and concrete tile &mdash; barrel, S-tile, and flat profiles. Classic Florida aesthetics with 50&ndash;100 year lifespans.</p></div>
+        <div class="binder-card"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#3B9FD9;margin-bottom:.5rem">Flat / TPO Roofing</p><p style="color:#555;font-size:.85rem;line-height:1.7">For commercial and low-slope residential roofs, we install TPO and EPDM membrane systems built for durability and energy efficiency.</p></div>
+      </div>
+      <p style="color:#888;font-size:.78rem;font-style:italic;margin-top:1rem">We work with every major roofing brand. While the above are our preferred partners, we install shingles by GAF, Titan, Atlas, and others, and metal systems by TriCounty Metals, ABO Metals, MBCI, and more &mdash; all available by request.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 6: HOW IT WORKS ══════ -->
+<section id="process" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 6</p>
+    <h2 class="binder-h2">HOW IT WORKS &mdash;<br/><span style="color:#E6A817">FROM CALL TO COMPLETION</span></h2>
+    <div style="display:grid;sm:grid-cols-2;gap:1.5rem">
+      <div class="binder-card" style="border-left:3px solid #E6A817"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#E6A817;margin-bottom:.5rem">01 &mdash; FREE INSPECTION</p><p style="color:#555;font-size:.88rem;line-height:1.7">We come to you &mdash; no commitment required. Our certified inspector assesses every inch of your roof and provides a detailed written report.</p></div>
+      <div class="binder-card" style="border-left:3px solid #3B9FD9"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#3B9FD9;margin-bottom:.5rem">02 &mdash; CLEAR QUOTE</p><p style="color:#555;font-size:.88rem;line-height:1.7">You receive a detailed written estimate with every line item explained. We walk you through material options and help you choose what's right for your home and budget.</p></div>
+      <div class="binder-card" style="border-left:3px solid #E6A817"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#E6A817;margin-bottom:.5rem">03 &mdash; WE GET TO WORK</p><p style="color:#555;font-size:.88rem;line-height:1.7">Our licensed, insured crew shows up on schedule. We complete the job efficiently and protect your property throughout the process.</p></div>
+      <div class="binder-card" style="border-left:3px solid #3B9FD9"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#3B9FD9;margin-bottom:.5rem">04 &mdash; FINAL WALKTHROUGH</p><p style="color:#555;font-size:.88rem;line-height:1.7">We inspect the completed job with you, clean up fully, and hand over your warranty documentation and permit records before we leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 7: HOMEOWNER CHECKLIST ══════ -->
+<section id="checklist" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 7</p>
+    <h2 class="binder-h2">HOMEOWNER CHECKLIST</h2>
+    <p style="color:#555;font-size:.9rem;line-height:1.7;font-style:italic;margin-bottom:2rem">Please verify that all of the following items have been completed prior to your start date. Failure to complete these items could delay the start of your job.</p>
+
+    <div style="display:grid;md:grid-cols-3;gap:1.5rem">
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:1rem">Before the Job</h3>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Remove or cover valuable items in the attic</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Cut the grass around your property</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Remove anything valuable or fragile from walls</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Remove all vehicles from the driveway and garage</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Keep pets and children away from the work area</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Unlock all fence gates for full property access</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Move outdoor furniture, pots, bikes indoors</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Secure or remove landscape lighting</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Turn sprinkler system off</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Provide gate code if in a gated community</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Arrange satellite dish re-installation if applicable</span></div>
+      </div>
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:1rem">During the Job</h3>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Crew arrives early morning for tear-off</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Project Manager coordinates job start and material delivery</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">In-progress inspection occurs</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Work continues until new roof is installed</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Preliminary clean up of job site</span></div>
+      </div>
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:1rem">After the Job</h3>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">PM completes internal final inspection and full clean up</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Warranty documents transferred to homeowner</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Payment is collected</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Dump trailer removed and extra materials cleared</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Final municipal inspection completed</span></div>
+        <div class="binder-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span style="color:#555;font-size:.85rem">Wind mitigation inspection scheduled if applicable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 8: FINANCING ══════ -->
+<section id="financing" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 8</p>
+    <h2 class="binder-h2">FINANCING OPTIONS</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Happy Roof has partnered with <strong>Enhancify</strong> to offer fast, flexible financing &mdash; so you can protect your home today and pay over time. Checking your rate takes 60 seconds and won't affect your credit score.</p>
+
+    <div style="display:grid;sm:grid-cols-2;gap:1rem;margin-bottom:2rem">
+      <div class="binder-card" style="text-align:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2" style="margin:0 auto .75rem"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">Flexible Payments</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.65;margin-top:.5rem">Choose a monthly payment that works for your budget. Multiple lenders compete for your loan.</p>
+      </div>
+      <div class="binder-card" style="text-align:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="margin:0 auto .75rem"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">60-Second Application</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.65;margin-top:.5rem">Quick soft credit check. Most decisions come back in minutes. No obligation to proceed.</p>
+      </div>
+      <div class="binder-card" style="text-align:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2" style="margin:0 auto .75rem"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">Fix It Now, Pay Over Time</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.65;margin-top:.5rem">Don't let a small leak become a major problem. Financing lets you address damage before costs multiply.</p>
+      </div>
+      <div class="binder-card" style="text-align:center">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="margin:0 auto .75rem"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#1A1A1A;font-size:1rem">Choose Better Materials</p>
+        <p style="color:#555;font-size:.85rem;line-height:1.65;margin-top:.5rem">Financing lets you choose premium materials instead of settling for the cheapest option.</p>
+      </div>
+    </div>
+
+    <div class="binder-card" style="text-align:center;background:#F7F7F7">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#1A1A1A;margin-bottom:.5rem">Ready to check your rate?</p>
+      <p style="color:#555;font-size:.88rem;margin-bottom:1rem">Visit our financing page or ask your Happy Roof representative.</p>
+      <a href="/finance" class="btn-p" style="font-size:.95rem;padding:.7rem 1.5rem">Check Your Rate &mdash; 60 Seconds</a>
+    </div>
+    <p style="color:#888;font-size:.72rem;font-style:italic;margin-top:1rem;text-align:center">Financing is provided by Enhancify and its lending partners. Happy Roof is not a lender. All credit decisions are made by the lender. Subject to credit approval.</p>
+  </div>
+</section>
+
+<!-- ══════ SECTION 9: REVIEWS ══════ -->
+<section id="reviews" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 9</p>
+    <h2 class="binder-h2">WHAT OUR CUSTOMERS SAY</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Don't take our word for it &mdash; here's what Tampa Bay homeowners have to say about Happy Roof.</p>
+
+    <div style="display:grid;gap:1.5rem">
+      <div class="binder-card">
+        <div style="color:#E6A817;font-size:1rem;letter-spacing:.05em;margin-bottom:.75rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p style="color:#555;font-size:.92rem;line-height:1.75;font-style:italic;margin-bottom:1rem">"Happy Roof did an amazing job. They were on time, polite and courteous across the board. They ensured my property remained undamaged during the roof replacement. If I had any concerns or questions, they were answered promptly and completed all the work and even more than I had requested. It is refreshing to find a company that is concerned about quality work, integrity and the added bonus of being very reasonably priced."</p>
+        <p style="font-weight:700;font-size:.88rem;color:#1A1A1A">&mdash; Kathleen P. <span style="color:#888;font-weight:400">| Google Review</span></p>
+      </div>
+      <div class="binder-card">
+        <div style="color:#E6A817;font-size:1rem;letter-spacing:.05em;margin-bottom:.75rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p style="color:#555;font-size:.92rem;line-height:1.75;font-style:italic;margin-bottom:1rem">"Josh and his team at Happy Roof replaced our roof and we couldn't be happier. From start to finish, Josh was fantastic &mdash; responsive, straightforward, and clearly knew his stuff. The crew was clean and professional, left the property in great shape, and the pricing was very fair. The project manager, Martin, kept me updated throughout the entire process. Highly recommend if you're looking for a roofer you can actually trust."</p>
+        <p style="font-weight:700;font-size:.88rem;color:#1A1A1A">&mdash; Evan B. <span style="color:#888;font-weight:400">| Google Review</span></p>
+      </div>
+      <div class="binder-card">
+        <div style="color:#E6A817;font-size:1rem;letter-spacing:.05em;margin-bottom:.75rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p style="color:#555;font-size:.92rem;line-height:1.75;font-style:italic;margin-bottom:1rem">"We had a small roof leak and couldn't get the original company to come back out no matter how many times we tried. Frustrated, we decided to call Happy Roof&hellip; and we're so glad we did. They showed up quickly, took the time to actually inspect everything, and found that the issue was something minor that should have been handled properly the first time. What really stood out is they didn't try to upsell us or turn it into a big job. They fixed it on the spot and didn't even charge us because it was such a simple repair. It's rare to find a company that genuinely cares more about doing the right thing than squeezing every dollar out of a situation. If you want honest people who prioritize customers and do things right, these are the ones to call."</p>
+        <p style="font-weight:700;font-size:.88rem;color:#1A1A1A">&mdash; Andrew R. <span style="color:#888;font-weight:400">| Google Review</span></p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem"><a href="/reviews" style="color:#3B9FD9;font-size:.88rem;font-weight:600;text-decoration:none">See all of our reviews at happyroof.com/reviews &rarr;</a></p>
+  </div>
+</section>
+
+<!-- ══════ SECTION 10: HEROES DISCOUNT ══════ -->
+<section id="heroes" class="binder-section" style="background:#1A1A1A">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <p class="binder-label">Section 10</p>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4rem);line-height:.92;color:#FFFFFF;margin-bottom:.5rem">$500 OFF</h2>
+    <p style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.04em;margin-bottom:1.5rem">For the Heroes of Tampa Bay &mdash; Roof Replacements & Major Repairs</p>
+    <p style="color:rgba(255,255,255,.75);font-size:.95rem;line-height:1.75;max-width:500px;margin:0 auto 2rem">At Happy Roof, we're proud to support the people who keep Tampa Bay safe, healthy, and strong. We offer a $500 discount on any roof replacement or major repair for:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;max-width:600px;margin:0 auto 2rem">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem"><p style="color:#FFFFFF;font-size:.88rem;font-weight:600">Veterans & Active Military</p></div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem"><p style="color:#FFFFFF;font-size:.88rem;font-weight:600">First Responders</p></div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem"><p style="color:#FFFFFF;font-size:.88rem;font-weight:600">Doctors & Nurses</p></div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem"><p style="color:#FFFFFF;font-size:.88rem;font-weight:600">Teachers & School Staff</p></div>
+    </div>
+    <p style="color:rgba(255,255,255,.5);font-size:.82rem;font-style:italic">To claim your discount, mention it when you call or enter code HERO26 on our free estimate form at happyroof.com.</p>
+  </div>
+</section>
+
+<!-- ══════ SECTION 11: REFERRAL PROGRAM ══════ -->
+<section id="referrals" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 11</p>
+    <h2 class="binder-h2">REFER A FRIEND &mdash;<br/><span style="color:#E6A817">EARN UP TO $1,000</span></h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">If you know someone who needs a roof, send them our way &mdash; and we'll send cash your way. No limit on how many you can refer.</p>
+
+    <!-- Tier table -->
+    <div class="binder-card" style="padding:0;overflow:hidden;margin-bottom:1.5rem">
+      <div class="tier-row" style="background:#1A1A1A;color:#F7F7F7;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em">
+        <span>TIER</span><span>TRIGGER</span><span>CONTRACT VALUE</span><span>PAYOUT</span>
+      </div>
+      <div class="tier-row"><span style="color:#888">1</span><span>Estimate booked*</span><span style="color:#888">Any</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">$50</span></div>
+      <div class="tier-row"><span style="color:#888">2</span><span>Any repair closed</span><span style="color:#888">Repair job</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">$125</span></div>
+      <div class="tier-row"><span style="color:#888">3</span><span>Replacement closed</span><span style="color:#888">Up to $12,500</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">$250</span></div>
+      <div class="tier-row"><span style="color:#888">4</span><span>Replacement closed</span><span style="color:#888">Up to $25,000</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#3B9FD9">$500</span></div>
+      <div class="tier-row"><span style="color:#888">5</span><span>Replacement closed</span><span style="color:#888">Up to $40,000</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#1A1A1A">$750</span></div>
+      <div class="tier-row"><span style="color:#888">6</span><span>Replacement closed</span><span style="color:#888">$40,001+</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;color:#E6A817">$1,000</span></div>
+    </div>
+    <p style="color:#888;font-size:.75rem;line-height:1.6;margin-bottom:1rem">*The $50 estimate payout requires a legitimate roofing need identified during inspection. This program applies to retail (out-of-pocket) work only &mdash; insurance claim jobs are not eligible.</p>
+    <a href="/referrals" class="btn-p" style="font-size:.95rem;padding:.7rem 1.5rem">Learn More &amp; Get Your Referral Link</a>
+  </div>
+</section>
+
+<!-- ══════ SECTION 12: CREDENTIALS ══════ -->
+<section id="credentials" class="binder-section" style="background:#F7F7F7">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 12</p>
+    <h2 class="binder-h2">CREDENTIALS & INSURANCE</h2>
+    <p style="color:#555;font-size:.95rem;line-height:1.8;margin-bottom:2rem">Happy Roof is fully licensed, bonded, and insured. We make our credentials available to every client because transparency is part of how we do business. Never hire a contractor who can't produce these documents.</p>
+
+    <div style="display:grid;sm:grid-cols-2;gap:1.5rem">
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:1rem">Licensing</h3>
+        <ul style="color:#555;font-size:.88rem;line-height:2;list-style:none;padding:0">
+          <li>&#9679;&nbsp; Florida State Roofing License #CCC1337380 &mdash; Verified Active</li>
+          <li>&#9679;&nbsp; Owens Corning Certified Preferred Installer</li>
+        </ul>
+      </div>
+      <div class="binder-card">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:1rem">Insurance</h3>
+        <ul style="color:#555;font-size:.88rem;line-height:2;list-style:none;padding:0">
+          <li>&#9679;&nbsp; General Liability Insurance &mdash; COI available on request</li>
+          <li>&#9679;&nbsp; Workers' Compensation Insurance &mdash; Blanket policy covering all employees</li>
+          <li>&#9679;&nbsp; Automobile Liability Insurance</li>
+        </ul>
+      </div>
+    </div>
+    <p style="color:#888;font-size:.82rem;font-style:italic;margin-top:1.5rem">You can verify our workers' compensation coverage at dwcdata.fldfs.com/ProofOfCoverage.aspx &mdash; enter "Happy Roof" and hit search.</p>
+  </div>
+</section>
+
+<!-- ══════ FOUNDATION TEASER ══════ -->
+<section style="background:#FFFFFF;padding:4rem 0;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <div style="background:#1A1A1A;border-radius:20px;padding:3rem 2rem">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.12em;color:#E6A817;margin-bottom:.5rem">LAUNCHING JUNE 2026</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2rem);color:#FFFFFF;margin-bottom:.25rem">The Happy Roof Community Foundation</h2>
+      <p style="color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:1.5rem">Free roof replacements for Tampa Bay families in need.</p>
+      <p style="color:rgba(255,255,255,.75);font-size:.9rem;line-height:1.75;max-width:550px;margin:0 auto 1.5rem">We've always believed that a good roof shouldn't be out of reach for anyone in our community. This summer, Happy Roof is launching a community program to provide free roof replacements for Tampa Bay families who need it most.</p>
+      <a href="/foundation" class="btn-p" style="font-size:.9rem;padding:.65rem 1.25rem">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT CTA ══════ -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,5vw,4rem);line-height:.92;letter-spacing:-.01em">
+      QUESTIONS<span style="color:#F0C040">?</span> WE'RE HERE.
+    </h2>
+    <p style="color:rgba(255,255,255,.8);font-size:1rem;line-height:1.75;margin-bottom:2rem">Your Happy Roof team is ready to help. Reach out anytime &mdash; we respond within one business day.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1.1rem;padding:1rem 2rem">Call (813) 595-7663</a>
+      <a href="/contact" class="btn-o" style="color:#FFFFFF;border-color:rgba(255,255,255,.3);font-size:1rem;padding:1rem 2rem">Request a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- Print button (hidden in print) -->
+<div class="no-print" style="text-align:center;padding:2rem 0;background:#F7F7F7;border-top:1px solid #E0E0E0">
+  <button onclick="window.print()" style="background:#1A1A1A;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.02em;padding:.85rem 2rem;border:none;border-radius:8px;cursor:pointer;transition:background .18s" onmouseover="this.style.background='#333'" onmouseout="this.style.background='#1A1A1A'">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;vertical-align:-.15em;margin-right:.5rem"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Print This Guide
+  </button>
+</div>
+
+</BaseLayout>
