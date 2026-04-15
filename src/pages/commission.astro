@@ -347,7 +347,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
         <!-- Rep Commission Grid -->
         <div id="ref-rep" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep — Base Commission</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep - Base Commission</h3>
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
             <tbody>
@@ -364,7 +364,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
         <!-- Manager Commission Grid -->
         <div id="ref-mgr" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager — Base Commission</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager - Base Commission</h3>
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
             <tbody>
@@ -387,7 +387,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
         <!-- Backend Multiplier (Rep) -->
         <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep — Backend Multiplier</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Sales Rep - Backend Multiplier</h3>
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th></tr></thead>
             <tbody>
@@ -403,7 +403,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
         <!-- Backend Multiplier (Manager) -->
         <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager — Backend Multiplier + Team Override</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Manager - Backend Multiplier + Team Override</h3>
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th><th class="pb-2 text-right">Team Override %</th></tr></thead>
             <tbody>
@@ -971,7 +971,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     $('#gp-slider').value = Math.min(50, Math.max(10, avgGM));
     updateAllSliderDisplays();
 
-    showToast('Generated random scenario — ' + numJobs + ' jobs');
+    showToast('Generated random scenario - ' + numJobs + ' jobs');
   }
 
   function sliderGP() {
@@ -1034,7 +1034,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
     renderJobs();
     recalc();
-    showToast('Generated ' + numDeals + ' deals — avg ' + fmtInt(avgPrice) + ' at ' + targetGP + '% GM');
+    showToast('Generated ' + numDeals + ' deals - avg ' + fmtInt(avgPrice) + ' at ' + targetGP + '% GM');
   }
 
   function clearAll() {
@@ -1051,7 +1051,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     recalc();
   }
 
-  // Slider display updates — all 3 sliders update the computed earnings
+  // Slider display updates - all 3 sliders update the computed earnings
   function updateSliderFill(slider, min, max) {
     var val = parseFloat(slider.value);
     var pct = ((val - min) / (max - min)) * 100;

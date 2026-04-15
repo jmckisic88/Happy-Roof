@@ -8,7 +8,7 @@ const schema = `{
     "url": "https://happyroof.com",
     "telephone": "+1-813-595-7663",
     "email": "info@happyroof.com",
-    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured — FL License #CCC1337380.",
+    "description": "Tampa Bay's trusted roofing contractor specializing in roof replacement, repair, storm damage, inspections, and new construction. Licensed & insured - FL License #CCC1337380.",
     "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
     "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
     "address": {
@@ -89,7 +89,7 @@ const schema = `{
 
 <BaseLayout
   title="Roofing Jobs Tampa Bay | Apply to Work at Happy Roof"
-  description="Happy Roof is hiring in Tampa Bay — roofing installers, project managers & sales reps. Competitive pay, great culture. Apply online today!"
+  description="Happy Roof is hiring in Tampa Bay - roofing installers, project managers & sales reps. Competitive pay, great culture. Apply online today!"
   canonical="https://happyroof.com/apply"
   ogTitle="Roofing Jobs in Tampa Bay | Happy Roof is Hiring"
   ogDescription="Tampa Bay roofing careers at Happy Roof. We're hiring installers, project managers, and sales reps. Competitive pay, great culture. Apply today."
@@ -170,7 +170,7 @@ const schema = `{
     </div>
 
     <form id="apply-form" action="https://formsubmit.co/info@happyroof.com" method="POST" enctype="multipart/form-data" onsubmit="submitApplication(event)">
-  <input type="hidden" name="_subject" value="New Job Application — Happy Roof" />
+  <input type="hidden" name="_subject" value="New Job Application - Happy Roof" />
   <input type="hidden" name="_next" value="https://happyroof.com/apply.html?applied=1" />
   <input type="hidden" name="_captcha" value="false" />
 
@@ -297,12 +297,12 @@ const schema = `{
       <!-- Resume Upload -->
       <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:16px;padding:2rem;margin-bottom:2rem">
         <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.02em;margin-bottom:.4rem">Resume</h2>
-        <p style="color:#555555;font-size:.875rem;margin-bottom:1.25rem">Upload your resume or CV (PDF, DOC, or DOCX — max 10 MB).</p>
+        <p style="color:#555555;font-size:.875rem;margin-bottom:1.25rem">Upload your resume or CV (PDF, DOC, or DOCX - max 10 MB).</p>
         <div class="file-zone" id="file-zone">
           <input type="file" name="resume" id="resume-input" accept=".pdf,.doc,.docx" onchange="handleFile(this)" />
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="margin:0 auto .75rem;color:#555"><path d="M12 15V3m0 0L8 7m4-4l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15v3a2 2 0 002 2h14a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:#666" id="file-label">Click to upload or drag &amp; drop</p>
-          <p style="font-size:.8rem;color:#888888;margin-top:.3rem">PDF, DOC, DOCX — up to 10 MB</p>
+          <p style="font-size:.8rem;color:#888888;margin-top:.3rem">PDF, DOC, DOCX - up to 10 MB</p>
         </div>
       </div>
 
@@ -342,7 +342,7 @@ const schema = `{
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A;margin-bottom:.4rem">Great Team Culture</h3>
-        <p style="font-size:.85rem;color:#555555;line-height:1.6">We treat our team like family — transparent communication, fair pay, and real respect.</p>
+        <p style="font-size:.85rem;color:#555555;line-height:1.6">We treat our team like family - transparent communication, fair pay, and real respect.</p>
       </div>
       <div style="background:#FFFFFF;border:1px solid #E5E5E5;border-radius:14px;padding:1.5rem;box-shadow:0 4px 20px -8px rgba(0,0,0,.08)">
         <div style="width:40px;height:40px;background:linear-gradient(135deg,#34D399,#06B6D4);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
@@ -401,7 +401,7 @@ function submitApplication(e) {
     if (first) first.scrollIntoView({behavior:'smooth', block:'center'});
     return;
   }
-  // valid — allow native form POST to FormSubmit.co (handles file upload)
+  // valid - allow native form POST to FormSubmit.co (handles file upload)
 }
 // Show success message if redirected back with ?applied=1
 if (new URLSearchParams(location.search).get('applied') === '1') {
