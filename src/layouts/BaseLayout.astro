@@ -92,7 +92,7 @@ const {
   <slot />
 
   <Footer />
-  <MobileCTA />
+  {!hideNavLinks && <MobileCTA />}
 
   <script is:inline src="/chat.js"></script>
 
