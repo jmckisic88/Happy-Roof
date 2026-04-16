@@ -60,8 +60,10 @@ const schema = `{
   .tier-row:last-child { border-bottom: none }
 
   /* Force hide mobile CTA on customer page */
-  #mobile-cta-bar { display: none !important }
-  body { padding-bottom: 0 !important }
+  @media (max-width: 767px) {
+    div#mobile-cta-bar, div#mobile-cta-bar[data-astro-cid-p2eu5wuw], [id="mobile-cta-bar"] { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important }
+    body { padding-bottom: 0 !important }
+  }
 
   /* Print styles */
   @media print {
@@ -573,5 +575,14 @@ const schema = `{
     Print This Guide
   </button>
 </div>
+
+<script is:inline>
+// Remove mobile CTA bar on customer page
+(function(){
+  var el = document.getElementById('mobile-cta-bar');
+  if (el) el.parentNode.removeChild(el);
+  document.body.style.paddingBottom = '0';
+})();
+</script>
 
 </BaseLayout>
