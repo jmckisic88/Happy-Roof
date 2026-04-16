@@ -59,6 +59,10 @@ const schema = `{
   .tier-row { display: grid; grid-template-columns: 60px 1fr 1fr auto; align-items: center; padding: .85rem 1.25rem; border-bottom: 1px solid #E0E0E0; font-size: .88rem }
   .tier-row:last-child { border-bottom: none }
 
+  /* Force hide mobile CTA on customer page */
+  #mobile-cta-bar { display: none !important }
+  body { padding-bottom: 0 !important }
+
   /* Print styles */
   @media print {
     nav, footer, .nav-wrap, #mobile-menu, .no-print, .btn-p, .btn-t, .btn-o { display: none !important }
