@@ -59,11 +59,12 @@ const schema = `{
   .tier-row { display: grid; grid-template-columns: 60px 1fr 1fr auto; align-items: center; padding: .85rem 1.25rem; border-bottom: 1px solid #E0E0E0; font-size: .88rem }
   .tier-row:last-child { border-bottom: none }
 
-  /* Force hide mobile CTA on customer page */
-  @media (max-width: 767px) {
-    div#mobile-cta-bar, div#mobile-cta-bar[data-astro-cid-p2eu5wuw], [id="mobile-cta-bar"] { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important }
-    body { padding-bottom: 0 !important }
-  }
+  /* Force hide mobile CTA + chat on customer page */
+  #mobile-cta-bar { display: none !important; visibility: hidden !important; height: 0 !important; pointer-events: none !important }
+  [id="mobile-cta-bar"] { display: none !important }
+  body { padding-bottom: 0 !important }
+  /* Hide chat widget */
+  #hr-chat-wrap { display: none !important }
 
   /* Print styles */
   @media print {

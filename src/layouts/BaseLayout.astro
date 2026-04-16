@@ -94,7 +94,7 @@ const {
   <Footer />
   {!hideNavLinks && <MobileCTA />}
 
-  <script is:inline src="/chat.js"></script>
+  {!hideNavLinks && <script is:inline src="/chat.js"></script>}
 
   <!-- Promo code validation -->
   <script is:inline>
