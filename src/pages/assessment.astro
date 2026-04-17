@@ -245,13 +245,14 @@ const schema = `{
       <p style="color:#888;font-size:.88rem">No contact info needed. Just your address and a style you like.</p>
     </div>
 
-    <!-- Address input -->
+    <!-- Address input with autocomplete -->
     <div style="margin-bottom:2rem">
       <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#555;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Your Home Address</label>
       <div style="display:flex;gap:.5rem">
-        <input type="text" id="viz-address" class="finput" placeholder="123 Main St, Tampa, FL 33601" style="flex:1" />
+        <input type="text" id="viz-address" class="finput" placeholder="Start typing your address..." style="flex:1" autocomplete="off" />
         <button onclick="loadStreetView()" class="btn-p" style="font-size:.88rem;padding:.7rem 1.25rem;white-space:nowrap">Find My Home</button>
       </div>
+      <p id="viz-limit-msg" style="display:none;color:#dc2626;font-size:.82rem;margin-top:.5rem;font-weight:600"></p>
     </div>
 
     <!-- Street View preview -->
@@ -563,11 +564,43 @@ function loadStreetView() {
   streetViewLoaded = true;
 }
 
+function getGenerationCount() {
+  try {
+    var data = JSON.parse(localStorage.getItem('hr_viz_gens') || '{}');
+    var now = Date.now();
+    // Reset if older than 24 hours
+    if (data.timestamp && (now - data.timestamp) > 86400000) {
+      localStorage.removeItem('hr_viz_gens');
+      return 0;
+    }
+    return data.count || 0;
+  } catch(e) { return 0; }
+}
+
+function incrementGenerationCount() {
+  try {
+    var data = JSON.parse(localStorage.getItem('hr_viz_gens') || '{}');
+    data.count = (data.count || 0) + 1;
+    if (!data.timestamp) data.timestamp = Date.now();
+    localStorage.setItem('hr_viz_gens', JSON.stringify(data));
+  } catch(e) {}
+}
+
 function generateVisualization() {
   if (!streetViewLoaded) { alert('Please find your home first'); return; }
 
+  // Rate limit: 3 per 24 hours
+  var genCount = getGenerationCount();
+  if (genCount >= 3) {
+    var msg = document.getElementById('viz-limit-msg');
+    msg.textContent = 'You\'ve used all 3 visualizations for today. Come back tomorrow or call us at (813) 595-7663 for a free in-person consultation.';
+    msg.style.display = 'block';
+    return;
+  }
+
   var address = document.getElementById('viz-address').value.trim();
   var btn = document.getElementById('viz-generate-btn');
+  var remaining = 2 - genCount;
 
   // Show loading
   document.getElementById('viz-loading').style.display = 'flex';
@@ -589,12 +622,20 @@ function generateVisualization() {
     btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg> Generate My New Roof';
 
     if (data.success) {
+      incrementGenerationCount();
+      var newCount = getGenerationCount();
+      var remaining = 3 - newCount;
       document.getElementById('viz-before').src = data.originalImage;
       document.getElementById('viz-after').src = data.generatedImage;
-      document.getElementById('viz-style-label').textContent = 'Showing: ' + data.style;
+      document.getElementById('viz-style-label').textContent = 'Showing: ' + data.style + (remaining > 0 ? ' (' + remaining + ' visualization' + (remaining === 1 ? '' : 's') + ' remaining today)' : '');
       document.getElementById('viz-result').style.display = 'block';
       updateCostEstimate();
       document.getElementById('viz-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (remaining <= 0) {
+        document.getElementById('viz-generate-btn').style.display = 'none';
+        var tryBtn = document.querySelector('#viz-result .btn-o');
+        if (tryBtn) tryBtn.style.display = 'none';
+      }
     } else {
       alert('We couldn\'t generate a visualization for this address. ' + (data.error || 'Please try again.'));
     }
@@ -638,6 +679,27 @@ function submitVisualizerLead(e) {
   ]).finally(function() {
     form.style.display = 'none';
     document.getElementById('viz-lead-success').style.display = 'block';
+  });
+}
+</script>
+
+<!-- Google Maps JS API for address autocomplete -->
+<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU&libraries=places&callback=initAutocomplete" async defer></script>
+<script is:inline>
+function initAutocomplete() {
+  var input = document.getElementById('viz-address');
+  if (!input) return;
+  var autocomplete = new google.maps.places.Autocomplete(input, {
+    types: ['address'],
+    componentRestrictions: { country: 'us' },
+    fields: ['formatted_address']
+  });
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (place && place.formatted_address) {
+      input.value = place.formatted_address;
+      loadStreetView();
+    }
   });
 }
 </script>
