@@ -683,31 +683,50 @@ function submitVisualizerLead(e) {
 }
 </script>
 
-<!-- Google Maps JS API for address autocomplete -->
+<!-- Address autocomplete via Places API (server-side) -->
 <script is:inline>
-window.initAutocomplete = function() {
-  var input = document.getElementById('viz-address');
-  if (!input || !window.google) return;
-  var autocomplete = new google.maps.places.Autocomplete(input, {
-    types: ['address'],
-    componentRestrictions: { country: 'us' },
-    fields: ['formatted_address']
-  });
-  autocomplete.addListener('place_changed', function() {
-    var place = autocomplete.getPlace();
-    if (place && place.formatted_address) {
-      input.value = place.formatted_address;
-      loadStreetView();
-    }
-  });
-};
-// Load Google Maps JS
 (function() {
-  var s = document.createElement('script');
-  s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU&libraries=places&callback=initAutocomplete';
-  s.async = true;
-  s.defer = true;
-  document.head.appendChild(s);
+  var input = document.getElementById('viz-address');
+  if (!input) return;
+  var dropdown = document.createElement('div');
+  dropdown.id = 'address-dropdown';
+  dropdown.style.cssText = 'position:absolute;left:0;right:60px;top:100%;background:#fff;border:1px solid #E0E0E0;border-top:none;border-radius:0 0 8px 8px;box-shadow:0 8px 24px -4px rgba(0,0,0,.12);z-index:100;display:none;max-height:250px;overflow-y:auto';
+  input.parentElement.style.position = 'relative';
+  input.parentElement.appendChild(dropdown);
+
+  var debounce;
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    var q = input.value.trim();
+    if (q.length < 4) { dropdown.style.display = 'none'; return; }
+    debounce = setTimeout(function() {
+      fetch('/api/address-suggest?q=' + encodeURIComponent(q))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data.suggestions || !data.suggestions.length) { dropdown.style.display = 'none'; return; }
+          dropdown.innerHTML = '';
+          data.suggestions.forEach(function(s) {
+            var item = document.createElement('div');
+            item.textContent = s;
+            item.style.cssText = 'padding:.75rem 1rem;cursor:pointer;font-size:.9rem;color:#1A1A1A;border-bottom:1px solid #F0F0F0;transition:background .1s';
+            item.onmouseenter = function() { this.style.background = 'rgba(230,168,23,.06)'; };
+            item.onmouseleave = function() { this.style.background = 'transparent'; };
+            item.onclick = function() {
+              input.value = s;
+              dropdown.style.display = 'none';
+              loadStreetView();
+            };
+            dropdown.appendChild(item);
+          });
+          dropdown.style.display = 'block';
+        })
+        .catch(function() { dropdown.style.display = 'none'; });
+    }, 300);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) dropdown.style.display = 'none';
+  });
 })();
 </script>
 
