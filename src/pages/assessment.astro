@@ -1,0 +1,645 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Happy Roof Assessment & Visualizer",
+  "description": "Free roof assessment tool and AI-powered roof visualizer for Tampa Bay homeowners. See what your home looks like with a new roof.",
+  "url": "https://happyroof.com/assessment",
+  "applicationCategory": "HomeImprovement",
+  "operatingSystem": "Web",
+  "provider": {
+    "@type": "RoofingContractor",
+    "name": "Happy Roof LLC",
+    "telephone": "+1-813-595-7663",
+    "address": { "@type": "PostalAddress", "addressLocality": "Oldsmar", "addressRegion": "FL", "postalCode": "34677" }
+  },
+  "dateModified": "2026-04-17"
+}`;
+---
+
+<BaseLayout
+  title="Free Roof Assessment & Visualizer | Happy Roof"
+  description="Take our free roof assessment to see if your roof needs attention. Then visualize your home with a brand new roof using our AI-powered tool. No contact info required."
+  canonical="https://happyroof.com/assessment"
+  ogTitle="Do You Need a New Roof? Free Assessment | Happy Roof"
+  ogDescription="Take a 60-second roof assessment and see what your home looks like with a new roof. AI-powered visualizer, no contact info needed."
+  activePage="assessment"
+  schema={schema}
+>
+
+<style is:inline>
+  /* Assessment styles */
+  .assess-step { display: none }
+  .assess-step.active { display: block }
+  .assess-option { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 14px; padding: 1.25rem; cursor: pointer; transition: border-color .2s, transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s; text-align: center }
+  .assess-option:hover { border-color: rgba(230,168,23,.4); transform: translateY(-3px) }
+  .assess-option.selected { border-color: #E6A817; background: rgba(230,168,23,.04); box-shadow: 0 0 0 3px rgba(230,168,23,.15) }
+  .assess-option input { display: none }
+  .assess-check { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 1rem 1.25rem; cursor: pointer; transition: border-color .2s; display: flex; align-items: center; gap: .75rem }
+  .assess-check:hover { border-color: rgba(230,168,23,.4) }
+  .assess-check.selected { border-color: #E6A817; background: rgba(230,168,23,.04) }
+  .assess-check input { display: none }
+  .assess-checkbox { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #CCC; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .15s, border-color .15s }
+  .assess-check.selected .assess-checkbox { background: #E6A817; border-color: #E6A817 }
+  .assess-progress { height: 4px; background: #E0E0E0; border-radius: 100px; overflow: hidden; margin-bottom: 2rem }
+  .assess-progress-fill { height: 100%; background: #E6A817; border-radius: 100px; transition: width .4s cubic-bezier(.34,1.56,.64,1) }
+  .assess-nav { display: flex; gap: .75rem; justify-content: flex-end; margin-top: 2rem }
+
+  /* Result styles */
+  .result-card { border-radius: 20px; padding: 2.5rem; text-align: center }
+  .result-urgent { background: linear-gradient(135deg, rgba(220,38,38,.08), rgba(220,38,38,.03)); border: 2px solid rgba(220,38,38,.2) }
+  .result-soon { background: linear-gradient(135deg, rgba(230,168,23,.08), rgba(230,168,23,.03)); border: 2px solid rgba(230,168,23,.2) }
+  .result-maintain { background: linear-gradient(135deg, rgba(59,159,217,.08), rgba(59,159,217,.03)); border: 2px solid rgba(59,159,217,.2) }
+  .result-good { background: linear-gradient(135deg, rgba(34,197,94,.08), rgba(34,197,94,.03)); border: 2px solid rgba(34,197,94,.2) }
+
+  /* Visualizer styles */
+  .viz-style-option { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 1rem; cursor: pointer; transition: border-color .2s, transform .15s; text-align: center }
+  .viz-style-option:hover { border-color: rgba(230,168,23,.4); transform: translateY(-2px) }
+  .viz-style-option.selected { border-color: #E6A817; box-shadow: 0 0 0 3px rgba(230,168,23,.15) }
+  .viz-color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: border-color .15s, transform .15s }
+  .viz-color-dot:hover { transform: scale(1.15) }
+  .viz-color-dot.selected { border-color: #E6A817; box-shadow: 0 0 0 3px rgba(230,168,23,.2) }
+  .viz-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px }
+  .viz-spinner { width: 40px; height: 40px; border: 3px solid #E0E0E0; border-top-color: #E6A817; border-radius: 50%; animation: spin .8s linear infinite }
+  @keyframes spin { to { transform: rotate(360deg) } }
+
+  /* Scrollable color row */
+  .color-row { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center }
+
+  @media (max-width: 767px) {
+    .assess-option { padding: 1rem; font-size: .88rem }
+    .result-card { padding: 1.5rem }
+  }
+</style>
+
+<!-- ══════ HERO ══════ -->
+<section class="relative overflow-hidden" style="background:#F5F5F5;padding:7rem 0 4rem">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/4055F5E2-0A81-4BAC-A34D-586DC69AFF69_1_105_c.jpeg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Free Roof Assessment</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.88;letter-spacing:-.01em;color:#1A1A1A">
+      DOES YOUR ROOF<br/>NEED ATTENTION<span style="color:#E6A817">?</span>
+    </h1>
+    <p style="color:#555;font-size:1.05rem;line-height:1.75;max-width:520px;margin:0 auto 1rem">
+      Answer a few quick questions to find out. Then see what your home looks like with a brand new roof using our AI-powered visualizer.
+    </p>
+    <p style="color:#888;font-size:.85rem;font-weight:600;letter-spacing:.04em">No contact information required.</p>
+  </div>
+</section>
+
+<!-- Trust bar -->
+<div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1rem 0">
+  <div class="max-w-5xl mx-auto px-5">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.5rem 2.5rem">
+      <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">5.0 STAR RATED</span></div>
+      <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">60-SECOND QUIZ</span></div>
+      <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">100% FREE</span></div>
+      <div style="display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;color:#1A1A1A;letter-spacing:.02em">NO CONTACT INFO NEEDED</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ TAB NAVIGATION ══════ -->
+<div style="background:#FFFFFF;border-bottom:2px solid #E0E0E0;padding:0">
+  <div class="max-w-2xl mx-auto px-5" style="display:flex">
+    <button id="tab-quiz" onclick="switchTab('quiz')" style="flex:1;padding:1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:#E6A817;border:none;background:transparent;border-bottom:3px solid #E6A817;cursor:pointer;transition:color .15s">ROOF ASSESSMENT</button>
+    <button id="tab-viz" onclick="switchTab('viz')" style="flex:1;padding:1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:#888;border:none;background:transparent;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s">ROOF VISUALIZER</button>
+  </div>
+</div>
+
+<!-- ══════ ASSESSMENT QUIZ ══════ -->
+<section id="quiz" class="py-16" style="background:#FFFFFF">
+  <div class="max-w-2xl mx-auto px-5">
+    <!-- Progress bar -->
+    <div class="assess-progress"><div id="progress-fill" class="assess-progress-fill" style="width:0%"></div></div>
+
+    <!-- Step 1: Roof Age -->
+    <div id="step-1" class="assess-step active" data-step="1">
+      <p class="sl gp mb-2">Question 1 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">HOW OLD IS YOUR CURRENT ROOF?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem">
+        <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="0-5" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">0-5 Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Relatively new</p></label>
+        <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="5-10" data-score="1"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">5-10 Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Mid-life</p></label>
+        <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="10-15" data-score="2"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">10-15 Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Aging</p></label>
+        <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="15-20" data-score="3"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">15-20 Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Near end of life</p></label>
+        <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="20+" data-score="4"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">20+ Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Past typical lifespan</p></label>
+      </div>
+    </div>
+
+    <!-- Step 2: Current Material -->
+    <div id="step-2" class="assess-step" data-step="2">
+      <p class="sl gp mb-2">Question 2 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">WHAT TYPE OF ROOF DO YOU HAVE?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem">
+        <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="shingle" data-score="2"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Shingle</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Most common</p></label>
+        <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="metal" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Metal</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Long-lasting</p></label>
+        <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="tile" data-score="1"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Tile</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Clay or concrete</p></label>
+        <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="flat" data-score="2"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Flat / TPO</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Low-slope</p></label>
+        <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="unsure" data-score="1"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Not Sure</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">We can help</p></label>
+      </div>
+    </div>
+
+    <!-- Step 3: Visible Issues (multi-select) -->
+    <div id="step-3" class="assess-step" data-step="3">
+      <p class="sl gp mb-2">Question 3 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:.5rem">HAVE YOU NOTICED ANY OF THESE?</h2>
+      <p style="color:#888;font-size:.85rem;margin-bottom:1.5rem">Select all that apply</p>
+      <div style="display:grid;gap:.5rem">
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="leaks" data-score="4"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Active leaks or water stains on ceilings</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="missing" data-score="3"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Missing, cracked, or curling shingles</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="sagging" data-score="4"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Roof is sagging or looks uneven</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="granules" data-score="2"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Granules in gutters or downspouts</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="daylight" data-score="3"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Daylight visible through attic</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="storm" data-score="3"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Recent storm damage (wind, hail, debris)</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="mold" data-score="2"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">Mold, moss, or algae growth</span></div>
+        <div class="assess-check" onclick="toggleCheck(this)"><input type="checkbox" name="q3" value="none" data-score="0"/><span class="assess-checkbox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3" style="display:none"><path d="m5 12 5 5L20 7"/></svg></span><span style="font-size:.92rem;color:#1A1A1A">None of the above</span></div>
+      </div>
+    </div>
+
+    <!-- Step 4: Goal -->
+    <div id="step-4" class="assess-step" data-step="4">
+      <p class="sl gp mb-2">Question 4 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">WHAT'S YOUR PRIMARY GOAL?</h2>
+      <div style="display:grid;gap:.5rem">
+        <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="replace" data-score="3"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Replace an aging roof</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">My roof is old and needs to go</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="upgrade" data-score="2"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Upgrade to a better material</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Switch from shingle to metal or tile</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="damage" data-score="3"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Fix storm or leak damage</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Something is wrong and needs repair</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="insurance" data-score="2"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Lower my insurance premiums</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">A new roof could save me money</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="explore" data-score="0"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Just exploring options</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Curious about what's available</p></div></label>
+      </div>
+    </div>
+
+    <!-- Step 5: Storm prep -->
+    <div id="step-5" class="assess-step" data-step="5">
+      <p class="sl gp mb-2">Question 5 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">ARE YOU PREPARING FOR HURRICANE SEASON?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem">
+        <label class="assess-option" onclick="selectOption(this,5)"><input type="radio" name="q5" value="yes-urgent" data-score="3"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, it's urgent</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">I need to act before storm season</p></label>
+        <label class="assess-option" onclick="selectOption(this,5)"><input type="radio" name="q5" value="yes-planning" data-score="1"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, planning ahead</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Want to be proactive</p></label>
+        <label class="assess-option" onclick="selectOption(this,5)"><input type="radio" name="q5" value="no" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Not specifically</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Other reasons</p></label>
+      </div>
+    </div>
+
+    <!-- Step 6: Insurance -->
+    <div id="step-6" class="assess-step" data-step="6">
+      <p class="sl gp mb-2">Question 6 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">IS YOUR INSURANCE COMPANY REQUESTING A NEW ROOF?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem">
+        <label class="assess-option" onclick="selectOption(this,6)"><input type="radio" name="q6" value="yes-required" data-score="4"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, required</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">They'll drop my policy without one</p></label>
+        <label class="assess-option" onclick="selectOption(this,6)"><input type="radio" name="q6" value="yes-recommended" data-score="2"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, recommended</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">They suggested it for better rates</p></label>
+        <label class="assess-option" onclick="selectOption(this,6)"><input type="radio" name="q6" value="no" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">No</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Not an insurance issue</p></label>
+      </div>
+    </div>
+
+    <!-- Step 7: Homeowner -->
+    <div id="step-7" class="assess-step" data-step="7">
+      <p class="sl gp mb-2">Question 7 of 7</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">ARE YOU THE HOMEOWNER?</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem">
+        <label class="assess-option" onclick="selectOption(this,7)"><input type="radio" name="q7" value="yes" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">I own this property</p></label>
+        <label class="assess-option" onclick="selectOption(this,7)"><input type="radio" name="q7" value="no" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">No</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Renter or property manager</p></label>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div id="quiz-nav" class="assess-nav">
+      <button id="btn-back" onclick="prevStep()" style="display:none;background:transparent;border:1.5px solid #E0E0E0;border-radius:8px;padding:.7rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#555;cursor:pointer;transition:border-color .15s" onmouseover="this.style.borderColor='#999'" onmouseout="this.style.borderColor='#E0E0E0'">Back</button>
+      <button id="btn-next" onclick="nextStep()" class="btn-p" style="font-size:.95rem;padding:.7rem 1.75rem;opacity:.4;pointer-events:none">Next &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ RESULTS (hidden until quiz complete) ══════ -->
+<section id="results-section" style="display:none;background:#F7F7F7;padding:4rem 0">
+  <div class="max-w-2xl mx-auto px-5">
+    <div id="result-container"></div>
+
+    <!-- CTA after results -->
+    <div style="text-align:center;margin-top:2rem">
+      <p style="color:#555;font-size:.95rem;margin-bottom:1.5rem">Want a professional opinion? Our inspections are always free, no obligation.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
+        <a href="/contact" class="btn-t" style="font-size:1rem;padding:.85rem 1.75rem">Schedule Free Inspection</a>
+        <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:.95rem;padding:.85rem 1.5rem">Call (813) 595-7663</a>
+      </div>
+    </div>
+
+    <!-- Transition to visualizer -->
+    <div style="text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid #E0E0E0">
+      <p class="sl gt mb-2">Next Step</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.5rem,3vw,2rem);color:#1A1A1A;margin-bottom:.75rem">SEE WHAT YOUR HOME LOOKS LIKE<br/><span style="color:#E6A817">WITH A NEW ROOF</span></h2>
+      <p style="color:#888;font-size:.88rem;margin-bottom:1.25rem">Enter your address below and pick a roof style. Our AI will show you a preview.</p>
+      <button onclick="switchTab('viz')" class="btn-p" style="font-size:.95rem;padding:.7rem 1.5rem">Try the Roof Visualizer &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ROOF VISUALIZER ══════ -->
+<section id="visualizer-section" style="display:none;background:#FFFFFF;padding:3rem 0">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-8">
+      <p class="sl gp mb-2">AI Roof Visualizer</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.5rem);color:#1A1A1A;margin-bottom:.5rem">PREVIEW YOUR NEW ROOF</h2>
+      <p style="color:#888;font-size:.88rem">No contact info needed. Just your address and a style you like.</p>
+    </div>
+
+    <!-- Address input -->
+    <div style="margin-bottom:2rem">
+      <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#555;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Your Home Address</label>
+      <div style="display:flex;gap:.5rem">
+        <input type="text" id="viz-address" class="finput" placeholder="123 Main St, Tampa, FL 33601" style="flex:1" />
+        <button onclick="loadStreetView()" class="btn-p" style="font-size:.88rem;padding:.7rem 1.25rem;white-space:nowrap">Find My Home</button>
+      </div>
+    </div>
+
+    <!-- Street View preview -->
+    <div id="viz-streetview" style="display:none;margin-bottom:2rem">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid #E0E0E0">
+        <img id="viz-original" alt="Your home from Google Street View" style="width:100%;display:block" />
+      </div>
+      <p style="color:#888;font-size:.75rem;text-align:center;margin-top:.5rem">Your home from Google Street View</p>
+    </div>
+
+    <!-- Style picker (shown after address) -->
+    <div id="viz-style-picker" style="display:none">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:1rem">CHOOSE A ROOF STYLE</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;margin-bottom:1.5rem">
+        <div class="viz-style-option selected" onclick="selectStyle(this,'architectural shingle')" data-style="architectural shingle"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Shingle</p><p style="color:#888;font-size:.72rem">Architectural</p></div>
+        <div class="viz-style-option" onclick="selectStyle(this,'standing seam metal')" data-style="standing seam metal"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Metal</p><p style="color:#888;font-size:.72rem">Standing Seam</p></div>
+        <div class="viz-style-option" onclick="selectStyle(this,'metal shaker roof that looks like wood shake')" data-style="metal shaker"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Metal Shake</p><p style="color:#888;font-size:.72rem">Wood-look metal</p></div>
+        <div class="viz-style-option" onclick="selectStyle(this,'barrel tile')" data-style="barrel tile"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Barrel Tile</p><p style="color:#888;font-size:.72rem">Classic Florida</p></div>
+        <div class="viz-style-option" onclick="selectStyle(this,'flat concrete tile')" data-style="flat concrete tile"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Flat Tile</p><p style="color:#888;font-size:.72rem">Modern concrete</p></div>
+        <div class="viz-style-option" onclick="selectStyle(this,'metal tile roof that mimics clay tile')" data-style="metal tile"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem">Metal Tile</p><p style="color:#888;font-size:.72rem">Tile-look metal</p></div>
+      </div>
+
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:1rem">CHOOSE A COLOR</h3>
+      <div class="color-row" id="color-options">
+        <div class="viz-color-dot selected" onclick="selectColor(this,'onyx black')" style="background:#1A1A1A" title="Onyx Black"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'charcoal gray')" style="background:#4A4A4A" title="Charcoal Gray"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'estate gray')" style="background:#7A7A7A" title="Estate Gray"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'weathered wood brown')" style="background:#6B4C3B" title="Weathered Wood"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'desert tan')" style="background:#C4A77D" title="Desert Tan"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'sierra gray')" style="background:#8B8B8B" title="Sierra Gray"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'colonial red')" style="background:#8B2500" title="Colonial Red"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'dark bronze')" style="background:#3D2B1F" title="Dark Bronze"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'galvalume silver')" style="background:#B8B8B8" title="Galvalume Silver"></div>
+        <div class="viz-color-dot" onclick="selectColor(this,'terra cotta')" style="background:#C55A11" title="Terra Cotta"></div>
+      </div>
+
+      <div style="text-align:center;margin-top:2rem">
+        <button onclick="generateVisualization()" id="viz-generate-btn" class="btn-t" style="font-size:1.05rem;padding:.9rem 2rem">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+          Generate My New Roof
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="viz-loading" style="display:none" class="viz-loading">
+      <div class="viz-spinner"></div>
+      <p style="color:#888;font-size:.9rem;margin-top:1.25rem">Our AI is generating your new roof...</p>
+      <p style="color:#BBB;font-size:.78rem;margin-top:.35rem">This usually takes 10-15 seconds</p>
+    </div>
+
+    <!-- Generated result -->
+    <div id="viz-result" style="display:none;margin-top:2rem">
+      <div style="display:grid;md:grid-cols-2;gap:1rem">
+        <div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">Your Current Home</p>
+          <div style="border-radius:16px;overflow:hidden;border:1px solid #E0E0E0"><img id="viz-before" alt="Your current home" style="width:100%;display:block" /></div>
+        </div>
+        <div>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#E6A817;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;text-align:center">With Your New Roof</p>
+          <div style="border-radius:16px;overflow:hidden;border:2px solid rgba(230,168,23,.3)"><img id="viz-after" alt="Your home with new roof" style="width:100%;display:block" /></div>
+        </div>
+      </div>
+      <p id="viz-style-label" style="text-align:center;color:#555;font-size:.88rem;margin-top:1rem"></p>
+
+      <div style="text-align:center;margin-top:1.5rem">
+        <button onclick="generateVisualization()" class="btn-o" style="font-size:.88rem;padding:.65rem 1.25rem;margin-right:.5rem">Try Another Style</button>
+      </div>
+
+      <!-- Cost Estimate -->
+      <div id="viz-cost" style="margin-top:2rem;padding:2rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:.5rem;text-align:center">ESTIMATED COST RANGE</h3>
+        <p style="color:#888;font-size:.82rem;text-align:center;margin-bottom:1.25rem">Drag the slider to match your home's approximate square footage</p>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+          <input type="range" id="viz-sqft" class="range-slider" min="800" max="5000" value="2000" step="100" oninput="updateCostEstimate()" style="flex:1;accent-color:#E6A817" />
+          <span id="viz-sqft-display" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;min-width:80px;text-align:right">2,000</span>
+          <span style="font-size:.82rem;color:#555">sq ft</span>
+        </div>
+        <div id="viz-cost-range" style="text-align:center;padding:1.25rem;background:#F7F7F7;border-radius:12px">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.2rem);color:#1A1A1A;line-height:1" id="viz-cost-value">$14,300 - $22,800</p>
+          <p style="color:#888;font-size:.78rem;margin-top:.5rem" id="viz-cost-label">Architectural Shingle | ~2,000 sq ft</p>
+        </div>
+        <p style="color:#AAA;font-size:.72rem;text-align:center;margin-top:.75rem;font-style:italic">Rough estimate only. Actual cost depends on roof pitch, layers, deck condition, and other factors.</p>
+      </div>
+
+      <!-- Optional lead capture -->
+      <div style="margin-top:2rem;padding:2rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:16px;text-align:center">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">LOVE WHAT YOU SEE?</h3>
+        <p style="color:#555;font-size:.88rem;margin-bottom:1.5rem">Get a free, no-obligation estimate for your new roof. We'll come to you.</p>
+        <form id="viz-lead-form" onsubmit="submitVisualizerLead(event)">
+          <div style="display:grid;sm:grid-cols-2;gap:.75rem;margin-bottom:.75rem">
+            <input type="text" name="viz_name" class="finput" placeholder="Your Name" required />
+            <input type="tel" name="viz_phone" class="finput" placeholder="Phone Number" required />
+          </div>
+          <button type="submit" class="btn-t w-full justify-center" style="font-size:1rem;padding:.85rem">Get My Free Estimate</button>
+        </form>
+        <div id="viz-lead-success" style="display:none;padding:1.5rem">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2" style="margin:0 auto .75rem;display:block"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A">We'll Be in Touch!</p>
+          <p style="color:#555;font-size:.85rem;margin-top:.35rem">Our team will call you within 24 hours to schedule your free inspection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA ══════ -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3.5rem);line-height:.92;letter-spacing:-.01em">
+      READY TO GET STARTED<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,255,255,.8);font-size:1rem;line-height:1.75;margin-bottom:2rem">Whether you need a repair, replacement, or just want an expert opinion, our team is here to help.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.1rem;padding:1rem 2rem">Get a Free Estimate</a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="color:#FFFFFF;border-color:rgba(255,255,255,.3);font-size:1rem;padding:1rem 2rem">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+// ── Assessment Quiz Logic ──
+var currentStep = 1;
+var totalSteps = 7;
+
+function selectOption(el, step) {
+  el.closest('.assess-step').querySelectorAll('.assess-option').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  document.getElementById('btn-next').style.opacity = '1';
+  document.getElementById('btn-next').style.pointerEvents = 'auto';
+  // Auto-advance after a short delay
+  setTimeout(function() { nextStep(); }, 400);
+}
+
+function toggleCheck(el) {
+  var input = el.querySelector('input');
+  var svg = el.querySelector('svg');
+  el.classList.toggle('selected');
+  input.checked = !input.checked;
+  svg.style.display = input.checked ? 'block' : 'none';
+  // If "none" is selected, deselect others
+  if (input.value === 'none' && input.checked) {
+    el.closest('.assess-step').querySelectorAll('.assess-check').forEach(function(c) {
+      if (c !== el) { c.classList.remove('selected'); c.querySelector('input').checked = false; c.querySelector('svg').style.display = 'none'; }
+    });
+  } else if (input.value !== 'none' && input.checked) {
+    var noneCheck = el.closest('.assess-step').querySelector('input[value="none"]');
+    if (noneCheck && noneCheck.checked) { noneCheck.checked = false; noneCheck.closest('.assess-check').classList.remove('selected'); noneCheck.closest('.assess-check').querySelector('svg').style.display = 'none'; }
+  }
+  // Enable next button if any checked
+  var anyChecked = el.closest('.assess-step').querySelectorAll('input:checked').length > 0;
+  document.getElementById('btn-next').style.opacity = anyChecked ? '1' : '.4';
+  document.getElementById('btn-next').style.pointerEvents = anyChecked ? 'auto' : 'none';
+}
+
+function nextStep() {
+  if (currentStep >= totalSteps) { showResults(); return; }
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  currentStep++;
+  document.getElementById('step-' + currentStep).classList.add('active');
+  updateProgress();
+  document.getElementById('btn-back').style.display = 'inline-block';
+  // Reset next button state
+  var stepEl = document.getElementById('step-' + currentStep);
+  var hasSelection = stepEl.querySelector('input:checked');
+  document.getElementById('btn-next').style.opacity = hasSelection ? '1' : '.4';
+  document.getElementById('btn-next').style.pointerEvents = hasSelection ? 'auto' : 'none';
+  document.getElementById('btn-next').textContent = currentStep === totalSteps ? 'See Results' : 'Next →';
+  window.scrollTo({ top: document.getElementById('quiz').offsetTop - 100, behavior: 'smooth' });
+}
+
+function prevStep() {
+  if (currentStep <= 1) return;
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  currentStep--;
+  document.getElementById('step-' + currentStep).classList.add('active');
+  updateProgress();
+  if (currentStep === 1) document.getElementById('btn-back').style.display = 'none';
+  document.getElementById('btn-next').style.opacity = '1';
+  document.getElementById('btn-next').style.pointerEvents = 'auto';
+  document.getElementById('btn-next').textContent = 'Next →';
+}
+
+function updateProgress() {
+  var pct = ((currentStep - 1) / totalSteps) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function showResults() {
+  // Calculate score
+  var score = 0;
+  document.querySelectorAll('#quiz input:checked').forEach(function(input) {
+    score += parseInt(input.getAttribute('data-score') || '0');
+  });
+
+  var result;
+  if (score >= 10) {
+    result = { level: 'urgent', title: 'YOUR ROOF NEEDS IMMEDIATE ATTENTION', color: '#dc2626', icon: '⚠️', class: 'result-urgent', desc: 'Based on your answers, your roof is showing serious warning signs. We strongly recommend scheduling a professional inspection as soon as possible to prevent further damage to your home.', tip: 'Don\'t wait. Water damage from a failing roof can lead to mold, structural issues, and significantly higher repair costs.' };
+  } else if (score >= 6) {
+    result = { level: 'soon', title: 'REPLACEMENT RECOMMENDED SOON', color: '#E6A817', icon: '🔶', class: 'result-soon', desc: 'Your roof is aging and showing some signs of wear. While it may not be an emergency today, planning for a replacement in the near future will save you money and protect your home.', tip: 'Getting ahead of a roof replacement lets you choose materials and timing on your terms, rather than being forced into an emergency repair.' };
+  } else if (score >= 3) {
+    result = { level: 'maintain', title: 'INSPECTION RECOMMENDED', color: '#3B9FD9', icon: '🔍', class: 'result-maintain', desc: 'Your roof appears to be in decent shape, but a professional inspection can catch issues that aren\'t visible from the ground. A small repair now can prevent a costly replacement later.', tip: 'Annual inspections are the best way to extend your roof\'s lifespan. Most homeowners in Tampa Bay should inspect after every major storm.' };
+  } else {
+    result = { level: 'good', title: 'YOUR ROOF LOOKS GOOD', color: '#22c55e', icon: '✅', class: 'result-good', desc: 'Based on your answers, your roof appears to be in good condition. Keep up with regular maintenance and inspections to maximize its lifespan.', tip: 'Even healthy roofs benefit from an inspection every few years, especially in Florida\'s harsh climate. It\'s free with Happy Roof.' };
+  }
+
+  var html = '<div class="result-card ' + result.class + '">';
+  html += '<p style="font-size:2.5rem;margin-bottom:.5rem">' + result.icon + '</p>';
+  html += '<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2rem);color:' + result.color + ';margin-bottom:1rem">' + result.title + '</h2>';
+  html += '<p style="color:#555;font-size:.95rem;line-height:1.75;margin-bottom:1.5rem">' + result.desc + '</p>';
+  html += '<div style="background:rgba(0,0,0,.04);border-radius:10px;padding:1rem 1.25rem;text-align:left"><p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.85rem;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem">Pro Tip</p><p style="color:#555;font-size:.88rem;line-height:1.65">' + result.tip + '</p></div>';
+  html += '</div>';
+
+  document.getElementById('result-container').innerHTML = html;
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+  document.getElementById('progress-fill').style.width = '100%';
+  window.scrollTo({ top: document.getElementById('results-section').offsetTop - 80, behavior: 'smooth' });
+}
+
+// ── Tab Switching ──
+function switchTab(tab) {
+  var quizTab = document.getElementById('tab-quiz');
+  var vizTab = document.getElementById('tab-viz');
+  var quizSection = document.getElementById('quiz');
+  var resultsSection = document.getElementById('results-section');
+  var vizSection = document.getElementById('visualizer-section');
+
+  if (tab === 'quiz') {
+    quizTab.style.color = '#E6A817';
+    quizTab.style.borderBottom = '3px solid #E6A817';
+    vizTab.style.color = '#888';
+    vizTab.style.borderBottom = '3px solid transparent';
+    quizSection.style.display = 'block';
+    if (document.getElementById('result-container').innerHTML) resultsSection.style.display = 'block';
+    vizSection.style.display = 'none';
+  } else {
+    vizTab.style.color = '#E6A817';
+    vizTab.style.borderBottom = '3px solid #E6A817';
+    quizTab.style.color = '#888';
+    quizTab.style.borderBottom = '3px solid transparent';
+    quizSection.style.display = 'none';
+    resultsSection.style.display = 'none';
+    vizSection.style.display = 'block';
+    window.scrollTo({ top: vizSection.offsetTop - 100, behavior: 'smooth' });
+  }
+}
+
+// ── Cost Estimate Logic ──
+var costRates = {
+  'architectural shingle': 470,
+  'standing seam metal': 690,
+  'metal shaker': 690,
+  'barrel tile': 810,
+  'flat concrete tile': 810,
+  'metal tile': 690
+};
+
+function updateCostEstimate() {
+  var sqft = parseInt(document.getElementById('viz-sqft').value);
+  document.getElementById('viz-sqft-display').textContent = sqft.toLocaleString();
+  var rate = costRates[selectedStyle] || 470;
+  var squares = (sqft * 1.3) / 100;
+  var base = rate * squares;
+  var low = Math.round((base * 1.1) / 100) * 100;
+  var high = Math.round((base * 1.75) / 100) * 100;
+  document.getElementById('viz-cost-value').textContent = '$' + low.toLocaleString() + ' - $' + high.toLocaleString();
+
+  var styleLabels = {
+    'architectural shingle': 'Architectural Shingle',
+    'standing seam metal': 'Standing Seam Metal',
+    'metal shaker': 'Metal Shake',
+    'barrel tile': 'Barrel Tile',
+    'flat concrete tile': 'Flat Concrete Tile',
+    'metal tile': 'Metal Tile'
+  };
+  document.getElementById('viz-cost-label').textContent = (styleLabels[selectedStyle] || 'Shingle') + ' | ~' + sqft.toLocaleString() + ' sq ft';
+}
+
+// ── Roof Visualizer Logic ──
+var selectedStyle = 'architectural shingle';
+var selectedColor = 'onyx black';
+var streetViewLoaded = false;
+
+function selectStyle(el, style) {
+  document.querySelectorAll('.viz-style-option').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedStyle = style;
+  if (document.getElementById('viz-cost').style.display !== 'none') updateCostEstimate();
+}
+
+function selectColor(el, color) {
+  document.querySelectorAll('.viz-color-dot').forEach(function(d) { d.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedColor = color;
+}
+
+function loadStreetView() {
+  var address = document.getElementById('viz-address').value.trim();
+  if (!address) { alert('Please enter your address'); return; }
+
+  var apiKey = 'AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU';
+  var imgUrl = 'https://maps.googleapis.com/maps/api/streetview?size=800x500&location=' + encodeURIComponent(address) + '&key=' + apiKey + '&fov=90&pitch=15';
+
+  document.getElementById('viz-original').src = imgUrl;
+  document.getElementById('viz-streetview').style.display = 'block';
+  document.getElementById('viz-style-picker').style.display = 'block';
+  streetViewLoaded = true;
+}
+
+function generateVisualization() {
+  if (!streetViewLoaded) { alert('Please find your home first'); return; }
+
+  var address = document.getElementById('viz-address').value.trim();
+  var btn = document.getElementById('viz-generate-btn');
+
+  // Show loading
+  document.getElementById('viz-loading').style.display = 'flex';
+  document.getElementById('viz-result').style.display = 'none';
+  document.getElementById('viz-style-picker').style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+
+  fetch('/api/roof-visualizer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ address: address, roofStyle: selectedStyle, roofColor: selectedColor })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    document.getElementById('viz-loading').style.display = 'none';
+    document.getElementById('viz-style-picker').style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg> Generate My New Roof';
+
+    if (data.success) {
+      document.getElementById('viz-before').src = data.originalImage;
+      document.getElementById('viz-after').src = data.generatedImage;
+      document.getElementById('viz-style-label').textContent = 'Showing: ' + data.style;
+      document.getElementById('viz-result').style.display = 'block';
+      updateCostEstimate();
+      document.getElementById('viz-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      alert('We couldn\'t generate a visualization for this address. ' + (data.error || 'Please try again.'));
+    }
+  })
+  .catch(function(err) {
+    document.getElementById('viz-loading').style.display = 'none';
+    document.getElementById('viz-style-picker').style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg> Generate My New Roof';
+    alert('Something went wrong. Please try again or call us at (813) 595-7663.');
+  });
+}
+
+function submitVisualizerLead(e) {
+  e.preventDefault();
+  var form = e.target;
+  var name = form.viz_name.value;
+  var phone = form.viz_phone.value;
+  var address = document.getElementById('viz-address').value;
+
+  var stPayload = {
+    name: name, phone: phone, address: address,
+    service: 'Roof Visualizer Lead',
+    source: 'Website - Roof Assessment',
+    page: '/assessment',
+    notes: 'Roof style interest: ' + selectedColor + ' ' + selectedStyle
+  };
+
+  Promise.allSettled([
+    fetch('/api/submit-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(stPayload) }),
+    fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Roof Visualizer Lead | ' + name,
+        'Name': name, 'Phone': phone, 'Address': address,
+        'Roof Style': selectedColor + ' ' + selectedStyle,
+        'Source': 'Roof Assessment & Visualizer Page'
+      })
+    })
+  ]).finally(function() {
+    form.style.display = 'none';
+    document.getElementById('viz-lead-success').style.display = 'block';
+  });
+}
+</script>
+
+</BaseLayout>
