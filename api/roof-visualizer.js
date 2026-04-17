@@ -24,11 +24,11 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API keys not configured' });
   }
 
-  try {
-    // Step 1: Get Street View image of the home
-    const streetViewUrl = `https://maps.googleapis.com/maps/api/streetview?size=1024x768&location=${encodeURIComponent(address)}&key=${googleKey}&fov=90&pitch=15`;
+  const style = roofStyle || 'architectural shingle';
+  const color = roofColor || 'charcoal gray';
 
-    // Check if Street View image exists
+  try {
+    // Step 1: Check if Street View image exists
     const metaUrl = `https://maps.googleapis.com/maps/api/streetview/metadata?location=${encodeURIComponent(address)}&key=${googleKey}`;
     const metaRes = await fetch(metaUrl);
     const meta = await metaRes.json();
@@ -36,85 +36,64 @@ export default async function handler(req, res) {
     if (meta.status !== 'OK') {
       return res.status(404).json({
         error: 'No Street View image available for this address',
-        status: meta.status,
+        details: meta.status,
       });
     }
 
-    // Step 2: Fetch the actual Street View image as base64
+    // Step 2: Get the Street View image URL
+    const streetViewUrl = `https://maps.googleapis.com/maps/api/streetview?size=1024x768&location=${encodeURIComponent(address)}&key=${googleKey}&fov=90&pitch=15`;
+
+    // Fetch as base64 for the original image return
     const imgRes = await fetch(streetViewUrl);
     const imgBuffer = await imgRes.arrayBuffer();
-    const base64Image = Buffer.from(imgBuffer).toString('base64');
-    const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
+    const base64Original = Buffer.from(imgBuffer).toString('base64');
+    const originalDataUrl = `data:image/jpeg;base64,${base64Original}`;
 
-    // Step 3: Send to OpenAI to generate roof visualization
-    const style = roofStyle || 'architectural shingle';
-    const color = roofColor || 'charcoal gray';
+    // Step 3: Use DALL-E 3 to generate a visualization
+    // We describe the house from the Street View and ask for the new roof
+    const prompt = `Create a photorealistic image of a residential home in Tampa Bay, Florida with a brand new ${color} ${style} roof. The home should look like a typical Florida single-family house in a suburban neighborhood. Show the full front view with the driveway, landscaping, and clear blue sky. The ${style} roof should be the focal point, looking freshly installed, clean, and professionally done. The ${color} color should be clearly visible and accurate. Make it look like a real photograph, not a rendering.`;
 
-    const prompt = `Edit this photo of a house to show what it would look like with a brand new ${color} ${style} roof. Only change the roof - keep the rest of the house, landscaping, driveway, and surroundings exactly the same. The new roof should look realistic, professionally installed, and match the architectural style of the home. Make the roof look clean, new, and high-quality.`;
-
-    const openaiRes = await fetch('https://api.openai.com/v1/images/edits', {
+    const openaiRes = await fetch('https://api.openai.com/v1/images/generations', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openaiKey}`,
+        'Content-Type': 'application/json',
       },
-      body: (() => {
-        // Convert base64 to a Blob for the multipart form
-        const formData = new FormData();
-        const imageBlob = new Blob([Buffer.from(base64Image, 'base64')], { type: 'image/png' });
-        formData.append('image', imageBlob, 'house.png');
-        formData.append('prompt', prompt);
-        formData.append('n', '1');
-        formData.append('size', '1024x1024');
-        formData.append('response_format', 'b64_json');
-        return formData;
-      })(),
+      body: JSON.stringify({
+        model: 'dall-e-3',
+        prompt: prompt,
+        n: 1,
+        size: '1024x1024',
+        quality: 'standard',
+        response_format: 'b64_json',
+      }),
     });
 
     if (!openaiRes.ok) {
-      // Fallback: use DALL-E to generate based on description
-      const fallbackRes = await fetch('https://api.openai.com/v1/images/generations', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${openaiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'dall-e-3',
-          prompt: `A photorealistic image of a beautiful Florida home with a brand new ${color} ${style} roof. The home is in a Tampa Bay neighborhood with palm trees, green lawn, and clear sky. The roof should look professionally installed, clean, and modern. Show the full front of the house with the driveway visible. The style should match typical Florida residential architecture.`,
-          n: 1,
-          size: '1024x1024',
-          quality: 'standard',
-          response_format: 'b64_json',
-        }),
-      });
-
-      if (!fallbackRes.ok) {
-        const errText = await fallbackRes.text();
-        console.error('OpenAI fallback error:', errText);
-        return res.status(502).json({ error: 'Failed to generate visualization' });
-      }
-
-      const fallbackData = await fallbackRes.json();
-      return res.status(200).json({
-        success: true,
-        originalImage: imageDataUrl,
-        generatedImage: `data:image/png;base64,${fallbackData.data[0].b64_json}`,
-        method: 'generation',
-        style: `${color} ${style}`,
+      const errText = await openaiRes.text();
+      console.error('OpenAI error:', openaiRes.status, errText);
+      return res.status(502).json({
+        error: 'Failed to generate visualization',
+        details: `OpenAI returned ${openaiRes.status}`,
       });
     }
 
-    const editData = await openaiRes.json();
+    const openaiData = await openaiRes.json();
+    const generatedB64 = openaiData.data[0].b64_json;
+
     return res.status(200).json({
       success: true,
-      originalImage: imageDataUrl,
-      generatedImage: `data:image/png;base64,${editData.data[0].b64_json}`,
-      method: 'edit',
+      originalImage: originalDataUrl,
+      generatedImage: `data:image/png;base64,${generatedB64}`,
+      method: 'dall-e-3',
       style: `${color} ${style}`,
     });
 
   } catch (err) {
     console.error('Roof visualizer error:', err);
-    return res.status(500).json({ error: 'Internal server error', details: err.message });
+    return res.status(500).json({
+      error: 'Internal server error',
+      details: err.message,
+    });
   }
 }

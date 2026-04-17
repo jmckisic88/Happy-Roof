@@ -684,11 +684,10 @@ function submitVisualizerLead(e) {
 </script>
 
 <!-- Google Maps JS API for address autocomplete -->
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU&libraries=places&callback=initAutocomplete" async defer></script>
 <script is:inline>
-function initAutocomplete() {
+window.initAutocomplete = function() {
   var input = document.getElementById('viz-address');
-  if (!input) return;
+  if (!input || !window.google) return;
   var autocomplete = new google.maps.places.Autocomplete(input, {
     types: ['address'],
     componentRestrictions: { country: 'us' },
@@ -701,7 +700,15 @@ function initAutocomplete() {
       loadStreetView();
     }
   });
-}
+};
+// Load Google Maps JS
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU&libraries=places&callback=initAutocomplete';
+  s.async = true;
+  s.defer = true;
+  document.head.appendChild(s);
+})();
 </script>
 
 </BaseLayout>
