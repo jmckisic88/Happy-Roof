@@ -27,7 +27,6 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         input: query,
-        includedPrimaryTypes: ['street_address', 'subpremise', 'premise'],
         includedRegionCodes: ['us'],
         locationBias: {
           circle: {
