@@ -9,6 +9,7 @@
   "crons": [
     { "path": "/api/cron-referral-report", "schedule": "0 12 * * *" },
     { "path": "/api/cron-foundation-report", "schedule": "0 12 * * *" },
-    { "path": "/api/cron-seo-audit", "schedule": "0 12 * * *" }
+    { "path": "/api/cron-seo-audit", "schedule": "0 12 * * *" },
+    { "path": "/api/cron-reviews", "schedule": "0 11 * * *" }
   ]
 }
