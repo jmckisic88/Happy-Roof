@@ -246,7 +246,7 @@ const schema = `{
     </div>
 
     <!-- Address input with autocomplete -->
-    <div style="margin-bottom:2rem">
+    <div style="margin-bottom:1.5rem">
       <label style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#555;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Your Home Address</label>
       <div style="display:flex;gap:.5rem">
         <input type="text" id="viz-address" class="finput" placeholder="Start typing your address..." style="flex:1" autocomplete="off" />
@@ -255,12 +255,28 @@ const schema = `{
       <p id="viz-limit-msg" style="display:none;color:#dc2626;font-size:.82rem;margin-top:.5rem;font-weight:600"></p>
     </div>
 
-    <!-- Street View preview -->
+    <!-- OR divider + upload option -->
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+      <div style="flex:1;height:1px;background:#E0E0E0"></div>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#888;letter-spacing:.1em">OR UPLOAD A PHOTO</span>
+      <div style="flex:1;height:1px;background:#E0E0E0"></div>
+    </div>
+
+    <div id="viz-upload-area" style="margin-bottom:2rem">
+      <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;border:2px dashed #E0E0E0;border-radius:14px;cursor:pointer;transition:border-color .2s;background:#FAFAFA" onmouseover="this.style.borderColor='#E6A817'" onmouseout="this.style.borderColor='#E0E0E0'">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#1A1A1A">Upload a photo of your home</p>
+        <p style="color:#888;font-size:.78rem;margin-top:.25rem">JPG or PNG, front view works best</p>
+        <input type="file" id="viz-file-input" accept="image/jpeg,image/png" style="display:none" onchange="handleFileUpload(this)" />
+      </label>
+    </div>
+
+    <!-- Image preview (Street View or uploaded) -->
     <div id="viz-streetview" style="display:none;margin-bottom:2rem">
       <div style="border-radius:16px;overflow:hidden;border:1px solid #E0E0E0">
-        <img id="viz-original" alt="Your home from Google Street View" style="width:100%;display:block" />
+        <img id="viz-original" alt="Your home" style="width:100%;display:block" />
       </div>
-      <p style="color:#888;font-size:.75rem;text-align:center;margin-top:.5rem">Your home from Google Street View</p>
+      <p id="viz-source-label" style="color:#888;font-size:.75rem;text-align:center;margin-top:.5rem">Your home from Google Street View</p>
     </div>
 
     <!-- Style picker (shown after address) -->
@@ -537,6 +553,7 @@ function updateCostEstimate() {
 var selectedStyle = 'architectural shingle';
 var selectedColor = 'onyx black';
 var streetViewLoaded = false;
+var uploadedImageData = null;
 
 function selectStyle(el, style) {
   document.querySelectorAll('.viz-style-option').forEach(function(o) { o.classList.remove('selected'); });
@@ -551,16 +568,37 @@ function selectColor(el, color) {
   selectedColor = color;
 }
 
+function handleFileUpload(input) {
+  var file = input.files[0];
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) { alert('Image must be under 10MB'); return; }
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    uploadedImageData = e.target.result;
+    document.getElementById('viz-original').src = uploadedImageData;
+    document.getElementById('viz-source-label').textContent = 'Your uploaded photo';
+    document.getElementById('viz-streetview').style.display = 'block';
+    document.getElementById('viz-style-picker').style.display = 'block';
+    document.getElementById('viz-upload-area').style.display = 'none';
+    streetViewLoaded = true;
+  };
+  reader.readAsDataURL(file);
+}
+
 function loadStreetView() {
   var address = document.getElementById('viz-address').value.trim();
   if (!address) { alert('Please enter your address'); return; }
 
+  uploadedImageData = null;
   var apiKey = 'AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU';
   var imgUrl = 'https://maps.googleapis.com/maps/api/streetview?size=800x500&location=' + encodeURIComponent(address) + '&key=' + apiKey + '&fov=90&pitch=15';
 
   document.getElementById('viz-original').src = imgUrl;
+  document.getElementById('viz-source-label').textContent = 'Your home from Google Street View';
   document.getElementById('viz-streetview').style.display = 'block';
   document.getElementById('viz-style-picker').style.display = 'block';
+  document.getElementById('viz-upload-area').style.display = 'none';
   streetViewLoaded = true;
 }
 
@@ -609,10 +647,17 @@ function generateVisualization() {
   btn.disabled = true;
   btn.textContent = 'Generating...';
 
+  var payload = { roofStyle: selectedStyle, roofColor: selectedColor };
+  if (uploadedImageData) {
+    payload.uploadedImage = uploadedImageData;
+  } else {
+    payload.address = address;
+  }
+
   fetch('/api/roof-visualizer', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ address: address, roofStyle: selectedStyle, roofColor: selectedColor })
+    body: JSON.stringify(payload)
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -637,7 +682,12 @@ function generateVisualization() {
         if (tryBtn) tryBtn.style.display = 'none';
       }
     } else {
-      alert('We couldn\'t generate a visualization for this address. ' + (data.error || 'Please try again.'));
+      if (data.noStreetView) {
+        document.getElementById('viz-upload-area').style.display = 'block';
+        alert('No Street View image available for this address. Please upload a photo of your home instead.');
+      } else {
+        alert('We couldn\'t generate a visualization. ' + (data.error || 'Please try again.'));
+      }
     }
   })
   .catch(function(err) {
