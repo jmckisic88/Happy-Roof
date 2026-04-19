@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         locationBias: {
           circle: {
             center: { latitude: 28.0, longitude: -82.6 },
-            radius: 80000,
+            radius: 50000,
           },
         },
       }),
