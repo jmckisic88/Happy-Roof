@@ -193,6 +193,76 @@ const schema = `[{
         "@type": "Question",
         "name": "Does Happy Roof do emergency tarping after a storm?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. We provide emergency tarping to prevent further interior damage while your claim is processed or your replacement is scheduled. Call (813) 595-7663 for urgent storm damage assistance." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I stay in my home during a roof replacement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Most homeowners stay home during the process. The work is done entirely from the outside. Expect some noise and vibration, but your home remains fully accessible." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if it rains during my roof installation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our crews monitor weather closely and will not leave your roof exposed. If rain is expected, we install underlayment to protect your home and resume work when conditions clear." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know if my roof damage is covered by insurance?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Schedule a free inspection with Happy Roof. We document the damage and provide a detailed report you can submit to your insurance company. We also work directly with adjusters throughout the claim process." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a permit to replace my roof in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Florida law requires a building permit for all roof replacements. Happy Roof handles all permit applications and inspections with your local building department." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a wind mitigation inspection and do I need one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A wind mitigation inspection documents your roof's wind-resistance features. In Florida, it can significantly reduce your homeowner's insurance premiums. Happy Roof can coordinate this inspection after your new roof is installed." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much can I save on insurance with a new roof in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Many Tampa Bay homeowners save $500 to $2,000+ per year on insurance premiums after installing a new roof, especially with impact-resistant materials and a favorable wind mitigation report." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best time of year to replace a roof in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Any time of year works, but fall and winter (October through March) typically offer the most predictable weather and shorter wait times. We install roofs year-round and plan around Florida's afternoon storms." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I choose between a repair and a full replacement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Generally, if your roof is under 15 years old and the damage is localized, a repair is appropriate. If the roof is aging, has widespread issues, or multiple leaks, a replacement is more cost-effective long-term. We'll give you an honest recommendation during your free inspection." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof offer military or first responder discounts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer a $500 Heroes Discount on roof replacements and major repairs for veterans, active military, first responders, doctors, nurses, and teachers. Mention it when you call or use code HERO26 online." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Happy Roof match my HOA requirements?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work with HOA guidelines regularly across Tampa Bay communities. We can help you select approved colors and materials, and provide documentation your HOA may require before and after installation." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long is the warranty on a Happy Roof installation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Happy Roof provides up to a 15-year workmanship warranty on shingle, metal, and tile installations, and up to 10 years on flat roof systems. This is in addition to the manufacturer's material warranty." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you remove the old roof or install over it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We always do a complete tear-off down to the deck. Installing over old shingles hides damage, adds weight, and violates most manufacturer warranty requirements. A clean deck is the foundation of a quality installation." }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas in Tampa Bay does Happy Roof serve?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We serve all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Wesley Chapel, Riverview, Oldsmar, Palm Harbor, Largo, Dunedin, Tarpon Springs, Safety Harbor, and surrounding areas." }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly can Happy Roof start my project?",
+        "acceptedAnswer": { "@type": "Answer", "text": "After your free inspection and estimate approval, most projects begin within 1 to 3 weeks depending on permit processing and material availability. Emergency storm damage repairs are prioritized within 24 to 48 hours." }
       }
     ]
   },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/index.html"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://happyroof.com/faq.html"}]}]`;
@@ -280,6 +350,18 @@ const schema = `[{
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How much does a roof replacement cost in Tampa Bay?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">A typical residential roof replacement in Tampa Bay ranges from $8,000 to $25,000+ depending on roof size, material (asphalt shingles, metal, tile), slope complexity, and whether structural repairs are needed. Happy Roof provides free, itemized estimates with no hidden fees.</p></div>
       </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the best time of year to replace a roof in Tampa Bay?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Any time of year works, but fall and winter (October through March) typically offer the most predictable weather and shorter wait times. We install roofs year-round and plan around Florida's afternoon storms.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof offer military or first responder discounts?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We offer a $500 Heroes Discount on roof replacements and major repairs for veterans, active military, first responders, doctors, nurses, and teachers. Mention it when you call or use code HERO26 online.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What areas in Tampa Bay does Happy Roof serve?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">We serve all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Wesley Chapel, Riverview, Oldsmar, Palm Harbor, Largo, Dunedin, Tarpon Springs, Safety Harbor, and surrounding areas.</p></div>
+      </div>
     </div>
 
     <!-- PROCESS -->
@@ -304,6 +386,30 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Will you remove and dispose of my old roof?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Every roof replacement includes full tear-off, disposal of old materials, and thorough cleanup of your property. We use magnetic nail sweepers to ensure no nails or debris are left behind in your yard or driveway.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can I stay in my home during a roof replacement?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Most homeowners stay home during the process. The work is done entirely from the outside. Expect some noise and vibration, but your home remains fully accessible.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What happens if it rains during my roof installation?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Our crews monitor weather closely and will not leave your roof exposed. If rain is expected, we install underlayment to protect your home and resume work when conditions clear.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Do I need a permit to replace my roof in Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Florida law requires a building permit for all roof replacements. Happy Roof handles all permit applications and inspections with your local building department.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I choose between a repair and a full replacement?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Generally, if your roof is under 15 years old and the damage is localized, a repair is appropriate. If the roof is aging, has widespread issues, or multiple leaks, a replacement is more cost-effective long-term. We'll give you an honest recommendation during your free inspection.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Do you remove the old roof or install over it?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">We always do a complete tear-off down to the deck. Installing over old shingles hides damage, adds weight, and violates most manufacturer warranty requirements. A clean deck is the foundation of a quality installation.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How quickly can Happy Roof start my project?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">After your free inspection and estimate approval, most projects begin within 1 to 3 weeks depending on permit processing and material availability. Emergency storm damage repairs are prioritized within 24 to 48 hours.</p></div>
       </div>
     </div>
 
@@ -330,6 +436,14 @@ const schema = `[{
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can you match my existing tile if I need a repair?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">In most cases, yes. We work with multiple tile suppliers and can source matching or closely matching tiles for repairs. For discontinued profiles, we'll find the closest available match and discuss options with you before proceeding.</p></div>
       </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the difference between 3-tab and architectural shingles?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">3-tab shingles are flat and uniform, while architectural shingles are thicker, more dimensional, and rated for higher wind speeds. Architectural shingles (like Owens Corning Duration HDZ) are the standard in Florida for their 130 MPH wind rating and longer lifespan.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can Happy Roof match my HOA requirements?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We work with HOA guidelines regularly across Tampa Bay communities. We can help you select approved colors and materials, and provide documentation your HOA may require before and after installation.</p></div>
+      </div>
     </div>
 
     <!-- WARRANTIES -->
@@ -350,6 +464,10 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I file a warranty claim?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Call us at <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> or email info@happyroof.com. We'll schedule an inspection to assess the issue. If it's covered under our workmanship warranty, we'll repair it at no cost to you. We aim to respond to all warranty claims within 48 hours.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How long is the warranty on a Happy Roof installation?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Happy Roof provides up to a 15-year workmanship warranty on shingle, metal, and tile installations, and up to 10 years on flat roof systems. This is in addition to the manufacturer's material warranty.</p></div>
       </div>
     </div>
 
@@ -388,6 +506,18 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof do emergency tarping after a storm?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We provide emergency tarping to prevent further water intrusion and interior damage while your insurance claim is processed or your replacement is scheduled. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> for urgent storm damage assistance.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I know if my roof damage is covered by insurance?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Schedule a free inspection with Happy Roof. We document the damage and provide a detailed report you can submit to your insurance company. We also work directly with adjusters throughout the claim process.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is a wind mitigation inspection and do I need one?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">A wind mitigation inspection documents your roof's wind-resistance features. In Florida, it can significantly reduce your homeowner's insurance premiums. Happy Roof can coordinate this inspection after your new roof is installed.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How much can I save on insurance with a new roof in Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Many Tampa Bay homeowners save $500 to $2,000+ per year on insurance premiums after installing a new roof, especially with impact-resistant materials and a favorable wind mitigation report.</p></div>
       </div>
     </div>
 
