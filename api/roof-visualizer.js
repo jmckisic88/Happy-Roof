@@ -1,9 +1,11 @@
-// Roof Visualizer API
+// Roof Visualizer API v2
 // POST /api/roof-visualizer
 // Takes an address or uploaded image + roof style
-// Uses GPT-4o image editing to modify ONLY the roof on the actual photo
+// Uses gpt-image-1 to edit the ACTUAL photo, changing only the roof
 
-import OpenAI from 'openai';
+import { writeFile, unlink } from 'fs/promises';
+import { tmpdir } from 'os';
+import { join } from 'path';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -30,12 +32,13 @@ export default async function handler(req, res) {
   const color = roofColor || 'charcoal gray';
 
   try {
-    let imageBase64;
+    let imageBuffer;
     let originalDataUrl;
 
     if (uploadedImage) {
-      // User uploaded a photo directly
-      imageBase64 = uploadedImage.replace(/^data:image\/\w+;base64,/, '');
+      // User uploaded a photo
+      const base64Data = uploadedImage.replace(/^data:image\/\w+;base64,/, '');
+      imageBuffer = Buffer.from(base64Data, 'base64');
       originalDataUrl = uploadedImage;
     } else {
       // Fetch Street View image
@@ -56,69 +59,73 @@ export default async function handler(req, res) {
 
       const streetViewUrl = `https://maps.googleapis.com/maps/api/streetview?size=1024x768&location=${encodeURIComponent(address)}&key=${googleKey}&fov=90&pitch=15`;
       const imgRes = await fetch(streetViewUrl);
-      const imgBuffer = await imgRes.arrayBuffer();
-      imageBase64 = Buffer.from(imgBuffer).toString('base64');
-      originalDataUrl = `data:image/jpeg;base64,${imageBase64}`;
+      imageBuffer = Buffer.from(await imgRes.arrayBuffer());
+      originalDataUrl = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
     }
 
-    // Use GPT-4o to edit the actual photo
-    const openai = new OpenAI({ apiKey: openaiKey });
+    // Write image to temp file (required for multipart form upload)
+    const tmpPath = join(tmpdir(), `roof-viz-${Date.now()}.jpg`);
+    await writeFile(tmpPath, imageBuffer);
 
-    const editPrompt = `Edit this photograph of a house. Replace ONLY the roof with a brand new ${color} ${style} roof. Keep the exact same house, same walls, same windows, same landscaping, same driveway, same trees, same sky, same everything else. Only the roof should change. The new ${style} roof should look:
-- Freshly installed and clean
-- The correct ${color} color
-- Realistic and photographic (not a rendering)
-- Properly fitted to the existing house shape and roofline
-Do NOT change anything except the roof. The output should look like the exact same photo with just a new roof installed.`;
+    // Use gpt-image-1 to edit the actual photo
+    const prompt = `Edit this photograph of a house. Replace ONLY the roof with a brand new ${color} ${style} roof. Keep the exact same house, same walls, same windows, same doors, same landscaping, same driveway, same trees, same sky, same everything else completely unchanged. Only the roof material and color should change to ${color} ${style}. The new roof should look freshly installed, clean, and photorealistic.`;
 
-    const response = await openai.responses.create({
-      model: 'gpt-4o',
-      input: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'input_image',
-              image_url: `data:image/jpeg;base64,${imageBase64}`,
-            },
-            {
-              type: 'input_text',
-              text: editPrompt,
-            },
-          ],
-        },
-      ],
-      tools: [{ type: 'image_generation', size: '1024x1024', quality: 'high' }],
+    // Build multipart form data manually
+    const boundary = '----FormBoundary' + Date.now();
+    const parts = [];
+
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\ngpt-image-1`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="prompt"\r\n\r\n${prompt}`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="size"\r\n\r\n1024x1024`);
+    parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="quality"\r\n\r\nhigh`);
+
+    // Image part
+    const imageHeader = `--${boundary}\r\nContent-Disposition: form-data; name="image"; filename="house.jpg"\r\nContent-Type: image/jpeg\r\n\r\n`;
+    const imageFooter = `\r\n--${boundary}--\r\n`;
+
+    const headerBuf = Buffer.from(imageHeader);
+    const footerBuf = Buffer.from(imageFooter);
+    const textParts = Buffer.from(parts.join('\r\n') + '\r\n');
+    const body = Buffer.concat([textParts, headerBuf, imageBuffer, footerBuf]);
+
+    const editRes = await fetch('https://api.openai.com/v1/images/edits', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openaiKey}`,
+        'Content-Type': `multipart/form-data; boundary=${boundary}`,
+      },
+      body: body,
     });
 
-    // Extract the generated image from the response
-    let generatedImage = null;
-    for (const item of response.output) {
-      if (item.type === 'image_generation_call' && item.result) {
-        generatedImage = `data:image/png;base64,${item.result}`;
-        break;
-      }
-    }
+    // Clean up temp file
+    try { await unlink(tmpPath); } catch (e) { /* ignore */ }
 
-    if (!generatedImage) {
-      // Try alternate response format
-      for (const item of response.output) {
-        if (item.content) {
-          for (const c of item.content) {
-            if (c.type === 'image' && c.image_url) {
-              generatedImage = c.image_url;
-              break;
-            }
-          }
-        }
-      }
-    }
-
-    if (!generatedImage) {
-      console.error('No image in GPT-4o response:', JSON.stringify(response.output).substring(0, 500));
+    if (!editRes.ok) {
+      const errText = await editRes.text();
+      console.error('gpt-image-1 error:', editRes.status, errText);
       return res.status(502).json({
-        error: 'AI could not generate the roof visualization. Please try again.',
-        details: 'No image in response',
+        error: 'Failed to generate roof visualization. Please try again.',
+        details: `OpenAI returned ${editRes.status}`,
+      });
+    }
+
+    const editData = await editRes.json();
+    const generatedB64 = editData.data?.[0]?.b64_json;
+    const generatedUrl = editData.data?.[0]?.url;
+
+    let generatedImage;
+    if (generatedB64) {
+      generatedImage = `data:image/png;base64,${generatedB64}`;
+    } else if (generatedUrl) {
+      // Fetch the URL and convert to base64
+      const imgResp = await fetch(generatedUrl);
+      const imgBuf = Buffer.from(await imgResp.arrayBuffer());
+      generatedImage = `data:image/png;base64,${imgBuf.toString('base64')}`;
+    }
+
+    if (!generatedImage) {
+      return res.status(502).json({
+        error: 'No image returned from AI. Please try again.',
       });
     }
 
@@ -126,12 +133,12 @@ Do NOT change anything except the roof. The output should look like the exact sa
       success: true,
       originalImage: originalDataUrl,
       generatedImage: generatedImage,
-      method: 'gpt-4o-edit',
+      method: 'gpt-image-1',
       style: `${color} ${style}`,
     });
 
   } catch (err) {
-    console.error('Roof visualizer error:', err.message || err);
+    console.error('Roof visualizer error:', err);
     return res.status(500).json({
       error: 'Failed to generate visualization. Please try again.',
       details: err.message,
