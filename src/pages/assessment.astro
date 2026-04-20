@@ -359,9 +359,12 @@ const schema = `{
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">LOVE WHAT YOU SEE?</h3>
         <p style="color:#555;font-size:.88rem;margin-bottom:1.5rem">Get a free, no-obligation estimate for your new roof. We'll come to you.</p>
         <form id="viz-lead-form" onsubmit="submitVisualizerLead(event)">
-          <div style="display:grid;sm:grid-cols-2;gap:.75rem;margin-bottom:.75rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
             <input type="text" name="viz_name" class="finput" placeholder="Your Name" required />
             <input type="tel" name="viz_phone" class="finput" placeholder="Phone Number" required />
+          </div>
+          <div style="margin-bottom:.75rem">
+            <input type="email" name="viz_email" class="finput" placeholder="Email Address" />
           </div>
           <button type="submit" class="btn-t w-full justify-center" style="font-size:1rem;padding:.85rem">Get My Free Estimate</button>
         </form>
@@ -384,7 +387,7 @@ const schema = `{
     <p style="color:rgba(255,255,255,.8);font-size:1rem;line-height:1.75;margin-bottom:2rem">Whether you need a repair, replacement, or just want an expert opinion, our team is here to help.</p>
     <div class="flex flex-wrap gap-3 justify-center">
       <a href="/contact" class="btn-t" style="font-size:1.1rem;padding:1rem 2rem">Get a Free Estimate</a>
-      <a href="tel:8135957663" class="btn-o call-tracking-number" style="color:#FFFFFF;border-color:rgba(255,255,255,.3);font-size:1rem;padding:1rem 2rem">Call (813) 595-7663</a>
+      <a href="tel:8135957663" class="call-tracking-number" style="color:#FFFFFF;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;padding:1rem 2rem;display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;transition:background .18s" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='transparent'">Call (813) 595-7663</a>
     </div>
   </div>
 </section>
@@ -704,10 +707,11 @@ function submitVisualizerLead(e) {
   var form = e.target;
   var name = form.viz_name.value;
   var phone = form.viz_phone.value;
+  var email = form.viz_email ? form.viz_email.value : '';
   var address = document.getElementById('viz-address').value;
 
   var stPayload = {
-    name: name, phone: phone, address: address,
+    name: name, phone: phone, email: email, address: address,
     service: 'Roof Visualizer Lead',
     source: 'Website - Roof Assessment',
     page: '/assessment',
@@ -721,7 +725,7 @@ function submitVisualizerLead(e) {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         _subject: 'Roof Visualizer Lead | ' + name,
-        'Name': name, 'Phone': phone, 'Address': address,
+        'Name': name, 'Phone': phone, 'Email': email || 'Not provided', 'Address': address,
         'Roof Style': selectedColor + ' ' + selectedStyle,
         'Source': 'Roof Assessment & Visualizer Page'
       })
