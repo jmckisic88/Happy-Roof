@@ -735,6 +735,14 @@ function submitVisualizerLead(e) {
     document.getElementById('viz-lead-success').style.display = 'block';
   });
 }
+
+// ── Auto-select tab from URL param ──
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var tab = params.get('tab');
+  if (tab === 'viz') switchTab('viz');
+  else if (tab === 'quiz') switchTab('quiz');
+})();
 </script>
 
 <!-- Address autocomplete via Places API (server-side) -->

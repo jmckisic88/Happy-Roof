@@ -17,7 +17,7 @@ const { activePage = '', hideBanner = false, hideNavLinks = false } = Astro.prop
         <a href="/services" class:list={["nav-link", { active: activePage === "services" }]}>Services</a>
         <a href="/finance" class:list={["nav-link", { active: activePage === "finance" }]}>Financing</a>
         <a href="/referrals" class:list={["nav-link", { active: activePage === "referrals" }]}>Referrals</a>
-        <a href="/assessment" class:list={["nav-link", { active: activePage === "assessment" }]}>Roof Visualizer</a>
+        <a href="/assessment?tab=viz" class:list={["nav-link", { active: activePage === "assessment" }]}>Roof Visualizer</a>
         <a href="/about" class:list={["nav-link", { active: activePage === "about" }]}>About</a>
         <a href="/contact" class:list={["nav-link", { active: activePage === "contact" }]}>Contact</a>
       </div>
@@ -40,7 +40,7 @@ const { activePage = '', hideBanner = false, hideNavLinks = false } = Astro.prop
       <a href="/services" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">Services</a>
       <a href="/finance" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">Financing</a>
       <a href="/referrals" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">Referrals</a>
-      <a href="/assessment" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">Roof Visualizer</a>
+      <a href="/assessment?tab=viz" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">Roof Visualizer</a>
       <a href="/about" class="nav-link py-3 border-b block" style="border-color:#E0E0E0">About</a>
       <a href="/contact" class="nav-link py-3 block">Contact</a>
     </div>
