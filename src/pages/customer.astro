@@ -112,16 +112,17 @@ const schema = `{
     <div class="binder-toc" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.25rem">
       <a href="#company"><span class="binder-toc-num">01</span> Company Story</a>
       <a href="#why"><span class="binder-toc-num">02</span> Why Happy Roof</a>
-      <a href="#warranty"><span class="binder-toc-num">03</span> Our Warranty</a>
-      <a href="#services"><span class="binder-toc-num">04</span> Products & Services</a>
-      <a href="#materials"><span class="binder-toc-num">05</span> Materials We Trust</a>
-      <a href="#process"><span class="binder-toc-num">06</span> How It Works</a>
-      <a href="#checklist"><span class="binder-toc-num">07</span> Homeowner Checklist</a>
-      <a href="#financing"><span class="binder-toc-num">08</span> Financing Options</a>
-      <a href="#reviews"><span class="binder-toc-num">09</span> Customer Reviews</a>
-      <a href="#heroes"><span class="binder-toc-num">10</span> Heroes Discount</a>
-      <a href="#referrals"><span class="binder-toc-num">11</span> Referral Program</a>
-      <a href="#credentials"><span class="binder-toc-num">12</span> Credentials & Insurance</a>
+      <a href="#truth"><span class="binder-toc-num">03</span> The Truth</a>
+      <a href="#warranty"><span class="binder-toc-num">04</span> Our Warranty</a>
+      <a href="#services"><span class="binder-toc-num">05</span> Products & Services</a>
+      <a href="#materials"><span class="binder-toc-num">06</span> Materials We Trust</a>
+      <a href="#process"><span class="binder-toc-num">07</span> How It Works</a>
+      <a href="#checklist"><span class="binder-toc-num">08</span> Homeowner Checklist</a>
+      <a href="#financing"><span class="binder-toc-num">09</span> Financing Options</a>
+      <a href="#reviews"><span class="binder-toc-num">10</span> Customer Reviews</a>
+      <a href="#heroes"><span class="binder-toc-num">11</span> Heroes Discount</a>
+      <a href="#referrals"><span class="binder-toc-num">12</span> Referral Program</a>
+      <a href="#credentials"><span class="binder-toc-num">13</span> Credentials & Insurance</a>
     </div>
   </div>
 </section>
@@ -135,6 +136,7 @@ const schema = `{
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">Hello Future Happy Roof Client,</p>
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">First and foremost, thank you for giving us the opportunity to earn your business. We know that choosing a roofing contractor is not a small decision. Your roof protects everything you care about, and you deserve a company that takes that seriously.</p>
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">Happy Roof was built on a simple observation: most homeowners dread dealing with roofers. Confusing quotes, missed appointments, work that didn't hold up. We knew it didn't have to be that way. So we built the company we wished existed: one rooted in honesty, reliability, and craftsmanship that we'd be proud to put our name on.</p>
+      <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">We've sat where you're sitting. Before Happy Roof, we were homeowners dealing with roofers who didn't show up, gave confusing quotes, and disappeared after the check cleared. We've been the ones Googling 'is this estimate fair?' at midnight. We've been the ones wondering if that ceiling stain is a $500 fix or a $15,000 problem. That experience is why we do things differently.</p>
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">When you hire Happy Roof, you're not just getting a new roof. You're getting a team that shows up on time, communicates clearly, cleans up completely, and stands behind every nail with a warranty that means something. We treat your home the way we'd treat our own.</p>
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:1rem">There are plenty of contractors out there. What sets us apart isn't just what we do, it's why we do it. We genuinely care about the homeowners and businesses we serve here in Tampa Bay, and it shows in every job we complete.</p>
       <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Thank you for taking the time to review this guide. Our team will walk you through everything, but please don't hesitate to reach out to me directly with any questions.</p>
@@ -214,7 +216,7 @@ const schema = `{
     <div style="display:grid;gap:1.5rem">
       <div class="binder-value">
         <div class="binder-value-icon" style="background:rgba(230,168,23,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">Honesty First</p><p style="color:#555;font-size:1rem;line-height:1.8">We tell you what your roof actually needs, not what makes us the most money. If it only needs a repair, we say repair. No upselling, ever.</p></div>
+        <div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">Honesty First</p><p style="color:#555;font-size:1rem;line-height:1.8">We tell you what your roof actually needs, not what makes us the most money. If it only needs a repair, we say repair. We'd rather lose a sale than do a job wrong.</p></div>
       </div>
       <div class="binder-value">
         <div class="binder-value-icon" style="background:rgba(59,159,217,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
@@ -240,10 +242,41 @@ const schema = `{
   </div>
 </section>
 
-<!-- ══════ SECTION 3: WARRANTY ══════ -->
-<section id="warranty" class="binder-section" style="background:#F7F7F7">
+<!-- ══════ SECTION 3: THE TRUTH ══════ -->
+<section id="truth" class="binder-section" style="background:#F7F7F7">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 3</p>
+    <p class="binder-label">The Truth</p>
+    <h2 class="binder-h2">5 THINGS YOUR PREVIOUS ROOFER<br/><span style="color:#E6A817">PROBABLY DIDN'T TELL YOU</span></h2>
+
+    <div style="display:grid;gap:1.5rem">
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#E6A817;margin-bottom:.5rem">1. Your warranty is probably worthless if they used mismatched components</p>
+        <p style="color:#555;font-size:1rem;line-height:1.8">Most manufacturers require their full system (underlayment, shingles, ridge cap) to honor the warranty. Mix brands, and you're on your own.</p>
+      </div>
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#E6A817;margin-bottom:.5rem">2. If they didn't pull a permit, your roof isn't legal</p>
+        <p style="color:#555;font-size:1rem;line-height:1.8">Florida law requires a building permit for every roof replacement. No permit means no inspection, no code verification, and potential problems when you sell or file a claim.</p>
+      </div>
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#E6A817;margin-bottom:.5rem">3. A '25-year shingle' doesn't last 25 years in Tampa Bay</p>
+        <p style="color:#555;font-size:1rem;line-height:1.8">Manufacturer lifespans are based on moderate climates. Florida's UV, humidity, and storms cut that number significantly. The installation quality matters more than the number on the package.</p>
+      </div>
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#E6A817;margin-bottom:.5rem">4. Your insurance discount depends on HOW it was installed, not just WHAT</p>
+        <p style="color:#555;font-size:1rem;line-height:1.8">A wind mitigation inspection looks at installation methods, not just materials. A properly installed roof with secondary water barriers and proper nail patterns can save you $500&ndash;$2,000/year.</p>
+      </div>
+      <div class="binder-card">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#E6A817;margin-bottom:.5rem">5. Most workmanship warranties are 1-2 years. Ask why.</p>
+        <p style="color:#555;font-size:1rem;line-height:1.8">The industry standard is laughable. If a contractor won't stand behind their work for more than a year or two, what does that tell you about their confidence in it? Ours is up to 15.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SECTION 4: WARRANTY ══════ -->
+<section id="warranty" class="binder-section" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <p class="binder-label">Section 4</p>
     <h2 class="binder-h2">OUR WARRANTY</h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Most roofers in Tampa Bay offer 1&ndash;5 years of workmanship coverage. We offer up to 15. In writing, on every job.</p>
 
@@ -304,9 +337,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 4: PRODUCTS & SERVICES ══════ -->
-<section id="services" class="binder-section" style="background:#FFFFFF">
+<section id="services" class="binder-section" style="background:#F7F7F7">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 4</p>
+    <p class="binder-label">Section 5</p>
     <h2 class="binder-h2">PRODUCTS & SERVICES</h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Happy Roof provides complete roofing services for homeowners and businesses across Tampa Bay. Every system we install uses materials we trust: products engineered for Florida's climate and backed by manufacturer warranties.</p>
 
@@ -322,9 +355,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 5: MATERIALS ══════ -->
-<section id="materials" class="binder-section" style="background:#F7F7F7">
+<section id="materials" class="binder-section" style="background:#FFFFFF">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 5</p>
+    <p class="binder-label">Section 6</p>
     <h2 class="binder-h2">MATERIALS WE TRUST</h2>
 
     <!-- Owens Corning Shingles -->
@@ -352,9 +385,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 6: HOW IT WORKS ══════ -->
-<section id="process" class="binder-section" style="background:#FFFFFF">
+<section id="process" class="binder-section" style="background:#F7F7F7">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 6</p>
+    <p class="binder-label">Section 7</p>
     <h2 class="binder-h2">HOW IT WORKS -<br/><span style="color:#E6A817">FROM CALL TO COMPLETION</span></h2>
     <div style="display:grid;sm:grid-cols-2;gap:1.5rem">
       <div class="binder-card" style="border-left:3px solid #E6A817"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#E6A817;margin-bottom:.5rem">01 | FREE INSPECTION</p><p style="color:#555;font-size:.98rem;line-height:1.8">We come to you, no commitment required. Our certified inspector assesses every inch of your roof and provides a detailed written report.</p></div>
@@ -366,9 +399,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 7: HOMEOWNER CHECKLIST ══════ -->
-<section id="checklist" class="binder-section" style="background:#F7F7F7">
+<section id="checklist" class="binder-section" style="background:#FFFFFF">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 7</p>
+    <p class="binder-label">Section 8</p>
     <h2 class="binder-h2">HOMEOWNER CHECKLIST</h2>
     <p style="color:#555;font-size:1rem;line-height:1.8;font-style:italic;margin-bottom:2rem">Please verify that all of the following items have been completed prior to your start date. Failure to complete these items could delay the start of your job.</p>
 
@@ -409,9 +442,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 8: FINANCING ══════ -->
-<section id="financing" class="binder-section" style="background:#FFFFFF">
+<section id="financing" class="binder-section" style="background:#F7F7F7">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 8</p>
+    <p class="binder-label">Section 9</p>
     <h2 class="binder-h2">FINANCING OPTIONS</h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Happy Roof has partnered with <strong>Enhancify</strong> to offer fast, flexible financing so you can protect your home today and pay over time. Checking your rate takes 60 seconds and won't affect your credit score.</p>
 
@@ -448,9 +481,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 9: REVIEWS ══════ -->
-<section id="reviews" class="binder-section" style="background:#F7F7F7">
+<section id="reviews" class="binder-section" style="background:#FFFFFF">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 9</p>
+    <p class="binder-label">Section 10</p>
     <h2 class="binder-h2">WHAT OUR CUSTOMERS SAY</h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Don't take our word for it. Here's what Tampa Bay homeowners have to say about Happy Roof.</p>
 
@@ -478,7 +511,7 @@ const schema = `{
 <!-- ══════ SECTION 10: HEROES DISCOUNT ══════ -->
 <section id="heroes" class="binder-section" style="background:#1A1A1A">
   <div class="max-w-4xl mx-auto px-5 text-center">
-    <p class="binder-label">Section 10</p>
+    <p class="binder-label">Section 11</p>
     <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4rem);line-height:.92;color:#FFFFFF;margin-bottom:.5rem">$500 OFF</h2>
     <p style="color:#E6A817;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.04em;margin-bottom:1.5rem">For the Heroes of Tampa Bay | Roof Replacements & Major Repairs</p>
     <p style="color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.8;max-width:500px;margin:0 auto 2rem">At Happy Roof, we're proud to support the people who keep Tampa Bay safe, healthy, and strong. We offer a $500 discount on any roof replacement or major repair for:</p>
@@ -493,9 +526,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 11: REFERRAL PROGRAM ══════ -->
-<section id="referrals" class="binder-section" style="background:#FFFFFF">
+<section id="referrals" class="binder-section" style="background:#F7F7F7">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 11</p>
+    <p class="binder-label">Section 12</p>
     <h2 class="binder-h2">REFER A FRIEND -<br/><span style="color:#E6A817">EARN UP TO $1,000</span></h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">If you know someone who needs a roof, send them our way, and we'll send cash your way. No limit on how many you can refer.</p>
 
@@ -517,9 +550,9 @@ const schema = `{
 </section>
 
 <!-- ══════ SECTION 12: CREDENTIALS ══════ -->
-<section id="credentials" class="binder-section" style="background:#F7F7F7">
+<section id="credentials" class="binder-section" style="background:#FFFFFF">
   <div class="max-w-4xl mx-auto px-5">
-    <p class="binder-label">Section 12</p>
+    <p class="binder-label">Section 13</p>
     <h2 class="binder-h2">CREDENTIALS & INSURANCE</h2>
     <p style="color:#555;font-size:1.05rem;line-height:1.85;margin-bottom:2rem">Happy Roof is fully licensed, bonded, and insured. We make our credentials available to every client because transparency is part of how we do business. Never hire a contractor who can't produce these documents.</p>
 

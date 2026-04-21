@@ -300,8 +300,11 @@ const schema = `[{
         EVERYTHING.<br/>
         <span class="gt">WE PROTECT<br/>YOUR ROOF.</span>
       </h1>
-      <p class="mb-8 max-w-lg" style="color:#555555;font-size:1.05rem;line-height:1.75">
-        Get a straight answer, a fair price, and a crew that shows up on time. Honest work from a local team that treats your home like our own.
+      <p class="mb-4 max-w-lg" style="color:#555555;font-size:1.05rem;line-height:1.75">
+        Your roof isn't just shingles. It's the only thing standing between your family and a $40,000 water damage claim. We started Happy Roof because we were tired of watching homeowners get burned by contractors who treat that responsibility like a side job.
+      </p>
+      <p class="mb-8 max-w-lg" style="color:#888;font-size:.9rem;line-height:1.7;font-style:italic">
+        We've been the customer. Now we're the contractor we wished existed.
       </p>
       <div class="flex flex-wrap items-center gap-4 mb-10">
         <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1rem;padding:.75rem 1.5rem">
@@ -315,7 +318,7 @@ const schema = `[{
     <!-- Right: estimate form -->
     <div>
       <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:20px;padding:1.75rem 1.75rem 1.5rem;box-shadow:0 24px 64px -12px rgba(44,24,16,.08),0 8px 24px -8px rgba(44,24,16,.05)">
-        <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;color:#1A1A1A;letter-spacing:.01em;margin-bottom:.2rem">Get a Free Estimate</p>
+        <p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;color:#1A1A1A;letter-spacing:.01em;margin-bottom:.2rem">Get an Honest Assessment</p>
         <p style="font-size:.82rem;color:#555555;margin-bottom:1.25rem">We typically respond within 1 business day.</p>
         <form id="hero-form" onsubmit="submitHeroForm(event)" novalidate>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
@@ -361,9 +364,9 @@ const schema = `[{
             <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
           </div>
           <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.05rem;padding:.9rem">
-            Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            Get the Truth About Your Roof <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
-          <p style="text-align:center;font-size:.7rem;color:#888888;margin-top:.75rem;letter-spacing:.04em">NO OBLIGATION &nbsp;·&nbsp; LICENSED &amp; INSURED &nbsp;·&nbsp; #CCC1337380</p>
+          <p style="text-align:center;font-size:.7rem;color:#888888;margin-top:.75rem;letter-spacing:.04em">NO OBLIGATION &nbsp;·&nbsp; LICENSED, INSURED &amp; ACCOUNTABLE &nbsp;·&nbsp; #CCC1337380</p>
         </form>
       </div>
     </div>
@@ -902,6 +905,45 @@ const schema = `[{
   </div>
 </section>
 
+<!-- ══════════════════════ CHALLENGER COMPARISON ══════════════════════ -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">The Difference</p>
+      <h2 class="font-display font-black tracking-tightest" style="font-size:clamp(2rem,4vw,3.2rem);line-height:.93">
+        MOST ROOFERS VS.<br/><span class="gp">HAPPY ROOF.</span>
+      </h2>
+    </div>
+    <div style="border:1px solid #E0E0E0;border-radius:16px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:#1A1A1A">
+        <div style="padding:1rem 1.5rem;text-align:center"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;color:#888">MOST ROOFERS</p></div>
+        <div style="padding:1rem 1.5rem;text-align:center;background:rgba(230,168,23,.15)"><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;color:#E6A817">HAPPY ROOF</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #F0F0F0">
+        <div style="padding:1.25rem 1.5rem;color:#888;font-size:.9rem;line-height:1.6">Give you a number and hope you sign</div>
+        <div style="padding:1.25rem 1.5rem;color:#1A1A1A;font-size:.9rem;line-height:1.6;font-weight:600;background:#FAFAF5">Walk you through every line item and explain why</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #F0F0F0">
+        <div style="padding:1.25rem 1.5rem;color:#888;font-size:.9rem;line-height:1.6">Use whatever materials are cheapest that week</div>
+        <div style="padding:1.25rem 1.5rem;color:#1A1A1A;font-size:.9rem;line-height:1.6;font-weight:600;background:#FAFAF5">Use materials we'd put on our own homes, which we have</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #F0F0F0">
+        <div style="padding:1.25rem 1.5rem;color:#888;font-size:.9rem;line-height:1.6">Disappear after the check clears</div>
+        <div style="padding:1.25rem 1.5rem;color:#1A1A1A;font-size:.9rem;line-height:1.6;font-weight:600;background:#FAFAF5">Answer the phone 2 years later when you have a question</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #F0F0F0">
+        <div style="padding:1.25rem 1.5rem;color:#888;font-size:.9rem;line-height:1.6">Offer 1-2 year workmanship warranty</div>
+        <div style="padding:1.25rem 1.5rem;color:#1A1A1A;font-size:.9rem;line-height:1.6;font-weight:600;background:#FAFAF5">Back our work for up to 15 years, in writing</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div style="padding:1.25rem 1.5rem;color:#888;font-size:.9rem;line-height:1.6">Rush to close the deal</div>
+        <div style="padding:1.25rem 1.5rem;color:#1A1A1A;font-size:.9rem;line-height:1.6;font-weight:600;background:#FAFAF5">Tell you if you don't actually need a new roof</div>
+      </div>
+    </div>
+    <p style="text-align:center;color:#888;font-size:.82rem;margin-top:1.25rem;font-style:italic">We'd rather lose a sale than do a job wrong.</p>
+  </div>
+</section>
+
 <!-- ══════════════════════ LEAVE A REVIEW ══════════════════════ -->
 <div style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:2.5rem 0">
   <div class="max-w-4xl mx-auto px-5">
@@ -936,13 +978,13 @@ const schema = `[{
   <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
     <p class="sl mb-4" style="color:#F0C040">Ready to Start?</p>
     <h2 class="font-display font-black tracking-tightest mb-4" style="font-size:clamp(2.8rem,6vw,4.8rem);line-height:.95;color:#F7F7F7">
-      Free Estimate.<br/>Real Warranty.<br/>Honest Crew.
+      Honest Assessment.<br/>Real Warranty.<br/>A Team That Shows Up.
     </h2>
     <p style="color:rgba(255,248,240,.85);font-size:1.05rem;line-height:1.75;margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto">
-      Three things that shouldn't be hard to find in a roofing company. Call us or fill out the form, and we'll take it from here.
+      We'd rather tell you your roof is fine than sell you one you don't need. Call us or fill out the form. We'll give you the truth.
     </p>
     <div class="flex flex-wrap gap-3 justify-center">
-      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get an Honest Assessment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem">Call Now, No Obligation</a>
     </div>
   </div>
