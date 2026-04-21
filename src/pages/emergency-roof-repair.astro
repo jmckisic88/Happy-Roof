@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+  "@context":"https://schema.org",
+  "@type":["LocalBusiness","RoofingContractor"],
+  "name":"Happy Roof LLC",
+  "url":"https://happyroof.com",
+  "telephone":"+1-813-595-7663",
+  "email":"info@happyroof.com",
+  "description":"Emergency roof repair in Tampa Bay. 48-hour response for storm damage, active leaks, and tarping. FL License #CCC1337380.",
+  "image":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+  "logo":"/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+  "address":{"@type":"PostalAddress","streetAddress":"141 Stevens Ave #12","addressLocality":"Oldsmar","addressRegion":"FL","postalCode":"34677","addressCountry":"US"},
+  "hasCredential":"Florida Roofing Contractor License #CCC1337380",
+  "dateModified":"2026-04-21",
+  "hasOfferCatalog":{"@type":"OfferCatalog","name":"Emergency Roof Repair Services","itemListElement":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Roof Tarping","description":"Heavy-duty tarping within 48 hours to stop active leaks and prevent further water damage."}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Storm Damage Repair","description":"Emergency repairs for wind, hail, and debris damage after severe weather events."}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Leak Repair","description":"Rapid leak diagnosis and patching to protect your home's interior and structure."}}
+  ]}
+},{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How fast can Happy Roof respond to an emergency?","acceptedAnswer":{"@type":"Answer","text":"Happy Roof guarantees a 48-hour emergency response across Tampa Bay. For active leaks and storm damage, we often arrive within 24 hours. Call (813) 595-7663 immediately."}},
+    {"@type":"Question","name":"Does Happy Roof provide emergency tarping?","acceptedAnswer":{"@type":"Answer","text":"Yes. We install heavy-duty tarps secured with proper anchoring to stop water intrusion until permanent repairs can be completed. Emergency tarping is available 7 days a week."}},
+    {"@type":"Question","name":"Will my insurance cover emergency roof repairs?","acceptedAnswer":{"@type":"Answer","text":"Most Florida homeowners insurance policies cover emergency repairs caused by storms, falling trees, and sudden damage. Happy Roof documents all damage and works directly with your insurance adjuster to support your claim."}},
+    {"@type":"Question","name":"What should I do while waiting for emergency roof repair?","acceptedAnswer":{"@type":"Answer","text":"Move valuables away from the leak, place buckets to catch water, and take photos of the damage for your insurance claim. Do not attempt to climb on your roof. Call Happy Roof at (813) 595-7663 and we will handle the rest."}}
+  ]
+},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Emergency Roof Repair","item":"https://happyroof.com/emergency-roof-repair"}]}]`;
+---
+
+<BaseLayout
+  title="Emergency Roof Repair Tampa Bay | 48-Hour Response | Happy Roof"
+  description="Emergency roof leak or storm damage? Happy Roof provides 48-hour emergency response across Tampa Bay. Licensed FL #CCC1337380. Call (813) 595-7663."
+  canonical="https://happyroof.com/emergency-roof-repair"
+  ogTitle="Emergency Roof Repair Tampa Bay | 48-Hour Response | Happy Roof"
+  ogDescription="Emergency roof leak or storm damage? 48-hour response across Tampa Bay. Tarping, leak repair, storm damage. Licensed FL #CCC1337380. Call (813) 595-7663."
+  schema={schema}
+>
+
+<style is:inline>
+.step-num{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(230,168,23,.1);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;color:#E6A817;flex-shrink:0}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Emergency Service</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      EMERGENCY ROOF<br/><span class="gt">REPAIR. 48 HOURS.</span>
+    </h1>
+    <p style="color:#1A1A1A;font-size:1.1rem;line-height:1.75;font-weight:600;max-width:640px;margin:0 auto 1rem">
+      Roof leaking right now? Happy Roof provides 48-hour emergency response across Tampa Bay for active leaks, storm damage, and structural compromise. Licensed FL #CCC1337380.
+    </p>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      When your roof is damaged and water is getting in, every hour matters. We provide emergency tarping, patching, and stabilization to protect your home, then follow up with a permanent repair plan and insurance documentation.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1.15rem;padding:1rem 2.5rem">Call Now - (813) 595-7663</a>
+      <a href="/contact" class="btn-o" style="font-size:1.05rem;padding:1rem 2.5rem">Request Emergency Service</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>48hr Emergency Response</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>7 Days a Week</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>CCC1337380</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT COUNTS AS AN EMERGENCY -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">When to Call</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">WHAT COUNTS AS A ROOF EMERGENCY</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:700px;margin:0 auto">
+        If any of these situations apply, call us immediately. Waiting even a day can turn a manageable repair into major structural damage.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Active Leak Into Your Home</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Water dripping through ceilings or running down walls needs immediate attention.</p></div></div>
+      </div>
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Storm or Wind Damage</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Missing shingles, lifted flashing, or exposed decking after a storm. <a href="/storm-damage-repair" style="color:#3B9FD9;text-decoration:none;font-weight:600">Learn more</a>.</p></div></div>
+      </div>
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Tree or Debris Impact</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">A fallen branch or airborne debris has punctured or damaged your roof.</p></div></div>
+      </div>
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Sagging or Structural Shift</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Visible sagging in the roofline can indicate structural failure and requires immediate evaluation.</p></div></div>
+      </div>
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Exposed Roof Deck</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">If you can see plywood or felt paper from the ground, your roof has no protection from the next rain.</p></div></div>
+      </div>
+      <div class="scard p-6">
+        <div class="check"><div class="check-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><div><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Fire or Severe Weather</strong><p style="color:#555555;font-size:.9rem;line-height:1.6;margin-top:.25rem">Any event that compromises your roof's ability to keep water out qualifies as an emergency.</p></div></div>
+      </div>
+    </div>
+    <p class="text-center mt-8" style="color:#555;font-size:.95rem">Not sure if it's an emergency? Read our guide: <a href="/blog/emergency-roof-repair-what-to-do" style="color:#3B9FD9;text-decoration:none;font-weight:600">Emergency Roof Repair - What to Do</a></p>
+  </div>
+</section>
+
+<!-- 4-STEP EMERGENCY PROCESS -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">OUR 4-STEP EMERGENCY PROCESS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">You Call, We Answer</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> any day of the week. We assess the situation over the phone and dispatch a crew, typically within 24-48 hours.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Emergency Stabilization</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We tarp, patch, or board up the damaged area to stop water intrusion and prevent further damage to your home's interior and structure.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Full Inspection &amp; Estimate</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Once the immediate threat is contained, we inspect the full scope of damage and provide a written estimate. We document everything for your insurance claim.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num">4</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:#1A1A1A;margin-bottom:.5rem">Permanent Repair</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">We schedule and complete the permanent <a href="/roof-repair" style="color:#3B9FD9;text-decoration:none;font-weight:600">roof repair</a>, restoring full protection with quality materials and proper installation to code.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA MID -->
+<section class="cta-grad relative overflow-hidden py-16">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.5rem);line-height:.92;letter-spacing:-.01em">
+      DON'T WAIT FOR THE<br/>NEXT RAIN<span style="color:#F0C040">.</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin:1rem 0 2rem">Every hour of delay risks more water damage, mold, and higher repair costs.</p>
+    <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1.15rem;padding:1rem 2.5rem">Call (813) 595-7663 Now</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">EMERGENCY REPAIR FAQ</h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How fast can Happy Roof respond to an emergency?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">We guarantee a 48-hour emergency response across Tampa Bay. For active leaks and storm damage, we often arrive within 24 hours. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> immediately - we answer 7 days a week.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Does Happy Roof provide emergency tarping?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes. We install heavy-duty tarps with proper anchoring to stop water intrusion until permanent repairs can be completed. Emergency tarping is available 7 days a week across Hillsborough, Pinellas, and Pasco counties.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Will my insurance cover emergency roof repairs?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Most Florida homeowners insurance policies cover emergency repairs caused by storms, falling trees, and sudden damage. Happy Roof documents all damage with photos and detailed reports, and works directly with your adjuster to support your claim. Learn more about <a href="/storm-damage-repair" style="color:#3B9FD9;text-decoration:none;font-weight:600">storm damage repair and insurance</a>.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        What should I do while waiting for emergency roof repair?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Move valuables away from the leak, place buckets to catch water, and take photos of the damage for your insurance claim. Do not climb on your roof. Read our full guide: <a href="/blog/emergency-roof-repair-what-to-do" style="color:#3B9FD9;text-decoration:none;font-weight:600">Emergency Roof Repair - What to Do</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      ROOF EMERGENCY<span style="color:#F0C040">?</span> CALL NOW.
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">We respond within 48 hours across Tampa Bay. Licensed FL #CCC1337380.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1.15rem;padding:1rem 2.5rem">Call (813) 595-7663 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="/contact" class="btn-o" style="font-size:1.05rem;padding:1rem 2.5rem">Request Emergency Service</a>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

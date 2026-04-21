@@ -55,7 +55,20 @@ const schema = `[{
     "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
     "areaServed": { "@type": "State", "name": "Florida" },
     "description": "Complete residential roofing services in Tampa Bay including shingle, metal, and tile roof replacement and installation. Licensed and insured. Up to 15-year workmanship warranty."
-  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Residential Roofing","item":"https://happyroof.com/residential-roofing"}]}]`;
+  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Residential Roofing","item":"https://happyroof.com/residential-roofing"}]},{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Residential Roof Replacement",
+    "description": "Complete residential roof replacement services in Tampa Bay including shingle, metal, and tile roofing systems.",
+    "provider": {"@type": "RoofingContractor", "name": "Happy Roof LLC"},
+    "areaServed": {"@type": "City", "name": "Tampa Bay"},
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "$8,000 - $25,000",
+      "priceCurrency": "USD"
+    },
+    "termsOfService": "Up to 15-year workmanship warranty"
+  }]`;
 ---
 
 <BaseLayout
@@ -115,7 +128,7 @@ const schema = `[{
         <p class="sl gt mb-3">Why Happy Roof</p>
         <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHY TAMPA BAY HOMEOWNERS CHOOSE HAPPY ROOF</h2>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          Choosing a roofing contractor is one of the biggest decisions a homeowner makes. At Happy Roof, we understand the weight of that decision, and we earn your trust with transparency, craftsmanship, and follow-through. We install premium Owens Corning and GAF roofing systems and meet the highest standards in the industry. Every project is led by a licensed foreman with years of Florida roofing experience, and all crews are fully vetted, licensed, and insured.
+          Choosing a roofing contractor is one of the biggest decisions a homeowner makes. At Happy Roof, we understand the weight of that decision, and we earn your trust with transparency, craftsmanship, and follow-through. We install premium Owens Corning and GAF roofing systems and meet the highest standards in the industry. Not sure which material is right for your home? Our guide on <a href="/blog/tile-vs-shingle-vs-metal" style="color:#3B9FD9;text-decoration:none;font-weight:600">tile vs. shingle vs. metal roofing</a> breaks down the pros, cons, and costs. Every project is led by a licensed foreman with years of Florida roofing experience, and all crews are fully vetted, licensed, and insured.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
           We hold Florida Roofing Contractor License #CCC1337380, carry full general liability and workers' compensation insurance, and pull all required permits for every job. When the work is done, we provide an up to 15-year workmanship warranty in writing, because a handshake isn't enough when it comes to protecting your home.

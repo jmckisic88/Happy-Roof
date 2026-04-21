@@ -55,7 +55,20 @@ const schema = `[{
     "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
     "areaServed": { "@type": "State", "name": "Florida" },
     "description": "Complete commercial roofing services in Tampa Bay including TPO, EPDM, modified bitumen, and metal roofing systems. Phased scheduling for minimal business disruption. 10-year flat roof workmanship warranty."
-  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Commercial Roofing","item":"https://happyroof.com/commercial-roofing"}]}]`;
+  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Commercial Roofing","item":"https://happyroof.com/commercial-roofing"}]},{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Commercial Roofing",
+    "description": "Commercial roofing services in Tampa Bay including TPO, EPDM, modified bitumen, and metal roofing systems for businesses.",
+    "provider": {"@type": "RoofingContractor", "name": "Happy Roof LLC"},
+    "areaServed": {"@type": "City", "name": "Tampa Bay"},
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "$12,000 - $50,000",
+      "priceCurrency": "USD"
+    },
+    "termsOfService": "Up to 10-year workmanship warranty on flat roof systems"
+  }]`;
 ---
 
 <BaseLayout
@@ -81,7 +94,7 @@ const schema = `[{
       COMMERCIAL ROOFING FOR<br/><span class="gt">TAMPA BAY BUSINESSES.</span>
     </h1>
     <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
-      From single-tenant offices to large-scale warehouses, Happy Roof delivers reliable commercial roofing systems that protect your property and your bottom line. We work around your schedule to minimize disruption and deliver on time.
+      From single-tenant offices to large-scale warehouses, Happy Roof delivers reliable commercial roofing systems that protect your property and your bottom line. We work around your schedule to minimize disruption and deliver on time. For a detailed breakdown of each system, read our guide to <a href="/blog/commercial-roofing-types" style="color:#3B9FD9;text-decoration:none;font-weight:600">commercial roofing systems explained</a>.
     </p>
   </div>
 </section>

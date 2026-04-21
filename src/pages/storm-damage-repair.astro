@@ -60,6 +60,18 @@ const schema = `[{
     "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
     "areaServed": { "@type": "State", "name": "Florida" },
     "description": "Storm damage roof repair in Tampa Bay including hurricane damage, emergency tarping, insurance claim support, and full roof restoration. Licensed contractor FL #CCC1337380."
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Storm Damage Roof Repair",
+    "description": "Storm damage assessment, emergency tarping, and full repair with insurance claim assistance.",
+    "provider": {"@type": "RoofingContractor", "name": "Happy Roof LLC"},
+    "areaServed": {"@type": "City", "name": "Tampa Bay"},
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "$500 - $5,000",
+      "priceCurrency": "USD"
+    }
   }]`;
 ---
 
@@ -127,7 +139,7 @@ const schema = `[{
           After a storm hits, time is critical. Exposed decking and damaged areas allow water to infiltrate your home, leading to mold growth, structural rot, damaged insulation, and ruined personal property. The longer your roof goes unprotected, the worse the secondary damage becomes, and the more expensive the repair.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          Happy Roof provides emergency tarping, damage assessment, insurance claim assistance, and full storm damage repair for residential and commercial properties across Tampa Bay. We are a licensed Florida roofing contractor (CCC1337380) with the experience and resources to help you recover quickly and correctly.
+          Happy Roof provides emergency tarping, damage assessment, insurance claim assistance, and full storm damage repair for residential and commercial properties across Tampa Bay. Need help navigating the insurance process? Read our step-by-step guide on <a href="/blog/how-to-file-roof-insurance-claim" style="color:#3B9FD9;text-decoration:none;font-weight:600">how to file a roof insurance claim in Florida</a>. We are a licensed Florida roofing contractor (CCC1337380) with the experience and resources to help you recover quickly and correctly.
         </p>
       </div>
       <div class="space-y-4">

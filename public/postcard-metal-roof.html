@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Roof — Metal Roof Upgrade Postcard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #E0E0E0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 20px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+      margin-bottom: -28px;
+    }
+
+    /* ── Postcard dimensions: 6" × 4.25" ── */
+    .card {
+      width: 6in;
+      height: 4.25in;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ═══════════════════════════════════════
+       FRONT SIDE
+       ═══════════════════════════════════════ */
+    .front {
+      background: #1A1A1A;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+    }
+
+    /* Top accent bar */
+    .front-accent {
+      height: 6px;
+      background: linear-gradient(90deg, #E6A817 0%, #F0C040 50%, #E6A817 100%);
+      flex-shrink: 0;
+    }
+
+    .front-body {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+    }
+
+    /* Left content area */
+    .front-content {
+      flex: 1;
+      padding: 6px 22px 6px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 3px;
+    }
+
+    .front-logo {
+      width: 200px;
+      margin-bottom: 0;
+    }
+
+    .front-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #3B9FD9;
+      margin-bottom: 2px;
+    }
+
+    .front-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .front-headline span {
+      color: #3B9FD9;
+    }
+
+    .front-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9.5px;
+      line-height: 1.55;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    .benefits {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+
+    .benefits li {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px;
+      line-height: 1.45;
+      color: #ddd;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    .benefits li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #E6A817;
+    }
+
+    /* Promo box */
+    .promo-box {
+      background: linear-gradient(135deg, #E6A817 0%, #F0C040 100%);
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .promo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #1A1A1A;
+      line-height: 1.2;
+    }
+
+    .promo-code-box {
+      background: #1A1A1A;
+      border-radius: 6px;
+      padding: 5px 10px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .promo-code-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 6.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      margin-bottom: 1px;
+    }
+
+    .promo-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+    }
+
+    /* Right image area */
+    .front-image {
+      width: 3in;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .front-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 20% center;
+    }
+
+    .front-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #1A1A1A 0%, transparent 30%);
+    }
+
+    /* ═══════════════════════════════════════
+       BACK SIDE
+       ═══════════════════════════════════════ */
+    .back {
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-accent {
+      height: 6px;
+      background: linear-gradient(90deg, #E6A817 0%, #F0C040 50%, #E6A817 100%);
+      flex-shrink: 0;
+    }
+
+    .back-body {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+
+    /* Left content panel (message side) */
+    .back-left {
+      width: 50%;
+      padding: 14px 18px 12px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid #E0E0E0;
+    }
+
+    .back-logo {
+      width: 110px;
+      margin-bottom: 6px;
+    }
+
+    .back-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #1A1A1A;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .back-headline span {
+      color: #3B9FD9;
+    }
+
+    .back-body-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: 8.5px;
+      line-height: 1.55;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .back-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+
+    .back-contact a,
+    .back-contact span {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px;
+      color: #1A1A1A;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-contact .contact-label {
+      font-size: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      font-weight: 400;
+    }
+
+    .back-qr-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-qr-row img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .back-qr-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      color: #555;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .back-qr-text strong {
+      display: block;
+      font-size: 11px;
+      color: #1A1A1A;
+      font-weight: 800;
+    }
+
+    /* Right mailing panel (left blank for template) */
+    .back-right {
+      width: 50%;
+      position: relative;
+    }
+
+    /* Subtle guide lines for mailing area — can be removed */
+    .mail-guide {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      border-bottom: 1px dashed #E0E0E0;
+      height: 1px;
+    }
+
+    .mail-guide-2 {
+      position: absolute;
+      bottom: 50px;
+      right: 20px;
+      left: 20px;
+      border-bottom: 1px dashed #E0E0E0;
+      height: 1px;
+    }
+
+    .mail-guide-3 {
+      position: absolute;
+      bottom: 80px;
+      right: 20px;
+      left: 20px;
+      border-bottom: 1px dashed #E0E0E0;
+      height: 1px;
+    }
+
+    .stamp-box {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 52px;
+      height: 60px;
+      border: 1px dashed #ccc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stamp-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ccc;
+      text-align: center;
+    }
+
+    /* ── Print bleed marks (optional visual reference) ── */
+    .bleed-note {
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+      margin-top: -24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════ FRONT ════════════ -->
+  <div class="label">Front</div>
+  <div class="card front">
+    <div class="front-accent"></div>
+    <div class="front-body">
+
+      <div class="front-content">
+        <div>
+          <img src="public/Brand Assets/Happy Roof Logo_Alt.png" alt="Happy Roof" class="front-logo">
+          <div class="front-tagline">Tampa Bay's Trusted Roofing Experts</div>
+        </div>
+
+        <div>
+          <h1 class="front-headline">
+            Your Shingle Roof<br>
+            Deserves a <span>Metal<br>Upgrade.</span>
+          </h1>
+          <p class="front-sub">
+            Florida homeowners are making the switch. Modern metal roofs aren't the barn-style panels of the past — they're sleek, stylish, and built to last.
+          </p>
+          <ul class="benefits">
+            <li>Withstands 140+ MPH winds — hurricane ready</li>
+            <li>Lasts 50+ years with minimal maintenance</li>
+            <li>Beautiful modern designs that boost curb appeal</li>
+            <li>Energy-efficient — reflects heat, lowers A/C bills</li>
+          </ul>
+        </div>
+
+        <div class="promo-box">
+          <div class="promo-text">Save 10% When You<br>Upgrade from Shingle</div>
+          <div class="promo-code-box">
+            <div class="promo-code-label">Use Code</div>
+            <div class="promo-code">METAL26</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="front-image">
+        <img src="Brand Assets/445823D5-1DB8-4A91-AFEB-AA1A81649D43.jpeg" alt="Beautiful modern metal roof styles">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════ BACK ════════════ -->
+  <div class="label">Back</div>
+  <div class="card back">
+    <div class="back-accent"></div>
+    <div class="back-body">
+
+      <div class="back-left">
+        <div>
+          <img src="public/Brand Assets/Happy Roof Logo.png" alt="Happy Roof" class="back-logo">
+          <h2 class="back-headline">
+            Ready to Make<br>the <span>Switch?</span>
+          </h2>
+          <p class="back-body-text">
+            Metal roofs have come a long way. Today's options come in slate, tile, shake, and standing seam styles that look stunning on any Florida home. Stop patching shingles after every storm — invest in the last roof you'll ever need.
+          </p>
+          <p class="back-body-text" style="font-weight:700; color:#1A1A1A; background:#EBF5FB; border-left:3px solid #3B9FD9; padding:5px 7px; border-radius:4px; margin-bottom:5px;">
+            The average homeowner saves over <strong style="color:#3B9FD9;">$2,500</strong> when they upgrade to metal with our 10% discount.
+          </p>
+          <p class="back-body-text" style="font-weight:700; color:#1A1A1A; margin-bottom:4px;">
+            Call or scan the code below for a free estimate. Mention code <strong style="color:#E6A817;">METAL26</strong> to save 10%.
+          </p>
+        </div>
+
+        <div>
+          <div class="back-contact">
+            <span class="contact-label">Call or Text</span>
+            <a href="tel:8135957663">(813) 595-7663</a>
+            <span class="contact-label" style="margin-top:4px">Email</span>
+            <a href="mailto:info@happyroof.com">info@happyroof.com</a>
+            <span class="contact-label" style="margin-top:4px">Visit</span>
+            <a href="https://www.happyroof.com">happyroof.com</a>
+          </div>
+
+          <div class="back-qr-row">
+            <img src="Brand Assets/qr-code-trimmed.png" alt="Scan for free estimate">
+            <div class="back-qr-text">
+              Scan to Visit<br>
+              <strong>HappyRoof.com</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: BLANK for mailing template -->
+      <div class="back-right">
+        <div class="stamp-box">
+          <span class="stamp-text">Postage</span>
+        </div>
+        <div class="mail-guide-3"></div>
+        <div class="mail-guide-2"></div>
+        <div class="mail-guide"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="bleed-note">Postcard: 6" × 4.25" — Dimensions are print-ready at 1:1 scale</p>
+
+</body>
+</html>

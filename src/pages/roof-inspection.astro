@@ -60,6 +60,18 @@ const schema = `[{
     "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
     "areaServed": { "@type": "State", "name": "Florida" },
     "description": "Free professional roof inspections in Tampa Bay. Comprehensive assessment of shingles, flashing, ventilation, structure, and drainage. Licensed contractor FL #CCC1337380."
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Free Roof Inspection",
+    "description": "Professional roof inspection with detailed written report including assessment of shingles, flashing, ventilation, structure, and drainage.",
+    "provider": {"@type": "RoofingContractor", "name": "Happy Roof LLC"},
+    "areaServed": {"@type": "City", "name": "Tampa Bay"},
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "$0",
+      "priceCurrency": "USD"
+    }
   }]`;
 ---
 
@@ -127,7 +139,7 @@ const schema = `[{
           Your roof is your home's first line of defense against Florida's punishing weather, from scorching summer heat and UV radiation to tropical storms and hurricanes. Over time, even the best roofing materials degrade. Shingles crack, flashing loosens, sealants dry out, and small leaks develop long before you notice water stains on your ceiling.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          A professional roof inspection catches these problems early, when they're inexpensive to fix. Without regular inspections, minor issues compound into major structural damage: rotted decking, mold growth, compromised insulation, and eventually a full roof replacement that could have been delayed by years with proper maintenance.
+          A professional roof inspection catches these problems early, when they're inexpensive to fix. Without regular inspections, minor issues compound into major structural damage: rotted decking, mold growth, compromised insulation, and eventually a full roof replacement that could have been delayed by years with proper maintenance. For a complete season-by-season guide, see our <a href="/blog/roof-maintenance-checklist" style="color:#3B9FD9;text-decoration:none;font-weight:600">roof maintenance checklist for Tampa Bay homeowners</a>.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
           In Florida, roof condition directly affects your homeowner's insurance. Many insurance companies now require a roof inspection before issuing or renewing a policy. A documented inspection from a licensed contractor like Happy Roof can help you maintain coverage, secure better rates, and provide evidence for claims if storm damage occurs.
