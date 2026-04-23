@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const leadRes = await fetch(BREEZE_URL, {
+    const leadRes = await fetch(`${BREEZE_URL}?key=${encodeURIComponent(BREEZE_API_KEY)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
