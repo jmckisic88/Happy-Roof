@@ -226,15 +226,44 @@ Respond with this exact JSON format:
       }
     }
 
-    // ── PHASE 5: Mark audit as implemented ──
+    // ── PHASE 5: Create PR if files changed ──
+    let prUrl = null;
+    if (filesChanged > 0) {
+      try {
+        const prBody = `## SEO Audit Auto-Implementation — ${audit.dateFormatted}\n\n`
+          + `**${filesChanged} file(s) changed**\n\n`
+          + `### What changed\n${implementation.summary}\n\n`
+          + `### Change log\n${changeLog.map(l => `- ${l}`).join('\n')}\n\n`
+          + (implementation.skipped?.length > 0
+            ? `### Skipped (requires manual action)\n${implementation.skipped.map(s => `- ${s}`).join('\n')}\n\n`
+            : '')
+          + `---\n*Generated automatically by the SEO audit pipeline*`;
+
+        const pr = await githubApi('/pulls', {
+          method: 'POST',
+          body: JSON.stringify({
+            title: `SEO Audit | ${audit.dateFormatted} | ${filesChanged} file(s)`,
+            head: branchName,
+            base: BASE_BRANCH,
+            body: prBody,
+          }),
+        });
+        prUrl = pr.html_url;
+      } catch (prErr) {
+        console.error('PR creation error:', prErr.message);
+      }
+    }
+
+    // ── PHASE 6: Mark audit as implemented ──
     audit.implemented = true;
     audit.implementedAt = new Date().toISOString();
     audit.branch = filesChanged > 0 ? branchName : null;
+    audit.prUrl = prUrl;
     audit.filesChanged = filesChanged;
     audit.changeLog = changeLog;
     await writeBlob('seo-audit-latest', audit);
 
-    // ── PHASE 6: Email summary ──
+    // ── PHASE 7: Email summary ──
     const resend = new Resend(resendKey);
 
     let emailBody = `SEO AUDIT AUTO-IMPLEMENTATION SUMMARY\n`;
@@ -242,14 +271,19 @@ Respond with this exact JSON format:
     emailBody += `${'='.repeat(50)}\n\n`;
 
     if (filesChanged > 0) {
-      emailBody += `BRANCH: ${branchName}\n`;
       emailBody += `FILES CHANGED: ${filesChanged}\n\n`;
       emailBody += `WHAT CHANGED:\n${implementation.summary}\n\n`;
       emailBody += `CHANGE LOG:\n`;
       changeLog.forEach(log => { emailBody += `  ${log}\n`; });
-      emailBody += `\nTO MERGE: Go to GitHub and merge branch "${branchName}" into main.\n`;
-      emailBody += `TO UNDO: Delete the branch — no changes touch main until you merge.\n`;
-      emailBody += `\nGitHub: https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/compare/${branchName}\n`;
+      if (prUrl) {
+        emailBody += `\n${'='.repeat(50)}\n`;
+        emailBody += `MERGE: ${prUrl}\n`;
+        emailBody += `Open the link above and click the green "Merge pull request" button.\n`;
+        emailBody += `TO REJECT: Close the PR — nothing touches production until you merge.\n`;
+      } else {
+        emailBody += `\nBRANCH: ${branchName}\n`;
+        emailBody += `GitHub: https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/compare/${branchName}\n`;
+      }
     } else {
       emailBody += `NO WEBSITE CHANGES NEEDED\n`;
       emailBody += `The audit found no website code changes to implement today.\n`;
@@ -263,7 +297,7 @@ Respond with this exact JSON format:
     await resend.emails.send({
       from: 'Happy Roof Reports <onboarding@resend.dev>',
       to: ['jmckisic@gmail.com'],
-      subject: `SEO Auto-Implementation | ${audit.dateFormatted} | ${filesChanged} file(s) changed`,
+      subject: `SEO Auto-Implementation | ${audit.dateFormatted} | ${filesChanged > 0 ? filesChanged + ' file(s) — MERGE READY' : 'No changes'}`,
       text: emailBody,
     });
 
