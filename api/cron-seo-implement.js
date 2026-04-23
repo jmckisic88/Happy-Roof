@@ -100,15 +100,12 @@ export default async function handler(req, res) {
     const branchName = `seo-audit/${audit.date}`;
 
     // ── PHASE 2: Read key source files from GitHub ──
+    // Keep file list small to stay within token limits
     const filesToRead = [
       'src/pages/faq.astro',
       'src/pages/blog/index.astro',
       'public/sitemap.xml',
       'src/pages/index.astro',
-      'src/pages/services.astro',
-      'src/pages/residential-roofing.astro',
-      'src/pages/tampa-roofing.astro',
-      'src/pages/eco-friendly-roofing.astro',
     ];
 
     const fileContents = {};
@@ -116,9 +113,9 @@ export default async function handler(req, res) {
     for (const filePath of filesToRead) {
       const result = await getFileSha(filePath);
       if (result) {
-        // Only include first 300 lines to stay within token limits
+        // Only include first 150 lines to stay within token limits
         const lines = result.content.split('\n');
-        fileContents[filePath] = lines.slice(0, 300).join('\n');
+        fileContents[filePath] = lines.slice(0, 150).join('\n');
         fileShas[filePath] = result.sha;
       }
     }
@@ -127,7 +124,7 @@ export default async function handler(req, res) {
     const openai = new OpenAI({ apiKey: openaiKey });
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'gpt-4o-mini',
       max_tokens: 8000,
       response_format: { type: 'json_object' },
       messages: [
