@@ -28,6 +28,9 @@ const schema = `{
 <style is:inline>
 .blog-card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:20px;overflow:hidden;transition:border-color .25s,transform .2s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
     .blog-card:hover{border-color:rgba(230,168,23,.3);transform:translateY(-3px)}
+    .blog-filter{padding:.45rem 1rem;border-radius:100px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .18s,color .18s;border:1px solid #E0E0E0;background:#FFFFFF;color:#555555;font-family:'Barlow Condensed',sans-serif}
+    .blog-filter:hover{background:#F7F7F7}
+    .blog-filter.active{background:#E6A817;color:#1A1A1A;border-color:#E6A817}
 </style>
 
 <!-- PAGE HERO -->
@@ -45,19 +48,20 @@ const schema = `{
   </div>
 </section>
 
-<!-- INFO STRIP -->
+<!-- CATEGORY FILTER -->
 <div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
-      <span>Materials</span>
-      <span style="color:#E6A817">·</span>
-      <span>Insurance</span>
-      <span style="color:#E6A817">·</span>
-      <span>Education</span>
-      <span style="color:#E6A817">·</span>
-      <span>Pricing</span>
-      <span style="color:#E6A817">·</span>
-      <span>Seasonal</span>
+    <div class="flex flex-wrap items-center justify-center gap-2" style="font-family:'Barlow Condensed',sans-serif">
+      <button class="blog-filter active" onclick="filterBlog('all',this)">All</button>
+      <button class="blog-filter" onclick="filterBlog('Materials',this)">Materials</button>
+      <button class="blog-filter" onclick="filterBlog('Insurance',this)">Insurance</button>
+      <button class="blog-filter" onclick="filterBlog('Education',this)">Education</button>
+      <button class="blog-filter" onclick="filterBlog('Process',this)">Process</button>
+      <button class="blog-filter" onclick="filterBlog('Maintenance',this)">Maintenance</button>
+      <button class="blog-filter" onclick="filterBlog('Emergency',this)">Emergency</button>
+      <button class="blog-filter" onclick="filterBlog('Codes',this)">Codes</button>
+      <button class="blog-filter" onclick="filterBlog('Commercial',this)">Commercial</button>
+      <button class="blog-filter" onclick="filterBlog('Hiring',this)">Hiring</button>
     </div>
   </div>
 </div>
@@ -68,7 +72,7 @@ const schema = `{
     <div id="blog-grid" class="grid md:grid-cols-2 gap-8">
 
       <!-- Post: Choosing Right Roof Type -->
-      <a href="/blog/choosing-right-roof-type-florida" class="blog-card" data-publish="2026-04-20" style="text-decoration:none;color:inherit">
+      <a href="/blog/choosing-right-roof-type-florida" class="blog-card" data-publish="2026-04-20" data-category="Materials" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -83,7 +87,7 @@ const schema = `{
       </a>
 
       <!-- Post 1 -->
-      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" data-publish="2026-03-31" style="text-decoration:none;color:inherit">
+      <a href="/blog/tile-vs-shingle-vs-metal" class="blog-card" data-publish="2026-03-31" data-category="Materials" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -98,7 +102,7 @@ const schema = `{
       </a>
 
       <!-- Post 2 -->
-      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" data-publish="2026-04-07" style="text-decoration:none;color:inherit">
+      <a href="/blog/how-to-file-roof-insurance-claim" class="blog-card" data-publish="2026-04-07" data-category="Insurance" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
@@ -113,7 +117,7 @@ const schema = `{
       </a>
 
       <!-- Post 3 -->
-      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" data-publish="2026-04-08" style="text-decoration:none;color:inherit">
+      <a href="/blog/signs-you-need-roof-replacement" class="blog-card" data-publish="2026-04-08" data-category="Education" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Education</span>
@@ -128,7 +132,7 @@ const schema = `{
       </a>
 
       <!-- Post 8 -->
-      <a href="/blog/gaf-vs-owens-corning" class="blog-card" data-publish="2026-03-28" style="text-decoration:none;color:inherit">
+      <a href="/blog/gaf-vs-owens-corning" class="blog-card" data-publish="2026-03-28" data-category="Materials" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -142,7 +146,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" data-publish="2026-03-29" style="text-decoration:none;color:inherit">
+      <a href="/blog/5-questions-to-ask-your-roofer" class="blog-card" data-publish="2026-03-29" data-category="Hiring" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Hiring</span>
@@ -153,7 +157,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" data-publish="2026-03-30" style="text-decoration:none;color:inherit">
+      <a href="/blog/emergency-roof-repair-what-to-do" class="blog-card" data-publish="2026-03-30" data-category="Emergency" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Emergency</span>
@@ -164,7 +168,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" data-publish="2026-04-01" style="text-decoration:none;color:inherit">
+      <a href="/blog/impact-resistant-shingles-florida" class="blog-card" data-publish="2026-04-01" data-category="Materials" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -175,7 +179,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/metal-roof-benefits-florida" class="blog-card" data-publish="2026-04-02" style="text-decoration:none;color:inherit">
+      <a href="/blog/metal-roof-benefits-florida" class="blog-card" data-publish="2026-04-02" data-category="Materials" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Materials</span>
@@ -186,7 +190,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/roof-maintenance-checklist" class="blog-card" data-publish="2026-04-03" style="text-decoration:none;color:inherit">
+      <a href="/blog/roof-maintenance-checklist" class="blog-card" data-publish="2026-04-03" data-category="Maintenance" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Maintenance</span>
@@ -197,7 +201,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/roof-replacement-timeline" class="blog-card" data-publish="2026-04-04" style="text-decoration:none;color:inherit">
+      <a href="/blog/roof-replacement-timeline" class="blog-card" data-publish="2026-04-04" data-category="Process" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(230,168,23,.1);color:#E6A817">Process</span>
@@ -208,7 +212,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/florida-roofing-codes-2025" class="blog-card" data-publish="2026-04-05" style="text-decoration:none;color:inherit">
+      <a href="/blog/florida-roofing-codes-2025" class="blog-card" data-publish="2026-04-05" data-category="Codes" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Codes</span>
@@ -219,7 +223,7 @@ const schema = `{
         </div>
       </a>
 
-      <a href="/blog/commercial-roofing-types" class="blog-card" data-publish="2026-04-06" style="text-decoration:none;color:inherit">
+      <a href="/blog/commercial-roofing-types" class="blog-card" data-publish="2026-04-06" data-category="Commercial" style="text-decoration:none;color:inherit">
         <div style="padding:2rem 2rem 0">
           <div style="margin-bottom:1rem">
             <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Commercial</span>
@@ -254,5 +258,24 @@ const schema = `{
 </section>
 
 <!-- FOOTER -->
+
+<script is:inline>
+function filterBlog(cat, btn) {
+  document.querySelectorAll('.blog-filter').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.blog-card');
+  let visible = 0;
+  cards.forEach(card => {
+    if (cat === 'all' || card.dataset.category === cat) {
+      card.style.display = '';
+      visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  const msg = document.getElementById('no-posts-msg');
+  if (msg) msg.style.display = visible === 0 ? '' : 'none';
+}
+</script>
 
 </BaseLayout>

@@ -1,0 +1,335 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay eco-friendly roofing contractor offering energy-efficient, sustainable roofing solutions. Cool roofs, metal roofing, solar-ready systems. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677","addressCountry": "US"
+    },
+    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "dateModified": "2026-04-23"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the most energy-efficient roofing material for Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Metal roofing with a reflective coating is the most energy-efficient option for Florida homes, reflecting up to 70% of solar energy and reducing cooling costs by 10–25%. Light-colored tile and cool-rated architectural shingles like Owens Corning Duration COOL are also excellent choices." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a new roof lower my energy bills in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. A new roof with proper ventilation, radiant barrier underlayment, and energy-efficient materials can reduce cooling costs by 10–25% annually. In Tampa Bay's climate, that can translate to $300–$800+ in yearly savings depending on your home's size and insulation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are metal roofs eco-friendly?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Metal roofs are made from 25–95% recycled content, are 100% recyclable at end of life, and last 40–70 years — significantly reducing waste compared to shingles that need replacing every 15–25 years. They also reflect solar heat, reducing energy consumption." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a cool roof and does it work in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A cool roof uses materials with high solar reflectance to absorb less heat. In Florida's intense sun, cool roofs can reduce roof surface temperatures by up to 50°F compared to standard dark shingles, significantly lowering AC costs. Metal, light-colored tile, and ENERGY STAR-rated shingles all qualify." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof install solar-ready roofing systems?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof installs roofing systems compatible with future solar panel installation, including reinforced decking and proper flashing prep. We coordinate with trusted local solar partners so your new roof and solar install happen seamlessly." }
+      }
+    ]
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Eco-Friendly Roofing",
+    "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+    "areaServed": { "@type": "State", "name": "Florida" },
+    "description": "Energy-efficient and sustainable roofing solutions for Tampa Bay homes. Cool roofs, metal roofing, solar-ready systems, and radiant barrier underlayment."
+  },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://happyroof.com/services"},{"@type":"ListItem","position":3,"name":"Eco-Friendly Roofing","item":"https://happyroof.com/eco-friendly-roofing"}]}]`;
+---
+
+<BaseLayout
+  title="Eco-Friendly Roofing Tampa Bay | Energy-Efficient Roof Solutions | Happy Roof"
+  description="Eco-friendly roofing solutions for Tampa Bay: cool roofs, metal roofing, solar-ready systems. Lower energy bills &amp; reduce your footprint. Licensed FL #CCC1337380."
+  canonical="https://happyroof.com/eco-friendly-roofing"
+  ogTitle="Eco-Friendly Roofing Tampa Bay | Happy Roof"
+  ogDescription="Sustainable, energy-efficient roofing for Tampa Bay homes. Cool roofs, metal, solar-ready systems. Free estimates."
+  schema={schema}
+>
+
+<style is:inline>
+.eco-card{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px;padding:2rem;transition:border-color .25s,transform .2s cubic-bezier(.34,1.56,.64,1)}
+    .eco-card:hover{border-color:rgba(230,168,23,.3);transform:translateY(-3px)}
+    .eco-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(59,159,217,.08);margin-bottom:1.25rem;flex-shrink:0}
+    .stat-card{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:16px;padding:2rem;text-align:center}
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+    <p class="sl gp mb-4">Sustainable Roofing</p>
+    <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
+      ECO-FRIENDLY ROOFING<br/><span class="gt">FOR TAMPA BAY HOMES</span>
+    </h1>
+    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+      A smarter roof does more than keep the rain out. Energy-efficient roofing materials lower your utility bills, reduce your environmental footprint, and increase your home's value — all while standing up to Florida's heat and hurricanes.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/contact" class="btn-t">Get a Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E6A817;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Cool Roofs</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>Metal Roofing</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>Solar-Ready</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>Energy Savings</span>
+      <span style="color:#E6A817">&middot;</span>
+      <span>Sustainable Materials</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY ECO-FRIENDLY -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <p class="sl gt mb-3">Why Go Green</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">YOUR ROOF IS YOUR BIGGEST ENERGY DECISION</h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          In Tampa Bay's climate, your roof takes the full force of Florida's sun — up to 300 days of intense UV exposure per year. A dark, aging roof absorbs that heat and pushes it straight into your attic, forcing your AC to work overtime.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
+          An eco-friendly roofing system flips that equation. Reflective materials, proper ventilation, and radiant barriers work together to <strong>keep heat out</strong> instead of trapping it in — cutting cooling costs by up to 25% and reducing the strain on Florida's power grid.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.75">
+          And the environmental impact goes beyond energy. Materials like metal roofing last 2–3x longer than traditional shingles, which means fewer tear-offs in landfills over the life of your home.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="stat-card">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.5rem;color:#E6A817;line-height:1">10–25%</p>
+          <p style="color:#555555;font-size:.85rem;line-height:1.5;margin-top:.5rem">Reduction in cooling costs with energy-efficient roofing</p>
+        </div>
+        <div class="stat-card">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.5rem;color:#E6A817;line-height:1">50&deg;F</p>
+          <p style="color:#555555;font-size:.85rem;line-height:1.5;margin-top:.5rem">Cooler roof surface with reflective materials vs. dark shingles</p>
+        </div>
+        <div class="stat-card">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.5rem;color:#E6A817;line-height:1">70 yrs</p>
+          <p style="color:#555555;font-size:.85rem;line-height:1.5;margin-top:.5rem">Metal roof lifespan — 3x longer than asphalt shingles</p>
+        </div>
+        <div class="stat-card">
+          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.5rem;color:#E6A817;line-height:1">95%</p>
+          <p style="color:#555555;font-size:.85rem;line-height:1.5;margin-top:.5rem">Recycled content possible in metal roofing materials</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECO-FRIENDLY OPTIONS -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Our Solutions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ECO-FRIENDLY ROOFING OPTIONS</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Metal Roofing -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><path d="M12 3v18M3 12h18M5.636 5.636l12.728 12.728M18.364 5.636 5.636 18.364"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">STANDING SEAM METAL</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">The gold standard for sustainable roofing. Made from 25–95% recycled content, 100% recyclable at end of life, and built to last 40–70 years. Reflects solar heat to reduce cooling costs and withstands 160+ MPH winds.</p>
+        <a href="/blog/metal-roof-benefits-florida" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">Learn More &rarr;</a>
+      </div>
+
+      <!-- Cool-Rated Shingles -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">COOL-RATED SHINGLES</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">ENERGY STAR-rated shingles like Owens Corning Duration COOL use solar-reflective granules to bounce heat away from your home. Same durability and 130 MPH wind rating, with lower attic temperatures and AC bills.</p>
+        <a href="/residential-roofing" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">View Shingle Options &rarr;</a>
+      </div>
+
+      <!-- Light-Colored Tile -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">REFLECTIVE TILE</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">Light-colored clay and concrete tiles naturally reflect solar radiation and allow airflow underneath the tile, creating a thermal break. They last 50+ years, are made from natural materials, and add classic Florida character.</p>
+        <a href="/blog/tile-vs-shingle-vs-metal" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">Compare Materials &rarr;</a>
+      </div>
+
+      <!-- Radiant Barrier -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">RADIANT BARRIER UNDERLAYMENT</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">Installed beneath your roofing material, radiant barrier reflects up to 97% of radiant heat away from your attic. In Tampa Bay's summer heat, this can reduce attic temperatures by 30°F and ease the load on your HVAC system.</p>
+        <a href="/roof-maintenance" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">Maintenance Tips &rarr;</a>
+      </div>
+
+      <!-- Proper Ventilation -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">OPTIMIZED VENTILATION</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">Balanced intake and exhaust ventilation prevents heat buildup and moisture damage. We install ridge vents, soffit vents, and power ventilators as needed — extending roof life, preventing mold, and keeping your home cooler naturally.</p>
+        <a href="/roof-inspection" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">Schedule Inspection &rarr;</a>
+      </div>
+
+      <!-- Solar-Ready -->
+      <div class="eco-card">
+        <div class="eco-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;margin-bottom:.75rem">SOLAR-READY SYSTEMS</h3>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7;margin-bottom:1rem">Planning for solar panels? We prepare your roof with reinforced decking, proper flashing, and panel-compatible materials. When you're ready to go solar, your roof is already set — no additional tear-off or modifications needed.</p>
+        <a href="/contact" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;color:#E6A817;letter-spacing:.02em;text-decoration:none">Ask About Solar-Ready &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGY SAVINGS BREAKDOWN -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <p class="sl gt mb-3">Real Savings</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">WHAT AN ECO-FRIENDLY ROOF SAVES YOU</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:640px;margin:0 auto">Tampa Bay homeowners who upgrade to energy-efficient roofing see real, measurable benefits — from day one and for decades to come.</p>
+    </div>
+
+    <div class="space-y-4">
+      <div style="background:#F7F7F7;border-radius:12px;padding:1.5rem 2rem;display:flex;align-items:start;gap:1.25rem">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(230,168,23,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A;margin-bottom:.35rem">$300–$800+ IN ANNUAL ENERGY SAVINGS</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.7">Reflective roofing materials and proper ventilation dramatically reduce heat transfer into your home. With Tampa Bay's average AC running 8+ months a year, the savings add up fast.</p>
+        </div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:12px;padding:1.5rem 2rem;display:flex;align-items:start;gap:1.25rem">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(230,168,23,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A;margin-bottom:.35rem">$500–$2,000+ IN INSURANCE PREMIUM SAVINGS</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.7">A new roof with impact-resistant materials and a wind mitigation report can significantly reduce your homeowner's insurance — especially in Florida's high-risk market.</p>
+        </div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:12px;padding:1.5rem 2rem;display:flex;align-items:start;gap:1.25rem">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(230,168,23,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A;margin-bottom:.35rem">40–70 YEAR LIFESPAN (METAL)</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.7">Instead of replacing a shingle roof every 15–25 years, a metal roof can last the life of your home. That's 2–3 fewer tear-offs in a landfill, and decades of worry-free protection.</p>
+        </div>
+      </div>
+      <div style="background:#F7F7F7;border-radius:12px;padding:1.5rem 2rem;display:flex;align-items:start;gap:1.25rem">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(230,168,23,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+        </div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#1A1A1A;margin-bottom:.35rem">100% RECYCLABLE AT END OF LIFE</h3>
+          <p style="color:#555555;font-size:.9rem;line-height:1.7">Unlike asphalt shingles (which account for millions of tons of landfill waste annually), metal and tile roofing materials are fully recyclable. Your roof's lifecycle doesn't have to end in a dump.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="py-20" style="background:#F7F7F7">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,2.5rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">ECO-FRIENDLY ROOFING FAQ</h2>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">What is the most energy-efficient roofing material for Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Metal roofing with a reflective coating is the most energy-efficient option for Florida homes, reflecting up to 70% of solar energy and reducing cooling costs by 10–25%. Light-colored tile and cool-rated architectural shingles like Owens Corning Duration COOL are also excellent choices. Happy Roof can recommend the best option for your home and budget.</p></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">Can a new roof really lower my electric bill?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Yes. An old, dark roof absorbs heat and forces your AC to work harder. A new roof with proper ventilation, radiant barrier underlayment, and energy-efficient materials can reduce cooling costs by 10–25% annually. In Tampa Bay's climate, that can translate to $300–$800+ in yearly savings depending on your home's size and insulation.</p></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">Are metal roofs more sustainable than shingles?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Significantly. Metal roofs are made from 25–95% recycled content, are 100% recyclable at end of life, and last 40–70 years — reducing replacement waste by 2–3x compared to asphalt shingles. They also reflect solar heat, reducing energy consumption throughout their lifespan.</p></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">What is a cool roof?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">A cool roof uses materials with high solar reflectance and thermal emittance to absorb less heat. In Florida's intense sun, cool roofs can reduce roof surface temperatures by up to 50&deg;F compared to standard dark shingles, significantly lowering AC costs. Metal, light-colored tile, and ENERGY STAR-rated shingles all qualify.</p></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">Can Happy Roof prepare my roof for solar panels?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Yes. We install roofing systems compatible with future solar panel installation, including reinforced decking and proper flashing prep. While we don't install solar panels directly, we work with trusted local solar partners and can coordinate timing so your new roof and solar install happen seamlessly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      READY FOR A SMARTER ROOF<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Get a free estimate on an energy-efficient roofing system. We'll help you find the best option for your home, budget, and long-term goals.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Get My Free Estimate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call Now — (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<script is:inline>
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+</script>
+
+<style is:inline>
+.faq-item:hover{border-color:rgba(230,168,23,.3)}
+.faq-item.open div:last-child{max-height:600px;padding:0 1.25rem 1.1rem}
+.faq-item.open .faq-arr{transform:rotate(180deg)}
+</style>
+
+</BaseLayout>

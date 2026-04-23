@@ -64,7 +64,7 @@ const schema = `[{
       "https://share.google/eM5h7LtohVsqVd0Nd"
     ],
     "hasCredential": "Florida Roofing Contractor License #CCC1337380",
-    "dateModified": "2026-04-20"
+    "dateModified": "2026-04-23"
   },{
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -256,13 +256,38 @@ const schema = `[{
       },
       {
         "@type": "Question",
-        "name": "What areas in Tampa Bay does Happy Roof serve?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We serve all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Wesley Chapel, Riverview, Oldsmar, Palm Harbor, Largo, Dunedin, Tarpon Springs, Safety Harbor, and surrounding areas." }
+        "name": "How quickly can Happy Roof start my project?",
+        "acceptedAnswer": { "@type": "Answer", "text": "After your free inspection and estimate approval, most projects begin within 1 to 3 weeks depending on permit processing and material availability. Emergency storm damage repairs are prioritized within 24 to 48 hours." }
       },
       {
         "@type": "Question",
-        "name": "How quickly can Happy Roof start my project?",
-        "acceptedAnswer": { "@type": "Answer", "text": "After your free inspection and estimate approval, most projects begin within 1 to 3 weeks depending on permit processing and material availability. Emergency storm damage repairs are prioritized within 24 to 48 hours." }
+        "name": "What is the most energy-efficient roofing material for Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Metal roofing with a reflective coating is the most energy-efficient option for Florida homes, reflecting up to 70% of solar energy and reducing cooling costs by 10–25%. Light-colored tile and cool-rated architectural shingles are also excellent choices. Happy Roof can recommend the best energy-efficient option for your home and budget." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a new roof lower my energy bills in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. An old, dark roof absorbs heat and forces your AC to work harder. A new roof with proper ventilation, radiant barrier underlayment, and energy-efficient materials can reduce cooling costs by 10–25% annually. In Tampa Bay's climate, that can translate to $300–$800+ in yearly savings." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there eco-friendly or sustainable roofing options?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Metal roofs are made from 25–95% recycled content, are 100% recyclable at end of life, and last 40–70 years. Cool-rated shingles reduce urban heat island effects, and proper attic ventilation cuts energy usage. Happy Roof can help you choose the most environmentally responsible option." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Happy Roof install solar-ready roofing systems?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We install roofing systems compatible with future solar panel installation, including reinforced decking and proper flashing prep. While we don't install solar panels directly, we work with trusted local solar partners and can coordinate timing so your new roof and solar install happen seamlessly." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a cool roof and is it worth it in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A cool roof uses materials with high solar reflectance and thermal emittance to absorb less heat. In Florida's intense sun, cool roofs can reduce roof surface temperatures by up to 50°F compared to standard dark shingles, significantly lowering AC costs. Metal, light-colored tile, and ENERGY STAR-rated shingles all qualify." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I prepare my roof for hurricane season in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Schedule a professional roof inspection before June 1 to catch loose shingles, damaged flashing, or worn sealant. Clean gutters and downspouts, trim overhanging branches, and check attic ventilation. If your roof is over 15 years old, consider replacing before hurricane season — a new roof with modern 130+ MPH wind ratings can also lower your insurance premiums." }
       }
     ]
   },{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://happyroof.com/index.html"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://happyroof.com/faq.html"}]}]`;
@@ -324,6 +349,7 @@ const schema = `[{
       <button class="cat-tab" onclick="filterFaq('warranties',this)">Warranties</button>
       <button class="cat-tab" onclick="filterFaq('financing',this)">Financing</button>
       <button class="cat-tab" onclick="filterFaq('insurance',this)">Insurance &amp; Storm</button>
+      <button class="cat-tab" onclick="filterFaq('energy',this)">Energy &amp; Sustainability</button>
     </div>
 
     <!-- GENERAL -->
@@ -360,10 +386,6 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof offer military or first responder discounts?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. We offer a $500 Heroes Discount on roof replacements and major repairs for veterans, active military, first responders, doctors, nurses, and teachers. Mention it when you call or use code HERO26 online.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What areas in Tampa Bay does Happy Roof serve?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">We serve all of Hillsborough, Pinellas, and Pasco counties including Tampa, St. Petersburg, Clearwater, Brandon, Wesley Chapel, Riverview, Oldsmar, Palm Harbor, Largo, Dunedin, Tarpon Springs, Safety Harbor, and surrounding areas.</p></div>
       </div>
     </div>
 
@@ -438,10 +460,6 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can you match my existing tile if I need a repair?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">In most cases, yes. We work with multiple tile suppliers and can source matching or closely matching tiles for repairs. For discontinued profiles, we'll find the closest available match and discuss options with you before proceeding.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the difference between 3-tab and architectural shingles?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">3-tab shingles are flat and uniform, while architectural shingles are thicker, more dimensional, and rated for higher wind speeds. Architectural shingles (like Owens Corning Duration HDZ) are the standard in Florida for their 130 MPH wind rating and longer lifespan.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can Happy Roof match my HOA requirements?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
@@ -521,6 +539,35 @@ const schema = `[{
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How much can I save on insurance with a new roof in Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Many Tampa Bay homeowners save $500 to $2,000+ per year on insurance premiums after installing a new roof, especially with impact-resistant materials and a favorable wind mitigation report.</p></div>
+      </div>
+    </div>
+
+    <!-- ENERGY & SUSTAINABILITY -->
+    <div class="mb-8" data-cat="energy">
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:#3B9FD9;margin-bottom:1rem">Energy &amp; Sustainability</h2>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is the most energy-efficient roofing material for Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Metal roofing with a reflective coating is the most energy-efficient option for Florida homes, reflecting up to 70% of solar energy and reducing cooling costs by 10–25%. Light-colored tile and cool-rated architectural shingles (like Owens Corning Duration COOL) are also excellent choices. Happy Roof can recommend the best energy-efficient option for your home and budget.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Can a new roof lower my energy bills in Tampa Bay?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. An old, dark roof absorbs heat and forces your AC to work harder. A new roof with proper ventilation, radiant barrier underlayment, and energy-efficient materials can reduce cooling costs by 10–25% annually. In Tampa Bay's climate, that can translate to $300–$800+ in yearly savings depending on your home's size and insulation.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Are there eco-friendly or sustainable roofing options?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Yes. Metal roofs are one of the most sustainable options — they're made from 25–95% recycled content, are 100% recyclable at end of life, and last 40–70 years (reducing replacement waste). Cool-rated shingles reduce urban heat island effects, and proper attic ventilation cuts energy usage. Happy Roof can help you choose the most environmentally responsible option for your home. Learn more on our <a href="/eco-friendly-roofing" style="color:#3B9FD9;text-decoration:underline">eco-friendly roofing</a> page.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">Does Happy Roof install solar-ready roofing systems?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">We install roofing systems that are compatible with future solar panel installation, including reinforced decking and proper flashing prep. While we don't install solar panels directly, we work with trusted local solar partners and can coordinate timing so your new roof and solar install happen seamlessly.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">What is a cool roof and is it worth it in Florida?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">A cool roof uses materials with high solar reflectance and thermal emittance to absorb less heat. In Florida's intense sun, cool roofs can reduce roof surface temperatures by up to 50°F compared to standard dark shingles, significantly lowering AC costs. Metal, light-colored tile, and ENERGY STAR-rated shingles all qualify. It's absolutely worth it in Tampa Bay's climate.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><p class="font-medium text-sm" style="color:#1A1A1A">How do I prepare my roof for hurricane season in Tampa Bay?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem">Schedule a professional roof inspection before June 1 to catch loose shingles, damaged flashing, or worn sealant. Clean gutters and downspouts, trim overhanging branches, and check attic ventilation. If your roof is over 15 years old, consider replacing it before hurricane season — a new roof with modern wind ratings (130+ MPH) and a wind mitigation report can also lower your insurance premiums. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:underline">(813) 595-7663</a> to schedule a pre-season inspection.</p></div>
       </div>
     </div>
 
