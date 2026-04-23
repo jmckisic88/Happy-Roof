@@ -4,7 +4,7 @@
 // pushes to a dated branch via GitHub API, emails summary.
 // Runs 30 min after the audit cron.
 
-import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import { Resend } from 'resend';
 import { readBlob, writeBlob } from './_blob-store.js';
 
@@ -79,11 +79,11 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  const openaiKey = process.env.OPENAI_API_KEY;
   const githubToken = process.env.GITHUB_TOKEN;
   const resendKey = process.env.RESEND_API_KEY;
 
-  if (!anthropicKey) return res.status(500).json({ error: 'ANTHROPIC_API_KEY not configured' });
+  if (!openaiKey) return res.status(500).json({ error: 'OPENAI_API_KEY not configured' });
   if (!githubToken) return res.status(500).json({ error: 'GITHUB_TOKEN not configured' });
   if (!resendKey) return res.status(500).json({ error: 'RESEND_API_KEY not configured' });
 
@@ -123,18 +123,21 @@ export default async function handler(req, res) {
       }
     }
 
-    // ── PHASE 3: Claude generates implementation ──
-    const anthropic = new Anthropic({ apiKey: anthropicKey });
+    // ── PHASE 3: GPT-4o generates implementation ──
+    const openai = new OpenAI({ apiKey: openaiKey });
 
-    const claudeResponse = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20250514',
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o',
       max_tokens: 8000,
+      response_format: { type: 'json_object' },
       messages: [
         {
+          role: 'system',
+          content: `You implement SEO/AEO/GEO audit recommendations by generating surgical code edits for an Astro-based roofing website (Happy Roof, happyroof.com). You respond with ONLY valid JSON, no explanation.`
+        },
+        {
           role: 'user',
-          content: `You are implementing SEO/AEO/GEO audit recommendations for Happy Roof (happyroof.com), an Astro-based roofing website.
-
-## Today's Audit Report
+          content: `## Today's Audit Report
 ${audit.report}
 
 ## Current Source Files (first 300 lines each)
@@ -146,8 +149,6 @@ Based on the audit report, generate ONLY the changes that can be implemented by 
 - External platforms (social media, directories, partnerships)
 - Content that requires real project photos or customer testimonials
 
-For each file change, output valid JSON. Each change should be a complete file edit that I can apply via the GitHub API.
-
 IMPORTANT RULES:
 - Only modify files that genuinely need changes based on the audit
 - Do NOT make changes just for the sake of making changes
@@ -157,7 +158,7 @@ IMPORTANT RULES:
 - Keep changes surgical — don't rewrite entire files
 - For sitemap.xml, only update lastmod dates and add new entries if needed
 
-Respond with ONLY a JSON object in this exact format (no markdown, no explanation):
+Respond with this exact JSON format:
 {
   "summary": "2-3 sentence summary of what was changed and why",
   "changes": [
@@ -176,12 +177,9 @@ Respond with ONLY a JSON object in this exact format (no markdown, no explanatio
 
     let implementation;
     try {
-      const responseText = claudeResponse.content[0].text;
-      // Handle potential markdown code blocks
-      const jsonStr = responseText.replace(/^```json?\n?/, '').replace(/\n?```$/, '').trim();
-      implementation = JSON.parse(jsonStr);
+      implementation = JSON.parse(completion.choices[0].message.content);
     } catch (parseErr) {
-      console.error('Failed to parse Claude response:', claudeResponse.content[0].text);
+      console.error('Failed to parse GPT response:', completion.choices[0].message.content);
       return res.status(500).json({ error: 'Failed to parse implementation plan', details: parseErr.message });
     }
 
