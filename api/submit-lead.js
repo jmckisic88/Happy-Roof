@@ -1,5 +1,4 @@
-// ServiceTitan Lead Submission Proxy
-// Credentials are stored as Vercel Environment Variables (never in code)
+// Lead Submission Proxy — routes to Project Breeze
 // POST /api/submit-lead
 
 export default async function handler(req, res) {
@@ -22,81 +21,42 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Name and phone are required' });
   }
 
-  // Booking Provider ID (registered in ServiceTitan)
-  const BOOKING_PROVIDER_ID = 46132;
+  const BREEZE_API_KEY = process.env.BREEZE_INBOUND_API_KEY;
+  const BREEZE_URL = 'https://project-breeze.com/api/inbound-lead';
 
-  const TENANT_ID = process.env.ST_TENANT_ID;
-  const CLIENT_ID = process.env.ST_CLIENT_ID;
-  const CLIENT_SECRET = process.env.ST_CLIENT_SECRET;
-  const APP_KEY = process.env.ST_APP_KEY;
-
-  if (!TENANT_ID || !CLIENT_ID || !CLIENT_SECRET || !APP_KEY) {
-    console.error('Missing ServiceTitan environment variables');
+  if (!BREEZE_API_KEY) {
+    console.error('Missing BREEZE_INBOUND_API_KEY environment variable');
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
   try {
-    // Step 1: Get OAuth2 access token
-    const tokenRes = await fetch('https://auth.servicetitan.io/connect/token', {
+    const leadRes = await fetch(BREEZE_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        grant_type: 'client_credentials',
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': BREEZE_API_KEY,
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        email: email || '',
+        service: service || '',
+        notes: notes || '',
+        address: address || '',
+        source: source || 'Website',
+        page: page || '',
+        priority: priority || 'normal',
       }),
     });
 
-    if (!tokenRes.ok) {
-      const errText = await tokenRes.text();
-      console.error('Token error:', tokenRes.status, errText);
-      return res.status(502).json({ error: 'Authentication failed' });
-    }
-
-    const tokenData = await tokenRes.json();
-    const accessToken = tokenData.access_token;
-
-    // Step 2: Build summary with source tracking
-    const summaryParts = [];
-    if (source) summaryParts.push(`[Source: ${source}]`);
-    if (page) summaryParts.push(`[Page: ${page}]`);
-    if (service) summaryParts.push(`Service: ${service}`);
-    if (notes) summaryParts.push(`Notes: ${notes}`);
-    const summary = summaryParts.join(' | ') || 'Website lead — no details provided';
-
-    // Map priority: emergency/PPC leads get flagged
-    const leadPriority = priority === 'high' ? 'Urgent' : undefined;
-
-    // Step 3: Submit lead to ServiceTitan
-    const leadRes = await fetch(
-      `https://api.servicetitan.io/crm/v2/tenant/${TENANT_ID}/leads/form`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-          'ST-App-Key': APP_KEY,
-        },
-        body: JSON.stringify({
-          name: name,
-          phoneNumber: phone,
-          email: email || '',
-          summary: summary,
-          bookingProviderId: BOOKING_PROVIDER_ID,
-          priority: leadPriority,
-          ...(address ? { address: { street: address } } : {}),
-        }),
-      }
-    );
-
     if (!leadRes.ok) {
       const errText = await leadRes.text();
-      console.error('Lead submission error:', leadRes.status, errText);
+      console.error('Breeze lead submission error:', leadRes.status, errText);
       return res.status(502).json({ error: 'Failed to submit lead', details: errText });
     }
 
     const leadData = await leadRes.json();
-    return res.status(200).json({ success: true, leadId: leadData.id });
+    return res.status(200).json({ success: true, leadId: leadData.leadId });
 
   } catch (err) {
     console.error('Unexpected error:', err);
