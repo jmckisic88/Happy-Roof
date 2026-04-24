@@ -118,25 +118,17 @@ async function auditGbp() {
     if (!gbpData.stats.hasHours) {
       gbpData.issues.push({
         priority: 'HIGH',
-        issue: 'GBP business hours not set. Set hours to match website (Mon-Fri 7am-6pm, Sat 8am-2pm). Missing hours reduce visibility in "open now" searches.',
+        issue: 'GBP business hours not set. Set hours to match website (Mon-Fri 9am-5pm). Missing hours reduce visibility in "open now" searches.',
         type: 'gbp_profile',
       });
     } else {
-      // Check if GBP hours match website hours (Mon-Fri 7am-6pm, Sat 8am-2pm)
+      // Check if GBP hours match website hours (Mon-Fri 9am-5pm, closed Sat/Sun)
       const periods = place.regularOpeningHours?.periods || [];
-      const hasSaturday = periods.some(p => p.open?.day === 6);
       const weekdayOpen = periods.find(p => p.open?.day === 1);
-      if (weekdayOpen && (weekdayOpen.open?.hour !== 7 || weekdayOpen.close?.hour !== 18)) {
+      if (weekdayOpen && (weekdayOpen.open?.hour !== 9 || weekdayOpen.close?.hour !== 17)) {
         gbpData.issues.push({
           priority: 'HIGH',
-          issue: `GBP weekday hours (${place.regularOpeningHours?.weekdayDescriptions?.[0] || 'unknown'}) don't match website hours (Mon-Fri 7:00 AM – 6:00 PM). Update GBP to match.`,
-          type: 'gbp_profile',
-        });
-      }
-      if (!hasSaturday) {
-        gbpData.issues.push({
-          priority: 'MEDIUM',
-          issue: 'GBP shows closed on Saturday, but website lists Sat 8:00 AM – 2:00 PM. Update GBP to match.',
+          issue: `GBP weekday hours (${place.regularOpeningHours?.weekdayDescriptions?.[0] || 'unknown'}) don't match website hours (Mon-Fri 9:00 AM – 5:00 PM). NAP inconsistency.`,
           type: 'gbp_profile',
         });
       }
