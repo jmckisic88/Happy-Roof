@@ -27,14 +27,12 @@ export default async function handler(req, res) {
 
   try {
     // Fetch reviews from Google Places API
-    const placesRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
-      method: 'POST',
+    // Fetch by Place ID directly (not text search — avoids wrong business match)
+    const placesRes = await fetch(`https://places.googleapis.com/v1/places/${PLACE_ID}`, {
       headers: {
-        'Content-Type': 'application/json',
         'X-Goog-Api-Key': apiKey,
-        'X-Goog-FieldMask': 'places.id,places.displayName,places.rating,places.userRatingCount,places.reviews',
+        'X-Goog-FieldMask': 'displayName,rating,userRatingCount,reviews',
       },
-      body: JSON.stringify({ textQuery: 'Happy Roof LLC Oldsmar FL' }),
     });
 
     if (!placesRes.ok) {
@@ -42,12 +40,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: 'Google API error', details: err });
     }
 
-    const data = await placesRes.json();
-    const place = data.places?.[0];
-
-    if (!place) {
-      return res.status(404).json({ error: 'Place not found' });
-    }
+    const place = await placesRes.json();
 
     const rating = place.rating;
     const reviewCount = place.userRatingCount;

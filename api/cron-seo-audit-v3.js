@@ -20,22 +20,19 @@ async function auditGbp() {
   const gbpData = { available: true, issues: [], stats: {} };
 
   try {
-    // Fetch place details with reviews, hours, photos, editorial summary
-    const placesRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
-      method: 'POST',
+    // Fetch place details by Place ID (not text search — avoids wrong business match)
+    const placesRes = await fetch(`https://places.googleapis.com/v1/places/${GBP_PLACE_ID}`, {
       headers: {
-        'Content-Type': 'application/json',
         'X-Goog-Api-Key': apiKey,
         'X-Goog-FieldMask': [
-          'places.id', 'places.displayName', 'places.rating', 'places.userRatingCount',
-          'places.reviews', 'places.photos', 'places.currentOpeningHours',
-          'places.regularOpeningHours', 'places.websiteUri', 'places.nationalPhoneNumber',
-          'places.internationalPhoneNumber', 'places.formattedAddress',
-          'places.primaryType', 'places.types', 'places.editorialSummary',
-          'places.businessStatus', 'places.googleMapsUri',
+          'displayName', 'rating', 'userRatingCount',
+          'reviews', 'photos', 'currentOpeningHours',
+          'regularOpeningHours', 'websiteUri', 'nationalPhoneNumber',
+          'internationalPhoneNumber', 'formattedAddress',
+          'primaryType', 'types', 'editorialSummary',
+          'businessStatus', 'googleMapsUri',
         ].join(','),
       },
-      body: JSON.stringify({ textQuery: 'Happy Roof LLC Oldsmar FL' }),
     });
 
     if (!placesRes.ok) {
@@ -43,11 +40,7 @@ async function auditGbp() {
       return { available: false, reason: `Places API error: ${err}` };
     }
 
-    const data = await placesRes.json();
-    const place = data.places?.[0];
-    if (!place) {
-      return { available: false, reason: 'Place not found in Google Places API' };
-    }
+    const place = await placesRes.json();
 
     // ── Reviews ──
     const reviews = place.reviews || [];
@@ -121,12 +114,32 @@ async function auditGbp() {
 
     // ── Business Hours ──
     gbpData.stats.hasHours = !!(place.regularOpeningHours?.periods?.length);
+    gbpData.stats.hoursDescription = place.regularOpeningHours?.weekdayDescriptions || [];
     if (!gbpData.stats.hasHours) {
       gbpData.issues.push({
         priority: 'HIGH',
         issue: 'GBP business hours not set. Set hours to match website (Mon-Fri 7am-6pm, Sat 8am-2pm). Missing hours reduce visibility in "open now" searches.',
         type: 'gbp_profile',
       });
+    } else {
+      // Check if GBP hours match website hours (Mon-Fri 7am-6pm, Sat 8am-2pm)
+      const periods = place.regularOpeningHours?.periods || [];
+      const hasSaturday = periods.some(p => p.open?.day === 6);
+      const weekdayOpen = periods.find(p => p.open?.day === 1);
+      if (weekdayOpen && (weekdayOpen.open?.hour !== 7 || weekdayOpen.close?.hour !== 18)) {
+        gbpData.issues.push({
+          priority: 'HIGH',
+          issue: `GBP weekday hours (${place.regularOpeningHours?.weekdayDescriptions?.[0] || 'unknown'}) don't match website hours (Mon-Fri 7:00 AM – 6:00 PM). Update GBP to match.`,
+          type: 'gbp_profile',
+        });
+      }
+      if (!hasSaturday) {
+        gbpData.issues.push({
+          priority: 'MEDIUM',
+          issue: 'GBP shows closed on Saturday, but website lists Sat 8:00 AM – 2:00 PM. Update GBP to match.',
+          type: 'gbp_profile',
+        });
+      }
     }
 
     // ── Categories ──
