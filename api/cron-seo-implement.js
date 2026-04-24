@@ -100,22 +100,30 @@ export default async function handler(req, res) {
     const branchName = `seo-audit/${audit.date}`;
 
     // ── PHASE 2: Read key source files from GitHub ──
-    // Keep file list small to stay within token limits
+    // Read schema-heavy files fully so the bot sees existing content and avoids duplicates.
+    // For large pages, send a summary instead of raw content.
     const filesToRead = [
-      'src/pages/faq.astro',
-      'src/pages/blog/index.astro',
-      'public/sitemap.xml',
-      'src/pages/index.astro',
+      { path: 'public/sitemap.xml', maxLines: 400 },
+      { path: 'src/pages/faq.astro', maxLines: 100, note: 'FAQ page has 44 FAQPage schema questions. Only the first 100 lines (LocalBusiness schema) are shown. Do NOT add FAQ questions that may already exist — there are 44 covering: service areas, licensing, estimates, company history, emergency services, process, timeline, permits, cleanup, materials, shingles, metal, tile, warranties, financing, insurance, storm damage, tarping, energy efficiency, eco-friendly, solar-ready, cool roofs, hurricane prep.' },
+      { path: 'src/pages/blog/index.astro', maxLines: 80 },
+      { path: 'src/pages/index.astro', maxLines: 100, note: 'Homepage. Has full LocalBusiness + FAQPage schema + OfferCatalog + AggregateRating.' },
     ];
 
     const fileContents = {};
     const fileShas = {};
-    for (const filePath of filesToRead) {
+    for (const { path: filePath, maxLines, note } of filesToRead) {
       const result = await getFileSha(filePath);
       if (result) {
-        // Only include first 150 lines to stay within token limits
         const lines = result.content.split('\n');
-        fileContents[filePath] = lines.slice(0, 150).join('\n');
+        const totalLines = lines.length;
+        let content = lines.slice(0, maxLines).join('\n');
+        if (totalLines > maxLines) {
+          content += `\n\n[... ${totalLines - maxLines} more lines not shown ...]`;
+        }
+        if (note) {
+          content += `\n\n[NOTE: ${note}]`;
+        }
+        fileContents[filePath] = content;
         fileShas[filePath] = result.sha;
       }
     }
@@ -148,12 +156,15 @@ Based on the audit report, generate ONLY the changes that can be implemented by 
 
 IMPORTANT RULES:
 - Only modify files that genuinely need changes based on the audit
-- Do NOT make changes just for the sake of making changes
-- Focus on: schema updates, FAQ additions, meta tag improvements, dateModified freshness, internal linking, sitemap updates
+- Do NOT make changes just for the sake of making changes — an empty changes array is a valid and expected outcome
+- Focus on: meta tag improvements, dateModified freshness, internal linking, sitemap date updates
+- NEVER add FAQ schema questions — the FAQ page already has 44 comprehensive questions. Adding more creates duplicates and breaks the JSON-LD structure
+- NEVER insert raw JSON objects into the middle of existing JSON-LD schema blocks
+- The "search" string MUST exist exactly as-is in the file. If you're not sure it does, don't include the change
+- The "replace" string must produce valid code — no broken JSON, no orphaned brackets
 - Match the existing code style exactly (inline styles, Barlow Condensed headings, brand colors #E6A817/#3B9FD9/#1A1A1A)
-- If the audit says everything is fine, return an empty changes array
 - Keep changes surgical — don't rewrite entire files
-- For sitemap.xml, only update lastmod dates and add new entries if needed
+- For sitemap.xml, only update lastmod dates to today's date
 
 Respond with this exact JSON format:
 {
