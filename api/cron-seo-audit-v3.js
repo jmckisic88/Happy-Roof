@@ -5,7 +5,6 @@
 
 import OpenAI from 'openai';
 import { Resend } from 'resend';
-import { writeBlob } from './_blob-store.js';
 
 // ── GBP Audit via Google Places API ──
 // Uses the same GOOGLE_PLACES_API_KEY and Place ID as cron-reviews.js
@@ -374,46 +373,18 @@ Keep the report actionable and specific to happyroof.com. No generic advice.`
 
     const report = completion.choices[0].message.content;
 
-    // ── PHASE 4: Store structured results in Vercel Blob for auto-implementation ──
-    const auditPayload = {
-      date: isoDate,
-      dateFormatted: today,
-      report,
-      technicalIssues: totalIssues,
-      pagesAudited: pages.length,
-      gbpAvailable: gbpAudit.available,
-      gbpStats: gbpAudit.stats || {},
-      gbpIssues: gbpAudit.issues || [],
-      faqPages,
-      implemented: false,
-    };
-
-    await writeBlob('seo-audit-latest', auditPayload);
-
-    // ── PHASE 5: Send report via Resend ──
+    // ── PHASE 4: Send report via Resend ──
     const resend = new Resend(resendKey);
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: 'Happy Roof Reports <onboarding@resend.dev>',
       to: ['jmckisic@gmail.com'],
       subject: `Daily SEO/AEO/GEO/GBP Audit | ${today}`,
-      text: report + '\n\n---\nAuto-implementation will run in 30 minutes. Changes will be committed to a dated branch for your review.',
+      text: report,
     });
 
     if (emailError) {
       console.error('Resend error:', emailError);
       return res.status(502).json({ success: false, error: emailError.message });
-    }
-
-    // ── PHASE 6: Trigger implementation endpoint ──
-    // The implement endpoint runs on its own cron 30 min later
-    // But we can also trigger it immediately if needed via query param
-    if (req.query.implement === 'now') {
-      try {
-        const implUrl = `https://${req.headers.host}/api/cron-seo-implement?key=${adminKey}`;
-        fetch(implUrl).catch(() => {}); // fire-and-forget
-      } catch (e) {
-        // Non-blocking
-      }
     }
 
     return res.status(200).json({
