@@ -172,7 +172,7 @@ const schema = `[{
         <p style="color:#888888;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600">Star Rating</p>
       </div>
       <div>
-        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.5rem);color:#F5B800;line-height:1">5</p>
+        <p id="review-count-stat" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.5rem);color:#F5B800;line-height:1">6</p>
         <p style="color:#888888;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:.75rem">Google Reviews</p>
       </div>
       <div>
@@ -192,7 +192,8 @@ const schema = `[{
         FROM GOOGLE
       </h2>
     </div>
-    <div class="grid md:grid-cols-2 gap-8">
+    <div id="reviews-grid" class="grid md:grid-cols-2 gap-8">
+      <!-- Dynamic reviews load here via JS. Static fallback below for SEO crawlers. -->
       <!-- Review: Matthew M. -->
       <div class="review-card">
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem">
@@ -394,5 +395,51 @@ const schema = `[{
 </section>
 
 <!-- FOOTER -->
+
+<script is:inline>
+(async function loadLiveReviews() {
+  try {
+    const resp = await fetch('/api/reviews');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    if (!data.reviews || data.reviews.length === 0) return;
+
+    // Update stats bar
+    const countEl = document.getElementById('review-count-stat');
+    if (countEl && data.reviewCount) countEl.textContent = data.reviewCount;
+
+    // Avatar colors
+    const colors = ['#E6A817','#3B9FD9','#1A1A1A','#F5B800','#555555','#3B9FD9'];
+    const starSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="#F5B800"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+    const googleBadge = '<div style="display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .8rem;background:rgba(66,133,244,.08);border:1px solid rgba(66,133,244,.18);border-radius:100px"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><span style="font-size:.72rem;font-weight:600;color:#4285F4;letter-spacing:.04em">Posted on Google</span></div>';
+
+    const cards = data.reviews.map((r, i) => {
+      const initial = (r.author || 'A')[0].toUpperCase();
+      const bg = colors[i % colors.length];
+      const textColor = bg === '#E6A817' || bg === '#F5B800' ? '#1A1A1A' : '#FFFFFF';
+      const stars = Array(r.rating || 5).fill(starSvg).join('');
+      const text = r.text ? r.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+      return `<div class="review-card">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem">
+          <div style="width:48px;height:48px;border-radius:50%;background:${bg};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:${textColor}">${initial}</span>
+          </div>
+          <div>
+            <p style="font-weight:700;font-size:.95rem;color:#1A1A1A">${r.author}</p>
+            <div style="display:flex;gap:2px">${stars}</div>
+          </div>
+        </div>
+        <p style="color:#555555;font-size:.95rem;line-height:1.75;margin-bottom:1.2rem">"${text}"</p>
+        ${googleBadge}
+      </div>`;
+    }).join('');
+
+    const grid = document.getElementById('reviews-grid');
+    if (grid && cards) grid.innerHTML = cards;
+  } catch (e) {
+    // Fallback: static cards remain visible
+  }
+})();
+</script>
 
 </BaseLayout>
