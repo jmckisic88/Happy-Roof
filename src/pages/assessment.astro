@@ -687,7 +687,7 @@ function generateVisualization() {
     } else {
       if (data.noStreetView) {
         document.getElementById('viz-upload-area').style.display = 'block';
-        alert('No Street View image available for this address. Please upload a photo of your home instead.');
+        alert('Google doesn\'t have street-level imagery for this address yet. No worries \u2014 just upload a photo of your home below and we\'ll generate your new roof from that!');
       } else {
         alert('We couldn\'t generate a visualization. ' + (data.error || 'Please try again.'));
       }
