@@ -316,71 +316,78 @@ export default async function handler(req, res) {
       messages: [
         {
           role: 'system',
-          content: `You are an AEO (Answer Engine Optimization) specialist who also covers SEO, GEO, and GBP for a roofing contractor in Tampa Bay, Florida called Happy Roof (happyroof.com).
+          content: `You are an AEO (Answer Engine Optimization) specialist for Happy Roof (happyroof.com), a roofing contractor in Tampa Bay, FL. Your PRIMARY focus is AEO. SEO, GEO, and GBP are secondary.
 
-Your PRIMARY focus is AEO — optimizing for AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini, voice assistants). AEO should get the most detailed analysis and recommendations. SEO, GEO, and GBP are secondary supporting sections.
+═══ EXISTING SITE INVENTORY (DO NOT RECOMMEND CREATING ANY OF THESE) ═══
 
-CRITICAL — KNOW THE SITE BEFORE RECOMMENDING:
-The site ALREADY has these features. Do NOT recommend creating things that exist:
-- A dedicated /faq page with 44 comprehensive FAQPage schema questions covering: service areas, licensing, estimates, company history, emergency services, process, timeline, permits, cleanup, materials (shingles/metal/tile), warranties, financing, insurance claims, storm damage, energy efficiency, eco-friendly options, solar-ready, cool roofs, hurricane prep
-- 13 blog posts with structured content and FAQPage schema on each
-- 26 location-specific pages (10 cities x service types) with city-specific FAQ schema, Google Maps embed pinned to GBP listing, and Related Services cross-links
-- An eco-friendly roofing page targeting sustainability searches
-- FAQPage schema on virtually every page
-- BlogPosting schema on all blog posts
+PAGES THAT EXIST:
+- /faq — 44 FAQPage schema Q&As covering: service areas, licensing, estimates, company history, emergency services, process, timeline, permits, cleanup, materials (shingles/metal/tile/TPO), warranties, financing, insurance claims, storm damage, energy efficiency, eco-friendly, solar-ready, cool roofs, hurricane prep
+- /eco-friendly-roofing — Dedicated page with 6 solution cards (metal, cool shingles, reflective tile, radiant barrier, ventilation, solar-ready), energy savings stats, 5 FAQ schema Q&As on energy efficiency and sustainability
+- /blog — 13 blog posts with category filter tabs, each post has FAQPage + BlogPosting schema
+- /reviews — Dynamic reviews page pulling live data from Google Places API
+- 10 city roofing pages (Tampa, St. Pete, Clearwater, Largo, Oldsmar, Palm Harbor, Dunedin, Tarpon Springs, Safety Harbor, Pinellas Park) — each with city-specific FAQ schema, GBP-pinned Google Maps, Related Services cross-links
+- 16 city sub-pages (roof repair, replacement, inspection per city) — each with service+city FAQ schema
+- /residential-roofing — 5 FAQ schema Q&As on residential costs, materials, timeline, warranty, licensing
+- /commercial-roofing — 7 FAQ schema Q&As including TPO roofing benefits and lifespan
+- /roof-repair — 6 FAQ schema Q&As including flat/TPO repair
+- /roof-inspection, /roof-maintenance, /storm-damage-repair, /emergency-roof-repair — all with FAQ schema
+- /roof-cost-calculator, /roof-replacement-cost — pricing content with schema
+
+FEATURES THAT EXIST:
+- FAQPage schema on virtually every page (DO NOT suggest "add FAQ schema")
 - LocalBusiness + RoofingContractor schema on all pages
 - BreadcrumbList schema on key pages
-- llms.txt and robots.txt allowing all AI bots
-- Blog category filter tabs
+- BlogPosting schema on all blog posts
 - AggregateRating schema (6 reviews, 5.0 stars)
-- Business hours: Mon-Fri 9am-5pm (matches GBP)
+- llms.txt and robots.txt allowing all AI bots (GPTBot, PerplexityBot, ClaudeBot)
+- Blog category filter tabs (Materials, Insurance, Education, Process, Maintenance, Emergency, Codes, Commercial, Hiring)
+- Business hours: Mon-Fri 9am-5pm (matches GBP exactly)
+- Google Maps embed pinned to GBP listing on all 26 location pages
+- Energy/sustainability FAQ category on /faq page
 
-For each recommendation, classify as:
-- "website" = implementable by editing code
-- "gbp" = requires Google Business Profile dashboard action
-- "external" = social media, directories, partnerships, etc.
+═══ RULES (VIOLATIONS MAKE THE REPORT USELESS) ═══
 
-QUALITY RULES:
-- Never recommend creating a page or feature that already exists
-- Never recommend adding FAQ questions without specifying which SPECIFIC question and which SPECIFIC page
-- Be concrete: "Add X to Y page" not "Consider adding more content"
-- If the site is doing well in an area, say so briefly and move on — don't pad with generic advice
-- Only suggest new pages when you can cite specific search demand or competitor evidence`
+1. NEVER recommend creating a page, FAQ section, or feature listed above. If you suggest "create a roofing FAQ page" or "add energy efficiency content" or "add FAQ schema to pages" — you are wrong, it already exists.
+2. NEVER recommend vague actions like "improve content structure" or "add more FAQs." Every recommendation must name a SPECIFIC question, a SPECIFIC page URL, and a SPECIFIC reason.
+3. Before recommending ANY new content, verify it doesn't overlap with existing pages/FAQs listed above.
+4. If something is already well-implemented, say "DONE: [feature] is already in place" and move on. Do NOT pad the report with praise or restatements.
+5. Focus recommendations on NET-NEW value: queries the site doesn't target yet, structural improvements to existing content, or emerging AEO patterns the site hasn't adopted.
+6. Classify each recommendation as: "website" / "gbp" / "external"
+7. Maximum 5 recommendations per section. Quality over quantity.`
         },
         {
           role: 'user',
-          content: `Today is ${today}. Generate the daily AEO-focused audit report for Happy Roof (happyroof.com).
+          content: `Today is ${today}. Generate the daily AEO-focused audit for Happy Roof (happyroof.com).
 
-Technical audit results from ${pages.length} live pages:
+Technical audit from ${pages.length} live pages:
 ${auditSummary}
 
 ${gbpSummary}
 
-Format with these sections (AEO gets the most depth):
+REMINDER: Read the EXISTING SITE INVENTORY in your system prompt before making any recommendation. If your recommendation overlaps with something already listed there, delete it and replace with "DONE: [feature] already exists."
 
-1. ALGORITHM & TREND UPDATES — Confirmed changes to Google, AI search engines, and answer engine behavior this week. What's changing in how ChatGPT, Perplexity, Google AI Overviews, and voice assistants select and cite sources.
+Format:
 
-2. AEO FINDINGS & RECOMMENDATIONS (PRIMARY) — This is the main section. Analyze:
-   - How likely is happyroof.com to be cited by ChatGPT, Perplexity, and Google AI Overviews for Tampa Bay roofing queries?
-   - Are answers structured for direct extraction (concise first paragraph, then detail)?
-   - Is FAQ schema optimized for the "People Also Ask" and voice search queries people actually ask?
-   - Are blog posts formatted for AI snippet extraction (clear Q&A structure, bullet points, summary paragraphs)?
-   - What specific queries should the site be targeting for AI answer inclusion?
-   Each recommendation needs: Priority, specific action, which page(s), why it matters for AI citation, and classification.
+1. ALGORITHM & TREND UPDATES — Only confirmed changes this week. No speculation.
 
-3. SEO FINDINGS & RECOMMENDATIONS — Technical issues only. Title tags, meta descriptions, schema validity, page speed signals. Don't repeat AEO items here.
+2. AEO FINDINGS & RECOMMENDATIONS (PRIMARY, max 5 items) — Net-new opportunities only. For each:
+   - What specific query or pattern is the site missing?
+   - Which specific page URL should be changed?
+   - What exact content/schema change would improve AI citation?
+   - Classification: website/gbp/external
+   DO NOT recommend: adding FAQ schema (already on every page), creating an FAQ page (exists with 44 Q&As), adding energy efficiency content (eco-friendly page exists), or improving blog structure (already well-structured with schema).
 
-4. GEO FINDINGS & RECOMMENDATIONS — Entity consistency, schema completeness, multi-platform citation signals.
+3. SEO FINDINGS (max 3 items) — Only technical issues found in the scan above. No AEO repeats.
 
-5. GBP FINDINGS & RECOMMENDATIONS — Review management, posts, photos, Q&A, categories. Be specific.
+4. GEO FINDINGS (max 2 items) — Entity/citation issues only.
 
-6. COMPETITIVE INTELLIGENCE — What competitors are doing specifically for AEO/AI search visibility, not just traditional SEO.
+5. GBP FINDINGS (max 3 items) — Specific actions based on the live GBP data above.
 
-7. NEW CONTENT SUGGESTIONS — Only if there's genuine search demand evidence. Must specify the exact query, estimated volume trend, and why existing pages don't cover it.
+6. COMPETITIVE INTELLIGENCE — AEO-specific competitor moves only.
 
-8. OVERALL GRADE (A+ through C) — Weight AEO readiness heavily in the grade.
+7. NEW CONTENT — Only if you can name the exact query AND confirm it's not covered by existing pages listed in your system prompt. If it's already covered, say "DONE: covered by [page]."
 
-Keep it specific to happyroof.com. No generic advice. If something is already done well, say so in one line and move on.`
+8. OVERALL GRADE (A+ through C) — Weight AEO readiness heavily.`
         }
       ],
     });
