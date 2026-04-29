@@ -366,6 +366,21 @@ const schema = `{
           <div style="margin-bottom:.75rem">
             <input type="email" name="viz_email" class="finput" placeholder="Email Address" />
           </div>
+          <!-- SMS Consent (Twilio mixed-use compliance) -->
+          <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="sms-transactional-assessment" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="sms-transactional-assessment" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="sms-marketing-assessment" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="sms-marketing-assessment" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="terms-consent-assessment" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="terms-consent-assessment" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, I accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
+            </div>
+          </div>
           <button type="submit" class="btn-t w-full justify-center" style="font-size:1rem;padding:.85rem">Get My Free Estimate</button>
         </form>
         <div id="viz-lead-success" style="display:none;padding:1.5rem">

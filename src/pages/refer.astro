@@ -147,6 +147,21 @@ const schema = `{
             <label class="flabel">Anything else we should know?</label>
             <textarea name="notes" class="finput" rows="3" placeholder="Describe the issue, your timeline, etc..." style="resize:vertical"></textarea>
           </div>
+          <!-- SMS Consent (Twilio mixed-use compliance) -->
+          <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="sms-transactional-refer" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="sms-transactional-refer" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="sms-marketing-refer" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="sms-marketing-refer" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <input type="checkbox" id="terms-consent-refer" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+              <label for="terms-consent-refer" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, I accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
+            </div>
+          </div>
           <button type="submit" id="ref-submit-btn" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
             Get My Free Estimate
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>

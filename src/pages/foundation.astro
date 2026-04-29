@@ -121,6 +121,21 @@ const schema = `{
           style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
           onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
       </div>
+      <!-- SMS Consent (Twilio mixed-use compliance) -->
+      <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="sms-transactional-foundation" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="sms-transactional-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="sms-marketing-foundation" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="sms-marketing-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="terms-consent-foundation" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="terms-consent-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, I accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
+        </div>
+      </div>
       <button type="submit" class="btn-p" style="width:100%;font-size:1rem;padding:.85rem 2rem;justify-content:center;display:flex;align-items:center;gap:.5rem">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get Notified

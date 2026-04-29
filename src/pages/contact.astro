@@ -193,22 +193,20 @@ const schema = `{
               </div>
               <p class="promo-msg" style="font-size:.75rem;margin-top:.35rem;line-height:1.4;display:none"></p>
             </div>
-            <!-- SMS Consent -->
-            <div class="fgroup">
-              <p style="font-size:.8rem;font-weight:700;color:#1A1A1A;margin-bottom:.5rem">Do you agree to receive text messages from Happy Roof?</p>
-              <div style="display:flex;gap:1.5rem;margin-bottom:.75rem">
-                <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
-                  <input type="radio" name="sms_consent" value="Yes" required style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> Yes
-                </label>
-                <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:#1A1A1A;font-weight:600">
-                  <input type="radio" name="sms_consent" value="No" style="width:16px;height:16px;accent-color:#3B9FD9;cursor:pointer" /> No
-                </label>
+            <!-- SMS Consent (Twilio mixed-use compliance) -->
+            <div class="fgroup" style="display:flex;flex-direction:column;gap:.6rem">
+              <div style="display:flex;align-items:flex-start;gap:.5rem">
+                <input type="checkbox" id="sms-transactional" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+                <label for="sms-transactional" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
               </div>
-              <div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.5rem">
-                <input type="checkbox" id="privacy-consent" name="privacy_consent" required style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-                <label for="privacy-consent" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">I acknowledge and agree to receive SMS messages from Happy Roof. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.</label>
+              <div style="display:flex;align-items:flex-start;gap:.5rem">
+                <input type="checkbox" id="sms-marketing" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+                <label for="sms-marketing" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
               </div>
-              <p style="font-size:.68rem;color:#888;line-height:1.5;margin:0">See our <a href="https://www.happyroof.com/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a> &amp; <a href="https://www.happyroof.com/terms" style="color:#3B9FD9;text-decoration:underline">Terms &amp; Conditions</a> for more details.</p>
+              <div style="display:flex;align-items:flex-start;gap:.5rem">
+                <input type="checkbox" id="terms-consent" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+                <label for="terms-consent" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, I accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
+              </div>
             </div>
             <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
               Get My Free Estimate
