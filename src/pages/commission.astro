@@ -351,13 +351,17 @@ import LandingLayout from '../layouts/LandingLayout.astro';
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
             <tbody>
-              <tr><td>&lt; $20k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
-              <tr><td>$20k–$30k</td><td class="text-right">$1,500</td><td class="text-right">$1,070</td><td class="text-right">$430</td></tr>
-              <tr><td>$30k–$45k</td><td class="text-right">$2,250</td><td class="text-right">$1,575</td><td class="text-right">$675</td></tr>
-              <tr><td>$45k–$60k</td><td class="text-right">$3,000</td><td class="text-right">$2,100</td><td class="text-right">$900</td></tr>
-              <tr><td>$60k–$75k</td><td class="text-right">$3,750</td><td class="text-right">$2,625</td><td class="text-right">$1,125</td></tr>
-              <tr><td>$75k–$90k</td><td class="text-right">$4,500</td><td class="text-right">$3,150</td><td class="text-right">$1,350</td></tr>
-              <tr><td>$90k+</td><td class="text-right">$5,000</td><td class="text-right">$3,500</td><td class="text-right">$1,500</td></tr>
+              <tr><td>&lt; $10k</td><td class="text-right">$500</td><td class="text-right">$350</td><td class="text-right">$150</td></tr>
+              <tr><td>$10k–$20k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
+              <tr><td>$20k–$30k</td><td class="text-right">$2,000</td><td class="text-right">$1,400</td><td class="text-right">$600</td></tr>
+              <tr><td>$30k–$40k</td><td class="text-right">$3,000</td><td class="text-right">$2,100</td><td class="text-right">$900</td></tr>
+              <tr><td>$40k–$50k</td><td class="text-right">$4,000</td><td class="text-right">$2,800</td><td class="text-right">$1,200</td></tr>
+              <tr><td>$50k–$60k</td><td class="text-right">$5,000</td><td class="text-right">$3,500</td><td class="text-right">$1,500</td></tr>
+              <tr><td>$60k–$70k</td><td class="text-right">$6,000</td><td class="text-right">$4,200</td><td class="text-right">$1,800</td></tr>
+              <tr><td>$70k–$80k</td><td class="text-right">$7,000</td><td class="text-right">$4,900</td><td class="text-right">$2,100</td></tr>
+              <tr><td>$80k–$90k</td><td class="text-right">$8,000</td><td class="text-right">$5,600</td><td class="text-right">$2,400</td></tr>
+              <tr><td>$90k–$100k</td><td class="text-right">$9,000</td><td class="text-right">$6,300</td><td class="text-right">$2,700</td></tr>
+              <tr><td>$100k+</td><td class="text-right">$10,000</td><td class="text-right">$7,000</td><td class="text-right">$3,000</td></tr>
             </tbody>
           </table>
         </div>
@@ -377,7 +381,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
               <tr><td>$40k–$50k</td><td class="text-right">$4,500</td><td class="text-right">$3,150</td><td class="text-right">$1,350</td></tr>
               <tr><td>$50k–$60k</td><td class="text-right">$5,500</td><td class="text-right">$3,850</td><td class="text-right">$1,650</td></tr>
               <tr><td>$60k–$70k</td><td class="text-right">$6,500</td><td class="text-right">$4,550</td><td class="text-right">$1,950</td></tr>
-              <tr><td>$70k–$80k</td><td class="text-right">$7,500</td><td class="text-right">$5,250</td><td class="text-right">$1,575</td></tr>
+              <tr><td>$70k–$80k</td><td class="text-right">$7,500</td><td class="text-right">$5,250</td><td class="text-right">$2,250</td></tr>
               <tr><td>$80k–$90k</td><td class="text-right">$8,500</td><td class="text-right">$5,950</td><td class="text-right">$2,550</td></tr>
               <tr><td>$90k–$100k</td><td class="text-right">$9,500</td><td class="text-right">$6,650</td><td class="text-right">$2,850</td></tr>
               <tr><td>$100k+</td><td class="text-right">$10,500</td><td class="text-right">$7,350</td><td class="text-right">$3,150</td></tr>
@@ -573,15 +577,19 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   let jobs = [];
   let recruitSales = [];
 
-  /* ── Commission tiers ── */
+  /* ── Commission tiers (per 2026 Sales Rep & Manager Pay Plans) ── */
   const REP_TIERS = [
-    { max: 20000,  total: 1000,  upfront: 700,   backend: 300  },
-    { max: 30000,  total: 1500,  upfront: 1070,  backend: 430  },
-    { max: 45000,  total: 2250,  upfront: 1575,  backend: 675  },
-    { max: 60000,  total: 3000,  upfront: 2100,  backend: 900  },
-    { max: 75000,  total: 3750,  upfront: 2625,  backend: 1125 },
-    { max: 90000,  total: 4500,  upfront: 3150,  backend: 1350 },
-    { max: Infinity, total: 5000, upfront: 3500, backend: 1500 },
+    { max: 10000,  total: 500,   upfront: 350,  backend: 150  },
+    { max: 20000,  total: 1000,  upfront: 700,  backend: 300  },
+    { max: 30000,  total: 2000,  upfront: 1400, backend: 600  },
+    { max: 40000,  total: 3000,  upfront: 2100, backend: 900  },
+    { max: 50000,  total: 4000,  upfront: 2800, backend: 1200 },
+    { max: 60000,  total: 5000,  upfront: 3500, backend: 1500 },
+    { max: 70000,  total: 6000,  upfront: 4200, backend: 1800 },
+    { max: 80000,  total: 7000,  upfront: 4900, backend: 2100 },
+    { max: 90000,  total: 8000,  upfront: 5600, backend: 2400 },
+    { max: 100000, total: 9000,  upfront: 6300, backend: 2700 },
+    { max: Infinity, total: 10000, upfront: 7000, backend: 3000 },
   ];
 
   const MGR_TIERS = [
@@ -594,7 +602,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     { max: 50000,  total: 4500,  upfront: 3150,  backend: 1350 },
     { max: 60000,  total: 5500,  upfront: 3850,  backend: 1650 },
     { max: 70000,  total: 6500,  upfront: 4550,  backend: 1950 },
-    { max: 80000,  total: 7500,  upfront: 5250,  backend: 1575 },
+    { max: 80000,  total: 7500,  upfront: 5250,  backend: 2250 },
     { max: 90000,  total: 8500,  upfront: 5950,  backend: 2550 },
     { max: 100000, total: 9500,  upfront: 6650,  backend: 2850 },
     { max: Infinity, total: 10500, upfront: 7350, backend: 3150 },
