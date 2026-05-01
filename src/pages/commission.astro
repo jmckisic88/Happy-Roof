@@ -152,11 +152,11 @@ import LandingLayout from '../layouts/LandingLayout.astro';
             <label class="text-xs font-600 text-[#888] uppercase tracking-wider">Avg Gross Margin %</label>
             <span id="gp-slider-value" class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]">27%</span>
           </div>
-          <input type="range" id="gp-slider" min="10" max="50" step="1" value="27"
+          <input type="range" id="gp-slider" min="12" max="50" step="1" value="27"
             class="scenario-slider w-full h-2 rounded-full appearance-none cursor-pointer"
-            style="background: linear-gradient(to right, #e53e3e 0%, #E6A817 25%, #38a169 62.5%, #38a169 100%);" />
+            style="background: linear-gradient(to right, #e53e3e 0%, #E6A817 21%, #38a169 60%, #38a169 100%);" />
           <div class="flex justify-between text-xs mt-1">
-            <span class="text-[#e53e3e]">10%</span>
+            <span class="text-[#e53e3e]">12%</span>
             <span class="text-[#888]">20%</span>
             <span class="text-[#888]">30%</span>
             <span class="text-[#38a169]">40%</span>
@@ -976,7 +976,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
     $('#deals-slider').value = numJobs;
     $('#price-slider').value = Math.min(120000, Math.max(5000, avgPrice));
-    $('#gp-slider').value = Math.min(50, Math.max(10, avgGM));
+    $('#gp-slider').value = Math.min(50, Math.max(12, avgGM));
     updateAllSliderDisplays();
 
     showToast('Generated random scenario - ' + numJobs + ' jobs');
@@ -985,7 +985,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   function sliderGP() {
     var base = parseInt($('#gp-slider').value) || 27;
     var jitter = randomBetween(-3, 3);
-    return Math.max(5, Math.min(55, base + jitter));
+    return Math.max(12, Math.min(55, base + jitter));
   }
 
   // Compute estimated earnings from the 3 sliders (without generating jobs)
