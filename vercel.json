@@ -10,6 +10,7 @@
     { "path": "/api/cron-referral-report", "schedule": "0 12 * * *" },
     { "path": "/api/cron-foundation-report", "schedule": "0 12 * * *" },
     { "path": "/api/cron-seo-audit-v3", "schedule": "0 12 * * 0" },
+    { "path": "/api/cron-blog-generator", "schedule": "0 12 * * 3" },
     { "path": "/api/cron-reviews", "schedule": "0 11 * * *" }
   ]
 }

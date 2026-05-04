@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Hail Damage on Your Roof: A Florida Homeowner's Guide",
+    "datePublished": "2026-04-29",
+    "author": { "@type": "Organization", "name": "Happy Roof Team" },
+    "publisher": { "@type": "Organization", "name": "Happy Roof LLC", "url": "https://happyroof.com" },
+    "description": "How to spot hail damage on your roof, what insurance actually covers in Florida, and when to file a claim vs. pay out of pocket."
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I know if my roof has hail damage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hail damage on asphalt shingles appears as round, dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. On metal roofs, look for round dents in flashing, vents, and panels. On tile roofs, watch for cracked or shattered tiles. From the ground, you can often see granule buildup in gutters and downspouts. Many hail strikes aren't visible from the ground &mdash; a professional inspection is the only way to confirm." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long do I have to file a hail damage insurance claim in Florida?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Florida law generally allows up to 1 year from the date of the hail event to file a property insurance claim, but most insurance carriers require you to report damage promptly &mdash; typically within 14 to 60 days of discovery. Waiting too long can result in denial. If you suspect hail damage, schedule a free inspection within 30 days of the storm to document the damage with photos, measurements, and dates." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does hail size matter for roof damage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, but smaller hail can still cause functional damage. Hail just 1 inch in diameter (about quarter-sized) can dent metal flashing and dislodge shingle granules. Hail 1.25-1.75 inches can crack tiles and bruise asphalt shingles enough to require replacement. Hail over 2 inches usually causes immediate, obvious damage. The Tampa Bay area sees hail less often than the Midwest, but spring and summer thunderstorms regularly produce hail in the 1-2 inch range that homeowners overlook." }
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Hail Damage on Your Roof: A Florida Homeowner's Guide | Happy Roof"
+  description="How to spot hail damage on your Florida roof, what insurance covers, and when to file a claim. By Happy Roof, Tampa Bay."
+  canonical="https://happyroof.com/blog/hail-damage-florida-guide"
+  ogTitle="Hail Damage on Your Roof: A Florida Homeowner's Guide"
+  ogDescription="Spot the signs, know what insurance covers, and decide when to file a claim. By Happy Roof, Tampa Bay."
+  schema={schema}
+>
+
+<!-- HERO -->
+<section class="pt-32 pb-20 relative overflow-hidden" style="background:#F5F5F5;border-bottom:1px solid #E5E5E5">
+  <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-5">
+    <a href="/blog" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#3B9FD9;text-decoration:none;letter-spacing:.08em;text-transform:uppercase">&larr; Back to Blog</a>
+    <div style="margin-top:1.5rem;margin-bottom:1rem">
+      <span class="blog-tag" style="background:rgba(59,159,217,.1);color:#3B9FD9">Insurance</span>
+      <span style="color:#888888;font-size:.85rem;margin-left:.75rem">April 29, 2026</span>
+      <span style="color:#888888;font-size:.85rem;margin-left:.75rem">By Happy Roof Team</span>
+    </div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">
+      HAIL DAMAGE ON YOUR ROOF: A FLORIDA HOMEOWNER'S GUIDE
+    </h1>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<article class="py-16">
+  <div class="max-w-3xl mx-auto px-5 blog-content">
+
+    <p>Tampa Bay homeowners think of hail as a Midwest problem. It isn't. Florida regularly sees hail of 1-2 inches during spring and summer thunderstorms, and even hail that small can cause significant roof damage that goes unnoticed for months — sometimes years — until a leak finally appears.</p>
+
+    <p>Here's what every Florida homeowner needs to know about hail damage: how to spot it, what insurance actually covers, and when filing a claim makes sense.</p>
+
+    <h2>WHAT HAIL DAMAGE LOOKS LIKE BY ROOFING MATERIAL</h2>
+
+    <p>Hail damage shows up differently depending on what your roof is made of. Most of it is invisible from the ground, which is why post-storm inspections matter.</p>
+
+    <h3>Asphalt Shingles</h3>
+    <ul>
+      <li><strong>Round dark spots</strong> — Where granules have been knocked loose, exposing the black asphalt mat. The most common hail damage indicator.</li>
+      <li><strong>Bruised shingles</strong> — Spots that feel soft or spongy when pressed. The fiberglass mat is fractured underneath.</li>
+      <li><strong>Granule loss</strong> — Excessive granules accumulating in gutters and downspouts after a storm.</li>
+      <li><strong>Cracked or split shingles</strong> — Often radiating outward from a single impact point.</li>
+    </ul>
+
+    <h3>Metal Roofs</h3>
+    <ul>
+      <li><strong>Round dents</strong> in flashing, vents, gutters, and panels</li>
+      <li><strong>Chipped or cracked paint coating</strong> at impact points (which can lead to rust over time)</li>
+      <li><strong>Loosened fasteners</strong> from impact vibration</li>
+    </ul>
+
+    <h3>Tile Roofs</h3>
+    <ul>
+      <li><strong>Cracked or fractured tiles</strong></li>
+      <li><strong>Shattered tiles</strong> with larger hail (2"+ stones can split tiles outright)</li>
+      <li><strong>Chipped corners or edges</strong> on individual tiles</li>
+    </ul>
+
+    <h2>SIGNS YOU CAN SPOT FROM THE GROUND</h2>
+
+    <p>You don't need to climb on the roof to suspect hail damage. After a hailstorm, walk around your property and look for these indicators:</p>
+
+    <ul>
+      <li>Dents in metal items: gutters, downspouts, AC condenser fins, mailbox, car hoods</li>
+      <li>Granules washed into the corners of your driveway or sidewalk</li>
+      <li>Bruised or stripped paint on wood fences or sheds</li>
+      <li>Damaged plants or shredded leaves where the storm hit hardest</li>
+      <li>Window screen damage or cracked window glass</li>
+    </ul>
+
+    <p>If you see <strong>any</strong> of these signs, your roof almost certainly took some hail damage too. The roof is the largest, most exposed surface on your property — if hail hit your AC unit, it hit your roof harder.</p>
+
+    <h2>WHY HAIL DAMAGE IS DANGEROUS EVEN WHEN INVISIBLE</h2>
+
+    <p>Hail rarely causes immediate leaks. The damage is functional — granule loss accelerates UV degradation, bruised shingles become brittle, and cracked tiles let water in slowly over time.</p>
+
+    <p>The result: a hail-damaged roof that looks fine today will start leaking 6-18 months later, when the affected shingles deteriorate and let water through. By then, the storm event is too far in the past for an insurance claim, and you're paying out of pocket for both the leak repairs and the eventual full replacement.</p>
+
+    <p>This is why <strong>prompt post-storm inspection matters</strong> — not because of immediate leaks, but to document damage while the claim window is still open.</p>
+
+    <h2>THE 10x10 TEST SQUARE RULE</h2>
+
+    <p>When an insurance adjuster inspects your roof for hail damage, they typically use a <strong>10-foot by 10-foot test square</strong> to assess the severity. The threshold most carriers and roofing manufacturers use:</p>
+
+    <ul>
+      <li><strong>8 or more impact marks</strong> within a single 10x10 square = full roof replacement</li>
+      <li><strong>Less than 8 impacts</strong> = spot repair only (rarely worthwhile)</li>
+    </ul>
+
+    <p>The reason replacement makes sense is that <strong>spot-repaired hail-damaged roofs void manufacturer warranties</strong> on the rest of the roof. A patched section may look fine, but the surrounding shingles continue to deteriorate at an accelerated rate from the bruising the adjuster's test square missed.</p>
+
+    <h2>WILL FLORIDA INSURANCE COVER HAIL DAMAGE?</h2>
+
+    <p>Yes — hail is covered under the <strong>wind and hail provisions</strong> of standard Florida homeowners insurance policies. But there are caveats every Florida homeowner should understand:</p>
+
+    <h3>Deductibles Are Separate</h3>
+    <p>Most Florida policies have a <strong>separate hurricane/wind/hail deductible</strong> that's higher than your standard deductible. It's typically 2-5% of your home's insured value. On a $400,000 home, that's $8,000-$20,000 out of pocket before insurance pays anything.</p>
+
+    <h3>Roof Age Matters</h3>
+    <p>Many Florida carriers now apply a <strong>roof age schedule</strong> that pays only depreciated value (actual cash value) rather than replacement cost on roofs over 10-15 years old. A 20-year-old shingle roof might only get 30-50% of replacement cost paid.</p>
+
+    <h3>Documentation Is Critical</h3>
+    <p>Adjusters look for any reason to deny or reduce payouts. The more thoroughly your damage is documented — date, time, weather data, photos, measurements, test squares — the harder it is to deny. This is why working with a roofer experienced in claims documentation matters.</p>
+
+    <h2>SHOULD I FILE A HAIL DAMAGE CLAIM?</h2>
+
+    <p>Filing a claim isn't always the right move. Here's the decision framework:</p>
+
+    <p><strong>File a claim if:</strong></p>
+    <ul>
+      <li>The damage is significant (8+ impacts per test square)</li>
+      <li>Repair/replacement cost exceeds your deductible by 2x or more</li>
+      <li>Your roof is less than 10 years old (full replacement cost coverage)</li>
+      <li>You haven't had multiple recent claims (filing too often can lead to non-renewal)</li>
+    </ul>
+
+    <p><strong>Pay out of pocket if:</strong></p>
+    <ul>
+      <li>Damage is minor and easily repaired</li>
+      <li>Repair cost is below or near your deductible</li>
+      <li>Your roof is past 15-20 years and you'd be replacing it soon anyway</li>
+      <li>You've filed multiple claims recently and risk non-renewal</li>
+    </ul>
+
+    <p>A good local roofer will give you an honest opinion before you ever call your insurance company. Happy Roof's <a href="/storm-damage-repair">free post-storm inspection</a> includes a written assessment you can use either way — to file a claim or to plan a replacement.</p>
+
+    <h2>WHAT TO DO RIGHT AFTER A HAILSTORM</h2>
+
+    <ol>
+      <li><strong>Document the storm.</strong> Save weather alerts, news photos, and any video. NOAA storm reports for your zip code support claims.</li>
+      <li><strong>Photograph visible damage</strong> from the ground — gutters, AC unit, plants, dents on cars or fences.</li>
+      <li><strong>Schedule a free roof inspection within 14 days.</strong> Don't wait. Don't go on the roof yourself.</li>
+      <li><strong>Get a written damage report</strong> with photos, measurements, and the date.</li>
+      <li><strong>Decide on a claim</strong> based on your roofer's assessment, not the adjuster's first offer.</li>
+    </ol>
+
+    <h2>HAPPY ROOF'S HAIL DAMAGE PROCESS</h2>
+
+    <p>If you suspect hail damage on your Tampa Bay home, here's what we do:</p>
+
+    <ul>
+      <li><strong>Free, no-obligation inspection</strong> — typically scheduled within 24-48 hours after a storm</li>
+      <li><strong>Test square assessment</strong> — we count and photograph hail impacts in marked 10x10 areas</li>
+      <li><strong>Written damage report</strong> with photos, measurements, and test square data</li>
+      <li><strong>Honest claim recommendation</strong> — we'll tell you if a claim makes sense or if you should pay out of pocket</li>
+      <li><strong>Adjuster meeting</strong> — we attend the inspection with you and advocate for full coverage</li>
+      <li><strong>Repair or replacement</strong> — Owens Corning, GAF, Gulf Coast Supply metal, or Verea tile, with up to 15-year workmanship warranty</li>
+    </ul>
+
+    <p>Worried about hail damage from a recent storm? Call Happy Roof at <a href="tel:8135957663" class="call-tracking-number">(813) 595-7663</a> or <a href="/contact">request a free inspection</a>. We'll document everything and give you an honest recommendation — no pressure to file a claim or replace if it's not warranted.</p>
+
+    <!-- FAQ -->
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid #E0E0E0">
+      <h2 style="margin-top:0">FREQUENTLY ASKED QUESTIONS</h2>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          How do I know if my roof has hail damage?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Hail damage on asphalt shingles appears as round, dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. On metal roofs, look for round dents in flashing, vents, and panels. On tile roofs, watch for cracked or shattered tiles. From the ground, you can often see granule buildup in gutters and downspouts. Many hail strikes aren't visible from the ground &mdash; a professional inspection is the only way to confirm.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          How long do I have to file a hail damage insurance claim in Florida?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Florida law generally allows up to 1 year from the date of the hail event to file a property insurance claim, but most insurance carriers require you to report damage promptly &mdash; typically within 14 to 60 days of discovery. Waiting too long can result in denial. If you suspect hail damage, schedule a free inspection within 30 days of the storm to document the damage with photos, measurements, and dates.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Does hail size matter for roof damage?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes, but smaller hail can still cause functional damage. Hail just 1 inch in diameter (about quarter-sized) can dent metal flashing and dislodge shingle granules. Hail 1.25-1.75 inches can crack tiles and bruise asphalt shingles enough to require replacement. Hail over 2 inches usually causes immediate, obvious damage. The Tampa Bay area sees hail less often than the Midwest, but spring and summer thunderstorms regularly produce hail in the 1-2 inch range that homeowners overlook.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
+      SUSPECT HAIL DAMAGE<span style="color:#F0C040">?</span>
+    </h2>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Get a free post-storm inspection from Tampa Bay's trusted roofing contractor. We document everything, attend adjuster meetings, and give you honest recommendations.</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.15rem;padding:1rem 2.5rem">Book My Free Inspection <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="tel:8135957663" class="btn-o call-tracking-number" style="font-size:1.05rem;padding:1rem 2.5rem">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</BaseLayout>
