@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, phone, email, service, notes, address, source, page, priority, sms_transactional, sms_marketing, terms_consent } = req.body;
+  const { name, phone, email, service, notes, address, source, page, priority, sms_transactional, sms_marketing, terms_consent, newsletter } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
@@ -49,6 +49,7 @@ export default async function handler(req, res) {
         sms_transactional: sms_transactional || 'No',
         sms_marketing: sms_marketing || 'No',
         terms_consent: terms_consent || 'No',
+        newsletter: newsletter === true,
       }),
     });
 

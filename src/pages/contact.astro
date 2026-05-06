@@ -204,6 +204,10 @@ const schema = `{
                 <label for="sms-marketing" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
               </div>
               <div style="display:flex;align-items:flex-start;gap:.5rem">
+                <input type="checkbox" id="newsletter" name="newsletter" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+                <label for="newsletter" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>email newsletters and promotions</strong> from <strong>Happy Roof</strong>. You can unsubscribe at any time using the link in any email.</label>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:.5rem">
                 <input type="checkbox" id="terms-consent" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
                 <label for="terms-consent" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
               </div>
@@ -372,7 +376,7 @@ function handleSubmit(e) {
   btn.disabled = true; btn.textContent = 'Sending…';
   // Send to BOTH ServiceTitan and email (belt + suspenders)
   var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname };
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })
