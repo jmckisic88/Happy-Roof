@@ -136,6 +136,8 @@ const schema = `{
           <label for="terms-consent-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
         </div>
       </div>
+      <!-- Cloudflare Turnstile bot protection -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
       <button type="submit" class="btn-p" style="width:100%;font-size:1rem;padding:.85rem 2rem;justify-content:center;display:flex;align-items:center;gap:.5rem">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get Notified
@@ -148,12 +150,14 @@ const schema = `{
     document.getElementById('foundation-form').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = this;
+      var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
       var btn = form.querySelector('button[type="submit"]');
       var msg = document.getElementById('foundation-msg');
       var data = {
         name: form.name.value.trim(),
         phone: form.phone.value.trim(),
-        email: form.email.value.trim()
+        email: form.email.value.trim(),
+        turnstile_token: turnstileToken
       };
 
       btn.disabled = true;

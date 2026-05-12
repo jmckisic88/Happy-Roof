@@ -1,6 +1,8 @@
 // Lead Submission Proxy — routes to Project Breeze
 // POST /api/submit-lead
 
+import { verifyTurnstile, getClientIp } from './_turnstile.js';
+
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', 'https://www.happyroof.com');
@@ -15,10 +17,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, phone, email, service, notes, address, source, page, priority, sms_transactional, sms_marketing, terms_consent, newsletter } = req.body;
+  const { name, phone, email, service, notes, address, source, page, priority, sms_transactional, sms_marketing, terms_consent, newsletter, turnstile_token } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
+  }
+
+  // Verify Turnstile token to block bot submissions
+  const turnstile = await verifyTurnstile(turnstile_token, getClientIp(req));
+  if (!turnstile.success) {
+    return res.status(403).json({ error: 'Bot verification failed. Please refresh and try again.' });
   }
 
   const BREEZE_API_KEY = process.env.BREEZE_INBOUND_API_KEY;

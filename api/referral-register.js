@@ -3,6 +3,7 @@
 // Creates a new referrer with a unique slug and stores in Vercel Blob
 
 import { readBlob, writeBlob } from './_blob-store.js';
+import { verifyTurnstile, getClientIp } from './_turnstile.js';
 
 const BLOB_PREFIX = 'referral-registry';
 
@@ -29,10 +30,16 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, phone, email, paymentMethod } = req.body;
+  const { name, phone, email, paymentMethod, turnstile_token } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
+  }
+
+  // Verify Turnstile token
+  const turnstile = await verifyTurnstile(turnstile_token, getClientIp(req));
+  if (!turnstile.success) {
+    return res.status(403).json({ error: 'Bot verification failed. Please refresh and try again.' });
   }
 
   try {

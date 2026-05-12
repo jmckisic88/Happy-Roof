@@ -381,6 +381,8 @@ const schema = `{
               <label for="terms-consent-assessment" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
             </div>
           </div>
+          <!-- Cloudflare Turnstile bot protection -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
           <button type="submit" class="btn-t w-full justify-center" style="font-size:1rem;padding:.85rem">Get My Free Estimate</button>
         </form>
         <div id="viz-lead-success" style="display:none;padding:1.5rem">
@@ -720,6 +722,7 @@ function generateVisualization() {
 function submitVisualizerLead(e) {
   e.preventDefault();
   var form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var name = form.viz_name.value;
   var phone = form.viz_phone.value;
   var email = form.viz_email ? form.viz_email.value : '';
@@ -730,7 +733,8 @@ function submitVisualizerLead(e) {
     service: 'Roof Visualizer Lead',
     source: 'Website - Roof Assessment',
     page: '/assessment',
-    notes: 'Roof style interest: ' + selectedColor + ' ' + selectedStyle
+    notes: 'Roof style interest: ' + selectedColor + ' ' + selectedStyle,
+    turnstile_token: turnstileToken
   };
 
   Promise.allSettled([

@@ -162,6 +162,8 @@ const schema = `{
               <label for="terms-consent-refer" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
             </div>
           </div>
+          <!-- Cloudflare Turnstile bot protection -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
           <button type="submit" id="ref-submit-btn" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
             Get My Free Estimate
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -264,6 +266,7 @@ const schema = `{
 function handleReferralSubmit(e) {
   e.preventDefault();
   var form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var btn = document.getElementById('ref-submit-btn');
   btn.disabled = true;
   btn.textContent = 'Sending…';
@@ -275,7 +278,8 @@ function handleReferralSubmit(e) {
     address: form.address.value,
     service: form.service.value,
     notes: form.notes.value,
-    ref: window._referralSlug
+    ref: window._referralSlug,
+    turnstile_token: turnstileToken
   };
 
   fetch('/api/referral-submit', {

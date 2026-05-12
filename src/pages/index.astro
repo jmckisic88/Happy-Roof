@@ -360,6 +360,8 @@ const schema = `[{
           <div id="hero-success" style="display:none;background:rgba(59,159,217,.08);border:1px solid rgba(59,159,217,.25);border-radius:10px;padding:.875rem 1rem;margin-bottom:1rem;text-align:center">
             <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
           </div>
+          <!-- Cloudflare Turnstile bot protection -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
           <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.05rem;padding:.9rem">
             Get the Truth About Your Roof <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
@@ -1070,6 +1072,7 @@ const schema = `[{
 function submitHeroForm(e) {
   e.preventDefault();
   const form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const req = form.querySelectorAll('[required]');
   let valid = true;
   req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#EF4444'; valid=false; } });
@@ -1092,7 +1095,7 @@ function submitHeroForm(e) {
   var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() : '';
   var consentNote = 'SMS Transactional: ' + formData.sms_transactional + ' | SMS Marketing: ' + formData.sms_marketing + ' | Terms: ' + formData.terms_consent;
   // Send to BOTH ServiceTitan and email (belt + suspenders)
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname };
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname, turnstile_token: turnstileToken };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) })

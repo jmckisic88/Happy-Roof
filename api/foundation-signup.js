@@ -2,6 +2,7 @@
 // Stores signups in Vercel Blob + emails info@happyroof.com via FormSubmit
 
 import { readBlob, writeBlob } from './_blob-store.js';
+import { verifyTurnstile, getClientIp } from './_turnstile.js';
 
 const BLOB_PREFIX = 'foundation-signups';
 
@@ -13,10 +14,16 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, phone, email } = req.body;
+  const { name, phone, email, turnstile_token } = req.body;
 
   if (!name || !phone || !email) {
     return res.status(400).json({ error: 'Name, phone, and email are required' });
+  }
+
+  // Verify Turnstile token
+  const turnstile = await verifyTurnstile(turnstile_token, getClientIp(req));
+  if (!turnstile.success) {
+    return res.status(403).json({ error: 'Bot verification failed. Please refresh and try again.' });
   }
 
   const signup = {

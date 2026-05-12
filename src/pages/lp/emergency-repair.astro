@@ -139,6 +139,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <label for="terms-consent-lp-emergency" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
               </div>
             </div>
+            <!-- Cloudflare Turnstile bot protection -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
             <button type="submit" class="btn-t" style="margin-top:.5rem;font-size:1.1rem">Request Emergency Service <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
           </div>
         </form>
@@ -159,10 +161,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 function submitForm(e){
   e.preventDefault();
   var form=e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var data=new FormData(form);
   var obj={};data.forEach(function(v,k){obj[k]=v});
   // ServiceTitan + FormSubmit fallback
-  var stPayload = { name: obj.name||'', phone: obj.phone||'', email: obj.email||'', service: 'PPC Lead - Emergency', notes: obj.address||'', source: 'PPC - Emergency Repair', page: '/lp/emergency-repair' };
+  var stPayload = { name: obj.name||'', phone: obj.phone||'', email: obj.email||'', service: 'PPC Lead - Emergency', notes: obj.address||'', source: 'PPC - Emergency Repair', page: '/lp/emergency-repair', turnstile_token: turnstileToken };
   fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
     .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
     .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(obj) }); })

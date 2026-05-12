@@ -42,6 +42,9 @@ const {
 
   <meta property="og:image" content={ogImage} />
 
+  <!-- Cloudflare Turnstile (bot protection on forms) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <slot name="head" />
 </head>
 <body>

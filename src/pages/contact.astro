@@ -212,6 +212,8 @@ const schema = `{
                 <label for="terms-consent" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
               </div>
             </div>
+            <!-- Cloudflare Turnstile bot protection -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
             <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
               Get My Free Estimate
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -369,6 +371,7 @@ function toggleFaq(el) {
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const inputs = form.querySelectorAll('input,select,textarea');
   const data = { _subject: 'New Contact Form - Happy Roof Website' };
   inputs.forEach(el => { if (el.name) data[el.name] = el.type==='checkbox' ? (el.checked?'Yes':'No') : el.value; });
@@ -376,7 +379,7 @@ function handleSubmit(e) {
   btn.disabled = true; btn.textContent = 'Sending…';
   // Send to BOTH ServiceTitan and email (belt + suspenders)
   var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes', turnstile_token: turnstileToken };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })

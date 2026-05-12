@@ -564,6 +564,8 @@ const schema = `[{
             <label for="terms-consent-referrals" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
           </div>
         </div>
+        <!-- Cloudflare Turnstile bot protection -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
         <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
           Submit My Referral
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -638,6 +640,8 @@ const schema = `[{
             </select>
           </div>
         </div>
+        <!-- Cloudflare Turnstile bot protection -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
         <button type="submit" id="link-submit-btn" class="btn-t w-full justify-center" style="font-size:1.05rem;padding:.9rem">
           Generate My Referral Link
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -728,6 +732,7 @@ function toggleFaq(el) {
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const inputs = form.querySelectorAll('input,select,textarea');
   const data = { _subject: 'New Referral Submission - Happy Roof Website' };
   inputs.forEach(el => { if (el.name) data[el.name] = el.value; });
@@ -738,7 +743,7 @@ function handleSubmit(e) {
   const btn = form.querySelector('button[type=submit]');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   // Send to BOTH ServiceTitan and email
-  const stPayload = { name: data.referral_name||'', phone: data.referral_phone||'', email: data.referral_email||'', service: 'Referral', notes: data.referral_notes||'', source: 'Website - Referral', page: '/referrals' };
+  const stPayload = { name: data.referral_name||'', phone: data.referral_phone||'', email: data.referral_email||'', service: 'Referral', notes: data.referral_notes||'', source: 'Website - Referral', page: '/referrals', turnstile_token: turnstileToken };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })
@@ -751,6 +756,7 @@ function handleSubmit(e) {
 function handleLinkSignup(e) {
   e.preventDefault();
   var form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var btn = document.getElementById('link-submit-btn');
   btn.disabled = true;
   btn.textContent = 'Generating…';
@@ -759,7 +765,8 @@ function handleLinkSignup(e) {
     name: form.link_name.value,
     phone: form.link_phone.value,
     email: form.link_email.value,
-    paymentMethod: form.link_payment.value
+    paymentMethod: form.link_payment.value,
+    turnstile_token: turnstileToken
   };
 
   fetch('/api/referral-register', {

@@ -121,6 +121,8 @@ const schema = `{
           <label for="terms-consent-truck" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
         </div>
       </div>
+      <!-- Cloudflare Turnstile bot protection -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
       <button type="submit" class="btn-p" style="width:100%;justify-content:center;font-size:1.15rem;padding:1rem;font-weight:800">
         CLAIM MY $250 DISCOUNT
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -156,6 +158,7 @@ const schema = `{
 function submitTruckForm(e) {
   e.preventDefault();
   const form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const req = form.querySelectorAll('[required]');
   let valid = true;
   req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#E6A817'; valid=false; } });
@@ -171,7 +174,7 @@ function submitTruckForm(e) {
     offer: '$250 Truck Discount',
     source: 'truck-qr-code'
   };
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: '$250 Truck Offer', notes: '', source: 'QR Code - Truck', page: '/truck' };
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, service: '$250 Truck Offer', notes: '', source: 'QR Code - Truck', page: '/truck', turnstile_token: turnstileToken };
   Promise.allSettled([
     fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
     fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) })
