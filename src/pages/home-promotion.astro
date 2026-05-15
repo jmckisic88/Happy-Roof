@@ -153,9 +153,63 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
   .offer-txt strong .free { color:#E6A817; }
 
+  /* Why Happy Roof trust grid */
+  .why {
+    background:#F7F7F7;
+    border-top:1px solid #E0E0E0;
+    padding:.85rem 1.75rem;
+  }
+  .why-row {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:.6rem;
+  }
+  .why-label {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:900;
+    font-size:.95rem;
+    line-height:1;
+    color:#1A1A1A;
+    margin:0;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .why-sub {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:.62rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#888888;
+    margin:0;
+  }
+  .why-grid {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:.45rem .85rem;
+  }
+  .why-item {
+    display:flex;
+    align-items:center;
+    gap:.45rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:.72rem;
+    color:#1A1A1A;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    line-height:1.15;
+  }
+  .why-item svg {
+    color:#E6A817;
+    flex-shrink:0;
+  }
+
   /* Requirements */
   .reqs {
-    background:#F7F7F7;
+    background:#FFFFFF;
     border-top:1px solid #E0E0E0;
     border-bottom:1px solid #E0E0E0;
     padding:.85rem 1.75rem;
@@ -281,8 +335,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 
   @media (max-width: 640px) {
-    .offers { grid-template-columns:1fr; }
-    .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers { padding-left:1rem; padding-right:1rem; }
+    .offers, .why-grid { grid-template-columns:1fr 1fr; }
+    .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers, .why { padding-left:1rem; padding-right:1rem; }
     .hero-title { font-size:1.5rem; }
     .footer-row { flex-direction:column; align-items:flex-start; }
   }
@@ -335,7 +389,49 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     </div>
     <div class="offer">
       <span class="offer-n">6</span>
-      <p class="offer-txt"><strong>Referral Bonus <span class="free">+$100</span></strong>Every referral pays you $100 extra.</p>
+      <p class="offer-txt"><strong><span class="free">Driveway Power Wash</span> Included</strong>Complimentary post-install cleanup.</p>
+    </div>
+  </div>
+
+  <!-- WHY HAPPY ROOF -->
+  <div class="why">
+    <div class="why-row">
+      <h2 class="why-label">Why Happy Roof</h2>
+      <p class="why-sub">Credentials, Community, Quality</p>
+    </div>
+    <div class="why-grid">
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        30+ Yrs Leadership Experience
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Owens Corning Preferred Vendor
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M22 11h-6"/></svg>
+        FirstOnSite Trusted Partner
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Delta Catastrophe Partner
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Skybrooke K-8 Sponsor
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2l3 3-3 3-3-3z"/><path d="M2 12l3-3 3 3-3 3z"/><path d="M22 12l-3-3-3 3 3 3z"/><path d="M12 22l-3-3 3-3 3 3z"/></svg>
+        Tampa Lions FC Sponsor
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Happy Roof Foundation
+      </span>
+      <span class="why-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Above &amp; Beyond Quality
+      </span>
     </div>
   </div>
 
