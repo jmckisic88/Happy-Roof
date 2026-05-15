@@ -12,11 +12,21 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   body { background:#F5F5F5; font-family:'Nunito',sans-serif; color:#1A1A1A; margin:0; }
   .promo { max-width:8.5in; margin:0 auto; background:#FFFFFF; }
 
+  /* Force backgrounds and colors to print (override browser default that strips them) */
+  .promo, .promo *,
+  .hero, .reqs, .footer, .offer {
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+    color-adjust:exact !important;
+  }
+
   /* Print */
   @media print {
     body { background:#FFFFFF; }
     .promo { max-width:none; box-shadow:none; }
-    .no-print { display:none !important; }
+    .no-print,
+    #hr-chat-wrap, #hr-chat-fab, #hr-chat-window, #hr-chat-badge,
+    [id^="hr-chat"] { display:none !important; }
     @page { size:letter; margin:.35in .4in; }
   }
 
@@ -313,7 +323,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     </div>
     <div class="offer">
       <span class="offer-n">3</span>
-      <p class="offer-txt"><strong>Labor Warranty <span class="free">Doubled</span></strong>5&rarr;10, 10&rarr;15, 50&rarr;Lifetime.</p>
+      <p class="offer-txt"><strong>Labor Warranty <span class="free">5 &rarr; 10 Years</span></strong>Double your workmanship coverage.</p>
     </div>
     <div class="offer">
       <span class="offer-n">4</span>
