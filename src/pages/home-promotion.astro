@@ -98,12 +98,21 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
   .copy-body + .copy-body { margin-top:.7rem; }
 
-  /* Who We Are: logo in section header, paragraph below at full width */
-  .who-hdr .who-logo {
-    height:32px;
-    width:auto;
+  /* Who We Are: logo side-by-side with paragraph */
+  .who-we-are {
+    display:flex;
+    align-items:flex-start;
+    gap:1.5rem;
+    padding-top:.3rem;
+    padding-bottom:.9rem;
   }
-  .who-copy { padding-top:.4rem; }
+  .who-logo {
+    height:64px;
+    width:auto;
+    flex-shrink:0;
+    margin-top:.2rem;
+  }
+  .who-hdr { padding-bottom:.2rem; }
 
   /* Section header */
   .sec-hdr {
@@ -377,7 +386,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers, .why, .copy { padding-left:1rem; padding-right:1rem; }
     .hero-title { font-size:1.5rem; }
     .footer-row { flex-direction:column; align-items:flex-start; }
-    .who-hdr .who-logo { height:26px; }
+    .who-we-are { flex-direction:column; align-items:flex-start; gap:.75rem; }
+    .who-logo { height:50px; }
   }
 </style>
 
@@ -403,9 +413,10 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   <!-- WHO WE ARE -->
   <div class="sec-hdr who-hdr">
     <h2 class="sec-title">Who We Are</h2>
-    <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="who-logo" />
+    <p class="sec-sub">Happy Roof LLC · Tampa Bay</p>
   </div>
-  <section class="copy who-copy">
+  <section class="copy who-we-are">
+    <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="who-logo" />
     <p class="copy-body">Happy Roof is a locally owned roofing contractor based in Oldsmar, Florida, serving homeowners across Hillsborough, Pinellas, and Pasco counties. Founded by a team with 30+ years of combined industry experience, we specialize in residential and commercial roof replacement, repair, and storm damage restoration. We're fully licensed (FL #CCC1337380), 5-star rated on Google, and back every install with an up to 15-year workmanship warranty in writing.</p>
   </section>
 
