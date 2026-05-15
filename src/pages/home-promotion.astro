@@ -98,6 +98,18 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
   .copy-body + .copy-body { margin-top:.7rem; }
 
+  /* Who We Are with logo */
+  .who-we-are {
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+  }
+  .who-logo {
+    height:72px;
+    width:auto;
+    flex-shrink:0;
+  }
+
   /* Section header */
   .sec-hdr {
     padding:1rem 1.75rem .6rem;
@@ -203,24 +215,39 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
   .why-grid {
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:.45rem .85rem;
+    grid-template-columns:repeat(2, 1fr);
+    gap:.65rem;
   }
   .why-item {
     display:flex;
-    align-items:center;
-    gap:.45rem;
-    font-family:'Barlow Condensed',sans-serif;
-    font-weight:800;
-    font-size:.72rem;
-    color:#1A1A1A;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    line-height:1.15;
+    align-items:flex-start;
+    gap:.65rem;
+    padding:.7rem .85rem .75rem;
+    background:#FFFFFF;
+    border-left:3px solid #E6A817;
+    border-radius:6px;
   }
   .why-item svg {
     color:#E6A817;
     flex-shrink:0;
+    margin-top:.15rem;
+  }
+  .why-item-content { flex:1; }
+  .why-item-title {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:.85rem;
+    color:#1A1A1A;
+    margin:0 0 .2rem;
+    line-height:1.15;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .why-item-desc {
+    font-size:.74rem;
+    line-height:1.45;
+    color:#555555;
+    margin:0;
   }
 
   /* Requirements */
@@ -351,10 +378,12 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 
   @media (max-width: 640px) {
-    .offers, .why-grid { grid-template-columns:1fr 1fr; }
-    .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers, .why { padding-left:1rem; padding-right:1rem; }
+    .offers, .why-grid { grid-template-columns:1fr; }
+    .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers, .why, .copy { padding-left:1rem; padding-right:1rem; }
     .hero-title { font-size:1.5rem; }
     .footer-row { flex-direction:column; align-items:flex-start; }
+    .who-we-are { flex-direction:column; align-items:flex-start; gap:.75rem; }
+    .who-logo { height:56px; }
   }
 </style>
 
@@ -382,7 +411,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     <h2 class="sec-title">Who We Are</h2>
     <p class="sec-sub">Happy Roof LLC · Tampa Bay</p>
   </div>
-  <section class="copy">
+  <section class="copy who-we-are">
+    <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="who-logo" />
     <p class="copy-body">Happy Roof is a locally owned roofing contractor based in Oldsmar, Florida, serving homeowners across Hillsborough, Pinellas, and Pasco counties. Founded by a team with 30+ years of combined industry experience, we specialize in residential and commercial roof replacement, repair, and storm damage restoration. We install premium Owens Corning and GAF shingles, Gulf Coast Supply metal, and Verea tile systems. We're fully licensed (FL #CCC1337380), 5-star rated on Google, and back every install with an up to 15-year workmanship warranty in writing.</p>
   </section>
 
@@ -435,38 +465,62 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       <p class="why-sub">Credentials, Community, Quality</p>
     </div>
     <div class="why-grid">
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        30+ Yrs Leadership Experience
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Owens Corning Preferred Vendor
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M22 11h-6"/></svg>
-        FirstOnSite Trusted Partner
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Delta Catastrophe Partner
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        Skybrooke K-8 Sponsor
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2l3 3-3 3-3-3z"/><path d="M2 12l3-3 3 3-3 3z"/><path d="M22 12l-3-3-3 3 3 3z"/><path d="M12 22l-3-3 3-3 3 3z"/></svg>
-        Tampa Lions FC Sponsor
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Happy Roof Foundation
-      </span>
-      <span class="why-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        Above &amp; Beyond Quality
-      </span>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">30+ Years Industry Experience</p>
+          <p class="why-item-desc">Our leadership team has decades of roofing experience. You're not paying for someone learning on your roof.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Owens Corning Preferred Vendor</p>
+          <p class="why-item-desc">Top-tier installer certification. Access to better materials, extended manufacturer warranties, and direct OC support.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">FirstOnSite Trusted Partner</p>
+          <p class="why-item-desc">Hand-picked into FirstOnSite's national restoration network. They only partner with the highest-rated vendors in each market.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Delta Catastrophe Partner</p>
+          <p class="why-item-desc">Approved vendor for Delta Catastrophe's insurance restoration program. Trusted for quality work on storm and CAT claims.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Skybrooke K-8 Sponsor</p>
+          <p class="why-item-desc">Active community sponsor of Skybrooke K-8 in Pasco County. We reinvest locally in the families and kids in our service area.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Tampa Lions FC Sponsor</p>
+          <p class="why-item-desc">Proud sponsor of Tampa Lions FC, our area's NPSL men's soccer team. Supporting Tampa Bay sports at every level.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Happy Roof Foundation</p>
+          <p class="why-item-desc">Our charitable foundation covers full roof repair and replacement costs for financially struggling families across Tampa Bay.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="why-item-content">
+          <p class="why-item-title">Above &amp; Beyond Quality Control</p>
+          <p class="why-item-desc">Dedicated project management, daily progress updates, magnetic nail sweep, and a final walkthrough. No surprises, no shortcuts.</p>
+        </div>
+      </div>
     </div>
   </div>
 
