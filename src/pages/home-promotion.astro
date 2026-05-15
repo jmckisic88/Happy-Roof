@@ -98,21 +98,23 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
   .copy-body + .copy-body { margin-top:.7rem; }
 
-  /* Who We Are: logo side-by-side with paragraph */
-  .who-we-are {
+  /* Who We Are: single combined block, no padding stacking */
+  .who-block {
+    padding:.9rem 1.75rem 1rem;
+  }
+  .who-top {
     display:flex;
-    align-items:flex-start;
-    gap:1.5rem;
-    padding-top:.3rem;
-    padding-bottom:.9rem;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:.5rem;
   }
+  .who-top .sec-title { margin:0; }
   .who-logo {
-    height:64px;
+    height:38px;
     width:auto;
-    flex-shrink:0;
-    margin-top:.2rem;
+    display:block;
   }
-  .who-hdr { padding-bottom:.2rem; }
 
   /* Section header */
   .sec-hdr {
@@ -386,8 +388,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     .hero, .sec-hdr, .reqs, .footer, .fineprint, .offers, .why, .copy { padding-left:1rem; padding-right:1rem; }
     .hero-title { font-size:1.5rem; }
     .footer-row { flex-direction:column; align-items:flex-start; }
-    .who-we-are { flex-direction:column; align-items:flex-start; gap:.75rem; }
-    .who-logo { height:50px; }
+    .who-block { padding-left:1rem; padding-right:1rem; }
+    .who-logo { height:30px; }
   }
 </style>
 
@@ -411,12 +413,11 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   </header>
 
   <!-- WHO WE ARE -->
-  <div class="sec-hdr who-hdr">
-    <h2 class="sec-title">Who We Are</h2>
-    <p class="sec-sub">Happy Roof LLC · Tampa Bay</p>
-  </div>
-  <section class="copy who-we-are">
-    <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="who-logo" />
+  <section class="who-block">
+    <div class="who-top">
+      <h2 class="sec-title">Who We Are</h2>
+      <img src="/Brand%20Assets/Happy Roof Logo.png" alt="Happy Roof" class="who-logo" />
+    </div>
     <p class="copy-body">Happy Roof is a locally owned roofing contractor based in Oldsmar, Florida, serving homeowners across Hillsborough, Pinellas, and Pasco counties. Founded by a team with 30+ years of combined industry experience, we specialize in residential and commercial roof replacement, repair, and storm damage restoration. We're fully licensed (FL #CCC1337380), 5-star rated on Google, and back every install with an up to 15-year workmanship warranty in writing.</p>
   </section>
 
