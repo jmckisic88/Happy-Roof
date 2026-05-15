@@ -82,6 +82,22 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     margin:.15rem 0 0;
   }
 
+  /* Body copy sections */
+  .copy {
+    padding:1.1rem 1.75rem 1.2rem;
+  }
+  .copy.accent {
+    background:#F7F7F7;
+    border-top:1px solid #E0E0E0;
+  }
+  .copy-body {
+    font-size:.86rem;
+    line-height:1.6;
+    color:#1A1A1A;
+    margin:0;
+  }
+  .copy-body + .copy-body { margin-top:.7rem; }
+
   /* Section header */
   .sec-hdr {
     padding:1rem 1.75rem .6rem;
@@ -360,6 +376,25 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       <p class="big">$5,000+</p>
     </div>
   </header>
+
+  <!-- WHO WE ARE -->
+  <div class="sec-hdr">
+    <h2 class="sec-title">Who We Are</h2>
+    <p class="sec-sub">Happy Roof LLC · Tampa Bay</p>
+  </div>
+  <section class="copy">
+    <p class="copy-body">Happy Roof is a locally owned roofing contractor based in Oldsmar, Florida, serving homeowners across Hillsborough, Pinellas, and Pasco counties. Founded by a team with 30+ years of combined industry experience, we specialize in residential and commercial roof replacement, repair, and storm damage restoration. We install premium Owens Corning and GAF shingles, Gulf Coast Supply metal, and Verea tile systems. We're fully licensed (FL #CCC1337380), 5-star rated on Google, and back every install with an up to 15-year workmanship warranty in writing.</p>
+  </section>
+
+  <!-- WHY WE'RE DOING THIS -->
+  <div class="sec-hdr" style="background:#F7F7F7;border-top:1px solid #E0E0E0">
+    <h2 class="sec-title">Why We're Doing This</h2>
+    <p class="sec-sub">Marketing Home Program</p>
+  </div>
+  <section class="copy accent">
+    <p class="copy-body">Most roofing companies spend their marketing budget on billboards and TV commercials that homeowners scroll past or tune out. We do it differently. Instead of paying for impressions nobody trusts, we reinvest that budget directly into a small number of homes in each neighborhood, covering premium upgrades and giving qualifying homeowners our highest-tier package at a price most never see.</p>
+    <p class="copy-body">In return, we get something money can't buy: a real, visible installation in your neighborhood that neighbors can drive past, ask about, and trust. When we take care of one homeowner well, word travels, and that's how we'd rather spend our marketing budget. On actual homes, not airtime.</p>
+  </section>
 
   <!-- WHAT'S INCLUDED -->
   <div class="sec-hdr">
