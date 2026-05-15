@@ -7,6 +7,7 @@ Disallow: /resources
 Disallow: /archived/
 Disallow: /commission
 Disallow: /calendar
+Disallow: /home-promotion
 
 # AI Search Crawlers — explicitly allowed
 User-agent: GPTBot
