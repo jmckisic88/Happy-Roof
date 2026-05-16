@@ -71,7 +71,7 @@
     },
     {
       intents: ['referral','refer','friend','family','bonus','earn','reward'],
-      response: `🎉 Our referral program pays **up to $1,000 per referral!**\n\n💵 **Tier 1** — Estimate completed: **$50**\n💵 **Tier 2** — Any repair closed: **$125**\n💵 **Tier 3** — Roof replacement up to $12,500: **$250**\n💵 **Tier 4** — Roof replacement up to $25,000: **$500**\n💵 **Tier 5** — Roof replacement up to $40,000: **$750**\n💵 **Tier 6** — Roof replacement $40,001+: **$1,000**\n\nTiers stack — if your referral completes an estimate *and* closes a job, you earn both payouts. No cap, no expiration. Visit our Referrals page to learn more!`,
+      response: `🎉 Our referral program pays **up to $1,000 per referral!**\n\n💵 **Tier 1** — Estimate completed: **$50**\n💵 **Tier 2** — Roof replacement up to $13,500: **$100**\n💵 **Tier 3** — Roof replacement up to $27,000: **$200**\n💵 **Tier 4** — Roof replacement up to $40,000: **$300**\n💵 **Tier 5** — Roof replacement $40,001 – $75,000: **$500**\n💵 **Tier 6** — Roof replacement $75,001+: **$1,000**\n\nTiers stack — if your referral completes an estimate *and* closes a job, you earn both payouts. No cap, no expiration. Visit our Referrals page to learn more!`,
       quick: ['Go to referral page','How do I get paid?','More questions']
     },
     {
