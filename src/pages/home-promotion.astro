@@ -22,13 +22,15 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     color-adjust:exact !important;
   }
 
+  /* Hide site-wide chat widget + mobile sticky bar injected by /chat.js (loaded by LandingLayout). This is a marketing 1-pager — no chat/CTA bar wanted. */
+  [id^="hr-chat"], #hr-mobile-bar { display:none !important; }
+  body { padding-bottom:0 !important; } /* undo inline padding chat.js sets for mobile bar */
+
   /* Print */
   @media print {
     body { background:#FFFFFF; }
     .promo { max-width:none; box-shadow:none; }
-    .no-print,
-    #hr-chat-wrap, #hr-chat-fab, #hr-chat-window, #hr-chat-badge,
-    [id^="hr-chat"] { display:none !important; }
+    .no-print { display:none !important; }
     @page { size:letter; margin:.35in .4in; }
   }
 
