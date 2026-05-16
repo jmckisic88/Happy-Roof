@@ -101,8 +101,9 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   .copy-body + .copy-body { margin-top:.7rem; }
 
   /* Who We Are: single combined block, no padding stacking */
-  .who-block {
-    padding:.9rem 1.75rem 1rem;
+  /* section.who-block bumps specificity past global.css `section:first-of-type { padding-top:8.5rem !important }` (nav offset on main site; LandingLayout has no nav) */
+  section.who-block {
+    padding:.9rem 1.75rem 1rem !important;
   }
   .who-top {
     display:flex;
