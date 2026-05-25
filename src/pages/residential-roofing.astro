@@ -46,6 +46,11 @@ const schema = `[{
         "@type": "Question",
         "name": "Is Happy Roof licensed and insured for residential work in Florida?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. Certificates of insurance are available on request." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I choose the right roofing contractor in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Vet a Tampa Bay roofing contractor on five things: (1) Florida state license — every legitimate roofer carries a CCC# you can verify at MyFloridaLicense.com (Happy Roof: #CCC1337380); (2) general liability + workers' compensation insurance with current certificates available on request, not just a verbal assurance; (3) Google review volume and recency — look for at least 25+ reviews, a 4.7+ average, and recent reviews from the last 90 days; (4) years of operating experience and manufacturer certifications (e.g., Owens Corning Preferred Contractor, GAF Master Elite) which require ongoing training and warranty performance to maintain; and (5) a written workmanship warranty separate from the manufacturer's material warranty — Happy Roof issues an up-to-15-year written workmanship warranty on every install. Avoid storm-chasers without a permanent local address, contractors who pressure same-day signing without a written estimate, and anyone unwilling to share their license or insurance up front." }
       }
     ]
   },{
@@ -339,6 +344,16 @@ const schema = `[{
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380 and carries full general liability and workers' compensation insurance. Certificates of insurance are available on request. Never hire a roofer who can't provide proof of licensing and insurance - it puts your home and finances at risk.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How do I choose the right roofing contractor in Tampa Bay?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Vet a Tampa Bay roofing contractor on five things:<br/><br/><strong>1. Florida state license.</strong> Every legitimate roofer carries a CCC# you can verify at <a href="https://www.myfloridalicense.com/wl11.asp" target="_blank" rel="noopener" style="color:#3B9FD9;text-decoration:none;font-weight:600">MyFloridaLicense.com</a>. Happy Roof's number is <strong>#CCC1337380</strong>.<br/><br/><strong>2. Insurance certificates.</strong> Ask for general liability and workers' compensation certificates, not just a verbal assurance. A reputable contractor will email them on request the same day.<br/><br/><strong>3. Google reviews — volume and recency.</strong> Look for at least 25+ reviews, a 4.7+ average, and reviews from the last 90 days. Avoid contractors with only old reviews or a sudden burst of reviews dated within the same week.<br/><br/><strong>4. Experience + manufacturer certifications.</strong> Owens Corning Preferred Contractor and GAF Master Elite status require ongoing training and warranty performance to maintain — they're harder to fake than self-claimed years in business.<br/><br/><strong>5. Written workmanship warranty.</strong> Separate from the manufacturer's material warranty. Happy Roof issues an up-to-15-year written workmanship warranty on every install.<br/><br/>Avoid storm-chasers with no permanent local address, contractors who pressure same-day signing without a written estimate, and anyone unwilling to share their license or insurance up front.</div>
       </div>
     </div>
 
