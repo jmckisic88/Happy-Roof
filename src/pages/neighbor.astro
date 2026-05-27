@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "RoofingContractor"],
+      "name": "Happy Roof LLC",
+      "url": "https://happyroof.com",
+      "telephone": "+1-813-595-7663",
+      "email": "info@happyroof.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "141 Stevens Ave #12",
+        "addressLocality": "Oldsmar",
+        "addressRegion": "FL",
+        "postalCode": "34677",
+        "addressCountry": "US"
+      },
+      "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+      "dateModified": "2026-05-27"
+    },
+    {
+      "@type": "Offer",
+      "name": "Neighborhood Discount — $500 Per $10,000",
+      "description": "Exclusive neighborhood offer for Tampa Bay homeowners who scanned a Happy Roof yard sign. $500 off for every $10,000 of contract value, up to $2,000 total. Minimum $5,000 project. One per household. Must schedule within 30 days.",
+      "url": "https://happyroof.com/neighbor",
+      "priceCurrency": "USD",
+      "discount": "$500 per $10,000 (max $2,000)",
+      "validThrough": "2026-12-31",
+      "eligibleRegion": {
+        "@type": "City",
+        "name": "Tampa Bay",
+        "addressRegion": "FL"
+      },
+      "offeredBy": {
+        "@type": "RoofingContractor",
+        "name": "Happy Roof LLC"
+      }
+    }
+  ]
+}`;
+---
+
+<BaseLayout
+  title="Neighborhood Discount | $500 Per $10K | Happy Roof Tampa Bay"
+  description="You saw our work. Here's $500 off every $10,000 of your project (up to $2,000). Exclusive neighborhood offer from Happy Roof, Tampa Bay's trusted roofing contractor."
+  canonical="https://happyroof.com/neighbor"
+  ogTitle="Neighborhood Discount — $500 Per $10,000 | Happy Roof"
+  ogDescription="Exclusive neighborhood offer. $500 off every $10,000 of work, up to $2,000. Saw our work? Claim yours."
+  schema={schema}
+>
+
+<style is:inline>
+  #give-back-bar { display: none !important; }
+  .nav-wrap { top: 0 !important; }
+  /* Hide the exit-intent popup site-wide on this lean conversion page */
+  #exit-popup { display: none !important; }
+</style>
+
+<script is:inline>
+  // Also prevent the exit-popup script from firing at all on this page
+  try { sessionStorage.setItem('hr_exit_shown', '1'); } catch (e) {}
+</script>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2.5rem 1.5rem 3rem;background:#FFFFFF">
+  <div style="max-width:480px;width:100%;margin:0 auto;text-align:center">
+
+    <!-- Hero photo: the Happy Roof truck in front of a Tampa Bay home — "yes, this is who you saw" -->
+    <div style="position:relative;border-radius:14px;overflow:hidden;margin-bottom:1rem;box-shadow:0 16px 40px -12px rgba(0,0,0,.18),0 4px 14px -4px rgba(0,0,0,.08)">
+      <img src="/Brand%20Assets/Photos/neighbor-8088-web.jpg" alt="Happy Roof branded truck in front of a Tampa Bay home" style="width:100%;height:200px;object-fit:cover;object-position:center 60%;display:block" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55) 100%);pointer-events:none"></div>
+      <div style="position:absolute;left:1rem;bottom:.7rem;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)">Spotted in your neighborhood</div>
+    </div>
+
+    <!-- Neighborhood badge -->
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:.35rem .9rem;margin-bottom:1rem">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span style="font-size:.72rem;font-weight:600;color:#555555;letter-spacing:.06em;text-transform:uppercase">Neighborhood Offer</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.3rem,7.5vw,3.6rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A;text-transform:uppercase;margin-bottom:.75rem">
+      YOU SAW THE WORK.<br/>
+      HERE'S <span style="color:#E6A817">$500 OFF</span><br/>
+      EVERY $10K.
+    </h1>
+
+    <p style="color:#555555;font-size:1rem;line-height:1.55;margin-bottom:1rem;max-width:400px;margin-left:auto;margin-right:auto">
+      Neighborhood discount for homeowners who scanned our yard sign. <strong style="color:#1A1A1A">$500 off for every $10,000</strong> of your project — up to <strong style="color:#1A1A1A">$2,000</strong> off your new roof.
+    </p>
+
+    <!-- Discount tiers visual -->
+    <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:.85rem 1.1rem;margin-bottom:1rem">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;color:#888;letter-spacing:.12em;text-transform:uppercase;margin:0 0 .6rem">How it works</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .85rem;font-size:.86rem;color:#1A1A1A">
+        <div style="display:flex;justify-content:space-between"><span style="color:#555">$10K project</span><strong>$500 off</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#555">$20K project</span><strong>$1,000 off</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#555">$30K project</span><strong>$1,500 off</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#555">$40K+ project</span><strong style="color:#E6A817">$2,000 off</strong></div>
+      </div>
+    </div>
+
+    <!-- Financing nudge -->
+    <div style="margin-bottom:1.5rem;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:10px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2" style="flex-shrink:0"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <p style="font-size:.82rem;color:#555;margin:0"><strong style="color:#1A1A1A">$0 down financing available</strong> · <a href="/finance" style="color:#3B9FD9;text-decoration:underline">Learn more</a></p>
+    </div>
+
+    <!-- Form -->
+    <form id="neighbor-form" onsubmit="submitNeighborForm(event)" novalidate style="text-align:left;margin-bottom:2rem">
+      <div style="margin-bottom:1rem">
+        <label class="flabel">Your Name <span style="color:#3B9FD9">*</span></label>
+        <input type="text" name="name" class="finput" placeholder="Jane Smith" autocomplete="name" required />
+      </div>
+      <div style="margin-bottom:1rem">
+        <label class="flabel">Phone Number <span style="color:#3B9FD9">*</span></label>
+        <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" autocomplete="tel" required />
+      </div>
+      <div style="margin-bottom:1rem">
+        <label class="flabel">Email Address <span style="color:#3B9FD9">*</span></label>
+        <input type="email" name="email" class="finput" placeholder="jane@example.com" autocomplete="email" required />
+      </div>
+      <div style="margin-bottom:1.5rem">
+        <label class="flabel">Property Address <span style="color:#3B9FD9">*</span></label>
+        <input type="text" name="address" class="finput" placeholder="123 Main St, Tampa, FL" autocomplete="street-address" required />
+      </div>
+
+      <!-- Success message -->
+      <div id="neighbor-success" style="display:none;background:rgba(59,159,217,.06);border:1px solid rgba(59,159,217,.2);border-radius:10px;padding:1rem;margin-bottom:1rem;text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#1A1A1A;margin-bottom:.25rem">You're in! Neighborhood discount reserved.</p>
+        <p style="color:#555555;font-size:.88rem">We'll reach out within 1 business day to schedule your free estimate. Book within 30 days to lock it in.</p>
+      </div>
+
+      <!-- SMS Consent (Twilio mixed-use compliance) -->
+      <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="sms-transactional-neighbor" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="sms-transactional-neighbor" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="sms-marketing-neighbor" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="sms-marketing-neighbor" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.5rem">
+          <input type="checkbox" id="terms-consent-neighbor" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
+          <label for="terms-consent-neighbor" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
+        </div>
+      </div>
+      <!-- Cloudflare Turnstile bot protection -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+      <button type="submit" class="btn-p" style="width:100%;justify-content:center;font-size:1.15rem;padding:1rem;font-weight:800">
+        CLAIM MY NEIGHBORHOOD DISCOUNT
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </form>
+
+    <!-- Fine print -->
+    <div style="color:#888888;font-size:.75rem;line-height:1.6;max-width:380px;margin:0 auto">
+      <p>Schedule your free estimate within 30 days to lock in your neighborhood discount. $500 off for every $10,000 of contract value, capped at $2,000. Minimum project $5,000. One per household. Cannot be combined with other discounts. <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms apply</a>.</p>
+    </div>
+
+    <!-- Trust signals -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #E0E0E0">
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">5.0★</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">Google Rating</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">15yr</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">Warranty</p>
+      </div>
+      <div style="text-align:center">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1">FL Lic.</p>
+        <p style="color:#888888;font-size:.72rem;margin-top:.15rem">#CCC1337380</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Minimal footer -->
+
+<script is:inline>
+function submitNeighborForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
+  const req = form.querySelectorAll('[required]');
+  let valid = true;
+  req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#E6A817'; valid=false; } });
+  if (!valid) return;
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  const formData = {
+    _subject: 'Neighborhood Discount - New Lead',
+    _source: 'neighbor-qr-landing',
+    name: (form.querySelector('[name=name]')||{}).value||'',
+    email: (form.querySelector('[name=email]')||{}).value||'',
+    phone: (form.querySelector('[name=phone]')||{}).value||'',
+    address: (form.querySelector('[name=address]')||{}).value||'',
+    offer: 'Neighborhood Discount - $500 per $10K (max $2,000)',
+    source: 'neighbor-qr-code'
+  };
+  const stPayload = {
+    name: formData.name,
+    phone: formData.phone,
+    email: formData.email,
+    service: 'Neighborhood Discount Offer',
+    notes: 'Address: ' + formData.address + ' | Offer: $500 per $10K (max $2,000)',
+    source: 'QR Code - Neighbor',
+    page: '/neighbor',
+    turnstile_token: turnstileToken
+  };
+  Promise.allSettled([
+    fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
+    fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) })
+  ]).finally(() => {
+    document.getElementById('neighbor-success').style.display = 'block';
+    form.querySelectorAll('input').forEach(el => el.disabled = true);
+    btn.style.display = 'none';
+  });
+}
+</script>
+
+</BaseLayout>
