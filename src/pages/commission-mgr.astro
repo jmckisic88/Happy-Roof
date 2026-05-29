@@ -2,9 +2,9 @@
 import LandingLayout from '../layouts/LandingLayout.astro';
 ---
 <LandingLayout
-  title="Sales Rep Commission Calculator | Happy Roof"
-  description="Internal commission calculator for Happy Roof sales reps."
-  canonical="https://happyroof.com/commission"
+  title="Manager Commission Calculator | Happy Roof"
+  description="Internal commission calculator for Happy Roof sales managers."
+  canonical="https://happyroof.com/commission-mgr"
   noindex={true}
 >
 
@@ -14,7 +14,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#2A2A2A] flex items-center justify-center">
       <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#E6A817" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     </div>
-    <h1 class="font-['Barlow_Condensed'] text-2xl font-800 text-white mb-2">Sales Rep Commission Calculator</h1>
+    <h1 class="font-['Barlow_Condensed'] text-2xl font-800 text-white mb-2">Manager Commission Calculator</h1>
     <p class="text-sm text-[#888] mb-6">Enter your access code to continue.</p>
     <form id="pw-form" class="space-y-3" autocomplete="off">
       <input
@@ -38,7 +38,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     <!-- Header -->
     <div class="text-center mb-10">
       <span class="sl text-[#E6A817] block mb-2">Internal Tool</span>
-      <h1 class="font-['Barlow_Condensed'] text-4xl md:text-5xl font-800 tracking-tight text-[#1A1A1A] mb-3">Sales Rep Commission Calculator</h1>
+      <h1 class="font-['Barlow_Condensed'] text-4xl md:text-5xl font-800 tracking-tight text-[#1A1A1A] mb-3">Manager Commission Calculator</h1>
       <p class="text-[#555] text-lg max-w-2xl mx-auto">Model quarterly scenarios in real time. Fiscal year starts <strong>Nov 1</strong>.</p>
     </div>
 
@@ -70,17 +70,6 @@ import LandingLayout from '../layouts/LandingLayout.astro';
           <option value="Q2">Q2 (Feb – Apr)</option>
           <option value="Q3">Q3 (May – Jul)</option>
           <option value="Q4">Q4 (Aug – Oct)</option>
-        </select>
-      </div>
-      <div id="prev-qtr-wrap">
-        <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Prev Qtr Jobs (Carryover)</label>
-        <select id="prev-qtr-jobs" class="calc-input w-36">
-          <option value="0">0–5 (start at 0)</option>
-          <option value="1">6–10 (start at 1)</option>
-          <option value="2">11–15 (start at 2)</option>
-          <option value="3">16–20 (start at 3)</option>
-          <option value="4">21–25 (start at 4)</option>
-          <option value="5">25+ (start at 5)</option>
         </select>
       </div>
     </div>
@@ -220,42 +209,20 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!--  UPGRADES + DEPOSIT                          -->
+    <!--  TEAM SALES OVERRIDE                         -->
     <!-- ═══════════════════════════════════════════ -->
-    <div id="upgrades-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
-      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Upgrades &amp; Bonuses</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+    <div id="team-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
+      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Team Sales Override</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Warranties Sold</label>
-          <input type="number" id="warranties" min="0" value="0" class="calc-input w-full" />
-          <p class="text-xs text-[#888] mt-1">$100 each</p>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Total Team (Downline) Sales $</label>
+          <input type="number" id="team-sales" min="0" value="0" class="calc-input w-full" placeholder="$0" />
         </div>
-        <div>
-          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Attic Breeze Vents Sold</label>
-          <input type="number" id="attic-breeze" min="0" value="0" class="calc-input w-full" />
-          <p class="text-xs text-[#888] mt-1">$150 each</p>
-        </div>
-        <div>
-          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Jobs w/ $5k–$10k Deposit</label>
-          <input type="number" id="deposits-mid" min="0" value="0" class="calc-input w-full" />
-          <p class="text-xs text-[#888] mt-1">$25 bonus each</p>
-        </div>
-        <div>
-          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Jobs w/ $10k+ Deposit</label>
-          <input type="number" id="deposits-high" min="0" value="0" class="calc-input w-full" />
-          <p class="text-xs text-[#888] mt-1">$50 bonus each</p>
+        <div class="flex flex-col justify-end">
+          <p class="text-sm text-[#555]">Override %: <strong id="team-override-pct">0.5%</strong></p>
+          <p class="text-sm text-[#555]">Override Earned: <strong id="team-override-amt" class="text-[#E6A817]">$0</strong></p>
         </div>
       </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!--  RECRUITING OVERRIDE                         -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div id="recruiting-section" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl p-5 md:p-7 mb-8">
-      <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A] mb-5">Recruiting Override</h2>
-      <p class="text-sm text-[#555] mb-4">0.5% override on each direct recruit's total quarterly sales.</p>
-      <div id="recruit-rows" class="space-y-3"></div>
-      <button id="add-recruit" class="mt-4 text-sm font-600 text-[#3B9FD9] hover:text-[#1A1A1A] transition-colors duration-200">+ Add Recruit</button>
     </div>
 
     <!-- ═══════════════════════════════════════════ -->
@@ -275,8 +242,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
           <p class="text-2xl font-['Barlow_Condensed'] font-800 text-[#E6A817]" id="sum-multiplier">1x</p>
         </div>
         <div class="bg-[#2A2A2A] rounded-xl p-4">
-          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Effective Jobs (w/ Carryover)</p>
-          <p class="text-2xl font-['Barlow_Condensed'] font-800" id="sum-effective-jobs">0</p>
+          <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Team Override %</p>
+          <p class="text-2xl font-['Barlow_Condensed'] font-800 text-[#E6A817]" id="sum-team-pct">0.5%</p>
         </div>
         <div class="bg-[#2A2A2A] rounded-xl p-4">
           <p class="text-xs text-[#888] uppercase tracking-wider mb-1">Avg Commission %</p>
@@ -298,11 +265,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
             <div class="flex justify-between text-xs"><span class="text-[#666]">Multiplier Bonus</span><span id="sum-mult-bonus" class="text-[#888]">$0</span></div>
           </div>
 
-          <!-- Upgrades -->
-          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="upgrade-line"><span class="text-[#888]">Upgrades + Deposit Bonus</span><span id="sum-upgrades" class="font-600">$0</span></div>
-
-          <!-- Recruiting -->
-          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="recruit-line"><span class="text-[#888]">Recruiting Override</span><span id="sum-recruit" class="font-600">$0</span></div>
+          <!-- Team Sales Override -->
+          <div class="flex justify-between text-sm border-t border-[#333] pt-3 mt-1" id="team-line"><span class="text-[#888]">Team Sales Override</span><span id="sum-team" class="font-600">$0</span></div>
         </div>
 
         <div class="flex flex-col items-center justify-center bg-[#2A2A2A] rounded-xl p-6">
@@ -321,39 +285,41 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       <summary class="font-['Barlow_Condensed'] font-700 text-lg cursor-pointer text-[#555] hover:text-[#1A1A1A] transition-colors duration-200">View Commission Tables &amp; Reference</summary>
       <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Rep Commission Grid -->
-        <div id="ref-rep" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
+        <!-- Manager Commission Grid -->
+        <div id="ref-mgr" class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
           <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Base Commission Tiers</h3>
           <table class="w-full text-xs">
             <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Selling Price</th><th class="pb-2 text-right">Total</th><th class="pb-2 text-right">Upfront</th><th class="pb-2 text-right">Backend</th></tr></thead>
             <tbody>
               <tr><td>&lt; $10k</td><td class="text-right">$500</td><td class="text-right">$350</td><td class="text-right">$150</td></tr>
-              <tr><td>$10k–$20k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
-              <tr><td>$20k–$30k</td><td class="text-right">$2,000</td><td class="text-right">$1,400</td><td class="text-right">$600</td></tr>
-              <tr><td>$30k–$40k</td><td class="text-right">$3,000</td><td class="text-right">$2,100</td><td class="text-right">$900</td></tr>
-              <tr><td>$40k–$50k</td><td class="text-right">$4,000</td><td class="text-right">$2,800</td><td class="text-right">$1,200</td></tr>
-              <tr><td>$50k–$60k</td><td class="text-right">$5,000</td><td class="text-right">$3,500</td><td class="text-right">$1,500</td></tr>
-              <tr><td>$60k–$70k</td><td class="text-right">$6,000</td><td class="text-right">$4,200</td><td class="text-right">$1,800</td></tr>
-              <tr><td>$70k–$80k</td><td class="text-right">$7,000</td><td class="text-right">$4,900</td><td class="text-right">$2,100</td></tr>
-              <tr><td>$80k–$90k</td><td class="text-right">$8,000</td><td class="text-right">$5,600</td><td class="text-right">$2,400</td></tr>
-              <tr><td>$90k–$100k</td><td class="text-right">$9,000</td><td class="text-right">$6,300</td><td class="text-right">$2,700</td></tr>
-              <tr><td>$100k+</td><td class="text-right">$10,000</td><td class="text-right">$7,000</td><td class="text-right">$3,000</td></tr>
+              <tr><td>$10k–$15k</td><td class="text-right">$1,000</td><td class="text-right">$700</td><td class="text-right">$300</td></tr>
+              <tr><td>$15k–$20k</td><td class="text-right">$1,500</td><td class="text-right">$1,050</td><td class="text-right">$450</td></tr>
+              <tr><td>$20k–$25k</td><td class="text-right">$2,000</td><td class="text-right">$1,400</td><td class="text-right">$600</td></tr>
+              <tr><td>$25k–$30k</td><td class="text-right">$2,500</td><td class="text-right">$1,750</td><td class="text-right">$750</td></tr>
+              <tr><td>$30k–$40k</td><td class="text-right">$3,500</td><td class="text-right">$2,450</td><td class="text-right">$1,050</td></tr>
+              <tr><td>$40k–$50k</td><td class="text-right">$4,500</td><td class="text-right">$3,150</td><td class="text-right">$1,350</td></tr>
+              <tr><td>$50k–$60k</td><td class="text-right">$5,500</td><td class="text-right">$3,850</td><td class="text-right">$1,650</td></tr>
+              <tr><td>$60k–$70k</td><td class="text-right">$6,500</td><td class="text-right">$4,550</td><td class="text-right">$1,950</td></tr>
+              <tr><td>$70k–$80k</td><td class="text-right">$7,500</td><td class="text-right">$5,250</td><td class="text-right">$2,250</td></tr>
+              <tr><td>$80k–$90k</td><td class="text-right">$8,500</td><td class="text-right">$5,950</td><td class="text-right">$2,550</td></tr>
+              <tr><td>$90k–$100k</td><td class="text-right">$9,500</td><td class="text-right">$6,650</td><td class="text-right">$2,850</td></tr>
+              <tr><td>$100k+</td><td class="text-right">$10,500</td><td class="text-right">$7,350</td><td class="text-right">$3,150</td></tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Backend Multiplier -->
+        <!-- Backend Multiplier (Manager) -->
         <div class="bg-[#F7F7F7] border border-[#E0E0E0] rounded-xl p-5">
-          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Backend Multiplier</h3>
+          <h3 class="font-['Barlow_Condensed'] font-700 text-base mb-3">Backend Multiplier + Team Override</h3>
           <table class="w-full text-xs">
-            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th></tr></thead>
+            <thead><tr class="text-[#888] border-b border-[#E0E0E0]"><th class="pb-2 text-left">Jobs / Qtr</th><th class="pb-2 text-right">Multiplier</th><th class="pb-2 text-right">Team Override %</th></tr></thead>
             <tbody>
-              <tr><td>0–5</td><td class="text-right">1x</td></tr>
-              <tr><td>6–10</td><td class="text-right">1.25x</td></tr>
-              <tr><td>11–15</td><td class="text-right">1.5x</td></tr>
-              <tr><td>16–20</td><td class="text-right">1.75x</td></tr>
-              <tr><td>21–25</td><td class="text-right">2x</td></tr>
-              <tr><td>25+</td><td class="text-right">2.25x</td></tr>
+              <tr><td>0–6</td><td class="text-right">1x</td><td class="text-right">0.5%</td></tr>
+              <tr><td>7–11</td><td class="text-right">1.25x</td><td class="text-right">0.75%</td></tr>
+              <tr><td>12–14</td><td class="text-right">1.5x</td><td class="text-right">1.25%</td></tr>
+              <tr><td>15–17</td><td class="text-right">1.75x</td><td class="text-right">1.5%</td></tr>
+              <tr><td>18–20</td><td class="text-right">2x</td><td class="text-right">1.75%</td></tr>
+              <tr><td>21+</td><td class="text-right">2.25x</td><td class="text-right">2%</td></tr>
             </tbody>
           </table>
         </div>
@@ -457,7 +423,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 <script is:inline>
 (function() {
   /* ── Password Gate ── */
-  const PASS = 'HAPPY';
+  const PASS = 'MANAGER';
+  const SESSION_KEY = 'hr-comm-mgr-auth';
   const lockScreen = document.getElementById('lock-screen');
   const appContent = document.getElementById('app-content');
   const pwForm = document.getElementById('pw-form');
@@ -465,7 +432,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   const pwError = document.getElementById('pw-error');
 
   // Check if already authenticated this session
-  if (sessionStorage.getItem('hr-comm-auth') === '1') {
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
     lockScreen.style.display = 'none';
     appContent.classList.remove('hidden');
   }
@@ -473,7 +440,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   pwForm.addEventListener('submit', function(e) {
     e.preventDefault();
     if (pwInput.value.trim() === PASS) {
-      sessionStorage.setItem('hr-comm-auth', '1');
+      sessionStorage.setItem(SESSION_KEY, '1');
       lockScreen.style.opacity = '1';
       lockScreen.style.transition = 'opacity .3s ease';
       lockScreen.style.opacity = '0';
@@ -492,30 +459,31 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
   /* ── Data stores ── */
   let jobs = [];
-  let recruitSales = [];
 
-  /* ── Commission tiers (per 2026 Sales Rep Pay Plan) ── */
-  const REP_TIERS = [
-    { max: 10000,  total: 500,   upfront: 350,  backend: 150  },
-    { max: 20000,  total: 1000,  upfront: 700,  backend: 300  },
-    { max: 30000,  total: 2000,  upfront: 1400, backend: 600  },
-    { max: 40000,  total: 3000,  upfront: 2100, backend: 900  },
-    { max: 50000,  total: 4000,  upfront: 2800, backend: 1200 },
-    { max: 60000,  total: 5000,  upfront: 3500, backend: 1500 },
-    { max: 70000,  total: 6000,  upfront: 4200, backend: 1800 },
-    { max: 80000,  total: 7000,  upfront: 4900, backend: 2100 },
-    { max: 90000,  total: 8000,  upfront: 5600, backend: 2400 },
-    { max: 100000, total: 9000,  upfront: 6300, backend: 2700 },
-    { max: Infinity, total: 10000, upfront: 7000, backend: 3000 },
+  /* ── Commission tiers (per 2026 Manager Pay Plan) ── */
+  const MGR_TIERS = [
+    { max: 10000,  total: 500,   upfront: 350,   backend: 150  },
+    { max: 15000,  total: 1000,  upfront: 700,   backend: 300  },
+    { max: 20000,  total: 1500,  upfront: 1050,  backend: 450  },
+    { max: 25000,  total: 2000,  upfront: 1400,  backend: 600  },
+    { max: 30000,  total: 2500,  upfront: 1750,  backend: 750  },
+    { max: 40000,  total: 3500,  upfront: 2450,  backend: 1050 },
+    { max: 50000,  total: 4500,  upfront: 3150,  backend: 1350 },
+    { max: 60000,  total: 5500,  upfront: 3850,  backend: 1650 },
+    { max: 70000,  total: 6500,  upfront: 4550,  backend: 1950 },
+    { max: 80000,  total: 7500,  upfront: 5250,  backend: 2250 },
+    { max: 90000,  total: 8500,  upfront: 5950,  backend: 2550 },
+    { max: 100000, total: 9500,  upfront: 6650,  backend: 2850 },
+    { max: Infinity, total: 10500, upfront: 7350, backend: 3150 },
   ];
 
-  const REP_BACKEND_MULT = [
-    { max: 5,  mult: 1    },
-    { max: 10, mult: 1.25 },
-    { max: 15, mult: 1.5  },
-    { max: 20, mult: 1.75 },
-    { max: 25, mult: 2    },
-    { max: Infinity, mult: 2.25 },
+  const MGR_BACKEND_MULT = [
+    { max: 6,  mult: 1,    teamPct: 0.005  },
+    { max: 11, mult: 1.25, teamPct: 0.0075 },
+    { max: 14, mult: 1.5,  teamPct: 0.0125 },
+    { max: 17, mult: 1.75, teamPct: 0.015  },
+    { max: 20, mult: 2,    teamPct: 0.0175 },
+    { max: Infinity, mult: 2.25, teamPct: 0.02 },
   ];
 
   const GP_BONUS = [
@@ -539,8 +507,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   const fmtInt = n => '$' + n.toLocaleString('en-US');
 
   function lookupComm(price) {
-    for (const t of REP_TIERS) { if (price < t.max) return t; }
-    return REP_TIERS[REP_TIERS.length - 1];
+    for (const t of MGR_TIERS) { if (price < t.max) return t; }
+    return MGR_TIERS[MGR_TIERS.length - 1];
   }
 
   function lookupGPBonus(gpPct) {
@@ -549,8 +517,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 
   function lookupMultiplier(jobCount) {
-    for (const t of REP_BACKEND_MULT) { if (jobCount <= t.max) return t; }
-    return REP_BACKEND_MULT[REP_BACKEND_MULT.length - 1];
+    for (const t of MGR_BACKEND_MULT) { if (jobCount <= t.max) return t; }
+    return MGR_BACKEND_MULT[MGR_BACKEND_MULT.length - 1];
   }
 
   /* ── Fiscal year options ── */
@@ -646,48 +614,9 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     cells[7].className = 'text-right font-600 ' + (gpBonus < 0 ? 'gp-neg' : gpBonus > 0 ? 'gp-pos' : '');
   }
 
-  /* ── Recruit rows ── */
-  function addRecruit() {
-    recruitSales.push(0);
-    renderRecruits();
-  }
-
-  function renderRecruits() {
-    const wrap = $('#recruit-rows');
-    wrap.innerHTML = '';
-    recruitSales.forEach((val, i) => {
-      const div = document.createElement('div');
-      div.className = 'flex items-center gap-3';
-      div.innerHTML = `
-        <span class="text-sm font-600 text-[#888] w-24">Recruit ${i + 1}</span>
-        <input type="number" class="calc-input flex-1" data-ridx="${i}" value="${val}" min="0" step="1000" placeholder="Total Qtr Sales $" />
-        <span class="text-sm font-600 text-[#3B9FD9] w-20 text-right" id="rec-earn-${i}">${fmt(val * 0.005)}</span>
-        <button class="del-btn" data-ridx="${i}">✕</button>
-      `;
-      wrap.appendChild(div);
-    });
-    wrap.querySelectorAll('input').forEach(inp => {
-      inp.addEventListener('input', function() {
-        recruitSales[+this.dataset.ridx] = parseFloat(this.value) || 0;
-        const earn = document.getElementById('rec-earn-' + this.dataset.ridx);
-        if (earn) earn.textContent = fmt(recruitSales[+this.dataset.ridx] * 0.005);
-        recalc();
-      });
-    });
-    wrap.querySelectorAll('.del-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        recruitSales.splice(+this.dataset.ridx, 1);
-        renderRecruits();
-        recalc();
-      });
-    });
-  }
-
   /* ── Main recalc ── */
   function recalc() {
     const numJobs = jobs.length;
-    const carryover = parseInt($('#prev-qtr-jobs').value) || 0;
-    const effectiveJobs = numJobs + carryover;
 
     let totalSales = 0, totalComm = 0, totalUpfront = 0, totalBackend = 0, totalGPBonus = 0;
 
@@ -710,41 +639,35 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     $('#total-backend').textContent = fmtInt(Math.round(totalBackend));
     $('#total-gp-bonus').textContent = fmt(totalGPBonus);
 
-    // Multiplier (based on effective jobs incl. carryover)
-    const multEntry = lookupMultiplier(effectiveJobs);
+    // Multiplier (manager: based on personal jobs only — no carryover)
+    const multEntry = lookupMultiplier(numJobs);
     const mult = multEntry.mult;
 
     // Backend calculation: (backend + gpBonus) × multiplier
     const backendPlusGP = totalBackend + totalGPBonus;
     const backendMultiplied = backendPlusGP * mult;
 
-    // Upgrades + deposit bonus
-    const warranties = parseInt($('#warranties').value) || 0;
-    const atticBreeze = parseInt($('#attic-breeze').value) || 0;
-    const depMid = parseInt($('#deposits-mid').value) || 0;
-    const depHigh = parseInt($('#deposits-high').value) || 0;
-    const upgradeTotal = (warranties * 100) + (atticBreeze * 150);
-    const depositBonus = (depMid * 25) + (depHigh * 50);
-
-    // Recruiting override
-    let recruitTotal = 0;
-    recruitSales.forEach(s => { recruitTotal += s * 0.005; });
+    // Team override
+    const teamSales = parseFloat($('#team-sales').value) || 0;
+    const teamPct = multEntry.teamPct || 0.005;
+    const teamOverride = teamSales * teamPct;
+    $('#team-override-pct').textContent = (teamPct * 100).toFixed(2) + '%';
+    $('#team-override-amt').textContent = fmt(teamOverride);
 
     // Grand total
-    const grandTotal = totalUpfront + backendMultiplied + upgradeTotal + depositBonus + recruitTotal;
+    const grandTotal = totalUpfront + backendMultiplied + teamOverride;
 
     // Summary
     $('#sum-jobs').textContent = numJobs;
-    $('#sum-effective-jobs').textContent = effectiveJobs;
     $('#sum-multiplier').textContent = mult + 'x';
+    $('#sum-team-pct').textContent = (teamPct * 100).toFixed(2) + '%';
     $('#sum-upfront').textContent = fmt(totalUpfront);
     $('#sum-backend-base').textContent = fmt(totalBackend);
     $('#sum-gp-bonus').textContent = fmt(totalGPBonus);
     $('#sum-backend-mult').textContent = fmt(backendMultiplied);
     var multBonusAmt = backendMultiplied - totalBackend - totalGPBonus;
     $('#sum-mult-bonus').textContent = fmt(multBonusAmt);
-    $('#sum-upgrades').textContent = fmt(upgradeTotal + depositBonus);
-    $('#sum-recruit').textContent = fmt(recruitTotal);
+    $('#sum-team').textContent = fmt(teamOverride);
     $('#sum-total').textContent = fmt(grandTotal);
     $('#sum-monthly').textContent = fmt(grandTotal / 3);
     $('#sum-weekly').textContent = fmt(grandTotal / 13);
@@ -797,22 +720,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     }
     renderJobs();
 
-    // Random upgrades
-    $('#warranties').value = randomBetween(0, Math.ceil(numJobs * 0.6));
-    $('#attic-breeze').value = randomBetween(0, Math.ceil(numJobs * 0.3));
-    $('#deposits-mid').value = randomBetween(0, Math.ceil(numJobs * 0.4));
-    $('#deposits-high').value = randomBetween(0, Math.ceil(numJobs * 0.2));
-
-    // Random recruits (0-3)
-    var numRecruits = randomBetween(0, 3);
-    recruitSales = [];
-    for (var r = 0; r < numRecruits; r++) {
-      recruitSales.push(randomBetween(20000, 200000));
-    }
-    renderRecruits();
-
-    // Random carryover
-    $('#prev-qtr-jobs').value = String(randomBetween(0, 5));
+    // Random team sales
+    $('#team-sales').value = randomBetween(100000, 800000);
 
     recalc();
 
@@ -852,9 +761,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       totalGPBonus += gpBonusPct * avgPrice;
     }
 
-    var carryover = parseInt($('#prev-qtr-jobs').value) || 0;
-    var effectiveJobs = numDeals + carryover;
-    var multEntry = lookupMultiplier(effectiveJobs);
+    var multEntry = lookupMultiplier(numDeals);
     var backendMultiplied = (totalBackend + totalGPBonus) * multEntry.mult;
 
     return totalUpfront + backendMultiplied;
@@ -873,17 +780,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       jobs.push({ price: price, gp: sliderGP() });
     }
 
-    // Add modest upgrades/recruits
-    var nj = jobs.length;
-    $('#warranties').value = randomBetween(0, Math.ceil(nj * 0.3));
-    $('#attic-breeze').value = randomBetween(0, Math.ceil(nj * 0.2));
-    $('#deposits-mid').value = randomBetween(0, Math.ceil(nj * 0.3));
-    $('#deposits-high').value = randomBetween(0, Math.ceil(nj * 0.15));
-    recruitSales = [];
-    if (nj > 5 && Math.random() > 0.5) {
-      recruitSales.push(randomBetween(30000, 150000));
-    }
-    renderRecruits();
+    // Modest team sales accompaniment
+    $('#team-sales').value = randomBetween(80000, 400000);
 
     renderJobs();
     recalc();
@@ -892,14 +790,8 @@ import LandingLayout from '../layouts/LandingLayout.astro';
 
   function clearAll() {
     jobs = [];
-    recruitSales = [];
     renderJobs();
-    renderRecruits();
-    $('#warranties').value = 0;
-    $('#attic-breeze').value = 0;
-    $('#deposits-mid').value = 0;
-    $('#deposits-high').value = 0;
-    $('#prev-qtr-jobs').value = '0';
+    $('#team-sales').value = 0;
     recalc();
   }
 
@@ -957,26 +849,17 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     wsJobs['!cols'] = [{ wch: 12 }, { wch: 32 }, { wch: 14 }, { wch: 16 }];
     XLSX.utils.book_append_sheet(wb, wsJobs, 'Jobs');
 
-    // Tab 2: Upgrades & Bonuses
-    var upgradesData = [
-      ['Warranties Sold', 'Attic Breeze Vents Sold', 'Jobs w/ $5k–$10k Deposit', 'Jobs w/ $10k+ Deposit'],
-      [0, 0, 0, 0],
+    // Tab 2: Team Override
+    var teamData = [
+      ['Rep Name', 'Total Sales'],
+      ['Rep A', 80000],
+      ['Rep B', 120000],
     ];
-    var wsUpgrades = XLSX.utils.aoa_to_sheet(upgradesData);
-    wsUpgrades['!cols'] = [{ wch: 18 }, { wch: 24 }, { wch: 26 }, { wch: 22 }];
-    XLSX.utils.book_append_sheet(wb, wsUpgrades, 'Upgrades & Bonuses');
+    var wsTeam = XLSX.utils.aoa_to_sheet(teamData);
+    wsTeam['!cols'] = [{ wch: 20 }, { wch: 14 }];
+    XLSX.utils.book_append_sheet(wb, wsTeam, 'Team Override');
 
-    // Tab 3: Recruiting Override
-    var recruitData = [
-      ['Recruit Name', 'Total Sales'],
-      ['Jane Doe', 50000],
-      ['Mike Smith', 75000],
-    ];
-    var wsRecruit = XLSX.utils.aoa_to_sheet(recruitData);
-    wsRecruit['!cols'] = [{ wch: 20 }, { wch: 14 }];
-    XLSX.utils.book_append_sheet(wb, wsRecruit, 'Recruiting Override');
-
-    XLSX.writeFile(wb, 'commission-template.xlsx');
+    XLSX.writeFile(wb, 'manager-commission-template.xlsx');
   }
 
   /* ── Excel Import ── */
@@ -987,8 +870,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       var wb = XLSX.read(data, { type: 'array' });
 
       var importedJobs = [];
-      var importedRecruits = [];
-      var upgrades = {};
+      var importedTeamSales = [];
 
       // Parse Jobs tab
       var jobsSheet = wb.Sheets['Jobs'] || wb.Sheets[wb.SheetNames[0]];
@@ -1003,50 +885,34 @@ import LandingLayout from '../layouts/LandingLayout.astro';
         });
       }
 
-      // Parse Upgrades & Bonuses tab
-      var upgradesSheet = wb.Sheets['Upgrades & Bonuses'];
-      if (upgradesSheet) {
-        var upRows = XLSX.utils.sheet_to_json(upgradesSheet, { defval: 0 });
-        if (upRows.length > 0) {
-          var r = upRows[0];
-          upgrades.warranties = parseInt(r['Warranties Sold']) || 0;
-          upgrades.atticBreeze = parseInt(r['Attic Breeze Vents Sold']) || 0;
-          upgrades.depositsMid = parseInt(r['Jobs w/ $5k–$10k Deposit'] || r['Jobs w/ $5k-$10k Deposit']) || 0;
-          upgrades.depositsHigh = parseInt(r['Jobs w/ $10k+ Deposit']) || 0;
-        }
-      }
-
-      // Parse Recruiting Override tab
-      var recruitSheet = wb.Sheets['Recruiting Override'];
-      if (recruitSheet) {
-        var recRows = XLSX.utils.sheet_to_json(recruitSheet, { defval: '' });
-        recRows.forEach(function(row) {
+      // Parse Team Override tab
+      var teamSheet = wb.Sheets['Team Override'];
+      if (teamSheet) {
+        var teamRows = XLSX.utils.sheet_to_json(teamSheet, { defval: '' });
+        teamRows.forEach(function(row) {
           var sales = parseFloat(row['Total Sales']) || 0;
           if (sales > 0) {
-            importedRecruits.push(sales);
+            importedTeamSales.push(sales);
           }
         });
       }
 
-      // Apply upgrades
-      $('#warranties').value = upgrades.warranties || 0;
-      $('#attic-breeze').value = upgrades.atticBreeze || 0;
-      $('#deposits-mid').value = upgrades.depositsMid || 0;
-      $('#deposits-high').value = upgrades.depositsHigh || 0;
+      // Apply team sales (sum all reps)
+      if (importedTeamSales.length > 0) {
+        var totalTeam = 0;
+        importedTeamSales.forEach(function(s) { totalTeam += s; });
+        $('#team-sales').value = totalTeam;
+      }
 
       // Load jobs
       jobs = importedJobs;
       renderJobs();
 
-      // Load recruits
-      recruitSales = importedRecruits;
-      renderRecruits();
-
       recalc();
 
       // Build toast message
       var parts = [importedJobs.length + ' job' + (importedJobs.length !== 1 ? 's' : '')];
-      if (importedRecruits.length > 0) parts.push(importedRecruits.length + ' recruit' + (importedRecruits.length !== 1 ? 's' : ''));
+      if (importedTeamSales.length > 0) parts.push(importedTeamSales.length + ' team rep' + (importedTeamSales.length !== 1 ? 's' : ''));
       showToast('Imported ' + parts.join(', '));
     };
     reader.readAsArrayBuffer(file);
@@ -1071,7 +937,6 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   initFiscalYear();
 
   $('#add-job').addEventListener('click', () => addJob(25000, 27));
-  $('#add-recruit').addEventListener('click', () => { addRecruit(); recalc(); });
 
   // Scenario builder
   $('#btn-randomize').addEventListener('click', randomizeScenario);
@@ -1094,7 +959,7 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   });
 
   // Recalc on any change
-  ['#prev-qtr-jobs', '#warranties', '#attic-breeze', '#deposits-mid', '#deposits-high'].forEach(sel => {
+  ['#team-sales'].forEach(sel => {
     const el = $(sel);
     if (el) el.addEventListener('input', recalc);
   });
