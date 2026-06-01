@@ -57,6 +57,21 @@ const schema = `{
   .nav-wrap { top: 0 !important; }
   /* Hide the exit-intent popup site-wide on this lean conversion page */
   #exit-popup { display: none !important; }
+
+  /* Responsive container — narrow on phones (QR scans), wider on desktop so it doesn't look like a mobile sim */
+  .neighbor-wrap { max-width: 480px; }
+  .neighbor-hero { height: 200px; }
+  @media (min-width: 768px) {
+    .neighbor-wrap { max-width: 720px; }
+    .neighbor-hero { height: 300px; }
+  }
+  @media (min-width: 1024px) {
+    .neighbor-wrap { max-width: 880px; }
+    .neighbor-hero { height: 360px; }
+    /* Pair Name + Phone, Email + Address on a single row */
+    .neighbor-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem !important; }
+    .neighbor-form-row > div { margin-bottom: 0 !important; }
+  }
 </style>
 
 <script is:inline>
@@ -66,11 +81,11 @@ const schema = `{
 
 <!-- ══════════════════════ HERO ══════════════════════ -->
 <section style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2.5rem 1.5rem 3rem;background:#FFFFFF">
-  <div style="max-width:480px;width:100%;margin:0 auto;text-align:center">
+  <div class="neighbor-wrap" style="width:100%;margin:0 auto;text-align:center">
 
     <!-- Hero photo: the Happy Roof truck in front of a Tampa Bay home — "yes, this is who you saw" -->
     <div style="position:relative;border-radius:14px;overflow:hidden;margin-bottom:1rem;box-shadow:0 16px 40px -12px rgba(0,0,0,.18),0 4px 14px -4px rgba(0,0,0,.08)">
-      <img src="/Brand%20Assets/Photos/neighbor-8088-web.jpg" alt="Happy Roof branded truck in front of a Tampa Bay home" style="width:100%;height:200px;object-fit:cover;object-position:center 60%;display:block" />
+      <img src="/Brand%20Assets/Photos/neighbor-8088-web.jpg" alt="Happy Roof branded truck in front of a Tampa Bay home" class="neighbor-hero" style="width:100%;object-fit:cover;object-position:center 60%;display:block" />
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55) 100%);pointer-events:none"></div>
       <div style="position:absolute;left:1rem;bottom:.7rem;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)">Spotted in your neighborhood</div>
     </div>
@@ -111,21 +126,25 @@ const schema = `{
 
     <!-- Form -->
     <form id="neighbor-form" onsubmit="submitNeighborForm(event)" novalidate style="text-align:left;margin-bottom:2rem">
-      <div style="margin-bottom:1rem">
-        <label class="flabel">Your Name <span style="color:#3B9FD9">*</span></label>
-        <input type="text" name="name" class="finput" placeholder="Jane Smith" autocomplete="name" required />
+      <div class="neighbor-form-row">
+        <div style="margin-bottom:1rem">
+          <label class="flabel">Your Name <span style="color:#3B9FD9">*</span></label>
+          <input type="text" name="name" class="finput" placeholder="Jane Smith" autocomplete="name" required />
+        </div>
+        <div style="margin-bottom:1rem">
+          <label class="flabel">Phone Number <span style="color:#3B9FD9">*</span></label>
+          <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" autocomplete="tel" required />
+        </div>
       </div>
-      <div style="margin-bottom:1rem">
-        <label class="flabel">Phone Number <span style="color:#3B9FD9">*</span></label>
-        <input type="tel" name="phone" class="finput" placeholder="(813) 555-0000" autocomplete="tel" required />
-      </div>
-      <div style="margin-bottom:1rem">
-        <label class="flabel">Email Address <span style="color:#3B9FD9">*</span></label>
-        <input type="email" name="email" class="finput" placeholder="jane@example.com" autocomplete="email" required />
-      </div>
-      <div style="margin-bottom:1.5rem">
-        <label class="flabel">Property Address <span style="color:#3B9FD9">*</span></label>
-        <input type="text" name="address" class="finput" placeholder="123 Main St, Tampa, FL" autocomplete="street-address" required />
+      <div class="neighbor-form-row">
+        <div style="margin-bottom:1rem">
+          <label class="flabel">Email Address <span style="color:#3B9FD9">*</span></label>
+          <input type="email" name="email" class="finput" placeholder="jane@example.com" autocomplete="email" required />
+        </div>
+        <div style="margin-bottom:1.5rem">
+          <label class="flabel">Property Address <span style="color:#3B9FD9">*</span></label>
+          <input type="text" name="address" class="finput" placeholder="123 Main St, Tampa, FL" autocomplete="street-address" required />
+        </div>
       </div>
 
       <!-- Success message -->
