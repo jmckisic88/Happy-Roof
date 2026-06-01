@@ -61,13 +61,22 @@ const schema = `{
   /* Responsive container — narrow on phones (QR scans), wider on desktop so it doesn't look like a mobile sim */
   .neighbor-wrap { max-width: 480px; }
   .neighbor-hero { height: 200px; }
+  .neighbor-tier-card { padding: .85rem 1.1rem; }
+  .neighbor-tier-header { font-size: .72rem; margin-bottom: .6rem; }
+  .neighbor-tier-grid { gap: .5rem .85rem; font-size: .86rem; }
   @media (min-width: 768px) {
     .neighbor-wrap { max-width: 720px; }
-    .neighbor-hero { height: 300px; }
+    .neighbor-hero { height: 260px; }
+    .neighbor-tier-card { padding: 1.15rem 1.4rem; }
+    .neighbor-tier-header { font-size: .8rem; margin-bottom: .85rem; }
+    .neighbor-tier-grid { gap: .65rem 1.25rem; font-size: .95rem; }
   }
   @media (min-width: 1024px) {
     .neighbor-wrap { max-width: 880px; }
-    .neighbor-hero { height: 360px; }
+    .neighbor-hero { height: 280px; }
+    .neighbor-tier-card { padding: 1.5rem 1.85rem; margin-bottom: 1.5rem; }
+    .neighbor-tier-header { font-size: .85rem; margin-bottom: 1.1rem; letter-spacing: .15em; }
+    .neighbor-tier-grid { gap: .85rem 1.75rem; font-size: 1.08rem; }
     /* Pair Name + Phone, Email + Address on a single row */
     .neighbor-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem !important; }
     .neighbor-form-row > div { margin-bottom: 0 !important; }
@@ -108,9 +117,9 @@ const schema = `{
     </p>
 
     <!-- Discount tiers visual -->
-    <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:.85rem 1.1rem;margin-bottom:1rem">
-      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;color:#888;letter-spacing:.12em;text-transform:uppercase;margin:0 0 .6rem">How it works</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .85rem;font-size:.86rem;color:#1A1A1A">
+    <div class="neighbor-tier-card" style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:1rem">
+      <p class="neighbor-tier-header" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#888;letter-spacing:.12em;text-transform:uppercase;margin:0">How it works</p>
+      <div class="neighbor-tier-grid" style="display:grid;grid-template-columns:1fr 1fr;color:#1A1A1A">
         <div style="display:flex;justify-content:space-between"><span style="color:#555">$10K project</span><strong>$500 off</strong></div>
         <div style="display:flex;justify-content:space-between"><span style="color:#555">$20K project</span><strong>$1,000 off</strong></div>
         <div style="display:flex;justify-content:space-between"><span style="color:#555">$30K project</span><strong>$1,500 off</strong></div>
