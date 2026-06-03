@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Do Solar Panels Damage Roofs in Florida? What Tampa Bay Homeowners Should Know",
+    "datePublished": "2026-06-03",
+    "author": { "@type": "Organization", "name": "Happy Roof Team" },
+    "publisher": { "@type": "Organization", "name": "Happy Roof LLC", "url": "https://happyroof.com" },
+    "description": "Discover the impact of solar panels on roofs in Florida. Learn how they affect your roof's durability and what Tampa Bay homeowners should consider."
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { 
+        "@type": "Question", 
+        "name": "Can solar panels add extra weight to my roof?", 
+        "acceptedAnswer": { 
+          "@type": "Answer", 
+          "text": "Yes, solar panels do add extra weight to your roof, but typically, the additional load is within the allowable range that most roofs can support. It's crucial to have a structural assessment done by a professional to ensure your roof can handle the weight."
+        } 
+      },
+      { 
+        "@type": "Question", 
+        "name": "What are common issues with solar panel installations?", 
+        "acceptedAnswer": { 
+          "@type": "Answer", 
+          "text": "Common issues include improper sealing around the mounting points, which can lead to leaks, and incorrect panel placement that affects both energy efficiency and roof durability. Choosing experienced installers helps avoid these problems."
+        } 
+      },
+      { 
+        "@type": "Question", 
+        "name": "How often should solar panels and roof be inspected?", 
+        "acceptedAnswer": { 
+          "@type": "Answer", 
+          "text": "It's recommended to inspect your solar panels and roof annually. Regular inspections can help catch minor issues before they become major problems, ensuring the longevity of both your roof and solar panels."
+        } 
+      }
+    ]
+  }]`;
+---
+
+<BaseLayout
+  title="Do Solar Panels Damage Roofs in Florida? What Tampa Bay Homeowners Should Know | Happy Roof"
+  description="Discover the impact of solar panels on roofs in Florida. Learn how they affect your roof's durability and what Tampa Bay homeowners should consider."
+  canonical="https://happyroof.com/blog/do-solar-panels-damage-roofs-florida"
+  ogTitle="Do Solar Panels Damage Roofs in Florida? What Tampa Bay Homeowners Should Know"
+  ogDescription="Discover the impact of solar panels on roofs in Florida. Learn how they affect your roof's durability and what Tampa Bay homeowners should consider."
+  schema={schema}
+>
+
+<!-- HERO with category tag, date, By Happy Roof Team -->
+<section class="hero">
+  <span>Education</span>
+  <h1>Do Solar Panels Damage Roofs in Florida? What Tampa Bay Homeowners Should Know</h1>
+  <p>By Happy Roof Team | Date: June 3, 2026</p>
+</section>
+
+<!-- ARTICLE with intro paragraphs, H2 sections per outline, internal links, lists -->
+<article>
+  <h2>Introduction to Solar Panels and Roofing in Florida</h2>
+  <p>With the abundant sunshine in Tampa Bay, it’s no surprise that more homeowners are considering solar panels to reduce energy costs and increase property value. However, a common concern is whether these panels can damage your roof. Understanding how solar installations interact with your roofing materials is key to deciding if it's right for your home.</p>
+
+  <h2>How Solar Panels Are Installed on Florida Roofs</h2>
+  <p>The installation of solar panels involves attaching mounting racks directly to the roof. Installers typically secure these racks using roof penetrations, which must be properly sealed to prevent leaks. If you have an Owens Corning, GAF, or Gulf Coast Supply roof, it’s important to hire knowledgeable installers who understand how to work with these materials. For those with tile roofs, such as Verea, specific installation techniques are required to avoid damaging the tiles.</p>
+
+  <h2>Potential Risks: Do Solar Panels Cause Damage?</h2>
+  <p>While solar panels themselves don't inherently damage roofs, improper installation can lead to issues. The main risk is water leakage due to inadequate sealing around mount points. This is especially crucial in Florida, where heavy rainfall is common. Ensuring that your installer is experienced and certified can mitigate these risks significantly.</p>
+
+  <h2>How to Protect Your Roof When Installing Solar Panels</h2>
+  <p>To protect your roof, start with a thorough <a href="/roof-inspection">roof inspection</a> to assess its condition. Choose an installer familiar with your roof type, and make sure they provide a warranty on the installation. Regular maintenance and inspections post-installation can further safeguard your investment by catching minor issues early.</p>
+
+  <h2>Benefits of Solar Panels for Tampa Bay Homeowners</h2>
+  <p>Beyond energy savings, solar panels contribute to a greener environment and can increase home resale value. In sunny Tampa Bay, the efficiency and benefits are even more pronounced. Homeowners often see significant reductions in their electricity bills, which can offset the installation costs over time.</p>
+
+  <h2>Signs of Damage: What to Watch For Post-Installation</h2>
+  <p>After installation, keep an eye out for signs like water stains on your ceiling, which can indicate leaks. Look for any physical damage to the panels or roof surface. Regular checks ensure your system remains in optimal condition and prevents costly repairs.</p>
+
+  <h2>Choosing the Right Roofer and Solar Installer in Tampa Bay</h2>
+  <p>Selecting experienced professionals is crucial. Check references and <a href="/reviews">reviews</a> for feedback on their work. Confirm that both your roofer and solar installer are licensed, like Happy Roof with its Florida License #CCC1337380, and ensure they communicate well with each other throughout the project. This coordination helps avoid potential installation pitfalls.</p>
+</article>
+
+<!-- FAQ accordion at end with 3 questions matching schema -->
+<section class="faq">
+  <h2>FAQ</h2>
+  <div class="accordion">
+    <div>
+      <button>Can solar panels add extra weight to my roof?</button>
+      <div>Yes, solar panels do add extra weight to your roof, but typically, the additional load is within the allowable range that most roofs can support. It's crucial to have a structural assessment done by a professional to ensure your roof can handle the weight.</div>
+    </div>
+    <div>
+      <button>What are common issues with solar panel installations?</button>
+      <div>Common issues include improper sealing around the mounting points, which can lead to leaks, and incorrect panel placement that affects both energy efficiency and roof durability. Choosing experienced installers helps avoid these problems.</div>
+    </div>
+    <div>
+      <button>How often should solar panels and roof be inspected?</button>
+      <div>It's recommended to inspect your solar panels and roof annually. Regular inspections can help catch minor issues before they become major problems, ensuring the longevity of both your roof and solar panels.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA section -->
+<section class="cta">
+  <h2>Ready to Explore Solar Panel Installation?</h2>
+  <p>At Happy Roof, our team can help you make informed decisions about adding solar panels while protecting your roof. Visit our <a href="/contact">contact page</a> or call us at (813) 595-7663 to schedule a consultation today!</p>
+</section>
+
+</BaseLayout>
