@@ -75,7 +75,27 @@ const schema = `[{
       ]
     },
     "dateModified": "2026-04-25",
-    "hasCredential": "Florida Roofing Contractor License #CCC1337380",
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Florida Roofing Contractor License",
+        "credentialCategory": "license",
+        "identifier": "CCC1337380",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Florida Department of Business and Professional Regulation"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Owens Corning Certified Installer",
+        "credentialCategory": "certification",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Owens Corning"
+        }
+      }
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",

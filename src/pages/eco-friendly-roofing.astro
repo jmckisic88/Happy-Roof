@@ -71,6 +71,11 @@ const schema = `[{
         "@type": "Question",
         "name": "What roofing technology innovations are changing the industry in 2026?",
         "acceptedAnswer": { "@type": "Answer", "text": "Roofing in 2026 looks materially different from five years ago. The biggest changes: (1) AI-powered drone inspections that capture every square foot in 4K and run computer-vision damage detection in seconds, flagging granule loss, lifted shingles, and hail bruising the human eye misses from the ground; (2) satellite-based measurement platforms (EagleView, Hover) that produce accurate roof reports — area, pitch, facets, material — in 30 seconds instead of 30 minutes on a ladder; (3) predictive analytics combining roof age, material, and local weather history to estimate remaining service life with real precision; (4) cool-roof shingles like Owens Corning Duration COOL that use solar-reflective granules to drop attic temps 20–40°F; (5) solar-integrated shingles (GAF Timberline Solar, Tesla Solar Roof) that combine roof and solar panel into one product, eliminating mounted-panel penetrations; and (6) smart leak sensors and moisture detectors that catch ceiling stains before drywall damage. AI doesn't replace the roofer — it produces faster, more accurate estimates, better insurance documentation, and earlier detection of issues. Happy Roof uses drone imagery and AI-flagged inspection reports on every job, reviewed by a licensed roofer before the report reaches you." }
+      },
+      {
+        "@type": "Question",
+        "name": "What sustainable roofing certifications should I look for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Four certifications actually matter for residential eco-roofing in Florida: (1) ENERGY STAR — EPA program; ENERGY STAR–rated shingles can cut peak cooling demand 10–15%. (2) Cool Roof Rating Council (CRRC) — the independent body that publishes verifiable solar reflectance and thermal emittance data; look for a CRRC label when comparing 'cool roof' claims. (3) LEED v4 — residential roofs aren't LEED-certified directly, but cool-roof and high-recycled-content materials contribute to credits for Heat Island Reduction (Sustainable Sites) and recycled content (Materials & Resources); relevant for new builds and major renos. (4) Manufacturer installer certifications — Owens Corning Certified Installer (Happy Roof holds this), GAF Master Elite (top 2% of GAF contractors), CertainTeed SELECT ShingleMaster. Two questions to ask any roofer: 'Is this product CRRC-rated or ENERGY STAR-certified?' and 'What's your installer certification with this manufacturer?'" }
       }
     ]
   },{
@@ -296,6 +301,76 @@ const schema = `[{
   </div>
 </section>
 
+<!-- SUSTAINABLE ROOFING CERTIFICATIONS -->
+<section class="py-20" style="background:#FFFFFF;border-top:1px solid #E5E5E5">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl gt mb-3">Certifications &amp; Standards</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">SUSTAINABLE ROOFING CERTIFICATIONS</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:680px;margin:0 auto">Third-party certifications give you confidence that a product or installer actually meets the sustainability claims on the label. These are the certifications and standards that matter for Florida residential roofing.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5 mb-10">
+      <!-- ENERGY STAR -->
+      <div class="scard p-6">
+        <div style="display:flex;align-items:start;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:10px;background:rgba(59,159,217,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:.5rem">ENERGY STAR Roof Products</h3>
+            <p style="color:#555555;font-size:.92rem;line-height:1.7">Run by the EPA. Products that meet specific solar reflectance and thermal emittance thresholds qualify. ENERGY STAR–rated shingles can reduce peak cooling demand by 10–15%. We install several ENERGY STAR shingles including Owens Corning Duration COOL.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cool Roof Rating Council -->
+      <div class="scard p-6">
+        <div style="display:flex;align-items:start;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:10px;background:rgba(230,168,23,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:.5rem">Cool Roof Rating Council (CRRC)</h3>
+            <p style="color:#555555;font-size:.92rem;line-height:1.7">The independent body that measures and publishes solar reflectance and thermal emittance for roofing products. Look for a CRRC-rated product label when comparing "cool roof" claims — it's the verifiable performance data behind the marketing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEED Contribution -->
+      <div class="scard p-6">
+        <div style="display:flex;align-items:start;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:10px;background:rgba(168,85,247,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:.5rem">LEED Credit Contribution</h3>
+            <p style="color:#555555;font-size:.92rem;line-height:1.7">Residential roofs aren't LEED-certified directly, but cool-roof and high-recycled-content materials contribute to LEED v4 credits for Sustainable Sites (SS Credit: Heat Island Reduction) and Materials &amp; Resources. Relevant for new builds and major renovations pursuing LEED.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Owens Corning Preferred Contractor -->
+      <div class="scard p-6">
+        <div style="display:flex;align-items:start;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:10px;background:rgba(229,62,62,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e53e3e" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;margin-bottom:.5rem">Manufacturer Certifications</h3>
+            <p style="color:#555555;font-size:.92rem;line-height:1.7">Happy Roof is a <strong>Certified Installer for Owens Corning</strong>, which requires ongoing training, warranty performance, and adherence to manufacturer install specs. Other tiers worth knowing about: GAF Master Elite (top 2% of GAF contractors nationally) and CertainTeed SELECT ShingleMaster.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip callout -->
+    <div style="background:#F7F7F7;border-left:4px solid #E6A817;border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;max-width:760px;margin:0 auto">
+      <p style="color:#1A1A1A;font-size:.95rem;line-height:1.7;margin:0"><strong>What to ask any roofer:</strong> "Is this product CRRC-rated or ENERGY STAR–certified, and what's your installer certification with this manufacturer?" Two questions that separate real eco-roofing from greenwashed marketing.</p>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ SECTION -->
 <section class="py-20" style="background:#F7F7F7">
   <div class="max-w-3xl mx-auto px-5">
@@ -343,6 +418,10 @@ const schema = `[{
     <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">What roofing technology innovations are changing the industry in 2026?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
       <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Roofing in 2026 looks materially different from five years ago. The biggest changes:<br/><br/><strong>1. AI-powered drone inspections.</strong> Drones capture every square foot in 4K; computer-vision models flag granule loss, lifted shingles, and hail bruising the human eye misses from the ground.<br/><br/><strong>2. Satellite-based measurement.</strong> Platforms like EagleView and Hover produce accurate roof reports (area, pitch, facets, material) in 30 seconds &mdash; not 30 minutes on a ladder.<br/><br/><strong>3. Predictive analytics.</strong> Models combine roof age, material, and local weather history to estimate remaining service life with real precision.<br/><br/><strong>4. Cool-roof shingles.</strong> Solar-reflective granules in shingles like Owens Corning Duration COOL drop attic temps 20&ndash;40&deg;F.<br/><br/><strong>5. Solar-integrated shingles.</strong> Products like GAF Timberline Solar and Tesla Solar Roof combine roof and panel into one product &mdash; no mounted-panel penetrations.<br/><br/><strong>6. Smart leak sensors and moisture detectors.</strong> Catch ceiling stains before drywall damage.<br/><br/>AI doesn't replace the roofer &mdash; it produces faster, more accurate estimates and earlier detection of issues. We cover this in depth in our blog post on <a href="/blog/ai-roofing-maintenance" style="color:#3B9FD9;text-decoration:none;font-weight:600">how AI is transforming roofing maintenance</a>. Happy Roof uses drone imagery and AI-flagged inspection reports on every job, reviewed by a licensed roofer before the report reaches you.</p></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)" style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:12px;margin-bottom:.65rem;overflow:hidden;cursor:pointer;transition:border-color .2s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;gap:.75rem"><p class="font-medium text-sm" style="color:#1A1A1A">What sustainable roofing certifications should I look for?</p><svg class="faq-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" style="transition:transform .25s ease;flex-shrink:0"><path d="m6 9 6 6 6-6"/></svg></div>
+      <div style="max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 1.25rem"><p style="color:#555555;font-size:.88rem;line-height:1.7;padding-top:.5rem;padding-bottom:1.1rem">Four certifications actually matter for residential eco-roofing in Florida:<br/><br/><strong>1. ENERGY STAR</strong> &mdash; EPA program. ENERGY STAR&ndash;rated shingles can cut peak cooling demand 10&ndash;15%.<br/><br/><strong>2. Cool Roof Rating Council (CRRC)</strong> &mdash; the independent body that publishes verifiable solar reflectance and thermal emittance data. Look for a CRRC label when comparing "cool roof" claims.<br/><br/><strong>3. LEED v4</strong> &mdash; residential roofs aren't LEED-certified directly, but cool-roof and high-recycled-content materials contribute to credits for Heat Island Reduction and recycled content. Relevant for new builds and major renovations.<br/><br/><strong>4. Manufacturer installer certifications</strong> &mdash; Owens Corning Certified Installer (Happy Roof holds this), GAF Master Elite (top 2% of GAF contractors nationally), CertainTeed SELECT ShingleMaster.<br/><br/>Two questions to ask any roofer: <em>"Is this product CRRC-rated or ENERGY STAR&ndash;certified?"</em> and <em>"What's your installer certification with this manufacturer?"</em></p></div>
     </div>
   </div>
 </section>
