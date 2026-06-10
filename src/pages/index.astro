@@ -1,6 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+/* ── Live Google reviews (build-time fetch from /api/reviews) ──
+   Source: api/cron-reviews.js runs daily at 11:00 UTC, caches Google
+   Places API data to Vercel Blob. api/reviews.js serves the cached
+   payload. We fetch at build so reviews are statically rendered (good
+   for SEO) and refresh on every site rebuild. */
+const FALLBACK_REVIEWS = [
+  { author: 'Charlie Gaither', rating: 5, text: 'Awesome company..easy to work with, fast response and quality work...highly recommend', date: '2026-06-05T01:47:16Z', photoUri: null },
+  { author: 'Phil Joseph',     rating: 5, text: 'Great experience all around. The team went above and beyond to cover every detail. Highly recommend.', date: '2026-06-04T20:03:29Z', photoUri: null },
+  { author: 'Chase Hild',      rating: 5, text: '⭐⭐⭐⭐⭐ 5/5 — I Would Let these men Roof My Soul, best people , best quality', date: '2026-06-01T12:48:03Z', photoUri: null },
+  { author: 'Cesar',           rating: 5, text: 'Had a great experience with Happy roof. Had a very fair quote and gutter installed within a day. Glad with my choice!', date: '2026-05-29T21:25:44Z', photoUri: null },
+  { author: 'Eileen zoe',      rating: 5, text: 'I cannot recommend Happy Roof more emphatically or with more confidence. They are efficient, honest, transparent and professional. I was kept in the loop every step of the way from beginning to end, including progression pictures and updates. Their attention to detail is incredible and impressed even someone as picky as myself.', date: '2026-05-15T19:56:17Z', photoUri: null },
+];
+let reviewsRaw = FALLBACK_REVIEWS;
+let reviewCount = 13;
+let reviewRating = 5.0;
+try {
+  const r = await fetch('https://www.happyroof.com/api/reviews', {
+    headers: { 'Origin': 'https://www.happyroof.com' },
+  });
+  if (r.ok) {
+    const data = await r.json();
+    if (Array.isArray(data?.reviews) && data.reviews.length > 0) {
+      reviewsRaw = data.reviews;
+      reviewCount = data.reviewCount || reviewCount;
+      reviewRating = data.rating || reviewRating;
+    }
+  }
+} catch (e) {
+  console.warn('[index.astro] Reviews fetch failed at build:', e.message);
+}
+/* Sort newest first (Google usually returns this way, but make it explicit) */
+const reviews = [...reviewsRaw].sort((a, b) => new Date(b.date) - new Date(a.date));
+/* Avatar background color cycle to match existing visual rhythm */
+const AVATAR_COLORS = [
+  { bg: 'rgba(26,26,26,.1)',     fg: '#1A1A1A' },
+  { bg: 'rgba(230,168,23,.18)',  fg: '#E6A817' },
+  { bg: 'rgba(59,159,217,.12)',  fg: '#3B9FD9' },
+];
+
 const schema = `[{
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "RoofingContractor"],
@@ -98,8 +137,8 @@ const schema = `[{
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "6",
+      "ratingValue": "${reviewRating.toFixed(1)}",
+      "reviewCount": "${reviewCount}",
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -172,8 +211,8 @@ const schema = `[{
   "paymentAccepted": ["Cash","Check","Credit Card","ACH"],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "6",
+    "ratingValue": "${reviewRating.toFixed(1)}",
+    "reviewCount": "${reviewCount}",
     "bestRating": "5"
   },
   "hasOfferCatalog": {
@@ -751,90 +790,31 @@ const schema = `[{
       </h2>
     </div>
     <div style="display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;-webkit-overflow-scrolling:touch" class="max-w-6xl mx-auto">
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Great attention to detail. Amazing work!"</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(26,26,26,.1);color:#1A1A1A">M</div>
-          <div><p class="text-brand-black font-medium text-sm">Matthew M.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Happy Roof did an amazing job. They were on time, polite and courteous across the board. They ensured my property remained undamaged during the roof replacement. If I had any concerns or questions, they were answered promptly and completed all the work and even more than I had requested. It is refreshing to find a company that is concerned about quality work, integrity and the added bonus of being very reasonably priced."</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(230,168,23,.18);color:#E6A817">K</div>
-          <div><p class="text-brand-black font-medium text-sm">Kathleen P.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Josh and his team at Happy Roof replaced our roof at our home and we couldn't be happier. From start to finish, Josh was fantastic, responsive, straightforward, and clearly knew his stuff. The crew was clean and professional, left the property in great shape, and the pricing was very fair. The project manager, Martin, kept me updated throughout the entire process. Highly recommend if you're looking for a roofer you can actually trust."</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(59,159,217,.12);color:#3B9FD9">E</div>
-          <div><p class="text-brand-black font-medium text-sm">Evan B.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"We had a small roof leak and couldn't get the original company to come back out. Happy Roof showed up quickly, found the issue was something minor that should have been handled properly the first time, and fixed it on the spot. They didn't even charge us because it was such a simple repair. If you want honest people who do things right, these are the ones to call."</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(230,168,23,.18);color:#E6A817">A</div>
-          <div><p class="text-brand-black font-medium text-sm">Andrew R.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Had a porch roof replaced, used TPO instead of rolled asphalt shingle. Looks much better. Work was completed within budget. Thanks for a job well done. Thanks to the very friendly and talented workers."</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(26,26,26,.1);color:#1A1A1A">R</div>
-          <div><p class="text-brand-black font-medium text-sm">Richard H.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
-      <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
-        <div class="flex items-center gap-2">
-          <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
-          <a href="https://g.page/r/CZIUzU-T0dUKEBM/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
-            <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Posted on Google
-          </a>
-        </div>
-        <p style="color:#555555;font-size:.92rem;line-height:1.72">"Easy to work with, good communication, and they got the work done on time."</p>
-        <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0" style="background:rgba(59,159,217,.12);color:#3B9FD9">A</div>
-          <div><p class="text-brand-black font-medium text-sm">Andre L.</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
-        </div>
-      </div>
+      {reviews.map((review, i) => {
+        const palette = AVATAR_COLORS[i % AVATAR_COLORS.length];
+        const initial = (review.author || 'G').trim().charAt(0).toUpperCase();
+        const reviewUrl = review.googleMapsUri || 'https://g.page/r/CZIUzU-T0dUKEBM/review';
+        return (
+          <div class="tcard p-6 flex flex-col gap-4" style="min-width:320px;max-width:380px;flex-shrink:0;scroll-snap-align:start">
+            <div class="flex items-center gap-2">
+              <div style="color:#E6A817;font-size:1rem;letter-spacing:.08em">★★★★★</div>
+              <a href={reviewUrl} target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;color:#888888;text-decoration:none;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:100px;padding:2px 8px">
+                <svg width="12" height="12" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                Posted on Google
+              </a>
+            </div>
+            <p style="color:#555555;font-size:.92rem;line-height:1.72">"{review.text}"</p>
+            <div class="mt-auto flex items-center gap-3 pt-4" style="border-top:1px solid #E0E0E0">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm flex-shrink-0 overflow-hidden" style={`background:${palette.bg};color:${palette.fg}`}>
+                {review.photoUri
+                  ? <img src={review.photoUri} alt={review.author} loading="lazy" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover" />
+                  : initial}
+              </div>
+              <div><p class="text-brand-black font-medium text-sm">{review.author}</p><p style="color:#888888;font-size:.75rem">Google Review</p></div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
