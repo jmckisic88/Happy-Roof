@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Happy Roof favicon — the iconic smiley from the wordmark, brand yellow + dark -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Happy Roof">
-  <circle cx="50" cy="50" r="48" fill="#E6A817"/>
-  <circle cx="36" cy="42" r="6.5" fill="#1A1A1A"/>
-  <circle cx="64" cy="42" r="6.5" fill="#1A1A1A"/>
-  <path d="M 28 58 Q 50 80 72 58" stroke="#1A1A1A" stroke-width="7" fill="none" stroke-linecap="round"/>
-</svg>
