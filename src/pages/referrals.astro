@@ -744,13 +744,14 @@ function handleSubmit(e) {
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   // Send to BOTH ServiceTitan and email
   const stPayload = { name: data.referral_name||'', phone: data.referral_phone||'', email: data.referral_email||'', service: 'Referral', notes: data.referral_notes||'', source: 'Website - Referral', page: '/referrals', turnstile_token: turnstileToken };
-  Promise.allSettled([
-    fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
-    fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) })
-  ]).finally(() => {
-    document.getElementById('success-msg').classList.remove('hidden');
-    form.style.display = 'none';
-  });
+  // Breeze first, FormSubmit only on failure (2026-06-25 — Trever Gray incident).
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }); })
+    .finally(function() {
+      document.getElementById('success-msg').classList.remove('hidden');
+      form.style.display = 'none';
+    });
 }
 
 function handleLinkSignup(e) {

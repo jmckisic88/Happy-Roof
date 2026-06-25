@@ -1102,16 +1102,19 @@ function submitHeroForm(e) {
   };
   var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() : '';
   var consentNote = 'SMS Transactional: ' + formData.sms_transactional + ' | SMS Marketing: ' + formData.sms_marketing + ' | Terms: ' + formData.terms_consent;
-  // Send to BOTH ServiceTitan and email (belt + suspenders)
+  // Try Breeze first; fall back to FormSubmit ONLY when Breeze fails.
+  // Sequential (not Promise.allSettled) so an arriving FormSubmit email
+  // is a real "Breeze is broken" signal rather than normal background
+  // noise — see the Trever Gray 2026-06-19 incident.
   const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname, turnstile_token: turnstileToken };
-  Promise.allSettled([
-    fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) }),
-    fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) })
-  ]).finally(() => {
-    document.getElementById('hero-success').style.display = 'block';
-    form.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
-    btn.style.display = 'none';
-  });
+  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }); })
+    .finally(function() {
+      document.getElementById('hero-success').style.display = 'block';
+      form.querySelectorAll('input,select,textarea').forEach(function(el){ el.disabled = true; });
+      btn.style.display = 'none';
+    });
 }
 
 // ── Hero slideshow ──

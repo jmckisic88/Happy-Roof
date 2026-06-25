@@ -737,22 +737,26 @@ function submitVisualizerLead(e) {
     turnstile_token: turnstileToken
   };
 
-  Promise.allSettled([
-    fetch('/api/submit-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(stPayload) }),
-    fetch('https://formsubmit.co/ajax/info@happyroof.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'Roof Visualizer Lead | ' + name,
-        'Name': name, 'Phone': phone, 'Email': email || 'Not provided', 'Address': address,
-        'Roof Style': selectedColor + ' ' + selectedStyle,
-        'Source': 'Roof Assessment & Visualizer Page'
-      })
+  // Breeze first, FormSubmit only on failure (2026-06-25 — Trever
+  // Gray incident).
+  fetch('/api/submit-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(stPayload) })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('https://formsubmit.co/ajax/info@happyroof.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Roof Visualizer Lead | ' + name,
+          'Name': name, 'Phone': phone, 'Email': email || 'Not provided', 'Address': address,
+          'Roof Style': selectedColor + ' ' + selectedStyle,
+          'Source': 'Roof Assessment & Visualizer Page'
+        })
+      });
     })
-  ]).finally(function() {
-    form.style.display = 'none';
-    document.getElementById('viz-lead-success').style.display = 'block';
-  });
+    .finally(function() {
+      form.style.display = 'none';
+      document.getElementById('viz-lead-success').style.display = 'block';
+    });
 }
 
 // ── Auto-select tab from URL param ──
