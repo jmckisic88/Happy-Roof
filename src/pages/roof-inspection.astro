@@ -51,6 +51,11 @@ const schema = `[{
         "@type": "Question",
         "name": "Can a roof inspection help with my insurance claim?",
         "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. If we find storm damage or other covered issues during your inspection, we can document everything with photos and detailed notes to support your insurance claim. We work with all major insurance providers in Florida and can help guide you through the claims process." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the best time of year for a roof inspection in Tampa Bay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The single best time in Florida is SPRING — specifically March through May, before hurricane season starts June 1. Weather is mild, materials aren't heat-softened, and you have time to complete any repairs before the first tropical system arrives. Here's the full seasonal breakdown for Tampa Bay: SPRING (March-May) is the top-priority window — this is when you want the annual professional inspection done and any needed repairs scheduled. SUMMER (June-August) is inspection-only-after-storms — surface temps on shingles and TPO exceed 150°F on afternoon roofs, foot traffic causes damage, and any repair sealants cure poorly in the heat. If a storm hits, get inspected within 5 days for insurance-claim timelines. FALL (September-November) is the post-hurricane assessment window — even without a direct hit, cumulative wind stress from a Florida hurricane season causes seam separations, lifted shingles, and hidden underlayment damage that only shows up under close inspection. WINTER (December-February) is repair-and-renewal season — the driest weather in Tampa Bay, ideal for larger repair or replacement work, and the window when most Florida homeowner insurance policies renew (a fresh inspection report is often required for wind-mitigation credits on renewal). Rule of thumb: schedule the annual inspection in spring, add a second inspection in fall if any tropical system passed within 200 miles, and never skip a post-storm inspection." }
       }
     ]
   },{
@@ -248,15 +253,61 @@ const schema = `[{
   </div>
 </section>
 
+<!-- SEASONAL BREAKDOWN — Best time of year -->
+<section class="py-20" style="background:#FFFFFF;border-top:1px solid #E5E5E5">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <p class="sl gt mb-3">Best Time of Year</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1rem">THE BEST TIME OF YEAR FOR A ROOF INSPECTION IN TAMPA BAY</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:680px;margin:0 auto">Every season plays a different role in Florida's roof-care calendar. Here's when to schedule &mdash; and what each window is actually good for.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <!-- SPRING -->
+      <div style="background:#FFFFFF;border:2px solid rgba(230,168,23,.35);border-radius:14px;padding:1.5rem;position:relative">
+        <div style="position:absolute;top:-10px;left:1.25rem;background:#E6A817;color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.1em;padding:.2rem .6rem;border-radius:100px;text-transform:uppercase">Top Priority</div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#E6A817;letter-spacing:.05em;text-transform:uppercase;margin:.75rem 0 .35rem">Spring &middot; Mar-May</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;line-height:1.15;margin:0 0 .55rem">Annual inspection window</p>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65;margin:0">The single best window in Florida. Mild weather, materials aren't heat-softened, and you have time to complete any repairs <strong>before hurricane season starts June 1</strong>.</p>
+      </div>
+
+      <!-- SUMMER -->
+      <div style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:14px;padding:1.5rem">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#3B9FD9;letter-spacing:.05em;text-transform:uppercase;margin:0 0 .35rem">Summer &middot; Jun-Aug</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;line-height:1.15;margin:0 0 .55rem">Only after storms</p>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65;margin:0">Roof surface temps exceed 150&deg;F on afternoons; foot traffic causes damage and sealants cure poorly. If a tropical system hits, get inspected <strong>within 5 days</strong> for insurance-claim timelines.</p>
+      </div>
+
+      <!-- FALL -->
+      <div style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:14px;padding:1.5rem">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#E6A817;letter-spacing:.05em;text-transform:uppercase;margin:0 0 .35rem">Fall &middot; Sep-Nov</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;line-height:1.15;margin:0 0 .55rem">Post-hurricane assessment</p>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65;margin:0">Even without a direct hit, cumulative wind stress causes seam separations, lifted shingles, and hidden underlayment damage. Book <strong>if any tropical system passed within 200 miles</strong>.</p>
+      </div>
+
+      <!-- WINTER -->
+      <div style="background:#FFFFFF;border:1px solid #E0E0E0;border-radius:14px;padding:1.5rem">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#3B9FD9;letter-spacing:.05em;text-transform:uppercase;margin:0 0 .35rem">Winter &middot; Dec-Feb</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;color:#1A1A1A;line-height:1.15;margin:0 0 .55rem">Repair &amp; insurance renewal</p>
+        <p style="color:#555555;font-size:.88rem;line-height:1.65;margin:0">Tampa Bay's driest weather &mdash; ideal for larger repair or replacement work. Most FL homeowner policies renew in this window and often require a fresh inspection for <strong>wind-mitigation credits</strong>.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;background:#F7F7F7;border:1px solid #E0E0E0;border-radius:12px;padding:1.25rem 2rem">
+      <p style="color:#1A1A1A;font-size:.95rem;line-height:1.65;margin:0"><strong>Rule of thumb for Tampa Bay:</strong> schedule the annual inspection in spring, add a second in fall if any tropical system passed nearby, and never skip a post-storm inspection.</p>
+    </div>
+  </div>
+</section>
+
 <!-- WHEN TO GET AN INSPECTION -->
 <section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
   <div class="max-w-7xl mx-auto px-5">
     <div class="grid lg:grid-cols-2 gap-14 items-start">
       <div>
-        <p class="sl gp mb-3">When to Inspect</p>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHEN SHOULD YOU GET A ROOF INSPECTION?</h2>
+        <p class="sl gp mb-3">Situational Triggers</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">OTHER TIMES YOU SHOULD GET AN INSPECTION</h2>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          Not sure if it's time for an inspection? Here are the most common situations where a professional assessment can save you money and stress. In Tampa Bay's climate, being proactive about your roof is always smarter than waiting for a problem to reveal itself.
+          Beyond the seasonal cadence above, these are the most common situations where an inspection saves you money and stress. In Tampa Bay's climate, being proactive is always smarter than waiting for a problem to reveal itself.
         </p>
       </div>
       <div class="space-y-4">
@@ -340,6 +391,15 @@ const schema = `[{
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">Absolutely. If we find storm damage or other covered issues during your inspection, we can document everything with photos and detailed notes to support your insurance claim. We work with all major insurance providers in Florida and can help guide you through the claims process. Having professional documentation from a licensed contractor significantly strengthens your claim.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          What's the best time of year for a roof inspection in Tampa Bay?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">The single best time in Florida is <strong>spring &mdash; specifically March through May</strong>, before hurricane season starts June 1. Weather is mild, materials aren't heat-softened, and you have time to complete any repairs before the first tropical system arrives. Full seasonal breakdown: <strong>Spring (Mar-May)</strong> is the top-priority window &mdash; annual professional inspection + any needed repairs. <strong>Summer (Jun-Aug)</strong> is inspection-only-after-storms &mdash; surface temps exceed 150&deg;F on afternoon roofs and sealants cure poorly; if a storm hits, get inspected within 5 days for insurance-claim timelines. <strong>Fall (Sep-Nov)</strong> is post-hurricane assessment &mdash; cumulative wind stress causes hidden seam separations and underlayment damage even without a direct hit. <strong>Winter (Dec-Feb)</strong> is repair-and-renewal season &mdash; the driest weather in Tampa Bay, plus most FL homeowner policies renew in this window and a fresh inspection is often required for wind-mitigation credits. Rule of thumb: schedule the annual inspection in spring, add a second in fall if any tropical system passed within 200 miles, and never skip a post-storm inspection.</div>
         </div>
       </div>
     </div>
