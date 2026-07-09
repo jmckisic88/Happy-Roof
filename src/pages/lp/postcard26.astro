@@ -44,7 +44,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn-call{background:#3B9FD9;color:#FFFFFF;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 1.75rem;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;box-shadow:0 4px 20px -4px rgba(59,159,217,.4);transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1)}
     .btn-call:hover{background:#2B8FC9;transform:translateY(-2px)}
     .check{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.85rem}
-    .postcard-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FAFAF5 100%)}
+    /* Override global.css section:first-of-type !important — this LP has its own header (no fixed nav), so it doesn't need the site-nav top offset */
+    .postcard-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FAFAF5 100%);padding-top:1.25rem !important;padding-bottom:3rem !important}
+    @media(max-width:767px){.postcard-hero{padding-top:1rem !important;padding-bottom:2rem !important}}
     .offer-box-gold{background:#E6A817;color:#FFFFFF;border-radius:14px;padding:1.15rem 1.25rem;text-align:center;box-shadow:0 6px 24px -8px rgba(230,168,23,.5)}
     .offer-box-black{background:#1A1A1A;color:#FFFFFF;border-radius:14px;padding:1.15rem 1.25rem;text-align:center;border:1.5px solid rgba(230,168,23,.35)}
     .pillar{background:#FFFFFF;border:1px solid #E0E0E0;border-radius:14px;padding:1.75rem 1.25rem;text-align:center}
