@@ -44,8 +44,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn-call{background:#3B9FD9;color:#FFFFFF;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.04em;padding:.85rem 1.75rem;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;box-shadow:0 4px 20px -4px rgba(59,159,217,.4);transition:background .18s,transform .2s cubic-bezier(.34,1.56,.64,1)}
     .btn-call:hover{background:#2B8FC9;transform:translateY(-2px)}
     .check{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.85rem}
-    /* Override global.css section:first-of-type !important — this LP has its own header (no fixed nav), so it doesn't need the site-nav top offset */
-    .postcard-hero{background:linear-gradient(180deg,#FFFFFF 0%,#FAFAF5 100%);padding-top:1.25rem !important;padding-bottom:3rem !important}
+    /* Hero: shingle-texture background with heavy white overlay (matches homepage hero treatment).
+       Also overrides global.css section:first-of-type !important, since this LP has its own header (no fixed nav). */
+    .postcard-hero{background:linear-gradient(180deg,rgba(255,255,255,.90) 0%,rgba(250,250,245,.93) 100%),url('/Brand%20Assets/Photos/shingle-roof-closeup-tampa.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;padding-top:1.25rem !important;padding-bottom:3rem !important}
     @media(max-width:767px){.postcard-hero{padding-top:1rem !important;padding-bottom:2rem !important}}
     .offer-box-gold{background:#E6A817;color:#FFFFFF;border-radius:14px;padding:1.15rem 1.25rem;text-align:center;box-shadow:0 6px 24px -8px rgba(230,168,23,.5)}
     .offer-box-black{background:#1A1A1A;color:#FFFFFF;border-radius:14px;padding:1.15rem 1.25rem;text-align:center;border:1.5px solid rgba(230,168,23,.35)}
@@ -55,6 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:#1A1A1A;padding:.85rem 1rem;box-shadow:0 -4px 20px -4px rgba(0,0,0,.25);z-index:50;display:none}
     @media(max-width:767px){
       .lp-grid{grid-template-columns:1fr !important}
+      .lp-testimonial-grid{grid-template-columns:1fr !important}
       .sticky-cta{display:block}
       body{padding-bottom:70px}
     }
@@ -189,6 +191,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
+<!-- TRUCK PHOTOS -->
+<section style="background:#FFFFFF;padding:3rem 0">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center" style="margin-bottom:1.5rem">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#3B9FD9;margin:0 0 .35rem">Real Tampa Bay Roofs. Real Happy Homeowners.</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.6rem,3vw,2.25rem);line-height:1;color:#1A1A1A;letter-spacing:-.01em;margin:0">ON YOUR STREET SOON.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#F0F0F0;box-shadow:0 6px 24px -8px rgba(0,0,0,.12)">
+        <img src="/Brand Assets/Photos/happy-roof-truck-yellow-home.jpg" alt="Happy Roof truck at a completed roof installation in Tampa Bay" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" />
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#F0F0F0;box-shadow:0 6px 24px -8px rgba(0,0,0,.12)">
+        <img src="/Brand Assets/Photos/happy-roof-truck-oak-tree.jpg" alt="Happy Roof truck at a Tampa Bay home under a canopy oak" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES STRIP -->
 <section style="background:#1A1A1A;padding:1.25rem 0;border-top:2px solid #E6A817">
   <div class="max-w-6xl mx-auto px-5 text-center" style="color:#FFFFFF;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.05em">
@@ -225,14 +245,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section style="background:#FFFFFF;padding:4rem 0">
-  <div class="max-w-3xl mx-auto px-5 text-center">
-    <div style="color:#E6A817;font-size:1.5rem;letter-spacing:.15em;margin-bottom:1rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <p style="color:#333;font-size:1.02rem;line-height:1.75;font-style:italic;margin:0 0 1.25rem">
-      &ldquo;Happy Roof did an amazing job. They were on time, polite and courteous across the board. They ensured my property remained undamaged during the roof replacement. It is refreshing to find a company that is concerned about <strong>quality work, integrity and the added bonus of being very reasonably priced.</strong> In fact, they were the cheapest of all the estimates received. I highly recommend this company for anyone needing a new roof. Rare find!&rdquo;
-    </p>
-    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#1A1A1A;letter-spacing:.05em;margin:0">KATHLEEN P.</p>
+<!-- TESTIMONIAL + TEAM PHOTO -->
+<section style="background:#FFFFFF;padding:4.5rem 0">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid lg:grid-cols-5 gap-10 items-center lp-testimonial-grid" style="grid-template-columns:2fr 3fr">
+      <!-- Team photo (left, 2 cols) -->
+      <div>
+        <div style="border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#F0F0F0;box-shadow:0 8px 32px -10px rgba(0,0,0,.15)">
+          <img src="/Brand Assets/Photos/happy-roof-team-photo.jpg" alt="The Happy Roof team, Tampa Bay Florida" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy" />
+        </div>
+        <p style="text-align:center;color:#888;font-size:.82rem;margin:.75rem 0 0;font-style:italic">The Happy Roof team. Tampa Bay.</p>
+      </div>
+      <!-- Review (right, 3 cols) -->
+      <div>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#3B9FD9;margin:0 0 .5rem">What Our Neighbors Say</p>
+        <div style="color:#E6A817;font-size:1.4rem;letter-spacing:.15em;margin-bottom:.85rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p style="color:#333;font-size:1.02rem;line-height:1.75;font-style:italic;margin:0 0 1.1rem">
+          &ldquo;Happy Roof did an amazing job. They were on time, polite and courteous across the board. They ensured my property remained undamaged during the roof replacement. It is refreshing to find a company that is concerned about <strong>quality work, integrity and the added bonus of being very reasonably priced.</strong> In fact, they were the cheapest of all the estimates received. I highly recommend this company for anyone needing a new roof. Rare find!&rdquo;
+        </p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#1A1A1A;letter-spacing:.05em;margin:0">KATHLEEN P.</p>
+      </div>
+    </div>
   </div>
 </section>
 
