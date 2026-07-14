@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
   "@context": "https://schema.org",
@@ -382,7 +383,7 @@ const schema = `{
             </div>
           </div>
           <!-- Cloudflare Turnstile bot protection -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+          <TurnstileWidget formId="viz-lead-form" />
           <button type="submit" class="btn-t w-full justify-center" style="font-size:1rem;padding:.85rem">Get My Free Estimate</button>
         </form>
         <div id="viz-lead-success" style="display:none;padding:1.5rem">
@@ -722,7 +723,6 @@ function generateVisualization() {
 function submitVisualizerLead(e) {
   e.preventDefault();
   var form = e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var name = form.viz_name.value;
   var phone = form.viz_phone.value;
   var email = form.viz_email ? form.viz_email.value : '';
@@ -733,31 +733,33 @@ function submitVisualizerLead(e) {
     service: 'Roof Visualizer Lead',
     source: 'Website - Roof Assessment',
     page: '/assessment',
-    notes: 'Roof style interest: ' + selectedColor + ' ' + selectedStyle,
-    turnstile_token: turnstileToken
+    notes: 'Roof style interest: ' + selectedColor + ' ' + selectedStyle
+  };
+  var formSubmitPayload = {
+    _subject: 'Roof Visualizer Lead | ' + name,
+    'Name': name, 'Phone': phone, 'Email': email || 'Not provided', 'Address': address,
+    'Roof Style': selectedColor + ' ' + selectedStyle,
+    'Source': 'Roof Assessment & Visualizer Page'
   };
 
-  // Breeze first, FormSubmit only on failure (2026-06-25 — Trever
-  // Gray incident).
-  fetch('/api/submit-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(stPayload) })
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .catch(function(){
-      return fetch('https://formsubmit.co/ajax/info@happyroof.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: 'Roof Visualizer Lead | ' + name,
-          'Name': name, 'Phone': phone, 'Email': email || 'Not provided', 'Address': address,
-          'Roof Style': selectedColor + ' ' + selectedStyle,
-          'Source': 'Roof Assessment & Visualizer Page'
-        })
-      });
-    })
-    .finally(function() {
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'viz-lead-form', formSubmitPayload: formSubmitPayload }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
       form.style.display = 'none';
       document.getElementById('viz-lead-success').style.display = 'block';
-    });
+      return;
+    }
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('viz-lead-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'viz-lead-form' });
+});
 
 // ── Auto-select tab from URL param ──
 (function() {

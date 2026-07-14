@@ -1,0 +1,847 @@
+Delivered-To: josh@happyroof.com
+Received: by 2002:a05:6f02:c25a:b0:119:d8df:5280 with SMTP id n26csp1369497rcb;
+        Mon, 30 Mar 2026 07:12:46 -0700 (PDT)
+X-Received: by 2002:a05:6871:8a6:b0:417:a88e:6115 with SMTP id 586e51a60fabf-41cec38a70amr4769167fac.8.1774879965569;
+        Mon, 30 Mar 2026 07:12:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774879965; cv=none;
+        d=google.com; s=arc-20240605;
+        b=U2ijhS3uckH8Zh0sf0ZnDtf4iVDJgUTJvHH43dS6MgMMORR0hsn8BIeJ8kdiv2IGj0
+         XoOPj1BMTzD+gevEvWDxLOebF0+/XYRG0huggfEzylVUpNGI6ESeMu0YT+WFoFE5w8MB
+         7laz7j2sp5pMJ2crhHIFkOfL2T6/JcW8BNAUIya9ny4rSknsm8V03F4aPjORnnTtjC9w
+         UXsqYtwXog4G3tVA/F4ZZVTYKL1HOtBpvzXaA7aZosZnlTqMoHi+jev/wjcpPii28PP2
+         +YetG/j93wETxHJXrybFyvdLSGHxl0I6PE2jiO/FpgtE58YaI+TyTEXiHIyNgpO0iUJp
+         baAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :to:from:dkim-signature;
+        bh=5CVQToMHxjhzXLz+D+3DpLgKWGOy7SgssOTotovM6WQ=;
+        fh=qouTNQQ/uzRKpRspHL0t9jbOa63HT5ZrwnXK3aOt22A=;
+        b=i023jRe4y+zrkLrJEFzwZ5bnF73+7xhYRN8hN/jSetGDKYc/x8xYXw3y1ewTFqii0o
+         dSvRbIKMCqgZXQl/9Dw8T7+C1gl0MV8bMK89okJGMQcFuFak+jYl2NIm92pVDnbJHs1x
+         cwa3fottF0nxFuCGstDNCviY1d7AelfxoCxQsqpusweLF+8fS5hUGxSnBhRyL4ri3uF1
+         VzSspnpEWNrLaKgiN1a89pMbX6E5CHYN7++c8dNoK5SeUlRD3p6DEViOiphYnkRcK7rz
+         FOVlc4e3AmjhstL2MNnz0Cc2E5OoJ8G8iGjrB/NaiV9W+7F4PYtv6E+lChnG7KlU1WRz
+         x5KA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@postcardmania.com header.s=hx8DD96F0425FF8AA header.b="KlrPl/gc";
+       spf=pass (google.com: domain of jennifer.t@postcardmania.com designates 64.113.22.150 as permitted sender) smtp.mailfrom=jennifer.t@postcardmania.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=postcardmania.com
+Return-Path: <jennifer.t@postcardmania.com>
+Received: from mailer.postcardmania.com (mailer.postcardmania.com. [64.113.22.150])
+        by mx.google.com with ESMTPS id 586e51a60fabf-41d0492b3c0si6017864fac.89.2026.03.30.07.12.44
+        for <josh@happyroof.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Mar 2026 07:12:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jennifer.t@postcardmania.com designates 64.113.22.150 as permitted sender) client-ip=64.113.22.150;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@postcardmania.com header.s=hx8DD96F0425FF8AA header.b="KlrPl/gc";
+       spf=pass (google.com: domain of jennifer.t@postcardmania.com designates 64.113.22.150 as permitted sender) smtp.mailfrom=jennifer.t@postcardmania.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=postcardmania.com
+DKIM-Signature: v=1; a=rsa-sha256; d=postcardmania.com; s=hx8DD96F0425FF8AA;
+	c=relaxed/relaxed; t=1774879964;
+	h=from:to:subject:date:message-id:mime-version:x-mailer:thread-index;
+	bh=5CVQToMHxjhzXLz+D+3DpLgKWGOy7SgssOTotovM6WQ=;
+	b=KlrPl/gc57edIEqAGAD5VaoVQg8CphtpyPiPtDLXP9hE/25Q4Gxzg67WivZfDam66dnuQYyKxo4
+	CaxP65NA/X40iwFD52aZvhzG2U6LwzqylMCGMwozQ6SGc8A//b8r+O2T/iu3i/wvOX9d2FCrEoprQ
+	VLCkyDWL92lkLxLL1wjTdJ+IaZlW5RfLuK4JloIt/xNxSqMpZZMY/zjfytnN+6HvxyxYn+wkK5/e6
+	Ahx3aamL/S/u2E9GjSmzfzRCQ1/MHU44CCd00UoE7s0HueY0Wc19deTr5VPfKPDCkocLObw0Fh2Fx
+	b4Itkunado1gpZATsQdo3IB3+udo7DvjzciQ==
+Received: from 4AWINDSK601 (4AWINDSK601.pcm.local [192.168.0.154])
+	by mailer.postcardmania.com
+	with SMTP	(version=TLS\Tls12	cipher=Aes256 bits=256);
+	Mon, 30 Mar 2026 10:11:55 -0400
+From: Jennifer Taylor <jennifer.t@postcardmania.com>
+To: josh@happyroof.com
+Subject: Website Analysis - https://www.happyroof.com/
+Date: Mon, 30 Mar 2026 10:13:08 -0400
+Message-ID: <011f01dcc04f$55f43790$01dca6b0$@postcardmania.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdzATd4/jB7ZOxF3QhynE3aZ2U0rbg==
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0120_01DCC02D.CEE3D010"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0120_01DCC02D.CEE3D010
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0121_01DCC02D.CEE3D010"
+
+
+------=_NextPart_001_0121_01DCC02D.CEE3D010
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hi Josh,
+
+My name is Jennifer Taylor and I am the Digital Marketing Specialist here at
+PostcardMania.
+
+ 
+
+My job is to look at your website and offer suggestions for improvement to
+help with your Everywhere Small Business campaign. We can certainly get you
+the clicks with Everywhere Small Business, but it is your responsibility to
+convert the leads.
+
+ 
+
+With that being said, I looked over https://www.happyroof.com/  and here's
+what I recommend.
+
+ 
+
+Add your promotion and/or call to action to the top of the homepage, where
+it's visible without having to scroll.
+
+10% OFF Any Roofing Job 
+
+Mention code POSTCARD26
+
+FREE estimate
+
+FREE roof inspection
+
+Up to $1,000 for Anyone who refers us a roofing job that we take on.
+
+ 
+
+ You could use a different code for online leads.
+
+Use a bright, non-matching, contrasting color above the fold where it cannot
+be missed. You could do this on a promotional bar, like this example.
+<https://pcmbuilder.com/dental-sample-site-3pg/> 
+
+ 
+
+Your campaign is built up of more than just postcards. The online ads are
+sending traffic to your website. 
+
+ 
+
+Your ads will likely mention your promotion-unless you've told us otherwise.
+Naturally, prospects will expect to see the promo on the website after
+clicking the ad. They'll expect to have to fill out a contact form in
+exchange for the offer, or be told to call to redeem. 
+
+ 
+
+Clearly state what you want them to do on your website. I recommend asking
+for the bare minimum: an email, in exchange for the promo.
+
+ 
+
+If you feel that you need more to initiate that first touch, please hide the
+asterisks so people don't feel obligated, even if they are obligated, to
+share that information at that time. Instead of "Submit," use "Send." As it
+reads friendlier.
+
+ 
+
+CAUTION: Excluding the promotion from your site could cause people to leave
+your site without taking action. Most of the time, they're clicking the ad
+to get the offer, so to exclude it from your site would be a disruption of
+the sales cycle, and could lead to fewer online conversions. 
+
+ 
+
+Here's the prospect's expected flow: 
+
+*	Prospect sees your ad 
+*	They click your ad 
+*	Land on your website 
+*	Fills out a form to redeem the offer (Converted Lead!)
+*	You contact them ASAP for next steps (or they use a promo code to
+purchase online, etc.)
+
+ 
+
+If you decide to exclude the offer from your site, you are only using a
+fraction of your marketing campaign to convert leads. 
+
+
+
+
+Here's what that would look like for the online campaign results:
+
+*	Prospect gets postcard in the mail
+*	If they're interested, 95% of people will look you up online before
+picking up the phone. Browse and leave.
+*	Prospect sees an ad from the same company they received a postcard
+from recently with the limited time special
+*	Clicks ad 
+*	Lands on your website again
+*	Prospect leaves the website (confused/frustrated) after a few
+seconds, because they don't see the promo that brought them there.
+*	Sees ad again, might click ad/might not, because they already know
+the call to action is missing.
+
+ 
+
+If you need help, we sell standalone pop-up forms
+<https://www.postcardmania.com/products-services/catch-that-lead-tool/>  and
+complete pop-up form
+<https://www.postcardmania.com/products-services/catch-and-close/> & email
+drip funnels. These services are not included with Everywhere Small
+Business, please let me know if you'd like more info.
+
+ 
+
+I suggest you type out your number on the click-to-call buttons so people
+viewing the site on a device other than a cell phone (EX: computer) can
+still see your number and call you.
+
+
+
+ 
+
+Your homepage has a button that says, "Meet the Team," but your team isn't
+on the About page it leads to.
+
+ 
+
+Add staff photos and bios to your About page. This personal touch will help
+raise trust between the prospect and your company, making them more
+comfortable initiating a first contact.
+
+ 
+
+Questions to ask yourself when writing a personal bio -
+
+Inspiration for starting the business. What problems were you looking to
+solve? How long have you lived in the area? Do you have a family? Hobbies?
+Charities you support? Organizations you're involved with? Passions? Pets?
+Won any awards? Have any special certifications? The more personal the
+better. Including personal info makes it easier for people to connect with
+you and remember you. It also makes it easier for them to get comfortable
+with you. You want them to want to reach out to you so make yourself known!
+
+ 
+
+Please let me know if you have questions. 
+
+ 
+
+If you do not know how to make the changes yourself or simply do not have
+the time, we can create a new website and/or a pop-up form for you!
+
+*We're not able to make changes to third-party websites that we did not
+create, however, you are qualified for our
+<https://www.postcardmania.com/products-services/catch-that-lead-tool/>
+pop-up forms! 
+
+ 
+
+I'd like to see the site again once you've made the edits. 
+
+ 
+
+Thank you,
+
+ 
+
+ 
+
+ 
+
+
+  <https://tools.mypostcardmania.com/reps/jennifertaylors.jpg> 
+
+Jennifer Taylor
+
+Digital Marketing Specialist
+
+800-628-1804 x601
+
+ <https://www.postcardmania.com/> PostcardMania.com
+
+  <https://cdn.postcardmania.com/pcm27y.png> 
+
+
+  <https://cdn.postcardmania.com/pcmsig2021q1.png> 
+
+	
+
+
+P.S. 2026 is here! Ask me about discounts for pre-scheduling your marketing
+for the year.
+
+	
+
+ 
+
+
+------=_NextPart_001_0121_01DCC02D.CEE3D010
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><!--[if !mso]><style>v\:* =
+{behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:-apple-system;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:667246519;
+	mso-list-template-ids:1346378140;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:1042091630;
+	mso-list-template-ids:-1632083634;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>Hi Josh,<o:p></o:p></p><p =
+class=3DMsoNormal>My name is Jennifer Taylor and I am the Digital =
+Marketing Specialist here at PostcardMania.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>My job is to =
+look at your website and offer suggestions for improvement to help with =
+your Everywhere Small Business campaign. We can certainly get you the =
+clicks with Everywhere Small Business, but it is your responsibility to =
+convert the leads.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>With that =
+being said, I looked over <a =
+href=3D"https://www.happyroof.com/">https://www.happyroof.com/</a> =
+&nbsp;and here&#8217;s what I recommend.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Add your =
+promotion and/or call to action to the top of the homepage, where =
+it&#8217;s visible without having to scroll.<br><br>10% OFF Any Roofing =
+Job <o:p></o:p></p><p class=3DMsoNormal>Mention code =
+POSTCARD26<o:p></o:p></p><p class=3DMsoNormal>FREE =
+estimate<o:p></o:p></p><p class=3DMsoNormal>FREE roof =
+inspection<o:p></o:p></p><p class=3DMsoNormal>Up to $1,000 for Anyone =
+who refers us a roofing job that we take on.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>&nbsp;You =
+could use a different code for online leads.<o:p></o:p></p><p =
+class=3DMsoNormal>Use a bright, non-matching, contrasting color above =
+the fold where it cannot be missed. You could do this on a promotional =
+bar, <a href=3D"https://pcmbuilder.com/dental-sample-site-3pg/">like =
+this example.</a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Your =
+campaign is built up of more than just postcards. The online ads are =
+sending traffic to your website.&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Your ads =
+will likely mention your promotion&#8212;unless you&#8217;ve told us =
+otherwise. Naturally, prospects will expect to see the promo on the =
+website after clicking the ad. They&#8217;ll expect to have to fill out =
+a contact form in exchange for the offer, or be told to call to =
+redeem.&nbsp;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Clearly state what you want them to do on your =
+website. I recommend asking for the bare minimum: an email, in exchange =
+for the promo.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If you feel =
+that you need more to initiate that first touch, please hide the =
+asterisks so people don&#8217;t <i>feel </i>obligated, even if they are =
+obligated, to share that information at that time. Instead of =
+&#8220;Submit,&#8221; use &#8220;Send.&#8221; As it reads =
+friendlier.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><b><span style=3D'color:red'>CAUTION:</span></b><span =
+style=3D'color:red'> </span>Excluding the promotion from your site could =
+cause people to leave your site without taking action. Most of the time, =
+they&#8217;re clicking the ad to get the offer, so to exclude it from =
+your site would be a <b>disruption of the sales cycle,</b> and could =
+lead to fewer online conversions.&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Here&#8217;s =
+the prospect&#8217;s expected flow:&nbsp;<o:p></o:p></p><ul =
+style=3D'margin-top:0in' type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-list:l1 level1 lfo1'>Prospect sees your =
+ad&nbsp;<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l1 =
+level1 lfo1'>They click your ad&nbsp;<o:p></o:p></li><li =
+class=3DMsoNormal style=3D'mso-list:l1 level1 lfo1'>Land on your =
+website&nbsp;<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l1 =
+level1 lfo1'>Fills out a form to redeem the offer (Converted =
+Lead!)<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l1 level1 =
+lfo1'>You contact them ASAP for next steps (or they use a promo code to =
+purchase online, etc.)<o:p></o:p></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If you =
+decide to exclude the offer from your site, you are only using a =
+<i>fraction </i>of your marketing campaign to convert leads. =
+<br><br><br><o:p></o:p></p><p class=3DMsoNormal>Here&#8217;s what that =
+would look like for the online campaign results:<o:p></o:p></p><ul =
+style=3D'margin-top:0in' type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-list:l0 level1 lfo2'>Prospect gets postcard in the =
+mail<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l0 level1 =
+lfo2'>If they&#8217;re interested, 95% of people will look you up online =
+before picking up the phone. Browse and leave.<o:p></o:p></li><li =
+class=3DMsoNormal style=3D'mso-list:l0 level1 lfo2'>Prospect sees an ad =
+from the same company they received a postcard from recently with the =
+limited time special<o:p></o:p></li><li class=3DMsoNormal =
+style=3D'mso-list:l0 level1 lfo2'>Clicks ad&nbsp;<o:p></o:p></li><li =
+class=3DMsoNormal style=3D'mso-list:l0 level1 lfo2'>Lands on your =
+website again<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l0 =
+level1 lfo2'>Prospect leaves the website (confused/frustrated) after a =
+few seconds, because they don&#8217;t see the promo that brought them =
+there.<o:p></o:p></li><li class=3DMsoNormal style=3D'mso-list:l0 level1 =
+lfo2'>Sees ad again, might click ad/might not, because <b>they already =
+know the call to action is missing.</b><o:p></o:p></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If you need =
+help, we sell <a =
+href=3D"https://www.postcardmania.com/products-services/catch-that-lead-t=
+ool/">standalone pop-up forms</a> and <a =
+href=3D"https://www.postcardmania.com/products-services/catch-and-close/"=
+>complete pop-up form &amp; email drip funnels.</a> These services are =
+not included with Everywhere Small Business, please let me know if =
+you&#8217;d like more info.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I suggest =
+you type out your number on the click-to-call buttons so people viewing =
+the site on a device other than a cell phone (EX: computer) can still =
+see your number and call you.<o:p></o:p></p><p class=3DMsoNormal><img =
+border=3D0 width=3D238 height=3D89 =
+style=3D'width:2.4791in;height:.927in' id=3D"Picture_x0020_1" =
+src=3D"cid:image001.png@01DCC02C.D6704C10"><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Your =
+homepage has a button that says, &#8220;Meet the Team,&#8221; but your =
+team isn&#8217;t on the About page it leads to.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Add staff =
+photos and bios to your About page. This personal touch will help raise =
+trust between the prospect and your company, making them more =
+comfortable initiating a first contact.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Questions to =
+ask yourself when writing a personal bio &#8211;<o:p></o:p></p><p =
+class=3DMsoNormal>Inspiration for starting the business. What problems =
+were you looking to solve? How long have you lived in the area? Do you =
+have a family? Hobbies? Charities you support? Organizations =
+you&#8217;re involved with? Passions? Pets? Won any awards? Have any =
+special certifications? The more personal the better. Including personal =
+info makes it easier for people to connect with you and remember you. It =
+also makes it easier for them to get comfortable with you. You want them =
+to want to reach out to you so make yourself known!<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Please let =
+me know if you have questions.&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>If you do =
+not know how to make the changes yourself or simply do not have the =
+time, we can create a new website and/or a pop-up form for =
+you!<o:p></o:p></p><p class=3DMsoNormal><b><i>*We&#8217;re not able to =
+make changes to third-party websites that we did not create, however, =
+you are qualified for our </i></b><a =
+href=3D"https://www.postcardmania.com/products-services/catch-that-lead-t=
+ool/"><b><i>pop-up forms!&nbsp;</i></b></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I&#8217;d =
+like to see the site again once you&#8217;ve made the =
+edits.&nbsp;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thank you,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><table =
+class=3DMsoNormalTable border=3D0 cellspacing=3D0 =
+cellpadding=3D0><tr><td width=3D135 rowspan=3D2 valign=3Dtop =
+style=3D'width:101.25pt;padding:0in 0in 0in 0in'><div><p =
+class=3DMsoNormal><img border=3D0 width=3D125 height=3D125 =
+style=3D'width:1.302in;height:1.302in' id=3D"_x0000_i1027" =
+src=3D"https://tools.mypostcardmania.com/reps/jennifertaylors.jpg" =
+alt=3D"PostcardMania staff image"><span =
+style=3D'mso-ligatures:none'><o:p></o:p></span></p></div></td><td =
+style=3D'padding:0in 0in 0in 0in'><div><p class=3DMsoNormal =
+style=3D'line-height:12.75pt'><b><span =
+style=3D'font-size:10.5pt;font-family:-apple-system;mso-ligatures:none'>J=
+ennifer Taylor</span></b><b><span =
+style=3D'font-size:10.5pt;font-family:-apple-system;mso-ligatures:none'><=
+o:p></o:p></span></b></p></div><div><p class=3DMsoNormal =
+style=3D'line-height:11.25pt'><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;text-transform:upperca=
+se;mso-ligatures:none'>Digital Marketing Specialist</span><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;text-transform:upperca=
+se;mso-ligatures:none'><o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'line-height:11.25pt'><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;mso-ligatures:none'>80=
+0-628-1804 x601</span><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;mso-ligatures:none'><o=
+:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'><a href=3D"https://www.postcardmania.com/" =
+title=3D"Visit the PostcardMania website &#8594;"><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;color:black;text-decor=
+ation:none'>PostcardMania.com</span></a><o:p></o:p></span></p></div></td>=
+<td rowspan=3D2 style=3D'padding:0in 0in 0in 0in'><div =
+style=3D'border-top:none;border-left:solid #E62781 =
+1.0pt;border-bottom:none;border-right:solid #E62781 1.0pt;padding:0in =
+26.0pt 0in 26.0pt;margin-left:18.75pt'><p class=3DMsoNormal =
+style=3D'margin-left:18.75pt'><img border=3D0 width=3D125 height=3D79 =
+style=3D'width:1.302in;height:.8229in' id=3D"_x0000_i1026" =
+src=3D"https://cdn.postcardmania.com/pcm27y.png" alt=3D"PostcardMania =
+Anniversary image"><span =
+style=3D'mso-ligatures:none'><o:p></o:p></span></p></div></td></tr><tr><t=
+d valign=3Dbottom style=3D'padding:0in 0in 0in 0in'><div><p =
+class=3DMsoNormal><img border=3D0 width=3D210 height=3D45 =
+style=3D'width:2.1875in;height:.4687in' id=3D"_x0000_i1025" =
+src=3D"https://cdn.postcardmania.com/pcmsig2021q1.png" =
+alt=3D"PostcardMania logo"><span =
+style=3D'mso-ligatures:none'><o:p></o:p></span></p></div></td></tr><tr><t=
+d colspan=3D3 style=3D'padding:0in 0in 0in 0in'></td></tr><tr><td =
+colspan=3D3 style=3D'padding:0in 0in 0in 0in'><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;line-height:1=
+1.25pt'><span =
+style=3D'font-size:9.0pt;font-family:-apple-system;mso-ligatures:none'>P.=
+S. 2026 is here! Ask me about discounts for pre-scheduling your =
+marketing for the year.<o:p></o:p></span></p></div></td></tr><tr><td =
+colspan=3D3 style=3D'padding:0in 0in 0in 0in'></td></tr></table><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_001_0121_01DCC02D.CEE3D010--
+
+------=_NextPart_000_0120_01DCC02D.CEE3D010
+Content-Type: image/png; name=image001.png
+Content-Transfer-Encoding: base64
+Content-ID: <image001.png@01DCC02C.D6704C10>
+
+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
+Pys5OfxYb+7LAAAAAElFTkSuQmCC
+
+------=_NextPart_000_0120_01DCC02D.CEE3D010--
+
+

@@ -50,8 +50,12 @@ const {
 
   <meta property="og:image" content={ogImage} />
 
-  <!-- Cloudflare Turnstile (bot protection on forms) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Cloudflare Turnstile (bot protection on forms) — explicit render
+       so HR_Turnstile can control lifecycle + regenerate stale tokens
+       before submit (see src/components/TurnstileWidget.astro). -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=hrTurnstileReady" async defer></script>
+  <!-- Happy Roof form helpers (draft persistence, Turnstile-aware submit) -->
+  <script is:inline src="/hr-forms.js"></script>
 
   <slot name="head" />
 </head>

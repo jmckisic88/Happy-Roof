@@ -1,5 +1,6 @@
 ---
 import LandingLayout from '../layouts/LandingLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 ---
 <LandingLayout
   title="Marketing Home Promotion | Happy Roof"
@@ -363,6 +364,98 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     border-top:1px solid #E0E0E0;
   }
 
+  /* Intake form (screen only) */
+  .intake-wrap {
+    background:#F7F7F7;
+    border-top:1px solid #E0E0E0;
+    padding:1.25rem 1.75rem 1.75rem;
+  }
+  .intake-header {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:.5rem;
+  }
+  .intake-copy {
+    color:#555555;
+    font-size:.95rem;
+    line-height:1.55;
+    margin:0 0 1.1rem;
+  }
+  .intake-form { display:flex; flex-direction:column; gap:.6rem; }
+  .intake-input {
+    width:100%;
+    background:#FFFFFF;
+    border:1.5px solid #E0E0E0;
+    border-radius:8px;
+    padding:.8rem 1rem;
+    font-family:'Nunito',sans-serif;
+    font-size:.95rem;
+    color:#1A1A1A;
+    outline:none;
+    transition:border-color .15s;
+    box-sizing:border-box;
+  }
+  .intake-input:focus { border-color:#1A1A1A; }
+  .intake-input::placeholder { color:#999999; }
+  .intake-consent {
+    display:flex; flex-direction:column; gap:.55rem;
+    margin:.4rem 0 .25rem;
+  }
+  .consent-row { display:flex; align-items:flex-start; gap:.55rem; }
+  .consent-row input[type="checkbox"] {
+    width:16px; height:16px; min-width:16px;
+    margin-top:.2rem;
+    accent-color:#E6A817;
+    cursor:pointer;
+  }
+  .consent-row label {
+    font-size:.72rem;
+    color:#555555;
+    line-height:1.55;
+    cursor:pointer;
+  }
+  .consent-row label a { color:#3B9FD9; text-decoration:underline; }
+  .intake-submit {
+    background:#E6A817;
+    color:#1A1A1A;
+    border:none;
+    border-radius:8px;
+    padding:.95rem 1.6rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:1.1rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    cursor:pointer;
+    margin-top:.6rem;
+    box-shadow:0 6px 20px -6px rgba(230,168,23,.5);
+    transition:background .15s, transform .15s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+  }
+  .intake-submit svg { display:block; }
+  .intake-submit:hover { background:#F0C040; transform:translateY(-1px); }
+  .intake-submit:active { transform:translateY(0); }
+  .intake-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .intake-success { display:none; text-align:center; padding:1.5rem .5rem; }
+  .intake-success.show { display:block; }
+  .intake-success h3 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:1.5rem;
+    color:#1A1A1A;
+    margin:.75rem 0 .35rem;
+  }
+  .intake-success p {
+    color:#555555;
+    font-size:.95rem;
+    margin:0;
+  }
+
   /* Screen-only */
   @media screen {
     .promo {
@@ -371,11 +464,15 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       border-radius:10px;
       overflow:hidden;
     }
-    .print-btn {
+    /* Hide the handout signature block on screen — digital visitors use the form instead */
+    .sig-block { display:none; }
+    .footer-row { justify-content:center; text-align:center; }
+    /* Floating "Back to Home" button replaces the old print button */
+    .home-btn {
       position:fixed;
       bottom:1.5rem; right:1.5rem;
-      background:#E6A817;
-      color:#1A1A1A;
+      background:#1A1A1A;
+      color:#FFFFFF;
       border:none;
       padding:.75rem 1.3rem;
       border-radius:100px;
@@ -385,16 +482,21 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       letter-spacing:.06em;
       text-transform:uppercase;
       cursor:pointer;
-      box-shadow:0 8px 24px -6px rgba(230,168,23,.5);
+      text-decoration:none;
+      box-shadow:0 8px 24px -6px rgba(0,0,0,.35);
       z-index:50;
       display:flex; align-items:center; gap:.5rem;
+      transition:background .15s, transform .15s;
     }
-    .print-btn:hover { background:#F0C040; }
+    .home-btn:hover { background:#2A2A2A; transform:translateY(-1px); }
+    .home-btn:active { transform:translateY(0); }
+    .home-btn:focus-visible { outline:2px solid #E6A817; outline-offset:3px; }
   }
 
   @media (max-width: 640px) {
     .offers, .why-grid, .reqs-grid { grid-template-columns:1fr; }
     .hero, .sec-hdr, .footer, .fineprint, .offers, .why, .copy, .reqs-grid { padding-left:1rem; padding-right:1rem; }
+    .intake-wrap { padding-left:1rem; padding-right:1rem; }
     .hero-title { font-size:1.8rem; }
     .hero-value .big { font-size:1.6rem; }
     .footer-row { flex-direction:column; align-items:flex-start; }
@@ -403,10 +505,10 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 </style>
 
-<button onclick="window.print()" class="print-btn no-print">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-  Print
-</button>
+<a href="/" class="home-btn no-print" aria-label="Back to Happy Roof homepage">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+  Back to Home
+</a>
 
 <div class="promo">
 
@@ -608,6 +710,49 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     </div>
   </div>
 
+  <!-- INTAKE FORM (screen-only; print uses the signature line in the footer) -->
+  <div class="intake-wrap no-print">
+    <div class="intake-header">
+      <h2 class="sec-title">Reserve Your Spot</h2>
+      <p class="sec-sub">Limited · By Invitation</p>
+    </div>
+    <p class="intake-copy">Only a few homes per neighborhood qualify. Submit your info and we'll reach out within 24 hours to schedule a no-obligation walkthrough.</p>
+    <form id="intake-form" class="intake-form" onsubmit="return submitIntake(event)">
+      <input class="intake-input" type="text" name="name" placeholder="Full Name" required autocomplete="name" />
+      <input class="intake-input" type="tel" name="phone" placeholder="Phone Number" required autocomplete="tel" />
+      <input class="intake-input" type="email" name="email" placeholder="Email Address" required autocomplete="email" />
+      <input class="intake-input" type="text" name="address" placeholder="Property Address" required autocomplete="street-address" />
+      <input class="intake-input" type="text" name="best_time" placeholder="Best time to reach you (optional)" />
+
+      <div class="intake-consent">
+        <div class="consent-row">
+          <input type="checkbox" id="hp-sms-txn" name="sms_transactional" value="Yes" />
+          <label for="hp-sms-txn">By checking, you allow <strong>transactional/informational SMS</strong> from <strong>Happy Roof</strong> (appointment, customer care). Message frequency may vary. Data rates may apply. <strong>Reply STOP to opt-out.</strong></label>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="hp-sms-mkt" name="sms_marketing" value="Yes" />
+          <label for="hp-sms-mkt">By checking, you allow <strong>promotional/marketing SMS</strong> from <strong>Happy Roof</strong>. Frequency may vary. Data rates may apply. <strong>Reply HELP for help or STOP to opt-out.</strong></label>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="hp-terms" name="terms_consent" value="Yes" required />
+          <label for="hp-terms">By checking, you accept the <a href="/terms" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        </div>
+      </div>
+
+      <TurnstileWidget formId="intake-form" style="margin:.5rem 0" />
+
+      <button type="submit" class="intake-submit">
+        Reserve My Spot
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </form>
+    <div id="intake-success" class="intake-success">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+      <h3>You're on the list.</h3>
+      <p>We'll be in touch within 24 hours to schedule your walkthrough.</p>
+    </div>
+  </div>
+
   <!-- FOOTER: SIGNATURE + CONTACT -->
   <div class="footer">
     <div class="footer-row">
@@ -634,5 +779,56 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   </div>
 
 </div>
+
+<script is:inline>
+function submitIntake(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('.intake-submit');
+  var data = new FormData(form);
+  var obj = {}; data.forEach(function(v,k){ obj[k] = v; });
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  var notes = 'Address: ' + (obj.address || '');
+  if (obj.best_time) notes += ' | Best time: ' + obj.best_time;
+  if (obj.sms_transactional) notes += ' | SMS txn opt-in';
+  if (obj.sms_marketing) notes += ' | SMS mkt opt-in';
+
+  var stPayload = {
+    name: obj.name || '',
+    phone: obj.phone || '',
+    email: obj.email || '',
+    service: 'Marketing Home Program',
+    notes: notes,
+    source: 'Marketing Home Promotion - /home-promotion',
+    page: '/home-promotion'
+  };
+
+  obj._subject = 'New Marketing Home Promotion Submission - Happy Roof';
+
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'intake-form', formSubmitPayload: obj }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
+      form.style.display = 'none';
+      var success = document.getElementById('intake-success');
+      if (success) success.classList.add('show');
+      return;
+    }
+    if (btn) { btn.disabled = false; btn.textContent = 'Reserve My Spot'; }
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
+
+  return false;
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('intake-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'intake-form' });
+});
+</script>
 
 </LandingLayout>

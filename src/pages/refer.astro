@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
   "@context": "https://schema.org",
@@ -163,7 +164,7 @@ const schema = `{
             </div>
           </div>
           <!-- Cloudflare Turnstile bot protection -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+          <TurnstileWidget formId="ref-form" />
           <button type="submit" id="ref-submit-btn" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
             Get My Free Estimate
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -266,37 +267,51 @@ const schema = `{
 function handleReferralSubmit(e) {
   e.preventDefault();
   var form = e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var btn = document.getElementById('ref-submit-btn');
   btn.disabled = true;
   btn.textContent = 'Sending…';
 
-  var data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    address: form.address.value,
-    service: form.service.value,
-    notes: form.notes.value,
-    ref: window._referralSlug,
-    turnstile_token: turnstileToken
-  };
+  var tokenPromise = (window.HR_Turnstile && window.HR_Turnstile.ensureFreshToken)
+    ? window.HR_Turnstile.ensureFreshToken('ref-form')
+    : Promise.resolve((form.querySelector('[name="cf-turnstile-response"]') || {}).value || '');
 
-  fetch('/api/referral-submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(function() {
-    document.getElementById('ref-success').classList.remove('hidden');
-    form.style.display = 'none';
-  })
-  .catch(function() {
+  tokenPromise.then(function(token) {
+    var data = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      address: form.address.value,
+      service: form.service.value,
+      notes: form.notes.value,
+      ref: window._referralSlug,
+      turnstile_token: token
+    };
+
+    return fetch('/api/referral-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(r) {
+      if (!r.ok) throw new Error('submit_failed');
+      document.getElementById('ref-success').classList.remove('hidden');
+      form.style.display = 'none';
+      if (window.HR_Forms) window.HR_Forms.clearDraft(form, { formId: 'ref-form' });
+    });
+  }).catch(function(err) {
     btn.disabled = false;
     btn.textContent = 'Get My Free Estimate';
-    alert('Something went wrong. Please try again or call us at (813) 595-7663.');
+    var isTsErr = err && err.code === 'turnstile_unavailable';
+    var msg = isTsErr
+      ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : 'Something went wrong. Please try again or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.';
+    if (window.HR_Forms) window.HR_Forms.showInlineNotice(form, 'error', msg);
+    else alert('Something went wrong. Please try again or call us at (813) 595-7663.');
   });
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('ref-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'ref-form' });
+});
 </script>
 
 </BaseLayout>

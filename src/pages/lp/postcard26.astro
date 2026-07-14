@@ -1,5 +1,6 @@
 ---
 import LandingLayout from '../../layouts/LandingLayout.astro';
+import TurnstileWidget from '../../components/TurnstileWidget.astro';
 ---
 
 <LandingLayout
@@ -30,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <title>Roof Now, Pay Later | Claim Your Postcard Offer | Happy Roof</title>
   <meta name="robots" content="noindex, nofollow" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Turnstile api.js is loaded once from LandingLayout; do NOT re-include here. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -169,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
 
             <!-- Cloudflare Turnstile bot protection -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:.75rem 0"></div>
+            <TurnstileWidget formId="lp-form" style="margin:.75rem 0" />
 
             <button type="submit" class="btn-t" style="margin-top:.25rem">CLAIM MY 10% OFF + FREE INSPECTION <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
           </div>
@@ -320,7 +321,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 function submitForm(e){
   e.preventDefault();
   var form=e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var data=new FormData(form);
   var obj={};data.forEach(function(v,k){obj[k]=v});
   var heroesNote = obj.heroes_discount==='Yes' ? ' | HEROES DISCOUNT REQUESTED ($500 off eligibility)' : '';
@@ -331,18 +331,27 @@ function submitForm(e){
     service: 'Direct Mail Lead - POSTCARD26',
     notes: 'Address: ' + (obj.address||'') + ' | Promo: ' + (obj.promo_code||'POSTCARD26') + heroesNote,
     source: 'Direct Mail - POSTCARD26',
-    page: '/lp/postcard26',
-    turnstile_token: turnstileToken
+    page: '/lp/postcard26'
   };
-  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(obj) }); })
-    .finally(function(){
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'lp-form', formSubmitPayload: obj }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
       form.style.display='none';
       document.getElementById('form-success').style.display='block';
-    });
+      return;
+    }
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call <a href="tel:8133311032" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 331-1032</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call <a href="tel:8133311032" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 331-1032</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8133311032" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 331-1032</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
   return false;
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('lp-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'lp-form' });
+});
 </script>
 
 <script type="application/ld+json" is:inline>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 /* ── Live Google reviews (build-time fetch from /api/reviews) ──
    Source: api/cron-reviews.js runs daily at 11:00 UTC, caches Google
@@ -423,7 +424,7 @@ const schema = `[{
             <p style="color:#3B9FD9;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Request sent! We'll be in touch soon.</p>
           </div>
           <!-- Cloudflare Turnstile bot protection -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+          <TurnstileWidget formId="hero-form" />
           <button type="submit" class="btn-t" style="width:100%;justify-content:center;font-size:1.05rem;padding:.9rem">
             Get the Truth About Your Roof <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
@@ -1080,7 +1081,6 @@ const schema = `[{
 function submitHeroForm(e) {
   e.preventDefault();
   const form = e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const req = form.querySelectorAll('[required]');
   let valid = true;
   req.forEach(el => { el.style.borderColor=''; if (!el.value.trim()) { el.style.borderColor='#EF4444'; valid=false; } });
@@ -1102,20 +1102,27 @@ function submitHeroForm(e) {
   };
   var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() : '';
   var consentNote = 'SMS Transactional: ' + formData.sms_transactional + ' | SMS Marketing: ' + formData.sms_marketing + ' | Terms: ' + formData.terms_consent;
-  // Try Breeze first; fall back to FormSubmit ONLY when Breeze fails.
-  // Sequential (not Promise.allSettled) so an arriving FormSubmit email
-  // is a real "Breeze is broken" signal rather than normal background
-  // noise — see the Trever Gray 2026-06-19 incident.
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname, turnstile_token: turnstileToken };
-  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(formData) }); })
-    .finally(function() {
+  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname };
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'hero-form', formSubmitPayload: formData }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
       document.getElementById('hero-success').style.display = 'block';
       form.querySelectorAll('input,select,textarea').forEach(function(el){ el.disabled = true; });
       btn.style.display = 'none';
-    });
+      return;
+    }
+    btn.disabled = false; btn.textContent = 'Get the Truth About Your Roof';
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('hero-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'hero-form' });
+});
 
 // ── Hero slideshow ──
 // Container always has a background image so there's never a blank frame

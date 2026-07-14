@@ -1,5 +1,6 @@
 ---
 import LandingLayout from '../../layouts/LandingLayout.astro';
+import TurnstileWidget from '../../components/TurnstileWidget.astro';
 
 ---
 
@@ -140,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </div>
             </div>
             <!-- Cloudflare Turnstile bot protection -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+            <TurnstileWidget formId="lp-form" />
             <button type="submit" class="btn-t" style="margin-top:.5rem;font-size:1.1rem">Request Emergency Service <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
           </div>
         </form>
@@ -161,20 +162,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 function submitForm(e){
   e.preventDefault();
   var form=e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   var data=new FormData(form);
   var obj={};data.forEach(function(v,k){obj[k]=v});
-  // ServiceTitan + FormSubmit fallback
-  var stPayload = { name: obj.name||'', phone: obj.phone||'', email: obj.email||'', service: 'PPC Lead - Emergency', notes: obj.address||'', source: 'PPC - Emergency Repair', page: '/lp/emergency-repair', turnstile_token: turnstileToken };
-  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(obj) }); })
-    .finally(function(){
+  var stPayload = { name: obj.name||'', phone: obj.phone||'', email: obj.email||'', service: 'PPC Lead - Emergency', notes: obj.address||'', source: 'PPC - Emergency Repair', page: '/lp/emergency-repair' };
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'lp-form', formSubmitPayload: obj }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
       form.style.display='none';
       document.getElementById('form-success').style.display='block';
-    });
+      return;
+    }
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
   return false;
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('lp-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'lp-form' });
+});
 </script>
 
 <script type="application/ld+json" is:inline>

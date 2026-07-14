@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
     "@context": "https://schema.org",
@@ -306,7 +307,7 @@ const schema = `{
       </div>
 
       <!-- Cloudflare Turnstile bot protection -->
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+      <TurnstileWidget formId="apply-form" />
 
       <!-- Submit -->
       <div style="display:flex;justify-content:flex-end">
@@ -405,6 +406,12 @@ function submitApplication(e) {
   }
   // valid - allow native form POST to FormSubmit.co (handles file upload)
 }
+// Draft persistence: rehydrate on load, snapshot on input. Skips
+// file input by design (browsers can't rehydrate file selections).
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('apply-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'apply-form' });
+});
 // Show success message if redirected back with ?applied=1
 if (new URLSearchParams(location.search).get('applied') === '1') {
   const form = document.getElementById('apply-form');

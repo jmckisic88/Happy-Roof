@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
     "@context": "https://schema.org",
@@ -170,7 +171,7 @@ const schema = `{
           <h2 class="font-display font-black tracking-tightest mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:.95;letter-spacing:-.01em">GET A FREE ESTIMATE</h2>
           <p style="color:#888888;font-size:.85rem;margin-bottom:1.75rem">We typically respond within 1 business day.</p>
 
-<form onsubmit="handleSubmit(event)">
+<form id="contact-form" onsubmit="handleSubmit(event)">
             <div class="grid sm:grid-cols-2 gap-4 mb-0">
               <div class="fgroup">
                 <label class="flabel">Name <span style="color:#3B9FD9">*</span></label>
@@ -213,7 +214,7 @@ const schema = `{
               </div>
             </div>
             <!-- Cloudflare Turnstile bot protection -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+            <TurnstileWidget formId="contact-form" />
             <button type="submit" class="btn-t w-full justify-center" style="font-size:1.1rem;padding:1rem">
               Get My Free Estimate
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -371,26 +372,35 @@ function toggleFaq(el) {
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
   const inputs = form.querySelectorAll('input,select,textarea');
   const data = { _subject: 'New Contact Form - Happy Roof Website' };
   inputs.forEach(el => { if (el.name) data[el.name] = el.type==='checkbox' ? (el.checked?'Yes':'No') : el.value; });
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
-  // Breeze first, FormSubmit only on failure (2026-06-25 — Trever
-  // Gray incident: parallel allSettled let FormSubmit succeed even
-  // when Breeze rejected at the Turnstile gate, so a real lead
-  // failure looked identical to a successful submission).
   var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes', turnstile_token: turnstileToken };
-  fetch('/api/submit-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(stPayload) })
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
-    .catch(function(){ return fetch('https://formsubmit.co/ajax/info@happyroof.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(data) }); })
-    .finally(function() {
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
+  window.HR_Forms.submitLead(form, stPayload, { formId: 'contact-form', formSubmitPayload: data }).then(function(result) {
+    if (result.status === 'ok' || result.status === 'fallback_sent') {
       document.getElementById('success-msg').classList.remove('hidden');
       form.style.display = 'none';
-    });
+      return;
+    }
+    // Real failure surface: verification expired OR widget unavailable OR total error.
+    // Preserve customer input, re-enable submit, show inline notice + call CTA.
+    btn.disabled = false; btn.textContent = 'Get My Free Estimate';
+    var msg = (result.status === 'verification_expired')
+      ? 'Verification expired. Please retry, or call us at <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+      : (result.status === 'verification_unavailable')
+        ? 'Verification could not load. Please retry, or call us at <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+    window.HR_Forms.showInlineNotice(form, 'error', msg);
+  });
 }
+// Draft persistence: repopulate on mount, snapshot on input.
+document.addEventListener('DOMContentLoaded', function() {
+  var f = document.getElementById('contact-form');
+  if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'contact-form' });
+});
 </script>
 
 </BaseLayout>

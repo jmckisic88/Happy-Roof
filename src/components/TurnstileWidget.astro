@@ -1,0 +1,356 @@
+---
+// TurnstileWidget.astro
+// Shared explicit-render Cloudflare Turnstile mount for Happy Roof forms.
+//
+// Why explicit render (vs implicit `.cf-turnstile` scan):
+//   The implicit scanner runs once at api.js load. If a customer opens
+//   the page before api.js finishes loading, or navigates via history
+//   after api.js has already scanned, the widget silently never
+//   renders. That was the Trever Gray incident: empty token, Breeze
+//   403, silent lead loss.
+//
+// This component:
+//   - Registers each mount with a stable formId key
+//   - Explicit-renders once `hrTurnstileReady` fires (from layout)
+//   - Exposes `window.HR_Turnstile.ensureFreshToken(formEl)` — returns
+//     Promise<string>. Regenerates the token via reset+execute if:
+//       (a) no token yet, OR
+//       (b) issuedAt older than 2 minutes (Cloudflare expires at ~5m
+//           for interactive, sooner for invisible; 2m gives us margin)
+//   - Watchdog: if the widget div is empty 3s after ready, injects an
+//     amber banner + retry button + tel:(813) 595-7663 CTA so real
+//     customers always have an out.
+//
+// Sitekey is inline (0x4AAAAAADNeVY-2r71EFud-) to match existing
+// mounts across the site. Env-driven `PUBLIC_TURNSTILE_SITEKEY` is
+// read as an override if present.
+//
+// Usage:
+//   <TurnstileWidget formId="contact-form" />
+// and in the form's submit handler:
+//   var token = await window.HR_Turnstile.ensureFreshToken(form);
+//
+// Alert email path in api/submit-lead.js is preserved — this
+// component reduces silent failures at the client, it does not
+// replace the server-side belt-and-suspenders.
+
+interface Props {
+  formId: string;
+  theme?: 'light' | 'dark';
+  className?: string;
+  style?: string;
+  size?: 'normal' | 'compact' | 'flexible';
+}
+
+const {
+  formId,
+  theme = 'light',
+  className = '',
+  style = 'margin:1rem 0',
+  size = 'normal',
+} = Astro.props;
+---
+<div
+  class:list={['hr-turnstile-mount', className]}
+  data-hr-turnstile
+  data-form-id={formId}
+  data-theme={theme}
+  data-size={size}
+  style={style}
+>
+  <div class="hr-turnstile-slot" id={`hr-ts-slot-${formId}`}></div>
+  <div class="hr-turnstile-fallback" id={`hr-ts-fallback-${formId}`} hidden style="display:none;margin-top:.5rem;padding:.75rem 1rem;background:#FEF3C7;border:1px solid #FDE68A;border-radius:8px;color:#78350F;font-size:.85rem;line-height:1.5">
+    <strong>Verification could not load.</strong>
+    <span style="display:block;margin-top:.25rem">Please retry, or call us and we will get you scheduled right now.</span>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem">
+      <button type="button" data-hr-ts-retry style="background:#F59E0B;color:#1F2937;border:none;border-radius:6px;padding:.45rem .9rem;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit">Retry verification</button>
+      <a href="tel:8135957663" style="background:#1F2937;color:#FFFFFF;border-radius:6px;padding:.45rem .9rem;font-weight:700;font-size:.82rem;text-decoration:none;font-family:inherit">Call (813) 595-7663</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ formId }}>
+  // Registry-side registration. The main loader script (below in
+  // this component's <script>) initializes shared state once; each
+  // mount instance calls register() to add itself.
+  (function() {
+    if (!window.HR_Turnstile) {
+      // Placeholder until the main initializer runs. Queued mounts
+      // get flushed when HR_Turnstile.ready() fires.
+      window.__hrTurnstileQueue = window.__hrTurnstileQueue || [];
+      window.__hrTurnstileQueue.push(formId);
+    } else {
+      window.HR_Turnstile.register(formId);
+    }
+  })();
+</script>
+
+<script is:inline>
+  // One-time initializer. is:inline duplicates run once because the
+  // guard checks window.HR_Turnstile before defining.
+  (function() {
+    if (window.HR_Turnstile) return;
+
+    var SITEKEY = '0x4AAAAAADNeVY-2r71EFud-';
+    var FRESH_MS = 2 * 60 * 1000; // regenerate if older than 2 min
+    var WATCHDOG_MS = 3000;       // fallback banner after 3s
+    var TEL = '(813) 595-7663';
+
+    var registry = {}; // formId -> { widgetId, token, issuedAt, waiters: [], readyPromise, readyResolve }
+
+    function getEntry(formId) {
+      if (!registry[formId]) {
+        var resolveFn;
+        var readyPromise = new Promise(function(resolve) { resolveFn = resolve; });
+        registry[formId] = {
+          widgetId: null,
+          token: null,
+          issuedAt: 0,
+          waiters: [],
+          readyPromise: readyPromise,
+          readyResolve: resolveFn,
+          rendered: false,
+          failed: false,
+        };
+      }
+      return registry[formId];
+    }
+
+    function slotEl(formId) { return document.getElementById('hr-ts-slot-' + formId); }
+    function fallbackEl(formId) { return document.getElementById('hr-ts-fallback-' + formId); }
+    function mountEl(formId) { return document.querySelector('[data-hr-turnstile][data-form-id="' + formId + '"]'); }
+
+    function showFallback(formId) {
+      var fb = fallbackEl(formId);
+      if (fb) { fb.hidden = false; fb.style.display = 'block'; }
+      var slot = slotEl(formId);
+      if (slot) slot.style.display = 'none';
+    }
+    function hideFallback(formId) {
+      var fb = fallbackEl(formId);
+      if (fb) { fb.hidden = true; fb.style.display = 'none'; }
+      var slot = slotEl(formId);
+      if (slot) slot.style.display = '';
+    }
+
+    function renderWidget(formId) {
+      var mount = mountEl(formId);
+      var slot = slotEl(formId);
+      if (!mount || !slot) return;
+      if (!(window.turnstile && typeof window.turnstile.render === 'function')) return;
+
+      var entry = getEntry(formId);
+      var theme = mount.getAttribute('data-theme') || 'light';
+      var size = mount.getAttribute('data-size') || 'normal';
+
+      // Clear slot in case of re-render after error
+      slot.innerHTML = '';
+      entry.token = null;
+      entry.issuedAt = 0;
+      entry.rendered = false;
+      entry.failed = false;
+
+      try {
+        var widgetId = window.turnstile.render(slot, {
+          sitekey: SITEKEY,
+          theme: theme,
+          size: size,
+          callback: function(token) {
+            entry.token = token;
+            entry.issuedAt = Date.now();
+            entry.rendered = true;
+            hideFallback(formId);
+            // Resolve any pending ensureFreshToken() waiters
+            var w = entry.waiters.slice();
+            entry.waiters.length = 0;
+            w.forEach(function(fn) { try { fn(token); } catch (_) {} });
+            if (entry.readyResolve) { entry.readyResolve(true); entry.readyResolve = null; }
+          },
+          'error-callback': function() {
+            entry.token = null;
+            entry.issuedAt = 0;
+            // Auto-retry once via reset+execute
+            try {
+              if (entry.widgetId != null && window.turnstile) {
+                window.turnstile.reset(entry.widgetId);
+              }
+            } catch (_) {}
+            // If still not rendered after retry, show fallback
+            setTimeout(function() {
+              if (!entry.token) { entry.failed = true; showFallback(formId); }
+            }, 1500);
+          },
+          'expired-callback': function() {
+            entry.token = null;
+            entry.issuedAt = 0;
+            try { if (entry.widgetId != null) window.turnstile.reset(entry.widgetId); } catch (_) {}
+          },
+          'timeout-callback': function() {
+            entry.token = null;
+            entry.issuedAt = 0;
+            try { if (entry.widgetId != null) window.turnstile.reset(entry.widgetId); } catch (_) {}
+          },
+        });
+        entry.widgetId = widgetId;
+        entry.rendered = true;
+      } catch (err) {
+        // If render throws (e.g. duplicate sitekey error), show fallback
+        entry.failed = true;
+        showFallback(formId);
+      }
+    }
+
+    function startWatchdog(formId) {
+      setTimeout(function() {
+        var entry = getEntry(formId);
+        var slot = slotEl(formId);
+        if (!slot) return;
+        // If Turnstile hasn't injected an iframe into the slot yet,
+        // show the fallback banner so the customer isn't stuck.
+        var hasIframe = slot.querySelector('iframe');
+        if (!hasIframe && !entry.token) {
+          entry.failed = true;
+          showFallback(formId);
+        }
+      }, WATCHDOG_MS);
+    }
+
+    window.HR_Turnstile = {
+      register: function(formId) {
+        getEntry(formId); // ensure entry exists
+        // If turnstile.js is already loaded, render now; else the
+        // onload callback will iterate registry on ready.
+        if (window.turnstile && typeof window.turnstile.render === 'function') {
+          renderWidget(formId);
+          startWatchdog(formId);
+        } else {
+          // Still start the watchdog — if api.js never loads (network
+          // blocked, ad-blocker, offline), the customer gets the
+          // fallback CTA within 3s.
+          startWatchdog(formId);
+        }
+      },
+      // Called by explicit onload (api.js loaded)
+      ready: function() {
+        Object.keys(registry).forEach(function(formId) {
+          renderWidget(formId);
+        });
+        // Also render any queued mounts that registered before
+        // HR_Turnstile was defined.
+        var queue = window.__hrTurnstileQueue || [];
+        queue.forEach(function(formId) {
+          getEntry(formId);
+          renderWidget(formId);
+          startWatchdog(formId);
+        });
+        window.__hrTurnstileQueue = [];
+      },
+      // Returns a Promise<string> resolving with a fresh token, or
+      // rejecting with { code: 'turnstile_unavailable', callCta: '...' }
+      // when the widget failed to render.
+      ensureFreshToken: function(formOrId) {
+        var formId;
+        if (typeof formOrId === 'string') {
+          formId = formOrId;
+        } else if (formOrId && formOrId.querySelector) {
+          var mount = formOrId.querySelector('[data-hr-turnstile]');
+          formId = mount ? mount.getAttribute('data-form-id') : null;
+        }
+        if (!formId) {
+          return Promise.reject({ code: 'turnstile_unavailable', callCta: TEL, reason: 'no-mount' });
+        }
+        var entry = getEntry(formId);
+
+        // If we have a fresh token, reuse it
+        if (entry.token && (Date.now() - entry.issuedAt) < FRESH_MS) {
+          return Promise.resolve(entry.token);
+        }
+
+        // If widget failed to render outright, reject
+        if (entry.failed && !entry.rendered) {
+          return Promise.reject({ code: 'turnstile_unavailable', callCta: TEL, reason: 'render-failed' });
+        }
+
+        // If Turnstile itself isn't loaded, wait briefly then reject
+        if (!window.turnstile || typeof window.turnstile.execute !== 'function') {
+          return new Promise(function(resolve, reject) {
+            var start = Date.now();
+            var poll = setInterval(function() {
+              if (window.turnstile && typeof window.turnstile.execute === 'function') {
+                clearInterval(poll);
+                // Try again now that turnstile is loaded
+                window.HR_Turnstile.ensureFreshToken(formId).then(resolve, reject);
+              } else if (Date.now() - start > 4000) {
+                clearInterval(poll);
+                showFallback(formId);
+                reject({ code: 'turnstile_unavailable', callCta: TEL, reason: 'not-loaded' });
+              }
+            }, 100);
+          });
+        }
+
+        // Regenerate: reset + execute, then wait for callback
+        return new Promise(function(resolve, reject) {
+          var timeoutId = setTimeout(function() {
+            reject({ code: 'turnstile_unavailable', callCta: TEL, reason: 'exec-timeout' });
+          }, 8000);
+
+          entry.waiters.push(function(token) {
+            clearTimeout(timeoutId);
+            resolve(token);
+          });
+
+          try {
+            if (entry.widgetId != null) {
+              window.turnstile.reset(entry.widgetId);
+              // For managed/interactive widgets, reset() alone will
+              // trigger a fresh token via the callback. For invisible/
+              // execute-required, execute() is needed. Try both.
+              try { window.turnstile.execute(entry.widgetId); } catch (_) {}
+            } else {
+              // Nothing to reset — render fresh
+              renderWidget(formId);
+            }
+          } catch (err) {
+            clearTimeout(timeoutId);
+            reject({ code: 'turnstile_unavailable', callCta: TEL, reason: 'reset-threw' });
+          }
+        });
+      },
+      // For pages that want the raw current token without regenerating
+      getCurrentToken: function(formOrId) {
+        var formId = typeof formOrId === 'string' ? formOrId : (formOrId && formOrId.querySelector && formOrId.querySelector('[data-hr-turnstile]')?.getAttribute('data-form-id'));
+        if (!formId) return '';
+        var entry = registry[formId];
+        return entry ? (entry.token || '') : '';
+      },
+    };
+
+    // Explicit-render onload hook used by the api.js script tag in the
+    // layouts (?render=explicit&onload=hrTurnstileReady).
+    window.hrTurnstileReady = function() {
+      try { window.HR_Turnstile.ready(); } catch (_) {}
+    };
+
+    // Wire retry buttons (delegated once per document)
+    document.addEventListener('click', function(evt) {
+      var target = evt.target;
+      if (!target || !target.closest) return;
+      var btn = target.closest('[data-hr-ts-retry]');
+      if (!btn) return;
+      var mount = btn.closest('[data-hr-turnstile]');
+      if (!mount) return;
+      var formId = mount.getAttribute('data-form-id');
+      if (!formId) return;
+      hideFallback(formId);
+      renderWidget(formId);
+      startWatchdog(formId);
+    });
+
+    // Flush any queued registrations from mounts that ran before this
+    // initializer.
+    var queue = window.__hrTurnstileQueue || [];
+    queue.forEach(function(formId) { window.HR_Turnstile.register(formId); });
+    window.__hrTurnstileQueue = [];
+  })();
+</script>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
   "@context": "https://schema.org",
@@ -137,7 +138,7 @@ const schema = `{
         </div>
       </div>
       <!-- Cloudflare Turnstile bot protection -->
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAADNeVY-2r71EFud-" data-theme="light" style="margin:1rem 0"></div>
+      <TurnstileWidget formId="foundation-form" />
       <button type="submit" class="btn-p" style="width:100%;font-size:1rem;padding:.85rem 2rem;justify-content:center;display:flex;align-items:center;gap:.5rem">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get Notified
@@ -150,45 +151,54 @@ const schema = `{
     document.getElementById('foundation-form').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = this;
-      var turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
       var btn = form.querySelector('button[type="submit"]');
       var msg = document.getElementById('foundation-msg');
-      var data = {
-        name: form.name.value.trim(),
-        phone: form.phone.value.trim(),
-        email: form.email.value.trim(),
-        turnstile_token: turnstileToken
-      };
 
       btn.disabled = true;
       btn.textContent = 'Submitting...';
       msg.style.display = 'none';
 
-      fetch('/api/foundation-signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(res) {
-        if (res.success) {
+      var tokenPromise = (window.HR_Turnstile && window.HR_Turnstile.ensureFreshToken)
+        ? window.HR_Turnstile.ensureFreshToken('foundation-form')
+        : Promise.resolve((form.querySelector('[name="cf-turnstile-response"]') || {}).value || '');
+
+      tokenPromise.then(function(token) {
+        var data = {
+          name: form.name.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          turnstile_token: token
+        };
+        return fetch('/api/foundation-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(function(r) { return r.json(); });
+      }).then(function(res) {
+        if (res && res.success) {
           msg.textContent = "You're on the list! We'll be in touch.";
           msg.style.color = '#16a34a';
           msg.style.display = 'block';
           form.reset();
+          if (window.HR_Forms) window.HR_Forms.clearDraft(form, { formId: 'foundation-form' });
         } else {
-          throw new Error(res.error || 'Submission failed');
+          throw new Error((res && res.error) || 'Submission failed');
         }
-      })
-      .catch(function() {
-        msg.textContent = 'Something went wrong. Please try again.';
+      }).catch(function(err) {
+        var isTsErr = err && err.code === 'turnstile_unavailable';
+        msg.innerHTML = isTsErr
+          ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#dc2626;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+          : 'Something went wrong. Please try again or call <a href="tel:8135957663" style="color:#dc2626;font-weight:700;text-decoration:underline">(813) 595-7663</a>.';
         msg.style.color = '#dc2626';
         msg.style.display = 'block';
-      })
-      .finally(function() {
+      }).then(function() {
         btn.disabled = false;
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Get Notified';
       });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      var f = document.getElementById('foundation-form');
+      if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'foundation-form' });
     });
     </script>
 

@@ -50,3 +50,4 @@ st-config.json
 .env
 .env.local
 api/st-config.json
+.env*.local

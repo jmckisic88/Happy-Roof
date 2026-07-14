@@ -13,11 +13,29 @@
 //     rejection lands in Josh's inbox the same minute it happens
 //     with enough detail to replay the submission manually.
 
+import crypto from 'crypto';
 import { verifyTurnstile, getClientIp } from './_turnstile.js';
 import { sendEmail } from './_send-email.js';
 
 const BREEZE_URL = 'https://project-breeze.com/api/inbound-lead';
 const BREEZE_TIMEOUT_MS = 8000;
+const CALL_CTA = '(813) 595-7663';
+
+// Layer 3 (trusted-proxy) HMAC — when Breeze rejects a submission at
+// its Turnstile gate, we retry ONCE with a signed header so Breeze can
+// treat this proxy as a trusted origin and route the lead into the
+// platform-admin pending-review queue instead of dropping it. The
+// shared secret is HAPPY_ROOF_PROXY_HMAC_KEY on both sides.
+function signProxyBody(rawBody) {
+  const key = process.env.HAPPY_ROOF_PROXY_HMAC_KEY;
+  if (!key) return null;
+  const ts = Math.floor(Date.now() / 1000).toString();
+  const sig = crypto
+    .createHmac('sha256', key)
+    .update(rawBody + ts)
+    .digest('hex');
+  return { 'x-hr-proxy-sig': sig, 'x-hr-proxy-ts': ts };
+}
 
 function sanitizeForEmail(obj) {
   // Strip secrets out of the payload before mailing it. Mirrors the
@@ -122,7 +140,11 @@ export default async function handler(req, res) {
     } catch (mailErr) {
       console.error('Fallback email send failed:', mailErr);
     }
-    return res.status(403).json({ error: 'Bot verification failed. Please refresh and try again.' });
+    return res.status(403).json({
+      error: 'Bot verification failed. Please refresh and try again.',
+      code: 'verification_expired',
+      callCta: CALL_CTA,
+    });
   }
 
   const BREEZE_API_KEY = process.env.BREEZE_INBOUND_API_KEY;
@@ -144,33 +166,68 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  try {
-    const leadRes = await fetch(`${BREEZE_URL}?key=${encodeURIComponent(BREEZE_API_KEY)}`, {
+  const breezeBody = JSON.stringify({
+    name,
+    phone,
+    email: email || '',
+    service: service || '',
+    notes: notes || '',
+    address: address || '',
+    source: source || 'Website',
+    page: page || '',
+    priority: priority || 'normal',
+    sms_transactional: sms_transactional || 'No',
+    sms_marketing: sms_marketing || 'No',
+    terms_consent: terms_consent || 'No',
+    newsletter: newsletter === true,
+  });
+
+  async function postToBreeze(extraHeaders) {
+    return fetch(`${BREEZE_URL}?key=${encodeURIComponent(BREEZE_API_KEY)}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': BREEZE_API_KEY,
-      },
-      body: JSON.stringify({
-        name,
-        phone,
-        email: email || '',
-        service: service || '',
-        notes: notes || '',
-        address: address || '',
-        source: source || 'Website',
-        page: page || '',
-        priority: priority || 'normal',
-        sms_transactional: sms_transactional || 'No',
-        sms_marketing: sms_marketing || 'No',
-        terms_consent: terms_consent || 'No',
-        newsletter: newsletter === true,
-      }),
+      headers: Object.assign(
+        {
+          'Content-Type': 'application/json',
+          'x-api-key': BREEZE_API_KEY,
+        },
+        extraHeaders || {},
+      ),
+      body: breezeBody,
       signal: AbortSignal.timeout(BREEZE_TIMEOUT_MS),
     });
+  }
+
+  try {
+    let leadRes = await postToBreeze();
+
+    // Layer 3: if Breeze rejected at its Turnstile gate (per Layer 2
+    // Breeze route returns { code: 'turnstile_failed' }), retry ONCE
+    // with the HMAC-signed proxy header. Breeze will (a) accept via
+    // the trusted-proxy path AND (b) write a durable
+    // pending_lead_reviews row so nothing is silently dropped.
+    if (leadRes.status === 403) {
+      let firstBodyText = '';
+      let firstBody = {};
+      try {
+        firstBodyText = await leadRes.clone().text();
+        firstBody = JSON.parse(firstBodyText);
+      } catch (_) {}
+      if (firstBody && firstBody.code === 'turnstile_failed') {
+        const sig = signProxyBody(breezeBody);
+        if (sig) {
+          try {
+            leadRes = await postToBreeze(sig);
+          } catch (retryErr) {
+            console.error('Breeze HMAC retry error:', retryErr);
+          }
+        }
+      }
+    }
 
     if (!leadRes.ok) {
       const errText = await leadRes.text().catch(() => '');
+      let parsedCode = null;
+      try { parsedCode = (JSON.parse(errText) || {}).code || null; } catch (_) {}
       console.error('Breeze lead submission error:', leadRes.status, errText);
       try {
         await sendEmail(
@@ -183,6 +240,16 @@ export default async function handler(req, res) {
         );
       } catch (mailErr) {
         console.error('Fallback email send failed:', mailErr);
+      }
+      // Signal to the client whether this was a Turnstile-family
+      // failure (customer should refresh / call in) vs a generic
+      // upstream failure. Client uses this to pick error copy.
+      if (leadRes.status === 403 && (parsedCode === 'turnstile_failed' || parsedCode === 'verification_expired')) {
+        return res.status(403).json({
+          error: 'Verification expired. Please refresh and try again, or call us.',
+          code: 'verification_expired',
+          callCta: CALL_CTA,
+        });
       }
       return res.status(502).json({ error: 'Failed to submit lead', details: errText });
     }
