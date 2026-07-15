@@ -3,6 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "check:faq": "node scripts/check-faq-duplicates.mjs",
+    "prebuild": "node scripts/check-faq-duplicates.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },
