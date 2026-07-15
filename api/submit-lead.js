@@ -105,6 +105,13 @@ export default async function handler(req, res) {
     service,
     notes,
     address,
+    address_street,
+    address_city,
+    address_state,
+    address_postal_code,
+    address_lat,
+    address_lng,
+    address_place_id,
     source,
     page,
     priority,
@@ -166,6 +173,10 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
+  // Structured address (from Google Places autocomplete) is forwarded
+  // in addition to the display string so Breeze can populate the
+  // property master record + kick off PCPA / parcel enrichment without
+  // reparsing the freeform text.
   const breezeBody = JSON.stringify({
     name,
     phone,
@@ -173,6 +184,13 @@ export default async function handler(req, res) {
     service: service || '',
     notes: notes || '',
     address: address || '',
+    address_street: address_street || '',
+    address_city: address_city || '',
+    address_state: address_state || '',
+    address_postal_code: address_postal_code || '',
+    address_lat: address_lat === '' || address_lat == null ? null : Number(address_lat),
+    address_lng: address_lng === '' || address_lng == null ? null : Number(address_lng),
+    address_place_id: address_place_id || '',
     source: source || 'Website',
     page: page || '',
     priority: priority || 'normal',

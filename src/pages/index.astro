@@ -362,6 +362,20 @@ const schema = `[{
             <label class="flabel">Email</label>
             <input type="email" name="email" class="finput" placeholder="jane@example.com" />
           </div>
+          <div class="mb-3">
+            <label class="flabel">Property Address</label>
+            <div style="position:relative">
+              <input type="text" name="address" id="hero-address" class="finput" placeholder="Start typing your address" autocomplete="off" />
+            </div>
+            <!-- Structured components populated by Google Places selection. Empty if the customer types freely without picking a suggestion. -->
+            <input type="hidden" name="address_street" id="hero-address-street" />
+            <input type="hidden" name="address_city" id="hero-address-city" />
+            <input type="hidden" name="address_state" id="hero-address-state" />
+            <input type="hidden" name="address_postal_code" id="hero-address-zip" />
+            <input type="hidden" name="address_lat" id="hero-address-lat" />
+            <input type="hidden" name="address_lng" id="hero-address-lng" />
+            <input type="hidden" name="address_place_id" id="hero-address-placeid" />
+          </div>
           <div class="mb-4">
             <label class="flabel">Promo Code</label>
             <div style="position:relative">
@@ -1059,6 +1073,14 @@ function submitHeroForm(e) {
     name: (form.querySelector('[name=name]')||{}).value||'',
     phone: (form.querySelector('[name=phone]')||{}).value||'',
     email: (form.querySelector('[name=email]')||{}).value||'',
+    address: (form.querySelector('[name=address]')||{}).value||'',
+    address_street: (form.querySelector('[name=address_street]')||{}).value||'',
+    address_city: (form.querySelector('[name=address_city]')||{}).value||'',
+    address_state: (form.querySelector('[name=address_state]')||{}).value||'',
+    address_postal_code: (form.querySelector('[name=address_postal_code]')||{}).value||'',
+    address_lat: (form.querySelector('[name=address_lat]')||{}).value||'',
+    address_lng: (form.querySelector('[name=address_lng]')||{}).value||'',
+    address_place_id: (form.querySelector('[name=address_place_id]')||{}).value||'',
     promo_code: (form.querySelector('[name=promo_code]')||{}).value||'',
     sms_transactional: form.querySelector('[name=sms_transactional]')?.checked ? 'Yes' : 'No',
     sms_marketing: form.querySelector('[name=sms_marketing]')?.checked ? 'Yes' : 'No',
@@ -1067,7 +1089,22 @@ function submitHeroForm(e) {
   };
   var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() : '';
   var consentNote = 'SMS Transactional: ' + formData.sms_transactional + ' | SMS Marketing: ' + formData.sms_marketing + ' | Terms: ' + formData.terms_consent;
-  const stPayload = { name: formData.name, phone: formData.phone, email: formData.email, notes: (promoNote ? promoNote + ' | ' : '') + consentNote, source: 'Website - Homepage', page: window.location.pathname };
+  const stPayload = {
+    name: formData.name,
+    phone: formData.phone,
+    email: formData.email,
+    address: formData.address,
+    address_street: formData.address_street,
+    address_city: formData.address_city,
+    address_state: formData.address_state,
+    address_postal_code: formData.address_postal_code,
+    address_lat: formData.address_lat,
+    address_lng: formData.address_lng,
+    address_place_id: formData.address_place_id,
+    notes: (promoNote ? promoNote + ' | ' : '') + consentNote,
+    source: 'Website - Homepage',
+    page: window.location.pathname
+  };
   window.HR_Forms.submitLead(form, stPayload, { formId: 'hero-form', formSubmitPayload: formData }).then(function(result) {
     if (result.status === 'ok' || result.status === 'fallback_sent') {
       document.getElementById('hero-success').style.display = 'block';
@@ -1103,6 +1140,139 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update container bg to current so it's always the fallback
     container.style.backgroundImage = slides[current].style.backgroundImage;
   }, 5000);
+})();
+</script>
+
+<!-- Google Places autocomplete for hero address (server-side proxy; no client API key). Gracefully degrades to a plain text input if the Places API is unavailable. -->
+<script is:inline>
+(function() {
+  var input = document.getElementById('hero-address');
+  if (!input) return;
+
+  // Structured target fields
+  var fStreet  = document.getElementById('hero-address-street');
+  var fCity    = document.getElementById('hero-address-city');
+  var fState   = document.getElementById('hero-address-state');
+  var fZip     = document.getElementById('hero-address-zip');
+  var fLat     = document.getElementById('hero-address-lat');
+  var fLng     = document.getElementById('hero-address-lng');
+  var fPlaceId = document.getElementById('hero-address-placeid');
+
+  function clearStructured() {
+    if (fStreet)  fStreet.value  = '';
+    if (fCity)    fCity.value    = '';
+    if (fState)   fState.value   = '';
+    if (fZip)     fZip.value     = '';
+    if (fLat)     fLat.value     = '';
+    if (fLng)     fLng.value     = '';
+    if (fPlaceId) fPlaceId.value = '';
+  }
+
+  // Session token: keep autocomplete + place-details in one billed
+  // Google session. Regenerated after every successful pick.
+  function newSession() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    // RFC4122-ish fallback
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0;
+      var v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  var sessionToken = newSession();
+
+  // Dropdown UI (matches assessment.astro pattern)
+  var dropdown = document.createElement('div');
+  dropdown.id = 'hero-address-dropdown';
+  dropdown.style.cssText = 'position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #E0E0E0;border-top:none;border-radius:0 0 8px 8px;box-shadow:0 8px 24px -4px rgba(0,0,0,.12);z-index:100;display:none;max-height:250px;overflow-y:auto';
+  input.parentElement.style.position = 'relative';
+  input.parentElement.appendChild(dropdown);
+
+  function hideDropdown() { dropdown.style.display = 'none'; }
+  function showDropdown() { dropdown.style.display = 'block'; }
+
+  var apiDisabled = false;   // set true if /api/address-suggest returns 500
+  var debounceId;
+  var activePredictions = [];
+
+  input.addEventListener('input', function() {
+    // Any manual edit invalidates the previously-picked structured components
+    clearStructured();
+    if (apiDisabled) return;
+
+    clearTimeout(debounceId);
+    var q = input.value.trim();
+    if (q.length < 4) { hideDropdown(); return; }
+
+    debounceId = setTimeout(function() {
+      fetch('/api/address-suggest?q=' + encodeURIComponent(q) + '&session=' + encodeURIComponent(sessionToken))
+        .then(function(r) {
+          if (r.status === 500) { apiDisabled = true; hideDropdown(); return null; }
+          return r.json();
+        })
+        .then(function(data) {
+          if (!data) return;
+          var preds = Array.isArray(data.predictions) && data.predictions.length
+            ? data.predictions
+            : (Array.isArray(data.suggestions) ? data.suggestions.map(function(s) { return { text: s, placeId: '' }; }) : []);
+          if (!preds.length) { hideDropdown(); return; }
+          activePredictions = preds;
+          dropdown.innerHTML = '';
+          preds.forEach(function(p, i) {
+            var item = document.createElement('div');
+            item.textContent = p.text;
+            item.style.cssText = 'padding:.75rem 1rem;cursor:pointer;font-size:.9rem;color:#1A1A1A;border-bottom:1px solid #F0F0F0;transition:background .1s';
+            item.addEventListener('mouseenter', function() { item.style.background = 'rgba(230,168,23,.06)'; });
+            item.addEventListener('mouseleave', function() { item.style.background = 'transparent'; });
+            item.addEventListener('mousedown', function(ev) {
+              // mousedown (not click) so it fires before input blur
+              ev.preventDefault();
+              selectPrediction(p);
+            });
+            dropdown.appendChild(item);
+          });
+          showDropdown();
+        })
+        .catch(function() { hideDropdown(); });
+    }, 300);
+  });
+
+  function selectPrediction(p) {
+    input.value = p.text;
+    hideDropdown();
+    if (!p.placeId) {
+      // No placeId (legacy fallback), leave structured fields empty.
+      // Server will still receive the raw display string via `address`.
+      return;
+    }
+    fetch('/api/place-details?placeId=' + encodeURIComponent(p.placeId) + '&session=' + encodeURIComponent(sessionToken))
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d || !d.ok) return;
+        if (fStreet)  fStreet.value  = d.street || '';
+        if (fCity)    fCity.value    = d.city || '';
+        if (fState)   fState.value   = d.state || 'FL';
+        if (fZip)     fZip.value     = d.postal_code || '';
+        if (fLat)     fLat.value     = (d.lat != null ? String(d.lat) : '');
+        if (fLng)     fLng.value     = (d.lng != null ? String(d.lng) : '');
+        if (fPlaceId) fPlaceId.value = d.placeId || p.placeId;
+        // Rotate session token. Google bills a session as one lookup
+        // ending with the details call.
+        sessionToken = newSession();
+      })
+      .catch(function() { /* fall back to unstructured submit */ });
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) hideDropdown();
+  });
+
+  // Escape closes the dropdown
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') hideDropdown();
+  });
 })();
 </script>
 
