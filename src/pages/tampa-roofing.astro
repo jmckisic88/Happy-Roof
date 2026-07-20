@@ -59,6 +59,22 @@ const schema = `[{
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Happy Roof LLC holds Florida Roofing Contractor License #CCC1337380, which authorizes us to perform roofing work throughout the state of Florida, including the City of Tampa and all of Hillsborough County. We carry full general liability and workers' compensation insurance." }
       }
     ]
+  },{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Tampa Roofing Contractor | Licensed & Insured | Happy Roof",
+    "url": "https://happyroof.com/tampa-roofing",
+    "description": "Tampa roofing contractor for roof replacement, repair, and installation. Licensed and insured. FL #CCC1337380.",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".speakable-summary"]
+    },
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Happy Roof",
+      "url": "https://happyroof.com"
+    }
   }]`;
 ---
 
@@ -85,7 +101,7 @@ const schema = `[{
     <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
       TAMPA ROOFING CONTRACTOR<br/><span class="gt">LICENSED & INSURED</span>
     </h1>
-    <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
+    <p class="speakable-summary max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
       Tampa homeowners trust Happy Roof for reliable roof replacement, repair, and installation. As a licensed and insured roofing contractor, we deliver high-performance roofing systems engineered to withstand Florida's punishing heat, tropical downpours, and hurricane-season winds, all backed by our up to 15-year workmanship warranty.
     </p>
     <div class="flex flex-wrap gap-3 justify-center mt-8">
