@@ -1,0 +1,40 @@
+name: Auto-Enable Auto-Merge on Bot PRs
+
+# When the external content bot (Zapier/n8n/etc) opens a PR that
+# matches the known bot patterns, this workflow enables GitHub
+# auto-merge on it. The PR then merges itself as soon as required
+# status checks pass. If checks fail (e.g. bot generated a refusal),
+# the PR sits open and Josh gets a "checks failed" notification
+# instead of a "ready to merge" notification.
+#
+# Match conditions (any one true = enable auto-merge):
+#   - PR title starts with "Weekly Blog |"     (weekly blog bot)
+#   - PR title starts with "SEO Audit |"       (SEO audit bot)
+#   - PR branch name starts with "blog/"       (weekly blog bot's
+#                                               branch convention)
+#
+# All other PRs (like ones opened by Josh or Claude directly) are
+# left alone for normal review.
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable-automerge:
+    runs-on: ubuntu-latest
+    if: >-
+      startsWith(github.event.pull_request.title, 'Weekly Blog |') ||
+      startsWith(github.event.pull_request.title, 'SEO Audit |') ||
+      startsWith(github.event.pull_request.head.ref, 'blog/')
+    steps:
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Enabling auto-merge (squash) on PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+          gh pr merge --auto --squash "${{ github.event.pull_request.number }}" -R "${{ github.repository }}"

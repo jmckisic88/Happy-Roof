@@ -1,0 +1,43 @@
+name: PR Content Checks
+
+# Runs on every pull request against main. If this workflow fails, the
+# PR cannot be merged (assuming branch protection is on and requires
+# the "content-checks" status check).
+#
+# npm run build automatically triggers the prebuild hook, which runs:
+#   1. scripts/check-faq-duplicates.mjs
+#   2. scripts/check-blog-content.mjs  (catches the bot-refusal
+#      pattern that shipped 3 corrupted blog posts before this was in
+#      place)
+# and then runs `astro build` to make sure the site actually compiles.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  content-checks:
+    name: content-checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (runs prebuild content + FAQ checks, then astro build)
+        run: npm run build
