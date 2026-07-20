@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "astro dev",
     "check:faq": "node scripts/check-faq-duplicates.mjs",
-    "prebuild": "node scripts/check-faq-duplicates.mjs",
+    "check:blogs": "node scripts/check-blog-content.mjs",
+    "prebuild": "node scripts/check-faq-duplicates.mjs && node scripts/check-blog-content.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },
