@@ -6,6 +6,12 @@
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/r/:slug", "destination": "/refer?ref=:slug" }
   ],
+  "redirects": [
+    { "source": "/blog/choosing-a-cool-roof-for-tampa-bay-summers", "destination": "/blog/how-heat-affects-roofs-florida", "permanent": true },
+    { "source": "/blog/tile-vs-shingle-vs-metal", "destination": "/blog/choosing-right-roof-type-florida", "permanent": true },
+    { "source": "/blog/how-to-find-and-fix-a-roof-leak-in-summer", "destination": "/blog/emergency-roof-repair-what-to-do", "permanent": true },
+    { "source": "/blog/energy-efficient-roofing-options-florida", "destination": "/blog/how-heat-affects-roofs-florida", "permanent": true }
+  ],
   "crons": [
     { "path": "/api/cron-referral-report", "schedule": "0 12 * * 0" },
     { "path": "/api/cron-foundation-report", "schedule": "0 12 * * 0" },
