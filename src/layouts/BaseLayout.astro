@@ -98,6 +98,18 @@ const {
   <meta name="geo.region" content="US-FL" />
   <meta name="geo.placename" content="Tampa Bay, Florida" />
 
+  <!-- Turnstile onload bootstrap — MUST be defined BEFORE the api.js
+       script tag below. Cloudflare's api.js is async, so it can execute
+       and fire the onload callback BEFORE the body's TurnstileWidget
+       inline script runs to define window.HR_Turnstile. Without this
+       bootstrap the callback is undefined at api.js load time, the
+       widget silently never renders, and the customer sees the amber
+       fallback banner. Bug reproduced 2026-07-24 after a second GTM
+       container in the head shifted network timing enough to lose
+       the race. If HR_Turnstile is already defined when we fire, call
+       it; otherwise set a flag and let HR_Turnstile flush itself on
+       init. -->
+  <script is:inline>window.hrTurnstileReady=function(){if(window.HR_Turnstile&&typeof window.HR_Turnstile.ready==='function'){window.HR_Turnstile.ready();}else{window.__hrTurnstileCFReady=true;}};</script>
   <!-- Cloudflare Turnstile (bot protection on forms) — explicit render
        so HR_Turnstile can control lifecycle + regenerate stale tokens
        before submit (see src/components/TurnstileWidget.astro). -->

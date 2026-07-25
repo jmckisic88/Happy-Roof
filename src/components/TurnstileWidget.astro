@@ -93,7 +93,14 @@ const {
 
     var SITEKEY = '0x4AAAAAADNeVY-2r71EFud-';
     var FRESH_MS = 2 * 60 * 1000; // regenerate if older than 2 min
-    var WATCHDOG_MS = 3000;       // fallback banner after 3s
+    // Watchdog: was 3s but fired prematurely on 3G/hotel-wifi customers
+    // where CF's iframe injection legitimately takes 3-6s. When it fired
+    // early, showFallback() hid the slot — so even when the widget rendered
+    // moments later, the customer stayed staring at the amber banner.
+    // Bumped to 8s AND the watchdog now also requires window.turnstile to
+    // be missing (i.e. api.js itself failed to load) before showing the
+    // fallback — a slow render alone no longer trips it.
+    var WATCHDOG_MS = 8000;
     var TEL = '(813) 595-7663';
 
     var registry = {}; // formId -> { widgetId, token, issuedAt, waiters: [], readyPromise, readyResolve }
@@ -205,13 +212,25 @@ const {
         var entry = getEntry(formId);
         var slot = slotEl(formId);
         if (!slot) return;
-        // If Turnstile hasn't injected an iframe into the slot yet,
-        // show the fallback banner so the customer isn't stuck.
         var hasIframe = slot.querySelector('iframe');
-        if (!hasIframe && !entry.token) {
+        if (hasIframe || entry.token) return;
+        // Only show the fallback if api.js itself failed to load — a slow
+        // render (widget on its way) shouldn't trip the alarm. If turnstile
+        // IS loaded but no iframe yet, give it more time via a secondary
+        // check at +4s instead of showing the banner.
+        if (!window.turnstile || typeof window.turnstile.render !== 'function') {
           entry.failed = true;
           showFallback(formId);
+          return;
         }
+        setTimeout(function() {
+          var e2 = getEntry(formId);
+          var s2 = slotEl(formId);
+          if (!s2) return;
+          if (s2.querySelector('iframe') || e2.token) return;
+          e2.failed = true;
+          showFallback(formId);
+        }, 4000);
       }, WATCHDOG_MS);
     }
 
@@ -326,11 +345,18 @@ const {
       },
     };
 
-    // Explicit-render onload hook used by the api.js script tag in the
-    // layouts (?render=explicit&onload=hrTurnstileReady).
-    window.hrTurnstileReady = function() {
+    // NOTE: window.hrTurnstileReady is defined in the layout <head>
+    // BEFORE the Turnstile api.js script tag — that bootstrap either
+    // calls HR_Turnstile.ready() directly (if we've already loaded) or
+    // sets __hrTurnstileCFReady so we can flush ourselves on init.
+    // Do NOT redefine hrTurnstileReady here — this initializer can run
+    // AFTER api.js has already fired the callback, and overwriting it
+    // would strand any subsequent CF re-init.
+    //
+    // Flush now if api.js fired before this initializer ran:
+    if (window.__hrTurnstileCFReady) {
       try { window.HR_Turnstile.ready(); } catch (_) {}
-    };
+    }
 
     // Wire retry buttons (delegated once per document)
     document.addEventListener('click', function(evt) {
