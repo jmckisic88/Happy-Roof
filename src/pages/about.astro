@@ -2,8 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const schema = `{
-    "@context": "https://schema.org",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
     "@type": ["LocalBusiness", "RoofingContractor"],
+    "@id": "https://happyroof.com/#business",
     "name": "Happy Roof LLC",
     "url": "https://happyroof.com",
     "telephone": "+1-813-595-7663",
@@ -83,7 +86,27 @@ const schema = `{
       "bestRating": "5",
       "worstRating": "1"
     }
-  }`;
+    },
+    {
+      "@type": "NGO",
+      "@id": "https://everyshingleheart.com/#org",
+      "name": "Every Shingle Heart Foundation",
+      "description": "A nonprofit foundation providing free roof replacements to Tampa Bay families in need. Funded in part by Happy Roof LLC, which contributes $100 from every roof replacement.",
+      "url": "https://everyshingleheart.com",
+      "foundingDate": "2026",
+      "founder": {
+        "@type": "Person",
+        "name": "Miriam McKisic"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Tampa Bay",
+        "addressRegion": "FL"
+      },
+      "sponsor": { "@id": "https://happyroof.com/#business" }
+    }
+  ]
+}`;
 ---
 
 <BaseLayout
@@ -277,6 +300,13 @@ const schema = `{
         </div>
         <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">We Stand Behind Our Work</h3>
         <p style="color:#555555;font-size:.87rem;line-height:1.65">Happy Roof guarantees its Shingle, Metal, and Tile Workmanship for 15 years &amp; its Flat Roof Installation for 10 years, in writing, every time. If something goes wrong because of how it was installed, we make it right. Period.</p>
+      </div>
+      <div class="val-card" style="border-color:rgba(232,65,90,.25);box-shadow:0 4px 20px -8px rgba(232,65,90,.15)">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(232,65,90,.1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#E8415A"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="font-display font-bold mb-2" style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#1A1A1A">We Give Back</h3>
+        <p style="color:#555555;font-size:.87rem;line-height:1.65">Happy Roof is a founding partner of Every Shingle Heart Foundation. $100 from every roof replacement funds free roofs for Tampa Bay families in need. <a href="/foundation" style="color:#E8415A;font-weight:600;text-decoration:none">See our commitment.</a></p>
       </div>
     </div>
   </div>

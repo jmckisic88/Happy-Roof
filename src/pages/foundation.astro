@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TurnstileWidget from '../components/TurnstileWidget.astro';
 
 const schema = `{
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": ["LocalBusiness", "RoofingContractor"],
+      "@id": "https://happyroof.com/#business",
       "name": "Happy Roof LLC",
       "url": "https://happyroof.com",
       "telephone": "+1-813-595-7663",
@@ -20,56 +20,91 @@ const schema = `{
         "addressCountry": "US"
       },
       "hasCredential": "Florida Roofing Contractor License #CCC1337380",
-      "dateModified": "2026-04-25"
+      "dateModified": "2026-07-29"
     },
     {
       "@type": "NGO",
-      "name": "Happy Roof Foundation",
-      "description": "A community giving initiative by Happy Roof LLC providing free roofs to Tampa Bay families in need. Launching June 2026.",
-      "url": "https://happyroof.com/foundation",
+      "@id": "https://everyshingleheart.com/#org",
+      "name": "Every Shingle Heart Foundation",
+      "description": "A nonprofit foundation providing free roof replacements to Tampa Bay families in need. Every Shingle Heart is funded in part by Happy Roof LLC, which contributes $100 from every roof replacement.",
+      "url": "https://everyshingleheart.com",
       "foundingDate": "2026",
-      "parentOrganization": {
-        "@type": "RoofingContractor",
-        "name": "Happy Roof LLC"
+      "founder": {
+        "@type": "Person",
+        "name": "Miriam McKisic"
       },
       "areaServed": {
         "@type": "City",
         "name": "Tampa Bay",
         "addressRegion": "FL"
-      }
+      },
+      "sponsor": { "@id": "https://happyroof.com/#business" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://happyroof.com/foundation",
+      "name": "Our Commitment to Every Shingle Heart Foundation",
+      "url": "https://happyroof.com/foundation",
+      "about": { "@id": "https://everyshingleheart.com/#org" },
+      "isPartOf": { "@id": "https://happyroof.com/#business" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Every Shingle Heart Foundation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every Shingle Heart Foundation is a nonprofit founded by Miriam McKisic that provides free roof replacements to Tampa Bay families who cannot afford one. Happy Roof LLC is a founding partner and funder, contributing $100 from every roof replacement it installs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the $100 per roof commitment work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every time Happy Roof completes a roof replacement, $100 from that job is contributed directly to Every Shingle Heart Foundation. The commitment applies to every residential and commercial roof replacement, with no minimum threshold and no cap. Customers do not pay extra. The contribution comes out of Happy Roof's margin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I nominate a Tampa Bay family for a free roof?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nominations are handled by Every Shingle Heart Foundation directly. Visit everyshingleheart.com to learn about eligibility and submit a nomination for a homeowner, veteran, senior, or family in need of a new roof in the Tampa Bay area."
+          }
+        }
+      ]
     }
   ]
 }`;
 ---
 
 <BaseLayout
-  title="Happy Roof Foundation | Happy Roof"
-  description="Happy Roof is launching a community giving program in June 2026. Something big is coming for Tampa Bay families in need. Stay tuned."
+  title="Our Commitment to Every Shingle Heart Foundation | Happy Roof"
+  description="Happy Roof is a founding partner of Every Shingle Heart Foundation. $100 from every roof replacement funds free roofs for Tampa Bay families in need."
   canonical="https://happyroof.com/foundation"
-  ogTitle="Something Big Is Coming | Happy Roof Tampa Bay"
-  ogDescription="Happy Roof is launching a community giving program in June 2026. Stay tuned."
+  ogTitle="Every Roof We Replace Gives Back | Happy Roof + Every Shingle Heart"
+  ogDescription="Founding partner of Every Shingle Heart Foundation. $100 from every roof replacement funds free roofs for Tampa Bay families."
   schema={schema}
 >
 
 <style is:inline>
-.gh{background:linear-gradient(135deg,#F87171 0%,#E8415A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    @keyframes pulse-glow{0%,100%{box-shadow:0 0 40px -10px rgba(232,65,90,.3)}50%{box-shadow:0 0 60px -5px rgba(232,65,90,.5)}}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    /* ── Hero photo bg ── */
+  .gh { background:linear-gradient(135deg,#F87171 0%,#E8415A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text }
+  @keyframes pulse-glow { 0%,100%{box-shadow:0 0 40px -10px rgba(232,65,90,.3)} 50%{box-shadow:0 0 60px -5px rgba(232,65,90,.5)} }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 </style>
 
-<!-- HERO - COMING SOON -->
-<section style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(232,65,90,.06) 0%,transparent 70%),#FFFFFF">
-  <!-- Hero background photo -->
+<!-- HERO -->
+<section style="min-height:auto;display:flex;align-items:flex-start;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(232,65,90,.06) 0%,transparent 70%),#FFFFFF;padding-top:7rem;padding-bottom:4rem">
   <div class="hero-photo-bg" style="background-image:url('/Brand%20Assets/Photos/commercial-tpo-roof-tampa.jpg')"></div>
   <div class="hero-photo-overlay"></div>
-  <!-- Subtle animated background -->
   <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
     <div style="position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,65,90,.04) 0%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);animation:pulse-glow 4s ease-in-out infinite"></div>
   </div>
 
-  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center" style="padding:1.5rem 0 6rem">
-    <!-- Animated heart icon -->
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
     <div class="flex justify-center mb-5" style="animation:float 3s ease-in-out infinite">
       <div style="width:100px;height:100px;background:#fff;border:2px solid rgba(232,65,90,.2);box-shadow:0 12px 40px -8px rgba(232,65,90,.15);border-radius:24px;display:flex;align-items:center;justify-content:center;animation:pulse-glow 4s ease-in-out infinite">
         <svg width="52" height="52" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,135 +114,236 @@ const schema = `{
       </div>
     </div>
 
-    <p class="sl mb-4" style="color:#E8415A">A Happy Roof Initiative</p>
+    <p class="sl mb-4" style="color:#E8415A">A Happy Roof Commitment</p>
 
-    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.9;letter-spacing:-.01em;margin-bottom:1.5rem">
-      SOMETHING<br/>
-      <span class="gh">BIGGER THAN</span><br/>
-      ROOFING.
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.6rem,6.5vw,5rem);line-height:.92;letter-spacing:-.01em;margin-bottom:1.5rem;color:#1A1A1A">
+      EVERY ROOF WE REPLACE<br/>
+      <span class="gh">GIVES BACK.</span>
     </h1>
 
-    <p style="color:#555555;font-size:1.15rem;line-height:1.8;max-width:520px;margin:0 auto 1.5rem">
-      We believe a safe roof shouldn't be a luxury. This June, we're launching a program that puts our skills where they're needed most, in the hands of Tampa Bay families who need it.
+    <p style="color:#555555;font-size:1.15rem;line-height:1.8;max-width:560px;margin:0 auto 1.5rem">
+      Happy Roof is a founding partner of the <strong style="color:#1A1A1A">Every Shingle Heart Foundation</strong>, a Tampa Bay nonprofit putting free roofs over the heads of families who need them most.
     </p>
 
-    <p style="color:#888888;font-size:.95rem;line-height:1.7;max-width:460px;margin:0 auto 2.5rem">
-      Free roofs. No strings. Real impact.<br/>
-      <span style="color:#E8415A;font-weight:600">The name drops June 2026.</span>
-    </p>
-
-    <!-- Countdown-style date callout -->
     <div style="display:inline-flex;align-items:center;gap:1rem;background:#fff;border:1.5px solid rgba(232,65,90,.18);box-shadow:0 4px 20px -6px rgba(0,0,0,.06);border-radius:16px;padding:1.25rem 2.5rem;margin-bottom:2.5rem">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8415A" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8415A"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       <div style="text-align:left">
-        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;color:#1A1A1A;line-height:1;letter-spacing:-.01em">June 2026</p>
-        <p style="color:#555555;font-size:.78rem;margin-top:.15rem">Official launch &amp; name reveal</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#1A1A1A;line-height:1;letter-spacing:-.01em">$100 per roof</p>
+        <p style="color:#555555;font-size:.8rem;margin-top:.2rem">From every replacement Happy Roof installs</p>
       </div>
     </div>
 
-    <!-- Signup Form -->
-    <form id="foundation-form" style="max-width:400px;margin:0 auto;text-align:left">
-      <div style="margin-bottom:.75rem">
-        <input type="text" name="name" required placeholder="Full Name"
-          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
-          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
-      </div>
-      <div style="margin-bottom:.75rem">
-        <input type="tel" name="phone" required placeholder="Phone Number"
-          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
-          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
-      </div>
-      <div style="margin-bottom:1.25rem">
-        <input type="email" name="email" required placeholder="Email Address"
-          style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(232,65,90,.2);border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;color:#1A1A1A;background:#fff;outline:none;transition:border-color .2s"
-          onfocus="this.style.borderColor='#E8415A'" onblur="this.style.borderColor='rgba(232,65,90,.2)'" />
-      </div>
-      <!-- SMS Consent (Twilio mixed-use compliance) -->
-      <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
-        <div style="display:flex;align-items:flex-start;gap:.5rem">
-          <input type="checkbox" id="sms-transactional-foundation" name="sms_transactional" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-          <label for="sms-transactional-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>transactional/informational SMS</strong> communications regarding account notifications, customer care, etc, from <strong>Happy Roof</strong>. Messages frequency may vary. Data rates may apply, <strong>reply STOP to opt-out.</strong></label>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:.5rem">
-          <input type="checkbox" id="sms-marketing-foundation" name="sms_marketing" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-          <label for="sms-marketing-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you are allowing to receive <strong>promotional/marketing SMS</strong> communications from <strong>Happy Roof</strong>. Frequency may vary, Data rates may apply, <strong>reply HELP for help or STOP to opt-out.</strong></label>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:.5rem">
-          <input type="checkbox" id="terms-consent-foundation" name="terms_consent" value="Yes" style="width:16px;height:16px;min-width:16px;margin-top:.15rem;accent-color:#3B9FD9;cursor:pointer" />
-          <label for="terms-consent-foundation" style="font-size:.72rem;color:#555555;line-height:1.55;cursor:pointer">By checking, you accept <a href="/terms" style="color:#3B9FD9;text-decoration:underline">Terms of Service</a> &amp; <a href="/privacy" style="color:#3B9FD9;text-decoration:underline">Privacy Policy</a>.</label>
-        </div>
-      </div>
-      <!-- Cloudflare Turnstile bot protection -->
-      <TurnstileWidget formId="foundation-form" />
-      <button type="submit" class="btn-p" style="width:100%;font-size:1rem;padding:.85rem 2rem;justify-content:center;display:flex;align-items:center;gap:.5rem">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Get Notified
-      </button>
-      <p id="foundation-msg" style="display:none;text-align:center;margin-top:.75rem;font-size:.9rem;font-weight:600"></p>
-      <p style="text-align:center;color:#888888;font-size:.75rem;margin-top:.75rem;line-height:1.5">We'll only use your info to notify you about the foundation launch. No spam.</p>
-    </form>
-
-    <script is:inline>
-    document.getElementById('foundation-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = this;
-      var btn = form.querySelector('button[type="submit"]');
-      var msg = document.getElementById('foundation-msg');
-
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
-      msg.style.display = 'none';
-
-      var tokenPromise = (window.HR_Turnstile && window.HR_Turnstile.ensureFreshToken)
-        ? window.HR_Turnstile.ensureFreshToken('foundation-form')
-        : Promise.resolve((form.querySelector('[name="cf-turnstile-response"]') || {}).value || '');
-
-      tokenPromise.then(function(token) {
-        var data = {
-          name: form.name.value.trim(),
-          phone: form.phone.value.trim(),
-          email: form.email.value.trim(),
-          turnstile_token: token
-        };
-        return fetch('/api/foundation-signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).then(function(r) { return r.json(); });
-      }).then(function(res) {
-        if (res && res.success) {
-          msg.textContent = "You're on the list! We'll be in touch.";
-          msg.style.color = '#16a34a';
-          msg.style.display = 'block';
-          form.reset();
-          if (window.HR_Forms) window.HR_Forms.clearDraft(form, { formId: 'foundation-form' });
-        } else {
-          throw new Error((res && res.error) || 'Submission failed');
-        }
-      }).catch(function(err) {
-        var isTsErr = err && err.code === 'turnstile_unavailable';
-        msg.innerHTML = isTsErr
-          ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#dc2626;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
-          : 'Something went wrong. Please try again or call <a href="tel:8135957663" style="color:#dc2626;font-weight:700;text-decoration:underline">(813) 595-7663</a>.';
-        msg.style.color = '#dc2626';
-        msg.style.display = 'block';
-      }).then(function() {
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Get Notified';
-      });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      var f = document.getElementById('foundation-form');
-      if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'foundation-form' });
-    });
-    </script>
-
-    <p style="color:#888888;font-size:.8rem;margin-top:3rem;line-height:1.6">
-      A community initiative by <a href="/" style="color:#555555;text-decoration:none" onmouseover="this.style.color='#E6A817'" onmouseout="this.style.color='#555555'">Happy Roof LLC</a> · Tampa Bay, FL
-    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="https://everyshingleheart.com" target="_blank" rel="noopener noreferrer" class="btn-p" style="background:linear-gradient(135deg,#F87171,#E8415A);color:#fff;box-shadow:0 4px 20px -4px rgba(232,65,90,.42);font-size:1.05rem;padding:.9rem 2rem">
+        Visit Every Shingle Heart
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+      <a href="#how-it-works" class="btn-o" style="color:#1A1A1A;border-color:rgba(232,65,90,.35)">How It Works</a>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- INFO STRIP -->
+<div style="background:#FFFFFF;border-top:2px solid #E8415A;border-bottom:1px solid #E0E0E0;padding:.85rem 0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display font-bold text-sm tracking-widest" style="color:#1A1A1A;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">
+      <span>Tampa Bay, FL</span>
+      <span style="color:#E8415A">·</span>
+      <span>CCC1337380</span>
+      <span style="color:#E8415A">·</span>
+      <span>HappyRoof.com</span>
+      <span style="color:#E8415A">·</span>
+      <span style="color:#3B9FD9">(813) 595-7663</span>
+    </div>
+  </div>
+</div>
+
+<!-- THE COMMITMENT -->
+<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;padding:5rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+    <div style="background:#FFFFFF;border:1.5px solid rgba(232,65,90,.18);border-radius:24px;padding:3rem 2.5rem;box-shadow:0 12px 40px -12px rgba(232,65,90,.12);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(232,65,90,.08) 0%,transparent 70%);pointer-events:none"></div>
+      <div style="position:relative;text-align:center">
+        <p class="sl mb-3" style="color:#E8415A">The Commitment</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A;margin-bottom:1.25rem">
+          $100 FROM EVERY ROOF,<br/><span class="gh">GOES TO A FAMILY IN NEED.</span>
+        </h2>
+        <p style="color:#555555;font-size:1.05rem;line-height:1.8;max-width:640px;margin:0 auto 1.5rem">
+          When Happy Roof installs a new roof, $100 of that job goes straight to Every Shingle Heart Foundation. Every residential replacement, every commercial replacement, no minimum threshold, no cap. It comes out of our margin, not the customer's invoice.
+        </p>
+        <p style="color:#555555;font-size:1.05rem;line-height:1.8;max-width:640px;margin:0 auto">
+          Because Josh and Miriam believe a safe, dry roof is not a luxury. It is the difference between a family that sleeps easy and one that does not.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIRIAM'S STORY -->
+<section style="background:#FFFFFF;padding:5rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="grid md:grid-cols-5 gap-8 items-center">
+      <div class="md:col-span-2">
+        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px -12px rgba(232,65,90,.2);aspect-ratio:4/5;background:#F7F7F7">
+          <img src="https://placehold.co/480x600/E8415A/ffffff?text=Miriam+McKisic" alt="Miriam McKisic, founder of Every Shingle Heart Foundation" style="width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(232,65,90,.15) 100%);mix-blend-mode:multiply;pointer-events:none"></div>
+        </div>
+      </div>
+      <div class="md:col-span-3">
+        <p class="sl mb-3" style="color:#E8415A">Meet The Founder</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,3.6vw,2.8rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A;margin-bottom:1.25rem">
+          MIRIAM'S<br/><span class="gh">MISSION.</span>
+        </h2>
+        <p style="color:#555555;font-size:1rem;line-height:1.8;margin-bottom:1rem">
+          Miriam McKisic founded Every Shingle Heart Foundation in 2026 with a simple idea: no Tampa Bay family should have to choose between paying for groceries and paying for a roof that keeps their kids dry.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.8;margin-bottom:1rem">
+          After years of watching neighbors patch failing roofs with tarps and prayers, she launched Every Shingle Heart to change that. The foundation partners with local roofing contractors to fund and install free replacements for homeowners in need, veterans, seniors on fixed incomes, and single-parent families who fall through the cracks of insurance and aid programs.
+        </p>
+        <p style="color:#555555;font-size:1rem;line-height:1.8">
+          Happy Roof was the first contractor to commit as a founding partner, and it is our privilege to help her build it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" style="background:#F5F5F5;border-top:1px solid #E5E5E5;padding:5rem 0">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <p class="sl mb-3" style="color:#E8415A">How It Works</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A">
+        THREE STEPS<br/><span class="gh">FROM ROOF TO ROOF.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num" style="background:rgba(232,65,90,.1);color:#E8415A">1</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;letter-spacing:-.005em;margin-bottom:.6rem">You Get a New Roof</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">A homeowner hires Happy Roof for a replacement. Standard pricing, standard workmanship warranty, no upcharge for the give-back.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num" style="background:rgba(232,65,90,.1);color:#E8415A">2</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;letter-spacing:-.005em;margin-bottom:.6rem">$100 Is Contributed</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Happy Roof sends $100 from that job to Every Shingle Heart Foundation. Every roof, every time.</p>
+        </div>
+      </div>
+      <div class="scard p-8 flex gap-5">
+        <div class="step-num" style="background:rgba(232,65,90,.1);color:#E8415A">3</div>
+        <div>
+          <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;letter-spacing:-.005em;margin-bottom:.6rem">A Family Gets One Too</h3>
+          <p style="color:#555555;font-size:.95rem;line-height:1.7">Every Shingle Heart pools contributions from partners like us and funds free roof replacements for Tampa Bay families in need.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem">
+      <p style="color:#888888;font-size:.9rem;line-height:1.7;max-width:520px;margin:0 auto">
+        Know a family that needs a roof? Nominations are handled by Every Shingle Heart directly.
+      </p>
+      <a href="https://everyshingleheart.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;color:#E8415A;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid rgba(232,65,90,.3);padding-bottom:.15rem">
+        Nominate a Family at everyshingleheart.com
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT / STARTING NOW -->
+<section style="background:#FFFFFF;padding:4rem 0">
+  <div class="max-w-4xl mx-auto px-5">
+    <div style="background:#1A1A1A;border-radius:24px;padding:3rem 2.5rem;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(232,65,90,.15) 0%,transparent 70%);pointer-events:none"></div>
+      <div style="position:relative;text-align:center">
+        <p class="sl mb-3" style="color:#E8415A">Our Impact, Starting Now</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:.95;letter-spacing:-.01em;color:#FFFFFF;margin-bottom:2rem">
+          THE COUNTER STARTS<br/><span class="gh">WITH THIS ROOF.</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" style="max-width:640px;margin:0 auto 1.5rem">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(232,65,90,.3);border-radius:14px;padding:1.25rem">
+            <p style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;line-height:1;color:#F87171;letter-spacing:-.02em">$100</p>
+            <p style="color:rgba(255,255,255,.7);font-size:.78rem;margin-top:.25rem;letter-spacing:.05em;text-transform:uppercase">Per replacement</p>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(232,65,90,.3);border-radius:14px;padding:1.25rem">
+            <p style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;line-height:1;color:#F87171;letter-spacing:-.02em">2026</p>
+            <p style="color:rgba(255,255,255,.7);font-size:.78rem;margin-top:.25rem;letter-spacing:.05em;text-transform:uppercase">Partnership year one</p>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(232,65,90,.3);border-radius:14px;padding:1.25rem;grid-column:span 2 / span 2;" class="md:col-span-1">
+            <p style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;line-height:1;color:#F87171;letter-spacing:-.02em">100%</p>
+            <p style="color:rgba(255,255,255,.7);font-size:.78rem;margin-top:.25rem;letter-spacing:.05em;text-transform:uppercase">Of replacements count</p>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.7;max-width:520px;margin:0 auto">
+          The bigger the counter grows, the more Tampa Bay families sleep under a roof they can trust. Your next roof adds to it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#F7F7F7;border-top:1px solid #E5E5E5;padding:5rem 0">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-8">
+      <p class="sl mb-3" style="color:#E8415A">Common Questions</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A">
+        ABOUT THE<br/><span class="gh">PARTNERSHIP.</span>
+      </h2>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        Who is Every Shingle Heart Foundation?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Every Shingle Heart Foundation is a nonprofit founded by Miriam McKisic that provides free roof replacements to Tampa Bay families who cannot afford one. Happy Roof LLC is a founding partner and funder, contributing $100 from every roof replacement it installs.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How does the $100 per roof commitment work?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Every time Happy Roof completes a roof replacement, $100 from that job is contributed directly to Every Shingle Heart Foundation. The commitment applies to every residential and commercial roof replacement, with no minimum threshold and no cap. Customers do not pay extra. The contribution comes out of Happy Roof's margin.</div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+        How do I nominate a Tampa Bay family for a free roof?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Nominations are handled by Every Shingle Heart Foundation directly. Visit <a href="https://everyshingleheart.com" target="_blank" rel="noopener noreferrer" style="color:#E8415A;text-decoration:underline">everyshingleheart.com</a> to learn about eligibility and submit a nomination for a homeowner, veteran, senior, or family in need of a new roof in the Tampa Bay area.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-grad relative overflow-hidden py-20" style="background:radial-gradient(ellipse 60% 50% at 50% 80%,rgba(232,65,90,.18) 0%,rgba(26,26,26,.95) 40%,#1A1A1A 100%)">
+  <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.2rem,5vw,4rem);line-height:.92;letter-spacing:-.01em;color:#FFFFFF;margin-bottom:1rem">
+      YOUR NEW ROOF<br/><span class="gh">HELPS BUILD SOMEONE ELSE'S.</span>
+    </h2>
+    <p style="color:rgba(255,255,255,.8);font-size:1rem;line-height:1.75;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">
+      Get a free estimate from the Tampa Bay team that puts $100 from every replacement into a family that needs one. Learn more about our partner at <a href="https://everyshingleheart.com" target="_blank" rel="noopener noreferrer" style="color:#F87171;text-decoration:underline">everyshingleheart.com</a>.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/contact" class="btn-t" style="font-size:1.1rem;padding:1rem 2.5rem">Get My Free Estimate
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="/about" class="btn-o" style="font-size:1rem">More About Happy Roof</a>
+    </div>
+  </div>
+</section>
 
 </BaseLayout>
