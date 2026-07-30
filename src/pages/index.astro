@@ -422,14 +422,67 @@ const schema = `[{
   </div>
 </section>
 
-<!-- Trust Signals -->
-<section style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.5rem 0">
+<!-- Trust Signals — Accreditations + Credentials -->
+<style>
+  .tb {display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;min-width:190px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .tb:hover {transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(26,26,26,.12);border-color:#CFCFCF}
+  .tb-icon {width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .tb-name {font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.92rem;color:#1A1A1A;letter-spacing:.015em;margin:0;line-height:1.1}
+  .tb-sub {font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.7rem;color:#888;letter-spacing:.06em;text-transform:uppercase;margin:.2rem 0 0;line-height:1.15}
+  .tb-emblem .tb-icon {width:44px;height:44px;border-radius:10px}
+  .tb-emblem .tb-name {font-size:1rem;letter-spacing:.02em}
+  .tb-eyebrow {text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#888;margin:0 0 1.15rem}
+  @media (max-width:640px) {.tb {min-width:0;flex:1 1 calc(50% - .35rem)} .tb-name {font-size:.85rem} .tb-sub {font-size:.65rem}}
+</style>
+<section aria-labelledby="trust-heading" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.75rem 0">
   <div class="max-w-7xl mx-auto px-5">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem 3rem">
-      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">OWENS CORNING INSTALLER</span></div>
-      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FL LICENSE #CCC1337380</span></div>
-      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">FULLY INSURED & BONDED</span></div>
-      <div style="display:flex;align-items:center;gap:.5rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#1A1A1A;letter-spacing:.02em">15-YEAR WARRANTY OPTION</span></div>
+    <p id="trust-heading" class="tb-eyebrow">Accreditations &amp; Credentials</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:.7rem">
+
+      <!-- Owens Corning Preferred Contractor -->
+      <div class="tb tb-emblem" role="group" aria-label="Owens Corning Preferred Contractor">
+        <div class="tb-icon" style="background:rgba(232,65,90,0.10);color:#E8415A" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div>
+          <p class="tb-name">Preferred Contractor</p>
+          <p class="tb-sub">Owens Corning</p>
+        </div>
+      </div>
+
+      <!-- FL License -->
+      <div class="tb" role="group" aria-label="Florida Licensed Roofing Contractor">
+        <div class="tb-icon" style="background:rgba(59,159,217,0.10);color:#3B9FD9" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div>
+          <p class="tb-name">FL Licensed</p>
+          <p class="tb-sub">CCC1337380</p>
+        </div>
+      </div>
+
+      <!-- Insured & Bonded -->
+      <div class="tb" role="group" aria-label="Fully insured and bonded">
+        <div class="tb-icon" style="background:rgba(230,168,23,0.12);color:#E6A817" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <p class="tb-name">Insured &amp; Bonded</p>
+          <p class="tb-sub">General liability + WC</p>
+        </div>
+      </div>
+
+      <!-- 15-Year Warranty -->
+      <div class="tb" role="group" aria-label="15-year workmanship warranty available">
+        <div class="tb-icon" style="background:rgba(59,159,217,0.10);color:#3B9FD9" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <div>
+          <p class="tb-name">15-Year Warranty</p>
+          <p class="tb-sub">Workmanship option</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
