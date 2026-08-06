@@ -432,12 +432,23 @@ const schema = `[{
   .tb-emblem .tb-icon {width:44px;height:44px;border-radius:10px}
   .tb-emblem .tb-name {font-size:1rem;letter-spacing:.02em}
   .tb-eyebrow {text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#888;margin:0 0 1.15rem}
+  a.tb {text-decoration:none;color:inherit}
+  .tb-seal-img {height:44px;width:80px;object-fit:contain;object-position:center;display:block}
   @media (max-width:640px) {.tb {min-width:0;flex:1 1 calc(50% - .35rem)} .tb-name {font-size:.85rem} .tb-sub {font-size:.65rem}}
 </style>
 <section aria-labelledby="trust-heading" style="background:#F7F7F7;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:1.75rem 0">
   <div class="max-w-7xl mx-auto px-5">
     <p id="trust-heading" class="tb-eyebrow">Accreditations &amp; Credentials</p>
     <div style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:.7rem">
+
+      <!-- BBB Accredited Business (real seal, served from BBB's CDN so accreditation status is live-verifiable) -->
+      <a class="tb tb-emblem" href="https://www.bbb.org/us/fl/oldsmar/profile/roofing-contractors/happy-roof-llc-0653-90461345" target="_blank" rel="noopener noreferrer" aria-label="BBB Accredited Business — view Happy Roof LLC profile on bbb.org">
+        <img class="tb-seal-img" src="https://m.bbb.org/brand/seals/Accredited_Business_Seal_NoRating_RGB.svg" alt="BBB Accredited Business" width="80" height="44" loading="eager" />
+        <div>
+          <p class="tb-name">Accredited</p>
+          <p class="tb-sub">Verify on BBB.org &rarr;</p>
+        </div>
+      </a>
 
       <!-- Owens Corning Preferred Contractor -->
       <div class="tb tb-emblem" role="group" aria-label="Owens Corning Preferred Contractor">
