@@ -1,0 +1,438 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import TurnstileWidget from '../../components/TurnstileWidget.astro';
+---
+
+<LandingLayout
+  title="Partner Referral - Request a Happy Roof Quote"
+  description="Refer your customer to Happy Roof for a free roof estimate. HVAC, solar, and home service partners submit this quick form and we take it from there."
+  canonical="https://happyroof.com/lp/partner-quote"
+  noindex={true}
+>
+
+<style is:inline>
+  .pq-input, .pq-select, .pq-textarea {
+    width: 100%;
+    padding: .85rem 1rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-size: .96rem;
+    color: #1A1A1A;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+  }
+  .pq-input:focus, .pq-select:focus, .pq-textarea:focus {
+    outline: none;
+    border-color: #3B9FD9;
+    box-shadow: 0 0 0 3px rgba(59,159,217,0.15);
+  }
+  .pq-input::placeholder, .pq-textarea::placeholder { color: #6B6B6B; }
+  .pq-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .72rem;
+    color: #555;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin: 0 0 .35rem;
+  }
+  .pq-label .req { color: #E8415A; margin-left: .15rem }
+  .pq-field { margin-bottom: 1rem }
+  .pq-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem }
+  @media (max-width: 560px) { .pq-grid-2 { grid-template-columns: 1fr } }
+  .pq-section {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 14px;
+    padding: 1.5rem 1.5rem 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px -6px rgba(0,0,0,.06);
+  }
+  .pq-section-head {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #F0F0F0;
+    margin-bottom: 1.25rem;
+  }
+  .pq-section-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #E6A817;
+    color: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+  .pq-section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #1A1A1A;
+    letter-spacing: .015em;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .pq-section-sub {
+    font-size: .78rem;
+    color: #555;
+    margin: .15rem 0 0;
+  }
+  .pq-submit {
+    background: #E6A817;
+    color: #1A1A1A;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 1.1rem 2rem;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 6px 24px -8px rgba(230,168,23,.55);
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s ease, background .18s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+  }
+  .pq-submit:hover {
+    background: #F0B424;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px -8px rgba(230,168,23,.65);
+  }
+  .pq-submit:active { transform: translateY(0) }
+  .pq-submit:disabled { opacity: .6; cursor: not-allowed; transform: none }
+
+  .pq-radio-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+  }
+  @media (min-width: 560px) { .pq-radio-row { grid-template-columns: repeat(4, 1fr) } }
+  .pq-radio {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .7rem .5rem;
+    border: 1.5px solid #E0E0E0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    color: #1A1A1A;
+    letter-spacing: .02em;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .pq-radio input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .pq-radio:has(input:checked) {
+    border-color: #E6A817;
+    background: rgba(230,168,23,.08);
+  }
+  .pq-radio:hover { border-color: #3B9FD9 }
+  .pq-radio:has(input:focus-visible) {
+    outline: 2px solid #E6A817;
+    outline-offset: 2px;
+  }
+
+  .pq-referred-banner {
+    background: linear-gradient(135deg, rgba(59,159,217,.08), rgba(230,168,23,.06));
+    border: 1px solid rgba(59,159,217,.2);
+    border-radius: 10px;
+    padding: .85rem 1.1rem;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .pq-referred-banner.show { display: block }
+  .pq-referred-banner-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #3B9FD9;
+    margin: 0 0 .2rem;
+  }
+  .pq-referred-banner-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: #1A1A1A;
+    margin: 0;
+  }
+</style>
+
+<!-- HERO -->
+<section style="background:linear-gradient(180deg,#F7F7F7 0%,#FFFFFF 100%);padding:2.75rem 0 1.5rem;border-bottom:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#3B9FD9;margin:0 0 .5rem">
+      For HVAC, Solar &amp; Home Service Partners
+    </p>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.85rem,4.5vw,2.75rem);line-height:1.05;letter-spacing:-.015em;color:#1A1A1A;margin:0 0 .85rem">
+      Refer your customer.<br/>
+      <span style="color:#E6A817">We handle the roof.</span>
+    </h1>
+    <p style="color:#555;font-size:1rem;line-height:1.65;margin:0 auto;max-width:520px">
+      Fill out this quick form on your customer's behalf. Happy Roof will contact them within 24 hours to schedule a free inspection and written estimate. You stay in the loop; they get taken care of.
+    </p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="form-anchor" style="background:#F5F5F5;padding:2rem 0 3rem">
+  <div class="max-w-2xl mx-auto px-5">
+
+    <!-- Referred-by banner (shows when ?p= URL param present) -->
+    <div id="pq-referred-banner" class="pq-referred-banner" role="status" aria-live="polite">
+      <p class="pq-referred-banner-label">Referral From</p>
+      <p class="pq-referred-banner-value" id="pq-referred-banner-name">&nbsp;</p>
+    </div>
+
+    <form id="lp-form" onsubmit="return submitPartnerQuote(event)">
+
+      <!-- SECTION 1: Your Info (Referring Rep) -->
+      <div class="pq-section">
+        <div class="pq-section-head">
+          <div class="pq-section-num">1</div>
+          <div>
+            <h2 class="pq-section-title">Your Info</h2>
+            <p class="pq-section-sub">So we can loop you in on the outcome</p>
+          </div>
+        </div>
+
+        <div class="pq-field">
+          <label class="pq-label" for="rep_name">Your Name <span class="req">*</span></label>
+          <input class="pq-input" type="text" id="rep_name" name="rep_name" placeholder="Jane Sales" required autocomplete="name" />
+        </div>
+
+        <div class="pq-field">
+          <label class="pq-label" for="rep_company">Your Company <span class="req">*</span></label>
+          <input class="pq-input" type="text" id="rep_company" name="rep_company" placeholder="Bay Area HVAC" required autocomplete="organization" />
+        </div>
+
+        <div class="pq-grid-2">
+          <div class="pq-field">
+            <label class="pq-label" for="rep_phone">Your Phone <span class="req">*</span></label>
+            <input class="pq-input" type="tel" id="rep_phone" name="rep_phone" placeholder="(813) 555-0100" required autocomplete="tel" />
+          </div>
+          <div class="pq-field">
+            <label class="pq-label" for="rep_email">Your Email <span class="req">*</span></label>
+            <input class="pq-input" type="email" id="rep_email" name="rep_email" placeholder="jane@company.com" required autocomplete="email" />
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: Customer Info -->
+      <div class="pq-section">
+        <div class="pq-section-head">
+          <div class="pq-section-num">2</div>
+          <div>
+            <h2 class="pq-section-title">Your Customer's Info</h2>
+            <p class="pq-section-sub">We'll reach out to them within 24 hours</p>
+          </div>
+        </div>
+
+        <div class="pq-field">
+          <label class="pq-label" for="cust_name">Customer Name <span class="req">*</span></label>
+          <input class="pq-input" type="text" id="cust_name" name="cust_name" placeholder="John &amp; Mary Homeowner" required autocomplete="off" />
+        </div>
+
+        <div class="pq-field">
+          <label class="pq-label" for="cust_address">Property Address <span class="req">*</span></label>
+          <input class="pq-input" type="text" id="cust_address" name="cust_address" placeholder="123 Main St, Tampa, FL 33601" required autocomplete="section-customer street-address" />
+        </div>
+
+        <div class="pq-grid-2">
+          <div class="pq-field">
+            <label class="pq-label" for="cust_phone">Customer Phone <span class="req">*</span></label>
+            <input class="pq-input" type="tel" id="cust_phone" name="cust_phone" placeholder="(813) 555-0200" required autocomplete="off" />
+          </div>
+          <div class="pq-field">
+            <label class="pq-label" for="cust_email">Customer Email</label>
+            <input class="pq-input" type="email" id="cust_email" name="cust_email" placeholder="Optional" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="pq-field">
+          <span class="pq-label">Service Needed <span class="req" aria-hidden="true">*</span></span>
+          <div class="pq-radio-row" role="radiogroup" aria-label="Service needed, required" aria-required="true">
+            <label class="pq-radio"><input type="radio" name="service_type" value="Roof Replacement" required /><span>Replacement</span></label>
+            <label class="pq-radio"><input type="radio" name="service_type" value="Roof Repair" /><span>Repair</span></label>
+            <label class="pq-radio"><input type="radio" name="service_type" value="Roof Inspection" /><span>Inspection</span></label>
+            <label class="pq-radio"><input type="radio" name="service_type" value="Storm Damage" /><span>Storm Damage</span></label>
+          </div>
+        </div>
+
+        <div class="pq-field">
+          <span class="pq-label">Timeline <span class="req" aria-hidden="true">*</span></span>
+          <div class="pq-radio-row" role="radiogroup" aria-label="Timeline, required" aria-required="true">
+            <label class="pq-radio"><input type="radio" name="timeline" value="Emergency" required /><span>Emergency</span></label>
+            <label class="pq-radio"><input type="radio" name="timeline" value="Within 30 days" /><span>30 Days</span></label>
+            <label class="pq-radio"><input type="radio" name="timeline" value="1-3 months" /><span>1-3 Months</span></label>
+            <label class="pq-radio"><input type="radio" name="timeline" value="Just exploring" /><span>Exploring</span></label>
+          </div>
+        </div>
+
+        <div class="pq-field" style="margin-bottom:0">
+          <label class="pq-label" for="notes">Notes for Happy Roof</label>
+          <textarea class="pq-textarea" id="notes" name="notes" rows="3" placeholder="Anything Happy Roof should know before reaching out (visible damage, HOA restrictions, best time to call, etc.)"></textarea>
+        </div>
+      </div>
+
+      <!-- Hidden fields populated by ?p= URL param -->
+      <input type="hidden" name="partner_slug" id="partner_slug" value="" />
+      <input type="hidden" name="_subject" value="Partner Referral Quote Request" />
+
+      <!-- Turnstile bot protection -->
+      <div style="margin: .5rem 0 1.25rem">
+        <TurnstileWidget formId="lp-form" />
+      </div>
+
+      <button type="submit" class="pq-submit" id="pq-submit-btn">
+        Send Referral to Happy Roof
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <p style="font-size:.75rem;color:#555;text-align:center;margin:.85rem 0 0;line-height:1.5">
+        Happy Roof will contact your customer directly within 24 hours. We'll email you at the address above once we've made contact so you can close the loop.
+      </p>
+    </form>
+
+    <!-- Success state -->
+    <div id="form-success" role="status" aria-live="polite" tabindex="-1" style="display:none;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:14px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 12px -6px rgba(0,0,0,.06);outline:none">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#1A1A1A;margin:.85rem 0 .5rem;letter-spacing:.01em">
+        Referral Received. Thanks!
+      </h3>
+      <p style="color:#555;font-size:.95rem;line-height:1.65;margin:0 auto;max-width:400px">
+        We'll reach out to your customer within 24 hours and email you once contact is made. Need us sooner? Call
+        <a href="tel:8135957663" style="color:#3B9FD9;font-weight:700;text-decoration:none">(813) 595-7663</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST FOOTER -->
+<section style="background:#FFFFFF;padding:2rem 0;border-top:1px solid #E0E0E0">
+  <div class="max-w-3xl mx-auto px-5">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#555;text-align:center;margin:0 0 1rem">Who You're Referring To</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem 2rem;color:#555;font-size:.85rem">
+      <span style="display:inline-flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>FL Licensed <strong style="color:#1A1A1A">#CCC1337380</strong></span>
+      <span style="display:inline-flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E5AA6" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><strong style="color:#1A1A1A">BBB Accredited</strong></span>
+      <span style="display:inline-flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8415A" stroke-width="2.2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><strong style="color:#1A1A1A">Owens Corning Preferred</strong></span>
+      <span style="display:inline-flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Insured &amp; Bonded</span>
+    </div>
+    <p style="text-align:center;color:#555;font-size:.78rem;line-height:1.55;margin:1.25rem 0 0;max-width:520px;margin-left:auto;margin-right:auto">
+      Happy Roof LLC | 141 Stevens Avenue #12, Oldsmar, FL 34677 | Questions? Call <a href="tel:8135957663" style="color:#3B9FD9;font-weight:700;text-decoration:none">(813) 595-7663</a>
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  // Prefill partner_slug + referral banner from ?p= URL param.
+  // Format: /lp/partner-quote?p=bay-area-hvac -> banner shows "Bay Area Hvac",
+  // hidden partner_slug field submits raw "bay-area-hvac".
+  (function() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var slug = params.get('p') || params.get('partner') || '';
+      slug = slug.trim().toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 60);
+      if (!slug) return;
+      var hidden = document.getElementById('partner_slug');
+      var banner = document.getElementById('pq-referred-banner');
+      var bannerName = document.getElementById('pq-referred-banner-name');
+      var companyInput = document.getElementById('rep_company');
+      if (hidden) hidden.value = slug;
+      var displayName = slug.split('-').map(function(w) { return w ? w[0].toUpperCase() + w.slice(1) : ''; }).join(' ');
+      if (bannerName) bannerName.textContent = displayName;
+      if (banner) banner.classList.add('show');
+      if (companyInput && !companyInput.value) companyInput.value = displayName;
+    } catch (_) { /* fail-open: form still works without the param */ }
+  })();
+
+  // Submit handler — routes through HR_Forms.submitLead so we reuse the
+  // Turnstile check + Breeze POST + FormSubmit fallback path all other
+  // forms use. Payload maps our two-section form onto the standard
+  // inbound-lead shape Breeze expects (name/phone/email/service/notes).
+  function submitPartnerQuote(e) {
+    e.preventDefault();
+    var form = e.target;
+    var data = new FormData(form);
+    var obj = {};
+    data.forEach(function(v, k) { obj[k] = v; });
+
+    var noteLines = [];
+    noteLines.push('REFERRED BY:');
+    noteLines.push('  Rep:     ' + (obj.rep_name || ''));
+    noteLines.push('  Company: ' + (obj.rep_company || '') + (obj.partner_slug ? ' [' + obj.partner_slug + ']' : ''));
+    noteLines.push('  Phone:   ' + (obj.rep_phone || ''));
+    noteLines.push('  Email:   ' + (obj.rep_email || ''));
+    noteLines.push('');
+    noteLines.push('SERVICE:  ' + (obj.service_type || ''));
+    noteLines.push('TIMELINE: ' + (obj.timeline || ''));
+    if (obj.notes && obj.notes.trim()) {
+      noteLines.push('');
+      noteLines.push('NOTES FROM REP:');
+      noteLines.push(obj.notes.trim());
+    }
+
+    var stPayload = {
+      name: obj.cust_name || '',
+      phone: obj.cust_phone || '',
+      email: obj.cust_email || '',
+      address: obj.cust_address || '',
+      service: (obj.service_type || 'Partner Referral') + ' (partner referral)',
+      notes: noteLines.join('\n'),
+      source: 'Partner Referral: ' + (obj.rep_company || 'unknown'),
+      page: '/lp/partner-quote'
+    };
+
+    var btn = document.getElementById('pq-submit-btn');
+    if (btn) { btn.disabled = true; btn.innerHTML = 'Sending referral...'; }
+
+    window.HR_Forms.submitLead(form, stPayload, {
+      formId: 'lp-form',
+      formSubmitPayload: obj
+    }).then(function(result) {
+      if (result.status === 'ok' || result.status === 'fallback_sent') {
+        form.style.display = 'none';
+        var successEl = document.getElementById('form-success');
+        successEl.style.display = 'block';
+        window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
+        // Move focus into the confirmation so keyboard + SR users land there.
+        try { successEl.focus(); } catch (_) {}
+        return;
+      }
+      if (btn) { btn.disabled = false; btn.innerHTML = 'Send Referral to Happy Roof <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'; }
+      var msg = (result.status === 'verification_expired')
+        ? 'Verification expired. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+        : (result.status === 'verification_unavailable')
+          ? 'Verification could not load. Please retry, or call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.'
+          : (result.message || 'Something went wrong. Please call <a href="tel:8135957663" style="color:#78350F;font-weight:700;text-decoration:underline">(813) 595-7663</a>.');
+      window.HR_Forms.showInlineNotice(form, 'error', msg);
+    });
+    return false;
+  }
+</script>
+
+</LandingLayout>
