@@ -25,7 +25,7 @@ const schema = `[{
       {
         "@type": "Question",
         "name": "What should I do immediately after my roof is damaged by a storm?",
-        "acceptedAnswer": { "@type": "Answer", "text": "First, ensure everyone is safe. Do not go on the roof yourself. If there is active leaking, place buckets or containers to collect water and move valuables away from the affected area. Call Happy Roof at (813) 595-7663 for emergency tarping to prevent further damage. Document everything with photos and contact your insurance company to file a claim." }
+        "acceptedAnswer": { "@type": "Answer", "text": "First, ensure everyone is safe. Do not go on the roof yourself. If there is active leaking, place buckets or containers to collect water and move valuables away from the affected area. Resist the urge to patch anything yourself, since a DIY fix can complicate the professional repair. Document everything with photos before you move anything, then call Happy Roof at (813) 595-7663 for emergency tarping to prevent further damage and contact your insurance company to file a claim." }
       },
       {
         "@type": "Question",
@@ -35,7 +35,7 @@ const schema = `[{
       {
         "@type": "Question",
         "name": "How quickly can Happy Roof respond to storm damage?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We prioritize emergency calls and aim to provide tarping and temporary protection as quickly as possible, often the same day or next day, depending on storm conditions and demand. Full repairs are scheduled based on severity, with the most critical damage addressed first." }
+        "acceptedAnswer": { "@type": "Answer", "text": "For most situations, we try to have tarping and emergency protection in place within 24 to 48 hours of contact. Following a major regional storm, response times can stretch depending on volume, but we triage by severity and prioritize anything with active water intrusion. Full permanent repairs are scheduled as soon as materials and permits are in place." }
       },
       {
         "@type": "Question",
@@ -55,7 +55,7 @@ const schema = `[{
       {
         "@type": "Question",
         "name": "What does hail damage to a roof look like?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Hail damage on asphalt shingles appears as round dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. Common signs include dented metal flashing, vents, and gutters; cracked or shattered tiles; granule buildup in gutters and downspouts; and bruised shingles that feel soft when pressed. Hail damage isn't always visible from the ground — many homeowners don't realize their roof is damaged until a leak appears months later. Happy Roof provides free post-storm hail inspections in Tampa Bay." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Hail damage on asphalt shingles appears as round dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. Common signs include dented metal flashing, vents, and gutters; cracked or shattered tiles; granule buildup in gutters and downspouts; and bruised shingles that feel soft when pressed. Hail damage isn't always visible from the ground, and many homeowners don't realize their roof is damaged until a leak appears months later. Happy Roof provides free post-storm hail inspections in Tampa Bay." }
       },
       {
         "@type": "Question",
@@ -65,7 +65,7 @@ const schema = `[{
       {
         "@type": "Question",
         "name": "How much hail damage justifies a roof replacement?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most insurance carriers and roofing manufacturers consider 8 or more hail impact marks within a 10-foot by 10-foot test square as significant enough to require full roof replacement rather than spot repair. Functional damage — exposed asphalt, granule loss, or compromised shingle integrity — also justifies replacement because patched repairs void manufacturer warranties on the rest of the roof. Happy Roof's free inspection includes a test square assessment to give you an honest recommendation." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Most insurance carriers and roofing manufacturers consider 8 or more hail impact marks within a 10-foot by 10-foot test square as significant enough to require full roof replacement rather than spot repair. Functional damage, exposed asphalt, granule loss, or compromised shingle integrity, also justifies replacement because patched repairs void manufacturer warranties on the rest of the roof. Happy Roof's free inspection includes a test square assessment to give you an honest recommendation." }
       },
       {
         "@type": "Question",
@@ -76,6 +76,21 @@ const schema = `[{
         "@type": "Question",
         "name": "When should I schedule my pre-hurricane-season roof inspection in Tampa Bay?",
         "acceptedAnswer": { "@type": "Answer", "text": "The optimal booking window for a pre-hurricane-season roof INSPECTION (distinct from a full replacement) is March 1 through May 15. This window exists because Florida licensed roofers need lead time to complete any repairs identified during inspection before the June 1 start of Atlantic hurricane season. Booking logic by month: MARCH is ideal because contractor calendars are still open and any needed repairs can be scheduled without competition. APRIL is workable but repair backlog begins to build. MAY 1-15 is the last practical booking window; roofers begin closing out May calendars as homeowners react to NOAA's Climate Prediction Center Atlantic Hurricane Season Outlook, which typically publishes in late May. Booking AFTER May 15 means repairs may not complete before June 1 and you enter hurricane season with known vulnerabilities. Booking DURING hurricane season (June-August) is safety-limited by daily thunderstorms and lightning; roofers avoid working rooftops in unstable conditions, extending timelines. If a tropical system passes within 200 miles of Tampa Bay, book a post-storm inspection within 5 days for insurance-claim timelines. Happy Roof offers free pre-season inspections. Call (813) 595-7663 or book online at happyroof.com/roof-inspection." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I stay in my home if a tree has fallen on the roof?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the extent of the impact. If the tree has penetrated the roof and there is any question about the structural stability of that section of the house, leaving and getting it assessed before you return is the safer call. If the impact looks minor and the structure seems sound, staying is generally okay, but get a professional out quickly either way, and do not try to move the tree yourself since that could cause further damage." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you repair a roof while it is still raining?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not safely or effectively. Wet surfaces are hazardous, and proper installation requires dry conditions for materials to adhere and seal correctly. If your roof is actively leaking, we can get emergency tarping in place as soon as conditions are safe and then schedule permanent repairs once the weather clears." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I check for roof damage myself?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A ground-level check is worth doing. Look for missing or displaced shingles, dented gutters, debris sitting on the roof, and any daylight visible through the attic. Getting up on the roof yourself, however, is an entirely different matter, especially right after a storm when surfaces are wet and potentially compromised. Leave the on-roof assessment to someone with the equipment and experience." }
       }
     ]
   },{
@@ -122,14 +137,11 @@ const schema = `[{
     <h1 class="font-display font-black tracking-tightest mb-5" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.92;letter-spacing:-.01em;color:#1A1A1A">
       STORM DAMAGE ROOF REPAIR<br/><span class="gt">TAMPA BAY.</span>
     </h1>
-    <p style="color:#1A1A1A;font-size:1.1rem;line-height:1.75;font-weight:600;max-width:640px;margin:0 auto 1rem">
-      If your roof was damaged by a storm in Tampa Bay, Happy Roof provides emergency tarping within 48 hours and handles the full insurance claim process. Licensed FL #CCC1337380. Call (813) 595-7663 for immediate assistance.
-    </p>
-    <p style="color:#1A1A1A;font-size:.95rem;line-height:1.8;max-width:600px;margin:0 auto 1rem;border-left:3px solid #E6A817;padding-left:1.25rem">
-      Most storm damage isn't visible from the ground. Wind can lift shingles without tearing them off, breaking the seal underneath. Rain gets in, and by the time you notice a stain on your ceiling, your decking and insulation are already compromised. That's why a professional inspection after any major storm isn't optional. It's how you prevent a $500 repair from becoming a $15,000 replacement.
+    <p style="color:#1A1A1A;font-size:1.1rem;line-height:1.75;font-weight:600;max-width:660px;margin:0 auto 1rem">
+      Tampa Bay doesn't give roofs much of a break. Between the heat and a storm season that runs six straight months, even a well-kept roof can take a hit when a major system rolls through.
     </p>
     <p class="max-w-2xl mx-auto" style="color:#555555;font-size:1.05rem;line-height:1.75">
-      When a hurricane, tropical storm, or severe weather damages your roof, you need a licensed contractor you can trust to respond fast, work with your insurance, and restore your home's protection. Happy Roof is here for Tampa Bay homeowners, before, during, and after the storm.
+      Happy Roof handles everything from emergency tarping and insurance documentation to full storm restoration for residential and commercial properties in the area. We're a licensed roofing contractor, and we're here before, during, and after the storm. Learn more about our storm damage roof repair services below.
     </p>
     <div class="flex flex-wrap gap-3 justify-center mt-8">
       <a href="tel:8135957663" class="btn-t call-tracking-number">Call Now: (813) 595-7663 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
@@ -158,16 +170,16 @@ const schema = `[{
   <div class="max-w-7xl mx-auto px-5">
     <div class="grid lg:grid-cols-2 gap-14 items-start">
       <div>
-        <p class="sl gt mb-3">After the Storm</p>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">HURRICANE &amp; STORM DAMAGE ROOF REPAIR IN TAMPA BAY</h2>
+        <p class="sl gt mb-3">Our Services</p>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">OUR HURRICANE AND STORM DAMAGE REPAIR SERVICES</h2>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          Tampa Bay sits in one of the most hurricane-prone regions in the United States. Every year from June through November, homeowners face the real possibility of high winds, torrential rain, hail, and flying debris that can severely damage roofing systems. Even tropical storms that don't make direct landfall can generate wind gusts strong enough to tear off shingles, crack tiles, dent metal panels, and compromise flashing.
+          If your roof took a hit in a recent storm, we can help. Our crew handles all types of storm-related roof damage, including missing or blown-off shingles, cracked or broken tiles, dented or torn metal panels, damaged flashing, punctures from debris, soffit or fascia damage, gutter damage, or structural issues from fallen trees or heavy impacts.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          After a storm hits, time is critical. Exposed decking and damaged areas allow water to infiltrate your home, leading to mold growth, structural rot, damaged insulation, and ruined personal property. The longer your roof goes unprotected, the worse the secondary damage becomes, and the more expensive the repair.
+          <strong>Emergency Tarping.</strong> Getting tarps up within the first 24 to 48 hours is the most effective thing you can do to keep secondary damage from compounding. We'll deploy heavy-duty tarps as quickly as possible to protect the structure while you wait for permanent repairs or insurance approval.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          Happy Roof provides emergency tarping, damage assessment, insurance claim assistance, and full storm damage repair for residential and commercial properties across Tampa Bay. Need help navigating the insurance process? Read our step-by-step guide on <a href="/blog/how-to-file-roof-insurance-claim" style="color:#3B9FD9;text-decoration:none;font-weight:600">how to file a roof insurance claim in Florida</a>. We are a licensed Florida roofing contractor (CCC1337380) with the experience and resources to help you recover quickly and correctly.
+          <strong>Full Storm Restoration.</strong> From minor shingle repair to full tear-off and reinstallation, every level of storm repair comes with the same care and written workmanship warranty we put on all of our standard installations. Need help navigating the insurance process? Read our step-by-step guide on <a href="/blog/how-to-file-roof-insurance-claim" style="color:#3B9FD9;text-decoration:none;font-weight:600">how to file a roof insurance claim in Florida</a>. We are a licensed Florida roofing contractor (CCC1337380) with the experience and resources to help you recover quickly and correctly.
         </p>
       </div>
       <div class="space-y-4">
@@ -201,42 +213,42 @@ const schema = `[{
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Wind Damage</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">High winds lift, crack, and tear roofing materials from the deck. Even without visible missing shingles, wind can break the seal between shingle layers, allowing water to penetrate beneath the surface. Metal panels can be bent or loosened, and tiles can shift or crack under sustained gusts.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Wind doesn't have to reach hurricane speed to do some real damage. Sustained tropical-storm-force winds can break the seal between shingle layers without visibly tearing anything off. Once that seal fails, water can work its way underneath during the next heavy rain, or tiles may shift just enough to expose the underlayment below.</p>
       </div>
       <div class="scard p-6">
         <div class="step-num mb-4">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3m-7.8-4.2 2.1-2.1m9.6-9.6 2.1-2.1M3 12h3m12 0h3M4.2 4.2l2.1 2.1m9.6 9.6 2.1 2.1"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Hail Damage</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">Hail impacts dislodge protective granules from asphalt shingles, creating weak spots that accelerate deterioration. On metal roofs, hail leaves dents that compromise the panel's structural integrity. Tile roofs can crack or shatter under large hailstones, requiring immediate replacement.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Hail can knock the protective granules off asphalt shingles and leave exposed spots that could eventually allow water infiltration. On metal, it leaves dents that could compromise the panel's structural integrity, while tile may crack or completely shatter. What's tricky about hail damage is that it tends to look minor from the ground and likely won't show up as a leak until months later.</p>
       </div>
       <div class="scard p-6">
         <div class="step-num mb-4">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Debris Impact</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">Fallen tree branches, flying objects, and airborne debris can puncture roofing materials, crack tiles, dent metal, and damage gutters, fascia, and soffit. Even small impacts can create entry points for water that lead to significant interior damage if not addressed promptly.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Falling branches, flying debris, and anything the wind picks up can puncture roofing materials, crack tiles, dent metal panels, and damage gutters or fascia in ways that aren't always obvious until you're actually up there looking at it. Even a relatively small impact can create a water entry point that will do damage over time if it goes unaddressed.</p>
       </div>
       <div class="scard p-6">
         <div class="step-num mb-4">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Water Intrusion</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">Torrential rain driven by high winds can force water under shingles, through damaged flashing, and into any gap or weakness in your roof system. Once water gets past the exterior, it saturates decking, insulation, and drywall - creating conditions for mold growth within 24-48 hours.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">Heavy rain driven by wind doesn't need much of an opening to get through. It will work under lifted shingles and into any spot where sealant has cracked or pulled away. Once it's past the exterior, it saturates decking and insulation quickly, and in Florida's humidity, mold can start to grow within a day or two.</p>
       </div>
       <div class="scard p-6">
         <div class="step-num mb-4">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Structural Damage</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">Severe storms can compromise the underlying structure of your roof - bending trusses, cracking rafters, or weakening the roof deck itself. Structural damage often isn't visible from the outside and requires professional assessment to identify and repair safely.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">When a tree comes down on a roof or debris hits hard enough, the damage can go well beyond the surface. Cracked rafters and compromised decking don't always show from the outside, which is exactly why a professional inspection after a major storm matters even when things look okay from the ground.</p>
       </div>
       <div class="scard p-6">
         <div class="step-num mb-4">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
         </div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem">Flashing &amp; Sealant Failure</h3>
-        <p style="color:#555555;font-size:.9rem;line-height:1.7">Storm pressure and temperature swings stress the flashing and sealants around vents, chimneys, skylights, and roof edges. When these fail, they create some of the most persistent and damaging leak points on any roof - and they're often missed during surface-level assessments.</p>
+        <p style="color:#555555;font-size:.9rem;line-height:1.7">The flashing around chimneys, vents, skylights, and wall-to-roof transitions tends to take the brunt of heavy wind. If any of these start to pull away or crack open, they can become one of the most persistent leak sources on the entire roof, and they're often missed during surface-level assessments.</p>
       </div>
     </div>
   </div>
@@ -247,7 +259,10 @@ const schema = `[{
   <div class="max-w-7xl mx-auto px-5">
     <div class="text-center mb-14">
       <p class="sl gt mb-3">Insurance Claims</p>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">HOW WE HELP WITH YOUR INSURANCE CLAIM</h2>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">HOW WE CAN HELP WITH YOUR INSURANCE CLAIM</h2>
+      <p style="color:#555555;font-size:1rem;line-height:1.75;max-width:720px;margin:1.25rem auto 0">
+        We prepare detailed damage reports with photographs and written assessments formatted the way adjusters expect to see them. When your adjuster schedules an on-site inspection, we can be there for that too, to walk them through any affected areas and make sure nothing gets overlooked or characterized as pre-existing wear. If your adjuster comes back saying the damage isn't storm-related, it's usually worth getting another opinion. Denials and underpayments on storm claims happen all the time, and a second inspection by a licensed contractor typically ends up revealing damage that wasn't captured the first time. We work with all major Florida insurers and can help you build the documentation needed to contest a low offer.
+      </p>
     </div>
     <div class="max-w-3xl mx-auto space-y-8">
       <div class="flex gap-5 items-start">
@@ -268,7 +283,7 @@ const schema = `[{
         <div class="step-num">3</div>
         <div>
           <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:.35rem">Adjuster Meeting</h3>
-          <p style="color:#555555;font-size:.95rem;line-height:1.75">When your insurance adjuster visits, we can be present to walk through the damage together. Having a licensed roofing professional on-site helps ensure the adjuster sees all affected areas and understands the full scope of repair required.</p>
+          <p style="color:#555555;font-size:.95rem;line-height:1.75">When your insurance adjuster visits, we can be present to walk through the damage together. Having a licensed roofing professional on-site helps ensure the adjuster sees all affected areas and understands the full scope of repair required. If the initial estimate comes back low or denied, we can help you build the documentation to challenge it.</p>
         </div>
       </div>
       <div class="flex gap-5 items-start">
@@ -288,15 +303,15 @@ const schema = `[{
     <div class="grid lg:grid-cols-2 gap-14 items-start">
       <div>
         <p class="sl gp mb-3">After the Storm</p>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHAT TO DO AFTER YOUR ROOF IS DAMAGED</h2>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHAT SHOULD I DO IMMEDIATELY AFTER MY ROOF IS DAMAGED BY A STORM?</h2>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          The hours and days after a storm are stressful. Knowing the right steps to take can protect your family, your property, and your insurance claim. Here's what we recommend to every Tampa Bay homeowner after severe weather:
+          First and foremost, stay off the roof. Post-storm surfaces are slippery and can be full of hazards that aren't always obvious until you're up there, which is why it's best left to professionals.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          <strong>Stay safe first.</strong> Never climb on your roof after a storm. Damaged surfaces are slippery, structurally uncertain, and may have hidden hazards like exposed nails or weakened areas. Leave the roof assessment to licensed professionals with proper safety equipment.
+          From the ground, on the other hand, start documenting whatever you can see. Photos and video taken right after a storm will go a long way toward establishing the timeline for your insurance claim, so do a walkabout while it's still fresh and capture anything visible.
         </p>
         <p style="color:#555555;font-size:1rem;line-height:1.75;margin-bottom:1.5rem">
-          <strong>Document what you can from the ground.</strong> Take photos and video of any visible damage from safe vantage points. This helps both your insurance claim and our initial assessment when we arrive on-site.
+          You'll also want to notify your insurance company as soon as possible, since most Florida policies have time limits on reporting storm damage. Then call Happy Roof so we can get emergency tarping in place before more water finds its way in.
         </p>
       </div>
       <div class="space-y-4">
@@ -327,7 +342,7 @@ const schema = `[{
     </div>
 
     <div class="grid md:grid-cols-2 gap-4 mb-8">
-      <!-- LEFT COLUMN — items 1-6 -->
+      <!-- LEFT COLUMN items 1-6 -->
       <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:14px;padding:1.5rem 1.75rem">
         <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:1rem">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(232,65,90,.12);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8415A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
@@ -343,7 +358,7 @@ const schema = `[{
         </div>
       </div>
 
-      <!-- RIGHT COLUMN — items 7-11 -->
+      <!-- RIGHT COLUMN items 7-11 -->
       <div style="background:#F7F7F7;border:1px solid #E0E0E0;border-radius:14px;padding:1.5rem 1.75rem">
         <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:1rem">
           <div style="width:36px;height:36px;border-radius:10px;background:rgba(59,159,217,.12);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
@@ -367,12 +382,27 @@ const schema = `[{
   </div>
 </section>
 
+<!-- WHEN TO SCHEDULE PRE-HURRICANE INSPECTION -->
+<section class="py-20" style="background:#F5F5F5;border-top:1px solid #E5E5E5;border-bottom:1px solid #E5E5E5">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="sl gt mb-3">Booking Window</p>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em;margin-bottom:1.5rem">WHEN SHOULD I SCHEDULE MY PRE-HURRICANE SEASON ROOF INSPECTION?</h2>
+    <p style="color:#555555;font-size:1.05rem;line-height:1.75;margin-bottom:1.25rem">
+      The best window is usually between March and early May, which will give you enough time to complete any repairs that come up before the season officially starts. By mid-May, it's not uncommon for contractors' schedules to start filling up, and in many cases, the work can't be finished before June 1. If you missed the spring window, we recommend scheduling as soon as the weather allows during Florida's summer rainy season.
+    </p>
+    <p style="color:#555555;font-size:1.05rem;line-height:1.75;margin-bottom:1.75rem">
+      Happy Roof offers free pre-season inspections and can usually get on the calendar within a few business days outside of peak periods.
+    </p>
+    <a href="tel:8135957663" class="btn-t call-tracking-number">Call (813) 595-7663 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="py-20" style="background:#FFFFFF">
   <div class="max-w-3xl mx-auto px-5">
     <div class="text-center mb-14">
       <p class="sl gp mb-3">FAQ</p>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">FREQUENTLY ASKED QUESTIONS</h2>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A;letter-spacing:-.01em">STORM DAMAGE FAQS</h2>
     </div>
     <div>
       <div class="faq-item">
@@ -399,7 +429,7 @@ const schema = `[{
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We prioritize emergency calls and aim to provide tarping and temporary protection as quickly as possible, often the same day or next day, depending on storm conditions and demand in the area. After major hurricanes, wait times may be longer due to volume, but we triage by severity and address the most critical situations first. Full permanent repairs are scheduled as soon as materials and permits are in place.</div>
+          <div class="faq-answer-inner">For most situations, we try to have tarping and emergency protection in place within 24 to 48 hours of contact. Following a major regional storm, response times can stretch depending on volume, but we triage by severity and prioritize anything with active water intrusion. Full permanent repairs are scheduled as soon as materials and permits are in place.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -435,7 +465,7 @@ const schema = `[{
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Hail damage on asphalt shingles appears as round dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. Common signs include dented metal flashing, vents, and gutters; cracked or shattered tiles; granule buildup in gutters and downspouts; and bruised shingles that feel soft when pressed. Hail damage isn't always visible from the ground &mdash; many homeowners don't realize their roof is damaged until a leak appears months later. Happy Roof provides free post-storm hail inspections in Tampa Bay.</div>
+          <div class="faq-answer-inner">Hail damage on asphalt shingles appears as round dark spots where granules have been knocked loose, exposing the black asphalt mat underneath. Common signs include dented metal flashing, vents, and gutters; cracked or shattered tiles; granule buildup in gutters and downspouts; and bruised shingles that feel soft when pressed. Hail damage isn't always visible from the ground, and many homeowners don't realize their roof is damaged until a leak appears months later. Happy Roof provides free post-storm hail inspections in Tampa Bay.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -474,6 +504,42 @@ const schema = `[{
           <div class="faq-answer-inner">The optimal booking window for a pre-hurricane-season roof <strong>inspection</strong> (distinct from a full replacement) is <strong>March 1 through May 15</strong>. Florida licensed roofers need lead time to complete any repairs identified during inspection before the June 1 start of Atlantic hurricane season.<br/><br/><strong>Booking logic by month:</strong><br/>&bull; <strong>March</strong> is ideal: contractor calendars are still open and any needed repairs can be scheduled without competition.<br/>&bull; <strong>April</strong> is workable, but repair backlog begins to build.<br/>&bull; <strong>May 1-15</strong> is the last practical booking window. Roofers begin closing out May calendars as homeowners react to NOAA's Climate Prediction Center Atlantic Hurricane Season Outlook, which typically publishes in late May.<br/>&bull; <strong>After May 15</strong>: repairs may not complete before June 1 and you enter hurricane season with known vulnerabilities.<br/>&bull; <strong>June-August</strong>: safety-limited by daily thunderstorms and lightning. Roofers avoid working rooftops in unstable conditions, extending timelines.<br/><br/>If a tropical system passes within 200 miles of Tampa Bay, book a post-storm inspection within 5 days for insurance-claim timelines. Happy Roof offers free pre-season inspections. Call <a href="tel:8135957663" class="call-tracking-number" style="color:#3B9FD9;text-decoration:none;font-weight:600">(813) 595-7663</a> or book online at <a href="/roof-inspection" style="color:#3B9FD9;text-decoration:none;font-weight:600">happyroof.com/roof-inspection</a>.</div>
         </div>
       </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Should I stay in my home if a tree has fallen on the roof?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">It depends on the extent of the impact. If the tree has penetrated the roof and there's any question about the structural stability of that section of the house, leaving and getting it assessed before you return is the safer call. If the impact looks minor and the structure seems sound, staying is generally okay, but get a professional out quickly either way, and don't try to move the tree yourself since that could cause further damage.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Can you repair a roof while it's still raining?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Not safely or effectively. Wet surfaces are hazardous, and proper installation requires dry conditions for materials to adhere and seal correctly. If your roof is actively leaking, we can get emergency tarping in place as soon as conditions are safe and then schedule permanent repairs once the weather clears.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          Can I check for roof damage myself?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">A ground-level check is definitely worth doing. Look for missing or displaced shingles, dented gutters, debris sitting on the roof, and any daylight visible through the attic. Getting up on the roof yourself, however, is an entirely different matter, especially right after a storm when surfaces are wet and potentially compromised. We recommend leaving the on-roof assessment to someone with the equipment and experience.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.classList.toggle('open')">
+          What should I do if my roof is leaking after a storm?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Move anything valuable away from the affected area and collect water in any containers you have on hand. Take photos of the leak and any interior damage before you do anything else. Finally, resist the urge to patch it yourself; it could end up making the professional repair that much more complicated. Call Happy Roof at (813) 595-7663 and we'll get emergency tarping in place as soon as conditions allow.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -482,9 +548,9 @@ const schema = `[{
 <section class="cta-grad relative overflow-hidden py-20">
   <div class="relative z-10 max-w-3xl mx-auto px-5 text-center">
     <h2 class="font-display font-black tracking-tightest mb-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.01em">
-      STORM DAMAGE<span style="color:#F0C040">?</span> WE'RE HERE.
+      STORM DAMAGE<span style="color:#F0C040">?</span> WE'RE JUST A PHONE CALL AWAY.
     </h2>
-    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">Call us now for emergency tarping, damage assessment, and insurance claim support. We respond as fast as conditions allow.</p>
+    <p style="color:rgba(255,248,240,.85);font-size:1rem;line-height:1.75;margin-bottom:2rem">The sooner you call after a storm, the better the outcome tends to be. We handle everything from the first tarp to the final inspection and will work with your insurance every step of the way. Call or contact us online, and we'll get to you as fast as conditions allow.</p>
     <div class="flex flex-wrap gap-3 justify-center">
       <a href="tel:8135957663" class="btn-t call-tracking-number" style="font-size:1.15rem;padding:1rem 2.5rem">Call (813) 595-7663 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
       <a href="/contact" class="btn-o" style="font-size:1.05rem;padding:1rem 2.5rem">Request Emergency Service</a>
