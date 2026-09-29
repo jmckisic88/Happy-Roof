@@ -295,9 +295,10 @@ const schema = `[{
     /* ── Step card ── */
     /* ── Footer ── */
     /* ── Form ── */
-        .hero-bg .btn-t{width:100%;justify-content:center;font-size:1rem !important;padding:.85rem 1.5rem !important}
-        .hero-bg .badge{font-size:.7rem;padding:.3rem .6rem}
-      }
+    @media (max-width:640px) {
+      .hero-bg .btn-t{width:100%;justify-content:center;font-size:1rem !important;padding:.85rem 1.5rem !important}
+      .hero-bg .badge{font-size:.7rem;padding:.3rem .6rem}
+    }
     /* Service radio cards — mirrors /contact so the two forms match. */
     .service-grid{display:grid;grid-template-columns:1fr;gap:.5rem}
     @media (min-width:640px){.service-grid{grid-template-columns:1fr 1fr}}
