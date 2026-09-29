@@ -1,0 +1,560 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = `[{
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "RoofingContractor"],
+    "name": "Happy Roof LLC",
+    "url": "https://happyroof.com",
+    "telephone": "+1-813-595-7663",
+    "email": "info@happyroof.com",
+    "description": "Tampa Bay Certified GoNano Contractor offering GoNano NuRoof Fortify, GoNano NuRoof Revive, and GoNano Bio-Boost nano-penetrating treatments. Structural Roof Rejuvenation with a 15-year hard warranty on Fortify and a 10-year hard warranty on Revive. FL License #CCC1337380.",
+    "image": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "logo": "/Brand%20Assets/Happy%20Roof%20Logo.jpeg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "141 Stevens Ave #12","addressLocality": "Oldsmar",
+      "addressRegion": "FL","postalCode": "34677","addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Hillsborough County" },
+      { "@type": "AdministrativeArea", "name": "Pinellas County" },
+      { "@type": "AdministrativeArea", "name": "Pasco County" }
+    ],
+    "hasCredential": [
+      "Florida Roofing Contractor License #CCC1337380",
+      "Certified GoNano Contractor",
+      "Owens Corning Preferred Contractor",
+      "BBB Accredited Business"
+    ],
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "GoNano NuRoof Fortify", "description": "Nano-penetrating treatment for newer roofs (0 to 5 years). 15-year hard warranty. Doubles impact resistance to hail." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "GoNano NuRoof Revive", "description": "Nano-penetrating treatment for aging shingles (5 to 20 years). 10-year hard warranty. Restores strength and flexibility." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "GoNano Bio-Boost", "description": "Bio-oil treatment for older roofs (10 years and up). 5-year prorated warranty. Environmentally conscious formulation." } }
+    ],
+    "dateModified": "2026-09-29"
+  },{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question","name": "What is GoNano NuRoof?","acceptedAnswer": {"@type": "Answer","text": "GoNano NuRoof is a nano-penetrating treatment that bonds with asphalt shingles at the molecular level to restore flexibility and strength, then forms a hydrophobic layer that repels water and shields against moss, algae, UV, wind, and hail. GoNano calls this Structural Roof Rejuvenation. It is a cost-effective alternative to a full roof replacement and is backed by a hard manufacturer warranty."}},
+      {"@type": "Question","name": "How much does GoNano NuRoof cost compared to a full roof replacement?","acceptedAnswer": {"@type": "Answer","text": "A GoNano NuRoof installation is typically a fraction of a full roof replacement in Tampa Bay ($20,000 to $40,000+). Because the treatment rejuvenates the existing roof rather than tearing it off, most homeowners save a significant percentage while still getting a hard warranty. Happy Roof provides a free written GoNano NuRoof assessment so you know the exact number for your roof before you decide."}},
+      {"@type": "Question","name": "Will GoNano NuRoof actually help me with insurance?","acceptedAnswer": {"@type": "Answer","text": "GoNano NuRoof has $1 Million in independent testing (ASTM, UL, IBHS, Green Center) that has been shared with insurers as evidence that treated roofs are more resistant to hail and wind damage. Florida insurers evaluate roofs individually, so results vary, but well-maintained and treated roofs consistently receive more favorable underwriting than untreated aging roofs. Happy Roof documents the installation for your carrier and helps with wind mitigation paperwork."}},
+      {"@type": "Question","name": "Which GoNano product is right for my roof?","acceptedAnswer": {"@type": "Answer","text": "GoNano NuRoof Fortify is designed for newer roofs (0 to 5 years) and carries a 15-year hard warranty, doubling impact resistance to hail and debris. GoNano NuRoof Revive is for aging roofs (5 to 20 years) that need restoration and carries a 10-year hard warranty; independent testing shows that a 15-year-old shingle treated with GoNano NuRoof Revive can be stronger than a brand-new untreated shingle. GoNano Bio-Boost is a bio-oil treatment for older roofs (10 years and up) with a 5-year prorated warranty. Happy Roof recommends a specific product based on a free on-site inspection."}},
+      {"@type": "Question","name": "Is Happy Roof a Certified Contractor for GoNano?","acceptedAnswer": {"@type": "Answer","text": "Yes. Happy Roof is a Certified GoNano Contractor authorized to sell and install GoNano NuRoof Fortify, GoNano NuRoof Revive, and GoNano Bio-Boost across Tampa Bay. Certification means we have completed GoNano's product training and installation protocol, we use GoNano-approved application equipment, and every installation carries the manufacturer hard warranty in writing."}},
+      {"@type": "Question","name": "How long does a GoNano NuRoof installation take?","acceptedAnswer": {"@type": "Answer","text": "Most residential GoNano NuRoof installations are completed in a single day (roughly 90 minutes to a few hours on the roof plus setup and cleanup). There is no tear-off, no dumpster, no landscape damage, and no disruption to your home's interior. You can typically walk on the roof again within hours."}},
+      {"@type": "Question","name": "Is GoNano safe around pets, plants, and children?","acceptedAnswer": {"@type": "Answer","text": "Yes. GoNano treatments, especially GoNano Bio-Boost which incorporates renewable bio-oils, are formulated to be environmentally conscious and safe around gardens, pets, and children once cured. As with any application work, we ask that you keep pets and children away from the immediate work area during installation."}}
+    ]
+  },{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Structural Roof Rejuvenation",
+    "name": "GoNano NuRoof Nano-Penetrating Treatment",
+    "provider": { "@type": "RoofingContractor", "name": "Happy Roof LLC", "telephone": "+1-813-595-7663", "url": "https://happyroof.com" },
+    "areaServed": { "@type": "State", "name": "Florida" },
+    "description": "Certified GoNano Contractor in Tampa Bay. Nano-penetrating treatments (GoNano NuRoof Fortify, GoNano NuRoof Revive, GoNano Bio-Boost) backed by a hard manufacturer warranty. $1 Million in independent testing. Doubles impact resistance to hail and costs a fraction of a full replacement."
+  }]`;
+---
+
+<BaseLayout
+  title="GoNano NuRoof in Tampa Bay | Happy Roof"
+  description="Happy Roof is a Certified GoNano Contractor installing GoNano NuRoof Fortify, GoNano NuRoof Revive, and GoNano Bio-Boost. Nano-penetrating treatments backed by a hard manufacturer warranty. Extreme Weather Protection without a full replacement."
+  canonical="https://happyroof.com/gonano"
+  ogTitle="GoNano NuRoof | Happy Roof Tampa Bay"
+  ogDescription="Extreme Weather Protection with GoNano NuRoof nano-penetrating treatment, installed by a Certified GoNano Contractor in Tampa Bay."
+  activePage="gonano"
+  schema={schema}
+>
+
+<style is:inline>
+  :root {
+    --gn-purple: #675CE7;
+    --gn-purple-dark: #5347D0;
+    --gn-purple-tint: #EEEDFF;
+    --gn-navy: #14163A;
+    --gn-orange: #E76E38;
+    --gn-fortify: #675CE7;
+    --gn-revive: #E76E38;
+    --gn-boost: #2E8B57;
+  }
+
+  /* Utility cards + layouts scoped to /gonano */
+  .gn-hero-bg {
+    position:absolute;inset:0;
+    background:
+      radial-gradient(60% 45% at 78% 22%, rgba(103,92,231,.14) 0%, transparent 65%),
+      radial-gradient(50% 40% at 12% 82%, rgba(231,110,56,.10) 0%, transparent 62%),
+      #FBFAFF;
+  }
+  .gn-molecule-bg {
+    position:absolute;inset:0;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%236366F1' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3Ccircle cx='30' cy='90' r='8'/%3E%3Ccircle cx='90' cy='30' r='8'/%3E%3Ccircle cx='90' cy='90' r='8'/%3E%3Cline x1='30' y1='30' x2='30' y2='90' stroke='%236366F1' stroke-width='1.5' stroke-opacity='.15'/%3E%3Cline x1='30' y1='30' x2='90' y2='30' stroke='%236366F1' stroke-width='1.5' stroke-opacity='.15'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:120px 120px;opacity:.55;pointer-events:none;
+  }
+  .gn-eyebrow {
+    display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--gn-purple);
+    background:var(--gn-purple-tint);padding:.4rem 1rem;border-radius:999px;
+  }
+
+  .gn-badge-img { display:block;width:100%;height:auto;max-width:280px;margin:0 auto;border-radius:8px;box-shadow:0 8px 32px -12px rgba(20,22,58,.28) }
+
+  .gn-mech-card {
+    background:#FFFFFF;border:1px solid #E5E5F0;border-radius:16px;padding:1.75rem 1.5rem;text-align:center;
+    box-shadow:0 8px 28px -18px rgba(103,92,231,.35);
+    transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,border-color .22s ease;
+  }
+  .gn-mech-card:hover { transform:translateY(-3px); box-shadow:0 14px 40px -18px rgba(103,92,231,.45); border-color:#D3D6F2 }
+  .gn-mech-icon {
+    width:56px;height:56px;border-radius:14px;background:var(--gn-purple-tint);color:var(--gn-purple);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
+  }
+
+  .gn-tier-card {
+    background:#FFFFFF;border:1px solid #E5E5F0;border-radius:18px;padding:0;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 10px 40px -22px rgba(20,22,58,.28);
+    transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;
+  }
+  .gn-tier-card:hover { transform:translateY(-4px);box-shadow:0 20px 60px -22px rgba(20,22,58,.4) }
+  .gn-tier-head { padding:1.25rem 1.5rem;color:#FFFFFF;display:flex;align-items:center;justify-content:space-between;gap:.75rem }
+  .gn-tier-head strong { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:.01em;line-height:1 }
+  .gn-tier-head small { font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;font-weight:700 }
+  .gn-tier-body { padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;gap:1rem }
+  .gn-tier-metric {
+    display:inline-flex;align-items:baseline;gap:.35rem;font-family:'Barlow Condensed',sans-serif;color:#1A1A1A
+  }
+  .gn-tier-metric .n { font-size:2.4rem;font-weight:900;line-height:1;letter-spacing:-.02em }
+  .gn-tier-metric .u { font-size:.85rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#555 }
+  .gn-tier-desc { color:#4A4A55;font-size:.95rem;line-height:1.65 }
+  .gn-tier-list { list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem }
+  .gn-tier-list li { display:flex;align-items:flex-start;gap:.55rem;font-size:.9rem;color:#333;line-height:1.55 }
+  .gn-tier-list svg { flex-shrink:0;margin-top:.15rem }
+
+  .gn-test-card {
+    background:#FFFFFF;border:1px solid #E5E5F0;border-radius:14px;padding:1.25rem 1.25rem;
+    display:flex;flex-direction:column;gap:.35rem;
+  }
+  .gn-test-label { font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gn-purple);font-size:.72rem }
+  .gn-test-code { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.75rem;line-height:1;color:#1A1A1A;letter-spacing:-.01em }
+  .gn-test-desc { color:#555;font-size:.85rem;line-height:1.55 }
+
+  .gn-quote-card {
+    background:#FFFFFF;border-left:4px solid var(--gn-purple);border-radius:12px;padding:1.5rem 1.5rem;
+    box-shadow:0 8px 28px -18px rgba(20,22,58,.25);
+  }
+  .gn-quote-card.alt { border-left-color:var(--gn-orange) }
+  .gn-quote-stars { color:#E76E38;font-size:1rem;letter-spacing:.05em;margin-bottom:.5rem }
+  .gn-quote-body { color:#1A1A1A;font-size:1rem;line-height:1.7;font-style:italic }
+  .gn-quote-attr { margin-top:.85rem;color:#555;font-size:.85rem }
+  .gn-quote-attr strong { color:#1A1A1A;font-weight:700 }
+
+  .gn-cta-primary {
+    display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.75rem;background:var(--gn-purple);color:#FFFFFF;
+    border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    font-size:1.05rem;text-decoration:none;
+    box-shadow:0 8px 28px -8px rgba(103,92,231,.55);
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,box-shadow .18s ease;
+  }
+  .gn-cta-primary:hover { background:var(--gn-purple-dark);transform:translateY(-2px);box-shadow:0 14px 36px -10px rgba(103,92,231,.7) }
+  .gn-cta-ghost {
+    display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.75rem;background:transparent;color:#1A1A1A;
+    border:1.5px solid #1A1A1A;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+    letter-spacing:.05em;text-transform:uppercase;font-size:1.05rem;text-decoration:none;
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,color .18s ease;
+  }
+  .gn-cta-ghost:hover { background:#1A1A1A;color:#FFFFFF;transform:translateY(-2px) }
+
+  .gn-ins-strip {
+    background:linear-gradient(135deg,var(--gn-navy) 0%,#232659 50%,var(--gn-purple) 100%);
+    color:#FFFFFF;position:relative;overflow:hidden;
+  }
+
+  /* Defensive grid utilities scoped to /gonano so we don't depend on
+     the site Tailwind JIT picking up new classes in this page. */
+  .gn-grid-2 { display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center }
+  .gn-grid-3 { display:grid;grid-template-columns:1fr;gap:1.5rem }
+  .gn-grid-4 { display:grid;grid-template-columns:1fr;gap:1rem;max-width:64rem;margin-left:auto;margin-right:auto }
+  .gn-quotes { display:grid;grid-template-columns:1fr;gap:1.25rem;max-width:64rem;margin-left:auto;margin-right:auto }
+  .gn-stat-grid { display:grid;grid-template-columns:1fr 1fr;gap:1rem }
+  @media (min-width:768px) {
+    .gn-grid-2 { grid-template-columns:1fr 1fr;gap:3rem }
+    .gn-grid-3 { grid-template-columns:repeat(3,1fr) }
+    .gn-grid-4 { grid-template-columns:repeat(4,1fr) }
+    .gn-quotes { grid-template-columns:1fr 1fr }
+  }
+  .gn-ins-strip::before {
+    content:"";position:absolute;inset:0;opacity:.12;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23FFFFFF'%3E%3Ccircle cx='35' cy='35' r='6'/%3E%3Ccircle cx='105' cy='35' r='6'/%3E%3Ccircle cx='35' cy='105' r='6'/%3E%3Ccircle cx='105' cy='105' r='6'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:140px 140px;
+  }
+</style>
+
+<!-- HERO -->
+<section class="pt-32 pb-14 relative overflow-hidden">
+  <div class="gn-hero-bg" aria-hidden="true"></div>
+  <div class="gn-molecule-bg" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-5">
+    <div class="gn-grid-2">
+      <div>
+        <span class="gn-eyebrow">Certified GoNano Contractor</span>
+        <h1 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5.5vw,4.25rem);line-height:.95;letter-spacing:-.01em;color:#1A1A1A">
+          <span style="color:var(--gn-purple)">EXTREME WEATHER</span> PROTECTION.<br/>
+          SKIP THE REPLACEMENT.
+        </h1>
+        <p class="mt-5" style="color:#4A4A55;font-size:1.1rem;line-height:1.7;max-width:32em">
+          Happy Roof is Tampa Bay's Certified GoNano Contractor for GoNano NuRoof, a nano-penetrating treatment that bonds with your shingles at the molecular level, restores strength, and shields against moss, algae, UV, wind, and hail. It is Structural Roof Rejuvenation, backed by a hard manufacturer warranty, at a fraction of the cost of a full replacement.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/contact?service=gonano" class="gn-cta-primary">
+            Get a free GoNano NuRoof assessment
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="tel:8135957663" class="gn-cta-ghost call-tracking-number">Call (813) 595-7663</a>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm" style="color:#555">
+          <span style="display:inline-flex;align-items:center;gap:.4rem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            $1M in independent testing
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:.4rem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            15-year hard warranty
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:.4rem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            One-day install
+          </span>
+        </div>
+      </div>
+      <div class="text-center">
+        <img src="/Brand%20Assets/gonano/certified-contractor-light.png" alt="Certified GoNano Contractor badge" class="gn-badge-img" width="800" height="240" loading="eager" />
+        <p class="mt-4 text-sm" style="color:#666">Happy Roof is authorized to install GoNano NuRoof Fortify, GoNano NuRoof Revive, and GoNano Bio-Boost in Tampa Bay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-20" style="background:#FFFFFF;border-top:1px solid #E5E5F0">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <span class="gn-eyebrow">How It Works</span>
+      <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A">
+        NANOTECHNOLOGY THAT BONDS <span style="color:var(--gn-purple)">TO THE ROOF ITSELF</span>.
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto" style="color:#555;font-size:1.05rem;line-height:1.7">
+        GoNano NuRoof is not a paint or a topical layer that peels off. Nanoparticles penetrate the shingle, restore flexibility inside the mat, and form a permanent hydrophobic barrier on the surface. GoNano calls this Structural Roof Rejuvenation.
+      </p>
+    </div>
+    <div class="gn-grid-3" style="max-width:64rem;margin-left:auto;margin-right:auto">
+      <div class="gn-mech-card">
+        <div class="gn-mech-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6"/><path d="M12 22v-6"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M22 12h-6"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/></svg>
+        </div>
+        <h3 class="font-display" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.5rem">1. Penetration</h3>
+        <p style="color:#555;font-size:.95rem;line-height:1.65">Nanoparticles work into the shingle, well below the surface, so the treatment is part of the roof rather than on top of it.</p>
+      </div>
+      <div class="gn-mech-card">
+        <div class="gn-mech-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/></svg>
+        </div>
+        <h3 class="font-display" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.5rem">2. Restoration</h3>
+        <p style="color:#555;font-size:.95rem;line-height:1.65">Shingles regain flexibility and strength. Independent testing shows a 15-year-old shingle treated with GoNano NuRoof Revive can outperform a new untreated shingle.</p>
+      </div>
+      <div class="gn-mech-card">
+        <div class="gn-mech-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-display" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:#1A1A1A;margin-bottom:.5rem">3. Protection</h3>
+        <p style="color:#555;font-size:.95rem;line-height:1.65">A hydrophobic layer forms on the surface, shedding water and shielding against moss, algae, UV, wind-driven rain, and hail impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 PRODUCT TIERS -->
+<section class="py-20" style="background:#F7F7FB">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <span class="gn-eyebrow">The GoNano Product Family</span>
+      <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A">
+        THREE PRODUCTS. ONE MATCH <span style="color:var(--gn-purple)">FOR YOUR ROOF</span>.
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto" style="color:#555;font-size:1.05rem;line-height:1.7">
+        Which GoNano product is right for your home depends on your roof's age and condition. Happy Roof recommends a specific product after a free on-site inspection, and we will always tell you if none is the right call.
+      </p>
+    </div>
+
+    <div class="gn-grid-3">
+      <!-- GoNano NuRoof Fortify -->
+      <article class="gn-tier-card">
+        <div class="gn-tier-head" style="background:var(--gn-fortify)">
+          <div>
+            <small>GoNano NuRoof</small>
+            <div><strong>FORTIFY</strong></div>
+          </div>
+          <div style="text-align:right">
+            <small>Best For</small>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.02em">Roofs 0 to 5 yrs</div>
+          </div>
+        </div>
+        <div class="gn-tier-body">
+          <div class="gn-tier-metric">
+            <span class="n">15yr</span><span class="u">Hard Warranty</span>
+          </div>
+          <p class="gn-tier-desc">
+            A nano-penetrating treatment that strengthens shingles from within on newer roofs. Doubles impact resistance to hail and debris, and reduces fading and cracking. Backed by a 15-year hard warranty in writing.
+          </p>
+          <ul class="gn-tier-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-fortify)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>15-year hard warranty, transferable at resale</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-fortify)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Doubles impact resistance to hail</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-fortify)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Blocks moss, algae, UV, wind, and rain</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-fortify)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Reduces fading and cracking</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- GoNano NuRoof Revive -->
+      <article class="gn-tier-card">
+        <div class="gn-tier-head" style="background:var(--gn-revive)">
+          <div>
+            <small>GoNano NuRoof</small>
+            <div><strong>REVIVE</strong></div>
+          </div>
+          <div style="text-align:right">
+            <small>Best For</small>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.02em">Roofs 5 to 20 yrs</div>
+          </div>
+        </div>
+        <div class="gn-tier-body">
+          <div class="gn-tier-metric">
+            <span class="n">10yr</span><span class="u">Hard Warranty</span>
+          </div>
+          <p class="gn-tier-desc">
+            A nano-penetrating treatment for aging shingles that need their strength and appearance brought back. Independent testing shows a 15-year-old shingle treated with GoNano NuRoof Revive can be stronger than a brand-new untreated shingle.
+          </p>
+          <ul class="gn-tier-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-revive)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>10-year hard warranty, transferable at resale</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-revive)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Restores strength and flexibility</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-revive)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Doubles impact resistance to hail</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-revive)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Same moss, algae, UV, and wind shielding</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- GoNano Bio-Boost (not part of NuRoof family) -->
+      <article class="gn-tier-card">
+        <div class="gn-tier-head" style="background:var(--gn-boost)">
+          <div>
+            <small>GoNano</small>
+            <div><strong>BIO-BOOST</strong></div>
+          </div>
+          <div style="text-align:right">
+            <small>Best For</small>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.02em">Roofs 10+ yrs</div>
+          </div>
+        </div>
+        <div class="gn-tier-body">
+          <div class="gn-tier-metric">
+            <span class="n">5yr</span><span class="u">Prorated Warranty</span>
+          </div>
+          <p class="gn-tier-desc">
+            A bio-oil treatment for older roofs that need practical protection at an affordable price. GoNano Bio-Boost is a GoNano product but not part of the GoNano NuRoof family, and it is formulated to be environmentally conscious.
+          </p>
+          <ul class="gn-tier-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-boost)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>5-year prorated warranty in writing</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-boost)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Renewable bio-oil formulation</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-boost)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Most cost-effective GoNano option</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gn-boost)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Safe around gardens, pets, and children</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="text-center mt-10">
+      <p style="color:#4A4A55;font-size:.95rem;max-width:640px;margin:0 auto">
+        Not sure which one is right for your roof? A Happy Roof inspector will match a product to your roof's age and condition in about 30 minutes, on the ground and on the roof, at no cost.
+      </p>
+      <a href="/contact?service=gonano" class="gn-cta-primary" style="margin-top:1.25rem">
+        Schedule a free assessment
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE ANGLE -->
+<section class="gn-ins-strip py-16">
+  <div class="max-w-6xl mx-auto px-5 relative" style="z-index:1">
+    <div class="gn-grid-2" style="gap:2.5rem">
+      <div>
+        <span class="gn-eyebrow" style="background:rgba(255,255,255,.14);color:#FFFFFF">Insurance Angle</span>
+        <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.9rem,3.8vw,2.8rem);line-height:.95;color:#FFFFFF">
+          EXTEND ROOF LIFESPAN.<br/><span style="color:#E76E38">REDUCE CLAIMS.</span>
+        </h2>
+        <p class="mt-4" style="color:rgba(255,255,255,.86);font-size:1.05rem;line-height:1.7;max-width:32em">
+          Florida insurers underwrite each roof individually, and treated roofs consistently receive more favorable underwriting than aging untreated roofs. GoNano NuRoof has $1 Million in independent testing (ASTM, UL, IBHS, Green Center) that has been shared with insurers as evidence treated roofs are more resistant to hail and wind damage.
+        </p>
+        <p class="mt-3" style="color:rgba(255,255,255,.7);font-size:.9rem">
+          Happy Roof documents the installation for your carrier and walks you through the wind mitigation credits available on a treated roof.
+        </p>
+      </div>
+      <div class="gn-stat-grid">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.5rem">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;line-height:1;color:#E76E38;letter-spacing:-.02em">$1M</div>
+          <div style="color:rgba(255,255,255,.85);font-size:.85rem;margin-top:.35rem;line-height:1.4">In independent testing (ASTM, UL, IBHS, Green Center)</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.5rem">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;line-height:1;color:#E76E38;letter-spacing:-.02em">2x</div>
+          <div style="color:rgba(255,255,255,.85);font-size:.85rem;margin-top:.35rem;line-height:1.4">Impact resistance to hail with GoNano NuRoof Fortify or GoNano NuRoof Revive</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.5rem">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;line-height:1;color:#E76E38;letter-spacing:-.02em">15yr</div>
+          <div style="color:rgba(255,255,255,.85);font-size:.85rem;margin-top:.35rem;line-height:1.4">Hard warranty with GoNano NuRoof Fortify</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.5rem">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;line-height:1;color:#E76E38;letter-spacing:-.02em">1 day</div>
+          <div style="color:rgba(255,255,255,.85);font-size:.85rem;margin-top:.35rem;line-height:1.4">Typical installation. No tear-off, no dumpster</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTING STANDARDS -->
+<section class="py-20" style="background:#FFFFFF">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10">
+      <span class="gn-eyebrow">Independent Testing</span>
+      <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A">
+        FOUR STANDARDS. <span style="color:var(--gn-purple)">ONE TREATMENT.</span>
+      </h2>
+    </div>
+    <div class="gn-grid-4">
+      <div class="gn-test-card">
+        <div class="gn-test-label">ASTM</div>
+        <div class="gn-test-code">D3161</div>
+        <div class="gn-test-desc">Great Winds Standard. Performance under extreme wind conditions.</div>
+      </div>
+      <div class="gn-test-card">
+        <div class="gn-test-label">UL</div>
+        <div class="gn-test-code">790</div>
+        <div class="gn-test-desc">Fire Proof Standard. GoNano does not adversely affect fire resistance.</div>
+      </div>
+      <div class="gn-test-card">
+        <div class="gn-test-label">UL</div>
+        <div class="gn-test-code">2218</div>
+        <div class="gn-test-desc">Impact Resistance. Superior resistance to hail damage.</div>
+      </div>
+      <div class="gn-test-card">
+        <div class="gn-test-label">Green Center</div>
+        <div class="gn-test-code">IMPACT</div>
+        <div class="gn-test-desc">Chemistry. Treatment reduces impact penetration depth.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-20" style="background:#F7F7FB">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-12">
+      <span class="gn-eyebrow">Real GoNano Customers</span>
+      <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A">
+        WHAT HOMEOWNERS ARE <span style="color:var(--gn-purple)">SAYING</span>.
+      </h2>
+    </div>
+    <div class="gn-quotes">
+      <div class="gn-quote-card">
+        <div class="gn-quote-stars">★★★★★</div>
+        <p class="gn-quote-body">"This has saved us from a very expensive and complete roof replacement. Now that we have done GoNano, we will never go back. Thank you for all the money you saved us."</p>
+        <p class="gn-quote-attr"><strong>Austin Lewis</strong> · Jacksonville, Florida</p>
+      </div>
+      <div class="gn-quote-card alt">
+        <div class="gn-quote-stars">★★★★★</div>
+        <p class="gn-quote-body">"Both my daughter and grandson have used GoNano because of results on my roof. Now I'm protected for years to come and I have a warranty to back it up."</p>
+        <p class="gn-quote-attr"><strong>Michael Kelly</strong> · Montreal, Canada</p>
+      </div>
+      <div class="gn-quote-card alt">
+        <div class="gn-quote-stars">★★★★★</div>
+        <p class="gn-quote-body">"We couldn't be happier with the treatment done on our 15 year old roof, the entire process took 90 minutes without any damage to our property and I like that I didn't have to worry about my gardens, pets and kids."</p>
+        <p class="gn-quote-attr"><strong>Carla</strong> · Detroit, Michigan</p>
+      </div>
+      <div class="gn-quote-card">
+        <div class="gn-quote-stars">★★★★★</div>
+        <p class="gn-quote-body">"I have no more granule loss which is a sign to me that it works and it's now obvious we'll get another 10 years out of our old roof. So we sleep a little better now because we've dealt with people that are looking out for us."</p>
+        <p class="gn-quote-attr"><strong>David Flowers</strong> · Vancouver, Canada</p>
+      </div>
+    </div>
+    <p class="text-center mt-6 text-sm" style="color:#888">Testimonials from GoNano customers across North America. Happy Roof is Tampa Bay's Certified GoNano Contractor.</p>
+  </div>
+</section>
+
+<!-- WHY HAPPY ROOF -->
+<section class="py-20" style="background:#FFFFFF;border-top:1px solid #E5E5F0">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="gn-grid-2" style="gap:2.5rem">
+      <div>
+        <span class="gn-eyebrow">Why Happy Roof</span>
+        <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:.95;color:#1A1A1A">
+          A CERTIFIED CONTRACTOR, NOT <span style="color:var(--gn-purple)">A ONE-OFF INSTALLER</span>.
+        </h2>
+        <p class="mt-5" style="color:#4A4A55;font-size:1.05rem;line-height:1.7">
+          GoNano only authorizes trained roofers to sell and install GoNano NuRoof. Happy Roof has completed GoNano's certification, uses their approved application equipment, and every install carries the manufacturer hard warranty in writing.
+        </p>
+        <ul class="mt-5 space-y-3">
+          <li style="display:flex;gap:.6rem;align-items:flex-start;color:#333">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><strong>Certified GoNano Contractor</strong> for the Tampa Bay market</span>
+          </li>
+          <li style="display:flex;gap:.6rem;align-items:flex-start;color:#333">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><strong>Owens Corning Preferred Contractor</strong> and BBB Accredited (2026)</span>
+          </li>
+          <li style="display:flex;gap:.6rem;align-items:flex-start;color:#333">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><strong>Free written GoNano NuRoof assessment</strong> with a specific product recommendation</span>
+          </li>
+          <li style="display:flex;gap:.6rem;align-items:flex-start;color:#333">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><strong>Hard manufacturer warranty in writing</strong> plus Happy Roof workmanship coverage</span>
+          </li>
+          <li style="display:flex;gap:.6rem;align-items:flex-start;color:#333">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gn-purple)" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><path d="M20 6L9 17l-5-5"/></svg>
+            <span><strong>Insurance documentation</strong> and wind mitigation help included</span>
+          </li>
+        </ul>
+      </div>
+      <div class="text-center">
+        <img src="/Brand%20Assets/gonano/certified-contractor-dark.png" alt="Certified GoNano Contractor badge" class="gn-badge-img" width="800" height="240" loading="lazy" style="max-width:340px" />
+        <p class="mt-4" style="color:#666;font-size:.9rem;max-width:24em;margin-left:auto;margin-right:auto">
+          FL License #CCC1337380 · Owens Corning Preferred · BBB Accredited · Certified GoNano Contractor · Locally owned in Tampa Bay
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-20 relative overflow-hidden" style="background:var(--gn-navy);color:#FFFFFF">
+  <div class="gn-molecule-bg" aria-hidden="true" style="opacity:.08"></div>
+  <div class="max-w-4xl mx-auto px-5 text-center relative" style="z-index:1">
+    <span class="gn-eyebrow" style="background:rgba(255,255,255,.14);color:#FFFFFF">Ready to Start</span>
+    <h2 class="font-display font-black tracking-tightest mt-4" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:.95;color:#FFFFFF">
+      SEE IF GONANO IS RIGHT <span style="color:#E76E38">FOR YOUR ROOF</span>.
+    </h2>
+    <p class="mt-4 max-w-2xl mx-auto" style="color:rgba(255,255,255,.82);font-size:1.05rem;line-height:1.7">
+      A free 30-minute inspection tells you your roof's true condition and which GoNano product (if any) is the honest match: GoNano NuRoof Fortify, GoNano NuRoof Revive, or GoNano Bio-Boost. No pressure, no obligation, and if your roof needs a full replacement instead, we will tell you that.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-content-center justify-center gap-3">
+      <a href="/contact?service=gonano" class="gn-cta-primary">
+        Get my free GoNano NuRoof assessment
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="tel:8135957663" class="gn-cta-ghost call-tracking-number" style="border-color:#FFFFFF;color:#FFFFFF">Call (813) 595-7663</a>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>
