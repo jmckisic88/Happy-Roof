@@ -104,6 +104,13 @@ const schema = `{
     .info.card{background:#FFFFFF;border:1px dashed #E0E0E0;border-radius:16px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:.875rem;transition:border-color .2s}
     .info-card:hover{border-color:rgba(230,168,23,.25)}
     .info-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    /* Service radio cards */
+    .service-grid{display:grid;grid-template-columns:1fr;gap:.5rem}
+    @media (min-width:640px){.service-grid{grid-template-columns:1fr 1fr}}
+    .service-opt{display:flex;align-items:center;gap:.6rem;padding:.75rem .9rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;cursor:pointer;transition:border-color .18s ease,background .18s ease;font-size:.92rem;color:#333}
+    .service-opt:hover{border-color:#3B9FD9;background:#FAFCFE}
+    .service-opt input[type=radio]{accent-color:#3B9FD9;width:16px;height:16px;flex-shrink:0;cursor:pointer}
+    .service-opt:has(input:checked){border-color:#3B9FD9;background:rgba(59,159,217,.06)}
     /* ── Hero photo bg ── */
 </style>
 
@@ -185,6 +192,27 @@ const schema = `{
             <div class="fgroup">
               <label class="flabel">Email</label>
               <input type="email" name="email" class="finput" placeholder="jane@example.com" />
+            </div>
+            <div class="fgroup">
+              <label class="flabel">What can we help with? <span style="color:#3B9FD9">*</span></label>
+              <div class="service-grid" role="radiogroup" aria-label="Service interest">
+                <label class="service-opt">
+                  <input type="radio" name="service" value="Roof Replacement" required />
+                  <span>Full roof replacement</span>
+                </label>
+                <label class="service-opt">
+                  <input type="radio" name="service" value="Repair or Inspection" />
+                  <span>Repair or inspection</span>
+                </label>
+                <label class="service-opt">
+                  <input type="radio" name="service" value="GoNano NuRoof" />
+                  <span>GoNano NuRoof (extend my roof)</span>
+                </label>
+                <label class="service-opt">
+                  <input type="radio" name="service" value="Not Sure" />
+                  <span>Not sure, help me figure it out</span>
+                </label>
+              </div>
             </div>
             <div class="fgroup">
               <label class="flabel">Promo Code</label>
@@ -378,7 +406,9 @@ function handleSubmit(e) {
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true; btn.textContent = 'Sending…';
   var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', notes: promoNote, source: 'Website - Contact', page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
+  var service = data.service || '';
+  var source = service === 'GoNano NuRoof' ? 'Website - Contact (GoNano)' : 'Website - Contact';
+  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: service, notes: promoNote, source: source, page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
   window.HR_Forms.submitLead(form, stPayload, { formId: 'contact-form', formSubmitPayload: data }).then(function(result) {
     if (result.status === 'ok' || result.status === 'fallback_sent') {
       document.getElementById('success-msg').classList.remove('hidden');
@@ -396,10 +426,31 @@ function handleSubmit(e) {
     window.HR_Forms.showInlineNotice(form, 'error', msg);
   });
 }
+// Pre-select the service radio from ?service= (e.g. /gonano CTAs).
+function preselectServiceFromQuery() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var raw = (params.get('service') || '').toLowerCase();
+    if (!raw) return;
+    var map = {
+      'gonano': 'GoNano NuRoof',
+      'gonano-nuroof': 'GoNano NuRoof',
+      'replacement': 'Roof Replacement',
+      'roof-replacement': 'Roof Replacement',
+      'repair': 'Repair or Inspection',
+      'inspection': 'Repair or Inspection'
+    };
+    var target = map[raw];
+    if (!target) return;
+    var radio = document.querySelector('input[name="service"][value="' + target + '"]');
+    if (radio) radio.checked = true;
+  } catch (e) { /* no-op */ }
+}
 // Draft persistence: repopulate on mount, snapshot on input.
 document.addEventListener('DOMContentLoaded', function() {
   var f = document.getElementById('contact-form');
   if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'contact-form' });
+  preselectServiceFromQuery();
 });
 </script>
 
