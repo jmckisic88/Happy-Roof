@@ -298,6 +298,13 @@ const schema = `[{
         .hero-bg .btn-t{width:100%;justify-content:center;font-size:1rem !important;padding:.85rem 1.5rem !important}
         .hero-bg .badge{font-size:.7rem;padding:.3rem .6rem}
       }
+    /* Service radio cards — mirrors /contact so the two forms match. */
+    .service-grid{display:grid;grid-template-columns:1fr;gap:.5rem}
+    @media (min-width:640px){.service-grid{grid-template-columns:1fr 1fr}}
+    .service-opt{display:flex;align-items:center;gap:.55rem;padding:.65rem .8rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:9px;cursor:pointer;transition:border-color .18s ease,background .18s ease;font-size:.85rem;color:#333}
+    .service-opt:hover{border-color:#3B9FD9;background:#FAFCFE}
+    .service-opt input[type=radio]{accent-color:#3B9FD9;width:15px;height:15px;flex-shrink:0;cursor:pointer}
+    .service-opt:has(input:checked){border-color:#3B9FD9;background:rgba(59,159,217,.06)}
 </style>
 
 <!-- ══════════════════════ HERO ══════════════════════ -->
@@ -376,6 +383,27 @@ const schema = `[{
             <input type="hidden" name="address_lng" id="hero-address-lng" />
             <input type="hidden" name="address_place_id" id="hero-address-placeid" />
           </div>
+          <div class="mb-3">
+            <label class="flabel">What can we help with? <span style="color:#3B9FD9">*</span></label>
+            <div class="service-grid" role="radiogroup" aria-label="Service interest">
+              <label class="service-opt">
+                <input type="radio" name="service" value="Roof Replacement" required />
+                <span>Full roof replacement</span>
+              </label>
+              <label class="service-opt">
+                <input type="radio" name="service" value="Repair or Inspection" />
+                <span>Repair or inspection</span>
+              </label>
+              <label class="service-opt">
+                <input type="radio" name="service" value="GoNano NuRoof" />
+                <span>GoNano NuRoof (extend my roof)</span>
+              </label>
+              <label class="service-opt">
+                <input type="radio" name="service" value="Not Sure" />
+                <span>Not sure, help me figure it out</span>
+              </label>
+            </div>
+          </div>
           <div class="mb-4">
             <label class="flabel">Promo Code</label>
             <div style="position:relative">
@@ -424,7 +452,7 @@ const schema = `[{
 
 <!-- Trust Signals — Accreditations + Credentials -->
 <style>
-  .tb {display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;min-width:190px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .tb {display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;min-width:170px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
   .tb:hover {transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(26,26,26,.12);border-color:#CFCFCF}
   .tb-icon {width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .tb-name {font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.92rem;color:#1A1A1A;letter-spacing:.015em;margin:0;line-height:1.1}
@@ -491,17 +519,6 @@ const schema = `[{
         <div>
           <p class="tb-name">Insured</p>
           <p class="tb-sub">General liability + WC</p>
-        </div>
-      </div>
-
-      <!-- 15-Year Warranty -->
-      <div class="tb" role="group" aria-label="15-year workmanship warranty available">
-        <div class="tb-icon" style="background:rgba(59,159,217,0.10);color:#3B9FD9" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        </div>
-        <div>
-          <p class="tb-name">15-Year Warranty</p>
-          <p class="tb-sub">Workmanship option</p>
         </div>
       </div>
 
@@ -1154,6 +1171,7 @@ function submitHeroForm(e) {
     name: (form.querySelector('[name=name]')||{}).value||'',
     phone: (form.querySelector('[name=phone]')||{}).value||'',
     email: (form.querySelector('[name=email]')||{}).value||'',
+    service: (form.querySelector('[name=service]:checked')||{}).value||'',
     address: (form.querySelector('[name=address]')||{}).value||'',
     address_street: (form.querySelector('[name=address_street]')||{}).value||'',
     address_city: (form.querySelector('[name=address_city]')||{}).value||'',
@@ -1170,10 +1188,12 @@ function submitHeroForm(e) {
   };
   var promoNote = formData.promo_code ? 'Promo Code: ' + formData.promo_code.toUpperCase() : '';
   var consentNote = 'SMS Transactional: ' + formData.sms_transactional + ' | SMS Marketing: ' + formData.sms_marketing + ' | Terms: ' + formData.terms_consent;
+  var source = formData.service === 'GoNano NuRoof' ? 'Website - Homepage (GoNano)' : 'Website - Homepage';
   const stPayload = {
     name: formData.name,
     phone: formData.phone,
     email: formData.email,
+    service: formData.service,
     address: formData.address,
     address_street: formData.address_street,
     address_city: formData.address_city,
@@ -1183,7 +1203,7 @@ function submitHeroForm(e) {
     address_lng: formData.address_lng,
     address_place_id: formData.address_place_id,
     notes: (promoNote ? promoNote + ' | ' : '') + consentNote,
-    source: 'Website - Homepage',
+    source: source,
     page: window.location.pathname
   };
   window.HR_Forms.submitLead(form, stPayload, { formId: 'hero-form', formSubmitPayload: formData }).then(function(result) {
@@ -1202,9 +1222,29 @@ function submitHeroForm(e) {
     window.HR_Forms.showInlineNotice(form, 'error', msg);
   });
 }
+function preselectHeroServiceFromQuery() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var raw = (params.get('service') || '').toLowerCase();
+    if (!raw) return;
+    var map = {
+      'gonano': 'GoNano NuRoof',
+      'gonano-nuroof': 'GoNano NuRoof',
+      'replacement': 'Roof Replacement',
+      'roof-replacement': 'Roof Replacement',
+      'repair': 'Repair or Inspection',
+      'inspection': 'Repair or Inspection'
+    };
+    var target = map[raw];
+    if (!target) return;
+    var radio = document.querySelector('#hero-form input[name="service"][value="' + target + '"]');
+    if (radio) radio.checked = true;
+  } catch (e) { /* no-op */ }
+}
 document.addEventListener('DOMContentLoaded', function() {
   var f = document.getElementById('hero-form');
   if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'hero-form' });
+  preselectHeroServiceFromQuery();
 });
 
 // ── Hero slideshow ──

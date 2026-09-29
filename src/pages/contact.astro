@@ -132,7 +132,7 @@ const schema = `{
 
 <!-- Trust Signals — Accreditations + Credentials (mirrors / and /about) -->
 <style>
-  .tb {display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;min-width:190px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .tb {display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:10px;min-width:170px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
   .tb:hover {transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(26,26,26,.12);border-color:#CFCFCF}
   .tb-icon {width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .tb-name {font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.92rem;color:#1A1A1A;letter-spacing:.015em;margin:0;line-height:1.1}
@@ -202,17 +202,6 @@ const schema = `{
         </div>
       </div>
 
-      <!-- 15-Year Warranty -->
-      <div class="tb" role="group" aria-label="15-year workmanship warranty available">
-        <div class="tb-icon" style="background:rgba(59,159,217,0.10);color:#3B9FD9" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        </div>
-        <div>
-          <p class="tb-name">15-Year Warranty</p>
-          <p class="tb-sub">Workmanship option</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -267,6 +256,20 @@ const schema = `{
             <div class="fgroup">
               <label class="flabel">Email</label>
               <input type="email" name="email" class="finput" placeholder="jane@example.com" />
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Property Address</label>
+              <div style="position:relative">
+                <input type="text" name="address" id="contact-address" class="finput" placeholder="Start typing your address" autocomplete="off" />
+              </div>
+              <!-- Structured components populated by Google Places selection. Empty if the customer types freely without picking a suggestion. -->
+              <input type="hidden" name="address_street" id="contact-address-street" />
+              <input type="hidden" name="address_city" id="contact-address-city" />
+              <input type="hidden" name="address_state" id="contact-address-state" />
+              <input type="hidden" name="address_postal_code" id="contact-address-zip" />
+              <input type="hidden" name="address_lat" id="contact-address-lat" />
+              <input type="hidden" name="address_lng" id="contact-address-lng" />
+              <input type="hidden" name="address_place_id" id="contact-address-placeid" />
             </div>
             <div class="fgroup">
               <label class="flabel">What can we help with? <span style="color:#3B9FD9">*</span></label>
@@ -483,7 +486,24 @@ function handleSubmit(e) {
   var promoNote = data.promo_code ? 'Promo Code: ' + data.promo_code.toUpperCase() : '';
   var service = data.service || '';
   var source = service === 'GoNano NuRoof' ? 'Website - Contact (GoNano)' : 'Website - Contact';
-  const stPayload = { name: data.name||'', phone: data.phone||'', email: data.email||'', service: service, notes: promoNote, source: source, page: window.location.pathname, newsletter: data.newsletter === 'Yes' };
+  const stPayload = {
+    name: data.name||'',
+    phone: data.phone||'',
+    email: data.email||'',
+    service: service,
+    address: data.address||'',
+    address_street: data.address_street||'',
+    address_city: data.address_city||'',
+    address_state: data.address_state||'',
+    address_postal_code: data.address_postal_code||'',
+    address_lat: data.address_lat||'',
+    address_lng: data.address_lng||'',
+    address_place_id: data.address_place_id||'',
+    notes: promoNote,
+    source: source,
+    page: window.location.pathname,
+    newsletter: data.newsletter === 'Yes'
+  };
   window.HR_Forms.submitLead(form, stPayload, { formId: 'contact-form', formSubmitPayload: data }).then(function(result) {
     if (result.status === 'ok' || result.status === 'fallback_sent') {
       document.getElementById('success-msg').classList.remove('hidden');
@@ -527,6 +547,120 @@ document.addEventListener('DOMContentLoaded', function() {
   if (f && window.HR_Forms) window.HR_Forms.attachDraft(f, { formId: 'contact-form' });
   preselectServiceFromQuery();
 });
+</script>
+
+<!-- Google Places autocomplete for the property address field (server-side proxy; no client API key). Gracefully degrades to a plain text input if the Places API is unavailable. -->
+<script is:inline>
+(function() {
+  var input = document.getElementById('contact-address');
+  if (!input) return;
+
+  var fStreet  = document.getElementById('contact-address-street');
+  var fCity    = document.getElementById('contact-address-city');
+  var fState   = document.getElementById('contact-address-state');
+  var fZip     = document.getElementById('contact-address-zip');
+  var fLat     = document.getElementById('contact-address-lat');
+  var fLng     = document.getElementById('contact-address-lng');
+  var fPlaceId = document.getElementById('contact-address-placeid');
+
+  function clearStructured() {
+    if (fStreet)  fStreet.value  = '';
+    if (fCity)    fCity.value    = '';
+    if (fState)   fState.value   = '';
+    if (fZip)     fZip.value     = '';
+    if (fLat)     fLat.value     = '';
+    if (fLng)     fLng.value     = '';
+    if (fPlaceId) fPlaceId.value = '';
+  }
+
+  function newSession() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0;
+      var v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  var sessionToken = newSession();
+
+  var dropdown = document.createElement('div');
+  dropdown.id = 'contact-address-dropdown';
+  dropdown.style.cssText = 'position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #E0E0E0;border-top:none;border-radius:0 0 8px 8px;box-shadow:0 8px 24px -4px rgba(0,0,0,.12);z-index:100;display:none;max-height:250px;overflow-y:auto';
+  input.parentElement.style.position = 'relative';
+  input.parentElement.appendChild(dropdown);
+
+  function hideDropdown() { dropdown.style.display = 'none'; }
+  function showDropdown() { dropdown.style.display = 'block'; }
+
+  var apiDisabled = false;
+  var debounceId;
+
+  input.addEventListener('input', function() {
+    clearStructured();
+    if (apiDisabled) return;
+    clearTimeout(debounceId);
+    var q = input.value.trim();
+    if (q.length < 4) { hideDropdown(); return; }
+    debounceId = setTimeout(function() {
+      fetch('/api/address-suggest?q=' + encodeURIComponent(q) + '&session=' + encodeURIComponent(sessionToken))
+        .then(function(r) {
+          if (r.status === 500) { apiDisabled = true; hideDropdown(); return null; }
+          return r.json();
+        })
+        .then(function(data) {
+          if (!data) return;
+          var preds = Array.isArray(data.predictions) && data.predictions.length
+            ? data.predictions
+            : (Array.isArray(data.suggestions) ? data.suggestions.map(function(s) { return { text: s, placeId: '' }; }) : []);
+          if (!preds.length) { hideDropdown(); return; }
+          dropdown.innerHTML = '';
+          preds.forEach(function(p) {
+            var item = document.createElement('div');
+            item.textContent = p.text;
+            item.style.cssText = 'padding:.75rem 1rem;cursor:pointer;font-size:.9rem;color:#1A1A1A;border-bottom:1px solid #F0F0F0;transition:background .1s';
+            item.addEventListener('mouseenter', function() { item.style.background = 'rgba(59,159,217,.06)'; });
+            item.addEventListener('mouseleave', function() { item.style.background = 'transparent'; });
+            item.addEventListener('mousedown', function(ev) {
+              ev.preventDefault();
+              selectPrediction(p);
+            });
+            dropdown.appendChild(item);
+          });
+          showDropdown();
+        })
+        .catch(function() { hideDropdown(); });
+    }, 300);
+  });
+
+  function selectPrediction(p) {
+    input.value = p.text;
+    hideDropdown();
+    if (!p.placeId) return;
+    fetch('/api/place-details?placeId=' + encodeURIComponent(p.placeId) + '&session=' + encodeURIComponent(sessionToken))
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d || !d.ok) return;
+        if (fStreet)  fStreet.value  = d.street || '';
+        if (fCity)    fCity.value    = d.city || '';
+        if (fState)   fState.value   = d.state || 'FL';
+        if (fZip)     fZip.value     = d.postal_code || '';
+        if (fLat)     fLat.value     = (d.lat != null ? String(d.lat) : '');
+        if (fLng)     fLng.value     = (d.lng != null ? String(d.lng) : '');
+        if (fPlaceId) fPlaceId.value = d.placeId || p.placeId;
+        sessionToken = newSession();
+      })
+      .catch(function() { /* fall back to unstructured submit */ });
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) hideDropdown();
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') hideDropdown();
+  });
+})();
 </script>
 
 </BaseLayout>
