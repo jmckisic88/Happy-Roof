@@ -8,10 +8,20 @@ name: Auto-Enable Auto-Merge on Bot PRs
 # instead of a "ready to merge" notification.
 #
 # Match conditions (any one true = enable auto-merge):
-#   - PR title starts with "Weekly Blog |"     (weekly blog bot)
 #   - PR title starts with "SEO Audit |"       (SEO audit bot)
-#   - PR branch name starts with "blog/"       (weekly blog bot's
-#                                               branch convention)
+#
+# Weekly Blog automation is PAUSED (2026-10-12) at Josh's direction —
+# the SEO team flagged that Google is penalizing AI-generated content,
+# so we are not auto-merging "Weekly Blog |" PRs or anything on
+# `blog/*` branches for now. The upstream Zapier/n8n bot that opens
+# these PRs needs to be paused separately — this workflow only blocks
+# the auto-merge side, so if the bot keeps running, PRs will stack up
+# as drafts for manual review.
+#
+# To resume blog automation later: re-add
+#   startsWith(github.event.pull_request.title, 'Weekly Blog |') ||
+#   startsWith(github.event.pull_request.head.ref, 'blog/') ||
+# into the `if:` guard below.
 #
 # All other PRs (like ones opened by Josh or Claude directly) are
 # left alone for normal review.
@@ -28,9 +38,7 @@ jobs:
   enable-automerge:
     runs-on: ubuntu-latest
     if: >-
-      startsWith(github.event.pull_request.title, 'Weekly Blog |') ||
-      startsWith(github.event.pull_request.title, 'SEO Audit |') ||
-      startsWith(github.event.pull_request.head.ref, 'blog/')
+      startsWith(github.event.pull_request.title, 'SEO Audit |')
     steps:
       - name: Enable auto-merge (squash)
         env:
