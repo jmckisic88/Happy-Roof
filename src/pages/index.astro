@@ -306,10 +306,90 @@ const schema = `[{
     .service-opt:hover{border-color:#3B9FD9;background:#FAFCFE}
     .service-opt input[type=radio]{accent-color:#3B9FD9;width:15px;height:15px;flex-shrink:0;cursor:pointer}
     .service-opt:has(input:checked){border-color:#3B9FD9;background:rgba(59,159,217,.06)}
+    /* Pensacola expansion announcement band (homepage only) */
+    .pensa-band {
+      position:relative;
+      padding:7rem 0 1.65rem;
+      background:linear-gradient(135deg,#E8415A 0%,#C13246 60%,#9C2436 100%);
+      color:#FFFFFF;
+      overflow:hidden;
+      border-bottom:1px solid rgba(0,0,0,.12);
+    }
+    .pensa-band::before {
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(60% 90% at 85% 20%,rgba(255,255,255,.08) 0%,transparent 60%),
+                 radial-gradient(50% 80% at 10% 80%,rgba(255,255,255,.06) 0%,transparent 60%);
+    }
+    .pensa-inner { position:relative;z-index:1 }
+    .pensa-row {
+      display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;justify-content:space-between;
+    }
+    .pensa-left { display:flex;align-items:center;gap:1.1rem;flex:1 1 auto;min-width:0 }
+    .pensa-icon {
+      width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      box-shadow:0 6px 20px -6px rgba(0,0,0,.35);
+    }
+    .pensa-eyebrow {
+      font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;
+      letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);
+      margin:0 0 .15rem;
+    }
+    .pensa-title {
+      font-family:'Barlow Condensed',sans-serif;font-weight:900;
+      font-size:clamp(1.35rem,2.4vw,1.9rem);line-height:1.05;letter-spacing:-.005em;
+      color:#FFFFFF;margin:0;
+    }
+    .pensa-sub {
+      font-size:.9rem;line-height:1.5;color:rgba(255,255,255,.88);margin:.3rem 0 0;
+      max-width:44em;
+    }
+    .pensa-cta {
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:#FFFFFF;color:#C13246;
+      font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+      font-size:.95rem;padding:.7rem 1.3rem;border-radius:10px;text-decoration:none;flex-shrink:0;
+      box-shadow:0 6px 18px -6px rgba(0,0,0,.28);
+      transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,color .18s ease;
+    }
+    .pensa-cta:hover { background:#1A1A1A;color:#FFFFFF;transform:translateY(-2px) }
+    @media (max-width:720px) {
+      .pensa-band { padding:6.5rem 0 1.25rem }
+      .pensa-row { gap:.9rem }
+      .pensa-left { gap:.85rem }
+      .pensa-icon { width:44px;height:44px;border-radius:12px }
+      .pensa-cta { width:100%;justify-content:center }
+    }
 </style>
 
+<!-- ══════════════════════ PENSACOLA EXPANSION ANNOUNCEMENT ══════════════════════ -->
+<section class="pensa-band" aria-label="Pensacola office expansion announcement">
+  <div class="pensa-inner max-w-7xl mx-auto px-5">
+    <div class="pensa-row">
+      <div class="pensa-left">
+        <div class="pensa-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <p class="pensa-eyebrow">Coming Soon &middot; Pensacola</p>
+          <h2 class="pensa-title">We're opening our second Florida office.</h2>
+          <p class="pensa-sub">Happy Roof is bringing honest roofing, locally owned, to the Florida Panhandle. Opening soon.</p>
+        </div>
+      </div>
+      <a href="/contact" class="pensa-cta">
+        Get in touch
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════ HERO ══════════════════════ -->
-<section class="hero-bg relative overflow-hidden pt-28 pb-20">
+<section class="hero-bg relative overflow-hidden pt-10 pb-20">
   <!-- Cycling roof photo background -->
   <div class="hero-slideshow" aria-hidden="true" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')">
     <div class="hero-slide active" style="background-image:url('/Brand%20Assets/Photos/architectural-shingle-roof-tampa-bay.jpg')"></div>
