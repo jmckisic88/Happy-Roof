@@ -1,0 +1,710 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+---
+<LandingLayout
+  title="FY27 Sales Rep Commission Calculator | Happy Roof"
+  description="Internal commission calculator for Happy Roof sales reps, FY27 plan (Nov 1 2026 to Oct 31 2027)."
+  canonical="https://happyroof.com/commission-fy27"
+  noindex={true}
+>
+
+<!-- Password Gate (same mechanism as /commission, separate session key) -->
+<div id="fy27-lock" class="fixed inset-0 z-50 bg-[#1A1A1A] flex items-center justify-center">
+  <div class="text-center px-6 w-full max-w-sm">
+    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#2A2A2A] flex items-center justify-center">
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#E6A817" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h1 class="font-['Barlow_Condensed'] text-2xl font-800 text-white mb-1">FY27 Commission Calculator</h1>
+    <p class="text-xs text-[#E6A817] mb-4" style="letter-spacing:.14em;text-transform:uppercase">Effective Nov 1 2026 &ndash; Oct 31 2027</p>
+    <p class="text-sm text-[#888] mb-6">Enter your access code to continue.</p>
+    <form id="fy27-pw-form" class="space-y-3" autocomplete="off">
+      <input id="fy27-pw-input" type="password" placeholder="Access Code" autofocus
+        class="w-full bg-[#2A2A2A] border border-[#333] rounded-lg px-4 py-3 text-white text-center text-lg font-['Barlow_Condensed'] font-700 tracking-widest placeholder:text-[#555] focus:outline-none focus:border-[#E6A817] focus:ring-2 focus:ring-[rgba(230,168,23,.25)] transition-all duration-200" />
+      <button type="submit" class="w-full bg-[#E6A817] text-[#1A1A1A] font-['Barlow_Condensed'] font-700 text-lg rounded-lg py-3 transition-all duration-200 hover:bg-[#F0C040]" style="box-shadow: 0 4px 20px -4px rgba(230,168,23,.42);">Unlock</button>
+      <p id="fy27-pw-error" class="text-sm text-red-400 hidden">Incorrect code. Try again.</p>
+    </form>
+  </div>
+</div>
+
+<section id="fy27-app" class="pt-12 pb-20 bg-white hidden" style="padding-top:3rem !important">
+  <div class="max-w-5xl mx-auto px-5">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <span class="sl text-[#E6A817] block mb-2">Internal Tool &middot; FY27</span>
+      <h1 class="font-['Barlow_Condensed'] text-4xl md:text-5xl font-800 tracking-tight text-[#1A1A1A] mb-3">Sales Rep Commission Calculator</h1>
+      <p class="text-[#555] text-base max-w-2xl mx-auto">New simpler tier plan. Fiscal year runs <strong>Nov 1 2026 to Oct 31 2027</strong>. All tiers retroactive on both front and back.</p>
+    </div>
+
+    <!-- Plan Reference (collapsible accordion) -->
+    <details id="plan-ref" class="mb-8 bg-[#F7F7F7] border border-[#E0E0E0] rounded-2xl" open>
+      <summary class="cursor-pointer select-none p-5 flex items-center justify-between gap-4">
+        <span class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A]">Plan Reference</span>
+        <span class="text-xs text-[#888] uppercase tracking-widest">tap to collapse</span>
+      </summary>
+      <div class="px-5 pb-5 space-y-6">
+
+        <!-- Tier Table -->
+        <div>
+          <h3 class="font-['Barlow_Condensed'] text-base font-700 text-[#1A1A1A] mb-2 uppercase tracking-wider">Commission tiers (annual volume)</h3>
+          <div class="overflow-x-auto bg-white rounded-lg border border-[#E0E0E0]">
+            <table class="w-full text-sm">
+              <thead class="bg-[#1A1A1A] text-white">
+                <tr>
+                  <th class="text-left px-3 py-2 font-700 font-['Barlow_Condensed']">Annual Volume</th>
+                  <th class="text-right px-3 py-2 font-700 font-['Barlow_Condensed']">Total</th>
+                  <th class="text-right px-3 py-2 font-700 font-['Barlow_Condensed']">Front</th>
+                  <th class="text-right px-3 py-2 font-700 font-['Barlow_Condensed']">Back</th>
+                </tr>
+              </thead>
+              <tbody class="text-[#1A1A1A]">
+                <tr class="border-t border-[#E0E0E0]"><td class="px-3 py-2">$0 &ndash; $249,999</td><td class="text-right px-3 py-2 font-700">7%</td><td class="text-right px-3 py-2">7%</td><td class="text-right px-3 py-2">0%</td></tr>
+                <tr class="border-t border-[#E0E0E0] bg-[#FAFAFA]"><td class="px-3 py-2">$250,000 &ndash; $499,999</td><td class="text-right px-3 py-2 font-700">10%</td><td class="text-right px-3 py-2">7%</td><td class="text-right px-3 py-2">3%</td></tr>
+                <tr class="border-t border-[#E0E0E0]"><td class="px-3 py-2">$500,000 &ndash; $749,999</td><td class="text-right px-3 py-2 font-700">12%</td><td class="text-right px-3 py-2">8%</td><td class="text-right px-3 py-2">4%</td></tr>
+                <tr class="border-t border-[#E0E0E0] bg-[#FAFAFA]"><td class="px-3 py-2">$750,000 &ndash; $999,999</td><td class="text-right px-3 py-2 font-700">14%</td><td class="text-right px-3 py-2">9%</td><td class="text-right px-3 py-2">5%</td></tr>
+                <tr class="border-t border-[#E0E0E0]"><td class="px-3 py-2">$1,000,000+</td><td class="text-right px-3 py-2 font-700">16%</td><td class="text-right px-3 py-2">10%</td><td class="text-right px-3 py-2">6%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-[#888] mt-2">All tiers retroactive on front and back. Front retro delta is paid with the next backend (end-of-quarter Friday).</p>
+        </div>
+
+        <!-- GM Rules -->
+        <div>
+          <h3 class="font-['Barlow_Condensed'] text-base font-700 text-[#1A1A1A] mb-2 uppercase tracking-wider">GM% rules</h3>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3">
+              <p class="text-xs font-700 text-[#B91C1C] uppercase tracking-wider mb-1">GM &lt; 14%</p>
+              <p class="text-sm text-[#1A1A1A]">Not sold / not approved. Hard floor.</p>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3">
+              <p class="text-xs font-700 text-[#B45309] uppercase tracking-wider mb-1">GM 14 &ndash; 18%</p>
+              <p class="text-sm text-[#1A1A1A]">Profit share only. Excluded from volume and quota. Rep gets 50% of GP after 10% overhead haircut, paid after job closes.</p>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3">
+              <p class="text-xs font-700 text-[#166534] uppercase tracking-wider mb-1">GM &gt; 18%</p>
+              <p class="text-sm text-[#1A1A1A]">Full commission. Counts toward volume, quota, and tier climbing.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Schedule -->
+        <div>
+          <h3 class="font-['Barlow_Condensed'] text-base font-700 text-[#1A1A1A] mb-2 uppercase tracking-wider">Payment schedule</h3>
+          <ul class="text-sm text-[#1A1A1A] space-y-1 list-disc list-inside">
+            <li><strong>Upfront:</strong> paid the Friday following the Sunday a job is submitted.</li>
+            <li><strong>Backend:</strong> paid the Friday following the end of a quarter.</li>
+            <li><strong>Retroactive delta:</strong> whenever a tier is crossed, the retro on front + back for all prior qualifying volume is paid with the next backend.</li>
+            <li><strong>Profit share:</strong> paid after the specific job closes.</li>
+          </ul>
+        </div>
+
+        <!-- Awards -->
+        <div>
+          <h3 class="font-['Barlow_Condensed'] text-base font-700 text-[#1A1A1A] mb-2 uppercase tracking-wider">Awards (annual, accumulative)</h3>
+          <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3 text-center"><p class="font-['Barlow_Condensed'] font-800 text-xl text-[#1A1A1A]">$1.0M</p><p class="text-xs text-[#555] mt-1">Annual trip</p></div>
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3 text-center"><p class="font-['Barlow_Condensed'] font-800 text-xl text-[#1A1A1A]">$1.5M</p><p class="text-xs text-[#555] mt-1">+ Leased truck</p></div>
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3 text-center"><p class="font-['Barlow_Condensed'] font-800 text-xl text-[#1A1A1A]">$2.0M</p><p class="text-xs text-[#555] mt-1">+ Rolex</p></div>
+            <div class="bg-white border border-[#E0E0E0] rounded-lg p-3 text-center"><p class="font-['Barlow_Condensed'] font-800 text-xl text-[#1A1A1A]">$2.5M</p><p class="text-xs text-[#555] mt-1">+ $25k bonus</p></div>
+          </div>
+          <p class="text-xs text-[#888] mt-2">Each tier is additive. Hitting $2.5M earns bonus + Rolex + truck + trip.</p>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- Period Filter -->
+    <div class="mb-6">
+      <div class="flex flex-col md:flex-row md:items-end gap-4 justify-between">
+        <div>
+          <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">View</label>
+          <div class="inline-flex rounded-lg border border-[#E0E0E0] overflow-hidden" role="group">
+            <button class="fy27-view-btn px-4 py-2 text-sm font-700 font-['Barlow_Condensed'] bg-[#E6A817] text-[#1A1A1A]" data-view="monthly">Monthly</button>
+            <button class="fy27-view-btn px-4 py-2 text-sm font-700 font-['Barlow_Condensed'] bg-white text-[#555] border-l border-[#E0E0E0]" data-view="quarterly">Quarterly</button>
+            <button class="fy27-view-btn px-4 py-2 text-sm font-700 font-['Barlow_Condensed'] bg-white text-[#555] border-l border-[#E0E0E0]" data-view="annual">Annual</button>
+          </div>
+        </div>
+
+        <div id="period-selector-wrap" class="flex gap-3 items-end">
+          <div id="month-wrap">
+            <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Month</label>
+            <select id="month-sel" class="calc-input w-44"></select>
+          </div>
+          <div id="quarter-wrap" class="hidden">
+            <label class="block text-xs font-600 text-[#888] mb-1 uppercase tracking-wider">Quarter</label>
+            <select id="quarter-sel" class="calc-input w-44">
+              <option value="Q1">Q1 (Nov &ndash; Jan)</option>
+              <option value="Q2">Q2 (Feb &ndash; Apr)</option>
+              <option value="Q3">Q3 (May &ndash; Jul)</option>
+              <option value="Q4">Q4 (Aug &ndash; Oct)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quota Progress -->
+    <div class="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl p-5 md:p-7 mb-8 text-white">
+      <div class="flex items-baseline justify-between flex-wrap gap-3 mb-4">
+        <div>
+          <p class="text-xs text-[#888] uppercase tracking-widest" id="quota-period-label">Monthly Quota</p>
+          <p class="font-['Barlow_Condensed'] text-3xl font-800 text-white" id="quota-progress-dollars">$0 of $83,333</p>
+        </div>
+        <div class="text-right">
+          <p class="text-xs text-[#888] uppercase tracking-widest">% to Quota</p>
+          <p class="font-['Barlow_Condensed'] text-3xl font-800 text-[#E6A817]" id="quota-pct">0%</p>
+        </div>
+      </div>
+      <div class="h-3 w-full rounded-full bg-[#333] overflow-hidden">
+        <div id="quota-bar" class="h-full rounded-full bg-gradient-to-r from-[#E6A817] to-[#F0C040] transition-all" style="width:0%"></div>
+      </div>
+      <p class="text-xs text-[#888] mt-3" id="quota-period-detail">Period: Nov 2026 &middot; Qualifying volume only (profit-share deals excluded)</p>
+    </div>
+
+    <!-- Deals -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-['Barlow_Condensed'] text-xl font-700 text-[#1A1A1A]">Deals</h2>
+        <div class="flex gap-2">
+          <button id="btn-clear" class="text-xs font-600 px-3 py-1.5 rounded-lg border border-[#E0E0E0] text-[#B91C1C] hover:border-[#B91C1C] transition-colors">Clear All</button>
+          <button id="btn-add-deal" class="text-sm font-700 font-['Barlow_Condensed'] px-4 py-2 rounded-lg bg-[#E6A817] text-[#1A1A1A] hover:bg-[#F0C040] transition-colors">+ Add Deal</button>
+        </div>
+      </div>
+      <div class="overflow-x-auto bg-white border border-[#E0E0E0] rounded-xl">
+        <table class="w-full text-sm">
+          <thead class="bg-[#F7F7F7]">
+            <tr>
+              <th class="text-left px-3 py-2 font-700 font-['Barlow_Condensed'] text-[#555] text-xs uppercase tracking-widest">Date</th>
+              <th class="text-left px-3 py-2 font-700 font-['Barlow_Condensed'] text-[#555] text-xs uppercase tracking-widest">Deal Price</th>
+              <th class="text-left px-3 py-2 font-700 font-['Barlow_Condensed'] text-[#555] text-xs uppercase tracking-widest">GM %</th>
+              <th class="text-left px-3 py-2 font-700 font-['Barlow_Condensed'] text-[#555] text-xs uppercase tracking-widest">Status</th>
+              <th class="text-right px-3 py-2 font-700 font-['Barlow_Condensed'] text-[#555] text-xs uppercase tracking-widest">Earns</th>
+              <th class="px-3 py-2"></th>
+            </tr>
+          </thead>
+          <tbody id="deals-tbody"></tbody>
+          <tfoot id="deals-tfoot" class="bg-[#FAFAFA] text-sm hidden">
+            <tr><td colspan="6" class="px-3 py-2 text-[#888] italic">No deals yet. Click &quot;+ Add Deal&quot; above.</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="text-xs text-[#888] mt-2">Earns column shows the per-deal payout under the current tier (front + back on commission deals, or profit-share $ for 14-18% GM). Retro deltas are reflected in the summary below, not in this per-row figure.</p>
+    </div>
+
+    <!-- Summary -->
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+
+      <!-- Period Summary -->
+      <div class="bg-white border border-[#E0E0E0] rounded-2xl p-5">
+        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-[#1A1A1A] mb-4" id="period-summary-title">Monthly Summary</h3>
+        <dl class="space-y-2 text-sm">
+          <div class="flex justify-between"><dt class="text-[#555]">Qualifying volume</dt><dd class="font-700 text-[#1A1A1A]" id="sum-qualifying">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Profit-share volume (excluded)</dt><dd class="text-[#B45309]" id="sum-pshare-vol">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Not-approved volume</dt><dd class="text-[#B91C1C]" id="sum-nope-vol">$0</dd></div>
+          <div class="flex justify-between border-t border-[#E0E0E0] pt-2 mt-2"><dt class="text-[#555]">Front @ current tier</dt><dd class="text-[#1A1A1A]" id="sum-front">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Back @ current tier</dt><dd class="text-[#1A1A1A]" id="sum-back">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Profit share earned</dt><dd class="text-[#B45309]" id="sum-pshare-earn">$0</dd></div>
+          <div class="flex justify-between border-t border-[#E0E0E0] pt-2 mt-2 text-base"><dt class="font-700 text-[#1A1A1A]">Period total earned</dt><dd class="font-800 text-[#166534] font-['Barlow_Condensed'] text-lg" id="sum-total">$0</dd></div>
+        </dl>
+        <p class="text-xs text-[#888] mt-3">Front + back shown here reflect the <strong>current annual tier</strong> applied to this period's qualifying volume. The retro delta from crossing a tier is shown separately below.</p>
+      </div>
+
+      <!-- Annual Status -->
+      <div class="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl p-5 text-white">
+        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-white mb-4">Annual Status (FY27 to date)</h3>
+        <dl class="space-y-2 text-sm">
+          <div class="flex justify-between"><dt class="text-[#888]">Annual qualifying volume</dt><dd class="font-700" id="ann-vol">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#888]">Current tier</dt><dd class="font-700 text-[#E6A817] font-['Barlow_Condensed']" id="ann-tier">Tier 1 (7% / 0%)</dd></div>
+          <div class="flex justify-between"><dt class="text-[#888]">Front earned (YTD)</dt><dd id="ann-front">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#888]">Back accrued (YTD)</dt><dd id="ann-back">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#888]">Profit share earned (YTD)</dt><dd class="text-[#F0C040]" id="ann-pshare">$0</dd></div>
+          <div class="flex justify-between border-t border-[#333] pt-2 mt-2 text-base"><dt class="font-700">Annual total earned</dt><dd class="font-800 text-[#E6A817] font-['Barlow_Condensed'] text-lg" id="ann-total">$0</dd></div>
+        </dl>
+
+        <div class="mt-4 pt-4 border-t border-[#333]">
+          <p class="text-xs text-[#888] uppercase tracking-widest mb-2">Next tier</p>
+          <p class="text-sm" id="next-tier-line">Earn $250,000 more to unlock the 10% tier (adds 3% back + retro).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retro & Awards -->
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div class="bg-white border border-[#E0E0E0] rounded-2xl p-5">
+        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-[#1A1A1A] mb-3">Retroactive delta (next backend)</h3>
+        <p class="text-sm text-[#555] mb-3" id="retro-explainer">Shows what retro delta is owed at the next quarter-end backend if the current tier differs from a lower starting tier.</p>
+        <dl class="space-y-2 text-sm">
+          <div class="flex justify-between"><dt class="text-[#555]">Front retro delta</dt><dd class="font-700 text-[#1A1A1A]" id="retro-front">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Back retro (= back earned on all qualifying volume)</dt><dd class="font-700 text-[#1A1A1A]" id="retro-back">$0</dd></div>
+          <div class="flex justify-between border-t border-[#E0E0E0] pt-2 mt-2 text-base"><dt class="font-700 text-[#1A1A1A]">Backend payout</dt><dd class="font-800 text-[#166534] font-['Barlow_Condensed'] text-lg" id="retro-total">$0</dd></div>
+        </dl>
+      </div>
+
+      <div class="bg-white border border-[#E0E0E0] rounded-2xl p-5">
+        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-[#1A1A1A] mb-3">Awards status</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center justify-between" data-award="trip"><span class="text-[#555]">$1.0M &middot; Annual trip</span><span class="award-badge" data-badge="trip">Locked</span></li>
+          <li class="flex items-center justify-between" data-award="truck"><span class="text-[#555]">$1.5M &middot; + Leased truck</span><span class="award-badge" data-badge="truck">Locked</span></li>
+          <li class="flex items-center justify-between" data-award="rolex"><span class="text-[#555]">$2.0M &middot; + Rolex</span><span class="award-badge" data-badge="rolex">Locked</span></li>
+          <li class="flex items-center justify-between" data-award="bonus"><span class="text-[#555]">$2.5M &middot; + $25k bonus</span><span class="award-badge" data-badge="bonus">Locked</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer note -->
+    <p class="text-center text-xs text-[#888] mt-10">
+      FY27 plan. Deals persist in your browser only (localStorage) and are not shared with other devices.
+      <button id="btn-reset-fy27" class="ml-2 underline text-[#B91C1C]">Reset local data</button>
+    </p>
+
+  </div>
+</section>
+
+<style is:inline>
+  .calc-input { background:#FFFFFF; border:1px solid #E0E0E0; border-radius:8px; padding:.5rem .75rem; font-size:.9rem; color:#1A1A1A; }
+  .calc-input:focus { outline:none; border-color:#E6A817; box-shadow:0 0 0 3px rgba(230,168,23,.2); }
+  .fy27-cell-input { width:100%; background:transparent; border:none; padding:.4rem .5rem; font-size:.9rem; color:#1A1A1A; text-align:left; }
+  .fy27-cell-input:focus { outline:none; background:rgba(230,168,23,.08); border-radius:4px; }
+  .fy27-cell-input.right { text-align:right; }
+  .status-pill { display:inline-block; padding:.15rem .55rem; border-radius:999px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+  .status-commission { background:rgba(22,101,52,.12); color:#166534; }
+  .status-pshare { background:rgba(180,83,9,.14); color:#B45309; }
+  .status-nope { background:rgba(185,28,28,.14); color:#B91C1C; }
+  .del-row { background:transparent; border:none; color:#B91C1C; cursor:pointer; font-size:1rem; padding:.25rem .4rem; border-radius:6px; }
+  .del-row:hover { background:rgba(185,28,28,.08); }
+  .award-badge { display:inline-flex; align-items:center; gap:.35rem; padding:.2rem .6rem; border-radius:999px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; background:#F0F0F0; color:#888; }
+  .award-badge.earned { background:rgba(22,101,52,.14); color:#166534; }
+  .fy27-view-btn.active { background:#E6A817; color:#1A1A1A; }
+</style>
+
+<script is:inline>
+(function() {
+  'use strict';
+
+  // ─── Password Gate ───────────────────────────────────────────────
+  var PASS = 'HAPPY';
+  var lockEl = document.getElementById('fy27-lock');
+  var appEl = document.getElementById('fy27-app');
+  var pwForm = document.getElementById('fy27-pw-form');
+  var pwInput = document.getElementById('fy27-pw-input');
+  var pwError = document.getElementById('fy27-pw-error');
+
+  if (sessionStorage.getItem('hr-fy27-auth') === '1') {
+    lockEl.style.display = 'none';
+    appEl.classList.remove('hidden');
+  }
+  pwForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (pwInput.value.trim() === PASS) {
+      sessionStorage.setItem('hr-fy27-auth', '1');
+      lockEl.style.transition = 'opacity .3s ease';
+      lockEl.style.opacity = '0';
+      setTimeout(function() { lockEl.style.display = 'none'; appEl.classList.remove('hidden'); init(); }, 300);
+    } else {
+      pwError.classList.remove('hidden');
+      pwInput.value = '';
+      pwInput.focus();
+    }
+  });
+
+  // ─── Plan constants (FY27) ───────────────────────────────────────
+  // Fiscal year: Nov 1 2026 → Oct 31 2027.
+  var FY_START_YEAR = 2026;        // calendar year that Nov 1 falls in
+  var MONTHLY_QUOTA = 83333.33;
+  var QUARTERLY_QUOTA = 250000;
+  var ANNUAL_QUOTA = 1000000;
+
+  // Tiers: upper bound of band + total/front/back percent (0-1 scale).
+  // "max" is exclusive upper bound; final tier is Infinity.
+  var TIERS = [
+    { label: 'Tier 1', max: 250000,   total: 0.07, front: 0.07, back: 0.00 },
+    { label: 'Tier 2', max: 500000,   total: 0.10, front: 0.07, back: 0.03 },
+    { label: 'Tier 3', max: 750000,   total: 0.12, front: 0.08, back: 0.04 },
+    { label: 'Tier 4', max: 1000000,  total: 0.14, front: 0.09, back: 0.05 },
+    { label: 'Tier 5', max: Infinity, total: 0.16, front: 0.10, back: 0.06 },
+  ];
+
+  var AWARDS = [
+    { key: 'trip',  threshold: 1000000, label: 'Annual trip' },
+    { key: 'truck', threshold: 1500000, label: 'Leased truck' },
+    { key: 'rolex', threshold: 2000000, label: 'Rolex' },
+    { key: 'bonus', threshold: 2500000, label: '$25k bonus' },
+  ];
+
+  // Fiscal month order (Nov is month 0 in fiscal terms).
+  var FISCAL_MONTHS = [
+    { label: 'Nov 2026', iso: '2026-11' },
+    { label: 'Dec 2026', iso: '2026-12' },
+    { label: 'Jan 2027', iso: '2027-01' },
+    { label: 'Feb 2027', iso: '2027-02' },
+    { label: 'Mar 2027', iso: '2027-03' },
+    { label: 'Apr 2027', iso: '2027-04' },
+    { label: 'May 2027', iso: '2027-05' },
+    { label: 'Jun 2027', iso: '2027-06' },
+    { label: 'Jul 2027', iso: '2027-07' },
+    { label: 'Aug 2027', iso: '2027-08' },
+    { label: 'Sep 2027', iso: '2027-09' },
+    { label: 'Oct 2027', iso: '2027-10' },
+  ];
+  var QUARTER_MAP = {
+    Q1: ['2026-11','2026-12','2027-01'],
+    Q2: ['2027-02','2027-03','2027-04'],
+    Q3: ['2027-05','2027-06','2027-07'],
+    Q4: ['2027-08','2027-09','2027-10'],
+  };
+
+  // ─── State ────────────────────────────────────────────────────────
+  var STORAGE_KEY = 'hr-fy27-deals-v1';
+  var state = {
+    deals: [],              // {id, date (YYYY-MM-DD), price, gm}
+    view: 'monthly',        // 'monthly' | 'quarterly' | 'annual'
+    month: '2026-11',       // iso
+    quarter: 'Q1',
+  };
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.deals)) state.deals = parsed.deals;
+      }
+    } catch (e) { /* ignore */ }
+  }
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ deals: state.deals })); } catch (e) {}
+  }
+
+  // ─── Helpers ──────────────────────────────────────────────────────
+  function nextId() {
+    var max = 0;
+    state.deals.forEach(function(d) { if (d.id > max) max = d.id; });
+    return max + 1;
+  }
+  function money(n) {
+    if (!isFinite(n)) n = 0;
+    var neg = n < 0;
+    n = Math.round(Math.abs(n));
+    return (neg ? '-$' : '$') + n.toLocaleString('en-US');
+  }
+  function pctLabel(frac) {
+    var p = (frac * 100);
+    if (!isFinite(p)) p = 0;
+    if (p > 0 && p < 1) return '<1%';
+    return Math.round(p) + '%';
+  }
+  function dealGPDollars(d) { return (Number(d.price) || 0) * (Number(d.gm) || 0) / 100; }
+  function dealIsCommission(d) { return (Number(d.gm) || 0) > 18; }
+  function dealIsProfitShare(d) { var g = Number(d.gm) || 0; return g >= 14 && g <= 18; }
+  function dealIsNotApproved(d) { return (Number(d.gm) || 0) < 14; }
+  function dealProfitShareDollars(d) { return dealGPDollars(d) * 0.9 * 0.5; }
+  function dealIsoMonth(d) { return (d.date || '').slice(0, 7); }
+  function dealIsoYear(d)  { return (d.date || '').slice(0, 4); }
+
+  function tierForVolume(v) {
+    for (var i = 0; i < TIERS.length; i++) {
+      if (v < TIERS[i].max) return { idx: i, tier: TIERS[i] };
+    }
+    return { idx: TIERS.length - 1, tier: TIERS[TIERS.length - 1] };
+  }
+
+  function dealsInPeriod() {
+    if (state.view === 'annual') return state.deals.slice();
+    if (state.view === 'monthly') {
+      return state.deals.filter(function(d) { return dealIsoMonth(d) === state.month; });
+    }
+    var months = QUARTER_MAP[state.quarter] || [];
+    return state.deals.filter(function(d) { return months.indexOf(dealIsoMonth(d)) !== -1; });
+  }
+
+  function dealsAnnual() {
+    // Everything inside FY27 window (Nov 2026 → Oct 2027).
+    var validMonths = FISCAL_MONTHS.map(function(m) { return m.iso; });
+    return state.deals.filter(function(d) { return validMonths.indexOf(dealIsoMonth(d)) !== -1; });
+  }
+
+  // ─── Rendering ────────────────────────────────────────────────────
+  function renderDeals() {
+    var tbody = document.getElementById('deals-tbody');
+    var tfoot = document.getElementById('deals-tfoot');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    if (!state.deals.length) {
+      tfoot.classList.remove('hidden');
+      return;
+    }
+    tfoot.classList.add('hidden');
+
+    // Sort by date asc for consistent view.
+    var sorted = state.deals.slice().sort(function(a, b) { return (a.date || '').localeCompare(b.date || ''); });
+
+    // Determine running annual qualifying volume (for per-row earns @ current tier).
+    // Simpler and more honest: per-row shows what THIS deal earns at the CURRENT annual tier,
+    // not at the tier the deal pushed us into. Retro delta is handled in the summary.
+    var annualQualifying = dealsAnnual().filter(dealIsCommission).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var curTier = tierForVolume(annualQualifying).tier;
+
+    sorted.forEach(function(d) {
+      var tr = document.createElement('tr');
+      tr.className = 'border-t border-[#E0E0E0]';
+      var status = '';
+      var earns = 0;
+      if (dealIsNotApproved(d)) {
+        status = '<span class="status-pill status-nope">Not Approved</span>';
+        earns = 0;
+      } else if (dealIsProfitShare(d)) {
+        status = '<span class="status-pill status-pshare">Profit Share</span>';
+        earns = dealProfitShareDollars(d);
+      } else {
+        status = '<span class="status-pill status-commission">Commission</span>';
+        earns = (Number(d.price) || 0) * curTier.total;
+      }
+      tr.innerHTML =
+        '<td class="px-2 py-1"><input type="date" class="fy27-cell-input" data-id="' + d.id + '" data-field="date" value="' + (d.date || '') + '" /></td>' +
+        '<td class="px-2 py-1"><input type="number" min="0" step="100" class="fy27-cell-input right" data-id="' + d.id + '" data-field="price" value="' + (d.price || '') + '" placeholder="$" /></td>' +
+        '<td class="px-2 py-1"><input type="number" min="0" step="0.1" class="fy27-cell-input right" data-id="' + d.id + '" data-field="gm" value="' + (d.gm || '') + '" placeholder="%" /></td>' +
+        '<td class="px-3 py-2">' + status + '</td>' +
+        '<td class="px-3 py-2 text-right font-700 text-[#1A1A1A]">' + money(earns) + '</td>' +
+        '<td class="px-2 py-2 text-right"><button class="del-row" data-del="' + d.id + '" aria-label="Remove deal">&times;</button></td>';
+      tbody.appendChild(tr);
+    });
+
+    // Wire inputs
+    tbody.querySelectorAll('.fy27-cell-input').forEach(function(inp) {
+      inp.addEventListener('input', function() {
+        var id = Number(inp.getAttribute('data-id'));
+        var field = inp.getAttribute('data-field');
+        var deal = state.deals.find(function(d) { return d.id === id; });
+        if (!deal) return;
+        deal[field] = (field === 'date') ? inp.value : Number(inp.value);
+        saveState();
+        renderAll();
+      });
+    });
+    tbody.querySelectorAll('.del-row').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = Number(btn.getAttribute('data-del'));
+        state.deals = state.deals.filter(function(d) { return d.id !== id; });
+        saveState();
+        renderAll();
+      });
+    });
+  }
+
+  function renderQuota() {
+    var periodDeals = dealsInPeriod();
+    var qualifying = periodDeals.filter(dealIsCommission).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var quota;
+    var label;
+    var detail;
+    if (state.view === 'annual') {
+      quota = ANNUAL_QUOTA;
+      label = 'Annual Quota';
+      detail = 'Period: Full FY27 · Qualifying volume only (profit-share deals excluded)';
+    } else if (state.view === 'quarterly') {
+      quota = QUARTERLY_QUOTA;
+      label = 'Quarterly Quota';
+      detail = 'Period: ' + state.quarter + ' · Qualifying volume only (profit-share deals excluded)';
+    } else {
+      quota = MONTHLY_QUOTA;
+      label = 'Monthly Quota';
+      var mInfo = FISCAL_MONTHS.find(function(m) { return m.iso === state.month; });
+      detail = 'Period: ' + (mInfo ? mInfo.label : state.month) + ' · Qualifying volume only (profit-share deals excluded)';
+    }
+    var frac = quota > 0 ? qualifying / quota : 0;
+    document.getElementById('quota-period-label').textContent = label;
+    document.getElementById('quota-progress-dollars').textContent = money(qualifying) + ' of ' + money(quota);
+    document.getElementById('quota-pct').textContent = pctLabel(frac);
+    document.getElementById('quota-bar').style.width = Math.min(100, Math.max(0, frac * 100)) + '%';
+    document.getElementById('quota-period-detail').textContent = detail;
+  }
+
+  function renderSummaries() {
+    // Period Summary
+    var periodDeals = dealsInPeriod();
+    var qualifying = periodDeals.filter(dealIsCommission).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var pshareVol  = periodDeals.filter(dealIsProfitShare).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var nopeVol    = periodDeals.filter(dealIsNotApproved).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var pshareEarn = periodDeals.filter(dealIsProfitShare).reduce(function(s, d) { return s + dealProfitShareDollars(d); }, 0);
+
+    // Annual cumulative drives the tier used for front/back on period volume.
+    var annualQual = dealsAnnual().filter(dealIsCommission).reduce(function(s, d) { return s + (Number(d.price) || 0); }, 0);
+    var tier = tierForVolume(annualQual).tier;
+
+    var frontPeriod = qualifying * tier.front;
+    var backPeriod  = qualifying * tier.back;
+    var periodTotal = frontPeriod + backPeriod + pshareEarn;
+
+    var periodTitle = state.view === 'annual' ? 'Annual Summary' : state.view === 'quarterly' ? 'Quarterly Summary' : 'Monthly Summary';
+    document.getElementById('period-summary-title').textContent = periodTitle;
+    document.getElementById('sum-qualifying').textContent = money(qualifying);
+    document.getElementById('sum-pshare-vol').textContent = money(pshareVol);
+    document.getElementById('sum-nope-vol').textContent = money(nopeVol);
+    document.getElementById('sum-front').textContent = money(frontPeriod);
+    document.getElementById('sum-back').textContent = money(backPeriod);
+    document.getElementById('sum-pshare-earn').textContent = money(pshareEarn);
+    document.getElementById('sum-total').textContent = money(periodTotal);
+
+    // Annual Status
+    var annualPshare = dealsAnnual().filter(dealIsProfitShare).reduce(function(s, d) { return s + dealProfitShareDollars(d); }, 0);
+    var annualFront = annualQual * tier.front;
+    var annualBack  = annualQual * tier.back;
+    var annualTotal = annualFront + annualBack + annualPshare;
+
+    document.getElementById('ann-vol').textContent = money(annualQual);
+    document.getElementById('ann-tier').textContent = tier.label + ' (' + Math.round(tier.front * 100) + '% / ' + Math.round(tier.back * 100) + '%)';
+    document.getElementById('ann-front').textContent = money(annualFront);
+    document.getElementById('ann-back').textContent = money(annualBack);
+    document.getElementById('ann-pshare').textContent = money(annualPshare);
+    document.getElementById('ann-total').textContent = money(annualTotal);
+
+    // Next tier helper
+    var nextTierLine = document.getElementById('next-tier-line');
+    var currentIdx = tierForVolume(annualQual).idx;
+    if (currentIdx >= TIERS.length - 1) {
+      nextTierLine.textContent = 'Top tier reached (' + Math.round(TIERS[currentIdx].total * 100) + '% total). Keep stacking.';
+    } else {
+      var nextT = TIERS[currentIdx + 1];
+      var gap = (currentIdx === 0 ? 250000 : TIERS[currentIdx].max) - annualQual;
+      if (gap < 0) gap = 0;
+      nextTierLine.textContent = 'Earn ' + money(gap) + ' more to unlock ' + nextT.label + ' (' + Math.round(nextT.total * 100) + '% total: ' + Math.round(nextT.front * 100) + '% front / ' + Math.round(nextT.back * 100) + '% back).';
+    }
+
+    // Retro delta (full-stack retro: current tier front+back applied to all annual qualifying volume,
+    // minus whatever the rep has already been paid upfront at prior tiers' front rates).
+    // Simpler expression used here: backend payout = (tier.back × annualQual) + sum of (tier.front − prevTierFront) × crossingPoint.
+    // We'll compute it from a running simulation to be exact.
+    var retro = computeRetroDelta(annualQual, tier);
+    document.getElementById('retro-front').textContent = money(retro.front);
+    document.getElementById('retro-back').textContent = money(retro.back);
+    document.getElementById('retro-total').textContent = money(retro.front + retro.back);
+
+    // Awards status
+    AWARDS.forEach(function(a) {
+      var el = document.querySelector('[data-badge="' + a.key + '"]');
+      if (!el) return;
+      if (annualQual >= a.threshold) {
+        el.textContent = 'Earned';
+        el.classList.add('earned');
+      } else {
+        var remaining = a.threshold - annualQual;
+        el.textContent = money(remaining) + ' to go';
+        el.classList.remove('earned');
+      }
+    });
+  }
+
+  // Simulate payment timing to compute retro delta that would be paid at next backend.
+  //
+  // Assumption: upfront commissions get paid at the FRONT rate of the tier *at the time*
+  // the deal landed (i.e., the simple interpretation of the plan as reps experience it week-to-week).
+  // The retro front delta is the difference between the current-tier front rate on ALL
+  // annual qualifying volume minus what has actually been paid upfront to date.
+  //
+  // This simulation walks deals in chronological order, assigning each the then-current tier
+  // front rate, then compares the final current tier's front × total volume to that running sum.
+  function computeRetroDelta(totalVol, currentTier) {
+    var sorted = dealsAnnual().filter(dealIsCommission).slice().sort(function(a, b) { return (a.date || '').localeCompare(b.date || ''); });
+    var cumulative = 0;
+    var frontPaid = 0;
+    sorted.forEach(function(d) {
+      var price = Number(d.price) || 0;
+      // Determine tier BEFORE this deal lands (i.e., the tier at the deal's submission moment).
+      var tier = tierForVolume(cumulative).tier;
+      frontPaid += price * tier.front;
+      cumulative += price;
+    });
+    var frontOwedAtCurrentTier = totalVol * currentTier.front;
+    var frontRetro = Math.max(0, frontOwedAtCurrentTier - frontPaid);
+    var backRetro = totalVol * currentTier.back; // Back is paid only at quarter-end (none paid yet upfront).
+    return { front: frontRetro, back: backRetro };
+  }
+
+  function renderAll() {
+    renderDeals();
+    renderQuota();
+    renderSummaries();
+  }
+
+  // ─── UI Wiring ────────────────────────────────────────────────────
+  function initMonthSelect() {
+    var sel = document.getElementById('month-sel');
+    sel.innerHTML = '';
+    FISCAL_MONTHS.forEach(function(m) {
+      var opt = document.createElement('option');
+      opt.value = m.iso;
+      opt.textContent = m.label;
+      sel.appendChild(opt);
+    });
+    sel.value = state.month;
+    sel.addEventListener('change', function() { state.month = sel.value; renderAll(); });
+  }
+
+  function wireViewButtons() {
+    document.querySelectorAll('.fy27-view-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        state.view = btn.getAttribute('data-view');
+        document.querySelectorAll('.fy27-view-btn').forEach(function(b) {
+          b.classList.remove('active');
+          b.classList.remove('bg-[#E6A817]');
+          b.classList.remove('text-[#1A1A1A]');
+          b.classList.add('bg-white');
+          b.classList.add('text-[#555]');
+        });
+        btn.classList.add('active');
+        btn.classList.add('bg-[#E6A817]');
+        btn.classList.add('text-[#1A1A1A]');
+        btn.classList.remove('bg-white');
+        btn.classList.remove('text-[#555]');
+        // Toggle period selectors.
+        document.getElementById('month-wrap').classList.toggle('hidden', state.view !== 'monthly');
+        document.getElementById('quarter-wrap').classList.toggle('hidden', state.view !== 'quarterly');
+        renderAll();
+      });
+    });
+    document.getElementById('quarter-sel').addEventListener('change', function(e) {
+      state.quarter = e.target.value;
+      renderAll();
+    });
+  }
+
+  function wireDealActions() {
+    document.getElementById('btn-add-deal').addEventListener('click', function() {
+      // Default date = first day of currently selected month (or Nov 1 2026 for annual).
+      var defaultDate = state.view === 'monthly' ? (state.month + '-01') : '2026-11-01';
+      state.deals.push({ id: nextId(), date: defaultDate, price: 0, gm: 0 });
+      saveState();
+      renderAll();
+    });
+    document.getElementById('btn-clear').addEventListener('click', function() {
+      if (!state.deals.length) return;
+      if (confirm('Remove all deals? This cannot be undone.')) {
+        state.deals = [];
+        saveState();
+        renderAll();
+      }
+    });
+    document.getElementById('btn-reset-fy27').addEventListener('click', function() {
+      if (confirm('Reset all FY27 local data (deals, selections)?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        state.deals = [];
+        renderAll();
+      }
+    });
+  }
+
+  function init() {
+    loadState();
+    initMonthSelect();
+    wireViewButtons();
+    wireDealActions();
+    renderAll();
+  }
+
+  // If auth was already present on page load, init now.
+  if (sessionStorage.getItem('hr-fy27-auth') === '1') init();
+})();
+</script>
+
+</LandingLayout>
