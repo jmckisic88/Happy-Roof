@@ -314,13 +314,32 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     <!-- Retro & Awards -->
     <div class="grid md:grid-cols-2 gap-5 mb-8">
       <div class="bg-white border border-[#E0E0E0] rounded-2xl p-5">
-        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-[#1A1A1A] mb-3">Retroactive delta (next backend)</h3>
-        <p class="text-sm text-[#555] mb-3" id="retro-explainer">Shows what retro delta is owed at the next quarter-end backend if the current tier differs from a lower starting tier.</p>
+        <h3 class="font-['Barlow_Condensed'] text-lg font-700 text-[#1A1A1A] mb-3">Next backend payment</h3>
+        <p class="text-sm text-[#555] mb-3" id="retro-explainer">What the rep will receive at the next quarter-end backend.</p>
         <dl class="space-y-2 text-sm">
-          <div class="flex justify-between"><dt class="text-[#555]">Front retro delta</dt><dd class="font-700 text-[#1A1A1A]" id="retro-front">$0</dd></div>
-          <div class="flex justify-between"><dt class="text-[#555]">Back retro (= back earned on all qualifying volume)</dt><dd class="font-700 text-[#1A1A1A]" id="retro-back">$0</dd></div>
-          <div class="flex justify-between border-t border-[#E0E0E0] pt-2 mt-2 text-base"><dt class="font-700 text-[#1A1A1A]">Backend payout</dt><dd class="font-800 text-[#166534] font-['Barlow_Condensed'] text-lg" id="retro-total">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Backend (this quarter&rsquo;s back accrual)</dt><dd class="font-700 text-[#1A1A1A]" id="next-base">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Retro &middot; front true-up</dt><dd class="text-[#1A1A1A]" id="retro-front">$0</dd></div>
+          <div class="flex justify-between"><dt class="text-[#555]">Retro &middot; back true-up</dt><dd class="text-[#1A1A1A]" id="retro-back">$0</dd></div>
+          <div class="flex justify-between border-t border-[#E0E0E0] pt-2 mt-2 text-base"><dt class="font-700 text-[#1A1A1A]">Next backend check</dt><dd class="font-800 text-[#166534] font-['Barlow_Condensed'] text-lg" id="retro-total">$0</dd></div>
         </dl>
+        <!-- Per-backend history -->
+        <div id="backend-history-wrap" class="mt-4 pt-4 border-t border-[#E0E0E0] hidden">
+          <p class="text-xs text-[#888] uppercase tracking-widest mb-2">Past backends</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs">
+              <thead class="text-[#888] uppercase tracking-widest">
+                <tr>
+                  <th class="text-left py-1 pr-2 font-700">Qtr end</th>
+                  <th class="text-right py-1 px-2 font-700">Backend</th>
+                  <th class="text-right py-1 px-2 font-700">Front retro</th>
+                  <th class="text-right py-1 px-2 font-700">Back retro</th>
+                  <th class="text-right py-1 pl-2 font-700">Total</th>
+                </tr>
+              </thead>
+              <tbody id="backend-history-tbody" class="text-[#1A1A1A]"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div class="bg-white border border-[#E0E0E0] rounded-2xl p-5">
@@ -653,19 +672,50 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       nextTierLine.textContent = 'Earn ' + money(gap) + ' more to unlock ' + nextT.label + ' (' + Math.round(nextT.total * 100) + '% total: ' + Math.round(nextT.front * 100) + '% front / ' + Math.round(nextT.back * 100) + '% back).';
     }
 
-    // Retro + next-backend payout — simulated against the full payment timeline
-    // (deals + past quarter-end backends) so values reflect what has already
-    // been paid vs. what's still owed at the next quarter end.
+    // Next backend payment, split into base + retro components. Retro is
+    // tracked separately from the backend proper so the headline backend
+    // number is not inflated by tier-change true-ups.
     var sim = simulate();
-    document.getElementById('retro-front').textContent = money(sim.frontRetroAtNextBackend);
-    document.getElementById('retro-back').textContent = money(sim.backAtNextBackend);
-    document.getElementById('retro-total').textContent = money(sim.totalAtNextBackend);
+    document.getElementById('next-base').textContent = money(sim.nextBase);
+    document.getElementById('retro-front').textContent = money(sim.nextFrontRetro);
+    document.getElementById('retro-back').textContent = money(sim.nextBackRetro);
+    document.getElementById('retro-total').textContent = money(sim.nextTotal);
     var retroExplainer = document.getElementById('retro-explainer');
     if (retroExplainer) {
-      var paidNote = sim.backendsFired > 0
-        ? ' ' + sim.backendsFired + ' backend' + (sim.backendsFired === 1 ? '' : 's') + ' already paid (' + money(sim.backPaid + sim.frontPaidBackend) + ' total). '
-        : ' No backends paid yet. ';
-      retroExplainer.textContent = 'What will be paid at the next quarter-end backend as of ' + sim.scenarioDate + '.' + paidNote + 'Front retro only shows a value when the current tier’s front rate is higher than what was paid upfront on prior deals.';
+      var scenNote = ' Scenario date ' + sim.scenarioDate + '.';
+      var paidNote;
+      if (sim.backendsFired > 0) {
+        paidNote = ' ' + sim.backendsFired + ' past backend' + (sim.backendsFired === 1 ? '' : 's') + ' already paid: '
+          + money(sim.backBasePaid) + ' backend + '
+          + money(sim.frontRetroPaid + sim.backRetroPaid) + ' retro.';
+      } else {
+        paidNote = ' No past backends.';
+      }
+      retroExplainer.textContent = 'What the rep will receive at the next quarter-end backend.' + scenNote + paidNote;
+    }
+
+    // Past backend history table — only show if at least one backend has fired.
+    var historyWrap = document.getElementById('backend-history-wrap');
+    var historyBody = document.getElementById('backend-history-tbody');
+    if (historyWrap && historyBody) {
+      if (!sim.pastBackendsHistory || !sim.pastBackendsHistory.length) {
+        historyWrap.classList.add('hidden');
+        historyBody.innerHTML = '';
+      } else {
+        historyWrap.classList.remove('hidden');
+        historyBody.innerHTML = '';
+        sim.pastBackendsHistory.forEach(function(row) {
+          var tr = document.createElement('tr');
+          tr.className = 'border-t border-[#F0F0F0]';
+          tr.innerHTML = ''
+            + '<td class="py-1 pr-2">' + row.date + '</td>'
+            + '<td class="py-1 px-2 text-right">' + money(row.base) + '</td>'
+            + '<td class="py-1 px-2 text-right">' + money(row.frontRetro) + '</td>'
+            + '<td class="py-1 px-2 text-right">' + money(row.backRetro) + '</td>'
+            + '<td class="py-1 pl-2 text-right font-700">' + money(row.total) + '</td>';
+          historyBody.appendChild(tr);
+        });
+      }
     }
 
     // Awards status
@@ -702,15 +752,20 @@ import LandingLayout from '../layouts/LandingLayout.astro';
   }
 
   // Walk events (deals + past quarter ends) chronologically up through the
-  // scenario date. Returns a snapshot of what's been paid vs. still owed.
+  // scenario date. Returns a snapshot of three payment categories:
   //
-  // Payment rules used here:
-  //   - UPFRONT: when a deal is submitted, it's paid at the front rate of
-  //     the tier the deal LANDS IN (post-submission cumulative), not the
-  //     tier before the deal. A $1M deal on day 1 pays $100k upfront.
-  //   - BACKEND: at each quarter end, true up (a) back-owed on all
-  //     qualifying volume at the then-current tier, and (b) any front
-  //     retro delta that has accumulated since the last payout.
+  //   1. UPFRONT   -> paid weekly as deals submit, at the tier they LAND in
+  //   2. BACKEND   -> this quarter's base back accrual, paid at quarter end
+  //   3. RETRO     -> true-up on PRIOR quarters' volume when the tier climbs.
+  //                   Front retro (upfront catch-up) and back retro (back catch-up)
+  //                   both land in the backend check, but are tracked separately
+  //                   so the backend number is not inflated by them.
+  //
+  // Example: $500k Q1 (Tier 3, 8%/4%) + $500k Q2 crosses to Tier 5 (10%/6%).
+  //   Q1 end: backend $20k (= $500k * 4%). Retro $0.
+  //   Q2 end: backend $30k (= $500k * 6% this quarter). Front retro $10k
+  //           (= $500k * (10% - 8%) on Q1 volume). Back retro $10k
+  //           (= $500k * (6% - 4%) on Q1 volume). Rep's Q2 check = $50k.
   function simulate() {
     var scenDate = scenarioDate();
     var sorted = dealsAnnual().filter(dealIsCommission).slice().sort(function(a, b) {
@@ -734,46 +789,79 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     });
 
     var cumulative = 0;
+    var cumThisQuarter = 0;
     var frontPaidUpfront = 0;
-    var frontPaidBackend = 0;
-    var backPaid = 0;
+    var frontRetroPaid = 0;      // front true-ups paid at past backends
+    var backBasePaid = 0;         // base back accruals paid at past backends
+    var backRetroPaid = 0;        // back true-ups paid at past backends
     var backendsFired = 0;
+    var pastBackendsHistory = []; // per-quarter breakdown for display
 
     events.forEach(function(ev) {
       if (ev.kind === 'deal') {
         cumulative += ev.price;
+        cumThisQuarter += ev.price;
         var tier = tierForVolume(cumulative).tier;
         frontPaidUpfront += ev.price * tier.front;
       } else { // qend
         var tier = tierForVolume(cumulative).tier;
-        var frontOwedAtQend = cumulative * tier.front;
-        var backOwedAtQend = cumulative * tier.back;
-        var frontDelta = Math.max(0, frontOwedAtQend - frontPaidUpfront - frontPaidBackend);
-        var backDelta = Math.max(0, backOwedAtQend - backPaid);
-        frontPaidBackend += frontDelta;
-        backPaid += backDelta;
+        var priorVolume = cumulative - cumThisQuarter;
+
+        // Front retro = all front owed at current tier, minus what has
+        // already been paid upfront + at prior backend retros.
+        var frontOwed = cumulative * tier.front;
+        var frontRetro = Math.max(0, frontOwed - frontPaidUpfront - frontRetroPaid);
+
+        // Back base = this quarter's volume x this quarter's end tier back.
+        // Back retro = back owed on prior volume at current tier, minus
+        //              what has already been paid at prior backends.
+        var backBase = cumThisQuarter * tier.back;
+        var backOwedOnPrior = priorVolume * tier.back;
+        var backRetro = Math.max(0, backOwedOnPrior - backBasePaid - backRetroPaid);
+
+        pastBackendsHistory.push({
+          date: ev.date,
+          qtrVolume: cumThisQuarter,
+          cumAtQend: cumulative,
+          tier: tier,
+          base: backBase,
+          frontRetro: frontRetro,
+          backRetro: backRetro,
+          total: backBase + frontRetro + backRetro,
+        });
+
+        frontRetroPaid += frontRetro;
+        backBasePaid += backBase;
+        backRetroPaid += backRetro;
+        cumThisQuarter = 0;
         backendsFired += 1;
       }
     });
 
-    // What's owed at the NEXT backend (as of right now):
+    // What's owed at the NEXT backend (as of scenario date, mid-quarter).
     var tierNow = tierForVolume(cumulative).tier;
+    var priorVolumeNow = cumulative - cumThisQuarter;
     var frontOwedNow = cumulative * tierNow.front;
-    var backOwedNow = cumulative * tierNow.back;
-    var frontRetroPending = Math.max(0, frontOwedNow - frontPaidUpfront - frontPaidBackend);
-    var backPending = Math.max(0, backOwedNow - backPaid);
+    var backOwedOnPriorNow = priorVolumeNow * tierNow.back;
+    var nextBase = cumThisQuarter * tierNow.back;
+    var nextFrontRetro = Math.max(0, frontOwedNow - frontPaidUpfront - frontRetroPaid);
+    var nextBackRetro = Math.max(0, backOwedOnPriorNow - backBasePaid - backRetroPaid);
 
     return {
       scenarioDate: scenDate,
       cumulative: cumulative,
       tierNow: tierNow,
       frontPaidUpfront: frontPaidUpfront,
-      frontPaidBackend: frontPaidBackend,
-      backPaid: backPaid,
+      frontRetroPaid: frontRetroPaid,
+      backBasePaid: backBasePaid,
+      backRetroPaid: backRetroPaid,
       backendsFired: backendsFired,
-      frontRetroAtNextBackend: frontRetroPending,
-      backAtNextBackend: backPending,
-      totalAtNextBackend: frontRetroPending + backPending,
+      pastBackendsHistory: pastBackendsHistory,
+      // Next backend breakdown:
+      nextBase: nextBase,
+      nextFrontRetro: nextFrontRetro,
+      nextBackRetro: nextBackRetro,
+      nextTotal: nextBase + nextFrontRetro + nextBackRetro,
     };
   }
 
