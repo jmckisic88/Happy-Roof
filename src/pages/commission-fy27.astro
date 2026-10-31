@@ -114,6 +114,88 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       </div>
     </details>
 
+    <!-- Scenario Builder -->
+    <details id="sb-wrap" class="mb-8 bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-2xl text-white" open>
+      <summary class="cursor-pointer select-none p-5 flex items-center justify-between gap-4">
+        <span class="font-['Barlow_Condensed'] text-xl font-700">Scenario Builder</span>
+        <span class="text-xs text-[#888] uppercase tracking-widest">tap to collapse</span>
+      </summary>
+      <div class="px-5 pb-5 space-y-5">
+        <p class="text-sm text-[#888]">Model a scenario with averages. Generating replaces the deal list below with the simulated scenario.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Number of Deals -->
+          <div>
+            <label class="block text-xs text-[#888] uppercase tracking-widest mb-2">Number of Deals</label>
+            <input type="range" id="sb-deals-range" min="1" max="100" step="1" value="20" class="w-full accent-[#E6A817]" />
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]" id="sb-deals-val">20</span>
+              <input type="number" id="sb-deals-num" value="20" min="1" max="500" class="calc-input w-20 text-right text-sm" />
+            </div>
+          </div>
+
+          <!-- Avg Deal Price -->
+          <div>
+            <label class="block text-xs text-[#888] uppercase tracking-widest mb-2">Avg Deal Price</label>
+            <input type="range" id="sb-price-range" min="5000" max="100000" step="500" value="25000" class="w-full accent-[#E6A817]" />
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]" id="sb-price-val">$25,000</span>
+              <input type="number" id="sb-price-num" value="25000" min="0" step="500" class="calc-input w-28 text-right text-sm" />
+            </div>
+          </div>
+
+          <!-- Avg GM % -->
+          <div>
+            <label class="block text-xs text-[#888] uppercase tracking-widest mb-2">Avg GM %</label>
+            <input type="range" id="sb-gm-range" min="10" max="40" step="0.5" value="22" class="w-full accent-[#E6A817]" />
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="font-['Barlow_Condensed'] text-2xl font-800 text-[#E6A817]" id="sb-gm-val">22%</span>
+              <input type="number" id="sb-gm-num" value="22" min="0" max="100" step="0.1" class="calc-input w-20 text-right text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Distribution + Target -->
+        <div class="flex flex-col md:flex-row md:items-end gap-3 justify-between">
+          <div class="flex gap-3 flex-wrap">
+            <div>
+              <label class="block text-xs text-[#888] uppercase tracking-widest mb-1">Distribute Over</label>
+              <select id="sb-dist" class="calc-input w-44">
+                <option value="month">Single Month</option>
+                <option value="quarter">Full Quarter</option>
+                <option value="year" selected>Full Fiscal Year</option>
+              </select>
+            </div>
+            <div id="sb-month-wrap" class="hidden">
+              <label class="block text-xs text-[#888] uppercase tracking-widest mb-1">Month</label>
+              <select id="sb-month-sel" class="calc-input w-44"></select>
+            </div>
+            <div id="sb-quarter-wrap" class="hidden">
+              <label class="block text-xs text-[#888] uppercase tracking-widest mb-1">Quarter</label>
+              <select id="sb-quarter-sel" class="calc-input w-44">
+                <option value="Q1">Q1 (Nov &ndash; Jan)</option>
+                <option value="Q2">Q2 (Feb &ndash; Apr)</option>
+                <option value="Q3">Q3 (May &ndash; Jul)</option>
+                <option value="Q4">Q4 (Aug &ndash; Oct)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex gap-2 self-end">
+            <label class="flex items-center gap-1.5 text-xs text-[#888] mr-1" title="Add +/- jitter to each deal's price and GM so the scenario is not perfectly uniform">
+              <input type="checkbox" id="sb-jitter" checked class="accent-[#E6A817]" /> Jitter
+            </label>
+            <button id="sb-generate" class="px-5 py-2 bg-[#E6A817] text-[#1A1A1A] text-sm font-700 font-['Barlow_Condensed'] rounded-lg hover:bg-[#F0C040] transition-colors">Generate Scenario</button>
+          </div>
+        </div>
+
+        <!-- Live preview -->
+        <div class="text-sm text-[#888] bg-[#1A1A1A] rounded-lg px-3 py-2 border border-[#333]" id="sb-preview">
+          Preview: 20 deals &times; $25,000 &times; 22% GM = $500,000 volume, $110,000 GP, 1.7 deals/mo across FY27
+        </div>
+      </div>
+    </details>
+
     <!-- Period Filter -->
     <div class="mb-6">
       <div class="flex flex-col md:flex-row md:items-end gap-4 justify-between">
@@ -571,14 +653,20 @@ import LandingLayout from '../layouts/LandingLayout.astro';
       nextTierLine.textContent = 'Earn ' + money(gap) + ' more to unlock ' + nextT.label + ' (' + Math.round(nextT.total * 100) + '% total: ' + Math.round(nextT.front * 100) + '% front / ' + Math.round(nextT.back * 100) + '% back).';
     }
 
-    // Retro delta (full-stack retro: current tier front+back applied to all annual qualifying volume,
-    // minus whatever the rep has already been paid upfront at prior tiers' front rates).
-    // Simpler expression used here: backend payout = (tier.back × annualQual) + sum of (tier.front − prevTierFront) × crossingPoint.
-    // We'll compute it from a running simulation to be exact.
-    var retro = computeRetroDelta(annualQual, tier);
-    document.getElementById('retro-front').textContent = money(retro.front);
-    document.getElementById('retro-back').textContent = money(retro.back);
-    document.getElementById('retro-total').textContent = money(retro.front + retro.back);
+    // Retro + next-backend payout — simulated against the full payment timeline
+    // (deals + past quarter-end backends) so values reflect what has already
+    // been paid vs. what's still owed at the next quarter end.
+    var sim = simulate();
+    document.getElementById('retro-front').textContent = money(sim.frontRetroAtNextBackend);
+    document.getElementById('retro-back').textContent = money(sim.backAtNextBackend);
+    document.getElementById('retro-total').textContent = money(sim.totalAtNextBackend);
+    var retroExplainer = document.getElementById('retro-explainer');
+    if (retroExplainer) {
+      var paidNote = sim.backendsFired > 0
+        ? ' ' + sim.backendsFired + ' backend' + (sim.backendsFired === 1 ? '' : 's') + ' already paid (' + money(sim.backPaid + sim.frontPaidBackend) + ' total). '
+        : ' No backends paid yet. ';
+      retroExplainer.textContent = 'What will be paid at the next quarter-end backend as of ' + sim.scenarioDate + '.' + paidNote + 'Front retro only shows a value when the current tier’s front rate is higher than what was paid upfront on prior deals.';
+    }
 
     // Awards status
     AWARDS.forEach(function(a) {
@@ -595,30 +683,98 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     });
   }
 
-  // Simulate payment timing to compute retro delta that would be paid at next backend.
-  //
-  // Assumption: upfront commissions get paid at the FRONT rate of the tier *at the time*
-  // the deal landed (i.e., the simple interpretation of the plan as reps experience it week-to-week).
-  // The retro front delta is the difference between the current-tier front rate on ALL
-  // annual qualifying volume minus what has actually been paid upfront to date.
-  //
-  // This simulation walks deals in chronological order, assigning each the then-current tier
-  // front rate, then compares the final current tier's front × total volume to that running sum.
-  function computeRetroDelta(totalVol, currentTier) {
-    var sorted = dealsAnnual().filter(dealIsCommission).slice().sort(function(a, b) { return (a.date || '').localeCompare(b.date || ''); });
-    var cumulative = 0;
-    var frontPaid = 0;
-    sorted.forEach(function(d) {
-      var price = Number(d.price) || 0;
-      // Determine tier BEFORE this deal lands (i.e., the tier at the deal's submission moment).
-      var tier = tierForVolume(cumulative).tier;
-      frontPaid += price * tier.front;
-      cumulative += price;
+  // Fiscal quarter end dates (ISO). Backend payouts happen the Friday
+  // following these dates, but for simulation purposes we treat the
+  // quarter-end date itself as the payment event.
+  var QUARTER_ENDS = ['2027-01-31', '2027-04-30', '2027-07-31', '2027-10-31'];
+
+  // "Scenario date" is max(today, latest deal date). This lets the tool work
+  // both as a live calculator AND as a what-if scenario planner for deals
+  // dated in the future.
+  function scenarioDate() {
+    var today;
+    try { today = new Date().toISOString().slice(0, 10); } catch (e) { today = '2026-11-01'; }
+    var latest = today;
+    state.deals.forEach(function(d) {
+      if ((d.date || '') > latest) latest = d.date;
     });
-    var frontOwedAtCurrentTier = totalVol * currentTier.front;
-    var frontRetro = Math.max(0, frontOwedAtCurrentTier - frontPaid);
-    var backRetro = totalVol * currentTier.back; // Back is paid only at quarter-end (none paid yet upfront).
-    return { front: frontRetro, back: backRetro };
+    return latest;
+  }
+
+  // Walk events (deals + past quarter ends) chronologically up through the
+  // scenario date. Returns a snapshot of what's been paid vs. still owed.
+  //
+  // Payment rules used here:
+  //   - UPFRONT: when a deal is submitted, it's paid at the front rate of
+  //     the tier the deal LANDS IN (post-submission cumulative), not the
+  //     tier before the deal. A $1M deal on day 1 pays $100k upfront.
+  //   - BACKEND: at each quarter end, true up (a) back-owed on all
+  //     qualifying volume at the then-current tier, and (b) any front
+  //     retro delta that has accumulated since the last payout.
+  function simulate() {
+    var scenDate = scenarioDate();
+    var sorted = dealsAnnual().filter(dealIsCommission).slice().sort(function(a, b) {
+      return (a.date || '').localeCompare(b.date || '');
+    });
+
+    // Build event stream: deals + quarter ends up through scenDate.
+    var events = sorted.map(function(d) {
+      return { kind: 'deal', date: d.date, price: Number(d.price) || 0 };
+    });
+    QUARTER_ENDS.forEach(function(qe) {
+      events.push({ kind: 'qend', date: qe });
+    });
+    events = events.filter(function(e) { return e.date <= scenDate; });
+    // Sort by date; deals BEFORE quarter ends on the same date (so a deal
+    // dated 1/31 counts toward the 1/31 backend payout).
+    events.sort(function(a, b) {
+      if (a.date !== b.date) return a.date.localeCompare(b.date);
+      if (a.kind === b.kind) return 0;
+      return a.kind === 'deal' ? -1 : 1;
+    });
+
+    var cumulative = 0;
+    var frontPaidUpfront = 0;
+    var frontPaidBackend = 0;
+    var backPaid = 0;
+    var backendsFired = 0;
+
+    events.forEach(function(ev) {
+      if (ev.kind === 'deal') {
+        cumulative += ev.price;
+        var tier = tierForVolume(cumulative).tier;
+        frontPaidUpfront += ev.price * tier.front;
+      } else { // qend
+        var tier = tierForVolume(cumulative).tier;
+        var frontOwedAtQend = cumulative * tier.front;
+        var backOwedAtQend = cumulative * tier.back;
+        var frontDelta = Math.max(0, frontOwedAtQend - frontPaidUpfront - frontPaidBackend);
+        var backDelta = Math.max(0, backOwedAtQend - backPaid);
+        frontPaidBackend += frontDelta;
+        backPaid += backDelta;
+        backendsFired += 1;
+      }
+    });
+
+    // What's owed at the NEXT backend (as of right now):
+    var tierNow = tierForVolume(cumulative).tier;
+    var frontOwedNow = cumulative * tierNow.front;
+    var backOwedNow = cumulative * tierNow.back;
+    var frontRetroPending = Math.max(0, frontOwedNow - frontPaidUpfront - frontPaidBackend);
+    var backPending = Math.max(0, backOwedNow - backPaid);
+
+    return {
+      scenarioDate: scenDate,
+      cumulative: cumulative,
+      tierNow: tierNow,
+      frontPaidUpfront: frontPaidUpfront,
+      frontPaidBackend: frontPaidBackend,
+      backPaid: backPaid,
+      backendsFired: backendsFired,
+      frontRetroAtNextBackend: frontRetroPending,
+      backAtNextBackend: backPending,
+      totalAtNextBackend: frontRetroPending + backPending,
+    };
   }
 
   function renderAll() {
@@ -694,11 +850,157 @@ import LandingLayout from '../layouts/LandingLayout.astro';
     });
   }
 
+  // ─── Scenario Builder ─────────────────────────────────────────────
+  function wireScenarioBuilder() {
+    var dealsRange = document.getElementById('sb-deals-range');
+    var dealsNum   = document.getElementById('sb-deals-num');
+    var dealsVal   = document.getElementById('sb-deals-val');
+    var priceRange = document.getElementById('sb-price-range');
+    var priceNum   = document.getElementById('sb-price-num');
+    var priceVal   = document.getElementById('sb-price-val');
+    var gmRange    = document.getElementById('sb-gm-range');
+    var gmNum      = document.getElementById('sb-gm-num');
+    var gmVal      = document.getElementById('sb-gm-val');
+    var distSel    = document.getElementById('sb-dist');
+    var monthWrap  = document.getElementById('sb-month-wrap');
+    var monthSel   = document.getElementById('sb-month-sel');
+    var quarterWrap= document.getElementById('sb-quarter-wrap');
+    var quarterSel = document.getElementById('sb-quarter-sel');
+    var preview    = document.getElementById('sb-preview');
+    var jitterChk  = document.getElementById('sb-jitter');
+    var genBtn     = document.getElementById('sb-generate');
+
+    // Populate month selector (same list as main month filter).
+    FISCAL_MONTHS.forEach(function(m) {
+      var opt = document.createElement('option');
+      opt.value = m.iso;
+      opt.textContent = m.label;
+      monthSel.appendChild(opt);
+    });
+
+    function sync(range, num, display, format) {
+      range.addEventListener('input', function() { num.value = range.value; display.textContent = format(range.value); updatePreview(); });
+      num.addEventListener('input', function() {
+        var v = Number(num.value) || 0;
+        range.value = Math.min(Number(range.max), Math.max(Number(range.min), v));
+        display.textContent = format(v);
+        updatePreview();
+      });
+    }
+    sync(dealsRange, dealsNum, dealsVal, function(v) { return Math.round(v).toString(); });
+    sync(priceRange, priceNum, priceVal, function(v) { return money(v); });
+    sync(gmRange, gmNum, gmVal, function(v) { return (Number(v)).toFixed(1).replace(/\.0$/, '') + '%'; });
+
+    function toggleTarget() {
+      var mode = distSel.value;
+      monthWrap.classList.toggle('hidden', mode !== 'month');
+      quarterWrap.classList.toggle('hidden', mode !== 'quarter');
+      updatePreview();
+    }
+    distSel.addEventListener('change', toggleTarget);
+    monthSel.addEventListener('change', updatePreview);
+    quarterSel.addEventListener('change', updatePreview);
+    jitterChk.addEventListener('change', updatePreview);
+
+    function distributionWindow() {
+      var mode = distSel.value;
+      if (mode === 'month') {
+        return [monthSel.value];
+      }
+      if (mode === 'quarter') {
+        return (QUARTER_MAP[quarterSel.value] || []).slice();
+      }
+      return FISCAL_MONTHS.map(function(m) { return m.iso; });
+    }
+
+    function updatePreview() {
+      var n = Number(dealsNum.value) || 0;
+      var p = Number(priceNum.value) || 0;
+      var g = Number(gmNum.value) || 0;
+      var vol = n * p;
+      var gp = vol * g / 100;
+      var monthsCount = distributionWindow().length;
+      var perMo = monthsCount > 0 ? (n / monthsCount).toFixed(1) : '0';
+      var windowLabel = distSel.value === 'month'
+        ? (FISCAL_MONTHS.find(function(m) { return m.iso === monthSel.value; }) || {label: ''}).label
+        : (distSel.value === 'quarter' ? quarterSel.value : 'FY27');
+      preview.textContent = 'Preview: ' + n + ' deals × ' + money(p) + ' × ' + g + '% GM = ' + money(vol) + ' volume, ' + money(gp) + ' GP, ' + perMo + ' deals/mo across ' + windowLabel + (jitterChk.checked ? ' (with jitter)' : '');
+    }
+    toggleTarget();
+    updatePreview();
+
+    // Day-of-month helper. Picks a day inside each target month, roughly
+    // spreading deals across the month. Months are 30-31 days; we round
+    // to the 1st, 10th, 20th, 28th buckets so dates don't collide much.
+    function dayFor(index, perMonth) {
+      if (perMonth <= 1) return 15;
+      // Spread 1..perMonth across days 3..28.
+      var frac = (index + 0.5) / perMonth;
+      return Math.min(28, Math.max(1, Math.round(3 + frac * 25)));
+    }
+
+    function pad2(n) { return (n < 10 ? '0' + n : '' + n); }
+    function isoDate(ym, day) { return ym + '-' + pad2(day); }
+
+    function pseudoRand(seed, i) {
+      // Deterministic-ish jitter so the same inputs produce the same output.
+      var x = Math.sin(seed * 9301 + i * 49297) * 233280;
+      return x - Math.floor(x); // 0..1
+    }
+
+    genBtn.addEventListener('click', function() {
+      var n = Math.max(1, Math.round(Number(dealsNum.value) || 0));
+      var p = Math.max(0, Number(priceNum.value) || 0);
+      var g = Math.max(0, Number(gmNum.value) || 0);
+      var window = distributionWindow();
+      var jitter = jitterChk.checked;
+      if (state.deals.length > 0) {
+        if (!confirm('This replaces your current ' + state.deals.length + ' deal(s) with ' + n + ' simulated deal(s). Continue?')) return;
+      }
+      // Spread N deals across the window months as evenly as possible.
+      var perMonth = Math.ceil(n / window.length);
+      var newDeals = [];
+      var id = 1;
+      var seed = n * 1000 + p + Math.round(g * 10);
+      var remaining = n;
+      for (var mi = 0; mi < window.length && remaining > 0; mi++) {
+        var monthCount = Math.min(perMonth, remaining);
+        for (var di = 0; di < monthCount; di++) {
+          var dealPrice = p;
+          var dealGm = g;
+          if (jitter) {
+            // +/- 20% price, +/- 3pts GM
+            var jp = (pseudoRand(seed, id) - 0.5) * 0.4;
+            var jg = (pseudoRand(seed, id + 7777) - 0.5) * 6;
+            dealPrice = Math.max(1000, Math.round(p * (1 + jp) / 100) * 100);
+            dealGm = Math.max(0, Math.round((g + jg) * 10) / 10);
+          }
+          newDeals.push({
+            id: id++,
+            date: isoDate(window[mi], dayFor(di, monthCount)),
+            price: dealPrice,
+            gm: dealGm,
+          });
+          remaining--;
+        }
+      }
+      state.deals = newDeals;
+      saveState();
+      renderAll();
+      // Smooth scroll to the deals table so Josh can see what landed.
+      var dealsTable = document.getElementById('deals-tbody');
+      if (dealsTable && dealsTable.closest('.overflow-x-auto')) {
+        dealsTable.closest('.overflow-x-auto').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   function init() {
     loadState();
     initMonthSelect();
     wireViewButtons();
     wireDealActions();
+    wireScenarioBuilder();
     renderAll();
   }
 
