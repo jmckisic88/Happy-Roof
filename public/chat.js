@@ -31,13 +31,23 @@
     },
     {
       intents: ['warranty','guarantee','how long','15 year','10 year','workmanship'],
-      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying GAF, Owens Corning, Verea, and Gulfcoast Supply products\n\nThese are *in addition* to manufacturer warranties, giving you dual coverage. Any other questions?`,
+      response: `Happy Roof stands behind its work with industry-leading warranties:\n\n✅ **Up to 15-Year Workmanship Warranty** — Shingle, Metal & Tile roofs\n✅ **10-Year Workmanship Warranty** — Flat roof installations\n✅ **Manufacturer warranties** — Up to lifetime on qualifying Owens Corning shingles (we're an OC Preferred Contractor)\n\nOur workmanship warranty is *in addition* to the manufacturer's material warranty, giving you dual coverage. Any other questions?`,
       quick: ['What brands do you use?','Get a free estimate','Contact the team']
     },
     {
-      intents: ['brand','material','owens','corning','verea','tile','shingle','metal','tpo','flat','membrane','gulf'],
-      response: `We work with the industry's best manufacturers. Our preferred vendors:\n\n🔶 **Owens Corning** — All shingles: Duration HDZ, UHDZ, Oakridge, Berkshire (Preferred Contractor)\n🧱 **Verea Clay** — All tile: barrel, S-tile, flat profiles (vereaclaytile.com)\n⚙️ **Gulfcoast Supply** — All metal: standing seam, corrugated, exposed fastener (gulfcoastsupply.com)\n🏗️ **Flat Systems** — TPO, mod-bit, torch-down\n\nWe also install GAF, Titan, Atlas, TriCounty Metals, Crown Roof Tiles, and others by request. Want help choosing the right material?`,
+      intents: ['brand','material','owens','corning','tile','shingle','metal','tpo','flat','membrane'],
+      response: `Happy Roof installs the full range of residential roofing systems:\n\n🔶 **Shingles** — Owens Corning Duration, TruDefinition, Oakridge, Berkshire (we're a Preferred Contractor). GAF, Titan, Atlas by request.\n🧱 **Tile** — Concrete and clay in barrel, S-tile, and flat profiles. We source from multiple suppliers (Crown, Eagle, Boral) to match your home.\n⚙️ **Metal** — 24/26 gauge 5V exposed-fastener, standing seam (clip + mechanical-lock), stone-coated steel. TriCounty, ABO, MBCI.\n🏗️ **Flat** — TPO, mod-bit, torch-down for low-slope sections.\n\nWant help choosing the right material?`,
       quick: ['What lasts longest?','Which is most affordable?','Get a quote']
+    },
+    {
+      intents: ['rejuvenation','rejuvinate','rejuvanation','gonano','go nano','nano','nuroof','roof rejuvenation','extend my roof','extend roof','old roof','not ready to replace','not ready for a new roof','life extension','roof life'],
+      response: `Glad you asked. If your roof is **15+ years old but still has life in it**, our **GoNano** structural roof rejuvenation can extend the roof's life without a full replacement.\n\n✨ Nano-penetrating treatment, applied in one day\n🛡️ 5, 10, or 15-year renewable warranty\n💰 Typically a fraction of the cost of replacement\n🏡 Great fit for roofs in the 15–20+ year range\n\nWant to see if your roof qualifies, or learn more about how it works?`,
+      quick: ['See GoNano details','Schedule a free inspection','How much does GoNano cost?']
+    },
+    {
+      intents: ['see gonano','gonano details','gonano page','learn about gonano','more about gonano'],
+      response: `Taking you to the GoNano page!`,
+      quick: []
     },
     {
       intents: ['emergency','leak','urgent','active leak','flooding','water','storm hit','night','weekend','asap','right now'],
@@ -530,6 +540,13 @@
       }, 300);
       return;
     }
+    if (lower.includes('see gonano') || lower.includes('gonano details') || lower.includes('gonano page') || lower.includes('learn about gonano') || lower.includes('more about gonano')) {
+      setTimeout(() => {
+        addMessage('bot', 'Heading to the GoNano page — see you there!');
+        setTimeout(() => window.location.href = '/gonano', 800);
+      }, 300);
+      return;
+    }
     if (lower.includes('call (813)') || lower.includes('call us now') || lower.includes('call us')) {
       setTimeout(() => {
         addMessage('bot', 'Connecting you now!');
@@ -699,6 +716,140 @@
         ['I need a new roof', 'Roof repair', 'Storm damage', 'Free inspection', 'Just have questions']
       );
     }, 800);
+
+    // Scroll-trigger prompt bubble
+    initPromptBubble();
+  }
+
+  // ── Scroll-trigger prompt bubble ────────────────────────────
+  // Fires once at 50% scroll depth on first visit, offers 4 quick paths.
+  // Dismissal persists in localStorage. Not shown on /contact or password-gated pages.
+  function initPromptBubble() {
+    try {
+      // Skip on pages where a prompt would overlap a form or be redundant
+      const path = window.location.pathname;
+      if (/^\/contact/.test(path)) return;
+
+      // Respect persistent dismissal
+      let dismissed = false;
+      try { dismissed = localStorage.getItem('hr-chat-prompt-dismissed') === '1'; } catch (e) {}
+      if (dismissed) return;
+
+      // Build the bubble
+      const prompt = document.createElement('div');
+      prompt.id = 'hr-chat-prompt';
+      prompt.style.cssText = [
+        'position:fixed',
+        'bottom:6.5rem',
+        'right:1.5rem',
+        'z-index:9998',
+        'display:none',
+        'background:#1A1A1A',
+        'color:#fff',
+        'padding:1rem 1.1rem .9rem',
+        'border-radius:14px',
+        'width:300px',
+        'max-width:calc(100vw - 3rem)',
+        'box-shadow:0 14px 40px -6px rgba(0,0,0,.5),0 4px 12px -4px rgba(0,0,0,.3)',
+        'border:1px solid rgba(230,168,23,.28)',
+        'font-family:"Inter",sans-serif',
+        'opacity:0',
+        'transform:translateY(16px) scale(.96)',
+        'transition:opacity .35s cubic-bezier(.2,.9,.3,1),transform .35s cubic-bezier(.2,.9,.3,1)'
+      ].join(';');
+      prompt.innerHTML = [
+        '<button id="hr-chat-prompt-close" aria-label="Dismiss" style="position:absolute;top:.35rem;right:.5rem;background:transparent;border:none;color:rgba(255,255,255,.4);cursor:pointer;padding:.25rem .45rem;font-size:1.05rem;line-height:1;border-radius:4px;transition:color .15s" onmouseenter="this.style.color=\'#fff\'" onmouseleave="this.style.color=\'rgba(255,255,255,.4)\'">✕</button>',
+        '<p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:800;font-size:1.02rem;margin:0 0 .15rem;color:#fff;letter-spacing:.01em">QUICK QUESTION?</p>',
+        '<p style="font-size:.78rem;margin:0 0 .75rem;color:rgba(255,255,255,.62);line-height:1.4">Pick what we can help with:</p>',
+        '<div style="display:flex;flex-direction:column;gap:.4rem">',
+          '<button data-hr-prompt="pricing" class="hr-prompt-btn">💰 &nbsp;Interested in pricing?</button>',
+          '<button data-hr-prompt="inspection" class="hr-prompt-btn">🔎 &nbsp;Want a free inspection?</button>',
+          '<button data-hr-prompt="financing" class="hr-prompt-btn">💳 &nbsp;Learn more about financing?</button>',
+          '<button data-hr-prompt="gonano" class="hr-prompt-btn">✨ &nbsp;Heard about roof rejuvenation?</button>',
+        '</div>'
+      ].join('');
+      document.body.appendChild(prompt);
+
+      // Button + animation styles
+      const s = document.createElement('style');
+      s.textContent = [
+        '.hr-prompt-btn{width:100%;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);color:#f5f5f5;padding:.6rem .8rem;border-radius:9px;font-family:"Inter",sans-serif;font-size:.82rem;font-weight:500;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,color .15s,transform .1s}',
+        '.hr-prompt-btn:hover{background:rgba(230,168,23,.16);border-color:rgba(230,168,23,.55);color:#F0C040}',
+        '.hr-prompt-btn:active{transform:translateY(1px)}',
+        '.hr-prompt-btn:focus-visible{outline:2px solid #E6A817;outline-offset:2px}',
+        '@media (max-width:640px){#hr-chat-prompt{bottom:5.5rem;right:.75rem;width:calc(100vw - 1.5rem);max-width:300px}}',
+        '@media (prefers-reduced-motion:reduce){#hr-chat-prompt{transition:opacity .01s!important}}',
+      ].join('\n');
+      document.head.appendChild(s);
+
+      // Show once at 50% scroll depth (also hide if chat is open or already shown)
+      let shown = false;
+      function showPrompt() {
+        if (shown || open) return;
+        shown = true;
+        prompt.style.display = 'block';
+        // force reflow then animate in
+        requestAnimationFrame(() => {
+          prompt.style.opacity = '1';
+          prompt.style.transform = 'translateY(0) scale(1)';
+        });
+      }
+      function hidePrompt(dismissForever) {
+        prompt.style.opacity = '0';
+        prompt.style.transform = 'translateY(16px) scale(.96)';
+        setTimeout(() => { prompt.style.display = 'none'; }, 350);
+        if (dismissForever) {
+          try { localStorage.setItem('hr-chat-prompt-dismissed', '1'); } catch (e) {}
+        }
+      }
+
+      // Scroll depth trigger
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          const depth = window.scrollY / scrollable;
+          if (depth >= 0.5) {
+            showPrompt();
+            window.removeEventListener('scroll', onScroll);
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Close button — dismiss forever
+      prompt.querySelector('#hr-chat-prompt-close').addEventListener('click', () => {
+        hidePrompt(true);
+      });
+
+      // Option buttons
+      prompt.querySelectorAll('.hr-prompt-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const action = btn.getAttribute('data-hr-prompt');
+          hidePrompt(true); // dismiss forever once engaged
+          if (action === 'pricing') {
+            // Open the chat and send the pricing question into the existing flow
+            if (!open) toggleChat();
+            setTimeout(() => {
+              qualifyStep = 4; // skip the qualification flow
+              handleInput('How much does a roof cost?');
+            }, 250);
+          } else if (action === 'inspection') {
+            window.location.href = '/contact';
+          } else if (action === 'financing') {
+            window.location.href = '/finance';
+          } else if (action === 'gonano') {
+            window.location.href = '/gonano';
+          }
+        });
+      });
+    } catch (e) {
+      // Silently fail — chat should still work even if prompt bubble breaks
+      console.warn('[hr-chat] prompt bubble init failed:', e);
+    }
   }
 
   function sendMsg() {
