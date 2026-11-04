@@ -734,9 +734,20 @@ function generateVisualization() {
   // Fire-and-forget lead capture to Breeze \u2014 Josh gets the name+address even without email/phone
   captureVisualizerLead();
 
+  // Build the lead payload that the server also emails directly on success
+  var leadPayload = {
+    first_name: (document.getElementById('viz-firstname').value || '').trim(),
+    last_name: (document.getElementById('viz-lastname').value || '').trim(),
+    address: address,
+    email: ((document.getElementById('viz-email') || {}).value || '').trim(),
+    phone: ((document.getElementById('viz-phone') || {}).value || '').trim()
+  };
+
   var payload = {
     roofStyle: 'architectural shingle',
-    colors: selectedColors.map(function(c) { return { name: c.name, hex: c.hex }; })
+    colors: selectedColors.map(function(c) { return { name: c.name, hex: c.hex }; }),
+    lead: leadPayload,
+    source: '/assessment?tab=viz'
   };
   if (uploadedImageData) {
     payload.uploadedImage = uploadedImageData;

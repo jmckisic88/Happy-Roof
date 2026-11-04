@@ -10,10 +10,57 @@
 import { writeFile, unlink } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
+import { sendEmail } from './_send-email.js';
 
 // Vercel: give the function enough runway for 4 parallel image gens
 export const config = { maxDuration: 60 };
 export const maxDuration = 60;
+
+function buildVisualizerNotification({ lead, colors, delivered, requested, failed, source }) {
+  const fn = (lead && lead.first_name) || '';
+  const ln = (lead && lead.last_name) || '';
+  const fullName = ((fn + ' ' + ln).trim()) || (lead && lead.name) || 'Unknown visitor';
+  const addr = (lead && lead.address) || '(no address on record)';
+  const email = (lead && lead.email) || '';
+  const phone = (lead && lead.phone) || '';
+  const noContact = !email && !phone;
+
+  const colorLines = (colors || [])
+    .map((c, i) => '  ' + (i + 1) + '. ' + (c && c.name ? c.name : '(unnamed)'))
+    .join('\n') || '  (none recorded)';
+
+  const warn = noContact
+    ? '\n⚠️  NO EMAIL OR PHONE PROVIDED. If this lead is high-intent,\n    plan a door-knock or Street-View outreach to the address above.\n'
+    : '';
+
+  const partial = (failed && failed > 0)
+    ? '\nPartial result: ' + delivered + ' of ' + requested + ' color generations succeeded (' + failed + ' failed).'
+    : '';
+
+  const subject = '🏠 Roof Visualizer · ' + fullName + ' · ' + addr;
+
+  const message = [
+    'A visitor just generated a roof color comparison on happyroof.com.',
+    '',
+    'Name:     ' + fullName,
+    'Address:  ' + addr,
+    'Email:    ' + (email || 'not provided'),
+    'Phone:    ' + (phone || 'not provided'),
+    '',
+    'Colors compared:',
+    colorLines,
+    partial,
+    warn,
+    'Source:   ' + (source || '/assessment?tab=viz'),
+    'Fired at: ' + new Date().toISOString(),
+    '',
+    'The matching lead row should also be in Project Breeze under the',
+    '"Roof Color Visualizer" service tag. If it is missing there, check',
+    'the submit-lead fallback emails from the same minute.',
+  ].join('\n');
+
+  return { subject, message };
+}
 
 async function generateOne(imageBuffer, style, colorName, openaiKey) {
   const prompt = `Edit this photograph of a house. Replace ONLY the roof with a brand new ${colorName} ${style} roof. Keep the exact same house, same walls, same windows, same doors, same landscaping, same driveway, same trees, same sky, same everything else completely unchanged. Only the roof material and color should change to ${colorName} ${style}. The new roof should look freshly installed, clean, and photorealistic.`;
@@ -70,7 +117,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { address, uploadedImage, roofStyle, colors, roofColor } = req.body || {};
+  const { address, uploadedImage, roofStyle, colors, roofColor, lead, source } = req.body || {};
 
   // Accept either `colors` array or back-compat single `roofColor` string
   let colorList = Array.isArray(colors) ? colors.slice() : null;
@@ -152,6 +199,33 @@ export default async function handler(req, res) {
       });
     }
 
+    // Belt-and-suspenders notification — every successful visualizer run
+    // fires a direct email in addition to the client's Breeze submit-lead
+    // call, so Josh gets a notification even if Breeze is silent.
+    // Lead object comes from the client (name, address, optional contact).
+    // Address falls back to the Street View address when no explicit lead
+    // address was provided, so the notification always has the house.
+    let emailNotified = false;
+    let emailError = null;
+    try {
+      const normalizedLead = Object.assign({}, lead || {});
+      if (!normalizedLead.address && address) normalizedLead.address = address;
+      const { subject, message } = buildVisualizerNotification({
+        lead: normalizedLead,
+        colors: successes.map(r => r.color),
+        delivered: successes.length,
+        requested: colorList.length,
+        failed: failures.length,
+        source,
+      });
+      const emailRes = await sendEmail({ subject, message });
+      emailNotified = !!(emailRes && emailRes.success);
+      if (!emailNotified) emailError = (emailRes && emailRes.error) || 'unknown';
+    } catch (e) {
+      emailError = String(e && e.message || e);
+      console.error('Visualizer notification email failed:', e);
+    }
+
     return res.status(200).json({
       success: true,
       originalImage: originalDataUrl,
@@ -162,6 +236,8 @@ export default async function handler(req, res) {
       delivered: successes.length,
       failed: failures.length,
       failures: failures.length ? failures.map(f => ({ name: f.color.name, error: f.error })) : undefined,
+      notified: emailNotified,
+      notifyError: emailError,
     });
   } catch (err) {
     console.error('Roof visualizer error:', err);
