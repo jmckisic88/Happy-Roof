@@ -62,7 +62,7 @@ function buildVisualizerNotification({ lead, colors, delivered, requested, faile
   return { subject, message };
 }
 
-async function generateOne(imageBuffer, style, colorName, openaiKey) {
+async function callOpenAIEdit(imageBuffer, style, colorName, openaiKey, quality) {
   const prompt = `Edit this photograph of a house. Replace ONLY the roof with a brand new ${colorName} ${style} roof. Keep the exact same house, same walls, same windows, same doors, same landscaping, same driveway, same trees, same sky, same everything else completely unchanged. Only the roof material and color should change to ${colorName} ${style}. The new roof should look freshly installed, clean, and photorealistic.`;
 
   const boundary = '----FormBoundary' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
@@ -70,7 +70,7 @@ async function generateOne(imageBuffer, style, colorName, openaiKey) {
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\ngpt-image-1`);
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="prompt"\r\n\r\n${prompt}`);
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="size"\r\n\r\n1024x1024`);
-  parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="quality"\r\n\r\nhigh`);
+  parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="quality"\r\n\r\n${quality}`);
 
   const imageHeader = `--${boundary}\r\nContent-Disposition: form-data; name="image"; filename="house.jpg"\r\nContent-Type: image/jpeg\r\n\r\n`;
   const imageFooter = `\r\n--${boundary}--\r\n`;
@@ -93,7 +93,10 @@ async function generateOne(imageBuffer, style, colorName, openaiKey) {
 
   if (!editRes.ok) {
     const errText = await editRes.text();
-    throw new Error(`OpenAI ${editRes.status}: ${errText.slice(0, 200)}`);
+    const err = new Error(`OpenAI ${editRes.status}: ${errText.slice(0, 400)}`);
+    err.status = editRes.status;
+    err.body = errText;
+    throw err;
   }
 
   const editData = await editRes.json();
@@ -107,6 +110,27 @@ async function generateOne(imageBuffer, style, colorName, openaiKey) {
     return `data:image/png;base64,${imgBuf.toString('base64')}`;
   }
   throw new Error('No image returned from OpenAI');
+}
+
+async function generateOne(imageBuffer, style, colorName, openaiKey) {
+  // Try medium quality first (faster + cheaper, usually good enough for
+  // a roof-swap of a Street View / phone photo). If that fails with a
+  // transient-looking error, retry once at low quality so we still land
+  // SOMETHING on the canvas rather than nothing.
+  try {
+    return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'medium');
+  } catch (e1) {
+    const status = e1.status || 0;
+    const transient = status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+    if (!transient) throw e1; // 400/401/403 don't benefit from retry
+    console.warn(`[roof-viz] ${colorName} medium failed (${status}); retrying at low quality`);
+    try {
+      return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'low');
+    } catch (e2) {
+      // Surface the ORIGINAL error (higher quality attempt) — it's usually the more diagnostic one
+      throw e1;
+    }
+  }
 }
 
 export default async function handler(req, res) {

@@ -781,7 +781,11 @@ function generateVisualization() {
         document.getElementById('viz-upload-area').style.display = 'block';
         alert('Google does not have street-level imagery for this address yet. Upload a photo of the home below and we will generate from that.');
       } else {
-        alert('We could not generate a comparison. ' + (data.error || 'Please try again.'));
+        // Surface the server details so we can diagnose what OpenAI returned
+        var detail = (data && data.details) ? '\n\nDetails: ' + data.details : '';
+        var firstFail = (data && data.failures && data.failures[0]) ? '\n\nFirst failure: ' + data.failures[0].error : '';
+        alert('We could not generate a comparison. ' + (data.error || 'Please try again.') + detail + firstFail);
+        console.error('[roof-viz] generation failed:', data);
       }
     }
   })
