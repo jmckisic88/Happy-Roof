@@ -294,20 +294,22 @@ const schema = `{
       </details>
     </div>
 
-    <!-- OR divider + upload option -->
-    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-      <div style="flex:1;height:1px;background:#E0E0E0"></div>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#888;letter-spacing:.1em">OR UPLOAD A PHOTO OF THE HOUSE</span>
-      <div style="flex:1;height:1px;background:#E0E0E0"></div>
-    </div>
+    <!-- OR divider + upload option (always visible; copy retitles after Street View loads) -->
+    <div id="viz-upload-group">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+        <div style="flex:1;height:1px;background:#E0E0E0"></div>
+        <span id="viz-upload-divider-text" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#888;letter-spacing:.1em;text-align:center">OR UPLOAD A PHOTO OF THE HOUSE</span>
+        <div style="flex:1;height:1px;background:#E0E0E0"></div>
+      </div>
 
-    <div id="viz-upload-area" style="margin-bottom:2rem">
-      <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;border:2px dashed #E0E0E0;border-radius:14px;cursor:pointer;transition:border-color .2s;background:#FAFAFA" onmouseover="this.style.borderColor='#E6A817'" onmouseout="this.style.borderColor='#E0E0E0'">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#1A1A1A">Upload a photo of the home</p>
-        <p style="color:#888;font-size:.78rem;margin-top:.25rem">JPG or PNG, front view works best</p>
-        <input type="file" id="viz-file-input" accept="image/jpeg,image/png" style="display:none" onchange="handleFileUpload(this)" />
-      </label>
+      <div id="viz-upload-area" style="margin-bottom:2rem">
+        <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;border:2px dashed #E0E0E0;border-radius:14px;cursor:pointer;transition:border-color .2s,background .2s;background:#FAFAFA" onmouseover="this.style.borderColor='#E6A817'" onmouseout="this.style.borderColor='#E0E0E0'">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p id="viz-upload-headline" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;color:#1A1A1A">Upload a photo of the home</p>
+          <p id="viz-upload-subtext" style="color:#888;font-size:.78rem;margin-top:.25rem">JPG or PNG, front view works best</p>
+          <input type="file" id="viz-file-input" accept="image/jpeg,image/png" style="display:none" onchange="handleFileUpload(this)" />
+        </label>
+      </div>
     </div>
 
     <!-- Image preview (Street View or uploaded) -->
@@ -316,6 +318,7 @@ const schema = `{
         <img id="viz-original" alt="Your home" style="width:100%;display:block" />
       </div>
       <p id="viz-source-label" style="color:#888;font-size:.75rem;text-align:center;margin-top:.5rem">Your home from Google Street View</p>
+      <p id="viz-swap-source" style="display:none;text-align:center;margin-top:.25rem"><a href="#" onclick="swapToStreetView(event)" style="color:#8B6914;font-size:.75rem;font-weight:600;text-decoration:underline">Use Google Street View photo instead</a></p>
     </div>
 
     <!-- 2. COLOR PICKER (multi-select, max 4) -->
@@ -830,6 +833,36 @@ function validateYourInfo() {
   return true;
 }
 
+function updateUploadAffordance(mode) {
+  // mode: 'initial' | 'street-view-loaded' | 'uploaded'
+  var divider = document.getElementById('viz-upload-divider-text');
+  var headline = document.getElementById('viz-upload-headline');
+  var sub = document.getElementById('viz-upload-subtext');
+  var swap = document.getElementById('viz-swap-source');
+  var area = document.getElementById('viz-upload-area');
+  if (!divider || !headline || !sub || !area) return;
+
+  if (mode === 'street-view-loaded') {
+    divider.textContent = 'GOOGLE PHOTO OUTDATED OR BLURRY? UPLOAD YOUR OWN';
+    headline.textContent = 'Use a better photo of the home';
+    sub.textContent = 'JPG or PNG, front view works best. Your upload will override the Google photo.';
+    area.style.display = 'block';
+    if (swap) swap.style.display = 'none';
+  } else if (mode === 'uploaded') {
+    divider.textContent = 'WANT TO SWAP THE PHOTO?';
+    headline.textContent = 'Replace with a different photo';
+    sub.textContent = 'Your uploaded photo is in use. Pick another file to replace it.';
+    area.style.display = 'block';
+    if (swap) swap.style.display = 'block';
+  } else {
+    divider.textContent = 'OR UPLOAD A PHOTO OF THE HOUSE';
+    headline.textContent = 'Upload a photo of the home';
+    sub.textContent = 'JPG or PNG, front view works best';
+    area.style.display = 'block';
+    if (swap) swap.style.display = 'none';
+  }
+}
+
 function handleFileUpload(input) {
   var file = input.files[0];
   if (!file) return;
@@ -840,11 +873,11 @@ function handleFileUpload(input) {
     uploadedImageData = e.target.result;
     lastOriginalImageUrl = uploadedImageData;
     document.getElementById('viz-original').src = uploadedImageData;
-    document.getElementById('viz-source-label').textContent = 'Your uploaded photo';
+    document.getElementById('viz-source-label').innerHTML = 'Your <b>uploaded</b> photo';
     document.getElementById('viz-streetview').style.display = 'block';
     document.getElementById('viz-style-picker').style.display = 'block';
-    document.getElementById('viz-upload-area').style.display = 'none';
     streetViewLoaded = true;
+    updateUploadAffordance('uploaded');
     updateColorUI();
   };
   reader.readAsDataURL(file);
@@ -852,6 +885,11 @@ function handleFileUpload(input) {
 
 function loadStreetView() {
   if (!validateYourInfo()) return;
+  // If the user already uploaded a photo, confirm before replacing it with Google's.
+  if (uploadedImageData) {
+    var proceed = confirm('You already uploaded a photo. Switch to the Google Street View photo instead? Your uploaded photo will be discarded.');
+    if (!proceed) return;
+  }
   var address = document.getElementById('viz-address').value.trim();
   uploadedImageData = null;
   var apiKey = 'AIzaSyB2dfmJRH3YQvnnezQLGD2gBwbf0aJLAbU';
@@ -861,9 +899,15 @@ function loadStreetView() {
   document.getElementById('viz-source-label').textContent = 'Your home from Google Street View';
   document.getElementById('viz-streetview').style.display = 'block';
   document.getElementById('viz-style-picker').style.display = 'block';
-  document.getElementById('viz-upload-area').style.display = 'none';
   streetViewLoaded = true;
+  updateUploadAffordance('street-view-loaded');
   updateColorUI();
+}
+
+function swapToStreetView(ev) {
+  if (ev) ev.preventDefault();
+  // Re-fire loadStreetView — its own confirm() handles the discard prompt.
+  loadStreetView();
 }
 
 function getGenerationCount() {
@@ -889,7 +933,7 @@ function incrementGenerationCount() {
 }
 
 function generateVisualization() {
-  if (!streetViewLoaded) { alert('Please find your home first.'); return; }
+  if (!streetViewLoaded) { alert('Load a photo of your home first. Click Find My Home, or upload a photo of the house.'); return; }
   if (!selectedColors.length) { alert('Pick at least one color.'); return; }
   if (!validateYourInfo()) return;
 
@@ -958,10 +1002,17 @@ function generateVisualization() {
       document.getElementById('viz-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       if (data.noStreetView) {
-        document.getElementById('viz-upload-area').style.display = 'block';
-        alert('Google does not have street-level imagery for this address yet. Upload a photo of the home below and we will generate from that.');
+        // Upload area is already visible. Reinforce it and pulse the dropzone.
+        updateUploadAffordance('initial');
+        var dz = document.getElementById('viz-upload-area');
+        if (dz) { dz.style.background = '#FFF8E6'; setTimeout(function(){ dz.style.background = '#FAFAFA'; }, 1800); }
+        alert('Google does not have a street-level photo for this address. Upload a photo of the home using the box below and we will generate from that.');
+      } else if (data.verificationUrl) {
+        // Model-access / verification failure. Show the owner-facing hint prominently.
+        var vhint = (data.hint ? '\n\n' + data.hint : '') + '\n\nVerification URL: ' + data.verificationUrl;
+        alert('We could not generate the roof previews right now. ' + (data.error || '') + vhint + '\n\nEveryone else: please try again shortly or call us at (813) 595-7663 and we will walk you through colors over the phone.');
+        console.error('[roof-viz] model/verification failure:', data);
       } else {
-        // Surface the server details so we can diagnose what OpenAI returned
         var detail = (data && data.details) ? '\n\nDetails: ' + data.details : '';
         var firstFail = (data && data.failures && data.failures[0]) ? '\n\nFirst failure: ' + data.failures[0].error : '';
         alert('We could not generate a comparison. ' + (data.error || 'Please try again.') + detail + firstFail);

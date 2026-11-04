@@ -62,12 +62,20 @@ function buildVisualizerNotification({ lead, colors, delivered, requested, faile
   return { subject, message };
 }
 
-async function callOpenAIEdit(imageBuffer, style, colorName, openaiKey, quality) {
+// Primary + fallback image-edit models, tried in order per color.
+// gpt-image-1 was retired by OpenAI on 2026-10-23. gpt-image-1-mini and
+// gpt-image-1.5 shut down 2026-12-01 so they are NOT in the chain. 2.5-flare
+// is the speed/cost replacement, 2.5-sunburst is the higher-fidelity backup.
+// Both still require org verification at the URL below.
+const MODEL_CHAIN = ['gpt-image-2.5-flare', 'gpt-image-2.5-sunburst'];
+const OPENAI_VERIFICATION_URL = 'https://platform.openai.com/settings/organization/general';
+
+async function callOpenAIEdit(imageBuffer, style, colorName, openaiKey, quality, model) {
   const prompt = `Edit this photograph of a house. Replace ONLY the roof with a brand new ${colorName} ${style} roof. Keep the exact same house, same walls, same windows, same doors, same landscaping, same driveway, same trees, same sky, same everything else completely unchanged. Only the roof material and color should change to ${colorName} ${style}. The new roof should look freshly installed, clean, and photorealistic.`;
 
   const boundary = '----FormBoundary' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
   const parts = [];
-  parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\ngpt-image-1`);
+  parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\n${model}`);
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="prompt"\r\n\r\n${prompt}`);
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="size"\r\n\r\n1024x1024`);
   parts.push(`--${boundary}\r\nContent-Disposition: form-data; name="quality"\r\n\r\n${quality}`);
@@ -113,24 +121,40 @@ async function callOpenAIEdit(imageBuffer, style, colorName, openaiKey, quality)
 }
 
 async function generateOne(imageBuffer, style, colorName, openaiKey) {
-  // Try medium quality first (faster + cheaper, usually good enough for
-  // a roof-swap of a Street View / phone photo). If that fails with a
-  // transient-looking error, retry once at low quality so we still land
-  // SOMETHING on the canvas rather than nothing.
-  try {
-    return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'medium');
-  } catch (e1) {
-    const status = e1.status || 0;
-    const transient = status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
-    if (!transient) throw e1; // 400/401/403 don't benefit from retry
-    console.warn(`[roof-viz] ${colorName} medium failed (${status}); retrying at low quality`);
+  // Walk the model chain. For each model: try medium quality first, retry at
+  // low quality on transient 429/5xx. Fall through to the next model on
+  // "model gated / unknown" signals (400 model_not_found, 401, 403, 404).
+  let lastErr;
+  for (const model of MODEL_CHAIN) {
     try {
-      return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'low');
-    } catch (e2) {
-      // Surface the ORIGINAL error (higher quality attempt) — it's usually the more diagnostic one
-      throw e1;
+      return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'medium', model);
+    } catch (e1) {
+      lastErr = e1;
+      const status = e1.status || 0;
+      const body = String(e1.body || e1.message || '');
+      const modelGated =
+        status === 404 ||
+        status === 401 ||
+        status === 403 ||
+        (status === 400 && /does not exist|model_not_found|invalid_value|must be verified/i.test(body));
+      const transient = status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+
+      if (modelGated) {
+        console.warn(`[roof-viz] ${colorName} model ${model} rejected (${status}); trying next model in chain`);
+        continue;
+      }
+      if (!transient) throw e1;
+
+      console.warn(`[roof-viz] ${colorName} ${model} medium failed (${status}); retrying at low quality`);
+      try {
+        return await callOpenAIEdit(imageBuffer, style, colorName, openaiKey, 'low', model);
+      } catch (e2) {
+        // Transient at both qualities counts as a real outage for this color; surface the original error.
+        throw e1;
+      }
     }
   }
+  throw lastErr || new Error('No image-edit model succeeded');
 }
 
 export default async function handler(req, res) {
@@ -217,9 +241,18 @@ export default async function handler(req, res) {
     const failures = perColor.filter(r => !r.ok);
 
     if (!successes.length) {
+      const details = failures.map(f => `${f.color.name}: ${f.error}`).join(' | ');
+      const verificationGated = /does not exist|model_not_found|invalid_value|must be verified|403|401/i.test(details);
       return res.status(502).json({
-        error: 'All AI generations failed. Please try again.',
-        details: failures.map(f => `${f.color.name}: ${f.error}`).join(' | '),
+        error: verificationGated
+          ? 'The AI image model this visualizer calls is not available on the current OpenAI organization (likely verification required).'
+          : 'All AI generations failed. Please try again.',
+        details,
+        verificationUrl: verificationGated ? OPENAI_VERIFICATION_URL : undefined,
+        hint: verificationGated
+          ? `Site owner: verify the Happy Roof OpenAI org at ${OPENAI_VERIFICATION_URL} (Persona ID check). Access to GPT Image 2.5 models can take up to 15 minutes to propagate after approval.`
+          : undefined,
+        attemptedModels: MODEL_CHAIN,
       });
     }
 
@@ -255,7 +288,7 @@ export default async function handler(req, res) {
       originalImage: originalDataUrl,
       generatedImages: successes.map(r => r.image),
       colors: successes.map(r => ({ name: r.color.name, hex: r.color.hex || null })),
-      method: 'gpt-image-1',
+      method: MODEL_CHAIN.join(' -> '),
       requested: colorList.length,
       delivered: successes.length,
       failed: failures.length,
