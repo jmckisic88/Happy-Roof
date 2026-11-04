@@ -55,6 +55,15 @@ const schema = `{
   .result-soon { background: linear-gradient(135deg, rgba(230,168,23,.08), rgba(230,168,23,.03)); border: 2px solid rgba(230,168,23,.2) }
   .result-maintain { background: linear-gradient(135deg, rgba(59,159,217,.08), rgba(59,159,217,.03)); border: 2px solid rgba(59,159,217,.2) }
   .result-good { background: linear-gradient(135deg, rgba(34,197,94,.08), rgba(34,197,94,.03)); border: 2px solid rgba(34,197,94,.2) }
+  .result-gonano { background: linear-gradient(135deg, rgba(139,105,20,.08), rgba(230,168,23,.03)); border: 2px solid rgba(230,168,23,.25) }
+  .result-dual { background: linear-gradient(135deg, rgba(139,105,20,.04), rgba(59,159,217,.04)); border: 2px solid rgba(139,105,20,.15) }
+  .result-bridge { background: linear-gradient(135deg, rgba(139,105,20,.08), rgba(59,159,217,.04)); border: 2px solid rgba(139,105,20,.2) }
+  .result-paths { display:grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem }
+  @media (min-width: 640px) { .result-paths { grid-template-columns: 1fr 1fr } }
+  .result-path { padding: 1.1rem 1.25rem; border-radius: 12px; background: #FFFFFF; border: 1px solid #E6D9B8; text-align: left }
+  .result-path h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem; color: #1A1A1A; margin-bottom: .35rem; letter-spacing: .02em }
+  .result-path .path-tag { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-weight: 700; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 4px; margin-bottom: .55rem }
+  .result-path p { color:#555; font-size:.85rem; line-height:1.55 }
 
   /* Visualizer styles */
   .viz-style-option { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 1rem; cursor: pointer; transition: border-color .2s, transform .15s; text-align: center }
@@ -120,7 +129,7 @@ const schema = `{
 
     <!-- Step 1: Roof Age -->
     <div id="step-1" class="assess-step active" data-step="1">
-      <p class="sl gp mb-2">Question 1 of 7</p>
+      <p class="sl gp mb-2">Question 1 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">HOW OLD IS YOUR CURRENT ROOF?</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem">
         <label class="assess-option" onclick="selectOption(this,1)"><input type="radio" name="q1" value="0-5" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">0-5 Years</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Relatively new</p></label>
@@ -133,7 +142,7 @@ const schema = `{
 
     <!-- Step 2: Current Material -->
     <div id="step-2" class="assess-step" data-step="2">
-      <p class="sl gp mb-2">Question 2 of 7</p>
+      <p class="sl gp mb-2">Question 2 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">WHAT TYPE OF ROOF DO YOU HAVE?</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem">
         <label class="assess-option" onclick="selectOption(this,2)"><input type="radio" name="q2" value="shingle" data-score="2"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Shingle</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Most common</p></label>
@@ -146,7 +155,7 @@ const schema = `{
 
     <!-- Step 3: Visible Issues (multi-select) -->
     <div id="step-3" class="assess-step" data-step="3">
-      <p class="sl gp mb-2">Question 3 of 7</p>
+      <p class="sl gp mb-2">Question 3 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:.5rem">HAVE YOU NOTICED ANY OF THESE?</h2>
       <p style="color:#888;font-size:.85rem;margin-bottom:1.5rem">Select all that apply</p>
       <div style="display:grid;gap:.5rem">
@@ -163,7 +172,7 @@ const schema = `{
 
     <!-- Step 4: Goal -->
     <div id="step-4" class="assess-step" data-step="4">
-      <p class="sl gp mb-2">Question 4 of 7</p>
+      <p class="sl gp mb-2">Question 4 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">WHAT'S YOUR PRIMARY GOAL?</h2>
       <div style="display:grid;gap:.5rem">
         <label class="assess-option" onclick="selectOption(this,4)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.25rem"><input type="radio" name="q4" value="replace" data-score="3"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Replace an aging roof</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">My roof is old and needs to go</p></div></label>
@@ -176,7 +185,7 @@ const schema = `{
 
     <!-- Step 5: Storm prep -->
     <div id="step-5" class="assess-step" data-step="5">
-      <p class="sl gp mb-2">Question 5 of 7</p>
+      <p class="sl gp mb-2">Question 5 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">ARE YOU PREPARING FOR HURRICANE SEASON?</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem">
         <label class="assess-option" onclick="selectOption(this,5)"><input type="radio" name="q5" value="yes-urgent" data-score="3"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, it's urgent</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">I need to act before storm season</p></label>
@@ -187,7 +196,7 @@ const schema = `{
 
     <!-- Step 6: Insurance -->
     <div id="step-6" class="assess-step" data-step="6">
-      <p class="sl gp mb-2">Question 6 of 7</p>
+      <p class="sl gp mb-2">Question 6 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">IS YOUR INSURANCE COMPANY REQUESTING A NEW ROOF?</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem">
         <label class="assess-option" onclick="selectOption(this,6)"><input type="radio" name="q6" value="yes-required" data-score="4"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes, required</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">They'll drop my policy without one</p></label>
@@ -198,11 +207,24 @@ const schema = `{
 
     <!-- Step 7: Homeowner -->
     <div id="step-7" class="assess-step" data-step="7">
-      <p class="sl gp mb-2">Question 7 of 7</p>
+      <p class="sl gp mb-2">Question 7 of 8</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:1.5rem">ARE YOU THE HOMEOWNER?</h2>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem">
         <label class="assess-option" onclick="selectOption(this,7)"><input type="radio" name="q7" value="yes" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">Yes</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">I own this property</p></label>
         <label class="assess-option" onclick="selectOption(this,7)"><input type="radio" name="q7" value="no" data-score="0"/><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem">No</p><p style="color:#888;font-size:.78rem;margin-top:.25rem">Renter or property manager</p></label>
+      </div>
+    </div>
+
+    <!-- Step 8: Budget / timing (feeds GoNano decision tree, scored 0) -->
+    <div id="step-8" class="assess-step" data-step="8">
+      <p class="sl gp mb-2">Question 8 of 8</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#1A1A1A;margin-bottom:.5rem">BUDGET &amp; TIMING: WHICH FITS BEST?</h2>
+      <p style="color:#888;font-size:.85rem;margin-bottom:1.5rem">Honest answers help us recommend the right option: replace, rejuvenate, or something in between.</p>
+      <div style="display:grid;grid-template-columns:1fr;gap:.6rem">
+        <label class="assess-option" onclick="selectOption(this,8)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem"><input type="radio" name="q8" value="invest-now" data-score="0"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Ready to invest in a full replacement now</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Budget is in place, want to do it right</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,8)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem"><input type="radio" name="q8" value="cost-effective" data-score="0"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Prefer the most cost‑effective option that extends life</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Not ready to replace if I don't have to</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,8)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem"><input type="radio" name="q8" value="postpone" data-score="0"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Need to postpone major work 2–3 years</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Need time to plan or save for a full replacement</p></div></label>
+        <label class="assess-option" onclick="selectOption(this,8)" style="text-align:left;display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem"><input type="radio" name="q8" value="exploring" data-score="0"/><div><p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem">Just exploring, no timeline yet</p><p style="color:#888;font-size:.78rem;margin-top:.15rem">Curious about what my options are</p></div></label>
       </div>
     </div>
 
@@ -244,7 +266,7 @@ const schema = `{
     <div class="text-center mb-8">
       <p class="sl gp mb-2">AI Roof Color Visualizer</p>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.5rem);color:#1A1A1A;margin-bottom:.5rem">COMPARE UP TO 4 SHINGLE COLORS ON YOUR HOME</h2>
-      <p style="color:#555;font-size:.92rem;line-height:1.6;max-width:560px;margin:0 auto">Free preview using Owens Corning Duration and TruDefinition colors. Just your name and address to generate — no email or phone required.</p>
+      <p style="color:#555;font-size:.92rem;line-height:1.6;max-width:560px;margin:0 auto">Free preview using Owens Corning Duration and TruDefinition colors. Just your name and address to generate. No email or phone required.</p>
     </div>
 
     <!-- 1. REQUIRED YOUR INFO -->
@@ -387,7 +409,7 @@ const schema = `{
 <script is:inline>
 // ── Assessment Quiz Logic ──
 var currentStep = 1;
-var totalSteps = 7;
+var totalSteps = 8;
 
 function selectOption(el, step) {
   el.closest('.assess-step').querySelectorAll('.assess-option').forEach(function(o) { o.classList.remove('selected'); });
@@ -453,30 +475,188 @@ function updateProgress() {
   document.getElementById('progress-fill').style.width = pct + '%';
 }
 
-function showResults() {
-  // Calculate score
+// ── GoNano + legacy score result variants ──
+// Decision tree layering on top of the existing 4-tier score model:
+//   - Hard overrides (structural failure / storm / insurance-driven) → Replace.
+//   - Non-shingle paths fall through to the legacy score-based tiers.
+//   - Shingle roofs branch by age, then budget punt can override 15+ to a GoNano bridge.
+// Fortify pitch copy ships live for Josh to review in prod.
+
+var RESULT_VARIANTS = {
+  'urgent': { title: 'YOUR ROOF NEEDS IMMEDIATE ATTENTION', color: '#dc2626', icon: '⚠️', cls: 'result-urgent', desc: 'Based on your answers, your roof is showing serious warning signs. We strongly recommend scheduling a professional inspection as soon as possible to prevent further damage to your home.', tip: "Don't wait. Water damage from a failing roof can lead to mold, structural issues, and significantly higher repair costs." },
+  'soon': { title: 'REPLACEMENT RECOMMENDED SOON', color: '#E6A817', icon: '🔶', cls: 'result-soon', desc: 'Your roof is aging and showing some signs of wear. While it may not be an emergency today, planning for a replacement in the near future will save you money and protect your home.', tip: 'Getting ahead of a roof replacement lets you choose materials and timing on your terms, rather than being forced into an emergency repair.' },
+  'maintain': { title: 'INSPECTION RECOMMENDED', color: '#3B9FD9', icon: '🔍', cls: 'result-maintain', desc: "Your roof appears to be in decent shape, but a professional inspection can catch issues that aren't visible from the ground. A small repair now can prevent a costly replacement later.", tip: "Annual inspections are the best way to extend your roof's lifespan. Most homeowners in Tampa Bay should inspect after every major storm." },
+  'good': { title: 'YOUR ROOF LOOKS GOOD', color: '#22c55e', icon: '✅', cls: 'result-good', desc: 'Based on your answers, your roof appears to be in good condition. Keep up with regular maintenance and inspections to maximize its lifespan.', tip: "Even healthy roofs benefit from an inspection every few years, especially in Florida's harsh climate. It's free with Happy Roof." },
+
+  'insurance-replace': { title: 'FULL REPLACEMENT RECOMMENDED', color: '#dc2626', icon: '🛡️', cls: 'result-urgent', desc: 'Insurance-driven replacements and storm-damage claims need a new roof system, not a rejuvenation. A full replacement resets your warranty, restores insurability, and gives us the documentation your carrier will ask for.', tip: 'Bring us your carrier letter and photos. We handle the inspection, scope, and supplement conversation so you don\'t end up underpaid on the claim.' },
+  'structural-replace': { title: 'FULL REPLACEMENT RECOMMENDED', color: '#dc2626', icon: '⚠️', cls: 'result-urgent', desc: 'Active leaks, sagging, or daylight through the deck are structural problems that a rejuvenation treatment cannot address. The safe path is a full tear-off and new roof system so we can inspect the deck, replace any rot, and start the warranty clock over.', tip: 'Move fast. Every rain event compounds interior damage and drywall, insulation, and framing repairs quickly outrun the cost of the roof itself.' },
+
+  'gonano-fortify': { title: 'LOCK IN YOUR ROOF WITH GONANO FORTIFY', color: '#8B6914', icon: '🌱', cls: 'result-gonano', desc: 'Your roof is still young, which means you are in the ideal window for GoNano NuRoof Fortify. Fortify is our top-tier Structural Roof Rejuvenation treatment, and because your shingles still have their original integrity, we can apply it now and lock in the current condition of your roof for the longest warranty we offer.', tip: 'Fortify at year 0-5 is the smartest preventative play in roofing. You get a renewable 15-year warranty, you protect the roof you already paid for, and you push the replacement conversation out by a decade or more.' },
+  'gonano-dual': { title: 'YOU HAVE TWO SOLID OPTIONS', color: '#8B6914', icon: '🔀', cls: 'result-dual', desc: 'Your roof is in that middle window where either path works. The right call usually comes down to how long you plan to own the home and how your budget looks right now.' },
+  'replace-with-bridge': { title: 'REPLACE WHEN READY, OR BRIDGE WITH GONANO', color: '#8B6914', icon: '🌉', cls: 'result-bridge', desc: "Your roof is past the point where we'd normally recommend a full replacement, but if a replacement isn't in the budget for the next 2-3 years, GoNano NuRoof can bridge the gap safely. It won't replace the roof you'll eventually need, but it will buy you the time to plan one on your terms." },
+  'legacy-replace': { title: 'FULL REPLACEMENT RECOMMENDED', color: '#dc2626', icon: '🔨', cls: 'result-urgent', desc: 'Your roof is past its useful life and a rejuvenation treatment is no longer the right call. The next conversation should be about material choices, financing, and timing a replacement before a storm forces the decision.', tip: 'A proactive replacement gives you color, material, and warranty choices. An emergency one gives you whatever is on the truck.' }
+};
+
+function hasAny(list, values) {
+  for (var i = 0; i < values.length; i++) { if (list.indexOf(values[i]) !== -1) return true; }
+  return false;
+}
+
+function pickRecommendation(a) {
+  var structuralFailure = hasAny(a.issues, ['leaks', 'sagging', 'daylight']);
+  var stormDamage = a.issues.indexOf('storm') !== -1 || a.goal === 'damage';
+  var insuranceDriven = a.insurance === 'yes-required' || a.insurance === 'yes-recommended' || a.goal === 'insurance';
+  var minorIssues = hasAny(a.issues, ['missing', 'granules', 'mold']);
+  var wantsBridge = a.budget === 'postpone';
+  var wantsInvestNow = a.budget === 'invest-now';
+
+  // Hard overrides apply to every material
+  if (structuralFailure) return { variant: 'structural-replace' };
+  if (stormDamage || insuranceDriven) return { variant: 'insurance-replace' };
+
+  // Non-shingle paths fall back to the legacy score tiers (GoNano is shingle-first)
+  if (a.material !== 'shingle' && a.material !== 'unsure') {
+    return { variant: scoreToVariant(a.score) };
+  }
+
+  // Shingle decision tree by age
+  switch (a.age) {
+    case '0-5':
+      return { variant: 'gonano-fortify' };
+
+    case '5-10':
+      return {
+        variant: 'gonano-dual',
+        paths: [
+          {
+            tag: 'RECOMMENDED', tagBg: '#FFF4D6', tagColor: '#8B6914',
+            title: 'GoNano NuRoof Fortify',
+            body: 'Lock in the useful life you have left with our top-tier Structural Roof Rejuvenation. Comes with a renewable 15-year warranty and typically pushes the replacement conversation out 10+ years.'
+          },
+          {
+            tag: minorIssues ? 'TARGETED REPAIR' : 'MAINTENANCE', tagBg: '#E8F3FB', tagColor: '#2E6E9C',
+            title: minorIssues ? 'Targeted Repair' : 'Inspection + Tune-Up',
+            body: minorIssues
+              ? 'Address the missing shingles, granule loss, or algae now before they become bigger problems. A targeted repair buys you time either way.'
+              : 'A free inspection confirms the roof is still in good shape and gives you documentation for your insurance renewal.'
+          }
+        ]
+      };
+
+    case '10-15':
+      if (wantsInvestNow) return { variant: 'legacy-replace' };
+      return {
+        variant: 'gonano-dual',
+        paths: [
+          {
+            tag: 'BUDGET-FRIENDLY', tagBg: '#FFF4D6', tagColor: '#8B6914',
+            title: 'GoNano NuRoof Revive or Protect',
+            body: "Structural Roof Rejuvenation is the right call if you want to extend this roof instead of replacing it. We'll apply the right tier for your roof's current condition and back it with a renewable warranty."
+          },
+          {
+            tag: 'LONG-TERM', tagBg: '#FDECEC', tagColor: '#B23636',
+            title: 'Full Replacement',
+            body: "If you plan to stay in the home 10+ more years, a new roof system resets the warranty clock and locks in today's material pricing before the next round of insurance pressure hits."
+          }
+        ]
+      };
+
+    case '15-20':
+      if (wantsBridge) return { variant: 'replace-with-bridge' };
+      return { variant: 'legacy-replace' };
+
+    case '20+':
+      return { variant: 'legacy-replace' };
+  }
+  // Fallback
+  return { variant: scoreToVariant(a.score) };
+}
+
+function scoreToVariant(score) {
+  if (score >= 10) return 'urgent';
+  if (score >= 6) return 'soon';
+  if (score >= 3) return 'maintain';
+  return 'good';
+}
+
+function collectAnswers() {
+  var q1 = document.querySelector('input[name="q1"]:checked');
+  var q2 = document.querySelector('input[name="q2"]:checked');
+  var q4 = document.querySelector('input[name="q4"]:checked');
+  var q5 = document.querySelector('input[name="q5"]:checked');
+  var q6 = document.querySelector('input[name="q6"]:checked');
+  var q7 = document.querySelector('input[name="q7"]:checked');
+  var q8 = document.querySelector('input[name="q8"]:checked');
+  var issues = Array.prototype.map.call(document.querySelectorAll('input[name="q3"]:checked'), function(el){ return el.value; });
+
   var score = 0;
   document.querySelectorAll('#quiz input:checked').forEach(function(input) {
     score += parseInt(input.getAttribute('data-score') || '0');
   });
 
-  var result;
-  if (score >= 10) {
-    result = { level: 'urgent', title: 'YOUR ROOF NEEDS IMMEDIATE ATTENTION', color: '#dc2626', icon: '⚠️', class: 'result-urgent', desc: 'Based on your answers, your roof is showing serious warning signs. We strongly recommend scheduling a professional inspection as soon as possible to prevent further damage to your home.', tip: 'Don\'t wait. Water damage from a failing roof can lead to mold, structural issues, and significantly higher repair costs.' };
-  } else if (score >= 6) {
-    result = { level: 'soon', title: 'REPLACEMENT RECOMMENDED SOON', color: '#E6A817', icon: '🔶', class: 'result-soon', desc: 'Your roof is aging and showing some signs of wear. While it may not be an emergency today, planning for a replacement in the near future will save you money and protect your home.', tip: 'Getting ahead of a roof replacement lets you choose materials and timing on your terms, rather than being forced into an emergency repair.' };
-  } else if (score >= 3) {
-    result = { level: 'maintain', title: 'INSPECTION RECOMMENDED', color: '#3B9FD9', icon: '🔍', class: 'result-maintain', desc: 'Your roof appears to be in decent shape, but a professional inspection can catch issues that aren\'t visible from the ground. A small repair now can prevent a costly replacement later.', tip: 'Annual inspections are the best way to extend your roof\'s lifespan. Most homeowners in Tampa Bay should inspect after every major storm.' };
-  } else {
-    result = { level: 'good', title: 'YOUR ROOF LOOKS GOOD', color: '#22c55e', icon: '✅', class: 'result-good', desc: 'Based on your answers, your roof appears to be in good condition. Keep up with regular maintenance and inspections to maximize its lifespan.', tip: 'Even healthy roofs benefit from an inspection every few years, especially in Florida\'s harsh climate. It\'s free with Happy Roof.' };
-  }
+  return {
+    age: q1 ? q1.value : null,
+    material: q2 ? q2.value : null,
+    issues: issues,
+    goal: q4 ? q4.value : null,
+    stormUrgency: q5 ? q5.value : null,
+    insurance: q6 ? q6.value : null,
+    homeowner: q7 ? q7.value : null,
+    budget: q8 ? q8.value : null,
+    score: score
+  };
+}
 
-  var html = '<div class="result-card ' + result.class + '">';
+function renderDualResult(result) {
+  var html = '<div class="result-card ' + result.cls + '">';
+  html += '<p style="font-size:2.5rem;margin-bottom:.5rem">' + result.icon + '</p>';
+  html += '<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2rem);color:' + result.color + ';margin-bottom:1rem">' + result.title + '</h2>';
+  html += '<p style="color:#555;font-size:.95rem;line-height:1.75;margin-bottom:.5rem">' + result.desc + '</p>';
+  html += '<div class="result-paths">';
+  for (var i = 0; i < result.paths.length; i++) {
+    var p = result.paths[i];
+    html += '<div class="result-path">';
+    html += '<span class="path-tag" style="background:' + p.tagBg + ';color:' + p.tagColor + '">' + p.tag + '</span>';
+    html += '<h3>' + p.title + '</h3>';
+    html += '<p>' + p.body + '</p>';
+    html += '</div>';
+  }
+  html += '</div>';
+  html += '<p style="color:#888;font-size:.82rem;margin-top:1.25rem;line-height:1.6">A free inspection is the fastest way to lock in the right path. Our rep will walk both options on-site and show you real numbers.</p>';
+  html += '</div>';
+  return html;
+}
+
+function renderSingleResult(result) {
+  var html = '<div class="result-card ' + result.cls + '">';
   html += '<p style="font-size:2.5rem;margin-bottom:.5rem">' + result.icon + '</p>';
   html += '<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2rem);color:' + result.color + ';margin-bottom:1rem">' + result.title + '</h2>';
   html += '<p style="color:#555;font-size:.95rem;line-height:1.75;margin-bottom:1.5rem">' + result.desc + '</p>';
-  html += '<div style="background:rgba(0,0,0,.04);border-radius:10px;padding:1rem 1.25rem;text-align:left"><p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.85rem;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem">Pro Tip</p><p style="color:#555;font-size:.88rem;line-height:1.65">' + result.tip + '</p></div>';
+  if (result.tip) {
+    html += '<div style="background:rgba(0,0,0,.04);border-radius:10px;padding:1rem 1.25rem;text-align:left"><p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.85rem;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem">Pro Tip</p><p style="color:#555;font-size:.88rem;line-height:1.65">' + result.tip + '</p></div>';
+  }
   html += '</div>';
+  return html;
+}
+
+function showResults() {
+  var answers = collectAnswers();
+  var decision = pickRecommendation(answers);
+  var result = RESULT_VARIANTS[decision.variant] || RESULT_VARIANTS[scoreToVariant(answers.score)];
+
+  var html;
+  if (decision.paths && decision.paths.length) {
+    result = Object.assign({}, result, { paths: decision.paths });
+    html = renderDualResult(result);
+  } else {
+    html = renderSingleResult(result);
+  }
+
+  // Context line below the card for GoNano-recommended paths so the rep has a
+  // quick lead-in when they follow up.
+  if (decision.variant === 'gonano-fortify' || decision.variant === 'gonano-dual' || decision.variant === 'replace-with-bridge') {
+    html += '<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:#FAF7F0;border:1px solid #E6D9B8;border-radius:12px"><p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;color:#8B6914;text-transform:uppercase;margin-bottom:.4rem">What is GoNano NuRoof?</p><p style="color:#555;font-size:.88rem;line-height:1.65">GoNano NuRoof is a nano-penetrating Structural Roof Rejuvenation treatment. It is not a coating. It restores the flexibility of your shingles, is backed by a renewable 5, 10, or 15-year warranty depending on tier, and is a fraction of the cost of a full replacement. <a href="/gonano" style="color:#8B6914;font-weight:700;text-decoration:underline">Learn more about GoNano &rarr;</a></p></div>';
+  }
 
   document.getElementById('result-container').innerHTML = html;
   document.getElementById('quiz').style.display = 'none';
