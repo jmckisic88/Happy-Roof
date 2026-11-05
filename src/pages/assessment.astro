@@ -72,6 +72,9 @@ const schema = `{
   .viz-color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: border-color .15s, transform .15s }
   .viz-color-dot:hover { transform: scale(1.15) }
   .viz-color-dot.selected { border-color: #E6A817; box-shadow: 0 0 0 3px rgba(230,168,23,.2) }
+  .viz-type-btn { background: #FFFFFF; border: 1.5px solid #E6D9B8; border-radius: 10px; padding: .85rem .9rem; cursor: pointer; text-align: center; transition: border-color .15s, background .15s, transform .1s; font-family: inherit }
+  .viz-type-btn:hover { border-color: #C9A24A; background: #FFFCF4 }
+  .viz-type-btn.viz-type-active { border-color: #E6A817; background: #FFF8E6; box-shadow: 0 0 0 1px #E6A817 inset }
   .viz-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px }
   .viz-spinner { width: 40px; height: 40px; border: 3px solid #E0E0E0; border-top-color: #E6A817; border-radius: 50%; animation: spin .8s linear infinite }
   @keyframes spin { to { transform: rotate(360deg) } }
@@ -321,17 +324,49 @@ const schema = `{
       <p id="viz-swap-source" style="display:none;text-align:center;margin-top:.25rem"><a href="#" onclick="swapToStreetView(event)" style="color:#8B6914;font-size:.75rem;font-weight:600;text-decoration:underline">Use Google Street View photo instead</a></p>
     </div>
 
-    <!-- 2. COLOR PICKER (multi-select, max 4) -->
+    <!-- 2. ROOF TYPE + COLOR PICKER (multi-select, max 4) -->
     <div id="viz-style-picker" style="display:none">
+      <!-- 2a. Roof type toggle -->
+      <div style="padding:1.1rem 1.25rem;background:#FAF7F0;border:1px solid #E6D9B8;border-radius:14px;margin-bottom:.9rem">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#1A1A1A;letter-spacing:.06em;margin:0 0 .6rem">2 &nbsp;·&nbsp; ROOF TYPE</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.55rem">
+          <button type="button" id="viz-type-shingle" class="viz-type-btn viz-type-active" onclick="setRoofType('shingle')">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#1A1A1A">Shingles</span>
+            <span style="display:block;color:#888;font-size:.72rem;margin-top:.15rem">Owens Corning Duration + TruDefinition</span>
+          </button>
+          <button type="button" id="viz-type-metal" class="viz-type-btn" onclick="setRoofType('metal')">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#1A1A1A">Metal</span>
+            <span style="display:block;color:#888;font-size:.72rem;margin-top:.15rem">5V Crimp or Standing Seam</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2b. Metal profile picker (shown only when Metal is active) -->
+      <div id="viz-metal-profile" style="display:none;padding:1.1rem 1.25rem;background:#FAF7F0;border:1px solid #E6D9B8;border-radius:14px;margin-bottom:.9rem">
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.9rem;color:#1A1A1A;letter-spacing:.06em;margin:0 0 .55rem">METAL PROFILE</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.55rem">
+          <button type="button" id="viz-profile-5v" class="viz-type-btn" onclick="setMetalProfile('5v')">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#1A1A1A">5V Crimp</span>
+            <span style="display:block;color:#888;font-size:.72rem;margin-top:.15rem">Classic Florida, visible fasteners</span>
+          </button>
+          <button type="button" id="viz-profile-ss" class="viz-type-btn" onclick="setMetalProfile('standing-seam')">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#1A1A1A">Standing Seam</span>
+            <span style="display:block;color:#888;font-size:.72rem;margin-top:.15rem">Premium, hidden fasteners</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2c. Color picker -->
       <div style="padding:1.25rem 1.5rem;background:#FAF7F0;border:1px solid #E6D9B8;border-radius:14px;margin-bottom:1rem">
         <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.4rem">
-          <p style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#1A1A1A;letter-spacing:.06em;margin:0">2 &nbsp;·&nbsp; PICK UP TO 4 SHINGLE COLORS</p>
+          <p id="viz-color-header" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#1A1A1A;letter-spacing:.06em;margin:0">3 &nbsp;·&nbsp; PICK UP TO 4 SHINGLE COLORS</p>
           <span id="viz-color-count" style="font-size:.78rem;color:#8B6914;font-weight:700">0 / 4 selected</span>
         </div>
-        <p style="font-size:.78rem;color:#555;margin:0 0 .9rem">Owens Corning Duration + TruDefinition. Click swatches to add/remove.</p>
+        <p id="viz-color-subtitle" style="font-size:.78rem;color:#555;margin:0 0 .9rem">Owens Corning Duration + TruDefinition. Click swatches to add/remove.</p>
         <div id="color-options" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.55rem">
-          <!-- Populated by JS from OC_COLORS array so it's easy to curate -->
+          <!-- Populated by JS from the active palette (OC_COLORS or METAL_COLORS) -->
         </div>
+        <p id="viz-metal-wait-msg" style="display:none;font-size:.82rem;color:#8B6914;font-weight:600;text-align:center;padding:1.25rem 0;margin:0">Pick a metal profile above to see color options.</p>
       </div>
 
       <div style="text-align:center;margin-top:1.5rem">
@@ -489,7 +524,7 @@ var RESULT_VARIANTS = {
   'urgent': { title: 'YOUR ROOF NEEDS IMMEDIATE ATTENTION', color: '#dc2626', icon: '⚠️', cls: 'result-urgent', desc: 'Based on your answers, your roof is showing serious warning signs. We strongly recommend scheduling a professional inspection as soon as possible to prevent further damage to your home.', tip: "Don't wait. Water damage from a failing roof can lead to mold, structural issues, and significantly higher repair costs." },
   'soon': { title: 'REPLACEMENT RECOMMENDED SOON', color: '#E6A817', icon: '🔶', cls: 'result-soon', desc: 'Your roof is aging and showing some signs of wear. While it may not be an emergency today, planning for a replacement in the near future will save you money and protect your home.', tip: 'Getting ahead of a roof replacement lets you choose materials and timing on your terms, rather than being forced into an emergency repair.' },
   'maintain': { title: 'INSPECTION RECOMMENDED', color: '#3B9FD9', icon: '🔍', cls: 'result-maintain', desc: "Your roof appears to be in decent shape, but a professional inspection can catch issues that aren't visible from the ground. A small repair now can prevent a costly replacement later.", tip: "Annual inspections are the best way to extend your roof's lifespan. Most homeowners in Tampa Bay should inspect after every major storm." },
-  'good': { title: 'YOUR ROOF LOOKS GOOD', color: '#22c55e', icon: '✅', cls: 'result-good', desc: 'Based on your answers, your roof appears to be in good condition. Keep up with regular maintenance and inspections to maximize its lifespan.', tip: "Even healthy roofs benefit from an inspection every few years, especially in Florida's harsh climate. It's free with Happy Roof." },
+  'good': { title: 'YOUR ROOF IS GOOD. NOW IS THE TIME TO LOCK IT IN.', color: '#8B6914', icon: '🛡️', cls: 'result-gonano', desc: 'Your answers tell us your roof is in strong shape today. That is exactly the window where GoNano NuRoof is at its most powerful. A Structural Roof Rejuvenation treatment applied now locks in the current condition of your roof, earns you the longest warranty tier we offer, and typically pushes the replacement conversation out 10 to 15 years. Protecting a healthy roof always costs less than fixing one that failed.', tip: 'Free GoNano consultation. We walk the roof with you, show you the warranty options side by side, and give you honest numbers. No obligation, no pressure.' },
 
   'insurance-replace': { title: 'FULL REPLACEMENT RECOMMENDED', color: '#dc2626', icon: '🛡️', cls: 'result-urgent', desc: 'Insurance-driven replacements and storm-damage claims need a new roof system, not a rejuvenation. A full replacement resets your warranty, restores insurability, and gives us the documentation your carrier will ask for.', tip: 'Bring us your carrier letter and photos. We handle the inspection, scope, and supplement conversation so you don\'t end up underpaid on the claim.' },
   'structural-replace': { title: 'FULL REPLACEMENT RECOMMENDED', color: '#dc2626', icon: '⚠️', cls: 'result-urgent', desc: 'Active leaks, sagging, or daylight through the deck are structural problems that a rejuvenation treatment cannot address. The safe path is a full tear-off and new roof system so we can inspect the deck, replace any rot, and start the warranty clock over.', tip: 'Move fast. Every rain event compounds interior damage and drywall, insulation, and framing repairs quickly outrun the cost of the roof itself.' },
@@ -655,9 +690,9 @@ function showResults() {
     html = renderSingleResult(result);
   }
 
-  // Context line below the card for GoNano-recommended paths so the rep has a
-  // quick lead-in when they follow up.
-  if (decision.variant === 'gonano-fortify' || decision.variant === 'gonano-dual' || decision.variant === 'replace-with-bridge') {
+  // Context line below the card for any GoNano-flavored path (fortify, dual,
+  // bridge, or the "lock it in" pitch when the roof is in great shape).
+  if (result.cls === 'result-gonano' || result.cls === 'result-dual' || result.cls === 'result-bridge') {
     html += '<div style="margin-top:1.25rem;padding:1rem 1.25rem;background:#FAF7F0;border:1px solid #E6D9B8;border-radius:12px"><p style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;color:#8B6914;text-transform:uppercase;margin-bottom:.4rem">What is GoNano NuRoof?</p><p style="color:#555;font-size:.88rem;line-height:1.65">GoNano NuRoof is a nano-penetrating Structural Roof Rejuvenation treatment. It is not a coating. It restores the flexibility of your shingles, is backed by a renewable 5, 10, or 15-year warranty depending on tier, and is a fraction of the cost of a full replacement. <a href="/gonano" style="color:#8B6914;font-weight:700;text-decoration:underline">Learn more about GoNano &rarr;</a></p></div>';
   }
 
@@ -709,13 +744,20 @@ var costRates = {
 function updateCostEstimate() {
   var sqft = parseInt(document.getElementById('viz-sqft').value);
   document.getElementById('viz-sqft-display').textContent = sqft.toLocaleString();
-  var rate = 470; // architectural shingle $ per square (midpoint)
+  // Tampa Bay 2026 rough $/square ballparks. Tune with pricebook as material drifts.
+  var rate, label;
+  if (typeof currentRoofType !== 'undefined' && currentRoofType === 'metal') {
+    if (currentMetalProfile === 'standing-seam') { rate = 1150; label = 'Standing Seam Metal'; }
+    else                                         { rate = 780;  label = '5V Crimp Metal'; }
+  } else {
+    rate = 470; label = 'Architectural Shingle';
+  }
   var squares = (sqft * 1.3) / 100;
   var base = rate * squares;
   var low = Math.round((base * 1.1) / 100) * 100;
   var high = Math.round((base * 1.75) / 100) * 100;
   document.getElementById('viz-cost-value').textContent = '$' + low.toLocaleString() + ' - $' + high.toLocaleString();
-  document.getElementById('viz-cost-label').textContent = 'Architectural Shingle | ~' + sqft.toLocaleString() + ' sq ft';
+  document.getElementById('viz-cost-label').textContent = label + ' | ~' + sqft.toLocaleString() + ' sq ft';
 }
 
 // ── Roof Visualizer Logic (OC Duration + TruDefinition, multi-color compare) ──
@@ -747,16 +789,51 @@ var OC_COLORS = [
   { name:'Storm Cloud',       hex:'#454B51', line:'TruDefinition Designer' }
 ];
 
+// Florida metal palette: natural Galvalume + common painted choices (Kynar/AkzoNobel-style).
+// Hex values are approximations for the swatch grid; exact chip colors live with the supplier.
+var METAL_COLORS = [
+  { name:'Galvalume',     hex:'#A8A9AD', line:'Natural' },
+  { name:'Matte Black',   hex:'#1E1E1E', line:'Painted' },
+  { name:'Charcoal Gray', hex:'#44464A', line:'Painted' },
+  { name:'Dark Bronze',   hex:'#423932', line:'Painted' },
+  { name:'Copper',        hex:'#B87333', line:'Painted' },
+  { name:'Patriot Blue',  hex:'#1F3F6C', line:'Painted' },
+  { name:'Forest Green',  hex:'#2E4A2A', line:'Painted' },
+  { name:'Barn Red',      hex:'#7E201D', line:'Painted' }
+];
+
+// Metal profile descriptions feed directly into the OpenAI edit prompt as the
+// "style" parameter so the model draws the right panel geometry and reflectivity.
+var METAL_PROFILES = {
+  '5v':             { label: '5V Crimp',     prompt: '5-V crimp standing metal roof with classic Florida ribbed panel profile, visible fasteners, and semi-glossy painted finish' },
+  'standing-seam':  { label: 'Standing Seam', prompt: 'standing seam metal roof with hidden fasteners, clean vertical panel seams, flat matte-to-satin painted finish, modern premium look' }
+};
+
 var selectedColors = [];           // [{name,hex,line}]
 var streetViewLoaded = false;
 var uploadedImageData = null;
 var lastOriginalImageUrl = '';
+var currentRoofType = 'shingle';   // 'shingle' | 'metal'
+var currentMetalProfile = null;    // null | '5v' | 'standing-seam'
+
+function activePalette() {
+  return currentRoofType === 'metal' ? METAL_COLORS : OC_COLORS;
+}
 
 function renderColorSwatches() {
   var container = document.getElementById('color-options');
   if (!container) return;
   container.innerHTML = '';
-  OC_COLORS.forEach(function(c) {
+  var wait = document.getElementById('viz-metal-wait-msg');
+  // Metal palette is gated on a profile being chosen first.
+  if (currentRoofType === 'metal' && !currentMetalProfile) {
+    container.style.display = 'none';
+    if (wait) wait.style.display = 'block';
+    return;
+  }
+  if (wait) wait.style.display = 'none';
+  container.style.display = 'grid';
+  activePalette().forEach(function(c) {
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'viz-color-swatch';
@@ -770,6 +847,51 @@ function renderColorSwatches() {
     btn.addEventListener('click', function() { toggleColor(c); });
     container.appendChild(btn);
   });
+}
+
+function setRoofType(type) {
+  if (type === currentRoofType) return;
+  currentRoofType = type;
+  selectedColors = [];
+  if (type === 'shingle') currentMetalProfile = null;
+  var sBtn = document.getElementById('viz-type-shingle');
+  var mBtn = document.getElementById('viz-type-metal');
+  if (sBtn) sBtn.classList.toggle('viz-type-active', type === 'shingle');
+  if (mBtn) mBtn.classList.toggle('viz-type-active', type === 'metal');
+  var metalPanel = document.getElementById('viz-metal-profile');
+  if (metalPanel) metalPanel.style.display = type === 'metal' ? 'block' : 'none';
+  if (type === 'shingle') {
+    var h = document.getElementById('viz-color-header');
+    var s = document.getElementById('viz-color-subtitle');
+    if (h) h.innerHTML = '3 &nbsp;&middot;&nbsp; PICK UP TO 4 SHINGLE COLORS';
+    if (s) s.textContent = 'Owens Corning Duration + TruDefinition. Click swatches to add/remove.';
+  } else {
+    var h2 = document.getElementById('viz-color-header');
+    var s2 = document.getElementById('viz-color-subtitle');
+    if (h2) h2.innerHTML = '3 &nbsp;&middot;&nbsp; PICK UP TO 4 METAL COLORS';
+    if (s2) s2.textContent = 'Florida metal palette. Click swatches to add/remove.';
+  }
+  // Clear any lingering 5V / Standing Seam highlight when leaving metal.
+  if (type === 'shingle') {
+    ['viz-profile-5v','viz-profile-ss'].forEach(function(id) {
+      var b = document.getElementById(id);
+      if (b) b.classList.remove('viz-type-active');
+    });
+  }
+  renderColorSwatches();
+  updateColorUI();
+  updateCostEstimate();
+}
+
+function setMetalProfile(profile) {
+  currentMetalProfile = profile;
+  var p5 = document.getElementById('viz-profile-5v');
+  var pss = document.getElementById('viz-profile-ss');
+  if (p5) p5.classList.toggle('viz-type-active', profile === '5v');
+  if (pss) pss.classList.toggle('viz-type-active', profile === 'standing-seam');
+  renderColorSwatches();
+  updateColorUI();
+  updateCostEstimate();
 }
 
 function toggleColor(c) {
@@ -967,8 +1089,13 @@ function generateVisualization() {
     phone: ((document.getElementById('viz-phone') || {}).value || '').trim()
   };
 
+  var roofStyle = 'architectural shingle';
+  if (currentRoofType === 'metal') {
+    if (!currentMetalProfile) { alert('Pick a metal profile (5V Crimp or Standing Seam) first.'); return; }
+    roofStyle = METAL_PROFILES[currentMetalProfile].prompt;
+  }
   var payload = {
-    roofStyle: 'architectural shingle',
+    roofStyle: roofStyle,
     colors: selectedColors.map(function(c) { return { name: c.name, hex: c.hex }; }),
     lead: leadPayload,
     source: '/assessment?tab=viz'
