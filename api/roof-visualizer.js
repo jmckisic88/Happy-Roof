@@ -12,9 +12,12 @@ import { tmpdir } from 'os';
 import { join } from 'path';
 import { sendEmail } from './_send-email.js';
 
-// Vercel: give the function enough runway for 4 parallel image gens
-export const config = { maxDuration: 60 };
-export const maxDuration = 60;
+// Vercel: give the function enough runway for 4 parallel image gens.
+// Hobby plan caps at 60s, Pro (this project's tier) at 300s. 120s is a
+// comfortable middle ground for 4 parallel gpt-image-2.5-flare edits.
+// The Next.js-shaped `export const config = { maxDuration }` form is ignored
+// on bare Vercel Node functions; only the top-level export is honored.
+export const maxDuration = 120;
 
 function buildVisualizerNotification({ lead, colors, delivered, requested, failed, source }) {
   const fn = (lead && lead.first_name) || '';

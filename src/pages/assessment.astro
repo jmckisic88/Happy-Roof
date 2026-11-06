@@ -985,23 +985,91 @@ function updateUploadAffordance(mode) {
   }
 }
 
+// Downscale + recompress an uploaded photo to stay well under Vercel's 4.5 MB
+// request-body ceiling. The OpenAI edit endpoint only accepts 1024x1024, so
+// anything larger is wasted bytes. We target 1600px max dimension at JPEG 0.85
+// (typical output ~350-700 KB, ~470-930 KB as base64) which leaves plenty of
+// headroom for the rest of the JSON payload.
+function finalizeUploadedPhoto(dataUrl) {
+  uploadedImageData = dataUrl;
+  lastOriginalImageUrl = dataUrl;
+  document.getElementById('viz-original').src = dataUrl;
+  document.getElementById('viz-source-label').innerHTML = 'Your <b>uploaded</b> photo';
+  document.getElementById('viz-streetview').style.display = 'block';
+  document.getElementById('viz-style-picker').style.display = 'block';
+  streetViewLoaded = true;
+  updateUploadAffordance('uploaded');
+  updateColorUI();
+}
+
+function resizeAndEncode(source, maxDim) {
+  var w = source.width || source.naturalWidth;
+  var h = source.height || source.naturalHeight;
+  if (!w || !h) throw new Error('Could not read image dimensions.');
+  var scale = Math.min(1, maxDim / Math.max(w, h));
+  var dw = Math.max(1, Math.round(w * scale));
+  var dh = Math.max(1, Math.round(h * scale));
+  var canvas = document.createElement('canvas');
+  canvas.width = dw;
+  canvas.height = dh;
+  var ctx = canvas.getContext('2d');
+  ctx.drawImage(source, 0, 0, dw, dh);
+  return canvas.toDataURL('image/jpeg', 0.85);
+}
+
 function handleFileUpload(input) {
   var file = input.files[0];
   if (!file) return;
   if (!validateYourInfo()) { input.value = ''; return; }
-  if (file.size > 10 * 1024 * 1024) { alert('Image must be under 10MB'); return; }
+  // Soft cap at 20 MB raw. We resize client-side anyway, so this is just a
+  // sanity ceiling for truly absurd files.
+  if (file.size > 20 * 1024 * 1024) { alert('Image must be under 20MB.'); input.value = ''; return; }
+
+  var MAX = 1600;
+
+  // Preferred path: createImageBitmap with imageOrientation 'from-image' honors
+  // the EXIF Orientation tag so phone portrait photos render upright even in
+  // browsers where canvas.drawImage of an <img> ignores EXIF. Falls back to the
+  // classic FileReader + <img> path on engines that lack ImageBitmap support.
+  if (typeof createImageBitmap === 'function') {
+    createImageBitmap(file, { imageOrientation: 'from-image' })
+      .then(function(bmp) {
+        try {
+          var dataUrl = resizeAndEncode(bmp, MAX);
+          finalizeUploadedPhoto(dataUrl);
+        } finally {
+          if (typeof bmp.close === 'function') bmp.close();
+        }
+      })
+      .catch(function() {
+        // createImageBitmap failed (HEIC on non-Safari, corrupt file, etc.) —
+        // try the <img> fallback. If that also fails we surface a clean error.
+        legacyImgDecode(file, MAX);
+      });
+  } else {
+    legacyImgDecode(file, MAX);
+  }
+}
+
+function legacyImgDecode(file, maxDim) {
   var reader = new FileReader();
   reader.onload = function(e) {
-    uploadedImageData = e.target.result;
-    lastOriginalImageUrl = uploadedImageData;
-    document.getElementById('viz-original').src = uploadedImageData;
-    document.getElementById('viz-source-label').innerHTML = 'Your <b>uploaded</b> photo';
-    document.getElementById('viz-streetview').style.display = 'block';
-    document.getElementById('viz-style-picker').style.display = 'block';
-    streetViewLoaded = true;
-    updateUploadAffordance('uploaded');
-    updateColorUI();
+    var img = new Image();
+    img.onload = function() {
+      try {
+        var dataUrl = resizeAndEncode(img, maxDim);
+        finalizeUploadedPhoto(dataUrl);
+      } catch (err) {
+        console.error('[roof-viz] resize failed:', err);
+        alert('We could not process that photo. Please try a JPG or PNG, or let us use the Google Street View photo instead.');
+      }
+    };
+    img.onerror = function() {
+      alert('We could not read that photo. HEIC/HEIF files are not supported in every browser. Please export as JPEG and try again, or let us use the Google Street View photo instead.');
+    };
+    img.src = e.target.result;
   };
+  reader.onerror = function() { alert('We could not read that photo. Please try a different file.'); };
   reader.readAsDataURL(file);
 }
 
@@ -1059,6 +1127,14 @@ function generateVisualization() {
   if (!selectedColors.length) { alert('Pick at least one color.'); return; }
   if (!validateYourInfo()) return;
 
+  // Validate metal profile BEFORE flipping the UI into loading state so the
+  // early-return cannot leave the spinner stuck on screen.
+  var roofStyle = 'architectural shingle';
+  if (currentRoofType === 'metal') {
+    if (!currentMetalProfile) { alert('Pick a metal profile (5V Crimp or Standing Seam) first.'); return; }
+    roofStyle = METAL_PROFILES[currentMetalProfile].prompt;
+  }
+
   var genCount = getGenerationCount();
   if (genCount >= 3) {
     var msg = document.getElementById('viz-limit-msg');
@@ -1089,11 +1165,6 @@ function generateVisualization() {
     phone: ((document.getElementById('viz-phone') || {}).value || '').trim()
   };
 
-  var roofStyle = 'architectural shingle';
-  if (currentRoofType === 'metal') {
-    if (!currentMetalProfile) { alert('Pick a metal profile (5V Crimp or Standing Seam) first.'); return; }
-    roofStyle = METAL_PROFILES[currentMetalProfile].prompt;
-  }
   var payload = {
     roofStyle: roofStyle,
     colors: selectedColors.map(function(c) { return { name: c.name, hex: c.hex }; }),
@@ -1106,16 +1177,51 @@ function generateVisualization() {
     payload.address = address;
   }
 
-  fetch('/api/roof-visualizer', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
+  function resetChrome() {
     document.getElementById('viz-loading').style.display = 'none';
     document.getElementById('viz-style-picker').style.display = 'block';
     updateColorUI();
+  }
+
+  // AbortController so a stalled connection fails gracefully instead of hanging
+  // forever. 100s matches the server's 120s maxDuration with a 20s buffer.
+  var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var abortTimer = ctrl ? setTimeout(function() { ctrl.abort(); }, 100000) : null;
+
+  fetch('/api/roof-visualizer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    signal: ctrl ? ctrl.signal : undefined
+  })
+  // Pull the body as text first so a non-JSON error page (Vercel 413 / 504 /
+  // deployment-protection challenge) does not poison the chain with a
+  // SyntaxError that lands in the generic .catch.
+  .then(function(r) {
+    return r.text().then(function(txt) {
+      var data;
+      try { data = txt ? JSON.parse(txt) : {}; }
+      catch (e) { data = { _raw: (txt || '').slice(0, 400), _parseError: true }; }
+      return { status: r.status, ok: r.ok, data: data };
+    });
+  })
+  .then(function(resp) {
+    if (abortTimer) clearTimeout(abortTimer);
+    resetChrome();
+    var data = resp.data;
+
+    // 413 = Vercel edge rejected the body as too large (usually a huge uploaded photo).
+    if (resp.status === 413) {
+      console.error('[roof-viz] 413 payload too large', resp);
+      alert('That photo is too large to upload. Please choose a smaller image (ideally under ~3 MB raw) or let us use the Google Street View photo instead.');
+      return;
+    }
+    // 504 = Vercel function timeout (OpenAI took too long across all 4 colors).
+    if (resp.status === 504 || (data && /timeout|FUNCTION_INVOCATION_TIMEOUT/i.test(data.error || data._raw || ''))) {
+      console.error('[roof-viz] 504 timeout', resp);
+      alert('The preview generator took too long this time. Please try again in a moment, or call us at (813) 595-7663.');
+      return;
+    }
 
     if (data.success && data.generatedImages && data.generatedImages.length) {
       incrementGenerationCount();
@@ -1127,31 +1233,40 @@ function generateVisualization() {
       document.getElementById('viz-result').style.display = 'block';
       updateCostEstimate();
       document.getElementById('viz-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      if (data.noStreetView) {
-        // Upload area is already visible. Reinforce it and pulse the dropzone.
-        updateUploadAffordance('initial');
-        var dz = document.getElementById('viz-upload-area');
-        if (dz) { dz.style.background = '#FFF8E6'; setTimeout(function(){ dz.style.background = '#FAFAFA'; }, 1800); }
-        alert('Google does not have a street-level photo for this address. Upload a photo of the home using the box below and we will generate from that.');
-      } else if (data.verificationUrl) {
-        // Model-access / verification failure. Show the owner-facing hint prominently.
-        var vhint = (data.hint ? '\n\n' + data.hint : '') + '\n\nVerification URL: ' + data.verificationUrl;
-        alert('We could not generate the roof previews right now. ' + (data.error || '') + vhint + '\n\nEveryone else: please try again shortly or call us at (813) 595-7663 and we will walk you through colors over the phone.');
-        console.error('[roof-viz] model/verification failure:', data);
-      } else {
-        var detail = (data && data.details) ? '\n\nDetails: ' + data.details : '';
-        var firstFail = (data && data.failures && data.failures[0]) ? '\n\nFirst failure: ' + data.failures[0].error : '';
-        alert('We could not generate a comparison. ' + (data.error || 'Please try again.') + detail + firstFail);
-        console.error('[roof-viz] generation failed:', data);
-      }
+      return;
     }
+
+    if (data.noStreetView) {
+      // Upload area is already visible. Reinforce it and pulse the dropzone.
+      updateUploadAffordance('initial');
+      var dz = document.getElementById('viz-upload-area');
+      if (dz) { dz.style.background = '#FFF8E6'; setTimeout(function(){ dz.style.background = '#FAFAFA'; }, 1800); }
+      alert('Google does not have a street-level photo for this address. Upload a photo of the home using the box below and we will generate from that.');
+      return;
+    }
+    if (data.verificationUrl) {
+      // Model-access / verification failure. Show the owner-facing hint prominently.
+      var vhint = (data.hint ? '\n\n' + data.hint : '') + '\n\nVerification URL: ' + data.verificationUrl;
+      alert('We could not generate the roof previews right now. ' + (data.error || '') + vhint + '\n\nEveryone else: please try again shortly or call us at (813) 595-7663 and we will walk you through colors over the phone.');
+      console.error('[roof-viz] model/verification failure:', resp);
+      return;
+    }
+
+    // Generic server-side failure. Surface whatever details we have.
+    var detail = (data && data.details) ? '\n\nDetails: ' + data.details : '';
+    var firstFail = (data && data.failures && data.failures[0]) ? '\n\nFirst failure: ' + data.failures[0].error : '';
+    var statusTag = (!resp.ok && resp.status) ? ' (HTTP ' + resp.status + ')' : '';
+    alert('We could not generate a comparison' + statusTag + '. ' + (data.error || 'Please try again.') + detail + firstFail);
+    console.error('[roof-viz] generation failed:', resp);
   })
-  .catch(function() {
-    document.getElementById('viz-loading').style.display = 'none';
-    document.getElementById('viz-style-picker').style.display = 'block';
-    updateColorUI();
-    alert('Something went wrong. Please try again or call us at (813) 595-7663.');
+  .catch(function(err) {
+    if (abortTimer) clearTimeout(abortTimer);
+    resetChrome();
+    console.error('[roof-viz] network/abort failure:', err);
+    var isAbort = err && (err.name === 'AbortError' || /aborted/i.test(err.message || ''));
+    alert(isAbort
+      ? 'The request took too long and was cancelled. Please try again or call us at (813) 595-7663.'
+      : 'Could not reach the preview service. Check your connection and try again, or call us at (813) 595-7663.');
   });
 }
 
