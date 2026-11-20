@@ -1,28 +1,34 @@
 ---
-import { HOLIDAY_CLOSURE, holidayClosureActive } from '../data/holiday-closure';
+import { CLOSURE_PHONE_NOTE, closureShowing, upcomingClosures } from '../data/holiday-closure';
 
 interface Props {
   strip?: boolean;
 }
 const { strip = false } = Astro.props;
-const active = holidayClosureActive();
-const h = HOLIDAY_CLOSURE;
+const closures = upcomingClosures();
+const forClient = closures.map((c) => ({ ...c, phoneNote: CLOSURE_PHONE_NOTE }));
 ---
-{active && strip && (
-  <div data-hr-holiday class="hr-holiday-strip">
-    {h.greeting} We're closed <strong>{h.datesLong}</strong>. Back {h.reopens}.
+{strip && closures.map((c) => (
+  <div class="hr-holiday-strip" data-hr-from={c.showFrom} data-hr-until={c.endsAt} hidden={!closureShowing(c)}>
+    {c.greeting} We're closed <strong>{c.datesLong}</strong> and back <span class="hr-nowrap">{c.reopens}</span>. <span class="hr-holiday-strip-phone">{CLOSURE_PHONE_NOTE}</span>
   </div>
-)}
-{active && (
-  <script is:inline define:vars={{ hrHoliday: h }}>
-    window.HR_HOLIDAY = hrHoliday;
+))}
+{closures.length > 0 && (
+  <script is:inline define:vars={{ hrClosures: forClient }}>
+    window.HR_CLOSURES = hrClosures;
     (function () {
-      var end = Date.parse(hrHoliday.endsAt);
       function sweep() {
-        if (Date.now() < end) return;
-        var els = document.querySelectorAll('[data-hr-holiday]');
+        var now = Date.now();
+        var els = document.querySelectorAll('[data-hr-until]');
         for (var i = 0; i < els.length; i++) {
-          if (els[i].parentNode) els[i].parentNode.removeChild(els[i]);
+          var el = els[i];
+          if (now >= Date.parse(el.getAttribute('data-hr-until'))) {
+            if (el.parentNode) el.parentNode.removeChild(el);
+          } else if (now >= Date.parse(el.getAttribute('data-hr-from'))) {
+            el.removeAttribute('hidden');
+          } else {
+            el.setAttribute('hidden', '');
+          }
         }
       }
       sweep();
@@ -32,6 +38,7 @@ const h = HOLIDAY_CLOSURE;
 )}
 
 <style is:global>
+  [data-hr-until][hidden] { display: none !important; }
   .hr-holiday-strip {
     background: #1A1A1A;
     color: #FFFFFF;
@@ -44,6 +51,9 @@ const h = HOLIDAY_CLOSURE;
     line-height: 1.4;
     letter-spacing: .01em;
   }
-  .hr-holiday-strip strong { color: #E6A817; font-weight: 800; }
-  @media print { [data-hr-holiday] { display: none !important; } }
+  .hr-holiday-strip strong { color: #E6A817; font-weight: 800; white-space: nowrap; }
+  .hr-holiday-strip .hr-nowrap { white-space: nowrap; }
+  .hr-holiday-strip-phone { color: rgba(255,255,255,.75); font-weight: 500; }
+  @media (max-width: 767px) { .hr-holiday-strip { font-size: .82rem; padding: .5rem .85rem; } }
+  @media print { [data-hr-until] { display: none !important; } }
 </style>

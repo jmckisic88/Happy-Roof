@@ -12,18 +12,21 @@
 (function () {
   'use strict';
 
-  // ── Holiday closure (dates live in src/data/holiday-closure.ts; the layout
-  //    exposes them as window.HR_HOLIDAY until the closure ends) ──
+  // ── Office closures (dates live in src/data/holiday-closure.ts; the layout
+  //    exposes the ones that haven't ended as window.HR_CLOSURES) ──
   const HOLIDAY = (function () {
-    const h = window.HR_HOLIDAY;
-    if (!h || !h.endsAt || Date.now() >= Date.parse(h.endsAt)) return null;
-    return h;
+    const now = Date.now();
+    const list = Array.isArray(window.HR_CLOSURES) ? window.HR_CLOSURES : [];
+    return list.find(c => now >= Date.parse(c.showFrom) && now < Date.parse(c.endsAt)) || null;
   })();
   const HOLIDAY_HOURS = HOLIDAY
-    ? `\n📅 **Closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}.** Back ${HOLIDAY.reopens}.`
+    ? `\n📅 **Closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}.** Back ${HOLIDAY.reopens}. ${HOLIDAY.phoneNote}`
+    : '';
+  const HOLIDAY_EMERGENCY = HOLIDAY
+    ? `\n\n📅 **We're closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}.** ${HOLIDAY.phoneNote}`
     : '';
   const HOLIDAY_FOLLOWUP = HOLIDAY
-    ? `\n\nHeads up: we're closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}. Messages that come in over the holiday will be answered ${HOLIDAY.reopens}.`
+    ? `\n\nHeads up: we're closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}. We'll still check messages, and we'll follow up by ${HOLIDAY.reopens}.`
     : '';
 
   // ── Knowledge base ──────────────────────────────────────────
@@ -65,7 +68,7 @@
     },
     {
       intents: ['emergency','leak','urgent','active leak','flooding','water','storm hit','night','weekend','asap','right now'],
-      response: `⚡ **Emergency roofing situations — call us directly:**\n\n📞 **(813) 595-7663**\n\nWe offer **48-hour emergency response** for active leaks and storm damage. For after-hours emergencies, leave a voicemail with your name, address, and situation and we'll call back as soon as possible.\n\nStay safe and avoid the affected area if possible. Is there anything else I can help with?`,
+      response: `⚡ **Emergency roofing situations — call us directly:**\n\n📞 **(813) 595-7663**${HOLIDAY_EMERGENCY}\n\nWe offer **48-hour emergency response** for active leaks and storm damage. For after-hours emergencies, leave a voicemail with your name, address, and situation and we'll call back as soon as possible.\n\nStay safe and avoid the affected area if possible. Is there anything else I can help with?`,
       quick: ['Contact the team','Storm damage help','Insurance questions']
     },
     {
