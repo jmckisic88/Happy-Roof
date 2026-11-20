@@ -1,0 +1,49 @@
+---
+import { HOLIDAY_CLOSURE, holidayClosureActive } from '../data/holiday-closure';
+
+interface Props {
+  strip?: boolean;
+}
+const { strip = false } = Astro.props;
+const active = holidayClosureActive();
+const h = HOLIDAY_CLOSURE;
+---
+{active && strip && (
+  <div data-hr-holiday class="hr-holiday-strip">
+    {h.greeting} We're closed <strong>{h.datesLong}</strong>. Back {h.reopens}.
+  </div>
+)}
+{active && (
+  <script is:inline define:vars={{ hrHoliday: h }}>
+    window.HR_HOLIDAY = hrHoliday;
+    (function () {
+      var end = Date.parse(hrHoliday.endsAt);
+      function sweep() {
+        if (Date.now() < end) return;
+        var els = document.querySelectorAll('[data-hr-holiday]');
+        for (var i = 0; i < els.length; i++) {
+          if (els[i].parentNode) els[i].parentNode.removeChild(els[i]);
+        }
+      }
+      sweep();
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep);
+    })();
+  </script>
+)}
+
+<style is:global>
+  .hr-holiday-strip {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    border-bottom: 2px solid #E6A817;
+    padding: .6rem 1rem;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .01em;
+  }
+  .hr-holiday-strip strong { color: #E6A817; font-weight: 800; }
+  @media print { [data-hr-holiday] { display: none !important; } }
+</style>

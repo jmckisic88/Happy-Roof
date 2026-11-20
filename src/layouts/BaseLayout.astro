@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import MobileCTA from '../components/MobileCTA.astro';
 import ExitPopup from '../components/ExitPopup.astro';
 import Analytics from '../components/Analytics.astro';
+import HolidayClosure from '../components/HolidayClosure.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -125,6 +126,7 @@ const {
 
   {!hideBanner && <GiveBackBanner />}
   <Nav activePage={activePage} hideBanner={hideBanner} hideNavLinks={hideNavLinks} />
+  <HolidayClosure />
 
   <slot />
 

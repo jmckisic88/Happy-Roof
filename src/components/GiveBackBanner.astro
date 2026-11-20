@@ -1,3 +1,7 @@
+---
+import { HOLIDAY_CLOSURE, holidayClosureActive } from '../data/holiday-closure';
+const holiday = holidayClosureActive() ? HOLIDAY_CLOSURE : null;
+---
 <!-- ══ PROMO BANNER ══ -->
 <style>
   @media (max-width: 767px) {
@@ -5,19 +9,43 @@
     #give-back-bar { padding: .45rem 1rem; gap: 0; justify-content: center; flex-wrap: nowrap; }
     #give-back-bar a:first-of-type span { font-size: .82rem; }
   }
+
+  /* Holiday closure leads the bar. Everything after it that would push the
+     bar onto a second line steps aside (the nav is pinned at top:40px), and
+     comes back automatically once the notice is removed at expiry. */
+  .hr-holiday { display: flex; align-items: center; gap: .5rem; margin: 0; color: #FFFFFF; font-size: .95rem; font-weight: 600; font-family: 'Nunito', sans-serif; letter-spacing: .02em; white-space: nowrap; }
+  .hr-holiday strong { color: #E6A817; font-weight: 800; }
+  .hr-holiday-short { display: none; }
+  #hr-holiday-notice ~ .holiday-hide { display: none !important; }
+  @media (max-width: 1199px) {
+    #hr-holiday-notice ~ .holiday-wide-only { display: none !important; }
+  }
+  @media (max-width: 767px) {
+    .hr-holiday { font-size: .82rem; }
+    .hr-holiday-long { display: none; }
+    .hr-holiday-short { display: inline; }
+  }
 </style>
 <div id="give-back-bar" style="background:#1A1A1A;border-bottom:1px solid #333;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;position:fixed;top:0;left:0;right:0;z-index:60">
-  <a href="/contact?promo=POSTCARD26#estimate-form" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E6A817;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  {holiday && (
+    <p id="hr-holiday-notice" data-hr-holiday class="hr-holiday">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2.5" style="flex-shrink:0" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span class="hr-holiday-long">{holiday.greeting} We're closed <strong>{holiday.datesLong}</strong>. Back {holiday.reopens}.</span>
+      <span class="hr-holiday-short">Closed <strong>{holiday.datesShort}</strong> for {holiday.occasion}</span>
+    </p>
+  )}
+  {holiday && <span data-hr-holiday class="banner-extra holiday-wide-only" style="color:#444;font-size:1rem;line-height:1">·</span>}
+  <a class="holiday-wide-only" href="/contact?promo=POSTCARD26#estimate-form" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E6A817;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E6A817" stroke-width="2.5" style="flex-shrink:0"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
     <span><strong>10% OFF</strong> Any Roofing Job | Code <strong>POSTCARD26</strong></span>
   </a>
-  <span class="banner-extra" style="color:#444;font-size:1rem;line-height:1">·</span>
-  <a class="banner-extra" href="/referrals" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#3B9FD9;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  <span class="banner-extra holiday-hide" style="color:#444;font-size:1rem;line-height:1">·</span>
+  <a class="banner-extra holiday-hide" href="/referrals" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#3B9FD9;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2.5" style="flex-shrink:0"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     <span>Earn Up to <strong>$1,000</strong> Per Referral</span>
   </a>
-  <span class="banner-extra" style="color:#444;font-size:1rem;line-height:1">·</span>
-  <a class="banner-extra" href="/#hero-discount" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E8415A;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+  <span class="banner-extra holiday-hide" style="color:#444;font-size:1rem;line-height:1">·</span>
+  <a class="banner-extra holiday-hide" href="/#hero-discount" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#E8415A;font-size:.95rem;font-weight:600;font-family:'Nunito',sans-serif;letter-spacing:.02em;transition:opacity .15s ease" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8415A" style="flex-shrink:0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     Hero Discount
   </a>

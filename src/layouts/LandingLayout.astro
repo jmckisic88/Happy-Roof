@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import HolidayClosure from '../components/HolidayClosure.astro';
 
 interface Props {
   title: string;
@@ -86,6 +87,8 @@ const {
   <!-- Google Tag Manager (noscript) (Marketing Team) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9L6VHPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) (Marketing Team) -->
+
+  <HolidayClosure strip />
 
   <slot />
 

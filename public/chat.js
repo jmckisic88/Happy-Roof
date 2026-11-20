@@ -12,6 +12,20 @@
 (function () {
   'use strict';
 
+  // ── Holiday closure (dates live in src/data/holiday-closure.ts; the layout
+  //    exposes them as window.HR_HOLIDAY until the closure ends) ──
+  const HOLIDAY = (function () {
+    const h = window.HR_HOLIDAY;
+    if (!h || !h.endsAt || Date.now() >= Date.parse(h.endsAt)) return null;
+    return h;
+  })();
+  const HOLIDAY_HOURS = HOLIDAY
+    ? `\n📅 **Closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}.** Back ${HOLIDAY.reopens}.`
+    : '';
+  const HOLIDAY_FOLLOWUP = HOLIDAY
+    ? `\n\nHeads up: we're closed ${HOLIDAY.datesLong} for ${HOLIDAY.occasion}. Messages that come in over the holiday will be answered ${HOLIDAY.reopens}.`
+    : '';
+
   // ── Knowledge base ──────────────────────────────────────────
   const KB = [
     {
@@ -21,7 +35,7 @@
     },
     {
       intents: ['estimate','quote','price','cost','how much','free estimate','free inspection','ballpark','rough estimate'],
-      response: `Great question! We offer **free estimates** with no obligation.\n\n📞 Call or text us at **(813) 595-7663**\n🕐 Mon–Fri 9am–5pm\n\nWant a **rough ballpark right now?** I can calculate a price range based on your roof type and home size — just know it's an estimate that needs a real inspection to confirm.\n\nOr fill out the quick estimate form on our home page and we'll get back to you within 1 business day.`,
+      response: `Great question! We offer **free estimates** with no obligation.\n\n📞 Call or text us at **(813) 595-7663**\n🕐 Mon–Fri 9am–5pm${HOLIDAY_HOURS}\n\nWant a **rough ballpark right now?** I can calculate a price range based on your roof type and home size — just know it's an estimate that needs a real inspection to confirm.\n\nOr fill out the quick estimate form on our home page and we'll get back to you within 1 business day.`,
       quick: ['Get a rough ballpark estimate','Yes, contact me','What affects roof cost?']
     },
     {
@@ -86,7 +100,7 @@
     },
     {
       intents: ['contact','phone','call','email','reach','talk','speak','human','person','office','hours'],
-      response: `Here's how to reach the Happy Roof team:\n\n📞 **Phone/Text:** (813) 595-7663\n📧 **Email:** info@happyroof.com\n🕐 **Office Hours:** Mon–Fri 9am–5pm\n📍 **Address:** 141 Stevens Ave, Oldsmar, FL\n🌐 **Web:** happyroof.com\n\nFor after-hours emergencies, leave a voicemail and we'll respond as soon as possible.`,
+      response: `Here's how to reach the Happy Roof team:\n\n📞 **Phone/Text:** (813) 595-7663\n📧 **Email:** info@happyroof.com\n🕐 **Office Hours:** Mon–Fri 9am–5pm${HOLIDAY_HOURS}\n📍 **Address:** 141 Stevens Ave, Oldsmar, FL\n🌐 **Web:** happyroof.com\n\nFor after-hours emergencies, leave a voicemail and we'll respond as soon as possible.`,
       quick: ['Request live operator','Send message summary','Other questions']
     },
     {
@@ -151,7 +165,7 @@
     },
   ];
 
-  const FALLBACK = `Hmm, I'm not sure I have a great answer for that specific question! 🤔\n\nThe best next step would be to speak directly with our team:\n\n📞 **(813) 595-7663** — call or text\n📧 **info@happyroof.com**\n🕐 Mon–Fri 9am–5pm\n\nOr I can send a summary of our chat to the team so they can follow up with you. Want me to do that?`;
+  const FALLBACK = `Hmm, I'm not sure I have a great answer for that specific question! 🤔\n\nThe best next step would be to speak directly with our team:\n\n📞 **(813) 595-7663** — call or text\n📧 **info@happyroof.com**\n🕐 Mon–Fri 9am–5pm${HOLIDAY_HOURS}\n\nOr I can send a summary of our chat to the team so they can follow up with you. Want me to do that?`;
 
   // ── Pricing data (per roofing square = 100 sq ft of roof) ───
   const PRICING = {
@@ -356,12 +370,12 @@
       awaitingContactInfo = false;
       if (pendingAction === 'email') {
         setTimeout(() => {
-          addMessage('bot', `✅ Done! Your conversation summary has been sent to our team.\n\nWe'll review it and reach out to **${tempContact.name}** at **${tempContact.phone}** shortly — typically within 1 business day.`);
+          addMessage('bot', `✅ Done! Your conversation summary has been sent to our team.\n\nWe'll review it and reach out to **${tempContact.name}** at **${tempContact.phone}** shortly — typically within 1 business day.${HOLIDAY_FOLLOWUP}`);
           sendSummaryEmail(tempContact.name, tempContact.phone, tempContact.email);
         }, 400);
       } else if (pendingAction === 'sms') {
         setTimeout(() => {
-          addMessage('bot', `✅ Thanks, **${tempContact.name}**! A live team member will text **${tempContact.phone}** as soon as possible during business hours (Mon–Fri 9am–5pm).\n\nFor urgent issues, please call **(813) 595-7663** directly.`);
+          addMessage('bot', `✅ Thanks, **${tempContact.name}**! A live team member will text **${tempContact.phone}** as soon as possible during business hours (Mon–Fri 9am–5pm).${HOLIDAY_FOLLOWUP}\n\nFor urgent issues, please call **(813) 595-7663** directly.`);
         }, 400);
       }
       pendingAction = null;

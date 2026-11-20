@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TurnstileWidget from '../components/TurnstileWidget.astro';
+import { HOLIDAY_CLOSURE, holidayClosureActive } from '../data/holiday-closure';
+const holiday = holidayClosureActive() ? HOLIDAY_CLOSURE : null;
 
 const schema = `{
     "@context": "https://schema.org",
@@ -217,7 +219,7 @@ const schema = `{
       </a>
       <div class="flex items-center gap-3 px-5 py-3 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <div><p style="color:#555555;font-size:.68rem;letter-spacing:.1em">HOURS</p><p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#1A1A1A;font-size:1rem">Mon–Fri 9am–5pm</p></div>
+        <div><p style="color:#555555;font-size:.68rem;letter-spacing:.1em">HOURS</p><p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#1A1A1A;font-size:1rem">Mon–Fri 9am–5pm</p>{holiday && <p data-hr-holiday style="color:#8B6914;font-size:.72rem;font-weight:700;margin-top:.1rem">Closed {holiday.datesShort} for {holiday.occasion}</p>}</div>
       </div>
       <div class="flex items-center gap-3 px-5 py-3 rounded-xl" style="background:#F7F7F7;border:1px solid #E0E0E0">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -366,7 +368,7 @@ const schema = `{
         <div class="flex flex-col gap-3">
           <a href="tel:8135957663" class="call-tracking-number info-card" style="text-decoration:none">
             <div class="info-icon" style="background:rgba(59,159,217,.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B9FD9" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div><p style="color:#888888;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase">Call or Text</p><p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#3B9FD9;font-size:1.15rem">(813) 595-7663</p><p style="color:#888888;font-size:.78rem;margin-top:.1rem">Mon–Fri, 9am–5pm</p></div>
+            <div><p style="color:#888888;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase">Call or Text</p><p class="font-display font-bold" style="font-family:'Barlow Condensed',sans-serif;color:#3B9FD9;font-size:1.15rem">(813) 595-7663</p><p style="color:#888888;font-size:.78rem;margin-top:.1rem">Mon–Fri, 9am–5pm</p>{holiday && <p data-hr-holiday style="color:#8B6914;font-size:.78rem;font-weight:700;margin-top:.15rem">Closed {holiday.datesLong} for {holiday.occasion}. Back {holiday.reopens}.</p>}</div>
           </a>
           <a href="https://happyroof.com" class="info-card" style="text-decoration:none">
             <div class="info-icon" style="background:rgba(230,168,23,.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0C040" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
