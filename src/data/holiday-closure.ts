@@ -27,7 +27,7 @@ export const CLOSURES: Closure[] = [
   {
     showFrom: '2026-12-14T00:00:00-05:00',
     endsAt: '2027-01-04T00:00:00-05:00',
-    greeting: 'Merry Christmas and Happy New Year!',
+    greeting: 'Happy Holidays and Happy New Year!',
     occasion: 'the holidays',
     datesLong: 'Dec 24 through Jan 3',
     datesShort: 'Dec 24–Jan 3',
